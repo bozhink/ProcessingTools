@@ -5,12 +5,13 @@
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
-    using System.Text;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.Decode;
+    using ProcessingTools.Web.Services.Contracts.Tools;
 
     /// <summary>
     /// Decode controller.
@@ -39,48 +40,53 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string Base64UrlActionName = nameof(Base64Url);
 
-        private readonly Encoding encoding;
+        private readonly IDecodeWebService decodeWebService;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DecodeController"/> class.
         /// </summary>
-        /// <param name="encoding">Character encoding</param>
+        /// <param name="decodeWebService">Decoding service</param>
         /// <param name="logger">Logger</param>
-        public DecodeController(Encoding encoding, ILogger<DecodeController> logger)
+        public DecodeController(IDecodeWebService decodeWebService, ILogger<DecodeController> logger)
         {
-            this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
+            this.decodeWebService = decodeWebService ?? throw new ArgumentNullException(nameof(decodeWebService));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
         /// GET Decode
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl)
         {
             const string LogMessage = "GET Decode/Index";
 
             this.logger.LogTrace(LogMessage);
 
-            return this.RedirectToAction(ActionNames.Index, ControllerNames.Home);
+            return this.RedirectToAction(ActionNames.Index, ControllerNames.Home, new { returnUrl });
         }
 
         /// <summary>
         /// GET Decode/Base64
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(Base64ActionName)]
-        public IActionResult Base64()
+        public async Task<IActionResult> Base64(string returnUrl)
         {
             const string LogMessage = "GET Decode/Base64";
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            DecodeBase64ViewModel viewModel = await this.decodeWebService.GetDecodeBase64ViewModelAsync().ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
+
             return this.View(model: viewModel);
         }
 
@@ -88,26 +94,24 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// POST Decode/Base64
         /// </summary>
         /// <param name="model">Request model.</param>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64ActionName)]
-        public IActionResult Base64([Bind(nameof(Base64RequestModel.Content))]Base64RequestModel model)
+        public async Task<IActionResult> Base64([Bind(nameof(DecodeBase64RequestModel.Content))]DecodeBase64RequestModel model, string returnUrl)
         {
             const string LogMessage = "POST Decode/Base64";
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            DecodeBase64ViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
             {
                 try
                 {
-                    viewModel.Content = model.Content;
-
-                    byte[] bytes = Convert.FromBase64String(model.Content);
-                    viewModel.Base64DecodedString = this.encoding.GetString(bytes);
+                    viewModel = await this.decodeWebService.DecodeBase64Async(model).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -115,6 +119,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                     this.logger.LogError(ex, LogMessage);
                 }
             }
+
+            viewModel = viewModel ?? await this.decodeWebService.GetDecodeBase64ViewModelAsync().ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
 
             return this.View(model: viewModel);
         }
@@ -122,16 +130,20 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// GET Decode/Base64Url
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(Base64UrlActionName)]
-        public IActionResult Base64Url()
+        public async Task<IActionResult> Base64Url(string returnUrl)
         {
             const string LogMessage = "GET Decode/Base64Url";
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            DecodeBase64UrlViewModel viewModel = await this.decodeWebService.GetBase64UrlViewModelAsync().ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
+
             return this.View(model: viewModel);
         }
 
@@ -139,26 +151,24 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// POST Decode/Base64Url
         /// </summary>
         /// <param name="model">Request model.</param>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64UrlActionName)]
-        public IActionResult Base64Url([Bind(nameof(Base64RequestModel.Content))]Base64RequestModel model)
+        public async Task<IActionResult> Base64Url([Bind(nameof(DecodeBase64UrlRequestModel.Content))]DecodeBase64UrlRequestModel model, string returnUrl)
         {
             const string LogMessage = "POST Decode/Base64Url";
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            DecodeBase64UrlViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
             {
                 try
                 {
-                    viewModel.Content = model.Content;
-
-                    byte[] bytes = ProcessingTools.Security.Utils.FromBase64Url(model.Content);
-                    viewModel.Base64DecodedString = this.encoding.GetString(bytes);
+                    viewModel = await this.decodeWebService.DecodeBase64UrlAsync(model).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -166,6 +176,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                     this.logger.LogError(ex, LogMessage);
                 }
             }
+
+            viewModel = viewModel ?? await this.decodeWebService.GetBase64UrlViewModelAsync().ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
 
             return this.View(model: viewModel);
         }
