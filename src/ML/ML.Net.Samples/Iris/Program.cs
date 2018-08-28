@@ -5,6 +5,7 @@
 namespace Iris
 {
     using System;
+    using System.IO;
     using Iris.Models;
     using Microsoft.ML;
     using Microsoft.ML.Data;
@@ -32,6 +33,16 @@ namespace Iris
             if (args.Length > 0)
             {
                 dataPath = args[0];
+            }
+
+            if (!File.Exists(dataPath))
+            {
+                var color = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"File {dataPath} not found");
+                Console.ForegroundColor = color;
+
+                Environment.Exit(1);
             }
 
             Console.WriteLine($"Data path: {dataPath}");
