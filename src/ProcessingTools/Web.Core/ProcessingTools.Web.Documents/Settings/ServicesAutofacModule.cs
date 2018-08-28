@@ -63,6 +63,7 @@ namespace ProcessingTools.Web.Documents.Settings
 
             builder.RegisterType<DecodeService>().As<IDecodeService>().InstancePerLifetimeScope();
             builder.RegisterType<EncodeService>().As<IEncodeService>().InstancePerLifetimeScope();
+            builder.RegisterType<HashService>().As<IHashService>().InstancePerLifetimeScope();
         }
     }
 }

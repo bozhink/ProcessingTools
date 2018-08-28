@@ -6,9 +6,11 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
     using System.Text;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Services.Contracts.Tools;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.Hashes;
 
@@ -34,17 +36,17 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string AllActionName = nameof(All);
 
-        private readonly Encoding encoding;
+        private readonly IHashService hashService;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HashesController"/> class.
         /// </summary>
-        /// <param name="encoding">Character encoding</param>
+        /// <param name="hashService">Instance of <see cref="IHashService"/>.</param>
         /// <param name="logger">Logger</param>
-        public HashesController(Encoding encoding, ILogger<HashesController> logger)
+        public HashesController(IHashService hashService, ILogger<HashesController> logger)
         {
-            this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
+            this.hashService = hashService ?? throw new ArgumentNullException(nameof(hashService));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -69,7 +71,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(AllActionName)]
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
             const string LogMessage = "GET Hash/All";
 
@@ -87,7 +89,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(AllActionName)]
-        public IActionResult All([Bind(nameof(HashContentRequestModel.Content))]HashContentRequestModel model)
+        public async Task<IActionResult> All([Bind(nameof(HashContentRequestModel.Content))]HashContentRequestModel model)
         {
             const string LogMessage = "POST Hash/All";
 
@@ -101,20 +103,20 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 {
                     viewModel.Content = model.Content;
 
-                    viewModel.MD5String = ProcessingTools.Security.Utils.GetMD5HashAsString(model.Content, this.encoding);
-                    viewModel.MD5Base64String = ProcessingTools.Security.Utils.GetMD5HashAsBase64String(model.Content, this.encoding);
+                    viewModel.MD5String = await this.hashService.GetMD5HashAsStringAsync(model.Content).ConfigureAwait(false);
+                    viewModel.MD5Base64String = await this.hashService.GetMD5HashAsBase64StringAsync(model.Content).ConfigureAwait(false);
 
-                    viewModel.SHA1String = ProcessingTools.Security.Utils.GetSHA1HashAsString(model.Content, this.encoding);
-                    viewModel.SHA1Base64String = ProcessingTools.Security.Utils.GetSHA1HashAsBase64String(model.Content, this.encoding);
+                    viewModel.SHA1String = await this.hashService.GetSHA1HashAsStringAsync(model.Content).ConfigureAwait(false);
+                    viewModel.SHA1Base64String = await this.hashService.GetSHA1HashAsBase64StringAsync(model.Content).ConfigureAwait(false);
 
-                    viewModel.SHA256String = ProcessingTools.Security.Utils.GetSHA256HashAsString(model.Content, this.encoding);
-                    viewModel.SHA256Base64String = ProcessingTools.Security.Utils.GetSHA256HashAsBase64String(model.Content, this.encoding);
+                    viewModel.SHA256String = await this.hashService.GetSHA256HashAsStringAsync(model.Content).ConfigureAwait(false);
+                    viewModel.SHA256Base64String = await this.hashService.GetSHA256HashAsBase64StringAsync(model.Content).ConfigureAwait(false);
 
-                    viewModel.SHA384String = ProcessingTools.Security.Utils.GetSHA384HashAsString(model.Content, this.encoding);
-                    viewModel.SHA384Base64String = ProcessingTools.Security.Utils.GetSHA384HashAsBase64String(model.Content, this.encoding);
+                    viewModel.SHA384String = await this.hashService.GetSHA384HashAsStringAsync(model.Content).ConfigureAwait(false);
+                    viewModel.SHA384Base64String = await this.hashService.GetSHA384HashAsBase64StringAsync(model.Content).ConfigureAwait(false);
 
-                    viewModel.SHA512String = ProcessingTools.Security.Utils.GetSHA512HashAsString(model.Content, this.encoding);
-                    viewModel.SHA512Base64String = ProcessingTools.Security.Utils.GetSHA512HashAsBase64String(model.Content, this.encoding);
+                    viewModel.SHA512String = await this.hashService.GetSHA512HashAsStringAsync(model.Content).ConfigureAwait(false);
+                    viewModel.SHA512Base64String = await this.hashService.GetSHA512HashAsBase64StringAsync(model.Content).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
