@@ -1,4 +1,4 @@
-// <copyright file="Base64ViewModel.cs" company="ProcessingTools">
+// <copyright file="EncodeBase64RequestModel.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,19 +8,14 @@ namespace ProcessingTools.Web.Models.Tools.Encode
     using ProcessingTools.Models.Contracts;
 
     /// <summary>
-    /// Encode Base64 view model.
+    /// Encode Base64 request model.
     /// </summary>
-    public class Base64ViewModel : IContent
+    public class EncodeBase64RequestModel : IContent
     {
         /// <summary>
         /// Gets or sets the text content to be encoded.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
         public string Content { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Base64 encoded resultant string.
-        /// </summary>
-        public string Base64EncodedString { get; set; }
     }
 }

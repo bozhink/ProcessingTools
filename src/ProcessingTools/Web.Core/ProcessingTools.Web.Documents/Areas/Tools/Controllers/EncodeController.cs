@@ -80,7 +80,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            EncodeBase64ViewModel viewModel = new EncodeBase64ViewModel();
             return this.View(model: viewModel);
         }
 
@@ -92,13 +92,13 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64ActionName)]
-        public IActionResult Base64([Bind(nameof(Base64RequestModel.Content))]Base64RequestModel model)
+        public IActionResult Base64([Bind(nameof(EncodeBase64RequestModel.Content))]EncodeBase64RequestModel model)
         {
             const string LogMessage = "POST Encode/Base64";
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            EncodeBase64ViewModel viewModel = new EncodeBase64ViewModel();
 
             if (this.ModelState.IsValid)
             {
@@ -131,7 +131,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            EncodeBase64UrlViewModel viewModel = new EncodeBase64UrlViewModel();
             return this.View(model: viewModel);
         }
 
@@ -143,13 +143,13 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64UrlActionName)]
-        public IActionResult Base64Url([Bind(nameof(Base64RequestModel.Content))]Base64RequestModel model)
+        public IActionResult Base64Url([Bind(nameof(EncodeBase64UrlRequestModel.Content))]EncodeBase64UrlRequestModel model)
         {
             const string LogMessage = "POST Encode/Base64Url";
 
             this.logger.LogTrace(LogMessage);
 
-            Base64ViewModel viewModel = new Base64ViewModel();
+            EncodeBase64UrlViewModel viewModel = new EncodeBase64UrlViewModel();
 
             if (this.ModelState.IsValid)
             {
