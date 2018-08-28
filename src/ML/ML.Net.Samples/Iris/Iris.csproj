@@ -6,8 +6,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Source\Repos\ProcessingTools\src\ML\ML.Net.Samples\Iris\bin\docs\Iris.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\Iris.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

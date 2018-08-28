@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iris", "Iris\Iris.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris.Models", "Iris.Models\Iris.Models.csproj", "{56E65E32-2E41-4BD6-B143-CFDABDC426AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.Models", "SentimentAnalysis.Models\SentimentAnalysis.Models.csproj", "{27502550-B5D7-4B8C-A8DE-20E7955EC138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis", "SentimentAnalysis\SentimentAnalysis.csproj", "{80631E18-78C6-42DD-8CD2-7DD6138780FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{56E65E32-2E41-4BD6-B143-CFDABDC426AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56E65E32-2E41-4BD6-B143-CFDABDC426AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E65E32-2E41-4BD6-B143-CFDABDC426AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27502550-B5D7-4B8C-A8DE-20E7955EC138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27502550-B5D7-4B8C-A8DE-20E7955EC138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27502550-B5D7-4B8C-A8DE-20E7955EC138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27502550-B5D7-4B8C-A8DE-20E7955EC138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80631E18-78C6-42DD-8CD2-7DD6138780FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80631E18-78C6-42DD-8CD2-7DD6138780FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80631E18-78C6-42DD-8CD2-7DD6138780FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80631E18-78C6-42DD-8CD2-7DD6138780FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
