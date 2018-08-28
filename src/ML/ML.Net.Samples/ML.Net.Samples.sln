@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.Models", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis", "SentimentAnalysis\SentimentAnalysis.csproj", "{80631E18-78C6-42DD-8CD2-7DD6138780FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiFares.Models", "TaxiFares.Models\TaxiFares.Models.csproj", "{346454BA-D23C-40BC-BAA8-336B7271DDB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiFares", "TaxiFares\TaxiFares.csproj", "{C7C8C67B-D18D-44DA-980C-FB6360F6C105}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{80631E18-78C6-42DD-8CD2-7DD6138780FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80631E18-78C6-42DD-8CD2-7DD6138780FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80631E18-78C6-42DD-8CD2-7DD6138780FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346454BA-D23C-40BC-BAA8-336B7271DDB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346454BA-D23C-40BC-BAA8-336B7271DDB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346454BA-D23C-40BC-BAA8-336B7271DDB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346454BA-D23C-40BC-BAA8-336B7271DDB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7C8C67B-D18D-44DA-980C-FB6360F6C105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C8C67B-D18D-44DA-980C-FB6360F6C105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7C8C67B-D18D-44DA-980C-FB6360F6C105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7C8C67B-D18D-44DA-980C-FB6360F6C105}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

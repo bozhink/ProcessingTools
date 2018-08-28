@@ -45,19 +45,20 @@ namespace SentimentAnalysis
         public static async Task<PredictionModel<SentimentData, SentimentPrediction>> TrainAsync()
         {
             // Initialize a new instance of LearningPipeline that will include the data loading, data processing/featurization, and model.
-            var pipeline = new LearningPipeline();
+            var pipeline = new LearningPipeline
+            {
+                // Ingest the data
+                // The TextLoader object is the first part of the pipeline, and loads the training file data.
+                new TextLoader(DataPath).CreateFrom<SentimentData>(),
 
-            // Ingest the data
-            // The TextLoader object is the first part of the pipeline, and loads the training file data.
-            pipeline.Add(new TextLoader(DataPath).CreateFrom<SentimentData>());
+                // Data preprocess and feature engineering
+                // Apply a TextFeaturizer to convert the SentimentText column into a numeric vector called Features used by the machine learning algorithm. This is the preprocessing/featurization step. Using additional components available in ML.NET can enable better results with your model.
+                new TextFeaturizer("Features", "SentimentText"),
 
-            // Data preprocess and feature engineering
-            // Apply a TextFeaturizer to convert the SentimentText column into a numeric vector called Features used by the machine learning algorithm. This is the preprocessing/featurization step. Using additional components available in ML.NET can enable better results with your model.
-            pipeline.Add(new TextFeaturizer("Features", "SentimentText"));
-
-            // Choose a learning algorithm
-            // The FastTreeBinaryClassifier object is a decision tree learner you'll use in this pipeline. Similar to the featurization step, trying out different learners available in ML.NET and changing their parameters leads to different results. For tuning, you can set hyperparameters like NumTrees, NumLeaves, and MinDocumentsInLeafs. These hyperparameters are set before anything affects the model and are model-specific. They're used to tune the decision tree for performance, so larger values can negatively impact performance.
-            pipeline.Add(new FastTreeBinaryClassifier() { NumLeaves = 5, NumTrees = 5, MinDocumentsInLeafs = 2 });
+                // Choose a learning algorithm
+                // The FastTreeBinaryClassifier object is a decision tree learner you'll use in this pipeline. Similar to the featurization step, trying out different learners available in ML.NET and changing their parameters leads to different results. For tuning, you can set hyperparameters like NumTrees, NumLeaves, and MinDocumentsInLeafs. These hyperparameters are set before anything affects the model and are model-specific. They're used to tune the decision tree for performance, so larger values can negatively impact performance.
+                new FastTreeBinaryClassifier() { NumLeaves = 5, NumTrees = 5, MinDocumentsInLeafs = 2 }
+            };
 
             // Train the model
             // You train the model, PredictionModel<TInput,TOutput>, based on the dataset that has been loaded and transformed. pipeline.Train<SentimentData, SentimentPrediction>() trains the pipeline (loads the data, trains the featurizer and learner). The experiment is not executed until this happens.
