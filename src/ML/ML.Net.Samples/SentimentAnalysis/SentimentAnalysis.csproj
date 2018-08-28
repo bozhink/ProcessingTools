@@ -31,10 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="wikipedia-detox-250-line-data.tsv.txt">
+    <None Update="Data\wikipedia-detox-250-line-data.tsv.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="wikipedia-detox-250-line-test.tsv.txt">
+    <None Update="Data\wikipedia-detox-250-line-test.tsv.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
