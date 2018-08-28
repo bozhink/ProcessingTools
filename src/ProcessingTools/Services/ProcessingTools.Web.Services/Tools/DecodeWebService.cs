@@ -65,7 +65,7 @@ namespace ProcessingTools.Web.Services.Tools
         }
 
         /// <inheritdoc/>
-        public async Task<DecodeBase64UrlViewModel> GetBase64UrlViewModelAsync()
+        public async Task<DecodeBase64UrlViewModel> GetDecodeBase64UrlViewModelAsync()
         {
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
             return new DecodeBase64UrlViewModel(userContext);
@@ -76,6 +76,26 @@ namespace ProcessingTools.Web.Services.Tools
         {
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
             return new DecodeBase64ViewModel(userContext);
+        }
+
+        /// <inheritdoc/>
+        public async Task<DecodeBase64ViewModel> MapToViewModelAsync(DecodeBase64RequestModel model)
+        {
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
+            return new DecodeBase64ViewModel(userContext)
+            {
+                Content = model?.Content
+            };
+        }
+
+        /// <inheritdoc/>
+        public async Task<DecodeBase64UrlViewModel> MapToViewModelAsync(DecodeBase64UrlRequestModel model)
+        {
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
+            return new DecodeBase64UrlViewModel(userContext)
+            {
+                Content = model.Content
+            };
         }
     }
 }

@@ -30,12 +30,26 @@ namespace ProcessingTools.Web.Services.Contracts.Tools
         /// Gets <see cref="DecodeBase64UrlViewModel"/>.
         /// </summary>
         /// <returns>Task of <see cref="DecodeBase64UrlViewModel"/>.</returns>
-        Task<DecodeBase64UrlViewModel> GetBase64UrlViewModelAsync();
+        Task<DecodeBase64UrlViewModel> GetDecodeBase64UrlViewModelAsync();
 
         /// <summary>
         /// Gets <see cref="DecodeBase64ViewModel"/>.
         /// </summary>
         /// <returns>Task of <see cref="DecodeBase64ViewModel"/>.</returns>
         Task<DecodeBase64ViewModel> GetDecodeBase64ViewModelAsync();
+
+        /// <summary>
+        /// Maps <see cref="DecodeBase64RequestModel"/> to <see cref="DecodeBase64ViewModel"/>.
+        /// </summary>
+        /// <param name="model">Request model to be mapped.</param>
+        /// <returns>Task of <see cref="DecodeBase64ViewModel"/>.</returns>
+        Task<DecodeBase64ViewModel> MapToViewModelAsync(DecodeBase64RequestModel model);
+
+        /// <summary>
+        /// Maps <see cref="DecodeBase64UrlRequestModel"/> to <see cref="DecodeBase64UrlViewModel"/>.
+        /// </summary>
+        /// <param name="model">Request model to be mapped.</param>
+        /// <returns>Task of <see cref="DecodeBase64UrlViewModel"/>.</returns>
+        Task<DecodeBase64UrlViewModel> MapToViewModelAsync(DecodeBase64UrlRequestModel model);
     }
 }

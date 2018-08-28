@@ -120,7 +120,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 }
             }
 
-            viewModel = viewModel ?? await this.decodeWebService.GetDecodeBase64ViewModelAsync().ConfigureAwait(false);
+            viewModel = viewModel ?? await this.decodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
 
@@ -140,7 +140,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            DecodeBase64UrlViewModel viewModel = await this.decodeWebService.GetBase64UrlViewModelAsync().ConfigureAwait(false);
+            DecodeBase64UrlViewModel viewModel = await this.decodeWebService.GetDecodeBase64UrlViewModelAsync().ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
 
@@ -177,7 +177,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 }
             }
 
-            viewModel = viewModel ?? await this.decodeWebService.GetBase64UrlViewModelAsync().ConfigureAwait(false);
+            viewModel = viewModel ?? await this.decodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
 
