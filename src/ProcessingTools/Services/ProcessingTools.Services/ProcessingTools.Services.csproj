@@ -47,6 +47,7 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Security\ProcessingTools.Security.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
