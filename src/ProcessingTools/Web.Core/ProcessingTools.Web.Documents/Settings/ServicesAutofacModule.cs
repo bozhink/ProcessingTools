@@ -13,12 +13,14 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Contracts.Rules;
+    using ProcessingTools.Services.Contracts.Tools;
     using ProcessingTools.Services.Documents;
     using ProcessingTools.Services.Geo.Coordinates;
     using ProcessingTools.Services.History;
     using ProcessingTools.Services.IO;
     using ProcessingTools.Services.Layout.Styles;
     using ProcessingTools.Services.Rules;
+    using ProcessingTools.Services.Tools;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Services.*
@@ -58,6 +60,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerDependency();
 
             builder.RegisterType<CoordinatesParseService>().As<ICoordinatesParseService>().InstancePerDependency();
+
+            builder.RegisterType<DecodeService>().As<IDecodeService>().InstancePerDependency();
         }
     }
 }

@@ -10,9 +10,11 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Web.Services.Contracts.Documents;
     using ProcessingTools.Web.Services.Contracts.Geo.Coordinates;
     using ProcessingTools.Web.Services.Contracts.Layout.Styles;
+    using ProcessingTools.Web.Services.Contracts.Tools;
     using ProcessingTools.Web.Services.Documents;
     using ProcessingTools.Web.Services.Geo.Coordinates;
     using ProcessingTools.Web.Services.Layout.Styles;
+    using ProcessingTools.Web.Services.Tools;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Web.Services.*
@@ -34,6 +36,7 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<JournalStylesWebService>().As<IJournalStylesWebService>().InstancePerDependency();
 
             builder.RegisterType<CoordinatesCalculatorWebService>().As<ICoordinatesCalculatorWebService>().InstancePerDependency();
+            builder.RegisterType<DecodeWebService>().As<IDecodeWebService>().InstancePerDependency();
 
             builder.RegisterType<DatabasesWebService>().As<IDatabasesWebService>().InstancePerDependency();
         }
