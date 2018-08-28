@@ -1,13 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <LangVersion>Latest</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\Iris.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\IrisClustering.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,12 +32,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Iris.Models\Iris.Models.csproj" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IrisClustering.Models\IrisClustering.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Data\iris.data">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
