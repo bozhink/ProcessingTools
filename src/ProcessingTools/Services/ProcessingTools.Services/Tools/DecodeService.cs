@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Tools
+﻿// <copyright file="DecodeService.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tools
 {
     using System;
     using System.Text;

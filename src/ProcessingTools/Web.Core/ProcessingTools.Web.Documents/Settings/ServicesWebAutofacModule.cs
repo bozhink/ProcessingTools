@@ -37,6 +37,7 @@ namespace ProcessingTools.Web.Documents.Settings
 
             builder.RegisterType<CoordinatesCalculatorWebService>().As<ICoordinatesCalculatorWebService>().InstancePerDependency();
             builder.RegisterType<DecodeWebService>().As<IDecodeWebService>().InstancePerDependency();
+            builder.RegisterType<EncodeWebService>().As<IEncodeWebService>().InstancePerDependency();
 
             builder.RegisterType<DatabasesWebService>().As<IDatabasesWebService>().InstancePerDependency();
         }

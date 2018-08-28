@@ -5,12 +5,13 @@
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
-    using System.Text;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.Encode;
+    using ProcessingTools.Web.Services.Contracts.Tools;
 
     /// <summary>
     /// Encode controller.
@@ -39,48 +40,55 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string Base64UrlActionName = nameof(Base64Url);
 
-        private readonly Encoding encoding;
+        private readonly IEncodeWebService encodeWebService;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EncodeController"/> class.
         /// </summary>
-        /// <param name="encoding">Character encoding</param>
+        /// <param name="encodeWebService">Instance of <see cref="IEncodeWebService"/>.</param>
         /// <param name="logger">Logger</param>
-        public EncodeController(Encoding encoding, ILogger<EncodeController> logger)
+        public EncodeController(IEncodeWebService encodeWebService, ILogger<EncodeController> logger)
         {
-            this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
+            this.encodeWebService = encodeWebService ?? throw new ArgumentNullException(nameof(encodeWebService));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
         /// GET Encode
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl)
         {
             const string LogMessage = "GET Encode/Index";
 
             this.logger.LogTrace(LogMessage);
 
-            return this.RedirectToAction(ActionNames.Index, ControllerNames.Home);
+            return this.RedirectToAction(ActionNames.Index, ControllerNames.Home, new { returnUrl });
         }
 
         /// <summary>
         /// GET Encode/Base64
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(Base64ActionName)]
-        public IActionResult Base64()
+        public async Task<IActionResult> Base64(string returnUrl)
         {
             const string LogMessage = "GET Encode/Base64";
 
             this.logger.LogTrace(LogMessage);
 
-            EncodeBase64ViewModel viewModel = new EncodeBase64ViewModel();
+            this.logger.LogTrace(LogMessage);
+
+            EncodeBase64ViewModel viewModel = await this.encodeWebService.GetEncodeBase64ViewModelAsync().ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
+
             return this.View(model: viewModel);
         }
 
@@ -88,26 +96,24 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// POST Encode/Base64
         /// </summary>
         /// <param name="model">Request model.</param>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64ActionName)]
-        public IActionResult Base64([Bind(nameof(EncodeBase64RequestModel.Content))]EncodeBase64RequestModel model)
+        public async Task<IActionResult> Base64([Bind(nameof(EncodeBase64RequestModel.Content))]EncodeBase64RequestModel model, string returnUrl)
         {
             const string LogMessage = "POST Encode/Base64";
 
             this.logger.LogTrace(LogMessage);
 
-            EncodeBase64ViewModel viewModel = new EncodeBase64ViewModel();
+            EncodeBase64ViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
             {
                 try
                 {
-                    viewModel.Content = model.Content;
-
-                    byte[] bytes = this.encoding.GetBytes(model.Content);
-                    viewModel.Base64EncodedString = Convert.ToBase64String(bytes);
+                    viewModel = await this.encodeWebService.EncodeBase64Async(model).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -115,6 +121,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                     this.logger.LogError(ex, LogMessage);
                 }
             }
+
+            viewModel = viewModel ?? await this.encodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
 
             return this.View(model: viewModel);
         }
@@ -122,16 +132,20 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// GET Encode/Base64Url
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(Base64UrlActionName)]
-        public IActionResult Base64Url()
+        public async Task<IActionResult> Base64Url(string returnUrl)
         {
             const string LogMessage = "GET Encode/Base64Url";
 
             this.logger.LogTrace(LogMessage);
 
-            EncodeBase64UrlViewModel viewModel = new EncodeBase64UrlViewModel();
+            EncodeBase64UrlViewModel viewModel = await this.encodeWebService.GetEncodeBase64UrlViewModelAsync().ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
+
             return this.View(model: viewModel);
         }
 
@@ -139,26 +153,24 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// POST Encode/Base64Url
         /// </summary>
         /// <param name="model">Request model.</param>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64UrlActionName)]
-        public IActionResult Base64Url([Bind(nameof(EncodeBase64UrlRequestModel.Content))]EncodeBase64UrlRequestModel model)
+        public async Task<IActionResult> Base64Url([Bind(nameof(EncodeBase64UrlRequestModel.Content))]EncodeBase64UrlRequestModel model, string returnUrl)
         {
             const string LogMessage = "POST Encode/Base64Url";
 
             this.logger.LogTrace(LogMessage);
 
-            EncodeBase64UrlViewModel viewModel = new EncodeBase64UrlViewModel();
+            EncodeBase64UrlViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
             {
                 try
                 {
-                    viewModel.Content = model.Content;
-
-                    byte[] bytes = this.encoding.GetBytes(model.Content);
-                    viewModel.Base64EncodedString = ProcessingTools.Security.Utils.ToBase64Url(bytes);
+                    viewModel = await this.encodeWebService.EncodeBase64UrlAsync(model).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -166,6 +178,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                     this.logger.LogError(ex, LogMessage);
                 }
             }
+
+            viewModel = viewModel ?? await this.encodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
 
             return this.View(model: viewModel);
         }
