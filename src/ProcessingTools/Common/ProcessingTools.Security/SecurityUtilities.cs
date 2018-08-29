@@ -5,6 +5,7 @@
 namespace ProcessingTools.Security
 {
     using System;
+    using System.IO;
     using System.Security.Cryptography;
     using System.Security.Cryptography.X509Certificates;
     using System.Text;
@@ -557,5 +558,78 @@ namespace ProcessingTools.Security
         /// <param name="source">Source string to be evaluated.</param>
         /// <returns>Evaluated SHA512 hash as Base 64 string.</returns>
         public static string GetSHA512HashAsBase64String(string source) => GetSHA512HashAsBase64String(source, DefaultEncoding);
+
+        /// <summary>
+        /// Loads <see cref="X509Certificate2"/> from byte array.
+        /// </summary>
+        /// <param name="bytes">Byte array with the certificate data.</param>
+        /// <returns>Instance of <see cref="X509Certificate2"/>.</returns>
+        /// <remarks>
+        /// See http://paulstovell.com/blog/x509certificate2
+        /// </remarks>
+        public static X509Certificate2 LoadCertificateFromByteArray(byte[] bytes)
+        {
+            X509Certificate2 certificate;
+            string file = Path.Combine(Path.GetTempPath(), $"{DateTime.UtcNow:yyyyMMddhhmmssffffff}{Guid.NewGuid()}");
+            try
+            {
+                File.WriteAllBytes(file, bytes);
+                certificate = new X509Certificate2(file);
+            }
+            finally
+            {
+                File.Delete(file);
+            }
+
+            return certificate;
+        }
+
+        /// <summary>
+        /// Exports public key as *.cer - formatted file.
+        /// </summary>
+        /// <param name="fileName">Output file name.</param>
+        /// <param name="certificate">Certificate to be exported.</param>
+        /// <param name="password">Password for the certificate.</param>
+        /// <remarks>
+        /// See http://paulstovell.com/blog/x509certificate2
+        /// </remarks>
+        public static void ExportCerFile(string fileName, X509Certificate2 certificate, string password)
+        {
+            if (certificate == null)
+            {
+                throw new ArgumentNullException(nameof(certificate));
+            }
+
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(certificate));
+            }
+
+            File.WriteAllBytes(fileName, certificate.Export(X509ContentType.Cert, password));
+        }
+
+        /// <summary>
+        /// Exports public as private keys as *.pfx - formatted file.
+        /// </summary>
+        /// <param name="fileName">Output file name.</param>
+        /// <param name="certificate">Certificate to be exported.</param>
+        /// <param name="password">Password for the certificate.</param>
+        /// <remarks>
+        /// See http://paulstovell.com/blog/x509certificate2
+        /// </remarks>
+        public static void ExportPfxFile(string fileName, X509Certificate2 certificate, string password)
+        {
+            if (certificate == null)
+            {
+                throw new ArgumentNullException(nameof(certificate));
+            }
+
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(certificate));
+            }
+
+            File.WriteAllBytes(fileName, certificate.Export(X509ContentType.Pkcs12, password));
+        }
     }
 }

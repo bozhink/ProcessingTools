@@ -178,7 +178,7 @@ namespace ProcessingTools.Security
                     return false;
                 }
 
-                X509Certificate2 certificate = LoadCertificateFromBytrArray(certificateBytes);
+                X509Certificate2 certificate = SecurityUtilities.LoadCertificateFromByteArray(certificateBytes);
 
                 return JwsVerifyRsaToken(certificate, jwsTokenParts, encoding, algorithm);
             }
@@ -252,23 +252,6 @@ namespace ProcessingTools.Security
             bool result = SecurityUtilities.RsaVerifyHash(encoding.GetBytes(jwsSecuredInput), jwsSignature, algorithm, certificate);
 
             return result;
-        }
-
-        private static X509Certificate2 LoadCertificateFromBytrArray(byte[] certificateBytes)
-        {
-            X509Certificate2 certificate;
-            string file = Path.Combine(Path.GetTempPath(), "jws-" + Guid.NewGuid());
-            try
-            {
-                File.WriteAllBytes(file, certificateBytes);
-                certificate = new X509Certificate2(file);
-            }
-            finally
-            {
-                File.Delete(file);
-            }
-
-            return certificate;
         }
     }
 }
