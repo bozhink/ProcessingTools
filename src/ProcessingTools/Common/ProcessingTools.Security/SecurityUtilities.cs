@@ -1,4 +1,4 @@
-﻿// <copyright file="Utils.cs" company="ProcessingTools">
+﻿// <copyright file="SecurityUtilities.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -12,7 +12,7 @@ namespace ProcessingTools.Security
     /// <summary>
     /// Utilities.
     /// </summary>
-    public static class Utils
+    public static class SecurityUtilities
     {
         /// <summary>
         /// Default encoding.
@@ -132,7 +132,7 @@ namespace ProcessingTools.Security
                 return Array.Empty<byte>();
             }
 
-            HashAlgorithm hashAlgorithm = Utils.GetRsaHashAlgorithm(algorithm);
+            HashAlgorithm hashAlgorithm = SecurityUtilities.GetRsaHashAlgorithm(algorithm);
             using (hashAlgorithm)
             {
                 using (var cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PrivateKey)
@@ -159,7 +159,7 @@ namespace ProcessingTools.Security
                 return false;
             }
 
-            HashAlgorithm hashAlgorithm = Utils.GetRsaHashAlgorithm(algorithm);
+            HashAlgorithm hashAlgorithm = SecurityUtilities.GetRsaHashAlgorithm(algorithm);
             using (hashAlgorithm)
             {
                 using (var cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PublicKey.Key)

@@ -4,7 +4,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using ProcessingTools.Services.Contracts.Tools;
-    using Utils = ProcessingTools.Security.Utils;
+    using SecurityUtilities = ProcessingTools.Security.SecurityUtilities;
 
     /// <summary>
     /// Hash service.
@@ -25,70 +25,70 @@
         /// <inheritdoc/>
         public Task<string> GetMD5HashAsBase64StringAsync(string source)
         {
-            string hash = Utils.GetMD5HashAsBase64String(source, this.encoding);
+            string hash = SecurityUtilities.GetMD5HashAsBase64String(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetMD5HashAsStringAsync(string source)
         {
-            string hash = Utils.GetMD5HashAsString(source, this.encoding);
+            string hash = SecurityUtilities.GetMD5HashAsString(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA1HashAsBase64StringAsync(string source)
         {
-            string hash = Utils.GetSHA1HashAsBase64String(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA1HashAsBase64String(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA1HashAsStringAsync(string source)
         {
-            string hash = Utils.GetSHA1HashAsString(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA1HashAsString(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA256HashAsBase64StringAsync(string source)
         {
-            string hash = Utils.GetSHA256HashAsBase64String(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA256HashAsBase64String(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA256HashAsStringAsync(string source)
         {
-            string hash = Utils.GetSHA256HashAsString(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA256HashAsString(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA384HashAsBase64StringAsync(string source)
         {
-            string hash = Utils.GetSHA384HashAsBase64String(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA384HashAsBase64String(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA384HashAsStringAsync(string source)
         {
-            string hash = Utils.GetSHA384HashAsString(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA384HashAsString(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA512HashAsBase64StringAsync(string source)
         {
-            string hash = Utils.GetSHA512HashAsBase64String(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA512HashAsBase64String(source, this.encoding);
             return Task.FromResult(hash);
         }
 
         /// <inheritdoc/>
         public Task<string> GetSHA512HashAsStringAsync(string source)
         {
-            string hash = Utils.GetSHA512HashAsString(source, this.encoding);
+            string hash = SecurityUtilities.GetSHA512HashAsString(source, this.encoding);
             return Task.FromResult(hash);
         }
     }
