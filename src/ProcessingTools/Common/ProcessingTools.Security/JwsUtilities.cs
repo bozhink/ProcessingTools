@@ -20,6 +20,32 @@ namespace ProcessingTools.Security
     public static class JwsUtilities
     {
         /// <summary>
+        /// Gets the payload as JSON string from JWS token.
+        /// </summary>
+        /// <param name="jwsToken">JWS token to be processed.</param>
+        /// <returns>Payload as JSON string.</returns>
+        public static string GetPayloadJsonFromJwsToken(string jwsToken)
+        {
+            if (string.IsNullOrWhiteSpace(jwsToken))
+            {
+                throw new ArgumentNullException(nameof(jwsToken));
+            }
+
+            string[] jwsTokenParts = jwsToken.Split(new[] { '.' });
+            if (jwsTokenParts?.Length != 3)
+            {
+                throw new InvalidOperationException("JWS token has invalid structure");
+            }
+
+            Encoding encoding = Encoding.UTF8;
+
+            string encodedJwsPayload = jwsTokenParts[1];
+            string jwsPayload = encoding.GetString(SecurityUtilities.FromBase64Url(encodedJwsPayload));
+
+            return jwsPayload;
+        }
+
+        /// <summary>
         /// JWS create RSA token with embedded into the header certificate's public key.
         /// </summary>
         /// <param name="header">Header of the token.</param>
