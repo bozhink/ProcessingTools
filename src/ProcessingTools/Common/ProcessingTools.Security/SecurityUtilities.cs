@@ -119,56 +119,109 @@ namespace ProcessingTools.Security
         }
 
         /// <summary>
-        /// Sign with RSA algorithm.
+        /// Gets instance of <see cref="HashAlgorithm" /> for RSA.
+        /// </summary>
+        /// <param name="algorithm">Hashing algorithm in format `RS\d+`, e.g. `RS256`.</param>
+        /// <returns>Instance of <see cref="HashAlgorithm" />.</returns>
+        public static HashAlgorithm GetRsaCryptoServiceProvider(string algorithm)
+        {
+            if (algorithm.Length < 3 || algorithm.Substring(0, 2) != "RS")
+            {
+                throw new InvalidOperationException($"Hash algorithm `{algorithm}` must be valid RSA algorithm.");
+            }
+
+            switch (algorithm.Substring(2))
+            {
+                case "256":
+                    return new SHA256CryptoServiceProvider();
+
+                case "384":
+                    return new SHA384CryptoServiceProvider();
+
+                case "512":
+                    return new SHA512CryptoServiceProvider();
+
+                default:
+                    throw new NotSupportedException($"Hash algorithm {algorithm} is not supported");
+            }
+        }
+
+        /// <summary>
+        /// Sign hash of source data with RSA algorithm.
         /// </summary>
         /// <param name="source">Source byte array to be signed.</param>
         /// <param name="algorithm">RSA algorithm for hashing.</param>
         /// <param name="certificate">Certificate to be used.</param>
         /// <returns>RSA signature of the source.</returns>
-        public static byte[] RsaSign(byte[] source, string algorithm, X509Certificate2 certificate)
+        public static byte[] RsaSignHash(byte[] source, string algorithm, X509Certificate2 certificate)
         {
             if (source == null || string.IsNullOrEmpty(algorithm) || certificate == null)
             {
                 return Array.Empty<byte>();
             }
 
-            HashAlgorithm hashAlgorithm = SecurityUtilities.GetRsaHashAlgorithm(algorithm);
+            HashAlgorithm hashAlgorithm = GetRsaHashAlgorithm(algorithm);
             using (hashAlgorithm)
             {
                 using (var cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PrivateKey)
                 {
-                    string hashAlgorithmName = hashAlgorithm.GetType().Name;
+                    string oid = MapNameToOID(hashAlgorithm);
                     byte[] hash = hashAlgorithm.ComputeHash(source);
-                    return cryptoServiceProvider.SignHash(hash, CryptoConfig.MapNameToOID(hashAlgorithmName));
+                    return cryptoServiceProvider.SignHash(hash, oid);
                 }
             }
         }
 
         /// <summary>
-        /// Verify RSA signature.
+        /// Verify hash of source data RSA signature.
         /// </summary>
         /// <param name="source">Signed source byte array.</param>
         /// <param name="signature">Signature as byte array.</param>
         /// <param name="algorithm">RSA algorithm for hashing.</param>
         /// <param name="certificate">Certificate to be used.</param>
         /// <returns>Verification result of the RSA signature.</returns>
-        public static bool RsaVerify(byte[] source, byte[] signature, string algorithm, X509Certificate2 certificate)
+        public static bool RsaVerifyHash(byte[] source, byte[] signature, string algorithm, X509Certificate2 certificate)
         {
             if (source == null || signature == null || string.IsNullOrEmpty(algorithm) || certificate == null)
             {
                 return false;
             }
 
-            HashAlgorithm hashAlgorithm = SecurityUtilities.GetRsaHashAlgorithm(algorithm);
+            HashAlgorithm hashAlgorithm = GetRsaHashAlgorithm(algorithm);
             using (hashAlgorithm)
             {
                 using (var cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PublicKey.Key)
                 {
-                    string hashAlgorithmName = hashAlgorithm.GetType().Name;
+                    string oid = MapNameToOID(hashAlgorithm);
                     byte[] hash = hashAlgorithm.ComputeHash(source);
-                    return cryptoServiceProvider.VerifyHash(hash, CryptoConfig.MapNameToOID(hashAlgorithmName), signature);
+                    return cryptoServiceProvider.VerifyHash(hash, oid, signature);
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the object identifier (OID) of the algorithm corresponding to the specified simple name.
+        /// </summary>
+        /// <param name="hashAlgorithm">Hash algorithm for which to get the OID.</param>
+        /// <returns>The OID of the specified algorithm</returns>
+        public static string MapNameToOID(HashAlgorithm hashAlgorithm)
+        {
+            if (hashAlgorithm is SHA256)
+            {
+                return CryptoConfig.MapNameToOID(nameof(SHA256));
+            }
+
+            if (hashAlgorithm is SHA384)
+            {
+                return CryptoConfig.MapNameToOID(nameof(SHA384));
+            }
+
+            if (hashAlgorithm is SHA512)
+            {
+                return CryptoConfig.MapNameToOID(nameof(SHA512));
+            }
+
+            return null;
         }
 
         /// <summary>

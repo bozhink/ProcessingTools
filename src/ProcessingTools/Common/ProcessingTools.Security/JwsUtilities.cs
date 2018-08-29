@@ -72,7 +72,7 @@ namespace ProcessingTools.Security
                 throw new ArgumentNullException(nameof(certificate));
             }
 
-            if (header.ContainsKey(JwsHeaderParameters.Algorithm))
+            if (!header.ContainsKey(JwsHeaderParameters.Algorithm))
             {
                 throw new InvalidOperationException($@"""{JwsHeaderParameters.Algorithm}"" header parameter is required");
             }
@@ -99,7 +99,7 @@ namespace ProcessingTools.Security
 
             string algorithm = (string)header[JwsHeaderParameters.Algorithm];
 
-            byte[] jwsSignature = SecurityUtilities.RsaSign(encoding.GetBytes(jwsSecuredInput), algorithm, certificate);
+            byte[] jwsSignature = SecurityUtilities.RsaSignHash(encoding.GetBytes(jwsSecuredInput), algorithm, certificate);
 
             if (jwsSignature == null || jwsSignature.Length < 1)
             {
@@ -205,7 +205,7 @@ namespace ProcessingTools.Security
         {
             string jwsHeader = encoding.GetString(SecurityUtilities.FromBase64Url(jwsTokenParts[0]));
             IDictionary<string, object> header = JsonConvert.DeserializeObject<Dictionary<string, object>>(jwsHeader);
-            if (header.ContainsKey(JwsHeaderParameters.Algorithm))
+            if (!header.ContainsKey(JwsHeaderParameters.Algorithm))
             {
                 throw new InvalidOperationException($@"""{JwsHeaderParameters.Algorithm}"" header parameter is required");
             }
@@ -223,7 +223,7 @@ namespace ProcessingTools.Security
             byte[] jwsSignature = SecurityUtilities.FromBase64Url(jwsTokenParts[2]);
             string jwsSecuredInput = jwsTokenParts[0] + "." + jwsTokenParts[1];
 
-            bool result = SecurityUtilities.RsaVerify(encoding.GetBytes(jwsSecuredInput), jwsSignature, algorithm, certificate);
+            bool result = SecurityUtilities.RsaVerifyHash(encoding.GetBytes(jwsSecuredInput), jwsSignature, algorithm, certificate);
 
             return result;
         }
