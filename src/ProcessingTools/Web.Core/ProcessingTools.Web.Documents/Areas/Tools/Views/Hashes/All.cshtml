@@ -2,6 +2,18 @@
 
 @{
     ViewData[ContextKeys.Title] = "Evaluate Hashes";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
 }
 
 <section role="main">
@@ -15,6 +27,7 @@
                 <form method="post" class="container">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.ReturnUrl)
                     <div class="form-group row">
                         <div class="col-md-12">
                             <textarea type="text" asp-for="Content" cols="30" rows="4" placeholder="Text to encode" class="form-control"></textarea>
@@ -77,7 +90,7 @@
         }
     </div>
     <footer class="page-navigation">
-        <p><a asp-action="@(ActionNames.Index)" asp-controller="@(ControllerNames.Home)">Back to List of Tools</a></p>
+        <p><a asp-action="@(ActionNames.Index)" asp-controller="@(ControllerNames.Home)" asp-route-returnUrl="@Model.ReturnUrl">Back to List of Tools</a></p>
     </footer>
 </section>
 
