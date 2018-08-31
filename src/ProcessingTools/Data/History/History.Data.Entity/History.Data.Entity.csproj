@@ -67,7 +67,7 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Data.Common.Entity\Data.Common.Entity.csproj">
+    <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>

@@ -67,7 +67,7 @@
     <None Include="Users.Data.Entity.ruleset" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Data.Common.Entity\Data.Common.Entity.csproj">
+    <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
