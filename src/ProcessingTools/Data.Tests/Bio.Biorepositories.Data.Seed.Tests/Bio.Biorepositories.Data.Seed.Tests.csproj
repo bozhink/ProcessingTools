@@ -91,13 +91,13 @@
       <Project>{b5b74c7e-d5d8-4683-a808-ca1898f392fd}</Project>
       <Name>ProcessingTools.Attributes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
-      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Seed\Bio.Biorepositories.Data.Seed.csproj">
       <Project>{dda1c4f8-aa95-4fee-9e85-d7d0bea6fac3}</Project>
       <Name>Bio.Biorepositories.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
+      <Project>{ebd6c134-433a-4d4d-864a-50745ce94bca}</Project>
+      <Name>ProcessingTools.Common.Code</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

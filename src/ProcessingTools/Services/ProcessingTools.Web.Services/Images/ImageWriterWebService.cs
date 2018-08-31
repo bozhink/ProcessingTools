@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Services.Images
     using System.IO;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
-    using ProcessingTools.Common.Images;
+    using ProcessingTools.Common.Code.Images;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Services.Contracts.Images;
 

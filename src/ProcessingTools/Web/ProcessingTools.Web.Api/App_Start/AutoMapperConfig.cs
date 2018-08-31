@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
     using AutoMapper;
-    using ProcessingTools.Common.Mappings;
+    using ProcessingTools.Common.Code.Mappings;
 
     public static class AutoMapperConfig
     {

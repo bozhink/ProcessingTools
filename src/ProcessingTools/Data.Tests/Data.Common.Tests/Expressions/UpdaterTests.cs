@@ -4,7 +4,7 @@
     using System.Linq;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Common.Data.Expressions;
+    using ProcessingTools.Common.Code.Data.Expressions;
     using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.Tests.Models;
 

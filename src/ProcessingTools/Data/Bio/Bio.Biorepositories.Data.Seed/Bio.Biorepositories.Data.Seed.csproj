@@ -55,10 +55,6 @@
       <Project>{b5b74c7e-d5d8-4683-a808-ca1898f392fd}</Project>
       <Name>ProcessingTools.Attributes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
-      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
@@ -82,6 +78,10 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
+      <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
+      <Name>ProcessingTools.Common.Code</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
       <Project>{A77B11A8-45A0-45BA-9003-7A81514D8BDA}</Project>

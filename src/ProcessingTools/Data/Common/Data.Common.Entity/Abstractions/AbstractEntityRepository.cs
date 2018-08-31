@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Data.Expressions;
+    using ProcessingTools.Common.Code.Data.Expressions;
     using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Contracts;
@@ -15,18 +15,16 @@
         where TContext : IDbContext
         where TDbModel : class, TEntity
     {
-        private readonly IEfRepository<TContext, TDbModel> repository;
-
         protected AbstractEntityRepository(IEfRepository<TContext, TDbModel> repository)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.Repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public virtual IQueryable<TEntity> Query => this.repository.DbSet.AsQueryable<TEntity>();
+        public virtual IQueryable<TEntity> Query => this.Repository.DbSet.AsQueryable<TEntity>();
 
         protected abstract Func<TEntity, TDbModel> MapEntityToDbModel { get; }
 
-        protected IEfRepository<TContext, TDbModel> Repository => this.repository;
+        protected IEfRepository<TContext, TDbModel> Repository { get; }
 
         public virtual Task<object> AddAsync(TEntity entity)
         {
@@ -37,14 +35,14 @@
 
             var model = this.MapEntityToDbModel(entity);
 
-            this.repository.Add(model);
+            this.Repository.Add(model);
 
             return Task.FromResult<object>(model);
         }
 
         public virtual Task<long> CountAsync()
         {
-            return this.repository.DbSet.LongCountAsync();
+            return this.Repository.DbSet.LongCountAsync();
         }
 
         public virtual Task<long> CountAsync(Expression<Func<TEntity, bool>> filter)
@@ -54,7 +52,7 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            return this.repository.DbSet.LongCountAsync(filter);
+            return this.Repository.DbSet.LongCountAsync(filter);
         }
 
         public virtual Task<object> DeleteAsync(object id)
@@ -64,7 +62,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            this.repository.Delete(id);
+            this.Repository.Delete(id);
             return Task.FromResult(id);
         }
 
@@ -75,7 +73,7 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var query = this.repository.DbSet.Where(filter);
+            var query = this.Repository.DbSet.Where(filter);
             var data = await query.ToArrayAsync().ConfigureAwait(false);
             return data;
         }
@@ -87,7 +85,7 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            return this.repository.DbSet.FirstOrDefaultAsync(filter);
+            return this.Repository.DbSet.FirstOrDefaultAsync(filter);
         }
 
         public virtual Task<TEntity> GetByIdAsync(object id)
@@ -97,13 +95,13 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = this.repository.Get(id);
+            var entity = this.Repository.Get(id);
             return Task.FromResult<TEntity>(entity);
         }
 
-        public virtual object SaveChanges() => this.repository.Context.SaveChanges();
+        public virtual object SaveChanges() => this.Repository.Context.SaveChanges();
 
-        public virtual async Task<object> SaveChangesAsync() => await this.repository.Context.SaveChangesAsync().ConfigureAwait(false);
+        public virtual async Task<object> SaveChangesAsync() => await this.Repository.Context.SaveChangesAsync().ConfigureAwait(false);
 
         public virtual Task<object> UpdateAsync(TEntity entity)
         {
@@ -114,7 +112,7 @@
 
             var model = this.MapEntityToDbModel(entity);
 
-            this.repository.Update(model);
+            this.Repository.Update(model);
 
             return Task.FromResult<object>(model);
         }
@@ -131,7 +129,7 @@
                 throw new ArgumentNullException(nameof(updateExpression));
             }
 
-            var model = this.repository.Get(id);
+            var model = this.Repository.Get(id);
             if (model == null)
             {
                 return Task.FromResult<object>(null);
@@ -141,7 +139,7 @@
             var updater = new Updater<TEntity>(updateExpression);
             updater.Invoke(model);
 
-            this.repository.Update(model);
+            this.Repository.Update(model);
 
             return Task.FromResult<object>(model);
         }

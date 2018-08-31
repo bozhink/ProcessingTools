@@ -34,7 +34,7 @@
             });
 
             this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
-                .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
+                .To(typeof(ProcessingTools.Common.Code.Data.Repositories.RepositoryProviderAsync<>));
 
             this.Bind(b =>
             {
@@ -58,7 +58,7 @@
                 .To<StreamingSystemFilesDataService>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ITaggerCommand>>()

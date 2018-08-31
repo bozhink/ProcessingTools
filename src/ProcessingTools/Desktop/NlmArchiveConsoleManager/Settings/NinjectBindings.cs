@@ -31,7 +31,7 @@
             });
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
@@ -45,7 +45,7 @@
                 .With<FileExistsRaiseWarningInterceptor>();
 
             this.Bind<ProcessingTools.Contracts.Serialization.IDeserializer>()
-                .To<ProcessingTools.Common.Serialization.DataContractJsonDeserializer>()
+                .To<ProcessingTools.Common.Code.Serialization.DataContractJsonDeserializer>()
                 .InSingletonScope();
 
             this.Bind<IProcessorFactory>()

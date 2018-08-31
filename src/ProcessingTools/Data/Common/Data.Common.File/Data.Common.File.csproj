@@ -41,10 +41,6 @@
     <Compile Include="Repositories\FileGenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
-      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
@@ -56,6 +52,10 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
+      <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
+      <Name>ProcessingTools.Common.Code</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
