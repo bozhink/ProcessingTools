@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Miners.Bio.Taxonomy
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Data.Miners.Contracts.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 

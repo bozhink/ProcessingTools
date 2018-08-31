@@ -7,11 +7,9 @@
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Net;
-    using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Validation;
 
@@ -24,12 +22,12 @@
         [TestInitialize]
         public void Initialize()
         {
-            var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
+            ////var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
             var applicationContextMock = new Mock<IApplicationContext>();
             applicationContextMock
                 .SetupGet(e => e.DateTimeProvider)
                 .Returns(() => DateTime.UtcNow);
-            // this.cacheService = new ValidationCacheService(repository, applicationContextMock.Object); // TODO: IValidationCacheService
+            ////this.cacheService = new ValidationCacheService(repository, applicationContextMock.Object); // TODO: IValidationCacheService
             this.requester = new GlobalNamesResolverDataRequester(new NetConnectorFactory());
         }
 

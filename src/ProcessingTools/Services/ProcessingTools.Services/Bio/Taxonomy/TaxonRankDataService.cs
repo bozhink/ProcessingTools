@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;

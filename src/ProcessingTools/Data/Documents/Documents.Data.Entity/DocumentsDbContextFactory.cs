@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity
 {
     using System;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Documents.Data.Entity.Contracts;
 
     public class DocumentsDbContextFactory : IDocumentsDbContextFactory

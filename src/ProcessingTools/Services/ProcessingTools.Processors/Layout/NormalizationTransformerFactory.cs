@@ -5,8 +5,8 @@
 namespace ProcessingTools.Processors.Layout
 {
     using System;
-    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts.Layout;
 
     /// <summary>

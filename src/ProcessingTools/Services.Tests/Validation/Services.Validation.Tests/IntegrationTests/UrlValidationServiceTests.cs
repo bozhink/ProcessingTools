@@ -5,10 +5,9 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Redis;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Contracts.Cache;
 
     [TestClass]

@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Documents
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Services.Contracts.Documents;

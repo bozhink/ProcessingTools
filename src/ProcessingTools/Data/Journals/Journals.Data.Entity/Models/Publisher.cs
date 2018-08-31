@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Journals;
+    using ProcessingTools.Common.Constants.Data.Journals;
     using ProcessingTools.Models.Contracts.Journals;
 
     public class Publisher : Addressable, IPublisher

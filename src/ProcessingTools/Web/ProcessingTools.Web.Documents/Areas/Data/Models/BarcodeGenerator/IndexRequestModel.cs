@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.BarcodeGenerator
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants;
-    using ValidationConstants = ProcessingTools.Constants.ValidationConstants;
+    using ProcessingTools.Common.Constants;
+    using ValidationConstants = ProcessingTools.Common.Constants.ValidationConstants;
 
     public class IndexRequestModel
     {

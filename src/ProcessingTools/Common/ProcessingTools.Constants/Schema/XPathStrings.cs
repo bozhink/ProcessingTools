@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Schema
+namespace ProcessingTools.Common.Constants.Schema
 {
     /// <summary>
     /// XPath strings.

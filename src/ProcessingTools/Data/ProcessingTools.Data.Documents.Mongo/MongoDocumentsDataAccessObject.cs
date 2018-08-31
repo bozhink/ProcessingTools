@@ -9,13 +9,13 @@ namespace ProcessingTools.Data.Documents.Mongo
     using System.Threading.Tasks;
     using AutoMapper;
     using MongoDB.Driver;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Contracts.Documents.Documents;
     using ProcessingTools.Data.Models.Documents.Mongo;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Documents.Documents;
 
@@ -320,7 +320,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<DocumentContent>().Eq(m => m.DocumentId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<DocumentContent>()
-                .Set(m => m.ContentType, ProcessingTools.Constants.ContentTypes.Xml)
+                .Set(m => m.ContentType, ProcessingTools.Common.Constants.ContentTypes.Xml)
                 .Set(m => m.Content, content)
                 .Set(m => m.ModifiedBy, this.applicationContext.UserContext.UserId)
                 .Set(m => m.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke());

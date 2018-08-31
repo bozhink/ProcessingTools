@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Configuration
+namespace ProcessingTools.Common.Constants.Configuration
 {
     /// <summary>
     /// Names of keys for factory object configuration in DI containers.

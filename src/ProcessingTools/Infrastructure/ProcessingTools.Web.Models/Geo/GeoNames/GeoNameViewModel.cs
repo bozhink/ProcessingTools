@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Geo.GeoNames
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Common.Constants.Data.Geo;
 
     /// <summary>
     /// GeoName view model

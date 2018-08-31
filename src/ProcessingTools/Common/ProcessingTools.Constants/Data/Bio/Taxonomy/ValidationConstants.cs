@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Data.Bio.Taxonomy
+namespace ProcessingTools.Common.Constants.Data.Bio.Taxonomy
 {
     /// <summary>
     /// Validation constants

@@ -8,7 +8,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;

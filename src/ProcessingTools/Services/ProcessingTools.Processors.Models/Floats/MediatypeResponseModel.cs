@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.Floats
 {
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Processors.Models.Contracts.Floats;
 
     /// <summary>

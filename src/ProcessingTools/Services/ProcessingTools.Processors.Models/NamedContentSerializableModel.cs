@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Models
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
 
     /// <summary>
     /// Named-content serializable model.

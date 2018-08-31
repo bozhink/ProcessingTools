@@ -3,8 +3,8 @@
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
     using Ninject.Web.Common;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Configuration;
 
     public class NinjectBindings : NinjectModule
     {

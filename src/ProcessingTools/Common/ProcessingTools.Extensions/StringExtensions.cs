@@ -10,7 +10,7 @@ namespace ProcessingTools.Extensions
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Extension methods for <see cref="string"/>.

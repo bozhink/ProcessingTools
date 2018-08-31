@@ -7,7 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using ProcessingTools.Constants.Web;
+    using ProcessingTools.Common.Constants.Web;
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Documents.ViewModels.Account;
     using ProcessingTools.Web.Services;

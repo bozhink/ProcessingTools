@@ -8,7 +8,7 @@
     using AutoMapper;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts.Geo;

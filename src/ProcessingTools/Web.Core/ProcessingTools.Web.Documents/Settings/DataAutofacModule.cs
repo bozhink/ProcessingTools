@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac;
     using Autofac.Core;
     using Microsoft.Extensions.Configuration;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts;

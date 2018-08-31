@@ -5,7 +5,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList;
 

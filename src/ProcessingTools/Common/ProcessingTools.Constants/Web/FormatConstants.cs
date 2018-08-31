@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Web
+namespace ProcessingTools.Common.Constants.Web
 {
     /// <summary>
     /// Format constants

@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Documents.Articles;
     using ProcessingTools.Web.Services.Contracts.Documents;

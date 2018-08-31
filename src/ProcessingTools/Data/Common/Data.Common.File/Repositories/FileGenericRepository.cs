@@ -6,10 +6,10 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Code.Data.Expressions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
-    using ProcessingTools.Common.Exceptions;
 
     public abstract class FileGenericRepository<TContext, TEntity> : IFileGenericRepository<TEntity>
         where TContext : IFileDbContext<TEntity>

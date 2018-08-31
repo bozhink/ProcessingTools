@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Imaging
     using System;
     using System.Drawing;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Processors.Imaging.Contracts;
     using QRCoder;
 

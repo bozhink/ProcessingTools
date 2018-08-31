@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Data.Geo
+namespace ProcessingTools.Common.Constants.Data.Geo
 {
     /// <summary>
     /// Content constants

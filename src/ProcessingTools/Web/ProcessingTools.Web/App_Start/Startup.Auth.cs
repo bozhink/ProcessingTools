@@ -11,8 +11,8 @@
     using Microsoft.Owin.Security.MicrosoftAccount;
     using Microsoft.Owin.Security.Twitter;
     using Owin;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Services;

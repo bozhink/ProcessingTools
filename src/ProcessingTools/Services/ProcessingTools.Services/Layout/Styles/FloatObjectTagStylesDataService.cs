@@ -8,11 +8,11 @@ namespace ProcessingTools.Services.Layout.Styles
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;

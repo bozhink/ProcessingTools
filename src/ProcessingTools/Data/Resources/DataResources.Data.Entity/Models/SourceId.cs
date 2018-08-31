@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Constants.Data.DataResources;
+    using ProcessingTools.Common.Constants.Data.DataResources;
     using ProcessingTools.Models.Contracts.Resources;
 
     public class SourceId : ISourceIdEntity

@@ -10,12 +10,12 @@
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Constants.Web;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Constants.Web;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Services.Contracts.Documents;
@@ -249,7 +249,7 @@
                 {
                     Comment = comment,
                     ContentLength = stream.Length,
-                    ContentType = ProcessingTools.Constants.ContentTypes.Xml,
+                    ContentType = ProcessingTools.Common.Constants.ContentTypes.Xml,
                     FileExtension = FileConstants.XmlFileExtension,
                     FileName = model.FileName
                 };

@@ -9,7 +9,7 @@ namespace ProcessingTools.Security
     using System.Security.Cryptography.X509Certificates;
     using System.Text;
     using Newtonsoft.Json;
-    using ProcessingTools.Constants.Security;
+    using ProcessingTools.Common.Constants.Security;
 
     /// <summary>
     /// JWS helper.

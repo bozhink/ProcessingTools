@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants
+namespace ProcessingTools.Common.Constants
 {
     /// <summary>
     /// Regular expressions related to taxonomy.

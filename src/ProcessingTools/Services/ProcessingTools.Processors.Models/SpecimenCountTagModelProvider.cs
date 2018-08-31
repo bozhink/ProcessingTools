@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Models
 {
     using System;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Processors.Models.Contracts;
 
     /// <summary>

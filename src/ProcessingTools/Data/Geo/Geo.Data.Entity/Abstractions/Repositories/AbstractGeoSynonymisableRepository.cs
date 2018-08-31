@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Models.Contracts;

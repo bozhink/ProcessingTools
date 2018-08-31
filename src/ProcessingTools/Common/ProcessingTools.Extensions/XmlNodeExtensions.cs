@@ -10,8 +10,8 @@ namespace ProcessingTools.Extensions
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
 
     /// <summary>
     /// <see cref="XmlNode"/> Extensions.

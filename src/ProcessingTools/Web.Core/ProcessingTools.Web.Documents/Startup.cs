@@ -20,7 +20,7 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
     using Newtonsoft.Json.Serialization;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Controllers;
@@ -172,7 +172,7 @@ namespace ProcessingTools.Web.Documents
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
 
-            builder.RegisterInstance(ProcessingTools.Constants.Defaults.Encoding).As<System.Text.Encoding>().SingleInstance();
+            builder.RegisterInstance(ProcessingTools.Common.Constants.Defaults.Encoding).As<System.Text.Encoding>().SingleInstance();
 
             builder.RegisterModule(new XmlTransformersAutofacModule
             {

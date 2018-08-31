@@ -8,7 +8,7 @@
     using ProcessingTools.Bio.Data.Entity.Contracts;
     using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Bio.Data.Seed.Contracts;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioDataSeeder : IBioDataSeeder

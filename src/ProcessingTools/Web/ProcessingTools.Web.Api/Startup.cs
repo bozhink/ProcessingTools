@@ -4,7 +4,7 @@ namespace ProcessingTools.Web.Api
 {
     using System.Web.Http;
     using Owin;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     public partial class Startup
     {

@@ -11,12 +11,12 @@ namespace ProcessingTools.Services.Abstractions.Journals
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Code.Data.Expressions;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Journals;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions.Linq.Expressions;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;

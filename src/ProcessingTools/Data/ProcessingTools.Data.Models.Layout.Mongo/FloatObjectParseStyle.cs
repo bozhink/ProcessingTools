@@ -8,8 +8,8 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Common.Enumerations.Nlm;
+    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
 
     /// <summary>
     /// Float object parse style.

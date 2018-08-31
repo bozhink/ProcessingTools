@@ -6,7 +6,7 @@
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;

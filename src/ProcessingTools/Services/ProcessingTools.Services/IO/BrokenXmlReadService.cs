@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.IO
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Environments.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Bio.Environments;
+    using ProcessingTools.Common.Constants.Data.Bio.Environments;
 
     public class EnvoGroup
     {

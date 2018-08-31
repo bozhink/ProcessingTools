@@ -2,7 +2,7 @@
 {
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
 
     /// <summary>
     /// NinjectModule to bind database objects.

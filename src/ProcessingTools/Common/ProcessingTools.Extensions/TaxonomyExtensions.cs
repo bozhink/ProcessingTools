@@ -8,10 +8,10 @@ namespace ProcessingTools.Extensions
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts;
 
     /// <summary>
     /// Taxonomy extensions.

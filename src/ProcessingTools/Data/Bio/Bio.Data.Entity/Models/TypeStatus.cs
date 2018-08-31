@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Constants.Data.Bio;
+    using ProcessingTools.Common.Constants.Data.Bio;
 
     public class TypeStatus
     {

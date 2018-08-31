@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors.Processors.Floats
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Floats;
     using ProcessingTools.Processors.Models.Contracts.Floats;

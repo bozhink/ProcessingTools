@@ -7,8 +7,8 @@
     using NUnit.Framework;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Cache.Data.Redis.Tests.Common;
-    using ProcessingTools.Data.Models.Cache.Redis;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Data.Models.Cache.Redis;
     using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Tests.Library;
 

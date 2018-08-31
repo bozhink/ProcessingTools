@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Uri
+namespace ProcessingTools.Common.Constants.Uri
 {
     /// <summary>
     /// Permalink prefixes

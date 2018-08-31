@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Maps
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Services.Contracts.Maps;
 
     /// <summary>

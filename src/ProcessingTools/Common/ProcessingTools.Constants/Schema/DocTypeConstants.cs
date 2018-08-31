@@ -2,9 +2,9 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Schema
+namespace ProcessingTools.Common.Constants.Schema
 {
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
 
     /// <summary>
     /// Constants related to DOCTYPE-s.

@@ -8,8 +8,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Meta;

@@ -13,9 +13,8 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Processors.Contracts;

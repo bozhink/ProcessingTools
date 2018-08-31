@@ -9,6 +9,7 @@ namespace ProcessingTools.Data.Layout.Mongo
     using System.Threading.Tasks;
     using AutoMapper;
     using MongoDB.Driver;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
@@ -16,7 +17,6 @@ namespace ProcessingTools.Data.Layout.Mongo
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Data.Models.Layout.Mongo;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Layout.Styles.References;
 

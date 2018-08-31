@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Redis
 {
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Redis;
 

@@ -4,7 +4,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BarcodeGenerator;

@@ -14,7 +14,7 @@ namespace ProcessingTools.Harvesters.Abstractions
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Harvesters.Contracts;
 
     /// <summary>

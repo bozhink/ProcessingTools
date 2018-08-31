@@ -9,9 +9,9 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Harvesters.Contracts.Meta;

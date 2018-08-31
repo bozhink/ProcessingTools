@@ -7,9 +7,9 @@ namespace ProcessingTools.Processors.Documents
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
 
     /// <summary>

@@ -5,8 +5,8 @@
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Documents.Mongo;
     using ProcessingTools.Interceptors;

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web
 {
     using System.Web.Optimization;
-    using ProcessingTools.Constants.Web;
+    using ProcessingTools.Common.Constants.Web;
 
     public class BundleConfig
     {

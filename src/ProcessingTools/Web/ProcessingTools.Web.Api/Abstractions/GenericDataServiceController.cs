@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using AutoMapper;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts;

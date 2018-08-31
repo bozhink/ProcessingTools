@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Data.DataResources
+namespace ProcessingTools.Common.Constants.Data.DataResources
 {
     /// <summary>
     /// Validation constants

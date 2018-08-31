@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Tagger.Contracts;
 
     public class Engine : IEngine

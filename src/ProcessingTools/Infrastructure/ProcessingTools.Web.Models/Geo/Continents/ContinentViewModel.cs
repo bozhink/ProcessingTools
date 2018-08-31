@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Geo.Continents
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Web.Models.Geo.Shared;
 
     /// <summary>

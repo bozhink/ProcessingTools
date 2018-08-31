@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Abstractions
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Processors.Contracts;

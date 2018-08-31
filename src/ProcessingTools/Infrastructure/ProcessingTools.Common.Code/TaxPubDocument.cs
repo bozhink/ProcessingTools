@@ -9,8 +9,8 @@ namespace ProcessingTools.Common.Code
     using System.Linq;
     using System.Text;
     using System.Xml;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
 
     /// <summary>

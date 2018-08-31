@@ -6,7 +6,7 @@
     using NUnit.Framework;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Tests.Library;

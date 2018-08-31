@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Data.Bio.Environments
+namespace ProcessingTools.Common.Constants.Data.Bio.Environments
 {
     /// <summary>
     /// Validation constants

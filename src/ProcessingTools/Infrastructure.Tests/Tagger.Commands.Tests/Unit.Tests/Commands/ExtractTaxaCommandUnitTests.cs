@@ -7,7 +7,7 @@
     using NUnit.Framework;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts.Bio;
     using ProcessingTools.Tests.Library;

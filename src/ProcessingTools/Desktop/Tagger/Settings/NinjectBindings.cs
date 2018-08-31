@@ -6,7 +6,7 @@
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Services.IO;
 

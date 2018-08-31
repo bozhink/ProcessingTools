@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Models.Contracts;
 
     public abstract class Synonym : BaseModel, ISynonym, IDataModel

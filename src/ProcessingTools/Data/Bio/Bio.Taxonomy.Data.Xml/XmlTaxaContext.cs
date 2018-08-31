@@ -10,7 +10,7 @@
     using System.Xml.Serialization;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;

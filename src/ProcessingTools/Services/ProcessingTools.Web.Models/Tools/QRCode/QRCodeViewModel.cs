@@ -5,8 +5,8 @@
 namespace ProcessingTools.Web.Models.Tools.QRCode
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants;
-    using ValidationConstants = ProcessingTools.Constants.ValidationConstants;
+    using ProcessingTools.Common.Constants;
+    using ValidationConstants = ProcessingTools.Common.Constants.ValidationConstants;
 
     /// <summary>
     /// QR code view model.

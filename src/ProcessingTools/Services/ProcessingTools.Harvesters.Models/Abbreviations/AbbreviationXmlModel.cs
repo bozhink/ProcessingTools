@@ -7,7 +7,7 @@ namespace ProcessingTools.Harvesters.Models.Abbreviations
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
 
     /// <summary>

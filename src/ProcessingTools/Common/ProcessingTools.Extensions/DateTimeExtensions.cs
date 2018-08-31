@@ -6,7 +6,7 @@ namespace ProcessingTools.Extensions
 {
     using System;
     using System.Globalization;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
 
     /// <summary>

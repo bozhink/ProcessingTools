@@ -8,7 +8,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;

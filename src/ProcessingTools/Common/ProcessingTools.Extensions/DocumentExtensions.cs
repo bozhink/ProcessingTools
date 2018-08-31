@@ -5,7 +5,7 @@
 namespace ProcessingTools.Extensions
 {
     using System;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
 
     /// <summary>

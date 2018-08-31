@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using Newtonsoft.Json;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;

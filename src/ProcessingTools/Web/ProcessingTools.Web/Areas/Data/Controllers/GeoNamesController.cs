@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;

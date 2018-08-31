@@ -8,7 +8,7 @@
     using System.Web.Mvc;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;

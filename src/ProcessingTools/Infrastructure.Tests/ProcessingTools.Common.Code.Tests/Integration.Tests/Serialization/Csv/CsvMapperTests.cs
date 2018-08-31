@@ -7,8 +7,8 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Serialization.Csv
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Code.Tests.Models;
     using ProcessingTools.Common.Code.Serialization.Csv;
+    using ProcessingTools.Common.Code.Tests.Models;
 
     /// <summary>
     /// CSV Mapper Tests.

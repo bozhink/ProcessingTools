@@ -6,9 +6,9 @@ namespace ProcessingTools.Processors.Documents
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
 

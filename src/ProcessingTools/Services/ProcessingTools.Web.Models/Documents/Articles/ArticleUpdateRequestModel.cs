@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Common.Constants.Data.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
 
     /// <summary>

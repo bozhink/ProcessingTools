@@ -10,8 +10,8 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Web;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Web;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Contracts.Documents;

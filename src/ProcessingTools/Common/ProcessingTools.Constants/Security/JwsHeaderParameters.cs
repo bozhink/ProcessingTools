@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Constants.Security
+namespace ProcessingTools.Common.Constants.Security
 {
     /// <summary>
     /// JWS Header Parameters.

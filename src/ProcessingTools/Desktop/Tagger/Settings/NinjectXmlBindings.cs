@@ -2,7 +2,7 @@
 {
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Contracts.Abbreviations;
     using ProcessingTools.Harvesters.Contracts.Content;

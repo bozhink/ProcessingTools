@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Contracts.Bio.Biorepositories;

@@ -5,8 +5,8 @@
 namespace ProcessingTools.Common.Code
 {
     using System;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
 
     /// <summary>

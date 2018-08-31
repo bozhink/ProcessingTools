@@ -10,8 +10,8 @@ namespace ProcessingTools.Common.Code
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Schema;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
 

@@ -12,7 +12,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
