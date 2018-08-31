@@ -134,7 +134,7 @@ namespace ProcessingTools.Security
 
             string encodedJwsSignature = SecurityUtilities.ToBase64Url(jwsSignature);
 
-            return string.Format("{0}.{1}.{2}", encodedJwsHeader, encodedJwsPayload, encodedJwsSignature);
+            return $"{encodedJwsHeader}.{encodedJwsPayload}.{encodedJwsSignature}";
         }
 
         /// <summary>

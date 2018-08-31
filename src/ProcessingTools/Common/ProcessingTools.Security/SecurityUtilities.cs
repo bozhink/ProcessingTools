@@ -305,7 +305,7 @@ namespace ProcessingTools.Security
 
             for (int i = 0; i < hash.Length; i++)
             {
-                stringBuilder.Append(hash[i].ToString("X2"));
+                stringBuilder.Append(hash[i].ToString("X2", System.Globalization.CultureInfo.InvariantCulture));
             }
 
             return stringBuilder.ToString();
