@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Documents.Mongo
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Documents.Mongo;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>

@@ -9,7 +9,7 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts.Services.Data.Documents;

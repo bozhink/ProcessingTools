@@ -16,7 +16,7 @@ namespace ProcessingTools.Data.Layout.Mongo
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Data.Models.Layout.Mongo;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Layout.Styles.References;
 

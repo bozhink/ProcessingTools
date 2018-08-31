@@ -12,7 +12,7 @@ namespace ProcessingTools.Services.Abstractions
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts;

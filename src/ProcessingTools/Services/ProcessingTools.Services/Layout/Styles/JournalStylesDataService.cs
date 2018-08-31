@@ -14,7 +14,7 @@ namespace ProcessingTools.Services.Layout.Styles
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;

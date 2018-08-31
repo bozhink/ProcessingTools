@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.ManageViewModels;

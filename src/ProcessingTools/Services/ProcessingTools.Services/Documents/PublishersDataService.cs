@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Contracts.Documents.Publishers;

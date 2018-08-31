@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Exceptions
+namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;

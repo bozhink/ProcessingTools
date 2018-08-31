@@ -75,7 +75,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act + Assert
-            Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyExistsException>(() =>
+            Assert.ThrowsAsync<ProcessingTools.Common.Exceptions.KeyExistsException>(() =>
             {
                 return repository.AddAsync(key, value);
             });
@@ -205,7 +205,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act + Assert
-            Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
+            Assert.ThrowsAsync<ProcessingTools.Common.Exceptions.KeyNotFoundException>(() =>
             {
                 return repository.GetAsync(key);
             });
@@ -412,7 +412,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act + Assert
-            Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
+            Assert.ThrowsAsync<ProcessingTools.Common.Exceptions.KeyNotFoundException>(() =>
             {
                 return repository.UpdateAsync(key, value);
             });

@@ -4,7 +4,7 @@
     using System.Net;
     using System.Web.Mvc;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents;
 

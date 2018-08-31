@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Xml;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;

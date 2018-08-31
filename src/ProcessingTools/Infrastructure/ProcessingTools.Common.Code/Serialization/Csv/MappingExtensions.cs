@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Code.Serialization.Csv
 {
     using System;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
 
     /// <summary>

@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.IO
 {
     using System.IO;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>

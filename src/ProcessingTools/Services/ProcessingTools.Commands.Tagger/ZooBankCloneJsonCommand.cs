@@ -85,7 +85,7 @@ namespace ProcessingTools.Commands.Tagger
 
             if (zoobankRegistrationList == null || zoobankRegistrationList.Count < 1)
             {
-                throw new ProcessingTools.Exceptions.InvalidDataException("No valid ZooBank registration records in JSON file");
+                throw new ProcessingTools.Common.Exceptions.InvalidDataException("No valid ZooBank registration records in JSON file");
             }
             else
             {

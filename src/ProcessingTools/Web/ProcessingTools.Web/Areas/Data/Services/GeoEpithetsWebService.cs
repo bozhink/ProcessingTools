@@ -8,7 +8,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Web.Areas.Data.Controllers;

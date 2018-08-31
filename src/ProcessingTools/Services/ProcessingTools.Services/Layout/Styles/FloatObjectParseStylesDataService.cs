@@ -12,7 +12,7 @@ namespace ProcessingTools.Services.Layout.Styles
     using ProcessingTools.Data.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;

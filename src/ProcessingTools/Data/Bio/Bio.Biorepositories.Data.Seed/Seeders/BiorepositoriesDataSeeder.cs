@@ -70,7 +70,7 @@
                 var fileNameAttribute = seedModelType.GetCustomAttributes(typeof(FileNameAttribute), false)?.FirstOrDefault() as FileNameAttribute;
                 if (fileNameAttribute == null)
                 {
-                    throw new ProcessingTools.Exceptions.InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
+                    throw new ProcessingTools.Common.Exceptions.InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
                 }
 
                 string fileName = string.Format("{0}/{1}", this.dataFilesDirectoryPath, fileNameAttribute.Name);
@@ -85,7 +85,7 @@
                     .ToArray();
                 if (items == null || items.Length < 1)
                 {
-                    throw new ProcessingTools.Exceptions.InvalidDataException("De-serialized items are not valid.");
+                    throw new ProcessingTools.Common.Exceptions.InvalidDataException("De-serialized items are not valid.");
                 }
 
                 var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);

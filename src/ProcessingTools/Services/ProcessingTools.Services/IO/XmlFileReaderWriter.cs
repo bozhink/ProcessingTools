@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.IO
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
