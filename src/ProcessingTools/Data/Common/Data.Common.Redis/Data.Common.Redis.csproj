@@ -59,13 +59,9 @@
     <Compile Include="Repositories\RedisKeyValuePairsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
-      <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
-      <Name>ProcessingTools.Constants</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
-      <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
-      <Name>ProcessingTools.Exceptions</Name>
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{89A08F07-815A-4168-941F-C80FA07020F1}</Project>
+      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>

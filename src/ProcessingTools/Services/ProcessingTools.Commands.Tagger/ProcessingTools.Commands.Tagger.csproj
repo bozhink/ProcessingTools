@@ -25,7 +25,6 @@
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />

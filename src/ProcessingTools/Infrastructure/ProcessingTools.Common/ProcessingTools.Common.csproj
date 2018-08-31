@@ -62,4 +62,10 @@
     <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CommonAppSettings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

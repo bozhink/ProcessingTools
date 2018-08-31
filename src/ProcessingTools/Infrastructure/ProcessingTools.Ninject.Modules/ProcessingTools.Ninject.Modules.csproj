@@ -26,7 +26,6 @@
     <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Data.Miners.Models\ProcessingTools.Data.Miners.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Data.Miners\ProcessingTools.Data.Miners.csproj" />
