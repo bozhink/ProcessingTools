@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Common.Constants.Data.Documents;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents;
 
     public class Author : ModelWithUserInformation, IEntityWithPreJoinedFields, IAuthor
