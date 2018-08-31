@@ -5,7 +5,7 @@
 namespace ProcessingTools.Harvesters.Models.Meta
 {
     using System;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Harvesters.Models.Contracts.Meta;
 

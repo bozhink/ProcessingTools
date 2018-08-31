@@ -13,7 +13,7 @@ namespace ProcessingTools.Harvesters.Abstractions
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Harvesters.Contracts;
 

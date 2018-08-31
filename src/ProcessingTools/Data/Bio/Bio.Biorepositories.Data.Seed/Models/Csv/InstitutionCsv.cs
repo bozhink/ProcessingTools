@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Code.Serialization.Csv;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Biorepositories;

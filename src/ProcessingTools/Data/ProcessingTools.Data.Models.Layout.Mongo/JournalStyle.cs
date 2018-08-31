@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using System.Collections.Generic;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Models.Contracts.Layout.Styles.Journals;

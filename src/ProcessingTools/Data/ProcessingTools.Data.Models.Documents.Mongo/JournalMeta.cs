@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using System.Text.RegularExpressions;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents;
 

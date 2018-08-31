@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Bio.Taxonomy.Mongo
     using System.Collections.Generic;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 

@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Attributes.Tasks
+namespace ProcessingTools.Common.Attributes.Tasks
 {
     using System;
     using ProcessingTools.Enumerations.Tasks;

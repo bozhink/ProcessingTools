@@ -6,7 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
