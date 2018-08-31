@@ -15,7 +15,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;CA1707;CA1806</NoWarn>
-    <DocumentationFile>bin\docs\ProcessingTools.Common.Code.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Common.Tests.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -64,10 +64,6 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
     <PackageReference Include="Castle.Core" Version="4.3.1" />
     <PackageReference Include="Moq" Version="4.9.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
   </ItemGroup>
 
 </Project>

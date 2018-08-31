@@ -347,6 +347,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common.Code
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common.Code.Tests", "Infrastructure.Tests\ProcessingTools.Common.Code.Tests\ProcessingTools.Common.Code.Tests.csproj", "{26EB94FE-D40B-439B-AB19-3E65B504B49C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common", "Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj", "{89A08F07-815A-4168-941F-C80FA07020F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common.Tests", "Infrastructure.Tests\ProcessingTools.Common.Tests\ProcessingTools.Common.Tests.csproj", "{3FA3B3CD-3BBD-4C59-819A-80780AD73900}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1483,6 +1487,22 @@ Global
 		{26EB94FE-D40B-439B-AB19-3E65B504B49C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{26EB94FE-D40B-439B-AB19-3E65B504B49C}.Release|x64.ActiveCfg = Release|Any CPU
 		{26EB94FE-D40B-439B-AB19-3E65B504B49C}.Release|x64.Build.0 = Release|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Debug|x64.Build.0 = Debug|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Release|x64.ActiveCfg = Release|Any CPU
+		{89A08F07-815A-4168-941F-C80FA07020F1}.Release|x64.Build.0 = Release|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Debug|x64.Build.0 = Debug|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Release|x64.ActiveCfg = Release|Any CPU
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1648,6 +1668,8 @@ Global
 		{C4D1CD08-E5DC-49A6-8EA7-50A2F6F31CDE} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{EBD6C134-433A-4D4D-864A-50745CE94BCA} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{26EB94FE-D40B-439B-AB19-3E65B504B49C} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
+		{89A08F07-815A-4168-941F-C80FA07020F1} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{3FA3B3CD-3BBD-4C59-819A-80780AD73900} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
