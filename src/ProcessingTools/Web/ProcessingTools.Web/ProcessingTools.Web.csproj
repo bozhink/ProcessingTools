@@ -767,10 +767,6 @@
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Security\ProcessingTools.Web.Security.csproj">
-      <Project>{7e793b3d-6932-43d4-8529-f3476e405f8e}</Project>
-      <Name>ProcessingTools.Web.Security</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj">
       <Project>{6a2f0be3-c1cf-4a5f-9354-39462c6a068a}</Project>
       <Name>ProcessingTools.Web.Services</Name>
