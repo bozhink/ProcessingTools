@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Validation
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Validation;
     using ProcessingTools.Services.Abstractions.Validation;
     using ProcessingTools.Services.Contracts.Cache;

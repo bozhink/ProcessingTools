@@ -13,7 +13,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Xml;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Meta;

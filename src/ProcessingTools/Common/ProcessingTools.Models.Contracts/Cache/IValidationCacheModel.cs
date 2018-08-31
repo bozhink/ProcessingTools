@@ -5,7 +5,7 @@
 namespace ProcessingTools.Models.Contracts.Cache
 {
     using System;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Validation cache entity.

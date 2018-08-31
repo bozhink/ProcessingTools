@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Code.Strings
 {
     using System;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Contains approximate string matching

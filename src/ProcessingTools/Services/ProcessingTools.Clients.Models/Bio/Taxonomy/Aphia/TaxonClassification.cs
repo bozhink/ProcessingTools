@@ -5,7 +5,7 @@
 namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia
 {
     using System.Collections.Generic;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

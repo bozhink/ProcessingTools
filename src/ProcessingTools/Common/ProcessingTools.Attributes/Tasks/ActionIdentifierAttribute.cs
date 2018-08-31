@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Attributes.Tasks
 {
     using System;
-    using ProcessingTools.Enumerations.Tasks;
+    using ProcessingTools.Common.Enumerations.Tasks;
 
     /// <summary>
     /// Action identifier.

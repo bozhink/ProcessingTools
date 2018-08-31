@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Enumerations
+namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
     /// Represents validation status code returned by a ValidationService.

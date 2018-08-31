@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Models.Geo.Coordinates
     using System;
     using System.Globalization;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Models.Contracts.Geo.Coordinates;

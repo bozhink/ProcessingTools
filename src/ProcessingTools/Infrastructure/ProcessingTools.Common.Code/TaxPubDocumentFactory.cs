@@ -5,9 +5,9 @@
 namespace ProcessingTools.Common.Code
 {
     using System;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// TaxPub Document Factory.

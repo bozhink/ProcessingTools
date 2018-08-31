@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts;
 

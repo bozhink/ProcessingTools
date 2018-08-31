@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Miners.Abstractions
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts;

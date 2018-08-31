@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Models.Contracts.Geo
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts;
 
     /// <summary>

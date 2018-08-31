@@ -10,7 +10,7 @@ namespace ProcessingTools.Extensions
     using System.Reflection;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Extensions related to Type objects.

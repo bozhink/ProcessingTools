@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Models.Contracts.Layout.Styles.Floats
 {
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
 
     /// <summary>
     /// Float object style model

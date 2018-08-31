@@ -7,7 +7,7 @@ namespace ProcessingTools.Extensions
     using System;
     using System.Globalization;
     using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// <see cref="DateTime"/> extensions.

@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Harvesters.Contracts.Meta;

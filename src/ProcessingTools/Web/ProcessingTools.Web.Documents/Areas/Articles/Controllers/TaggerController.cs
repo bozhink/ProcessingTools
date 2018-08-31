@@ -14,7 +14,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Layout;

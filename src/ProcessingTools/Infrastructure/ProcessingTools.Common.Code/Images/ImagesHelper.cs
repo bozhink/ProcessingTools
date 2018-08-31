@@ -6,7 +6,7 @@ namespace ProcessingTools.Common.Code.Images
 {
     using System.Linq;
     using System.Text;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Images helper.

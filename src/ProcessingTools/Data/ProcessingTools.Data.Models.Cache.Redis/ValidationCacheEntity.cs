@@ -5,8 +5,8 @@
 namespace ProcessingTools.Data.Models.Cache.Redis
 {
     using System;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Data.Models.Contracts.Cache;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>

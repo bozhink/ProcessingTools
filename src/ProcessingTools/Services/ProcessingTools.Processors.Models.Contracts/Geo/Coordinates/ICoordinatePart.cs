@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.Contracts.Geo.Coordinates
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Coordinate part.

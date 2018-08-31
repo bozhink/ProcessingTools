@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ValidationConstants = ProcessingTools.Constants.ValidationConstants;
 

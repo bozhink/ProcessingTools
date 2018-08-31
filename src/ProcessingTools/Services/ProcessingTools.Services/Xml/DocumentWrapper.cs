@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Xml
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Document wrapper.

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Models.Contracts.Bio.Taxonomy
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Taxon rank model.

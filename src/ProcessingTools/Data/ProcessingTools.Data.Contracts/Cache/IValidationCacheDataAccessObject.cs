@@ -6,7 +6,6 @@ namespace ProcessingTools.Data.Contracts.Cache
 {
     using System.Threading.Tasks;
     using ProcessingTools.Data.Models.Contracts.Cache;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>

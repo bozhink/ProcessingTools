@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Enumerations.Nlm
+namespace ProcessingTools.Common.Enumerations.Nlm
 {
     using System.ComponentModel.DataAnnotations;
     using System.Xml.Serialization;

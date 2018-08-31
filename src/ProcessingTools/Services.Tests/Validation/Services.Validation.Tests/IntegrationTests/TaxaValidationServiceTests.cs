@@ -9,7 +9,7 @@
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Redis;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Contracts.Cache;

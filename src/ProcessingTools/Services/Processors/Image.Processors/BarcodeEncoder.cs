@@ -6,7 +6,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Processors.Imaging.Contracts;
 
     /// <summary>

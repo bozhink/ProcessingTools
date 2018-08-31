@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
 
     /// <summary>
     /// Float object parse style.

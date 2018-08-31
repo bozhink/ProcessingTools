@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Models.Contracts
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Environment user.

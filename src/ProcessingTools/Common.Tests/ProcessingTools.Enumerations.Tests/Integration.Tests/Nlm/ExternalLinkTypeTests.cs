@@ -2,10 +2,10 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Enumerations.Tests.Integration.Tests.Nlm
+namespace ProcessingTools.Common.Enumerations.Tests.Integration.Tests.Nlm
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Extensions;
 
     /// <summary>

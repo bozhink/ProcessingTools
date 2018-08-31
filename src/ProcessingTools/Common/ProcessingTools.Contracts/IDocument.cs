@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts
     using System.Collections.Generic;
     using System.Text;
     using System.Xml;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Represents default document type.

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Extensions
 {
     using System;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Extensions related to <see cref="IDisposable"/>.

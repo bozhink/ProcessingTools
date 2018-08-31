@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Models.Bio.Taxonomy
     using System.Linq;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 

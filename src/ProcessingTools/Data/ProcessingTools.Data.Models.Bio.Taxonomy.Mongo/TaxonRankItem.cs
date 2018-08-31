@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Models.Bio.Taxonomy.Mongo
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

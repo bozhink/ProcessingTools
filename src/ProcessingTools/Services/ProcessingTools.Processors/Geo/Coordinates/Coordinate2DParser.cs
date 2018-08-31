@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
     using System.Linq;
     using System.Text.RegularExpressions;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Models.Contracts.Bio.Biorepositories
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Biorepositories institution.

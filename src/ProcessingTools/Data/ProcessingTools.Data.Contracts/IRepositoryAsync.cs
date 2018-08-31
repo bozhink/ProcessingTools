@@ -5,7 +5,7 @@
 namespace ProcessingTools.Data.Contracts
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts;
 
     /// <summary>

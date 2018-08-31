@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Documents.Documents;
     using ProcessingTools.Web.Models.Shared;

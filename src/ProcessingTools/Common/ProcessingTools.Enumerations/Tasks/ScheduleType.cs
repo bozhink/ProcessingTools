@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Enumerations.Tasks
+namespace ProcessingTools.Common.Enumerations.Tasks
 {
     /// <summary>
     /// Schedule type.

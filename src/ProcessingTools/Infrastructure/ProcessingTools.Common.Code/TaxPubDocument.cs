@@ -9,9 +9,9 @@ namespace ProcessingTools.Common.Code
     using System.Linq;
     using System.Text;
     using System.Xml;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// TaxPub document.

@@ -3,7 +3,7 @@
     using System.Linq;
     using NUnit.Framework;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Bio.Taxonomy;
 

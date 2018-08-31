@@ -7,7 +7,7 @@
     using AutoMapper;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Web.Services.Geo;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts.Geo;

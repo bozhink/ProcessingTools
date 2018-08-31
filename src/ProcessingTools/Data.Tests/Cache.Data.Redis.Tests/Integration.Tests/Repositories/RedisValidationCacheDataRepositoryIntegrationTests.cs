@@ -8,7 +8,7 @@
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Cache.Data.Redis.Tests.Common;
     using ProcessingTools.Data.Models.Cache.Redis;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Tests.Library;
 

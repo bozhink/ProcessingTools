@@ -21,7 +21,7 @@ namespace ProcessingTools.Processors.Models
         {
             get
             {
-                return ProcessingTools.Enumerations.Nlm.XLinkType.Simple.ToString().ToLowerInvariant();
+                return ProcessingTools.Common.Enumerations.Nlm.XLinkType.Simple.ToString().ToLowerInvariant();
             }
 
             set

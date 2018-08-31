@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.Bio.Taxonomy
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

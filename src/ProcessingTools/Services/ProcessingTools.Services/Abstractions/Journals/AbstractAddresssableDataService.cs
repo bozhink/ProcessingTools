@@ -15,7 +15,7 @@ namespace ProcessingTools.Services.Abstractions.Journals
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Journals;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions.Linq.Expressions;
     using ProcessingTools.Models.Contracts;

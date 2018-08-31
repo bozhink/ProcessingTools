@@ -13,7 +13,7 @@ namespace ProcessingTools.Services.Validation
     using System.Xml;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Constants.Uri;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Validation;
     using ProcessingTools.Services.Abstractions.Validation;

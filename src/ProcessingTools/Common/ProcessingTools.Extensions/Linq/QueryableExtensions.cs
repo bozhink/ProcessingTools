@@ -6,7 +6,7 @@ namespace ProcessingTools.Extensions.Linq
 {
     using System;
     using System.Linq;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions.Linq.Expressions;
 
     /// <summary>
