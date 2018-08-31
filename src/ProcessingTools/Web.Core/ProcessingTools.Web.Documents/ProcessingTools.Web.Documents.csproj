@@ -45,7 +45,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Security\ProcessingTools.Security.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Security\ProcessingTools.Security.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Layout.Mongo\ProcessingTools.Data.Layout.Mongo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo\ProcessingTools.Geo.csproj" />

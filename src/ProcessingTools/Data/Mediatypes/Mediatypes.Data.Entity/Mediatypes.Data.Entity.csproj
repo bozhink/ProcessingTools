@@ -69,11 +69,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
       <Project>{a620dfde-28c3-46c7-bed3-0afb99db9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
@@ -81,7 +81,7 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>

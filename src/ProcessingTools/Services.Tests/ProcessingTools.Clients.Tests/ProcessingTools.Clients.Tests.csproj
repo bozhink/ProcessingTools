@@ -120,7 +120,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>

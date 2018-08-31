@@ -100,11 +100,11 @@
     <None Include="Services.Data.Tests.ruleset" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>

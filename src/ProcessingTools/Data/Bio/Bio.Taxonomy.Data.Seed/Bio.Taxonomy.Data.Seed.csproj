@@ -66,15 +66,15 @@
     <Compile Include="Seeders\BiotaxonomyMongoDatabaseSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
       <Project>{720D359F-49D1-4126-A79B-F63CCE9780A0}</Project>
       <Name>ProcessingTools.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
@@ -82,7 +82,7 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.File\Data.Common.File.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Data.Common.File\Data.Common.File.csproj">
       <Project>{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}</Project>
       <Name>Data.Common.File</Name>
     </ProjectReference>
@@ -110,7 +110,7 @@
       <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
       <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
