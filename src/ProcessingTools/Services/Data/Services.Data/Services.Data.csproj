@@ -120,10 +120,6 @@
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
-      <Project>{a9d115cf-cf42-4685-a4de-f6b1ab0c753f}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
