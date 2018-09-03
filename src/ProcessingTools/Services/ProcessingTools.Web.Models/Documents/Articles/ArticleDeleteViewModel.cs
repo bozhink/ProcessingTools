@@ -44,6 +44,13 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string Id { get; set; }
 
         /// <summary>
+        /// Gets or sets the article ID.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Article ID")]
+        public string ArticleId { get; set; }
+
+        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         [ReadOnly(true)]
@@ -82,6 +89,13 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         [ReadOnly(true)]
         [Display(Name = "Published on")]
         public DateTime? PublishedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the archival date.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Archived on")]
+        public DateTime? ArchivedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the accepted date.

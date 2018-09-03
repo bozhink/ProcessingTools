@@ -108,5 +108,25 @@ namespace ProcessingTools.Common.Constants.Schema
         /// XLink type local name
         /// </summary>
         public const string XLinkType = "type";
+
+        /// <summary>
+        /// journal-id-type
+        /// </summary>
+        public const string JournalIdType = "journal-id-type";
+
+        /// <summary>
+        /// pub-type
+        /// </summary>
+        public const string PubType = "pub-type";
+
+        /// <summary>
+        /// pub-id-type
+        /// </summary>
+        public const string PubIdType = "pub-id-type";
+
+        /// <summary>
+        /// date-type
+        /// </summary>
+        public const string DateType = "date-type";
     }
 }

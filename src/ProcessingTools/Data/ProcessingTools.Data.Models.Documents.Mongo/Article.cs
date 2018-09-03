@@ -35,6 +35,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public Guid ObjectId { get; set; }
 
         /// <inheritdoc/>
+        public string ArticleId { get; set; }
+
+        /// <inheritdoc/>
         [BsonRequired]
         public string Title { get; set; }
 
@@ -62,6 +65,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
 
         /// <inheritdoc/>
         public DateTime? PublishedOn { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? ArchivedOn { get; set; }
 
         /// <inheritdoc/>
         public DateTime? AcceptedOn { get; set; }

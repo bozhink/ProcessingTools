@@ -13,6 +13,9 @@ namespace ProcessingTools.Services.Models.Documents.Articles
     public class ArticleInsertModel : IArticleInsertModel
     {
         /// <inheritdoc/>
+        public string ArticleId { get; set; }
+
+        /// <inheritdoc/>
         public string Title { get; set; }
 
         /// <inheritdoc/>
@@ -26,6 +29,9 @@ namespace ProcessingTools.Services.Models.Documents.Articles
 
         /// <inheritdoc/>
         public DateTime? PublishedOn { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? ArchivedOn { get; set; }
 
         /// <inheritdoc/>
         public DateTime? AcceptedOn { get; set; }

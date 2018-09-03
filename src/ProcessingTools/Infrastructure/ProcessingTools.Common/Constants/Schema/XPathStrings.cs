@@ -15,6 +15,16 @@ namespace ProcessingTools.Common.Constants.Schema
         public const string ArticleIdOfTypeDoi = ".//front/article-meta/article-id[@pub-id-type='doi']";
 
         /// <summary>
+        /// Article ID of type DOI.
+        /// </summary>
+        public const string ArticleIdDoi = "article-id[@pub-id-type='doi']";
+
+        /// <summary>
+        /// Article ID of internal type.
+        /// </summary>
+        public const string ArticleIdInternal = "article-id[@pub-id-type='publisher-id']";
+
+        /// <summary>
         /// Article ID of internal (publisher's) type.
         /// </summary>
         public const string ArticleIdOfInternalType = ".//front/article-meta/article-id[@pub-id-type='publisher-id']";
@@ -28,6 +38,16 @@ namespace ProcessingTools.Common.Constants.Schema
         /// Article journal meta ISSN ppub.
         /// </summary>
         public const string ArticleJournalMetaIssnPPub = ".//front/journal-meta/issn[@pub-type='ppub']";
+
+        /// <summary>
+        /// Print ISSN.
+        /// </summary>
+        public const string PrintIssn = "issn[@pub-type='ppub']";
+
+        /// <summary>
+        /// Electronic ISSN.
+        /// </summary>
+        public const string ElectronicIssn = "issn[@pub-type='epub']";
 
         /// <summary>
         /// Article journal meta journal abbreviated title.
@@ -68,6 +88,26 @@ namespace ProcessingTools.Common.Constants.Schema
         /// Article meta published on.
         /// </summary>
         public const string ArticleMetaPublishedOn = ".//front/article-meta/pub-date[@pub-type='epub']|.//front/article-meta/history/date[@date-type='pub']";
+
+        /// <summary>
+        /// Article publication date of type collection.
+        /// </summary>
+        public const string CollectionPublicationDate = "pub-date[@pub-type='collection']";
+
+        /// <summary>
+        /// Article publication date of type publication year.
+        /// </summary>
+        public const string YearPublicationDate = "pub-date[@pub-type='publication-year']";
+
+        /// <summary>
+        /// Electronic publication date.
+        /// </summary>
+        public const string ElectronicPublicationDate = "pub-date[@pub-type='epub']";
+
+        /// <summary>
+        /// Article publication date of type archival date.
+        /// </summary>
+        public const string ArchivalPublicationDate = "pub-date[@pub-type='archival-date']";
 
         /// <summary>
         /// Article meta accepted on.
@@ -258,5 +298,15 @@ namespace ProcessingTools.Common.Constants.Schema
         /// XLink href.
         /// </summary>
         public const string XLinkHref = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
+
+        /// <summary>
+        /// Date received.
+        /// </summary>
+        public const string DateReceived = "date[@date-type='received']";
+
+        /// <summary>
+        /// Date accepted.
+        /// </summary>
+        public const string DateAccepted = "date[@date-type='accepted']";
     }
 }

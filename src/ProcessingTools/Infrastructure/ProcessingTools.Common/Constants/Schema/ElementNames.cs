@@ -20,6 +20,46 @@ namespace ProcessingTools.Common.Constants.Schema
         public const string Article = "article";
 
         /// <summary>
+        /// front
+        /// </summary>
+        public const string Front = "front";
+
+        /// <summary>
+        /// journal-meta
+        /// </summary>
+        public const string JournalMeta = "journal-meta";
+
+        /// <summary>
+        /// article-meta
+        /// </summary>
+        public const string ArticleMeta = "article-meta";
+
+        /// <summary>
+        /// title-group
+        /// </summary>
+        public const string TitleGroup = "title-group";
+
+        /// <summary>
+        /// journal-id
+        /// </summary>
+        public const string JournalId = "journal-id";
+
+        /// <summary>
+        /// journal-title-group
+        /// </summary>
+        public const string JournalTitleGroup = "journal-title-group";
+
+        /// <summary>
+        /// journal-title
+        /// </summary>
+        public const string JournalTitle = "journal-title";
+
+        /// <summary>
+        /// abbrev-journal-title
+        /// </summary>
+        public const string AbbrevJournalTitle = "abbrev-journal-title";
+
+        /// <summary>
         /// body
         /// </summary>
         public const string Body = "body";
@@ -148,5 +188,80 @@ namespace ProcessingTools.Common.Constants.Schema
         /// year
         /// </summary>
         public const string Year = "year";
+
+        /// <summary>
+        /// issn
+        /// </summary>
+        public const string Issn = "issn";
+
+        /// <summary>
+        /// publisher
+        /// </summary>
+        public const string Publisher = "publisher";
+
+        /// <summary>
+        /// publisher-name
+        /// </summary>
+        public const string PublisherName = "publisher-name";
+
+        /// <summary>
+        /// publisher-loc
+        /// </summary>
+        public const string PublisherLocation = "publisher-loc";
+
+        /// <summary>
+        /// article-id
+        /// </summary>
+        public const string ArticleId = "article-id";
+
+        /// <summary>
+        /// article-title
+        /// </summary>
+        public const string ArticleTitle = "article-title";
+
+        /// <summary>
+        /// article-subtitle
+        /// </summary>
+        public const string ArticleSubTitle = "article-subtitle";
+
+        /// <summary>
+        /// volume-series
+        /// </summary>
+        public const string VolumeSeries = "volume-series";
+
+        /// <summary>
+        /// volume
+        /// </summary>
+        public const string Volume = "volume";
+
+        /// <summary>
+        /// issue
+        /// </summary>
+        public const string Issue = "issue";
+
+        /// <summary>
+        /// issue-part
+        /// </summary>
+        public const string IssuePart = "issue-part";
+
+        /// <summary>
+        /// elocation-id
+        /// </summary>
+        public const string ELocationId = "elocation-id";
+
+        /// <summary>
+        /// fpage
+        /// </summary>
+        public const string FirstPage = "fpage";
+
+        /// <summary>
+        /// lpage
+        /// </summary>
+        public const string LastPage = "lpage";
+
+        /// <summary>
+        /// history
+        /// </summary>
+        public const string History = "history";
     }
 }

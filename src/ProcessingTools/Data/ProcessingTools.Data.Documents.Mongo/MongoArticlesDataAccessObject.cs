@@ -234,11 +234,13 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<Article>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Article>()
+                .Set(m => m.ArticleId, model.ArticleId)
                 .Set(m => m.Title, model.Title)
                 .Set(m => m.SubTitle, model.SubTitle)
                 .Set(m => m.Doi, model.Doi)
                 .Set(m => m.JournalId, model.JournalId)
                 .Set(m => m.PublishedOn, model.PublishedOn)
+                .Set(m => m.ArchivedOn, model.ArchivedOn)
                 .Set(m => m.AcceptedOn, model.AcceptedOn)
                 .Set(m => m.ReceivedOn, model.ReceivedOn)
                 .Set(m => m.VolumeSeries, model.VolumeSeries)

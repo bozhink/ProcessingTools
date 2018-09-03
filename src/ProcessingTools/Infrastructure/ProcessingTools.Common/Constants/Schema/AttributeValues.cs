@@ -128,5 +128,50 @@ namespace ProcessingTools.Common.Constants.Schema
         /// x-rank
         /// </summary>
         public const string XRank = "x-rank";
+
+        /// <summary>
+        /// publisher-id
+        /// </summary>
+        public const string JournalIdTypePublisherId = "publisher-id";
+
+        /// <summary>
+        /// ppub
+        /// </summary>
+        public const string PubTypePrint = "ppub";
+
+        /// <summary>
+        /// epub
+        /// </summary>
+        public const string PubTypeElectronic = "epub";
+
+        /// <summary>
+        /// archival-date
+        /// </summary>
+        public const string PubTypeArchival = "archival-date";
+
+        /// <summary>
+        /// doi
+        /// </summary>
+        public const string PubIdTypeDoi = "doi";
+
+        /// <summary>
+        /// publisher-id
+        /// </summary>
+        public const string PubIdTypePublisherId = "publisher-id";
+
+        /// <summary>
+        /// pub-type="collection"
+        /// </summary>
+        public const string PubTypeCollection = "collection";
+
+        /// <summary>
+        /// received
+        /// </summary>
+        public const string Received = "received";
+
+        /// <summary>
+        /// accepted
+        /// </summary>
+        public const string Accepted = "accepted";
     }
 }

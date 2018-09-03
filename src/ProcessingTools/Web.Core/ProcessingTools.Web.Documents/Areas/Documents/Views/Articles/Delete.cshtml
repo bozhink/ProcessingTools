@@ -27,13 +27,19 @@
     else
     {
         <dl class="row">
+            @if (!string.IsNullOrWhiteSpace(Model.ArticleId))
+            {
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ArticleId)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.ArticleId)</dd>
+            }
+
             <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Title)</dt>
             <dd class="col-md-10">@Html.DisplayFor(m => m.Title)</dd>
 
             @if (!string.IsNullOrWhiteSpace(Model.SubTitle))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.SubTitle)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.SubTitle)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.SubTitle)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.SubTitle)</dd>
             }
 
             <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Doi)</dt>
@@ -41,12 +47,15 @@
 
             @if (!string.IsNullOrWhiteSpace(Model.Journal?.Name))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Journal.Name)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.Journal.Name)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Journal.Name)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Journal.Name)</dd>
             }
 
             <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.PublishedOn)</dt>
             <dd class="col-md-10">@Html.DisplayFor(m => m.PublishedOn)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ArchivedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ArchivedOn)</dd>
 
             <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.AcceptedOn)</dt>
             <dd class="col-md-10">@Html.DisplayFor(m => m.AcceptedOn)</dd>
@@ -56,50 +65,50 @@
 
             @if (!string.IsNullOrWhiteSpace(Model.VolumeSeries))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.VolumeSeries)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.VolumeSeries)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.VolumeSeries)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.VolumeSeries)</dd>
             }
 
             @if (!string.IsNullOrWhiteSpace(Model.Volume))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Volume)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.Volume)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Volume)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Volume)</dd>
             }
 
             @if (!string.IsNullOrWhiteSpace(Model.Issue))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Issue)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.Issue)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Issue)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Issue)</dd>
             }
 
             @if (!string.IsNullOrWhiteSpace(Model.IssuePart))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IssuePart)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.IssuePart)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IssuePart)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.IssuePart)</dd>
             }
 
             @if (!string.IsNullOrWhiteSpace(Model.ELocationId))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ELocationId)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.ELocationId)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ELocationId)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.ELocationId)</dd>
             }
 
             @if (!string.IsNullOrWhiteSpace(Model.FirstPage))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.FirstPage)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.FirstPage)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.FirstPage)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.FirstPage)</dd>
             }
 
             @if (!string.IsNullOrWhiteSpace(Model.LastPage))
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.LastPage)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.LastPage)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.LastPage)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.LastPage)</dd>
             }
 
             @if (Model.NumberOfPages > 0)
             {
-            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.NumberOfPages)</dt>
-            <dd class="col-md-10">@Html.DisplayFor(m => m.NumberOfPages)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.NumberOfPages)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.NumberOfPages)</dd>
             }
 
             <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IsFinalized)</dt>
