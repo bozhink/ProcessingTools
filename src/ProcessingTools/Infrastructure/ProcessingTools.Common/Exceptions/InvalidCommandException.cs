@@ -77,7 +77,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
-        public InvalidCommandException(SerializationInfo info, StreamingContext context)
+        protected InvalidCommandException(SerializationInfo info, StreamingContext context)
             : base(info: info, context: context)
         {
         }

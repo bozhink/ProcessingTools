@@ -27,12 +27,12 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// UPC_SUPPLEMENTAL_2DIGIT
         /// </summary>
-        UPC_SUPPLEMENTAL_2DIGIT = 3,
+        UPCSUPPLEMENTAL2DIGIT = 3,
 
         /// <summary>
         /// UPC_SUPPLEMENTAL_5DIGIT
         /// </summary>
-        UPC_SUPPLEMENTAL_5DIGIT = 4,
+        UPCSUPPLEMENTAL5DIGIT = 4,
 
         /// <summary>
         /// EAN13
@@ -72,7 +72,7 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// CODE39_Mod43
         /// </summary>
-        CODE39_Mod43 = 12,
+        CODE39Mod43 = 12,
 
         /// <summary>
         /// Codabar
@@ -102,27 +102,27 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// MSI_Mod10
         /// </summary>
-        MSI_Mod10 = 18,
+        MSIMod10 = 18,
 
         /// <summary>
         /// MSI_2Mod10
         /// </summary>
-        MSI_2Mod10 = 19,
+        MSI2Mod10 = 19,
 
         /// <summary>
         /// MSI_Mod11
         /// </summary>
-        MSI_Mod11 = 20,
+        MSIMod11 = 20,
 
         /// <summary>
         /// MSI_Mod11_Mod10
         /// </summary>
-        MSI_Mod11_Mod10 = 21,
+        MSIMod11Mod10 = 21,
 
         /// <summary>
         /// Modified_Plessey
         /// </summary>
-        Modified_Plessey = 22,
+        ModifiedPlessey = 22,
 
         /// <summary>
         /// CODE11

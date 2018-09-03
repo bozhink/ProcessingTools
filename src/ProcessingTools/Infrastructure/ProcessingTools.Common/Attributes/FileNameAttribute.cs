@@ -9,6 +9,7 @@ namespace ProcessingTools.Common.Attributes
     /// <summary>
     /// File name attribute.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class FileNameAttribute : Attribute
     {
         /// <summary>

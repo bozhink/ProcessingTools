@@ -58,7 +58,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
-        public CommandNotFoundException(SerializationInfo info, StreamingContext context)
+        protected CommandNotFoundException(SerializationInfo info, StreamingContext context)
             : base(info: info, context: context)
         {
         }
@@ -66,7 +66,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <summary>
         /// Gets the name of the command that causes this exception.
         /// </summary>
-        public string CommandName { get; private set; }
+        public string CommandName { get; }
 
         /// <inheritdoc/>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)

@@ -52,7 +52,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
-        public InvalidUserIdException(SerializationInfo info, StreamingContext context)
+        protected InvalidUserIdException(SerializationInfo info, StreamingContext context)
             : base(info: info, context: context)
         {
         }
