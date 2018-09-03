@@ -2,10 +2,9 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents;
 
-    public abstract class AddressableEntity : ModelWithUserInformation, IAddressable
+    public abstract class AddressableEntity : ProcessingTools.Models.Contracts.ModelWithUserInformation, IAddressable
     {
         private ICollection<Address> addresses;
 
