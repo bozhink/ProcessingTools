@@ -1,4 +1,4 @@
-﻿// <copyright file="XPathHarvester{T,S}.cs" company="ProcessingTools">
+﻿// <copyright file="XPathHarvester{T1,T2}.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -20,10 +20,10 @@ namespace ProcessingTools.Harvesters.Abstractions
     /// <summary>
     /// Generic XPath harvester.
     /// </summary>
-    /// <typeparam name="T">Type of resultant model.</typeparam>
-    /// <typeparam name="S">Type of internal model.</typeparam>
-    public abstract class XPathHarvester<T, S> : IXmlHarvester<T>
-        where S : T, new()
+    /// <typeparam name="T1">Type of resultant model.</typeparam>
+    /// <typeparam name="T2">Type of internal model.</typeparam>
+    public abstract class XPathHarvester<T1, T2> : IXmlHarvester<T1>
+        where T2 : T1, new()
     {
         private readonly IDictionary<PropertyInfo, PropertyData> propertyDictionary;
         private readonly Regex matchWhitespace = new Regex(@"\s+");
@@ -35,7 +35,7 @@ namespace ProcessingTools.Harvesters.Abstractions
         {
             this.propertyDictionary = new Dictionary<PropertyInfo, PropertyData>();
 
-            var properties = typeof(S).GetProperties().ToArray();
+            var properties = typeof(T2).GetProperties().ToArray();
             foreach (var property in properties)
             {
                 var attributes = property.GetCustomAttributes(typeof(XPathAttribute), false);
@@ -51,16 +51,16 @@ namespace ProcessingTools.Harvesters.Abstractions
         }
 
         /// <inheritdoc/>
-        public Task<T> HarvestAsync(XmlNode context)
+        public Task<T1> HarvestAsync(XmlNode context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            return Task.Run<T>(() =>
+            return Task.Run<T1>(() =>
             {
-                var result = new S();
+                var result = new T2();
 
                 foreach (var item in this.propertyDictionary)
                 {

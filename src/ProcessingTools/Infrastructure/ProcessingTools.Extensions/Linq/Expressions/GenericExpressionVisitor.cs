@@ -13,15 +13,15 @@ namespace ProcessingTools.Extensions.Linq.Expressions
     /// <summary>
     /// Generic expression visitor.
     /// </summary>
-    /// <typeparam name="S">S</typeparam>
-    /// <typeparam name="B">B</typeparam>
+    /// <typeparam name="T1">T1</typeparam>
+    /// <typeparam name="T2">T2</typeparam>
     /// <remarks>
     /// See http://stackoverflow.com/questions/11248585/how-to-map-two-expressions-of-differing-types
     /// </remarks>
-    internal class GenericExpressionVisitor<S, B> : ExpressionVisitor
+    internal class GenericExpressionVisitor<T1, T2> : ExpressionVisitor
     {
-        private readonly Type typeofS;
-        private readonly Type typeofB;
+        private readonly Type typeofT1;
+        private readonly Type typeofT2;
         private readonly IEnumerable<PropertyInfo> typeofBProperties;
 
         private readonly Stack<ParameterExpression[]> parameterStack;
@@ -32,9 +32,9 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// </summary>
         public GenericExpressionVisitor()
         {
-            this.typeofS = typeof(S);
-            this.typeofB = typeof(B);
-            this.typeofBProperties = this.typeofB.GetProperties();
+            this.typeofT1 = typeof(T1);
+            this.typeofT2 = typeof(T2);
+            this.typeofBProperties = this.typeofT2.GetProperties();
 
             this.parameterStack = new Stack<ParameterExpression[]>();
 
@@ -47,9 +47,9 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <param name="propertyNameMap">Property name map.</param>
         public GenericExpressionVisitor(IDictionary<string, string> propertyNameMap)
         {
-            this.typeofS = typeof(S);
-            this.typeofB = typeof(B);
-            this.typeofBProperties = this.typeofB.GetProperties();
+            this.typeofT1 = typeof(T1);
+            this.typeofT2 = typeof(T2);
+            this.typeofBProperties = this.typeofT2.GetProperties();
 
             this.parameterStack = new Stack<ParameterExpression[]>();
 
@@ -61,7 +61,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         {
             var lambda = (LambdaExpression)node;
             var parameters = lambda.Parameters
-                .Select(p => this.typeofS == p.Type ? Expression.Parameter(this.typeofB) : p)
+                .Select(p => this.typeofT1 == p.Type ? Expression.Parameter(this.typeofT2) : p)
                 .ToArray();
 
             this.parameterStack.Push(parameters);
@@ -79,7 +79,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
             var name = member.Name;
 
             if (member.MemberType == MemberTypes.Property &&
-                (this.typeofS == member.DeclaringType || this.typeofS.GetInterfaces().Contains(member.DeclaringType)))
+                (this.typeofT1 == member.DeclaringType || this.typeofT1.GetInterfaces().Contains(member.DeclaringType)))
             {
                 string propertyName = name;
 
@@ -101,9 +101,9 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         {
             node = (ParameterExpression)base.VisitParameter(node);
 
-            if (this.typeofS == node.Type)
+            if (this.typeofT1 == node.Type)
             {
-                node = this.parameterStack.Peek().Single(p => p.Type == this.typeofB);
+                node = this.parameterStack.Peek().Single(p => p.Type == this.typeofT2);
             }
 
             return node;

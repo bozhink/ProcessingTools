@@ -18,18 +18,18 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Map property name to expression.
         /// </summary>
-        /// <typeparam name="T">T</typeparam>
-        /// <typeparam name="S">S</typeparam>
+        /// <typeparam name="T1">T1</typeparam>
+        /// <typeparam name="T2">T2</typeparam>
         /// <param name="propertyName">Property name.</param>
         /// <returns>Expression</returns>
         /// <remarks>
         /// See http://stackoverflow.com/questions/27669993/creating-a-property-selector-expression-from-a-string
         /// </remarks>
-        public static Expression<Func<T, S>> ToExpressionFromPropertyName<T, S>(this string propertyName)
+        public static Expression<Func<T1, T2>> ToExpressionFromPropertyName<T1, T2>(this string propertyName)
         {
-            var parameter = Expression.Parameter(typeof(T));
+            var parameter = Expression.Parameter(typeof(T1));
             var body = Expression.PropertyOrField(parameter, propertyName);
-            return Expression.Lambda<Func<T, S>>(body, parameter);
+            return Expression.Lambda<Func<T1, T2>>(body, parameter);
         }
 
         /// <summary>
@@ -146,14 +146,14 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Re-map expression to new expression.
         /// </summary>
-        /// <typeparam name="S">Input type.</typeparam>
-        /// <typeparam name="T">Output type.</typeparam>
+        /// <typeparam name="T1">Input type.</typeparam>
+        /// <typeparam name="T2">Output type.</typeparam>
         /// <param name="lambda">Lambda expression.</param>
         /// <returns>Re-mapped expression.</returns>
-        public static Expression<Func<S, T>> ToExpression<S, T>(this LambdaExpression lambda)
+        public static Expression<Func<T1, T2>> ToExpression<T1, T2>(this LambdaExpression lambda)
         {
             ParameterExpression lambdaParameter = lambda.Parameters.Single();
-            ParameterExpression parameter = Expression.Parameter(typeof(S), lambdaParameter.Name);
+            ParameterExpression parameter = Expression.Parameter(typeof(T1), lambdaParameter.Name);
 
             var symbols = new Dictionary<string, object>
             {
@@ -161,24 +161,24 @@ namespace ProcessingTools.Extensions.Linq.Expressions
             };
 
             var expression = lambda.Body.ToString();
-            var body = DynamicExpressionParser.ParseLambda(typeof(T), expression, symbols);
+            var body = DynamicExpressionParser.ParseLambda(typeof(T2), expression, symbols);
 
-            return Expression.Lambda<Func<S, T>>(body, parameter);
+            return Expression.Lambda<Func<T1, T2>>(body, parameter);
         }
 
         /// <summary>
         /// Re-map expression to new expression.
         /// </summary>
-        /// <typeparam name="S">S</typeparam>
-        /// <typeparam name="B">B</typeparam>
-        /// <typeparam name="T">T</typeparam>
+        /// <typeparam name="T1">T1</typeparam>
+        /// <typeparam name="T2">T2</typeparam>
+        /// <typeparam name="T3">T3</typeparam>
         /// <param name="expression">The expression to be re-mapped.</param>
         /// <returns>Re-mapped expression.</returns>
-        public static Expression<Func<B, T>> ToExpression<S, B, T>(this Expression<Func<S, T>> expression)
+        public static Expression<Func<T2, T3>> ToExpression<T1, T2, T3>(this Expression<Func<T1, T3>> expression)
         {
-            var visitor = new GenericExpressionVisitor<S, B>();
+            var visitor = new GenericExpressionVisitor<T1, T2>();
 
-            var query = (Expression<Func<B, T>>)visitor.Visit(expression);
+            var query = (Expression<Func<T2, T3>>)visitor.Visit(expression);
 
             return query;
         }
@@ -186,27 +186,27 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Convert expression to new expression.
         /// </summary>
-        /// <typeparam name="S">S</typeparam>
-        /// <typeparam name="B">B</typeparam>
-        /// <typeparam name="T">T</typeparam>
+        /// <typeparam name="T1">T1</typeparam>
+        /// <typeparam name="T2">T2</typeparam>
+        /// <typeparam name="T3">T3</typeparam>
         /// <param name="expression">Expression to be converted.</param>
         /// <returns>Converted expression.</returns>
         /// <remarks>
         /// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
         /// </remarks>
-        public static Expression<Func<B, T>> Convert<S, B, T>(this Expression<Func<S, T>> expression)
+        public static Expression<Func<T2, T3>> Convert<T1, T2, T3>(this Expression<Func<T1, T3>> expression)
         {
-            return Convert<Func<S, T>, Func<B, T>>(expression);
+            return Convert<Func<T1, T3>, Func<T2, T3>>(expression);
         }
 
         // See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
-        private static Expression<B> Convert<S, B>(Expression<S> expression)
-            where S : class
-            where B : class
+        private static Expression<T2> Convert<T1, T2>(Expression<T1> expression)
+            where T1 : class
+            where T2 : class
         {
             // figure out which types are different in the function-signature
             var mapFromTypes = expression.Type.GetGenericArguments();
-            var mapToTypes = typeof(B).GetGenericArguments();
+            var mapToTypes = typeof(T2).GetGenericArguments();
             if (mapFromTypes.Length != mapToTypes.Length)
             {
                 throw new NotSupportedException("Incompatible lambda function-type signatures");
@@ -243,7 +243,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
 
             // rebuild the lambda
             var body = new TypeConversionVisitor(parameterMap).Visit(expression.Body);
-            return Expression.Lambda<B>(body, newParameters);
+            return Expression.Lambda<T2>(body, newParameters);
         }
     }
 }

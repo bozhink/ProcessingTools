@@ -85,14 +85,14 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
         /// <summary>
         /// Parse string lambda.
         /// </summary>
-        /// <typeparam name="T">Input type.</typeparam>
-        /// <typeparam name="S">Output type.</typeparam>
+        /// <typeparam name="T1">Input type.</typeparam>
+        /// <typeparam name="T2">Output type.</typeparam>
         /// <param name="expression">The expression as string.</param>
         /// <param name="values">Values for the expression.</param>
         /// <returns>Parsed lambda.</returns>
-        public static Expression<Func<T, S>> ParseLambda<T, S>(string expression, params object[] values)
+        public static Expression<Func<T1, T2>> ParseLambda<T1, T2>(string expression, params object[] values)
         {
-            return (Expression<Func<T, S>>)ParseLambda(typeof(T), typeof(S), expression, values);
+            return (Expression<Func<T1, T2>>)ParseLambda(typeof(T1), typeof(T2), expression, values);
         }
 
         /// <summary>

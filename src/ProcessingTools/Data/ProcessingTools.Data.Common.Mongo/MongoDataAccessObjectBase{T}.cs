@@ -55,12 +55,12 @@ namespace ProcessingTools.Data.Common.Mongo
         /// <summary>
         /// Gets collection from the same database.
         /// </summary>
-        /// <typeparam name="S">Type of model of the collection.</typeparam>
-        /// <returns><see cref="IMongoCollection{S}"/></returns>
-        protected IMongoCollection<S> GetCollection<S>()
+        /// <typeparam name="TModel">Type of model of the collection.</typeparam>
+        /// <returns><see cref="IMongoCollection{TModel}"/></returns>
+        protected IMongoCollection<TModel> GetCollection<TModel>()
         {
-            string collectionName = MongoCollectionNameFactory.Create<S>();
-            return this.db.GetCollection<S>(collectionName);
+            string collectionName = MongoCollectionNameFactory.Create<TModel>();
+            return this.db.GetCollection<TModel>(collectionName);
         }
     }
 }
