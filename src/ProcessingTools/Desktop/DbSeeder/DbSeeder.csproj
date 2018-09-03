@@ -216,10 +216,6 @@
       <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
       <Name>DataResources.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Interceptors\Interceptors.csproj">
-      <Project>{ef204549-80d1-4665-8cfe-8e57c5c88ee6}</Project>
-      <Name>Interceptors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
       <Project>{ebd6c134-433a-4d4d-864a-50745ce94bca}</Project>
       <Name>ProcessingTools.Common.Code</Name>
@@ -227,6 +223,10 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Ninject.Interceptors\ProcessingTools.Ninject.Interceptors.csproj">
+      <Project>{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}</Project>
+      <Name>ProcessingTools.Ninject.Interceptors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
       <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>

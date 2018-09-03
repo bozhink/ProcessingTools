@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
-    using Ninject;
+    using global::Ninject;
 
     internal static class NinjectConfig
     {

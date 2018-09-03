@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
-    using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Factory;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
-    using Ninject.Modules;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Extensions.Factory;
+    using global::Ninject.Extensions.Interception.Infrastructure.Language;
+    using global::Ninject.Modules;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Documents.Mongo;
-    using ProcessingTools.Interceptors;
+    using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
     using ProcessingTools.Services.IO;

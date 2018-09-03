@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using Ninject.Extensions.Factory;
-    using Ninject.Modules;
+    using global::Ninject.Extensions.Factory;
+    using global::Ninject.Modules;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Contracts.Abbreviations;
@@ -11,7 +11,6 @@
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
     using ProcessingTools.Processors.Contracts.Layout;
-    using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Contracts.Special;
     using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Transformers;

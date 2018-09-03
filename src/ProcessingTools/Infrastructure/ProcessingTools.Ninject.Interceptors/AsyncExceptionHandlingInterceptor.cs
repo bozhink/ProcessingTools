@@ -1,16 +1,21 @@
-﻿/// <summary>
-/// See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
-/// </summary>
-namespace ProcessingTools.Interceptors
+﻿// <copyright file="AsyncExceptionHandlingInterceptor.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+// See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
+namespace ProcessingTools.Ninject.Interceptors
 {
     using System;
     using System.Reflection;
     using System.Threading.Tasks;
-    using Ninject.Extensions.Interception;
+    using global::Ninject.Extensions.Interception;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Async exception handling interceptor.
+    /// </summary>
     public class AsyncExceptionHandlingInterceptor : IInterceptor
     {
         private static readonly MethodInfo HandleAsyncMethodInfo = typeof(AsyncExceptionHandlingInterceptor)
@@ -18,11 +23,16 @@ namespace ProcessingTools.Interceptors
 
         private readonly ISandbox sandbox;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncExceptionHandlingInterceptor"/> class.
+        /// </summary>
+        /// <param name="sandbox">Sandbox to wrap executing code.</param>
         public AsyncExceptionHandlingInterceptor(ISandbox sandbox)
         {
-            this.sandbox = sandbox;
+            this.sandbox = sandbox ?? throw new ArgumentNullException(nameof(sandbox));
         }
 
+        /// <inheritdoc/>
         public void Intercept(IInvocation invocation)
         {
             var delegateType = invocation.Request.Method.GetDelegateType();
@@ -43,7 +53,7 @@ namespace ProcessingTools.Interceptors
                     break;
 
                 default:
-                    throw new NotImplementedException($"{nameof(MethodType)}.{delegateType.ToString()} is not implemented");
+                    throw new NotSupportedException($"{nameof(MethodType)}.{delegateType.ToString()} is not supported.");
             }
         }
 

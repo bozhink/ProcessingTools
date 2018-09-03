@@ -1,9 +1,13 @@
-﻿namespace ProcessingTools.Interceptors
+﻿// <copyright file="FileExistsRaiseWarningInterceptor.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Ninject.Interceptors
 {
     using System;
     using System.IO;
+    using global::Ninject.Extensions.Interception;
     using Microsoft.Extensions.Logging;
-    using Ninject.Extensions.Interception;
 
     /// <summary>
     /// Logs warning that a given file already exists.
@@ -13,11 +17,16 @@
     {
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileExistsRaiseWarningInterceptor"/> class.
+        /// </summary>
+        /// <param name="logger">Logger to log warning for existent file.</param>
         public FileExistsRaiseWarningInterceptor(ILogger<FileExistsRaiseWarningInterceptor> logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public void Intercept(IInvocation invocation)
         {
             if (invocation.Request.Arguments.Length < 1)

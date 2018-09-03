@@ -1,13 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
-    using Ninject;
-    using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
-    using Ninject.Modules;
+    using global::Ninject;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Extensions.Interception.Infrastructure.Language;
+    using global::Ninject.Modules;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Interceptors;
+    using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.Services.IO;
 
     /// <summary>

@@ -273,10 +273,6 @@
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Interceptors\Interceptors.csproj">
-      <Project>{ef204549-80d1-4665-8cfe-8e57c5c88ee6}</Project>
-      <Name>Interceptors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
       <Project>{ebd6c134-433a-4d4d-864a-50745ce94bca}</Project>
       <Name>ProcessingTools.Common.Code</Name>
@@ -288,6 +284,10 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
       <Name>ProcessingTools.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Ninject.Interceptors\ProcessingTools.Ninject.Interceptors.csproj">
+      <Project>{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}</Project>
+      <Name>ProcessingTools.Ninject.Interceptors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>

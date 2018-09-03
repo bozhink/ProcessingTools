@@ -2,10 +2,10 @@
 {
     using System;
     using System.Reflection;
-    using Ninject;
-    using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
-    using Ninject.Modules;
+    using global::Ninject;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Extensions.Interception.Infrastructure.Language;
+    using global::Ninject.Modules;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
@@ -14,7 +14,7 @@
     using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
-    using ProcessingTools.Interceptors;
+    using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.Processors.Contracts;
 
     /// <summary>
