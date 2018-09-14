@@ -92,5 +92,52 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
             return this.View();
         }
+
+        /// <summary>
+        /// /Documents/Tagger/UpdateDocumentMeta
+        /// </summary>
+        /// <param name="documentId">Document object ID.</param>
+        /// <param name="articleId">Article object ID.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        public async Task<IActionResult> UpdateDocumentMeta(string documentId, string articleId)
+        {
+            try
+            {
+                var result = await this.service.UpdateDocumentMetaAsync(documentId, articleId).ConfigureAwait(false);
+                this.logger.LogInformation("{0}", result);
+                return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("Error", ex.ToString());
+                this.logger.LogError(ex, "TaggerController.UpdateDocumentMetaAsync");
+            }
+
+            this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            return this.View();
+        }
+
+        /// <summary>
+        /// /Documents/Tagger/UpdateArticleDocumentsMeta
+        /// </summary>
+        /// <param name="articleId">Article object ID.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        public async Task<IActionResult> UpdateArticleDocumentsMeta(string articleId)
+        {
+            try
+            {
+                var result = await this.service.UpdateArticleDocumentsMetaAsync(articleId).ConfigureAwait(false);
+                this.logger.LogInformation("{0}", result);
+                return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("Error", ex.ToString());
+                this.logger.LogError(ex, "TaggerController.UpdateArticleDocumentsMeta");
+            }
+
+            this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            return this.View();
+        }
     }
 }

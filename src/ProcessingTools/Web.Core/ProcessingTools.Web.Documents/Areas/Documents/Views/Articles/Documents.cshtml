@@ -37,7 +37,7 @@
                     <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ArticleId)</dt>
                     <dd class="col-md-10">@Html.DisplayFor(m => m.ArticleId)</dd>
                 }
-                
+
                 <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Title)</dt>
                 <dd class="col-md-10">@Html.DisplayFor(m => m.Title)</dd>
 
@@ -136,6 +136,8 @@
             </dl>
         </fieldset>
 
+        <a asp-controller="Tagger" asp-action="UpdateArticleDocumentsMeta" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Update article documents meta</a>
+
         <fieldset>
             <legend>Documents</legend>
             <p>
@@ -182,7 +184,8 @@
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Html" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Preview HTML</a> |
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Xml" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Edit XML</a> |
                                     <a asp-controller="Tagger" asp-action="ParseReferences" asp-route-documentId="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Parse references</a> |
-                                    <a asp-controller="Tagger" asp-action="TagReferences" asp-route-documentId="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Tag references</a>
+                                    <a asp-controller="Tagger" asp-action="TagReferences" asp-route-documentId="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Tag references</a> |
+                                    <a asp-controller="Tagger" asp-action="UpdateDocumentMeta" asp-route-documentId="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Update document meta</a>
                                 </td>
                             </tr>
                         }
