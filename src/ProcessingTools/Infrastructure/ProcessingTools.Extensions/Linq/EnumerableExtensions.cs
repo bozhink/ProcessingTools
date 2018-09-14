@@ -173,7 +173,7 @@ namespace ProcessingTools.Extensions.Linq
         }
 
         /// <summary>
-        /// Evaluates logical AND operation over all members of the source collection.
+        /// Evaluates logical AND operation over members of the source collection.
         /// </summary>
         /// <param name="source">Source collection to be evaluated.</param>
         /// <returns>Result of the logical AND operation.</returns>
@@ -196,7 +196,30 @@ namespace ProcessingTools.Extensions.Linq
         }
 
         /// <summary>
-        /// Evaluates logical OR operation over all members of the source collection.
+        /// Evaluates logical AND operation over members of the source collection.
+        /// </summary>
+        /// <param name="source">Source collection to be evaluated.</param>
+        /// <returns>Result of the logical AND operation.</returns>
+        public static bool LogicalAnd(this IEnumerable<Func<bool>> source)
+        {
+            if (source == null || !source.Any())
+            {
+                return false;
+            }
+
+            foreach (var item in source)
+            {
+                if (!item())
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Evaluates logical OR operation over members of the source collection.
         /// </summary>
         /// <param name="source">Source collection to be evaluated.</param>
         /// <returns>Result of the logical OR operation.</returns>
@@ -210,6 +233,29 @@ namespace ProcessingTools.Extensions.Linq
             foreach (var item in source)
             {
                 if (item)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Evaluates logical OR operation over members of the source collection.
+        /// </summary>
+        /// <param name="source">Source collection to be evaluated.</param>
+        /// <returns>Result of the logical OR operation.</returns>
+        public static bool LogicalOr(this IEnumerable<Func<bool>> source)
+        {
+            if (source == null || !source.Any())
+            {
+                return false;
+            }
+
+            foreach (var item in source)
+            {
+                if (item())
                 {
                     return true;
                 }
