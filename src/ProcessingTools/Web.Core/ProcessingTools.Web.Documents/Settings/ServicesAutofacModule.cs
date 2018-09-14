@@ -30,36 +30,38 @@ namespace ProcessingTools.Web.Documents.Settings
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ObjectHistoryDataService>().As<IObjectHistoryDataService>().InstancePerDependency();
+            builder.RegisterType<ObjectHistoryDataService>().As<IObjectHistoryDataService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<PublishersDataService>().As<IPublishersDataService>().InstancePerDependency();
-            builder.RegisterType<JournalsDataService>().As<IJournalsDataService>().InstancePerDependency();
-            builder.RegisterType<ArticlesDataService>().As<IArticlesDataService>().InstancePerDependency();
-            builder.RegisterType<DocumentsDataService>().As<IDocumentsDataService>().InstancePerDependency();
-            builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerDependency();
+            builder.RegisterType<PublishersDataService>().As<IPublishersDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<JournalsDataService>().As<IJournalsDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<ArticlesDataService>().As<IArticlesDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<DocumentsDataService>().As<IDocumentsDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<JournalsService>().As<IJournalsService>().InstancePerDependency();
-            builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerDependency();
-            builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerDependency();
-            builder.RegisterType<XmlPresenter>().As<IXmlPresenter>().InstancePerDependency();
+            builder.RegisterType<JournalsService>().As<IJournalsService>().InstancePerLifetimeScope();
+            builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerLifetimeScope();
+            builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerLifetimeScope();
+            builder.RegisterType<DocumentMetaResolver>().As<IDocumentMetaResolver>().InstancePerLifetimeScope();
+            builder.RegisterType<DocumentMetaService>().As<IDocumentMetaService>().InstancePerLifetimeScope();
+            builder.RegisterType<XmlPresenter>().As<IXmlPresenter>().InstancePerLifetimeScope();
 
-            builder.RegisterType<DocumentProcessingService>().As<IDocumentProcessingService>().InstancePerDependency();
+            builder.RegisterType<DocumentProcessingService>().As<IDocumentProcessingService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<XmlReadService>().As<IXmlReadService>().InstancePerDependency();
+            builder.RegisterType<XmlReadService>().As<IXmlReadService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<FloatObjectTagStylesDataService>().As<IFloatObjectTagStylesDataService>().InstancePerDependency();
-            builder.RegisterType<FloatObjectParseStylesDataService>().As<IFloatObjectParseStylesDataService>().InstancePerDependency();
-            builder.RegisterType<ReferenceTagStylesDataService>().As<IReferenceTagStylesDataService>().InstancePerDependency();
-            builder.RegisterType<ReferenceParseStylesDataService>().As<IReferenceParseStylesDataService>().InstancePerDependency();
-            builder.RegisterType<JournalStylesDataService>().As<IJournalStylesDataService>().InstancePerDependency();
+            builder.RegisterType<FloatObjectTagStylesDataService>().As<IFloatObjectTagStylesDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<FloatObjectParseStylesDataService>().As<IFloatObjectParseStylesDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<ReferenceTagStylesDataService>().As<IReferenceTagStylesDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<ReferenceParseStylesDataService>().As<IReferenceParseStylesDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<JournalStylesDataService>().As<IJournalStylesDataService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues).InstancePerDependency();
+            builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues).InstancePerLifetimeScope();
 
             builder.RegisterType<YamlSourceXmlReplaceRuleSetParser>().As<IXmlReplaceRuleSetParser>().InstancePerLifetimeScope();
 
-            builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerDependency();
+            builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<CoordinatesParseService>().As<ICoordinatesParseService>().InstancePerDependency();
+            builder.RegisterType<CoordinatesParseService>().As<ICoordinatesParseService>().InstancePerLifetimeScope();
 
             builder.RegisterType<DecodeService>().As<IDecodeService>().InstancePerLifetimeScope();
             builder.RegisterType<EncodeService>().As<IEncodeService>().InstancePerLifetimeScope();

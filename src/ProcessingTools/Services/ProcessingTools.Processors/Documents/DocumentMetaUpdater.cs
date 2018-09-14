@@ -15,7 +15,7 @@ namespace ProcessingTools.Processors.Documents
     using ProcessingTools.Processors.Contracts.Documents;
 
     /// <summary>
-    /// Document meta updater.
+    /// Document meta-data updater.
     /// </summary>
     public class DocumentMetaUpdater : IDocumentMetaUpdater
     {

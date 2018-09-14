@@ -10,10 +10,12 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Contracts;
     using ProcessingTools.Geo;
     using ProcessingTools.Geo.Contracts;
+    using ProcessingTools.Processors.Contracts.Documents;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Contracts.Rules;
+    using ProcessingTools.Processors.Documents;
     using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Processors.Imaging;
     using ProcessingTools.Processors.Imaging.Contracts;
@@ -31,6 +33,7 @@ namespace ProcessingTools.Web.Documents.Settings
         {
             builder.RegisterType<TaxPubDocumentFactory>().As<IDocumentFactory>().InstancePerLifetimeScope();
             builder.RegisterType<DocumentSchemaNormalizer>().As<IDocumentSchemaNormalizer>().InstancePerLifetimeScope();
+            builder.RegisterType<DocumentMetaUpdater>().As<IDocumentMetaUpdater>().InstancePerLifetimeScope();
             builder.RegisterType<NormalizationTransformerFactory>().As<INormalizationTransformerFactory>().InstancePerLifetimeScope();
 
             builder.RegisterType<DocumentRulesProcessor>().As<IDocumentRulesProcessor>().InstancePerDependency();
