@@ -56,10 +56,6 @@
     <Compile Include="Repositories\MongoTaxonRanksRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Queries\get-taxa-with-named-ranks.js" />
-    <Content Include="Queries\taxa-select-multi-ranks.js" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
