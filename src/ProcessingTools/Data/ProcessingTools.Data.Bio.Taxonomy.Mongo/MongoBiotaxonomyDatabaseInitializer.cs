@@ -1,27 +1,40 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo
+﻿// <copyright file="MongoBiotaxonomyDatabaseInitializer.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Bio.Taxonomy.Data.Mongo
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts;
     using MongoDB.Driver;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Bio.Taxonomy.Mongo;
 
-    public class BiotaxonomyMongoDatabaseInitializer : IBiotaxonomyMongoDatabaseInitializer
+    /// <summary>
+    /// Implementation of <see cref="IBiotaxonomyDatabaseInitializer"/>.
+    /// </summary>
+    public class MongoBiotaxonomyDatabaseInitializer : IBiotaxonomyDatabaseInitializer
     {
         private readonly IMongoDatabase db;
 
-        public BiotaxonomyMongoDatabaseInitializer(IMongoDatabaseProvider provider)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoBiotaxonomyDatabaseInitializer"/> class.
+        /// </summary>
+        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
+        public MongoBiotaxonomyDatabaseInitializer(IMongoDatabaseProvider databaseProvider)
         {
-            if (provider == null)
+            if (databaseProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            this.db = provider.Create();
+            this.db = databaseProvider.Create();
         }
 
+        /// <inheritdoc/>
         public async Task<object> InitializeAsync()
         {
             await this.CreateIndicesToTaxonRankCollection().ConfigureAwait(false);
@@ -82,27 +95,26 @@
             return result;
         }
 
-        private Task<object> CreateIndicesToBlackListCollection()
+        private async Task<object> CreateIndicesToBlackListCollection()
         {
-            ////string collectionName = MongoCollectionNameFactory.Create<MongoBlackListEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<BlackListItem>();
 
-            ////var collection = this.db.GetCollection<MongoBlackListEntity>(collectionName);
+            var collection = this.db.GetCollection<BlackListItem>(collectionName);
 
-            ////var indexOptions = new CreateIndexOptions
-            ////{
-            ////    Background = false,
-            ////    Unique = true,
-            ////    Sparse = false
-            ////};
+            var indexOptions = new CreateIndexOptions
+            {
+                Background = false,
+                Unique = true,
+                Sparse = false
+            };
 
-            ////var result = await collection.Indexes
-            ////    .CreateOneAsync(new CreateIndexModel<MongoBlackListEntity>(
-            ////        Builders<MongoBlackListEntity>.IndexKeys.Ascending(t => t.Content),
-            ////        indexOptions))
-            ////    .ConfigureAwait(false);
+            var result = await collection.Indexes
+                .CreateOneAsync(new CreateIndexModel<BlackListItem>(
+                    Builders<BlackListItem>.IndexKeys.Ascending(t => t.Content),
+                    indexOptions))
+                .ConfigureAwait(false);
 
-            ////return result;
-            return Task.FromResult<object>(false);
+            return result;
         }
     }
 }
