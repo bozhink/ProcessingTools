@@ -9,7 +9,6 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
@@ -20,16 +19,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     public class TaxonRankDataService : ITaxonRankDataService
     {
-        private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
+        private readonly ITaxonRanksDataAccessObject taxonRanksDataAccessObject;
         private readonly Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxonRankDataService"/> class.
         /// </summary>
-        /// <param name="repositoryProvider">Repository provider.</param>
-        public TaxonRankDataService(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
+        /// <param name="taxonRanksDataAccessObject">Data access object.</param>
+        public TaxonRankDataService(ITaxonRanksDataAccessObject taxonRanksDataAccessObject)
         {
-            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
+            this.taxonRanksDataAccessObject = taxonRanksDataAccessObject ?? throw new ArgumentNullException(nameof(taxonRanksDataAccessObject));
         }
 
         private Func<ITaxonRank, ITaxonRankItem> MapServiceModelToDbModel => t =>
@@ -46,29 +45,30 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         };
 
         /// <inheritdoc/>
-        public virtual Task<object> AddAsync(params ITaxonRank[] models)
+        public virtual async Task<object> AddAsync(params ITaxonRank[] models)
         {
             var validTaxa = this.ValidateTaxa(models);
 
-            return this.repositoryProvider.ExecuteAsync(async (repository) =>
-            {
-                var tasks = validTaxa.Select(this.MapServiceModelToDbModel).Select(t => repository.AddAsync(t)).ToArray();
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-                return await repository.SaveChangesAsync().ConfigureAwait(false);
-            });
+            var tasks = validTaxa
+                .Select(this.MapServiceModelToDbModel)
+                .Select(t => this.taxonRanksDataAccessObject.UpsertAsync(t))
+                .ToArray();
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+            return await this.taxonRanksDataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public virtual Task<object> DeleteAsync(params ITaxonRank[] models)
+        public virtual async Task<object> DeleteAsync(params ITaxonRank[] models)
         {
             var validTaxa = this.ValidateTaxa(models);
 
-            return this.repositoryProvider.ExecuteAsync(async (repository) =>
-            {
-                var tasks = validTaxa.Select(t => repository.DeleteAsync(t.ScientificName)).ToArray();
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-                return await repository.SaveChangesAsync().ConfigureAwait(false);
-            });
+            var tasks = validTaxa
+                .Select(t => this.taxonRanksDataAccessObject.DeleteAsync(t.ScientificName))
+                .ToArray();
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+            return await this.taxonRanksDataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
         private ITaxonRank[] ValidateTaxa(ITaxonRank[] taxa)
