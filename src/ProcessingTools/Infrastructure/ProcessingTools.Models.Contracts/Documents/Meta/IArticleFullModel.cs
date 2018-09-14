@@ -4,9 +4,7 @@
 
 namespace ProcessingTools.Models.Contracts.Documents.Meta
 {
-    using System.Collections.Generic;
     using ProcessingTools.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Models.Contracts.Documents.Documents;
     using ProcessingTools.Models.Contracts.Documents.Journals;
     using ProcessingTools.Models.Contracts.Documents.Publishers;
 
@@ -29,10 +27,5 @@ namespace ProcessingTools.Models.Contracts.Documents.Meta
         /// Gets the publisher.
         /// </summary>
         IPublisherModel Publisher { get; }
-
-        /// <summary>
-        /// Gets documents of the article.
-        /// </summary>
-        IEnumerable<IDocumentModel> Documents { get; }
     }
 }
