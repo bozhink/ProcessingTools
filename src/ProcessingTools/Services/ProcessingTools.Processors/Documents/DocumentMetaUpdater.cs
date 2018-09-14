@@ -85,13 +85,13 @@ namespace ProcessingTools.Processors.Documents
 
             UpdateArchivalPublicationDate(document, articleMeta, articleMetaElement);
 
-            UpdateSimpleElement(document, articleMetaElement, ElementNames.VolumeSeries, articleMeta.VolumeSeries);
-            UpdateSimpleElement(document, articleMetaElement, ElementNames.Volume, articleMeta.Volume);
-            UpdateSimpleElement(document, articleMetaElement, ElementNames.Issue, articleMeta.Issue);
-            UpdateSimpleElement(document, articleMetaElement, ElementNames.IssuePart, articleMeta.IssuePart);
-            UpdateSimpleElement(document, articleMetaElement, ElementNames.ELocationId, articleMeta.ELocationId);
-            UpdateSimpleElement(document, articleMetaElement, ElementNames.FirstPage, articleMeta.FirstPage);
-            UpdateSimpleElement(document, articleMetaElement, ElementNames.LastPage, articleMeta.LastPage);
+            UpdateSimpleElement(document, articleMetaElement, ElementNames.VolumeSeries, articleMeta.VolumeSeries, true);
+            UpdateSimpleElement(document, articleMetaElement, ElementNames.Volume, articleMeta.Volume, true);
+            UpdateSimpleElement(document, articleMetaElement, ElementNames.Issue, articleMeta.Issue, true);
+            UpdateSimpleElement(document, articleMetaElement, ElementNames.IssuePart, articleMeta.IssuePart, true);
+            UpdateSimpleElement(document, articleMetaElement, ElementNames.ELocationId, articleMeta.ELocationId, true);
+            UpdateSimpleElement(document, articleMetaElement, ElementNames.FirstPage, articleMeta.FirstPage, true);
+            UpdateSimpleElement(document, articleMetaElement, ElementNames.LastPage, articleMeta.LastPage, true);
 
             UpdateHistory(document, articleMeta, articleMetaElement);
         }
@@ -180,16 +180,26 @@ namespace ProcessingTools.Processors.Documents
             }
         }
 
-        private static void UpdateSimpleElement(IDocument document, XmlElement parent, string name, string value)
+        private static void UpdateSimpleElement(IDocument document, XmlElement parent, string name, string value, bool removeIfEmptyValue)
         {
             XmlElement element = parent[name];
-            if (element == null)
+            if (removeIfEmptyValue && string.IsNullOrEmpty(value))
             {
-                element = document.XmlDocument.CreateElement(name);
-                parent.AppendChild(element);
+                if (element != null)
+                {
+                    parent.RemoveChild(element);
+                }
             }
+            else
+            {
+                if (element == null)
+                {
+                    element = document.XmlDocument.CreateElement(name);
+                    parent.AppendChild(element);
+                }
 
-            element.InnerXml = value;
+                element.InnerXml = value;
+            }
         }
 
         private static void UpdateArchivalPublicationDate(IDocument document, IArticleMetaModel articleMeta, XmlElement articleMetaElement)
