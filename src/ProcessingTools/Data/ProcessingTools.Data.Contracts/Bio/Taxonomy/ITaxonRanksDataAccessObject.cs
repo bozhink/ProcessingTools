@@ -4,7 +4,6 @@
 
 namespace ProcessingTools.Data.Contracts.Bio.Taxonomy
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
@@ -14,44 +13,30 @@ namespace ProcessingTools.Data.Contracts.Bio.Taxonomy
     public interface ITaxonRanksDataAccessObject : IDataAccessObject
     {
         /// <summary>
-        /// Inserts one taxon-rank item.
+        /// Inserts or updates taxon-rank item.
         /// </summary>
         /// <param name="item">Item to be inserted.</param>
         /// <returns>Task of result.</returns>
-        Task<object> InsertOneAsync(ITaxonRankItem item);
+        Task<object> UpsertAsync(ITaxonRankItem item);
 
         /// <summary>
-        /// Inserts many taxon-rank items.
-        /// </summary>
-        /// <param name="items">Items to be inserted.</param>
-        /// <returns>Task of result.</returns>
-        Task<object> InsertManyAsync(IEnumerable<ITaxonRankItem> items);
-
-        /// <summary>
-        /// Deletes one taxon-rank item by taxon name.
+        /// Deletes taxon-rank item by taxon name.
         /// </summary>
         /// <param name="name">Item to be deleted.</param>
         /// <returns>Task of result.</returns>
-        Task<object> DeleteOneAsync(string name);
-
-        /// <summary>
-        /// Deletes many taxon-rank items by taxon name.
-        /// </summary>
-        /// <param name="names">Items to be deleted.</param>
-        /// <returns>Task of result.</returns>
-        Task<object> DeleteManyAsync(IEnumerable<string> names);
+        Task<object> DeleteAsync(string name);
 
         /// <summary>
         /// Finds taxon-rank items by matching taxon name.
         /// </summary>
         /// <param name="filter">Filter value to be applied.</param>
-        /// <returns>Task of result as string array.</returns>
+        /// <returns>Task of result as taxon-rank array.</returns>
         Task<ITaxonRankItem[]> FindAsync(string filter);
 
         /// <summary>
-        /// Gets all taxon-rank items.
+        /// Gets all white-listed taxon-rank items.
         /// </summary>
         /// <returns>Task of result as string array.</returns>
-        Task<ITaxonRankItem[]> GetAllAsync();
+        Task<string[]> GetWhiteListedAsync();
     }
 }
