@@ -7,6 +7,7 @@ namespace ProcessingTools.Extensions.Linq
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -169,6 +170,52 @@ namespace ProcessingTools.Extensions.Linq
             }
 
             return Task.WhenAll(tasks);
+        }
+
+        /// <summary>
+        /// Evaluates logical AND operation over all members of the source collection.
+        /// </summary>
+        /// <param name="source">Source collection to be evaluated.</param>
+        /// <returns>Result of the logical AND operation.</returns>
+        public static bool LogicalAnd(this IEnumerable<bool> source)
+        {
+            if (source == null || !source.Any())
+            {
+                return false;
+            }
+
+            foreach (var item in source)
+            {
+                if (!item)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Evaluates logical OR operation over all members of the source collection.
+        /// </summary>
+        /// <param name="source">Source collection to be evaluated.</param>
+        /// <returns>Result of the logical OR operation.</returns>
+        public static bool LogicalOr(this IEnumerable<bool> source)
+        {
+            if (source == null || !source.Any())
+            {
+                return false;
+            }
+
+            foreach (var item in source)
+            {
+                if (item)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
