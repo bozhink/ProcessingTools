@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Data.Common.Mongo;
@@ -18,7 +17,7 @@
     {
         private readonly IMongoDatabase db;
 
-        private readonly IRepositoryFactory<IMongoTaxonRankRepository> mongoTaxonRankRepositoryFactory;
+        private readonly ITaxonRanksDataAccessObject mongoTaxonRanksDataAccessObject;
         private readonly IRepositoryFactory<ITaxonRanksRepository> taxonRankRepositoryFactory;
 
         private readonly IBlackListDataAccessObject mongoBiotaxonomicBlackListRepositoryFactory;
@@ -26,7 +25,7 @@
 
         public BiotaxonomyMongoDatabaseSeeder(
             IMongoDatabaseProvider databaseProvider,
-            IRepositoryFactory<IMongoTaxonRankRepository> mongoTaxonRankRepositoryFactory,
+            ITaxonRanksDataAccessObject mongoTaxonRanksDataAccessObject,
             IRepositoryFactory<ITaxonRanksRepository> taxonRankRepositoryFactory,
             IBlackListDataAccessObject mongoBiotaxonomicBlackListRepositoryFactory,
             IRepositoryFactory<IBiotaxonomicBlackListRepository> biotaxonomicBlackListIterableRepositoryFactory)
@@ -37,7 +36,7 @@
             }
 
             this.db = databaseProvider.Create();
-            this.mongoTaxonRankRepositoryFactory = mongoTaxonRankRepositoryFactory ?? throw new ArgumentNullException(nameof(mongoTaxonRankRepositoryFactory));
+            this.mongoTaxonRanksDataAccessObject = mongoTaxonRanksDataAccessObject ?? throw new ArgumentNullException(nameof(mongoTaxonRanksDataAccessObject));
             this.taxonRankRepositoryFactory = taxonRankRepositoryFactory ?? throw new ArgumentNullException(nameof(taxonRankRepositoryFactory));
             this.mongoBiotaxonomicBlackListRepositoryFactory = mongoBiotaxonomicBlackListRepositoryFactory ?? throw new ArgumentNullException(nameof(mongoBiotaxonomicBlackListRepositoryFactory));
             this.biotaxonomicBlackListIterableRepositoryFactory = biotaxonomicBlackListIterableRepositoryFactory ?? throw new ArgumentNullException(nameof(biotaxonomicBlackListIterableRepositoryFactory));
@@ -54,18 +53,15 @@
 
         private async Task SeedTaxonRankCollectionAsync()
         {
-            var mongoTaxonRankRepository = this.mongoTaxonRankRepositoryFactory.Create();
-
             var repository = this.taxonRankRepositoryFactory.Create();
             var query = repository.Query;
 
             foreach (var entity in query)
             {
-                await mongoTaxonRankRepository.AddAsync(entity).ConfigureAwait(false);
+                await this.mongoTaxonRanksDataAccessObject.UpsertAsync(entity).ConfigureAwait(false);
             }
 
             repository.TryDispose();
-            mongoTaxonRankRepository.TryDispose();
         }
 
         private async Task SeedTaxonRankTypeCollectionAsync()
