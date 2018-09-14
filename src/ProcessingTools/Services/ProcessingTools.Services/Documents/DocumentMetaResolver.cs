@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Documents
+﻿// <copyright file="DocumentMetaResolver.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Documents
 {
     using System;
     using System.Threading.Tasks;
@@ -32,8 +36,86 @@
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentFullModel> GetDocumentAsync(object documentId)
+        public async Task<IArticleFullModel> GetArticleAsync(string articleId)
         {
+            if (articleId == null)
+            {
+                return null;
+            }
+
+            var article = await this.articlesDataService.GetByIdAsync(articleId).ConfigureAwait(false);
+            if (article == null)
+            {
+                return null;
+            }
+
+            var journal = await this.journalsDataService.GetByIdAsync(article.JournalId).ConfigureAwait(false);
+            if (journal == null)
+            {
+                return null;
+            }
+
+            var publisher = await this.publishersDataService.GetByIdAsync(journal.PublisherId).ConfigureAwait(false);
+            if (publisher == null)
+            {
+                return null;
+            }
+
+            return new ArticleFullModel
+            {
+                Article = article,
+                Journal = journal,
+                Publisher = publisher
+            };
+        }
+
+        /// <inheritdoc/>
+        public async Task<IArticleDocumentsFullModel> GetArticleDocumentsAsync(string articleId)
+        {
+            if (articleId == null)
+            {
+                return null;
+            }
+
+            var documentsTask = this.documentsDataService.GetArticleDocumentsAsync(articleId);
+
+            var article = await this.articlesDataService.GetByIdAsync(articleId).ConfigureAwait(false);
+            if (article == null)
+            {
+                return null;
+            }
+
+            var journal = await this.journalsDataService.GetByIdAsync(article.JournalId).ConfigureAwait(false);
+            if (journal == null)
+            {
+                return null;
+            }
+
+            var publisher = await this.publishersDataService.GetByIdAsync(journal.PublisherId).ConfigureAwait(false);
+            if (publisher == null)
+            {
+                return null;
+            }
+
+            var documents = await documentsTask.ConfigureAwait(false);
+
+            return new ArticleDocumentsFullModel
+            {
+                Article = article,
+                Journal = journal,
+                Publisher = publisher,
+                Documents = documents
+            };
+        }
+
+        /// <inheritdoc/>
+        public async Task<IDocumentFullModel> GetDocumentAsync(string documentId)
+        {
+            if (documentId == null)
+            {
+                return null;
+            }
+
             var document = await this.documentsDataService.GetByIdAsync(documentId).ConfigureAwait(false);
             if (document == null)
             {
