@@ -24,6 +24,7 @@ namespace ProcessingTools.Services.Documents
         private readonly IJournalStylesDataService journalStylesDataService;
         private readonly IReferencesParser referencesParser;
         private readonly IReferencesTagger referencesTagger;
+        private readonly IDocumentMetaService documentMetaService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentProcessingService"/> class.
@@ -34,13 +35,15 @@ namespace ProcessingTools.Services.Documents
         /// <param name="journalStylesDataService">Journal styles data service.</param>
         /// <param name="referencesParser">References parser.</param>
         /// <param name="referencesTagger">References tagger.</param>
+        /// <param name="documentMetaService">Document meta-data processing service.</param>
         public DocumentProcessingService(
            IDocumentsDataService documentsDataService,
            IDocumentFactory documentFactory,
            IArticlesDataService articlesDataService,
            IJournalStylesDataService journalStylesDataService,
            IReferencesParser referencesParser,
-           IReferencesTagger referencesTagger)
+           IReferencesTagger referencesTagger,
+           IDocumentMetaService documentMetaService)
         {
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
@@ -48,6 +51,7 @@ namespace ProcessingTools.Services.Documents
             this.journalStylesDataService = journalStylesDataService ?? throw new ArgumentNullException(nameof(journalStylesDataService));
             this.referencesParser = referencesParser ?? throw new ArgumentNullException(nameof(referencesParser));
             this.referencesTagger = referencesTagger ?? throw new ArgumentNullException(nameof(referencesTagger));
+            this.documentMetaService = documentMetaService ?? throw new ArgumentNullException(nameof(documentMetaService));
         }
 
         /// <inheritdoc/>
@@ -116,6 +120,33 @@ namespace ProcessingTools.Services.Documents
             string description = "Tag references";
 
             return await this.CreateDocumentAsync(documentId, articleId, document, description).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> UpdateDocumentMetaAsync(object documentId, object articleId)
+        {
+            if (documentId == null)
+            {
+                throw new ArgumentNullException(nameof(documentId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            return await this.documentMetaService.UpdateDocumentAsync(documentId.ToString()).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> UpdateArticleDocumentsMetaAsync(object articleId)
+        {
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            return await this.documentMetaService.UpdateArticleDocumentsAsync(articleId.ToString()).ConfigureAwait(false);
         }
 
         private async Task<object> CreateDocumentAsync(object documentId, object articleId, IDocument document, string description)
