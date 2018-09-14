@@ -15,13 +15,6 @@ namespace ProcessingTools.Data.Contracts
         where TRepository : IRepository
     {
         /// <summary>
-        /// Execute action on repository.
-        /// </summary>
-        /// <param name="action">Action to be executed.</param>
-        /// <returns>Task.</returns>
-        Task ExecuteAsync(Action<TRepository> action);
-
-        /// <summary>
         /// Execute awaitable function on repository.
         /// </summary>
         /// <param name="action">Awaitable function to be executed.</param>

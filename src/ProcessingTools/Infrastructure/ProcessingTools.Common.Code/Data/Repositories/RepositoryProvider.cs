@@ -49,19 +49,6 @@ namespace ProcessingTools.Common.Code.Data.Repositories
         }
 
         /// <inheritdoc/>
-        public Task ExecuteAsync(Action<TRepository> action)
-        {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            action.Invoke(this.repository);
-
-            return Task.CompletedTask;
-        }
-
-        /// <inheritdoc/>
         public Task<T> ExecuteAsync<T>(Func<TRepository, T> action)
         {
             if (action == null)
