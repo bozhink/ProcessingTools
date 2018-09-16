@@ -4,7 +4,6 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Enumerations;

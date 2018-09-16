@@ -24,10 +24,6 @@
                 b.From(Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-
-                b.From(Data.Common.Redis.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
             });
 
             // Bio.Biorepositories.Data

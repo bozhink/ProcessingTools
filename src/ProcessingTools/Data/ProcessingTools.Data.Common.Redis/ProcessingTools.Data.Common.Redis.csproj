@@ -64,4 +64,8 @@
     <PackageReference Include="ServiceStack.Text" Version="5.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

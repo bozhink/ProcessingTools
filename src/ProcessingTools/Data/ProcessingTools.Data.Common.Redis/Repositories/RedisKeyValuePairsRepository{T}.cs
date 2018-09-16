@@ -1,18 +1,31 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Repositories
+﻿// <copyright file="RedisKeyValuePairsRepository{T}.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Common.Redis.Repositories
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Common.Redis.Abstractions;
     using ProcessingTools.Data.Common.Redis.Contracts;
+    using ServiceStack.Redis;
 
-    public class RedisKeyValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyValuePairsRepository<T>
+    /// <summary>
+    /// Redis key-value pairs repository.
+    /// </summary>
+    /// <typeparam name="T">Type of the entity.</typeparam>
+    public class RedisKeyValuePairsRepository<T> : RedisSavableRepository, IRedisKeyValuePairsRepository<T>
     {
-        public RedisKeyValuePairsRepository(IRedisClientProvider provider)
-            : base(provider)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RedisKeyValuePairsRepository{T}"/> class.
+        /// </summary>
+        /// <param name="client">Redis client to be used.</param>
+        public RedisKeyValuePairsRepository(IRedisClient client)
+            : base(client)
         {
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> AddAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -27,18 +40,16 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.ClientProvider.Create())
+                if (this.Client.ContainsKey(key))
                 {
-                    if (client.ContainsKey(key))
-                    {
-                        throw new KeyExistsException();
-                    }
-
-                    return client.Add(key, value);
+                    throw new KeyExistsException();
                 }
+
+                return this.Client.Add(key, value);
             });
         }
 
+        /// <inheritdoc/>
         public virtual Task<T> GetAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -48,18 +59,16 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.ClientProvider.Create())
+                if (!this.Client.ContainsKey(key))
                 {
-                    if (!client.ContainsKey(key))
-                    {
-                        throw new KeyNotFoundException();
-                    }
-
-                    return client.Get<T>(key);
+                    throw new KeyNotFoundException();
                 }
+
+                return this.Client.Get<T>(key);
             });
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -69,18 +78,16 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.ClientProvider.Create())
+                if (!this.Client.ContainsKey(key))
                 {
-                    if (!client.ContainsKey(key))
-                    {
-                        return true;
-                    }
-
-                    return client.Remove(key);
+                    return true;
                 }
+
+                return this.Client.Remove(key);
             });
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> UpdateAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -95,18 +102,16 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.ClientProvider.Create())
+                if (!this.Client.ContainsKey(key))
                 {
-                    if (!client.ContainsKey(key))
-                    {
-                        throw new KeyNotFoundException();
-                    }
-
-                    return client.Replace(key, value);
+                    throw new KeyNotFoundException();
                 }
+
+                return this.Client.Replace(key, value);
             });
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> UpsertAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -121,10 +126,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.ClientProvider.Create())
-                {
-                    return client.Set(key, value);
-                }
+                return this.Client.Set(key, value);
             });
         }
     }

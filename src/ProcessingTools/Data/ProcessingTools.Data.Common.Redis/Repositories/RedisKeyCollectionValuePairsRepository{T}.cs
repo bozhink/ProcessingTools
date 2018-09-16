@@ -1,19 +1,31 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Repositories
+﻿// <copyright file="RedisKeyCollectionValuePairsRepository{T}.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Common.Redis.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Common.Redis.Abstractions;
     using ProcessingTools.Data.Common.Redis.Contracts;
+    using ServiceStack.Redis;
     using ServiceStack.Text;
 
-    public class RedisKeyCollectionValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyCollectionValuePairsRepository<T>
+    /// <summary>
+    /// Redis key-collection-value pairs repository.
+    /// </summary>
+    /// <typeparam name="T">Type of the entity.</typeparam>
+    public class RedisKeyCollectionValuePairsRepository<T> : RedisSavableRepository, IRedisKeyCollectionValuePairsRepository<T>
     {
         private readonly IStringSerializer serializer;
 
-        public RedisKeyCollectionValuePairsRepository(IRedisClientProvider provider)
-            : base(provider)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RedisKeyCollectionValuePairsRepository{T}"/> class.
+        /// </summary>
+        /// <param name="client">Redis client to be used.</param>
+        public RedisKeyCollectionValuePairsRepository(IRedisClient client)
+            : base(client)
         {
             this.serializer = new JsonStringSerializer();
         }
@@ -22,6 +34,7 @@
 
         private Func<T, string> Serialize => e => this.serializer.SerializeToString(e);
 
+        /// <inheritdoc/>
         public virtual Task<object> AddAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -36,16 +49,14 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.ClientProvider.Create())
-                {
-                    var list = client.Lists[key];
-                    this.AddValueToList(list, value);
+                var list = this.Client.Lists[key];
+                this.AddValueToList(list, value);
 
-                    return true;
-                }
+                return true;
             });
         }
 
+        /// <inheritdoc/>
         public virtual IEnumerable<T> GetAll(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -53,13 +64,11 @@
                 throw new ArgumentNullException(nameof(key));
             }
 
-            using (var client = this.ClientProvider.Create())
-            {
-                var list = client.Lists[key];
-                return list.Select(this.Deserialize);
-            }
+            var list = this.Client.Lists[key];
+            return list.Select(this.Deserialize);
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -69,18 +78,16 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.ClientProvider.Create())
+                if (!this.Client.ContainsKey(key))
                 {
-                    if (!client.ContainsKey(key))
-                    {
-                        return true;
-                    }
-
-                    return client.Remove(key);
+                    return true;
                 }
+
+                return this.Client.Remove(key);
             });
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> RemoveAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -95,13 +102,10 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.ClientProvider.Create())
-                {
-                    var list = client.Lists[key];
-                    var result = this.RemoveValueFromList(list, value);
+                var list = this.Client.Lists[key];
+                var result = this.RemoveValueFromList(list, value);
 
-                    return result;
-                }
+                return result;
             });
         }
 
