@@ -101,9 +101,9 @@
       <Project>{a9004edd-7ea6-4aab-926f-c4b32acd0154}</Project>
       <Name>Data.Common.Memory</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
-      <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
-      <Name>Tests.Library</Name>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
+      <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
+      <Name>ProcessingTools.Common.Code</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

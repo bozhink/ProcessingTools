@@ -113,10 +113,6 @@
       <Project>{89A08F07-815A-4168-941F-C80FA07020F1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
-      <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
-      <Name>Tests.Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>

@@ -103,6 +103,10 @@
     <Compile Include="Unit.Tests\Validation\ValidationCacheServiceUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
+      <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
+      <Name>ProcessingTools.Common.Code</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -122,10 +126,6 @@
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
       <Project>{89A08F07-815A-4168-941F-C80FA07020F1}</Project>
       <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
-      <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
-      <Name>Tests.Library</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
       <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>

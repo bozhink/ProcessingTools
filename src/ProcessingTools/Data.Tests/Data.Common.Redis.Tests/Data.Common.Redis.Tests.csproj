@@ -140,10 +140,6 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
-      <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
-      <Name>Tests.Library</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

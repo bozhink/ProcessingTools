@@ -113,6 +113,10 @@
     <None Include="Tagger.Commands.Tests.ruleset" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
+      <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
+      <Name>ProcessingTools.Common.Code</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -120,10 +124,6 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
-      <Project>{695AC2B9-464D-4034-8C28-8674C4E39EF8}</Project>
-      <Name>Tests.Library</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>

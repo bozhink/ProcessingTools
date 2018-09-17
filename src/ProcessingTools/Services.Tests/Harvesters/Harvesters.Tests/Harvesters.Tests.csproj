@@ -125,10 +125,6 @@
       <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
       <Name>Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
-      <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
-      <Name>Tests.Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj">
       <Project>{76075CD7-8071-4F78-92F7-6E8416848484}</Project>
       <Name>ProcessingTools.Harvesters.Contracts</Name>
