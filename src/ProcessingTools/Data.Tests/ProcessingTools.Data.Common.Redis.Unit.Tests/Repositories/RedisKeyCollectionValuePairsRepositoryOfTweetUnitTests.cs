@@ -63,7 +63,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_AddWithInvalidKeyAndNullValue_ShouldThrowArgumentNullException(string key)
         {
             // Arrange
@@ -95,7 +95,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_AddWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -128,7 +128,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Add with valid key and null value should throw ArgumentNullException with correct ParamName.
         /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Add with valid key and null value should throw ArgumentNullException with correct ParamName.")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_AddWithValidKeyAndNullValue_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -204,7 +204,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_GetAllWithInvalidKey_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -364,7 +364,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKey_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -393,7 +393,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKeyAndNullValue_ShouldThrowArgumentNullException(string key)
         {
             // Arrange
@@ -420,7 +420,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -448,7 +448,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Remove with valid key and null value should throw ArgumentNullException with correct ParamName.
         /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove with valid key and null value should throw ArgumentNullException with correct ParamName.")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveWithValidKeyAndNullValue_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -500,7 +500,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         /// RedisKeyCollectionValuePairsRepositoryOfTweet with null client provider in constructor should throw ArgumentNullException with correct ParamName.
         /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet with null client provider in constructor should throw ArgumentNullException with correct ParamName.")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_WithNullClientProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Act + Assert
@@ -516,22 +516,21 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
         /// RedisKeyCollectionValuePairsRepositoryOfTweet with valid client provider in constructor should be initialized correctly.
         /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet with valid client provider in constructor should be initialized correctly.")]
-        [MaxTime(300)]
+        [MaxTime(3000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_WithValidClientProviderInConstructor_ShouldBeInitializedCorrectly()
         {
             // Arrange
             var clientMock = new Mock<IRedisClient>();
-            var client = clientMock.Object;
 
             // Act + Assert
-            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(client);
+            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(clientMock.Object);
             Assert.IsNotNull(repository);
 
             Type baseType = typeof(RedisKeyCollectionValuePairsRepository<ITweet>).BaseType;
 
             var clientField = PrivateField.GetInstanceField(baseType, repository, Constants.ClientFieldName);
             var clientProperty = PrivateProperty.GetInstanceProperty(baseType, repository, Constants.ClientPropertyName);
-            Assert.AreSame(client, clientField ?? clientProperty);
+            Assert.AreSame(clientMock.Object, clientField ?? clientProperty);
         }
     }
 }

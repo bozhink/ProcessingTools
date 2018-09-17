@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Models
     /// <summary>
     /// Tweet model.
     /// </summary>
-    internal interface ITweet
+    public interface ITweet
     {
         /// <summary>
         /// Gets the ID of the tweet.
