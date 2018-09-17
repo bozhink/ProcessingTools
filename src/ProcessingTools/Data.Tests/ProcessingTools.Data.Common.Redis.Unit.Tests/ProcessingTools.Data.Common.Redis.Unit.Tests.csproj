@@ -72,6 +72,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Redis\ProcessingTools.Data.Common.Redis.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
   </ItemGroup>
 
 </Project>
