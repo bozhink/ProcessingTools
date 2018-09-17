@@ -2,13 +2,18 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Redis.Unit.Tests
+namespace ProcessingTools.Data.Common.Redis.Integration.Tests
 {
     /// <summary>
     /// Test constants.
     /// </summary>
     internal static class Constants
     {
+        /// <summary>
+        /// Connection string.
+        /// </summary>
+        internal const string ConnectionString = "redis://localhost:6379?ssl=false&client=ProcessingToolsCache&db=1&connectTimeout=1000&sendTimeout=100&receiveTimeout=100&idleTimeoutSecs=4";
+
         /// <summary>
         /// Client field name.
         /// </summary>
