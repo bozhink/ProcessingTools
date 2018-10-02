@@ -82,10 +82,6 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.File\Data.Common.File.csproj">
-      <Project>{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}</Project>
-      <Name>Data.Common.File</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
       <Project>{A77B11A8-45A0-45BA-9003-7A81514D8BDA}</Project>
       <Name>ProcessingTools.Data.Common.Mongo</Name>

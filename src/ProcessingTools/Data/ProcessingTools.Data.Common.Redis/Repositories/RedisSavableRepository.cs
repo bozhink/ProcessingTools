@@ -28,15 +28,12 @@ namespace ProcessingTools.Data.Common.Redis.Repositories
         public IEnumerable<string> Keys => this.Client.GetAllKeys();
 
         /// <summary>
-        /// Gets the clent instance.
+        /// Gets the client instance.
         /// </summary>
         protected IRedisClient Client { get; }
 
-        /// <summary>
-        /// Saves pending changes.
-        /// </summary>
-        /// <returns>Result.</returns>
-        public virtual object SaveChanges()
+        /// <inheritdoc/>
+        public virtual Task<object> SaveChangesAsync()
         {
             try
             {
@@ -44,13 +41,10 @@ namespace ProcessingTools.Data.Common.Redis.Repositories
             }
             catch (RedisResponseException)
             {
-                return 1;
+                return Task.FromResult<object>(1);
             }
 
-            return 0;
+            return Task.FromResult<object>(0);
         }
-
-        /// <inheritdoc/>
-        public virtual Task<object> SaveChangesAsync() => Task.Run(() => this.SaveChanges());
     }
 }

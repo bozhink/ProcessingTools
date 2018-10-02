@@ -61,9 +61,6 @@ namespace ProcessingTools.Data.Common.Mongo.Repositories
         }
 
         /// <inheritdoc/>
-        public virtual object SaveChanges() => 0;
-
-        /// <inheritdoc/>
-        public virtual Task<object> SaveChangesAsync() => Task.FromResult(this.SaveChanges());
+        public virtual Task<object> SaveChangesAsync() => Task.FromResult<object>(0);
     }
 }

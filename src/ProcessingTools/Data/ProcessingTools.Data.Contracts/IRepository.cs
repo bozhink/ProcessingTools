@@ -14,12 +14,6 @@ namespace ProcessingTools.Data.Contracts
         /// <summary>
         /// Commit staged changes and save.
         /// </summary>
-        /// <returns>Object</returns>
-        object SaveChanges();
-
-        /// <summary>
-        /// Commit staged changes and save.
-        /// </summary>
         /// <returns>Task</returns>
         Task<object> SaveChangesAsync();
     }

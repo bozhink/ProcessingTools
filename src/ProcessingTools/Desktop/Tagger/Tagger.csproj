@@ -233,10 +233,6 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Common\Data.Common.File\Data.Common.File.csproj">
-      <Project>{302862fe-1839-4d5c-be85-8b2b1e73ece0}</Project>
-      <Name>Data.Common.File</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo\Geo.Data.Entity\Geo.Data.Entity.csproj">
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
       <Name>Geo.Data.Entity</Name>

@@ -74,9 +74,9 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.File\Data.Common.File.csproj">
-      <Project>{302862fe-1839-4d5c-be85-8b2b1e73ece0}</Project>
-      <Name>Data.Common.File</Name>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Common.File\ProcessingTools.Data.Common.File.csproj">
+      <Project>{563602A2-FB12-4826-A2A4-2D8198A05FF9}</Project>
+      <Name>ProcessingTools.Data.Common.File</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>

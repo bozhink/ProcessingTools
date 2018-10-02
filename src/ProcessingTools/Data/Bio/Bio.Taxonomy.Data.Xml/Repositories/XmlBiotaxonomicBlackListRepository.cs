@@ -8,7 +8,7 @@
     using ProcessingTools.Data.Common.File.Repositories;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class XmlBiotaxonomicBlackListRepository : FileGenericRepository<IXmlBiotaxonomicBlackListContext, IBlackListItem>, IXmlBiotaxonomicBlackListRepository
+    public class XmlBiotaxonomicBlackListRepository : FileRepository<IXmlBiotaxonomicBlackListContext, IBlackListItem>, IXmlBiotaxonomicBlackListRepository
     {
         private readonly string dataFileName;
 
@@ -24,8 +24,6 @@
 
             this.Context.LoadFromFileAsync(this.dataFileName).Wait();
         }
-
-        public override object SaveChanges() => this.Context.WriteToFileAsync(this.dataFileName).Result;
 
         public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFileAsync(this.dataFileName).ConfigureAwait(false);
 

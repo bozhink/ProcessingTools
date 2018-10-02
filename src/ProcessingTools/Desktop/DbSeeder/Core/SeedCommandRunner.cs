@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Processors.Contracts;
 
     internal class SeedCommandRunner : ICommandRunner
