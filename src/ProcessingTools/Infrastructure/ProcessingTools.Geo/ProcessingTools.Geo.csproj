@@ -20,7 +20,7 @@
     <PackageReference Include="GeoAPI" Version="1.7.5" />
     <PackageReference Include="GeoAPI.CoordinateSystems" Version="1.7.5" />
     <PackageReference Include="GeoAPI.Core" Version="1.7.5" />
-    <PackageReference Include="ProjNET4GeoAPI" Version="1.4.0-pre001" />
+    <PackageReference Include="ProjNET4GeoAPI" Version="1.4.1" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
