@@ -58,10 +58,10 @@
     </PackageReference>
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
-    <PackageReference Include="ServiceStack.Common" Version="5.1.0" />
-    <PackageReference Include="ServiceStack.Interfaces" Version="5.1.0" />
-    <PackageReference Include="ServiceStack.Redis" Version="5.1.0" />
-    <PackageReference Include="ServiceStack.Text" Version="5.1.0" />
+    <PackageReference Include="ServiceStack.Common" Version="5.4.0" />
+    <PackageReference Include="ServiceStack.Interfaces" Version="5.4.0" />
+    <PackageReference Include="ServiceStack.Redis" Version="5.4.0" />
+    <PackageReference Include="ServiceStack.Text" Version="5.4.0" />
   </ItemGroup>
 
   <ItemGroup>
