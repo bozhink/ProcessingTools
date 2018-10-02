@@ -1,21 +1,35 @@
-﻿namespace ProcessingTools.Data.Common.Memory.Repositories
+﻿// <copyright file="MemoryKeyCollectionValuePairsRepository{T}.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Common.Memory.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Common.Memory.Contracts;
 
+    /// <summary>
+    /// Memory key-collection-value pairs repository.
+    /// </summary>
+    /// <typeparam name="T">Type of the entity.</typeparam>
     public class MemoryKeyCollectionValuePairsRepository<T> : IMemoryKeyCollectionValuePairsRepository<T>
     {
         private readonly IMemoryStringKeyCollectionValueDataStore<T> dataStore;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemoryKeyCollectionValuePairsRepository{T}"/> class.
+        /// </summary>
+        /// <param name="dataStore">Data store.</param>
         public MemoryKeyCollectionValuePairsRepository(IMemoryStringKeyCollectionValueDataStore<T> dataStore)
         {
             this.dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
         }
 
+        /// <inheritdoc/>
         public IEnumerable<string> Keys => this.dataStore.Keys;
 
+        /// <inheritdoc/>
         public Task<object> AddAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -47,6 +61,7 @@
             return Task.FromResult<object>(result);
         }
 
+        /// <inheritdoc/>
         public IEnumerable<T> GetAll(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -57,6 +72,7 @@
             return this.dataStore[key];
         }
 
+        /// <inheritdoc/>
         public Task<object> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -67,6 +83,7 @@
             return Task.FromResult<object>(this.dataStore.Remove(key));
         }
 
+        /// <inheritdoc/>
         public Task<object> RemoveAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -91,8 +108,7 @@
             return Task.FromResult<object>(true);
         }
 
-        public object SaveChanges() => 0;
-
-        public Task<object> SaveChangesAsync() => Task.FromResult(this.SaveChanges());
+        /// <inheritdoc/>
+        public Task<object> SaveChangesAsync() => Task.FromResult<object>(0);
     }
 }
