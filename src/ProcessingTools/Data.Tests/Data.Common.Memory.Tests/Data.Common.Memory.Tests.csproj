@@ -97,9 +97,9 @@
     <Compile Include="Unit.Tests\Repositories\MemoryKeyCollectionValuePairsRepositoryOfTweetUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Common\Data.Common.Memory\Data.Common.Memory.csproj">
-      <Project>{a9004edd-7ea6-4aab-926f-c4b32acd0154}</Project>
-      <Name>Data.Common.Memory</Name>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Memory\ProcessingTools.Data.Common.Memory.csproj">
+      <Project>{25A63E17-90F0-43BA-8B56-B5A36E091033}</Project>
+      <Name>ProcessingTools.Data.Common.Memory</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
       <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
