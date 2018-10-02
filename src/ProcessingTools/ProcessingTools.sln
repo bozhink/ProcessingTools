@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Desktop\Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F44B7FBC-A422-4966-837D-D52DF317F82E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{247DAE24-DD89-4C2C-AF49-E3F862485B92}"
@@ -325,9 +323,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Ninject.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.Redis", "Data\ProcessingTools.Data.Common.Redis\ProcessingTools.Data.Common.Redis.csproj", "{04C2DDA3-FE95-4E72-BBBE-4DEEF0DE1554}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Common.Redis.Unit.Tests", "Data.Tests\ProcessingTools.Data.Common.Redis.Unit.Tests\ProcessingTools.Data.Common.Redis.Unit.Tests.csproj", "{DFCA2B61-0451-4A5E-AA04-BD4696965B02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.Redis.Unit.Tests", "Data.Tests\ProcessingTools.Data.Common.Redis.Unit.Tests\ProcessingTools.Data.Common.Redis.Unit.Tests.csproj", "{DFCA2B61-0451-4A5E-AA04-BD4696965B02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Common.Redis.Integration.Tests", "Data.Tests\ProcessingTools.Data.Common.Redis.Integration.Tests\ProcessingTools.Data.Common.Redis.Integration.Tests.csproj", "{9A739D8F-25FE-47D5-9C28-47DFCBDC2285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.Redis.Integration.Tests", "Data.Tests\ProcessingTools.Data.Common.Redis.Integration.Tests\ProcessingTools.Data.Common.Redis.Integration.Tests.csproj", "{9A739D8F-25FE-47D5-9C28-47DFCBDC2285}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -345,14 +343,6 @@ Global
 		{553469FF-345B-4BCD-AACA-3D447B23D80A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{553469FF-345B-4BCD-AACA-3D447B23D80A}.Release|x64.ActiveCfg = Release|x64
 		{553469FF-345B-4BCD-AACA-3D447B23D80A}.Release|x64.Build.0 = Release|x64
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Debug|x64.ActiveCfg = Debug|x64
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Debug|x64.Build.0 = Debug|x64
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Release|x64.ActiveCfg = Release|x64
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Release|x64.Build.0 = Release|x64
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1423,7 +1413,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{553469FF-345B-4BCD-AACA-3D447B23D80A} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
-		{337C1A6C-C0A7-4C44-938E-35D87757EF7B} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
 		{44BF1EF0-8900-4AC8-8F89-4526AF34DBF2} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{CCBBBB18-D57A-45AD-A676-E5585880081D} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
@@ -1577,7 +1566,7 @@ Global
 		{9A739D8F-25FE-47D5-9C28-47DFCBDC2285} = {762ECEC1-1617-429D-9115-18ADB39EE2F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
