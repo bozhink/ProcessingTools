@@ -12,7 +12,7 @@ namespace ProcessingTools.Common.Code.Tests.Models
     /// </summary>
     [XmlType(AnonymousType = true)]
     [XmlRoot("ext-link", Namespace = "", IsNullable = false)]
-    public class ExternalLinkSerializableModel
+    internal class ExternalLinkSerializableModel
     {
         /// <summary>
         /// Gets or sets @ext-link-type.

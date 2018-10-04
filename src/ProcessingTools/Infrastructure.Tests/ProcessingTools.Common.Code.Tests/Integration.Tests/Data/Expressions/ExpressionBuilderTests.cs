@@ -1,14 +1,24 @@
-﻿namespace ProcessingTools.Data.Common.Tests.Expressions
+﻿// <copyright file="ExpressionBuilderTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Common.Tests.Expressions
 {
     using System;
     using System.Linq;
-    using Models;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Data.Expressions;
+    using ProcessingTools.Common.Code.Tests.Models;
 
+    /// <summary>
+    /// Expression builder tests.
+    /// </summary>
     [TestFixture]
     public class ExpressionBuilderTests
     {
+        /// <summary>
+        /// ExpressionBuilder with single valid Set should create one Set command in UpdateCommands.
+        /// </summary>
         [Test(Description = @"ExpressionBuilder with single valid Set should create one Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(ExpressionBuilder<ITweet>))]
         public void ExpressionBuilder_WithSingleValidSet_ShouldCreateOneSetCommandInUpdateCommands()
         {
@@ -29,6 +39,9 @@
             Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
         }
 
+        /// <summary>
+        /// ExpressionBuilder with two different valid Set should create two Set command in UpdateCommands.
+        /// </summary>
         [Test(Description = @"ExpressionBuilder with two different valid Set should create two Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(ExpressionBuilder<ITweet>))]
         public void ExpressionBuilder_WithTwoDifferentValidSet_ShouldCreateTwoSetCommandInUpdateCommands()
         {
@@ -53,9 +66,12 @@
 
             Assert.AreEqual("Set", commands[1].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
             Assert.AreEqual("DatePosted", commands[1].FieldName, @"FieldName of the first IUpdateCommand should be ""DatePosted"".");
-            Assert.AreEqual(datePostedValue.ToString(), commands[1].Value.ToString(), @"Value of the first IUpdateCommand should be """ + datePostedValue.ToString() + @""".");
+            Assert.AreEqual(datePostedValue, commands[1].Value, $@"Value of the first IUpdateCommand should be ""{datePostedValue}"".");
         }
 
+        /// <summary>
+        /// ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands
+        /// </summary>
         [Test(Description = @"ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(ExpressionBuilder<ITweet>))]
         public void ExpressionBuilder_WithThreeDifferentValidSet_ShouldCreateThreeSetCommandInUpdateCommands()
         {
@@ -82,7 +98,7 @@
 
             Assert.AreEqual("Set", commands[1].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
             Assert.AreEqual("DatePosted", commands[1].FieldName, @"FieldName of the first IUpdateCommand should be ""DatePosted"".");
-            Assert.AreEqual(datePostedValue.ToString(), commands[1].Value.ToString(), @"Value of the first IUpdateCommand should be """ + datePostedValue.ToString() + @""".");
+            Assert.AreEqual(datePostedValue, commands[1].Value, $@"Value of the first IUpdateCommand should be ""{datePostedValue}"".");
 
             Assert.AreEqual("Set", commands[2].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
             Assert.AreEqual("Faves", commands[2].FieldName, @"FieldName of the first IUpdateCommand should be ""Faves"".");

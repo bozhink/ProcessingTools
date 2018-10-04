@@ -45,8 +45,6 @@ Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Scripts", "Desktop\Scripts\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Cache.Tests", "Services.Tests\Cache\Services.Cache.Tests\Services.Cache.Tests.csproj", "{6CB5A1A7-CACD-4910-AA53-03B349961FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Tests", "Data.Tests\Data.Common.Tests\Data.Common.Tests.csproj", "{2979A34C-78A8-43C6-83C0-CF294DD8157E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Mongo.Tests", "Data.Tests\Data.Common.Mongo.Tests\Data.Common.Mongo.Tests.csproj", "{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Documents", "Web\ProcessingTools.Web.Documents\ProcessingTools.Web.Documents.csproj", "{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}"
@@ -323,9 +321,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.Redis.Integration.Tests", "Data.Tests\ProcessingTools.Data.Common.Redis.Integration.Tests\ProcessingTools.Data.Common.Redis.Integration.Tests.csproj", "{9A739D8F-25FE-47D5-9C28-47DFCBDC2285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Common.File", "Data\ProcessingTools.Data.Common.File\ProcessingTools.Data.Common.File.csproj", "{563602A2-FB12-4826-A2A4-2D8198A05FF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.File", "Data\ProcessingTools.Data.Common.File\ProcessingTools.Data.Common.File.csproj", "{563602A2-FB12-4826-A2A4-2D8198A05FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Common.Memory", "Data\ProcessingTools.Data.Common.Memory\ProcessingTools.Data.Common.Memory.csproj", "{25A63E17-90F0-43BA-8B56-B5A36E091033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.Memory", "Data\ProcessingTools.Data.Common.Memory\ProcessingTools.Data.Common.Memory.csproj", "{25A63E17-90F0-43BA-8B56-B5A36E091033}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -415,14 +413,6 @@ Global
 		{6CB5A1A7-CACD-4910-AA53-03B349961FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CB5A1A7-CACD-4910-AA53-03B349961FAD}.Release|x64.ActiveCfg = Release|Any CPU
 		{6CB5A1A7-CACD-4910-AA53-03B349961FAD}.Release|x64.Build.0 = Release|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Debug|x64.Build.0 = Debug|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Release|x64.ActiveCfg = Release|Any CPU
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E}.Release|x64.Build.0 = Release|Any CPU
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1424,7 +1414,6 @@ Global
 		{A2274DFB-1408-48B0-B31D-EF1FE3613CDF} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{6CB5A1A7-CACD-4910-AA53-03B349961FAD} = {BA15A72D-37E4-4EC5-BC33-7A7EF828B543}
-		{2979A34C-78A8-43C6-83C0-CF294DD8157E} = {762ECEC1-1617-429D-9115-18ADB39EE2F6}
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB} = {762ECEC1-1617-429D-9115-18ADB39EE2F6}
 		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
 		{15C673AF-40BD-43E9-AEE9-1A819AC6145C} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
@@ -1566,7 +1555,7 @@ Global
 		{25A63E17-90F0-43BA-8B56-B5A36E091033} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal

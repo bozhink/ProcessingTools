@@ -1,16 +1,27 @@
-﻿namespace ProcessingTools.Data.Common.Tests.Expressions
+﻿// <copyright file="UpdaterTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Common.Tests.Expressions
 {
     using System;
     using System.Linq;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Data.Expressions;
+    using ProcessingTools.Common.Code.Tests;
+    using ProcessingTools.Common.Code.Tests.Models;
     using ProcessingTools.Contracts.Data.Expressions;
-    using ProcessingTools.Data.Common.Tests.Models;
 
+    /// <summary>
+    /// Updater tests.
+    /// </summary>
     [TestFixture]
     public class UpdaterTests
     {
+        /// <summary>
+        /// Updater with null updateExpression should throw ArgumentNullException with "updateExpression" ParamName.
+        /// </summary>
         [Test(Description = @"Updater with null updateExpression should throw ArgumentNullException with ""updateExpression"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithNullUpdateExpression_ShouldThrowArgumentNullExceptionWithUpdateExpressionParamName()
         {
@@ -25,6 +36,9 @@
             Assert.AreEqual("updateExpression", exception.ParamName, @"ParamName should be ""updateExpression"".");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression should correctly initialize the updateExpression field.
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression should correctly initialize the updateExpression field.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithValiUpdateExpression_ShouldCorrectlyInitializeUpdateExpressionField()
         {
@@ -36,14 +50,16 @@
             var updater = new Updater<ITweet>(updateExpression);
 
             // Act
-            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(updater);
-            var updateExpressionFieldValue = privateObject.GetField(UpdateExpressionFieldName);
+            var updateExpressionFieldValue = PrivateField.GetInstanceField<Updater<ITweet>>(updater, UpdateExpressionFieldName);
 
             // Assert
             Assert.IsNotNull(updateExpressionFieldValue, "Updater.updateExpression should not be null.");
             Assert.AreSame(updateExpression, updateExpressionFieldValue, "Updater.updateExpression should be set correctly.");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression should correctly initialize the UpdateExpression property.
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression should correctly initialize the UpdateExpression property.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithValiUpdateExpression_ShouldCorrectlyInitializeUpdateExpressionProperty()
         {
@@ -60,8 +76,11 @@
             Assert.AreSame(updateExpression, updateExpressionValue, "Updater.UpdateExpression should be set correctly.");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression  on Invoke with null object should throw AggregateException with inner ArgumentNullException with "obj" ParamName.
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression  on Invoke with null object should throw AggregateException with inner ArgumentNullException with ""obj"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
-        [Timeout(2000)]
+        [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionOnInvokeWithNullObject_ShouldThrowAggregateExceptionWithInnerArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -86,8 +105,11 @@
             Assert.AreEqual("obj", argumentNullException.ParamName, @"ParamName should be ""obj"".");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression with single valid Set command on Invoke with valid input object should correctly set corresponding property of the input object.
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression with single valid Set command on Invoke with valid input object should correctly set corresponding property of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
-        [Timeout(2000)]
+        [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleValidSetCommandOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertyOfTheInputObject()
         {
             // Arrange
@@ -145,8 +167,11 @@
             Assert.AreEqual(contentValue, targetContent, "Target object Content should be set correctly.");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression with two different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression with two different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
-        [Timeout(2000)]
+        [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionWithTwoDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
         {
             // Arrange
@@ -229,8 +254,11 @@
             Assert.AreEqual(favesValue, targetFaves, "Target object Faves should be set correctly.");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression with three different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression with three different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
-        [Timeout(2000)]
+        [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionWithTThreeDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
         {
             // Arrange
@@ -337,8 +365,11 @@
             Assert.AreEqual(datePostedValue, targetDatePosted, "Target object DatePosted should be set correctly.");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing "Property" and "is not found".
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
-        [Timeout(2000)]
+        [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleSetCommandWithErroneousFieldNameOnInvokeWithValidInputObject_ShouldThrowAggregateExceptionWithInnerInvalidOperationExceptionWithMessageContainingPropertyAndIsNotFound()
         {
             // Arrange
@@ -402,8 +433,11 @@
             targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never, "ITweet.Faves setter should not be invoked.");
         }
 
+        /// <summary>
+        /// Updater with valid updateExpression with single Set command with fieldName of non-settable property on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing "Set method of property" and "is not found".
+        /// </summary>
         [Test(Description = @"Updater with valid updateExpression with single Set command with fieldName of non-settable property on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Set method of property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
-        [Timeout(2000)]
+        [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleSetCommandWithFieldNameOfNonSettablePropertyOnInvokeWithValidInputObject_ShouldThrowAggregateExceptionWithInnerInvalidOperationExceptionWithMessageContainingSetMethodOfPropertyAndIsNotFound()
         {
             // Arrange

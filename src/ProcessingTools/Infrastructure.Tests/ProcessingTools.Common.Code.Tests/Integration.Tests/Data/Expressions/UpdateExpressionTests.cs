@@ -1,14 +1,25 @@
-﻿namespace ProcessingTools.Data.Common.Tests.Expressions
+﻿// <copyright file="UpdateExpressionTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Common.Tests.Expressions
 {
     using System;
     using System.Linq;
-    using Models;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Data.Expressions;
+    using ProcessingTools.Common.Code.Tests;
+    using ProcessingTools.Common.Code.Tests.Models;
 
+    /// <summary>
+    /// UpdateExpression tests.
+    /// </summary>
     [TestFixture]
     public class UpdateExpressionTests
     {
+        /// <summary>
+        /// UpdateExpression with default constructor should return valid object.
+        /// </summary>
         [Test(Description = @"UpdateExpression with default constructor should return valid object", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_WithDefaultConstructor_ShouldReturnValidObject()
         {
@@ -19,6 +30,9 @@
             Assert.IsNotNull(updateExpression, "UpdateExpression<ITweet> should not be null.");
         }
 
+        /// <summary>
+        /// UpdateExpression with default constructor should initialize updateCommands field
+        /// </summary>
         [Test(Description = @"UpdateExpression with default constructor should initialize updateCommands field", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_WithDefaultConstructor_ShouldInitializeUpdateCommandsField()
         {
@@ -28,13 +42,15 @@
             var updateExpression = new UpdateExpression<ITweet>();
 
             // Act
-            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(updateExpression);
-            var updateCommandsField = privateObject.GetField(UpdateCommandsFieldName);
+            var updateCommandsField = PrivateField.GetInstanceField<UpdateExpression<ITweet>>(updateExpression, UpdateCommandsFieldName);
 
             // Assert
             Assert.IsNotNull(updateCommandsField, "UpdateCommands field should be correctly initialized.");
         }
 
+        /// <summary>
+        /// UpdateExpression with default constructor should initialize UpdateCommands Property.
+        /// </summary>
         [Test(Description = @"UpdateExpression with default constructor should initialize UpdateCommands Property", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_WithDefaultConstructor_ShouldInitializeUpdateCommandsProperty()
         {
@@ -45,6 +61,10 @@
             Assert.IsNotNull(updateExpression.UpdateCommands, "UpdateCommands property should be correctly initialized.");
         }
 
+        /// <summary>
+        /// UpdateExpression set null fieldName should throw ArgumentNullException with "fieldName" ParamName
+        /// </summary>
+        /// <param name="fieldName">Field name.</param>
         [TestCase(null, Description = @"UpdateExpression set null fieldName should throw ArgumentNullException with ""fieldName"" ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         [TestCase("", Description = @"UpdateExpression set empty-string fieldName should throw ArgumentNullException with ""fieldName"" ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         [TestCase("          ", Description = @"UpdateExpression set white-space-string fieldName should throw ArgumentNullException with ""fieldName"" ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
@@ -60,6 +80,11 @@
             Assert.AreEqual(nameof(fieldName), exception.ParamName, @"ParamName should be ""fieldName"".");
         }
 
+        /// <summary>
+        /// UpdateExpression set valid string fieldName and null value object should register single Set command in UpdateCommands
+        /// </summary>
+        /// <param name="fieldName">Field name.</param>
+        /// <param name="value">Value of the field.</param>
         [TestCase("fieldName", null, Description = @"UpdateExpression set valid string fieldName and null value object should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         [TestCase("fieldName", "Some string", Description = @"UpdateExpression set valid string fieldName and string value object should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         [TestCase("fieldName", 42, Description = @"UpdateExpression set valid string fieldName and int value object should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
@@ -83,6 +108,9 @@
             Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
         }
 
+        /// <summary>
+        /// UpdateExpression set null field should throw ArgumentNullException with "field" ParamName.
+        /// </summary>
         [Test(Description = @"UpdateExpression set null field should throw ArgumentNullException with ""field"" ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_SetNullField_ShouldThrowArgumentNullExceptionWithFieldParamName()
         {
@@ -96,6 +124,9 @@
             Assert.AreEqual("field", exception.ParamName, @"ParamName should be ""field"".");
         }
 
+        /// <summary>
+        /// UpdateExpression{ITweet}.Set valid expression for Content field and null value should register single Set command in UpdateCommands.
+        /// </summary>
         [Test(Description = @"UpdateExpression<ITweet>.Set valid expression for Content field and null value should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_SetValidExpressionForContentFieldAndNullValue_ShouldRegisterSingleSetCommandInUpdateCommands()
         {
@@ -117,6 +148,9 @@
             Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
         }
 
+        /// <summary>
+        /// UpdateExpression{ITweet}.Set valid expression for Content field and valid value should register single Set command in UpdateCommands.
+        /// </summary>
         [Test(Description = @"UpdateExpression<ITweet>.Set valid expression for Content field and valid value should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_SetValidExpressionForContentFieldAndValidValue_ShouldRegisterSingleSetCommandInUpdateCommands()
         {
@@ -138,6 +172,9 @@
             Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
         }
 
+        /// <summary>
+        /// UpdateExpression{ITweet}.Set valid expression for DatePosted field and valid value should register single Set command in UpdateCommands.
+        /// </summary>
         [Test(Description = @"UpdateExpression<ITweet>.Set valid expression for DatePosted field and valid value should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_SetValidExpressionForDatePostedFieldAndValidValue_ShouldRegisterSingleSetCommandInUpdateCommands()
         {
@@ -159,6 +196,9 @@
             Assert.AreEqual(value, command.Value, $@"Value of the IUpdateCommand should be ""{value}"".");
         }
 
+        /// <summary>
+        /// UpdateExpression{ITweet}.Set valid expression for Faves field and valid value should register single Set command in UpdateCommands.
+        /// </summary>
         [Test(Description = @"UpdateExpression<ITweet>.Set valid expression for Faves field and valid value should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_SetValidExpressionForFavesFieldAndValidValue_ShouldRegisterSingleSetCommandInUpdateCommands()
         {
