@@ -48,7 +48,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = new BlackListEntity
+            var entity = new BlackListItem
             {
                 Content = id.ToString()
             };
@@ -85,7 +85,7 @@
                 XElement.Load(fileName)
                     .Descendants(ItemNodeName)
                     .AsParallel()
-                    .ForAll(element => this.Items.Enqueue(new BlackListEntity
+                    .ForAll(element => this.Items.Enqueue(new BlackListItem
                     {
                         Content = element.Value
                     }));
@@ -108,7 +108,7 @@
 
             await this.LoadFromFileAsync(fileName).ConfigureAwait(false);
 
-            var comparer = new BlackListEntityEqualityComparer();
+            var comparer = new BlackListItemEqualityComparer();
 
             var items = this.DataSet
                 .Distinct(comparer)

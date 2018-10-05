@@ -14,7 +14,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Data.Models.Bio.Taxonomy.Xml.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705</NoWarn>
+    <NoWarn>1701;1702;1705;CA1819</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
