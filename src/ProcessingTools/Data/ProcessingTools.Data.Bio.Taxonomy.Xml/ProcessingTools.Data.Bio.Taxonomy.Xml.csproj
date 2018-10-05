@@ -60,4 +60,14 @@
     <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Common.File\ProcessingTools.Data.Common.File.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Models.Bio.Taxonomy.Xml\ProcessingTools.Data.Models.Bio.Taxonomy.Xml.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Comparers
+﻿namespace ProcessingTools.Data.Models.Bio.Taxonomy.Xml
 {
     using System.Collections.Generic;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;

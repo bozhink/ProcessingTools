@@ -4,9 +4,9 @@
     using System.Xml;
     using System.Xml.Serialization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
+    using ProcessingTools.Data.Models.Bio.Taxonomy.Xml;
 
     [TestClass]
     public class RankListXmlModelTests

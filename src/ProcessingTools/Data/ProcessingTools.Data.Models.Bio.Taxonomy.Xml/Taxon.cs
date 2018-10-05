@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Models
+﻿namespace ProcessingTools.Data.Models.Bio.Taxonomy.Xml
 {
     using System.Collections.Generic;
     using ProcessingTools.Common.Enumerations;

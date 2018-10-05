@@ -10,8 +10,8 @@
     using ProcessingTools.Bio.Taxonomy.Data.Entity.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Entity.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts.Repositories;
     using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Seed;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Extensions;

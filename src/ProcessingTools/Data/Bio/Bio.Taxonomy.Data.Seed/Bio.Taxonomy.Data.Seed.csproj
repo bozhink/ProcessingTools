@@ -82,6 +82,10 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Bio.Taxonomy.Xml\ProcessingTools.Data.Bio.Taxonomy.Xml.csproj">
+      <Project>{868182FA-DE68-4FBD-BF80-B965DDC329E6}</Project>
+      <Name>ProcessingTools.Data.Bio.Taxonomy.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
       <Project>{A77B11A8-45A0-45BA-9003-7A81514D8BDA}</Project>
       <Name>ProcessingTools.Data.Common.Mongo</Name>
@@ -97,10 +101,6 @@
     <ProjectReference Include="..\Bio.Taxonomy.Data.Entity\Bio.Taxonomy.Data.Entity.csproj">
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
       <Name>Bio.Taxonomy.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
-      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
-      <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>

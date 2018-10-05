@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml
+﻿namespace ProcessingTools.Data.Bio.Taxonomy.Xml
 {
     using System;
     using System.Collections.Concurrent;
@@ -8,10 +8,10 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts;
+    using ProcessingTools.Data.Models.Bio.Taxonomy.Xml;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 

@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories
+﻿namespace ProcessingTools.Data.Bio.Taxonomy.Xml.Repositories
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts.Repositories;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts;
+    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts.Repositories;
     using ProcessingTools.Data.Common.File.Repositories;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
