@@ -2,6 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
+// See https://github.com/RickStrahl/Westwind.AspNetCore/blob/master/Westwind.AspNetCore.Markdown/Utilities/StringUtils.cs
 namespace ProcessingTools.Extensions
 {
     using System;
@@ -209,6 +210,121 @@ namespace ProcessingTools.Extensions
         public static Guid ToEmptyGuid(this object source)
         {
             return (source?.ToString()).ToEmptyGuid();
+        }
+
+        /// <summary>
+        /// Extracts a string from between a pair of delimiters. Only the first instance is found.
+        /// </summary>
+        /// <param name="source">Input String to work on.</param>
+        /// <param name="beginingDelimiter">Beginning delimiter.</param>
+        /// <param name="endingDelimiter">Ending delimiter.</param>
+        /// <param name="caseSensitive">Determines whether the search for delimiters is case sensitive.</param>
+        /// <param name="allowMissingEndingDelimiter">Determines whether is allowed the ending delimiter to be missing.</param>
+        /// <param name="returnDelimiters">Determines whether delimiters have to be present in the result.</param>
+        /// <returns>Extracted string or ""</returns>
+        public static string ExtractString(this string source, string beginingDelimiter, string endingDelimiter, bool caseSensitive = false, bool allowMissingEndingDelimiter = false, bool returnDelimiters = false)
+        {
+            if (string.IsNullOrEmpty(source))
+            {
+                return string.Empty;
+            }
+
+            StringComparison comparisonType = caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+
+            int beginingDelimiterIndex = source.IndexOf(beginingDelimiter, 0, source.Length, comparisonType);
+            if (beginingDelimiterIndex == -1)
+            {
+                return string.Empty;
+            }
+
+            int endingDelimiterIndex = source.IndexOf(endingDelimiter, beginingDelimiterIndex + beginingDelimiter.Length, comparisonType);
+
+            if (allowMissingEndingDelimiter && endingDelimiterIndex < 0)
+            {
+                if (!returnDelimiters)
+                {
+                    return source.Substring(beginingDelimiterIndex + beginingDelimiter.Length);
+                }
+
+                return source.Substring(beginingDelimiterIndex);
+            }
+
+            if (beginingDelimiterIndex > -1 && endingDelimiterIndex > 1)
+            {
+                if (!returnDelimiters)
+                {
+                    return source.Substring(beginingDelimiterIndex + beginingDelimiter.Length, endingDelimiterIndex - beginingDelimiterIndex - beginingDelimiter.Length);
+                }
+
+                return source.Substring(beginingDelimiterIndex, endingDelimiterIndex - beginingDelimiterIndex + endingDelimiter.Length);
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Replaces a substring within a string with another substring with optional case sensitivity turned off.
+        /// </summary>
+        /// <param name="originalString">String to do replacements on.</param>
+        /// <param name="findString">The string to find.</param>
+        /// <param name="replaceString">The string to replace found string with.</param>
+        /// <param name="caseInsensitive">If true case insensitive search is performed.</param>
+        /// <returns>Updated string or original string if no matches.</returns>
+        public static string ReplaceString(this string originalString, string findString, string replaceString, bool caseInsensitive)
+        {
+            int findStringIndex = 0;
+            while (true)
+            {
+                if (caseInsensitive)
+                {
+                    findStringIndex = originalString.IndexOf(findString, findStringIndex, originalString.Length - findStringIndex, StringComparison.OrdinalIgnoreCase);
+                }
+                else
+                {
+                    findStringIndex = originalString.IndexOf(findString, findStringIndex);
+                }
+
+                if (findStringIndex == -1)
+                {
+                    break;
+                }
+
+                originalString = originalString.Substring(0, findStringIndex) + replaceString + originalString.Substring(findStringIndex + findString.Length);
+
+                findStringIndex += replaceString.Length;
+            }
+
+            return originalString;
+        }
+
+        /// <summary>
+        /// Parses a string into an array of lines broken by \r\n or \n
+        /// </summary>
+        /// <param name="source">String to check for lines.</param>
+        /// <returns>Array of strings.</returns>
+        public static string[] GetLines(this string source) => GetLines(source, 0);
+
+        /// <summary>
+        /// Parses a string into an array of lines broken by \r\n or \n
+        /// </summary>
+        /// <param name="source">String to check for lines.</param>
+        /// <param name="maxLines">Optional - max number of lines to return.</param>
+        /// <returns>Array of strings.</returns>
+        public static string[] GetLines(this string source, int maxLines)
+        {
+            if (source == null)
+            {
+                return Array.Empty<string>();
+            }
+
+            source = source.Replace("\r\n", "\n");
+
+            if (maxLines < 1)
+            {
+                return source.Split(new[] { '\n' });
+            }
+
+            return source.Split(new[] { '\n' }).Take(maxLines).ToArray();
         }
     }
 }
