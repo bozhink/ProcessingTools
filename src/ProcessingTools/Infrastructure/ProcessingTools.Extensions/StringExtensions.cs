@@ -5,13 +5,13 @@
 // See https://github.com/RickStrahl/Westwind.AspNetCore/blob/master/Westwind.AspNetCore.Markdown/Utilities/StringUtils.cs
 namespace ProcessingTools.Extensions
 {
+    using ProcessingTools.Common.Constants;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Extension methods for <see cref="string"/>.
@@ -325,6 +325,100 @@ namespace ProcessingTools.Extensions
             }
 
             return source.Split(new[] { '\n' }).Take(maxLines).ToArray();
+        }
+
+        /// <summary>
+        /// Truncates source string on a specified length.
+        /// </summary>
+        /// <param name="source">Source string to be truncated.</param>
+        /// <param name="length">Length of the resultant string.</param>
+        /// <returns>Truncated string.</returns>
+        public static string TruncateOn(this string source, int length)
+        {
+            if (string.IsNullOrEmpty(source) || source.Length <= length)
+            {
+                return source;
+            }
+            else
+            {
+                return source.Substring(0, length);
+            }
+        }
+
+        /// <summary>
+        /// Truncates source string on a specified length with adding ellipsis on the end.
+        /// </summary>
+        /// <param name="source">Source string to be truncated.</param>
+        /// <param name="length">Length of the resultant string.</param>
+        /// <returns>Truncated string.</returns>
+        public static string TruncateWithEllipsisOn(this string source, int length) => TruncateWithEllipsisOn(source, length, " ...");
+
+        /// <summary>
+        /// Truncates source string on a specified length with adding ellipsis on the end.
+        /// </summary>
+        /// <param name="source">Source string to be truncated.</param>
+        /// <param name="length">Length of the resultant string.</param>
+        /// <param name="ellipsis">Ellipsis string.</param>
+        /// <returns>Truncated string.</returns>
+        public static string TruncateWithEllipsisOn(this string source, int length, string ellipsis)
+        {
+            string ellipsisString = ellipsis ?? string.Empty;
+            int bodyLength = length - ellipsisString.Length;
+
+            if (string.IsNullOrEmpty(source) || source.Length <= bodyLength)
+            {
+                return source;
+            }
+            else
+            {
+                return source.Substring(0, bodyLength) + ellipsisString;
+            }
+        }
+
+        /// <summary>
+        /// Trim multiple white-spaces on a source string.
+        /// </summary>
+        /// <param name="source">Source string to be processed.</param>
+        /// <returns>Processed string.</returns>
+        public static string TrimMultiWhitespaces(this string source)
+        {
+            if (string.IsNullOrEmpty(source))
+            {
+                return source;
+            }
+
+            return Regex.Replace(source, @"\s+", " ").Trim();
+        }
+
+        /// <summary>
+        /// Replace DateTime whildcard in the source string.
+        /// </summary>
+        /// <param name="source">Source string to be processed.</param>
+        /// <param name="dateTime">DateTime value to be applied.</param>
+        /// <returns>Resultant string with DateTime wildcard processed.</returns>
+        public static string ReplaceDateTimeWildcard(this string source, DateTime dateTime)
+        {
+            string pattern = @"(?i)\[DateTime\(([^\(\)]+)\)\]";
+
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            for (Match m = Regex.Match(source, pattern); m.Success; m = m.NextMatch())
+            {
+                string matchValue = m.Value;
+                string formatString = m.Groups[1].Value;
+
+                int index = source.IndexOf(matchValue, i);
+                string text = source.Substring(i, index - i);
+
+                sb.Append(text);
+                sb.Append(dateTime.ToString(formatString));
+
+                i = index + matchValue.Length;
+            }
+
+            sb.Append(source.Substring(i));
+
+            return sb.ToString();
         }
     }
 }

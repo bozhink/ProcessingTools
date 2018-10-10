@@ -6,6 +6,8 @@ namespace ProcessingTools.Extensions
 {
     using System;
     using System.IO;
+    using System.Linq;
+    using System.Reflection;
     using System.Runtime.Serialization.Formatters.Binary;
 
     /// <summary>
@@ -13,6 +15,21 @@ namespace ProcessingTools.Extensions
     /// </summary>
     public static class ObjectExtensions
     {
+        private static readonly Type[] CopyTypes =
+        {
+            typeof(int),
+            typeof(int?),
+            typeof(double),
+            typeof(double?),
+            typeof(string),
+            typeof(DateTime),
+            typeof(DateTime?),
+            typeof(bool),
+            typeof(bool?),
+            typeof(decimal),
+            typeof(decimal?)
+        };
+
         /// <summary>
         /// Perform a deep copy of the object.
         /// </summary>
@@ -71,6 +88,58 @@ namespace ProcessingTools.Extensions
 
                 return formatter.Deserialize(stream);
             }
+        }
+
+        /// <summary>
+        /// Copy values of the source object to the target object.
+        /// </summary>
+        /// <typeparam name="T">Type of the objects.</typeparam>
+        /// <param name="target">Target object to be updated.</param>
+        /// <param name="source">Source object to be read.</param>
+        /// <returns>Updated target object.</returns>
+        public static T CopyFrom<T>(this T target, T source)
+            where T : class
+        {
+            PropertyInfo[] properties = typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty);
+
+            foreach (var property in properties)
+            {
+                if (property.CanWrite && (property.PropertyType.IsValueType || CopyTypes.Contains(property.PropertyType)))
+                {
+                    property.SetValue(target, property.GetValue(source, null), null);
+                }
+            }
+
+            return target;
+        }
+
+        /// <summary>
+        /// Copy values of the source object to the target object.
+        /// </summary>
+        /// <typeparam name="T">Type of the objects.</typeparam>
+        /// <param name="target">Target object to be updated.</param>
+        /// <param name="source">Source object to be read.</param>
+        /// <param name="exceptProperties">Names of the properties to not-be-mapped.</param>
+        /// <returns>Updated target object.</returns>
+        public static T CopyFrom<T>(this T target, T source, params string[] exceptProperties)
+            where T : class
+        {
+            PropertyInfo[] properties = typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty);
+
+            foreach (var property in properties)
+            {
+                if (exceptProperties.Contains(property.Name))
+                {
+                    continue;
+                }
+
+                if (property.CanWrite && (property.PropertyType.IsValueType || CopyTypes.Contains(property.PropertyType)))
+                {
+                    property.SetValue(target, property.GetValue(source, null), null);
+                }
+            }
+
+            return target;
         }
     }
 }

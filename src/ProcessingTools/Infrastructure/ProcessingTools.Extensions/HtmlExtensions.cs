@@ -272,5 +272,15 @@ namespace ProcessingTools.Extensions
 
             return html;
         }
+
+        /// <summary>
+        /// Escapes input string to be JavaScript-safe.
+        /// </summary>
+        /// <param name="input">Input string to be processed.</param>
+        /// <returns>Processed string result.</returns>
+        public static string EscapeTextForJavaScript(string input)
+        {
+            return Regex.Replace(input.Replace("\\", "\\\\").Replace("'", "\\\'"), @"\s+", " ");
+        }
     }
 }

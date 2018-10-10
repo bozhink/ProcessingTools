@@ -263,5 +263,30 @@ namespace ProcessingTools.Extensions.Linq
 
             return false;
         }
+
+        /// <summary>
+        /// Get exclusions of two collections.
+        /// </summary>
+        /// <typeparam name="T">Type of the collection element.</typeparam>
+        /// <param name="source">Source collection.</param>
+        /// <param name="target">Target collection.</param>
+        /// <returns>List of exclusions.</returns>
+        /// <remarks>
+        /// Usage: when comparing IDs, then
+        /// item with ID missing in the exclusion list should be created;
+        /// item with ID present in the exclusion list should be deleted.
+        /// </remarks>
+        public static IList<T> GetExclusions<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        {
+            var i1 = new HashSet<T>(source);
+            var i2 = new HashSet<T>(target);
+
+            var leftDiff = i1.Except(i2).ToArray();
+            var rightDiff = i2.Except(i1).ToArray();
+
+            var exclusions = leftDiff.Concat(rightDiff).ToList();
+
+            return exclusions;
+        }
     }
 }
