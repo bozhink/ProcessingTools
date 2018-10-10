@@ -389,7 +389,8 @@ gulp.task("link:code:apps", [
     "link:code:app:documents:edit",
     "link:code:app:documents:preview",
     "link:code:app:index:page",
-    "link:code:app:tools:jsonToCSharp"
+    "link:code:app:tools:jsonToCSharp",
+    "link:code:app:tools:textEditor:monaco"
 ]);
 
 gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
@@ -397,6 +398,7 @@ gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFa
 gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
 gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
 gulp.task("link:code:app:tools:jsonToCSharp", ["compile:code", "copy:code"], jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
+gulp.task("link:code:app:tools:textEditor:monaco", ["compile:code", "copy:code"], jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
 
 /**
  * Build all code.
