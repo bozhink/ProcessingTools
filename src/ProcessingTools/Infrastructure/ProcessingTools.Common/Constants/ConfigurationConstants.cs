@@ -133,5 +133,45 @@ namespace ProcessingTools.Common.Constants
         /// ZooBank registration NLM XSL file path.
         /// </summary>
         public const string ZooBankRegistrationNlmXslFilePath = "StaticFiles:ZooBankRegistrationNlmXslFilePath";
+
+        /// <summary>
+        /// Facebook application ID.
+        /// </summary>
+        public const string AuthenticationFacebookAppId = "Authentication:Facebook:AppId";
+
+        /// <summary>
+        /// Facebook application secret.
+        /// </summary>
+        public const string AuthenticationFacebookAppSecret = "Authentication:Facebook:AppSecret";
+
+        /// <summary>
+        /// Twitter consumer key.
+        /// </summary>
+        public const string AuthenticationTwitterConsumerKey = "Authentication:Twitter:ConsumerKey";
+
+        /// <summary>
+        /// Twitter consumer secret.
+        /// </summary>
+        public const string AuthenticationTwitterConsumerSecret = "Authentication:Twitter:ConsumerSecret";
+
+        /// <summary>
+        /// Google client ID.
+        /// </summary>
+        public const string AuthenticationGoogleClientId = "Authentication:Google:ClientId";
+
+        /// <summary>
+        /// Google client secret.
+        /// </summary>
+        public const string AuthenticationGoogleClientSecret = "Authentication:Google:ClientSecret";
+
+        /// <summary>
+        /// Microsoft application ID.
+        /// </summary>
+        public const string AuthenticationMicrosoftApplicationId = "Authentication:Microsoft:ApplicationId";
+
+        /// <summary>
+        /// Microsoft application password.
+        /// </summary>
+        public const string AuthenticationMicrosoftPassword = "Authentication:Microsoft:Password";
     }
 }

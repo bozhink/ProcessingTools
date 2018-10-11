@@ -5,34 +5,13 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
-    using System.IO;
-    using Autofac;
-    using Autofac.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Razor;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.FileProviders;
-    using Newtonsoft.Json.Serialization;
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Web.Documents.Constants;
-    using ProcessingTools.Web.Documents.Controllers;
-    using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
-    using ProcessingTools.Web.Documents.Formatters;
-    using ProcessingTools.Web.Documents.Hubs;
-    using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Settings;
-    using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services;
-    using ProcessingTools.Web.Services.Contracts;
 
     /// <summary>
     /// Start-up of the application.
@@ -57,119 +36,17 @@ namespace ProcessingTools.Web.Documents
         /// <returns>Service provider.</returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMemoryCache();
-            services.AddSignalR();
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(this.configuration.GetConnectionString(ConfigurationConstants.DefaultConnectionConnectionStringName)));
-
-            services.AddIdentity<ApplicationUser, ApplicationRole>(
-                options =>
-                {
-                    // Password settings
-                    options.Password.RequireDigit = true;
-                    options.Password.RequiredLength = 8;
-                    options.Password.RequireNonAlphanumeric = true;
-                    options.Password.RequireUppercase = true;
-                    options.Password.RequireLowercase = true;
-                    options.Password.RequiredUniqueChars = 2;
-
-                    // Lockout settings
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                    options.Lockout.MaxFailedAccessAttempts = 5;
-                    options.Lockout.AllowedForNewUsers = true;
-
-                    // Signin settings
-                    options.SignIn.RequireConfirmedEmail = false;
-                    options.SignIn.RequireConfirmedPhoneNumber = false;
-
-                    // User settings
-                    options.User.RequireUniqueEmail = true;
-                })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
-            services.Configure<CookiePolicyOptions>(
-                options =>
-                {
-                    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                    options.CheckConsentNeeded = context => true;
-                    options.MinimumSameSitePolicy = SameSiteMode.None;
-                });
-
-            services.ConfigureApplicationCookie(
-                options =>
-                {
-                    options.Cookie.Name = "921532ED76434551BB453EA4ABFC8DA8";
-                    options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                    options.LoginPath = "/Account/Login";
-                    options.LogoutPath = "/Account/Logout";
-                    options.AccessDeniedPath = "/Account/AccessDenied";
-                    options.SlidingExpiration = true;
-                    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
-                });
-
             services
-                .AddMvcCore()
-                .AddApiExplorer()
-                .AddAuthorization()
-                .AddFormatterMappings()
-                .AddJsonFormatters()
-                .AddXmlDataContractSerializerFormatters()
-                .AddXmlSerializerFormatters()
-                .AddViews()
-                .AddRazorViewEngine()
-                .AddCacheTagHelper()
-                .AddDataAnnotations()
-                .AddCors();
-
-            services
-                .AddMvc(options =>
-                {
-                    options.InputFormatters.Insert(0, new RawRequestBodyFormatter());
-                    options.MaxModelValidationErrors = 50;
-                })
-                .AddJsonOptions(o => o.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
-                .AddXmlDataContractSerializerFormatters()
-                .AddXmlSerializerFormatters()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            // See https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-2.1&tabs=visual-studio
-            //// services.AddHsts(options =>
-            //// {
-            ////     options.Preload = true;
-            ////     options.IncludeSubDomains = true;
-            ////     options.MaxAge = TimeSpan.FromDays(30);
-            //// });
-
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-                options.HttpsPort = 24173;
-            });
-
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
-
-            services.AddCors(
-                options =>
-                {
-                    options.AddPolicy("CorsPolicy", policy =>
-                    {
-                        policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
-                    });
-                });
-
-            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
-            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ElevatedRights", policy =>
-                  policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
-            });
+                .AddMemoryCache()
+                .ConfigureSignalR()
+                .ConfigureDatabases(this.configuration)
+                .ConfigureIdentity()
+                .ConfigureAuthentication(this.configuration)
+                .ConfigureAuthorization()
+                .ConfigureMvcCore()
+                .ConfigureMvc()
+                .ConfigureHttps()
+                .ConfigureCors();
 
             services.Configure<RazorViewEngineOptions>(options =>
             {
@@ -177,39 +54,7 @@ namespace ProcessingTools.Web.Documents
                 ////options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
             });
 
-            var builder = new ContainerBuilder();
-
-            // Add bindings
-            builder.Populate(services);
-
-            builder.RegisterType<ApplicationContextFactory>().AsSelf().InstancePerLifetimeScope();
-            builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
-            builder.Register(c => c.Resolve<IApplicationContext>().UserContext).As<IUserContext>().InstancePerDependency();
-
-            builder.RegisterType<ProcessingTools.Harvesters.Meta.JatsArticleMetaHarvester>().As<ProcessingTools.Harvesters.Contracts.Meta.IJatsArticleMetaHarvester>().InstancePerDependency();
-            builder.RegisterType<ProcessingTools.Services.IO.XmlReadService>().As<ProcessingTools.Services.Contracts.IO.IXmlReadService>().InstancePerDependency();
-
-            builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
-
-            builder.RegisterInstance(ProcessingTools.Common.Constants.Defaults.Encoding).As<System.Text.Encoding>().SingleInstance();
-
-            builder.RegisterModule(new XmlTransformersAutofacModule
-            {
-                Configuration = this.configuration
-            });
-            builder.RegisterModule<TransformersFactoriesAutofacModule>();
-            builder.RegisterModule<ProcessorsAutofacModule>();
-            builder.RegisterModule<InterceptorsAutofacModule>();
-            builder.RegisterModule(new DataAutofacModule
-            {
-                Configuration = this.configuration
-            });
-            builder.RegisterModule<ServicesWebAutofacModule>();
-            builder.RegisterModule<ServicesAutofacModule>();
-
-            var container = builder.Build();
-
-            return container.Resolve<IServiceProvider>();
+            return services.BuildServiceProvider(this.configuration);
         }
 
         /// <summary>
@@ -235,56 +80,22 @@ namespace ProcessingTools.Web.Documents
             app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
 
             app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
+            
+            app.ConfigureStaticFiles();
             if (env.IsDevelopment() || env.IsStaging())
             {
-                this.ServeStaticFiles(app, env, "node_modules", "/node_modules");
-                this.ServeStaticFiles(app, env, "node_modules", "/lib");
+                app.ServeStaticFiles(env, "node_modules", "/node_modules");
+                app.ServeStaticFiles(env, "node_modules", "/lib");
             }
 
-            app.UseCors("CorsPolicy");
+            app.ConfigureCors();
             app.UseWebSockets();
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<ChatHub>("/r/chat");
-            });
+            app.ConfigureSignalR();
 
-            app.UseHttpsRedirection();
-            app.UseCookiePolicy();
-            app.UseAuthentication();
+            app.ConfigureAuthentication();
             app.UseApplicationContext();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "areaUnknownActionRoute",
-                    template: "{area:exists}/{controller}/{*params}",
-                    defaults: new { area = AreaNames.Default, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
-
-                routes.MapRoute(
-                    name: "defaultRoute",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "defaultUnknownActionRoute",
-                    template: "{controller}/{*params}",
-                    defaults: new { area = AreaNames.Default, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
-            });
+            app.ConfigureMvc();
 #pragma warning restore S1075 // URIs should not be hardcoded
-        }
-
-        private void ServeStaticFiles(IApplicationBuilder app, IHostingEnvironment env, string rootPath, string requestPath)
-        {
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, rootPath)),
-                RequestPath = requestPath
-            });
         }
     }
 }
