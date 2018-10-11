@@ -10,6 +10,8 @@
     <RepositoryType>git</RepositoryType>
     <Description>Tests for models of processors.</Description>
     <IsPackable>false</IsPackable>
+    <DebugType>Full</DebugType>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

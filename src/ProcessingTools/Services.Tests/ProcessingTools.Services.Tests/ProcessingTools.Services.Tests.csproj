@@ -9,6 +9,8 @@
     <RepositoryType>git</RepositoryType>
     <Description>Services Tests</Description>
     <IsPackable>false</IsPackable>
+    <DebugType>Full</DebugType>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Services.Tests.xml</DocumentationFile>

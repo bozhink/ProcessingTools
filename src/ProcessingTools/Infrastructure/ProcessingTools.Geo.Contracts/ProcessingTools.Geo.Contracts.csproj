@@ -8,6 +8,8 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Description>Contracts for geography common tools</Description>
+    <DebugType>Full</DebugType>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Geo.Contracts.xml</DocumentationFile>

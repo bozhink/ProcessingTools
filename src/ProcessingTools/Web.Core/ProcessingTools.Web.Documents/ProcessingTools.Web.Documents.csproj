@@ -9,6 +9,8 @@
     <RepositoryType>git</RepositoryType>
     <Description>Web documents</Description>
     <UserSecretsId>aspnet-ProcessingTools.Web.Documents-D49806DF-C017-4940-A9FC-61557E17DED5</UserSecretsId>
+    <DebugType>Full</DebugType>
+    <LangVersion>Latest</LangVersion>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
