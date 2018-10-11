@@ -28,7 +28,7 @@ namespace ProcessingTools.Web.Documents
             try
             {
                 logger.Debug("init main");
-                BuildWebHost(args).Run();
+                CreateWebHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace ProcessingTools.Web.Documents
             }
         }
 
-        private static IWebHost BuildWebHost(string[] args)
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -61,9 +61,11 @@ namespace ProcessingTools.Web.Documents
                 {
                     logging.ClearProviders();
                     logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    logging.AddConsole();
+                    logging.AddDebug();
                 })
                 .UseNLog() // NLog: setup NLog for Dependency injection
-                .Build();
+                ;
         }
     }
 }
