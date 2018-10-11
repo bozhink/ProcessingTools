@@ -125,15 +125,34 @@ namespace ProcessingTools.Web.Documents
                 .AddCors();
 
             services
-                .AddMvc(o =>
+                .AddMvc(options =>
                 {
-                    o.InputFormatters.Insert(0, new RawRequestBodyFormatter());
-                    o.MaxModelValidationErrors = 50;
+                    options.InputFormatters.Insert(0, new RawRequestBodyFormatter());
+                    options.MaxModelValidationErrors = 50;
                 })
                 .AddJsonOptions(o => o.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
                 .AddXmlDataContractSerializerFormatters()
                 .AddXmlSerializerFormatters()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // See https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-2.1&tabs=visual-studio
+            //// services.AddHsts(options =>
+            //// {
+            ////     options.Preload = true;
+            ////     options.IncludeSubDomains = true;
+            ////     options.MaxAge = TimeSpan.FromDays(30);
+            //// });
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                options.HttpsPort = 24173;
+            });
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
 
             services.AddCors(
                 options =>
@@ -214,6 +233,8 @@ namespace ProcessingTools.Web.Documents
             }
 
             app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
+
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
             if (env.IsDevelopment() || env.IsStaging())
