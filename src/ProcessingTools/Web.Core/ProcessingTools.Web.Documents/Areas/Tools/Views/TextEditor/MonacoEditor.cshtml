@@ -3,5 +3,31 @@
     ViewData[ContextKeys.Title] = "Monaco Editor";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/build/dist/css/document-edit.css" />
+}
+
+<nav class="navbar fixed-bottom navbar-light bg-light navbar-expand-md">
+    <div class="container">
+        <a href="#" class="navbar-brand">@ViewData[ContextKeys.Title]</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTools" aria-controls="navbarTools" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarTools">
+            <form class="form-inline my-2 my-lg-0 mr-auto">
+                <div class="input-group mx-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="language-picker" id="language-picker-label">Language</label>
+                    </div>
+                    <select class="form-control language-picker" name="language-picker" aria-label="Language Picker" aria-describedby="language-picker-label"></select>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
 <div id="editor-container"></div>
-<script src="~/build/dist/js/apps/text-editor.monaco.min.js"></script>
+<div class="clearfix"></div>
+
+@section Scripts {
+    <script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script src="~/build/dist/js/apps/text-editor.monaco.min.js"></script>
+}
