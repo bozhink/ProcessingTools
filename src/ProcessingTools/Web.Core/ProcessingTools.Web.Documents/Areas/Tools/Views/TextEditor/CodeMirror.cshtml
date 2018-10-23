@@ -1,0 +1,283 @@
+﻿
+@{
+    ViewData[ContextKeys.Title] = "CodeMirror";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/node_modules/codemirror/lib/codemirror.css" />
+    <link href="~/build/dist/css/tools-editors.min.css" rel="stylesheet" />
+}
+
+<section role="main">
+    <nav class="navbar navbar-light bg-light bg-faded navbar-expand-md py-0 py-md-0">
+        <div class="container">
+            <a href="#" class="navbar-brand small-text">@ViewData[ContextKeys.Title]</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTools" aria-controls="navbarTools" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarTools">
+                <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="language-picker" id="language-picker-label">Language</label>
+                        </div>
+                        <select class="form-control language-picker" name="language-picker" id="language-picker" aria-label="Language Picker" aria-describedby="language-picker-label">
+                            <option value="apl">apl</option>
+                            <option value="asciiarmor">asciiarmor</option>
+                            <option value="asn.1">asn.1</option>
+                            <option value="asterisk">asterisk</option>
+                            <option value="brainfuck">brainfuck</option>
+                            <option value="clike">clike</option>
+                            <option value="clojure">clojure</option>
+                            <option value="cmake">cmake</option>
+                            <option value="cobol">cobol</option>
+                            <option value="coffeescript">coffeescript</option>
+                            <option value="commonlisp">commonlisp</option>
+                            <option value="crystal">crystal</option>
+                            <option value="css">css</option>
+                            <option value="cypher">cypher</option>
+                            <option value="d">d</option>
+                            <option value="dart">dart</option>
+                            <option value="diff">diff</option>
+                            <option value="django">django</option>
+                            <option value="dtd">dtd</option>
+                            <option value="dylan">dylan</option>
+                            <option value="ebnf">ebnf</option>
+                            <option value="ecl">ecl</option>
+                            <option value="eiffel">eiffel</option>
+                            <option value="elm">elm</option>
+                            <option value="erlang">erlang</option>
+                            <option value="fcl">fcl</option>
+                            <option value="forth">forth</option>
+                            <option value="fortran">fortran</option>
+                            <option value="gas">gas</option>
+                            <option value="gfm">gfm</option>
+                            <option value="gherkin">gherkin</option>
+                            <option value="go">go</option>
+                            <option value="groovy">groovy</option>
+                            <option value="haml">haml</option>
+                            <option value="haskell">haskell</option>
+                            <option value="haskell-literate">haskell-literate</option>
+                            <option value="haxe">haxe</option>
+                            <option value="htmlembedded">htmlembedded</option>
+                            <option value="htmlmixed">htmlmixed</option>
+                            <option value="http">http</option>
+                            <option value="idl">idl</option>
+                            <option value="javascript">javascript</option>
+                            <option value="jinja2">jinja2</option>
+                            <option value="jsx">jsx</option>
+                            <option value="julia">julia</option>
+                            <option value="livescript">livescript</option>
+                            <option value="lua">lua</option>
+                            <option value="markdown">markdown</option>
+                            <option value="mathematica">mathematica</option>
+                            <option value="mbox">mbox</option>
+                            <option value="mirc">mirc</option>
+                            <option value="mllike">mllike</option>
+                            <option value="modelica">modelica</option>
+                            <option value="mscgen">mscgen</option>
+                            <option value="mumps">mumps</option>
+                            <option value="nginx">nginx</option>
+                            <option value="ntriples">ntriples</option>
+                            <option value="octave">octave</option>
+                            <option value="oz">oz</option>
+                            <option value="pascal">pascal</option>
+                            <option value="pegjs">pegjs</option>
+                            <option value="perl">perl</option>
+                            <option value="php">php</option>
+                            <option value="pig">pig</option>
+                            <option value="powershell">powershell</option>
+                            <option value="properties">properties</option>
+                            <option value="protobuf">protobuf</option>
+                            <option value="pug">pug</option>
+                            <option value="puppet">puppet</option>
+                            <option value="python">python</option>
+                            <option value="q">q</option>
+                            <option value="r">r</option>
+                            <option value="rpm">rpm</option>
+                            <option value="rst">rst</option>
+                            <option value="ruby">ruby</option>
+                            <option value="sas">sas</option>
+                            <option value="sass">sass</option>
+                            <option value="scheme">scheme</option>
+                            <option value="shell">shell</option>
+                            <option value="sieve">sieve</option>
+                            <option value="slim">slim</option>
+                            <option value="smalltalk">smalltalk</option>
+                            <option value="smarty">smarty</option>
+                            <option value="solr">solr</option>
+                            <option value="soy">soy</option>
+                            <option value="sparql">sparql</option>
+                            <option value="spreadsheet">spreadsheet</option>
+                            <option value="sql">sql</option>
+                            <option value="stex">stex</option>
+                            <option value="stylus">stylus</option>
+                            <option value="swift">swift</option>
+                            <option value="tcl">tcl</option>
+                            <option value="textile">textile</option>
+                            <option value="tiddlywiki">tiddlywiki</option>
+                            <option value="tiki">tiki</option>
+                            <option value="toml">toml</option>
+                            <option value="tornado">tornado</option>
+                            <option value="troff">troff</option>
+                            <option value="ttcn">ttcn</option>
+                            <option value="ttcn-cfg">ttcn-cfg</option>
+                            <option value="turtle">turtle</option>
+                            <option value="twig">twig</option>
+                            <option value="vb">vb</option>
+                            <option value="vbscript">vbscript</option>
+                            <option value="velocity">velocity</option>
+                            <option value="verilog">verilog</option>
+                            <option value="vhdl">vhdl</option>
+                            <option value="vue">vue</option>
+                            <option value="webidl">webidl</option>
+                            <option value="xml" selected="selected">xml</option>
+                            <option value="xquery">xquery</option>
+                            <option value="yacas">yacas</option>
+                            <option value="yaml">yaml</option>
+                            <option value="yaml-frontmatter">yaml-frontmatter</option>
+                            <option value="z80">z80</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="code-mirror">
+        <textarea id="editor-container"></textarea>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/node_modules/codemirror/lib/codemirror.js"></script>
+    <script src="~/node_modules/codemirror/mode/xml/xml.js"></script>
+    <script async src="~/node_modules/codemirror/mode/apl/apl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/asciiarmor/asciiarmor.js"></script>
+    <script async src="~/node_modules/codemirror/mode/asn.1/asn.1.js"></script>
+    <script async src="~/node_modules/codemirror/mode/asterisk/asterisk.js"></script>
+    <script async src="~/node_modules/codemirror/mode/brainfuck/brainfuck.js"></script>
+    <script async src="~/node_modules/codemirror/mode/clike/clike.js"></script>
+    <script async src="~/node_modules/codemirror/mode/clojure/clojure.js"></script>
+    <script async src="~/node_modules/codemirror/mode/cmake/cmake.js"></script>
+    <script async src="~/node_modules/codemirror/mode/cobol/cobol.js"></script>
+    <script async src="~/node_modules/codemirror/mode/coffeescript/coffeescript.js"></script>
+    <script async src="~/node_modules/codemirror/mode/commonlisp/commonlisp.js"></script>
+    <script async src="~/node_modules/codemirror/mode/crystal/crystal.js"></script>
+    <script async src="~/node_modules/codemirror/mode/css/css.js"></script>
+    <script async src="~/node_modules/codemirror/mode/cypher/cypher.js"></script>
+    <script async src="~/node_modules/codemirror/mode/d/d.js"></script>
+    <script async src="~/node_modules/codemirror/mode/dart/dart.js"></script>
+    <script async src="~/node_modules/codemirror/mode/diff/diff.js"></script>
+    <script async src="~/node_modules/codemirror/mode/django/django.js"></script>
+    <script async src="~/node_modules/codemirror/mode/dtd/dtd.js"></script>
+    <script async src="~/node_modules/codemirror/mode/dylan/dylan.js"></script>
+    <script async src="~/node_modules/codemirror/mode/ebnf/ebnf.js"></script>
+    <script async src="~/node_modules/codemirror/mode/ecl/ecl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/eiffel/eiffel.js"></script>
+    <script async src="~/node_modules/codemirror/mode/elm/elm.js"></script>
+    <script async src="~/node_modules/codemirror/mode/erlang/erlang.js"></script>
+    <script async src="~/node_modules/codemirror/mode/fcl/fcl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/forth/forth.js"></script>
+    <script async src="~/node_modules/codemirror/mode/fortran/fortran.js"></script>
+    <script async src="~/node_modules/codemirror/mode/gas/gas.js"></script>
+    <script async src="~/node_modules/codemirror/mode/gfm/gfm.js"></script>
+    <script async src="~/node_modules/codemirror/mode/gherkin/gherkin.js"></script>
+    <script async src="~/node_modules/codemirror/mode/go/go.js"></script>
+    <script async src="~/node_modules/codemirror/mode/groovy/groovy.js"></script>
+    <script async src="~/node_modules/codemirror/mode/haml/haml.js"></script>
+    <script async src="~/node_modules/codemirror/mode/haskell/haskell.js"></script>
+    <script async src="~/node_modules/codemirror/mode/haskell-literate/haskell-literate.js"></script>
+    <script async src="~/node_modules/codemirror/mode/haxe/haxe.js"></script>
+    <script async src="~/node_modules/codemirror/mode/htmlembedded/htmlembedded.js"></script>
+    <script async src="~/node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script async src="~/node_modules/codemirror/mode/http/http.js"></script>
+    <script async src="~/node_modules/codemirror/mode/idl/idl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/javascript/javascript.js"></script>
+    <script async src="~/node_modules/codemirror/mode/jinja2/jinja2.js"></script>
+    <script async src="~/node_modules/codemirror/mode/jsx/jsx.js"></script>
+    <script async src="~/node_modules/codemirror/mode/julia/julia.js"></script>
+    <script async src="~/node_modules/codemirror/mode/livescript/livescript.js"></script>
+    <script async src="~/node_modules/codemirror/mode/lua/lua.js"></script>
+    <script async src="~/node_modules/codemirror/mode/markdown/markdown.js"></script>
+    <script async src="~/node_modules/codemirror/mode/mathematica/mathematica.js"></script>
+    <script async src="~/node_modules/codemirror/mode/mbox/mbox.js"></script>
+    <script async src="~/node_modules/codemirror/mode/mirc/mirc.js"></script>
+    <script async src="~/node_modules/codemirror/mode/mllike/mllike.js"></script>
+    <script async src="~/node_modules/codemirror/mode/modelica/modelica.js"></script>
+    <script async src="~/node_modules/codemirror/mode/mscgen/mscgen.js"></script>
+    <script async src="~/node_modules/codemirror/mode/mumps/mumps.js"></script>
+    <script async src="~/node_modules/codemirror/mode/nginx/nginx.js"></script>
+    <script async src="~/node_modules/codemirror/mode/ntriples/ntriples.js"></script>
+    <script async src="~/node_modules/codemirror/mode/octave/octave.js"></script>
+    <script async src="~/node_modules/codemirror/mode/oz/oz.js"></script>
+    <script async src="~/node_modules/codemirror/mode/pascal/pascal.js"></script>
+    <script async src="~/node_modules/codemirror/mode/pegjs/pegjs.js"></script>
+    <script async src="~/node_modules/codemirror/mode/perl/perl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/php/php.js"></script>
+    <script async src="~/node_modules/codemirror/mode/pig/pig.js"></script>
+    <script async src="~/node_modules/codemirror/mode/powershell/powershell.js"></script>
+    <script async src="~/node_modules/codemirror/mode/properties/properties.js"></script>
+    <script async src="~/node_modules/codemirror/mode/protobuf/protobuf.js"></script>
+    <script async src="~/node_modules/codemirror/mode/pug/pug.js"></script>
+    <script async src="~/node_modules/codemirror/mode/puppet/puppet.js"></script>
+    <script async src="~/node_modules/codemirror/mode/python/python.js"></script>
+    <script async src="~/node_modules/codemirror/mode/q/q.js"></script>
+    <script async src="~/node_modules/codemirror/mode/r/r.js"></script>
+    <script async src="~/node_modules/codemirror/mode/rpm/rpm.js"></script>
+    <script async src="~/node_modules/codemirror/mode/rst/rst.js"></script>
+    <script async src="~/node_modules/codemirror/mode/ruby/ruby.js"></script>
+    <script async src="~/node_modules/codemirror/mode/sas/sas.js"></script>
+    <script async src="~/node_modules/codemirror/mode/sass/sass.js"></script>
+    <script async src="~/node_modules/codemirror/mode/scheme/scheme.js"></script>
+    <script async src="~/node_modules/codemirror/mode/shell/shell.js"></script>
+    <script async src="~/node_modules/codemirror/mode/sieve/sieve.js"></script>
+    <script async src="~/node_modules/codemirror/mode/slim/slim.js"></script>
+    <script async src="~/node_modules/codemirror/mode/smalltalk/smalltalk.js"></script>
+    <script async src="~/node_modules/codemirror/mode/smarty/smarty.js"></script>
+    <script async src="~/node_modules/codemirror/mode/solr/solr.js"></script>
+    <script async src="~/node_modules/codemirror/mode/soy/soy.js"></script>
+    <script async src="~/node_modules/codemirror/mode/sparql/sparql.js"></script>
+    <script async src="~/node_modules/codemirror/mode/spreadsheet/spreadsheet.js"></script>
+    <script async src="~/node_modules/codemirror/mode/sql/sql.js"></script>
+    <script async src="~/node_modules/codemirror/mode/stex/stex.js"></script>
+    <script async src="~/node_modules/codemirror/mode/stylus/stylus.js"></script>
+    <script async src="~/node_modules/codemirror/mode/swift/swift.js"></script>
+    <script async src="~/node_modules/codemirror/mode/tcl/tcl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/textile/textile.js"></script>
+    <script async src="~/node_modules/codemirror/mode/tiddlywiki/tiddlywiki.js"></script>
+    <script async src="~/node_modules/codemirror/mode/tiki/tiki.js"></script>
+    <script async src="~/node_modules/codemirror/mode/toml/toml.js"></script>
+    <script async src="~/node_modules/codemirror/mode/tornado/tornado.js"></script>
+    <script async src="~/node_modules/codemirror/mode/troff/troff.js"></script>
+    <script async src="~/node_modules/codemirror/mode/ttcn/ttcn.js"></script>
+    <script async src="~/node_modules/codemirror/mode/ttcn-cfg/ttcn-cfg.js"></script>
+    <script async src="~/node_modules/codemirror/mode/turtle/turtle.js"></script>
+    <script async src="~/node_modules/codemirror/mode/twig/twig.js"></script>
+    <script async src="~/node_modules/codemirror/mode/vb/vb.js"></script>
+    <script async src="~/node_modules/codemirror/mode/vbscript/vbscript.js"></script>
+    <script async src="~/node_modules/codemirror/mode/velocity/velocity.js"></script>
+    <script async src="~/node_modules/codemirror/mode/verilog/verilog.js"></script>
+    <script async src="~/node_modules/codemirror/mode/vhdl/vhdl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/vue/vue.js"></script>
+    <script async src="~/node_modules/codemirror/mode/webidl/webidl.js"></script>
+    <script async src="~/node_modules/codemirror/mode/xquery/xquery.js"></script>
+    <script async src="~/node_modules/codemirror/mode/yacas/yacas.js"></script>
+    <script async src="~/node_modules/codemirror/mode/yaml/yaml.js"></script>
+    <script async src="~/node_modules/codemirror/mode/yaml-frontmatter/yaml-frontmatter.js"></script>
+    <script async src="~/node_modules/codemirror/mode/z80/z80.js"></script>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("editor-container"), {
+            lineNumbers: true,
+            readOnly: false,
+            matchBrackets: true,
+            styleActiveLine: true,
+            matchClosing: true,
+            mode: "xml"
+        });
+
+        var $languagePicker = $("#language-picker");
+
+        $languagePicker.change(function () {
+            editor.setOption("mode", $languagePicker.val());
+        });
+    </script>
+}

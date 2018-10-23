@@ -32,6 +32,11 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string MonacoEditorActionName = nameof(MonacoEditor);
 
+        /// <summary>
+        /// CodeMirror action name.
+        /// </summary>
+        public const string CodeMirrorActionName = nameof(CodeMirror);
+
         private readonly ILogger logger;
 
         /// <summary>
@@ -65,6 +70,20 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         public IActionResult MonacoEditor()
         {
             const string LogMessage = "TextEditor/MonacoEditor";
+
+            this.logger.LogTrace(LogMessage);
+
+            return this.View();
+        }
+
+        /// <summary>
+        /// Tools/TextEditor/CodeMirror
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(CodeMirrorActionName)]
+        public IActionResult CodeMirror()
+        {
+            const string LogMessage = "TextEditor/CodeMirror";
 
             this.logger.LogTrace(LogMessage);
 
