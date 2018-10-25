@@ -27,7 +27,7 @@
     "url": "https://github.com/bozhink/ProcessingTools/issues"
   },
   "dependencies": {
-    "codemirror": "^5.25.2",
+    "codemirror": "^5.41.0",
     "monaco-editor": "^0.13.1",
     "requirejs": "^2.3.3"
   },
