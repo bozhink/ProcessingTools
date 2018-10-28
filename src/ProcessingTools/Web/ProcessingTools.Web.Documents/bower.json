@@ -27,18 +27,22 @@
     "jquery": "^3.3.1",
     "jquery-form": "^4.2.2",
     "jquery-ui": "1.12.1",
-    "jquery-validation": "1.18.0",
+    "jquery-validation": "1.17.0",
     "jquery-validation-unobtrusive": "^3.2.10",
     "interact": "1.3.4",
-    "handlebars": "^4.0.12",
+    "handlebars": "^4.0.11",
     "toastr": "^2.1.3",
     "modernizr": "^3.6.0",
     "respond": "^1.4.2",
     "cryptojs-sha1": "^1.0.0",
-    "leaflet": "^1.3.4",
+    "leaflet": "^1.3.3",
     "tether": "^1.4.4",
     "font-awesome": "^5.1.1",
-    "angular": "1.7.5",
-    "angular-route": "^1.7.5"
+    "angular": "1.7.2",
+    "angular-route": "^1.7.2"
+  },
+  "resolutions": {
+    "jquery": "^3.3.1",
+    "angular": "1.7.3"
   }
 }
