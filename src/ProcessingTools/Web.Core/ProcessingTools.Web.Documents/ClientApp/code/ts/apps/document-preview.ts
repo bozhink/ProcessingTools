@@ -24,7 +24,7 @@ import { HtmlSelectionTagger } from "../components/html-selection-tagger";
 declare let window: Window;
 declare let document: Document;
 declare let $: JQueryStatic;
-declare let interact: Interact.InteractStatic;
+declare let interact: any/*Interact.InteractStatic*/;
 declare let toastr: Toastr;
 
 enum HtmlElementIds {

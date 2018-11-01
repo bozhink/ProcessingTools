@@ -76,6 +76,9 @@ function JsAppFactory() {
         return function () {
             var stream = gulp.src(path.join(JS_OUT_PATH, APPS_RELATIVE_PATH, srcFileName))
                 .pipe(webpackStream(webpackConfig))
+                .on("error", function handleError() {
+                    this.emit("end");
+                })
                 .pipe(concat(distFileName));
 
             if (runUglify) {

@@ -47,7 +47,7 @@
         target.setAttribute("data-y", y.toString());
     }
 
-    public static registerDragabbleBehavior(interact: Interact.InteractStatic, selector: string | HTMLElement): any {
+    public static registerDragabbleBehavior(interact: any/*Interact.InteractStatic*/, selector: string | HTMLElement): any {
         interact(selector as string)
             .draggable({
                 inertia: true,
