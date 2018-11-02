@@ -58,6 +58,7 @@ var webpackStream = require("webpack-stream");
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config");
+var named = require("vinyl-named");
 
 function renameForMinify(path) {
     //path.dirname += "/ciao";
@@ -75,7 +76,8 @@ function JsAppFactory() {
     this.createBuild = function (srcFileName, distFileName, runUglify) {
         return function () {
             var stream = gulp.src(path.join(JS_OUT_PATH, APPS_RELATIVE_PATH, srcFileName))
-                .pipe(webpackStream(webpackConfig))
+                //.pipe(named())
+                .pipe(webpackStream({ config: webpackConfig }))
                 .on("error", function handleError() {
                     this.emit("end");
                 })
@@ -387,21 +389,28 @@ gulp.task("copy:code:min", ["compile:code"], function () {
 /**
  * Link apps.
  */
-gulp.task("link:code:apps", [
-    "link:code:app:bio:data",
-    "link:code:app:documents:edit",
-    "link:code:app:documents:preview",
-    "link:code:app:index:page",
-    "link:code:app:tools:jsonToCSharp",
-    "link:code:app:tools:textEditor:monaco"
-]);
+// gulp.task("link:code:apps", [
+//     "link:code:app:bio:data",
+//     "link:code:app:documents:edit",
+//     "link:code:app:documents:preview",
+//     "link:code:app:index:page",
+//     "link:code:app:tools:jsonToCSharp",
+//     "link:code:app:tools:textEditor:monaco"
+// ]);
 
-gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
-gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true));
-gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
-gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
-gulp.task("link:code:app:tools:jsonToCSharp", ["compile:code", "copy:code"], jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
-gulp.task("link:code:app:tools:textEditor:monaco", ["compile:code", "copy:code"], jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
+// gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
+// gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true));
+// gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
+// gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
+// gulp.task("link:code:app:tools:jsonToCSharp", ["compile:code", "copy:code"], jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
+// gulp.task("link:code:app:tools:textEditor:monaco", ["compile:code", "copy:code"], jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
+
+gulp.task("link1", jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
+gulp.task("link2", jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true));
+gulp.task("link3", jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
+gulp.task("link4", jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
+gulp.task("link5", jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
+gulp.task("link6", jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
 
 /**
  * Build all code.
@@ -410,7 +419,7 @@ gulp.task("build:code", [
     "compile:code",
     "copy:code",
     "copy:code:min",
-    "link:code:apps"
+    // "link:code:apps"
 ]);
 
 /**
