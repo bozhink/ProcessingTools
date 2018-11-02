@@ -5,13 +5,13 @@
 // See https://github.com/RickStrahl/Westwind.AspNetCore/blob/master/Westwind.AspNetCore.Markdown/Utilities/StringUtils.cs
 namespace ProcessingTools.Extensions
 {
-    using ProcessingTools.Common.Constants;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Extension methods for <see cref="string"/>.

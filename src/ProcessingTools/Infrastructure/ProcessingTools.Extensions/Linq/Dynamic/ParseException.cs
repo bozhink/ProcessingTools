@@ -14,8 +14,6 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     [Serializable]
     public sealed class ParseException : Exception
     {
-        private readonly int position;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseException"/> class.
         /// </summary>
@@ -24,18 +22,28 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
         public ParseException(string message, int position)
             : base(message)
         {
-            this.position = position;
+            this.Position = position;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParseException"/> class.
+        /// </summary>
+        /// <param name="info">The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="StreamingContext"/> that contains contextual information about the source or destination.</param>
+        private ParseException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
         }
 
         /// <summary>
         /// Gets position.
         /// </summary>
-        public int Position => this.position;
+        public int Position { get; }
 
         /// <inheritdoc/>
         public override string ToString()
         {
-            return string.Format(Resources.ParseExceptionFormat, this.Message, this.position);
+            return string.Format(Resources.ParseExceptionFormat, this.Message, this.Position);
         }
 
         /// <inheritdoc/>
