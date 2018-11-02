@@ -59,11 +59,9 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
-        /// <param name="fileNames">List of the names of all invalid files</param>
-        public InvalidOrEmptyFilesException(SerializationInfo info, StreamingContext context, IEnumerable<string> fileNames)
+        protected InvalidOrEmptyFilesException(SerializationInfo info, StreamingContext context)
             : base(info: info, context: context)
         {
-            this.fileNames = fileNames;
         }
 
         /// <summary>
