@@ -19,7 +19,16 @@ const JS_DIST_PATH = DIST_PATH + "/js";
 /**
  * Style paths
  */
+const SASS_SRC_PATH = "ClientApp/styles/sass";
+const LESS_SRC_PATH = "ClientApp/styles/less";
+const CSS_SRC_PATH = "ClientApp/styles/css";
 const CSS_DIST_PATH = DIST_PATH + "/css";
+
+/**
+ * Template paths
+ */
+const TEMPLATES_SRC_PATH = "ClientApp/templates";
+const TEMPLATES_DIST_PATH = DIST_PATH + "/templates";
 
 /**
  * Test paths
@@ -49,7 +58,6 @@ var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config");
 var named = require("vinyl-named");
-var templatesCompiler = require("./ClientApp/dev/gulp-templates-compiler");
 var stylesCompiler = require("./ClientApp/dev/gulp-styles-compiler");
 
 function renameForMinify(path) {
@@ -69,9 +77,7 @@ function JsAppFactory() {
         return function () {
             var stream = gulp.src(path.join(JS_OUT_PATH, APPS_RELATIVE_PATH, srcFileName))
                 //.pipe(named())
-                .pipe(webpackStream({
-                    config: webpackConfig
-                }))
+                .pipe(webpackStream({ config: webpackConfig }))
                 .on("error", function handleError() {
                     this.emit("end");
                 })
@@ -192,8 +198,29 @@ gulp.task("watch", function () {
  * 
  * *************************************************************
  */
-gulp.task("compile:templates:copy", templatesCompiler.copyTemplates);
-gulp.task("compile:templates:copy:min", templatesCompiler.copyAndMinifyTemplates);
+
+/**
+ * Copy all templates to the distribution directory
+ */
+gulp.task("compile:templates:copy", function () {
+    return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
+        .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
+});
+
+/**
+ * Copy and minify all templates to the distribution directory
+ */
+gulp.task("compile:templates:copy:min", function () {
+    return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            minifyCSS: true,
+            minifyJS: true
+        }))
+        .pipe(rename(renameForMinify))
+        .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
+});
+
 gulp.task("build:templates", gulp.series("compile:templates:copy", "compile:templates:copy:min"));
 
 /**
@@ -210,7 +237,15 @@ gulp.task("compile:styles:sass", stylesCompiler.compileSass);
 gulp.task("compile:styles:sass:min", stylesCompiler.compileAndMinifySass);
 gulp.task("compile:styles:less", stylesCompiler.compileLess);
 gulp.task("compile:styles:less:min", stylesCompiler.compileAndMinifyLess);
-gulp.task("build:styles", gulp.series("compile:styles:less", "compile:styles:less:min", "compile:styles:sass", "compile:styles:sass:min", "compile:styles:css", "compile:styles:css:min"));
+
+gulp.task("build:styles", gulp.series(
+    "compile:styles:less",
+    "compile:styles:less:min",
+    "compile:styles:sass",
+    "compile:styles:sass:min",
+    "compile:styles:css",
+    "compile:styles:css:min"
+));
 
 /**
  * *************************************************************
@@ -263,7 +298,7 @@ gulp.task("webpack-dev-server", function (done) {
  * Compile code.
  */
 
-/**
+ /**
  * Copy JavaScript files to the output directory.
  */
 gulp.task("compile:code:js", function () {
