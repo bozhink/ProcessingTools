@@ -246,6 +246,9 @@ namespace ProcessingTools.Extensions.Linq
         /// </summary>
         /// <param name="source">Source collection to be evaluated.</param>
         /// <returns>Result of the logical OR operation.</returns>
+        /// <remarks>
+        /// See https://www.codeproject.com/Tips/1264928/Throttling-Multiple-Tasks-to-Process-Requests-in-C
+        /// </remarks>
         public static bool LogicalOr(this IEnumerable<Func<bool>> source)
         {
             if (source == null || !source.Any())
@@ -287,6 +290,35 @@ namespace ProcessingTools.Extensions.Linq
             var exclusions = leftDiff.Concat(rightDiff).ToList();
 
             return exclusions;
+        }
+
+        /// <summary>
+        /// Executes asynchronous action over all elements if a specified collection.
+        /// </summary>
+        /// <typeparam name="T">Type of the collection element.</typeparam>
+        /// <param name="source">Source collection.</param>
+        /// <param name="limit">Maximal number of asynchronous calls.</param>
+        /// <param name="action">Action to be executed.</param>
+        /// <returns>Task.</returns>
+        public static async Task ExecuteParallelAsync<T>(this IEnumerable<T> source, int limit, Func<T, Task> action)
+        {
+            var allTasks = new List<Task>(); // store all tasks
+            var activeTasks = new List<Task>();
+
+            foreach (var item in source)
+            {
+                if (activeTasks.Count >= limit)
+                {
+                    var completedTask = await Task.WhenAny(activeTasks).ConfigureAwait(false);
+                    activeTasks.Remove(completedTask);
+                }
+
+                var task = action(item);
+                allTasks.Add(task);
+                activeTasks.Add(task);
+            }
+
+            await Task.WhenAll(allTasks).ConfigureAwait(false); // Wait for all task to complete
         }
     }
 }
