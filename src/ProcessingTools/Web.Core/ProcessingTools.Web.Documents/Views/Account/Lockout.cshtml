@@ -2,7 +2,9 @@
     ViewData[ContextKeys.Title] = "Locked out";
 }
 
-<header>
-    <h2 class="text-danger">@ViewData[ContextKeys.Title]</h2>
+<section role="main" class="container">
+    <header>
+        <h2 class="text-danger">@(ViewData[ContextKeys.Title])</h2>
+    </header>
     <p class="text-danger">This account has been locked out, please try again later.</p>
-</header>
+</section>

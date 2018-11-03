@@ -2,7 +2,9 @@
     ViewData[ContextKeys.Title] = "Access denied";
 }
 
-<header>
-    <h2 class="text-danger">ViewData[ContextKeys.Title]</h2>
+<section role="main" class="container">
+    <header>
+        <h2 class="text-danger">@(ViewData[ContextKeys.Title])</h2>
+    </header>
     <p class="text-danger">You do not have access to this resource.</p>
-</header>
+</section>

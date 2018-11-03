@@ -2,7 +2,9 @@
     ViewData[ContextKeys.Title] = "Signed out";
 }
 
-<h2>@ViewData[ContextKeys.Title]</h2>
-<p>
-    You have successfully signed out.
-</p>
+<section role="main" class="container">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+    <p>You have successfully signed out.</p>
+</section>
