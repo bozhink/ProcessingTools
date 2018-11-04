@@ -1,5 +1,5 @@
 module.exports = {
     mode: "production",
     cache: true,
-    externals: /^(jquery|crypto-js|interact\W?js|\$)$/i
+    externals: /^(jquery|handlebars|interact\W?js|\$)$/i
 };

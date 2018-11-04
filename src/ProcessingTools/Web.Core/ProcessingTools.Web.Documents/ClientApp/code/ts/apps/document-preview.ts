@@ -3,7 +3,6 @@ import { IRequesterBase } from "../contracts/http/requester-base";
 import { JsonRequester } from "../services/http/json-requester";
 import { IDocumentContentData } from "../contracts/documents/document-content-data";
 import { DocumentContentData } from "../services/documents/document-content-data";
-import { SHA1 } from "crypto-js";
 import { IReporter } from "../contracts/reporters/reporter";
 import { ToastrReporter } from "../services/reporters/toastr-reporter";
 import { DocumentController } from "../controllers/documents.controllers";
@@ -46,11 +45,11 @@ const keys: IStorageKeys = {
 
 let storage: Storage = window.sessionStorage;
 let jsonRequester: IRequesterBase<any> = new JsonRequester($);
-let dataService: IDocumentContentData = new DocumentContentData(storage, keys, jsonRequester, SHA1);
+let dataService: IDocumentContentData = new DocumentContentData(storage, keys, jsonRequester);
 let reporter: IReporter = new ToastrReporter(toastr);
 let documentController: DocumentController = new DocumentController(dataService, reporter);
-let handlebars: any = (window as any).handlebars || (window as any).Handlebars;
-let templatesProvider: ITemplatesProvider = new HandlebarsTemplatesProvider($, handlebars, "../../../build/dist/templates");
+
+let templatesProvider: ITemplatesProvider = new HandlebarsTemplatesProvider("../../../build/dist/templates");
 let htmlSelectionTagger: HtmlSelectionTagger = new HtmlSelectionTagger(window, document);
 let coordinatesToolboxes: ICoordinatesToolboxesComponent = CoordinatesToolboxesControl(window, $, templatesProvider);
 let eventHandlerFactory: EventHandlerFactory = new EventHandlerFactory(window);
@@ -70,8 +69,7 @@ let loadContentAction: () => void = documentController.createGetAction(getUrl, f
         articleElement: HTMLElement = document.getElementById(HtmlElementIds.CONTENT_ELEMENT_ID);
     if (content) {
         articleElement.innerHTML = content;
-        contentHash = SHA1(articleElement.innerHTML).toString();
-        storage.setItem(keys.contentHashKey, contentHash);
+        dataService.initializeContent(articleElement.innerHTML);
     }
 }, function (): void {
     reporter.report("success", "Content is retrieved");

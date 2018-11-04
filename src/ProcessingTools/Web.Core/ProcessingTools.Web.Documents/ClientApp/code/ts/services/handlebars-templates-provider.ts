@@ -1,36 +1,18 @@
 import { ITemplatesProvider } from "../contracts/services";
 
-export interface IHandlebars {
-    compile: (c: string) => (vm: any) => string;
-}
+declare let $: JQueryStatic;
 
 export class HandlebarsTemplatesProvider implements ITemplatesProvider {
 
-    private readonly $: JQueryStatic;
-    private readonly handlebars: IHandlebars;
     private readonly baseAddress: string;
     private readonly extension: string;
     private readonly cache: { [name: string]: (x: any) => string } = {};
 
-    public constructor($: JQueryStatic, handlebars: IHandlebars, baseAddress: string, extension?: string) {
-        if (!$) {
-            throw `JQuery is null`;
-        }
-
-        if (!handlebars) {
-            throw `Handlebars is required`;
-        }
-
+    public constructor(baseAddress: string, extension?: string) {
         if (!baseAddress) {
             throw `BaseAddress is null`;
         }
 
-        if (!extension) {
-            throw `Extension is null`;
-        }
-
-        this.$ = $;
-        this.handlebars = handlebars;
         this.baseAddress = baseAddress || "~/templates";
         this.extension = extension || "handlebars";
     }
@@ -46,8 +28,8 @@ export class HandlebarsTemplatesProvider implements ITemplatesProvider {
                     return;
                 }
 
-                self.$.get(url, function (html: string): void {
-                    let template: (vm: any) => string = self.handlebars.compile(html);
+                $.get(url, function (html: string): void {
+                    let template: (vm: any) => string = Handlebars.compile(html);
                     self.cache[name] = template;
                     resolve(template);
                 });
