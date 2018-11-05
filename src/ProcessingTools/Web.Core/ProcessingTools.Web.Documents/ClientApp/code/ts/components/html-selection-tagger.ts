@@ -30,7 +30,6 @@ export function HtmlSelectionTagger(window: Window, document: Document): IHtmlSe
         callback?: (e: HTMLElement) => void
     ): void {
         let selection: Selection = window.getSelection(),
-            setAttributes: boolean = attributes && Array.isArray(attributes),
             len: number = selection.rangeCount;
 
         for (let i: number = 0; i < len; i += 1) {
@@ -43,7 +42,7 @@ export function HtmlSelectionTagger(window: Window, document: Document): IHtmlSe
                 tagElement.setAttribute("class", className);
             }
 
-            if (setAttributes) {
+            if (attributes != null) {
                 let attribute: string;
                 for (attribute in attributes) {
                     if (attribute) {
