@@ -192,7 +192,7 @@ export function DocumentPreviewEventHandlersFactory(
         tagBibliographicCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
             actionsMenuFactory($target.text(), function ($menu: JQuery): void {
-                $(".ref").each(function (i: number, element: HTMLElement): void {
+                $("[elem-name=ref]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
                         .addClass("mi-bibr")
@@ -207,7 +207,7 @@ export function DocumentPreviewEventHandlersFactory(
         tagAppendicesCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
             actionsMenuFactory($target.text(), function ($menu: JQuery): void {
-                $(".app").each(function (i: number, element: HTMLElement): void {
+                $("[elem-name=app]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
                         .addClass("mi-app")
@@ -222,7 +222,7 @@ export function DocumentPreviewEventHandlersFactory(
         tagSupplMaterialsCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
             actionsMenuFactory($target.text(), function ($menu: JQuery): void {
-                $(".supplementary-material").each(function (i: number, element: HTMLElement): void {
+                $("[elem-name=supplementary-material]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
                         .addClass("mi-suppl-material")
@@ -237,7 +237,7 @@ export function DocumentPreviewEventHandlersFactory(
         tagTablesCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
             actionsMenuFactory($target.text(), function ($menu: JQuery): void {
-                $(".table-wrap").each(function (i: number, element: HTMLElement): void {
+                $("[elem-name=table-wrap]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
                         .addClass("mi-tab")
@@ -252,7 +252,7 @@ export function DocumentPreviewEventHandlersFactory(
         tagFiguresCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
             actionsMenuFactory($target.text(), function ($menu: JQuery): void {
-                $(".fig").each(function (i: number, element: HTMLElement): void {
+                $("[elem-name=fig]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
                         .addClass("mi-fig")
@@ -269,7 +269,7 @@ export function DocumentPreviewEventHandlersFactory(
             actionsMenuFactory($target.text(), function ($menu: JQuery): void {
                 let $articleFigsAndTables: JQuery = $("." + ARTICLE_FIGS_AND_TABLES);
 
-                $articleFigsAndTables.find(".fig").each(function (i: number, element: HTMLElement): void {
+                $articleFigsAndTables.find("[elem-name=fig]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
                         .addClass("mi-move")
@@ -279,7 +279,7 @@ export function DocumentPreviewEventHandlersFactory(
                         .appendTo($menu);
                 });
 
-                $articleFigsAndTables.find(".table-wrap").each(function (i: number, element: HTMLElement): void {
+                $articleFigsAndTables.find("[elem-name=table-wrap]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
                         .addClass("mi-move")
