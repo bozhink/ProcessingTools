@@ -89,7 +89,7 @@ export function HtmlSelectionTagger(window: Window, document: Document): IHtmlSe
     function tagInXref(rid: string, refType: string): void {
         let elemName: string = "xref",
             className: string = elemName + " " + refType,
-            attributes: { [name: string]: string } = {
+            attributes: IStringKeyValues = {
                 "rid": rid,
                 "ref-type": refType,
                 "href": "#" + rid

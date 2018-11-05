@@ -120,8 +120,7 @@ ToastrConfiguration.configure(toastr);
 InteractJSConfiguration.registerDragabbleBehavior(interact, ".draggable");
 
 let loadContentAction: () => void = documentController.createGetAction(getUrl, false, function (content: string): void {
-    let contentHash: string,
-        articleElement: HTMLElement = document.getElementById(HtmlElementIds.CONTENT_ELEMENT_ID);
+    let articleElement: HTMLElement = document.getElementById(HtmlElementIds.CONTENT_ELEMENT_ID);
     if (content) {
         articleElement.innerHTML = content;
         dataService.initializeContent(articleElement.innerHTML);
