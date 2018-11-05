@@ -5,7 +5,7 @@ import { enc, SHA1 } from "crypto-js";
 
 import { IStorageKeys, IMessageResponse, MessageType } from "../../contracts/models/services.models";
 import { IRequesterBase } from "../../contracts/http/requester-base";
-import { IDocumentContentData } from "../../contracts/documents/document-content-data";
+import { IDocumentContentData } from "../../contracts/services.documents";
 
 export class DocumentContentData implements IDocumentContentData {
 

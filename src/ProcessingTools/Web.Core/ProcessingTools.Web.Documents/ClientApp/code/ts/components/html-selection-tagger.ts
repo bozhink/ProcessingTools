@@ -1,32 +1,40 @@
-﻿export class HtmlSelectionTagger {
+﻿import { IHtmlSelectionTagger } from "../contracts/services.documents";
+import { IStringKeyValues } from "../contracts/models/key-value.models";
 
-    public constructor(private readonly window: Window, private readonly document: Document) {
+export function HtmlSelectionTagger(window: Window, document: Document): IHtmlSelectionTagger {
+    if (window == null) {
+        throw `HtmlSelectionTagger: window is null!`;
     }
 
-    public clearTagsInSelection(): void {
-        let selection: Range = this.window.getSelection().getRangeAt(0),
+    if (document == null) {
+        throw `HtmlSelectionTagger: document is null!`;
+    }
+
+    function clearTagsInSelection(): void {
+        let selection: Range = window.getSelection().getRangeAt(0),
             selectedText: DocumentFragment = selection.extractContents(),
-            span: HTMLElement = this.document.createElement("span");
+            span: HTMLElement = document.createElement("span");
         span.appendChild(selectedText);
 
         span.innerHTML = span.innerHTML.replace(/<\/?[^!<>]+>/g, "");
         span.setAttribute("class", "cleaned-selection");
 
         selection.insertNode(span);
-    }
+    };
 
-    public tag(
+    function tag(
         tagName: string,
         elemName: string,
         className?: string,
-        attributes?: { [name: string]: string },
+        attributes?: IStringKeyValues,
         callback?: (e: HTMLElement) => void
     ): void {
-        let selection: Selection = this.window.getSelection();
-        let setAttributes: boolean = attributes && Array.isArray(attributes);
-        let len: number = selection.rangeCount;
+        let selection: Selection = window.getSelection(),
+            setAttributes: boolean = attributes && Array.isArray(attributes),
+            len: number = selection.rangeCount;
+
         for (let i: number = 0; i < len; i += 1) {
-            let tagElement: HTMLElement = this.document.createElement(tagName);
+            let tagElement: HTMLElement = document.createElement(tagName);
             tagElement.setAttribute("elem-name", elemName);
 
             if (!className) {
@@ -56,8 +64,8 @@
         }
     }
 
-    public tagLink(): void {
-        this.tag("a", "ext-link", "ext-link", {
+    function tagLink(): void {
+        tag("a", "ext-link", "ext-link", {
             "target": "_blank",
             "type": "simple",
             "xlink:type": "simple",
@@ -70,15 +78,15 @@
         });
     }
 
-    public tagInSpan(elemName: string, className?: string): void {
-        this.tag("span", elemName, className);
+    function tagInSpan(elemName: string, className?: string): void {
+        tag("span", elemName, className);
     }
 
-    public tagInMark(elemName: string, className?: string): void {
-        this.tag("mark", elemName, className);
+    function tagInMark(elemName: string, className?: string): void {
+        tag("mark", elemName, className);
     }
 
-    public tagInXref(rid: string, refType: string): void {
+    function tagInXref(rid: string, refType: string): void {
         let elemName: string = "xref",
             className: string = elemName + " " + refType,
             attributes: { [name: string]: string } = {
@@ -87,22 +95,35 @@
                 "href": "#" + rid
             };
 
-        this.tag("a", elemName, className, attributes);
+        tag("a", elemName, className, attributes);
     }
 
-    public tagInBold(): void {
-        this.tag("b", "bold", "bold");
+    function tagInBold(): void {
+        tag("b", "bold", "bold");
     }
 
-    public tagInItalic(): void {
-        this.tag("i", "italic", "italic");
+    function tagInItalic(): void {
+        tag("i", "italic", "italic");
     }
 
-    public tagInUnderline(): void {
-        this.tag("u", "underline", "underline");
+    function tagInUnderline(): void {
+        tag("u", "underline", "underline");
     }
 
-    public tagInMonospace(): void {
-        this.tag("kbd", "monospace", "monospace");
+    function tagInMonospace(): void {
+        tag("kbd", "monospace", "monospace");
     }
+
+    return {
+        clearTagsInSelection: clearTagsInSelection,
+        tag: tag,
+        tagInBold: tagInBold,
+        tagInItalic: tagInItalic,
+        tagInMark: tagInMark,
+        tagInMonospace: tagInMonospace,
+        tagInSpan: tagInSpan,
+        tagInUnderline: tagInUnderline,
+        tagInXref: tagInXref,
+        tagLink: tagLink
+    };
 }

@@ -5,13 +5,13 @@ import { IRequesterBase } from "../contracts/http/requester-base";
 import { JsonRequester } from "../services/http/json-requester";
 
 import { IStorageKeys } from "../contracts/models/services.models";
-import { IDocumentContentData } from "../contracts/documents/document-content-data";
+import { IDocumentContentData } from "../contracts/services.documents";
 import { DocumentContentData } from "../services/documents/document-content-data";
 import { DocumentController } from "../controllers/documents.controllers";
 
 import { IEditorMode, IEditorTheme } from "../contracts/models/configuration.models";
 import { IConfiguredEditor, IMonacoEditorConfig, MonacoEditorConfig } from "../configurations/monaco-editor-config";
-import { EventHandlerFactory } from "../configurations/event.handlers.configuration";
+import { EventHandlersFactory } from "../components/event.handlers.factory";
 import { ToastrConfiguration } from "../configurations/toastr-config";
 
 declare let window: Window;
@@ -40,7 +40,7 @@ const keys: IStorageKeys = {
 
 let requirejs: any = (window as any).require;
 
-let eventHandlerFactory: EventHandlerFactory = new EventHandlerFactory(window);
+let eventHandlerFactory: EventHandlersFactory = new EventHandlersFactory();
 let monacoEditorConfig: IMonacoEditorConfig = new MonacoEditorConfig(window, requirejs);
 
 let storage: Storage = window.sessionStorage;
