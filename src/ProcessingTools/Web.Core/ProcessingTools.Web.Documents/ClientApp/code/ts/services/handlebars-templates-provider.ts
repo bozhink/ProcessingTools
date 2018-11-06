@@ -14,13 +14,13 @@ export class HandlebarsTemplatesProvider implements ITemplatesProvider {
         }
 
         this.baseAddress = baseAddress || "~/templates";
-        this.extension = extension || "handlebars";
+        this.extension = extension || ".handlebars";
     }
 
     public get(name: string): Promise<(vm: any) => string> {
         let self: HandlebarsTemplatesProvider = this;
         return new Promise(function (resolve: (value?: (vm: any) => string) => void, reject: (reason?: any) => void): void {
-            let url: string = `${self.baseAddress}/${name}.${self.extension}`;
+            let url: string = `${self.baseAddress}/${name}${self.extension}`;
 
             try {
                 if (self.cache[name]) {
