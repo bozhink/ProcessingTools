@@ -147,6 +147,9 @@ function cleanBuild() {
 
 function copyTemplates() {
     return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
+        .pipe(rename(path => {
+            path.extname += ".html";
+        }))
         .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
 }
 
@@ -157,7 +160,9 @@ function copyAndMinifyTemplates() {
             minifyCSS: true,
             minifyJS: true
         }))
-        .pipe(rename(renameForMinify))
+        .pipe(rename(path => {
+            path.extname += ".min.html";
+        }))
         .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
 }
 
