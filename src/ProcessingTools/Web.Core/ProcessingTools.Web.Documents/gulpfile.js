@@ -38,8 +38,10 @@ const TESTS_PATH = "ClientApp/tests";
 /**
  * Common
  */
+var PluginError = require("plugin-error");
 var gulp = require("gulp");
-var gulpUtil = require("gulp-util");
+var log = require("fancy-log");
+var debug = require("gulp-debug");
 var concat = require("gulp-concat");
 var less = require("gulp-less");
 var cssmin = require("gulp-cssmin");
@@ -77,6 +79,9 @@ function bundleconfigProcessJavaScript() {
         return gulp.src(bundle.inputFiles, {
                 base: "."
             })
+            .pipe(debug({
+                title: "bundleconfigProcessJavaScript"
+            }))
             .pipe(concat(bundle.outputFileName))
             .pipe(uglify())
             .pipe(gulp.dest("."));
@@ -89,6 +94,9 @@ function bundleconfigProcessCss() {
         return gulp.src(bundle.inputFiles, {
                 base: "."
             })
+            .pipe(debug({
+                title: "bundleconfigProcessCss"
+            }))
             .pipe(concat(bundle.outputFileName))
             .pipe(cssmin())
             .pipe(gulp.dest("."));
@@ -101,6 +109,9 @@ function bundleconfigProcessHtml() {
         return gulp.src(bundle.inputFiles, {
                 base: "."
             })
+            .pipe(debug({
+                title: "bundleconfigProcessHtml"
+            }))
             .pipe(concat(bundle.outputFileName))
             .pipe(htmlmin({
                 collapseWhitespace: true,
@@ -147,6 +158,9 @@ function cleanBuild() {
 
 function copyTemplates() {
     return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
+        .pipe(debug({
+            title: "copyTemplates"
+        }))
         .pipe(rename(path => {
             path.extname += ".html";
         }))
@@ -155,6 +169,9 @@ function copyTemplates() {
 
 function copyAndMinifyTemplates() {
     return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
+        .pipe(debug({
+            title: "copyAndMinifyTemplates"
+        }))
         .pipe(htmlmin({
             collapseWhitespace: true,
             minifyCSS: true,
@@ -168,11 +185,17 @@ function copyAndMinifyTemplates() {
 
 function compileCss() {
     return gulp.src(path.join(CSS_SRC_PATH, "**/*.css"))
+        .pipe(debug({
+            title: "compileCss"
+        }))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
 function compileAndMinifyCss() {
     return gulp.src(path.join(CSS_SRC_PATH, "**/*.css"))
+        .pipe(debug({
+            title: "compileAndMinifyCss"
+        }))
         .pipe(cssmin())
         .pipe(rename(renameForMinify))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
@@ -188,12 +211,18 @@ function compileAndMinifySass() {
 
 function compileLess() {
     return gulp.src(path.join(LESS_SRC_PATH, "**/*.less"))
+        .pipe(debug({
+            title: "compileLess"
+        }))
         .pipe(less())
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
 function compileAndMinifyLess() {
     return gulp.src(path.join(LESS_SRC_PATH, "**/*.less"))
+        .pipe(debug({
+            title: "compileAndMinifyLess"
+        }))
         .pipe(less())
         .pipe(cssmin())
         .pipe(rename(renameForMinify))
@@ -202,17 +231,26 @@ function compileAndMinifyLess() {
 
 function compileJavaScript() {
     return gulp.src(path.join(JS_SRC_PATH, "**/*.js"))
+        .pipe(debug({
+            title: "compileJavaScript"
+        }))
         .pipe(gulp.dest(path.join(JS_OUT_PATH)));
 }
 
 function compileTypeScript() {
     return gulp.src(path.join(TS_SRC_PATH, "**/*.ts"))
+        .pipe(debug({
+            title: "compileTypeScript"
+        }))
         .pipe(tsProject())
         .js.pipe(gulp.dest(path.join(JS_OUT_PATH)));
 }
 
 function copyCode() {
     return gulp.src(path.join(JS_OUT_PATH, "**/*.js"))
+        .pipe(debug({
+            title: "copyCode"
+        }))
         .pipe(gulp.dest(JS_DIST_PATH));
 }
 
@@ -220,6 +258,9 @@ function copyAndMinifyCode() {
     return pump([
         //gulp.src(path.join(JS_OUT_PATH, "**/*.js")),
         gulp.src([path.join(JS_OUT_PATH, "**/site.js"), path.join(JS_OUT_PATH, "**/cookie-consent.js")]),
+        debug({
+            title: "copyAndMinifyCode"
+        }),
         uglify(),
         rename(renameForMinify),
         gulp.dest(JS_DIST_PATH)
@@ -230,6 +271,9 @@ function JsAppFactory() {
     this.createBuild = function (srcFileName, distFileName, runUglify) {
         return function () {
             var stream = gulp.src(path.join(JS_OUT_PATH, APPS_RELATIVE_PATH, srcFileName))
+                .pipe(debug({
+                    title: "JsAppFactory " + srcFileName
+                }))
                 //.pipe(named())
                 .pipe(webpackStream({
                     config: webpackConfig
@@ -328,11 +372,12 @@ gulp.task("webpack", function (callback) {
         // configuration
     }, function (error, stats) {
         if (error) {
-            throw new gulpUtil.PluginError("webpack", error);
+            throw new PluginError("webpack", error);
         }
 
-        gulpUtil.log("[webpack]", stats.toString({
-            // output options
+        log("[webpack]", stats.toString({
+            all: true,
+            env: true
         }));
 
         if (callback && typeof callback === "function") {
@@ -350,10 +395,10 @@ gulp.task("webpack-dev-server", function (callback) {
         // server and middleware options
     }).listen(9090, "localhost", function (error) {
         if (error) {
-            throw new gulpUtil.PluginError("webpack-dev-server", error);
+            throw new PluginError("webpack-dev-server", error);
         }
 
-        gulpUtil.log("[webpack-dev-server]", "http://localhost:9090/webpack-dev-server/index.html");
+        log("[webpack-dev-server]", "http://localhost:9090/webpack-dev-server/index.html");
 
         // keep the server alive or continue?
         // if (callback && typeof callback === "function") {
@@ -429,6 +474,9 @@ gulp.task("build", [
  */
 gulp.task("test", function () {
     return gulp.src(path.join(TESTS_PATH, "**/*.js"))
+        .pipe(debug({
+            title: "test"
+        }))
         .pipe(mocha())
         .on("error", function () {
             this.emit("end");
