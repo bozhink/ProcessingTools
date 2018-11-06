@@ -42,6 +42,7 @@ var PluginError = require("plugin-error");
 var gulp = require("gulp");
 var log = require("fancy-log");
 var debug = require("gulp-debug");
+var sourcemaps = require("gulp-sourcemaps");
 var concat = require("gulp-concat");
 var less = require("gulp-less");
 var cssmin = require("gulp-cssmin");
@@ -61,6 +62,10 @@ var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config");
 var named = require("vinyl-named");
+
+var Fiber = require("fibers");
+var sass = require("gulp-sass");
+sass.compiler = require("node-sass");
 
 function renameForMinify(path) {
     //path.dirname += "/ciao";
@@ -202,11 +207,24 @@ function compileAndMinifyCss() {
 }
 
 function compileSass() {
-    // not supported
+    return gulp.src(path.join(SASS_SRC_PATH, "**/*.scss"))
+        .pipe(debug({
+            title: "compileSass"
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(sass({ fiber: Fiber }).on("error", sass.logError))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
 function compileAndMinifySass() {
-    // not supported
+    return gulp.src(path.join(SASS_SRC_PATH, "**/*.scss"))
+        .pipe(debug({
+            title: "compileSass"
+        }))
+        .pipe(sass({ fiber: Fiber, outputStyle: "compressed" }).on("error", sass.logError))
+        .pipe(cssmin())
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
 function compileLess() {
@@ -214,7 +232,9 @@ function compileLess() {
         .pipe(debug({
             title: "compileLess"
         }))
+        .pipe(sourcemaps.init())
         .pipe(less())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
