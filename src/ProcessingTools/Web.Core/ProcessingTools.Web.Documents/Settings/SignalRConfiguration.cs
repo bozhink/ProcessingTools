@@ -16,8 +16,8 @@ namespace ProcessingTools.Web.Documents.Settings
         /// <summary>
         /// Configure SignalR.
         /// </summary>
-        /// <param name="services"></param>
-        /// <returns></returns>
+        /// <param name="services">Service collection to be configured.</param>
+        /// <returns>Configured service collection.</returns>
         public static IServiceCollection ConfigureSignalR(this IServiceCollection services)
         {
             services.AddSignalR();
@@ -37,7 +37,7 @@ namespace ProcessingTools.Web.Documents.Settings
                 routes.MapHub<ChatHub>("/r/chat");
             });
 #pragma warning restore S1075 // URIs should not be hardcoded
-            
+
             return app;
         }
     }

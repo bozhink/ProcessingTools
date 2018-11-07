@@ -47,7 +47,7 @@ namespace ProcessingTools.Web.Documents.Settings
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
             return services;
         }
     }

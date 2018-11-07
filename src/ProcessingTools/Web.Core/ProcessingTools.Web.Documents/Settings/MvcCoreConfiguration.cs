@@ -19,7 +19,7 @@ namespace ProcessingTools.Web.Documents.Settings
         public static IServiceCollection ConfigureMvcCore(this IServiceCollection services)
         {
             IMvcCoreBuilder mvcCoreBuilder = services.AddMvcCore();
-            
+
             mvcCoreBuilder
                 .AddApiExplorer()
                 .AddAuthorization()
