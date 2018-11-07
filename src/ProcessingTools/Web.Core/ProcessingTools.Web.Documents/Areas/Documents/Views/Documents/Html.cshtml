@@ -24,47 +24,80 @@
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<nav class="navbar fixed-bottom navbar-light bg-light navbar-expand-md">
-    <div class="container">
-        <a asp-action="@(DocumentsController.HtmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="navbar-brand">HTML</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTools" aria-controls="navbarTools" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTools">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" asp-action="@(DocumentsController.XmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank">XML</a></li>
-            </ul>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropup">
-                    <a class="nav-link dropdown-toggle" href="#" id="manualActionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manual actions</a>
-                    <div class="dropdown-menu" aria-labelledby="manualActionsDropdown">
-                        <a class="dropdown-item" id="move-floating-objects">Move floating objects</a>
-                        <a class="dropdown-item" id="tag-figures-citations-menu-item">Figures citations</a>
-                        <a class="dropdown-item" id="tag-tables-citations-menu-item">Tables citations</a>
-                        <a class="dropdown-item" id="tag-suppl-materials-citations-menu-item">Suppl. materials citations</a>
-                        <a class="dropdown-item" id="tag-appendices-citations-menu-item">Appendices citations</a>
-                        <a class="dropdown-item" id="tag-bibliographic-citations-menu-item">Bibliographic citations</a>
-                    </div>
-                </li>
-                <li class="nav-item dropup">
-                    <a class="nav-link dropdown-toggle" href="#" id="windowsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Window</a>
-                    <div class="dropdown-menu" aria-labelledby="windowsDropdown">
-                        <a class="dropdown-item" id="window-map">Map</a>
-                        <a class="dropdown-item" id="window-coordinates">Coordinates</a>
-                    </div>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">Download</a></li>
-                <li class="nav-item"><a class="nav-link" id="refresh-button">Refresh</a></li>
-                <li class="nav-item"><a class="nav-link" id="save-button">Save</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1 text-muted">
+                    <span>Document</span>
+                    <span class="fa fa-chevron-down"></span>
+                </h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="save-button" title="Save document">Save</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="refresh-button" title="Refresh document content">Refresh</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" title="Download XML">Download</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" asp-action="@(DocumentsController.XmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank"  title="Open document's XML for edit">Edit XML</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" asp-action="@DocumentsController.IndexActionName" asp-route-articleId="@Model.ArticleId" title="Leave document and return to article">Close</a>
+                    </li>
+                </ul>
 
-<article id="article" contextmenu="supermenu"></article>
-<div class="clearfix"></div>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Manual actions</span>
+                    <span class="fa fa-chevron-down"></span>
+                </h6>
+                <ul class="nav flex-column manual-actions">
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="move-floating-objects">Move floating objects</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="tag-figures-citations-menu-item">Figures citations</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="tag-tables-citations-menu-item">Tables citations</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="tag-suppl-materials-citations-menu-item">Suppl. materials citations</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="tag-appendices-citations-menu-item">Appendices citations</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" id="tag-bibliographic-citations-menu-item">Bibliographic citations</a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Window</span>
+                    <span class="fa fa-chevron-down"></span>
+                </h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" id="window-map">Map</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="window-coordinates">Coordinates</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <section role="main" class="col-md-8 ml-sm-auto col-lg-10 px-4">
+            <article id="article" contextmenu="supermenu"></article>
+        </section>
+    </div>
+</div>
+
+
+
 <aside id="aside-main-box"></aside>
 <aside style="display: none;">
     <a id="get-link" asp-action="@DocumentsController.GetHtmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>

@@ -218,6 +218,19 @@ function keyDownEventHandler(event: KeyboardEvent): any {
     }
 }
 
+function toggleSidebarActionsEventHandler(e: Event): void {
+    let $target: JQuery = $(e.target as HTMLElement).closest(".sidebar-heading"),
+        $next: JQuery = $target.next(),
+        $chevron: JQuery = $target.find(".fa");
+    if ($next.is(":visible")) {
+        $next.hide();
+        $chevron.removeClass("fa-chevron-down").addClass("fa-chevron-right");
+    } else {
+        $next.show();
+        $chevron.addClass("fa-chevron-down").removeClass("fa-chevron-right");
+    }
+}
+
 $("#article")
     .on("dblclick", "p,td,th", eventHandlers.setElementInEditMode)
     .on("blur", "p,td,th", eventHandlers.unsetElementInEditMode);
@@ -230,6 +243,8 @@ $("#supermenu")
     .on("click", ".mi-tab", eventHandlers.tagTablesCitation)
     .on("click", ".mi-fig", eventHandlers.tagFiguresCitation)
     .on("click", ".mi-move", eventHandlers.moveFloatingObject);
+
+$(document).on("click", ".sidebar .sidebar-heading", toggleSidebarActionsEventHandler)
 
 document
     .getElementById(HtmlElementIds.SAVE_BUTTON_ID)

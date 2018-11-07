@@ -65,10 +65,11 @@ export function DocumentPreviewEventHandlersFactory(
         return parentElement;
     }
 
-    function actionsMenuFactory(menuName: string, callback: (e: JQuery) => void): void {
+    function actionsMenuFactory($target: JQuery, callback: (e: JQuery) => void): void {
         let $aside: JQuery = $("#" + MAIN_ASIDE_ID),
             $supermenu: JQuery = $("#supermenu"),
-            $menu: JQuery;
+            $menu: JQuery,
+            menuName: string = $target.text();
 
         $("body").removeClass("move-anchor");
 
@@ -79,6 +80,9 @@ export function DocumentPreviewEventHandlersFactory(
             .attr("id", "manual-mode-notifier")
             .text(menuName)
             .appendTo($aside);
+
+        $target.closest(".nav.manual-actions").find(".nav-link").removeClass("active");
+        $target.closest(".nav-item").find(".nav-link").addClass("active");
 
         // create menu
         $(".manual-tag-menu").remove();
@@ -191,7 +195,7 @@ export function DocumentPreviewEventHandlersFactory(
 
         tagBibliographicCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
-            actionsMenuFactory($target.text(), function ($menu: JQuery): void {
+            actionsMenuFactory($target, function ($menu: JQuery): void {
                 $("[elem-name=ref]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
@@ -206,7 +210,7 @@ export function DocumentPreviewEventHandlersFactory(
 
         tagAppendicesCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
-            actionsMenuFactory($target.text(), function ($menu: JQuery): void {
+            actionsMenuFactory($target, function ($menu: JQuery): void {
                 $("[elem-name=app]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
@@ -221,7 +225,7 @@ export function DocumentPreviewEventHandlersFactory(
 
         tagSupplMaterialsCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
-            actionsMenuFactory($target.text(), function ($menu: JQuery): void {
+            actionsMenuFactory($target, function ($menu: JQuery): void {
                 $("[elem-name=supplementary-material]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
@@ -236,7 +240,7 @@ export function DocumentPreviewEventHandlersFactory(
 
         tagTablesCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
-            actionsMenuFactory($target.text(), function ($menu: JQuery): void {
+            actionsMenuFactory($target, function ($menu: JQuery): void {
                 $("[elem-name=table-wrap]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
@@ -251,7 +255,7 @@ export function DocumentPreviewEventHandlersFactory(
 
         tagFiguresCitationMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
-            actionsMenuFactory($target.text(), function ($menu: JQuery): void {
+            actionsMenuFactory($target, function ($menu: JQuery): void {
                 $("[elem-name=fig]").each(function (i: number, element: HTMLElement): void {
                     let $element: JQuery = $(element);
                     $("<menuitem>")
@@ -266,7 +270,7 @@ export function DocumentPreviewEventHandlersFactory(
 
         moveFloatingObjectsMenuClick: factory.create(function (e: Event): any {
             let $target: JQuery = $(e.target as HTMLElement);
-            actionsMenuFactory($target.text(), function ($menu: JQuery): void {
+            actionsMenuFactory($target, function ($menu: JQuery): void {
                 let $articleFigsAndTables: JQuery = $("." + ARTICLE_FIGS_AND_TABLES);
 
                 $articleFigsAndTables.find("[elem-name=fig]").each(function (i: number, element: HTMLElement): void {
