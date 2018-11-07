@@ -1,27 +1,25 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container">
-        <a asp-area="@AreaNames.Default" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.IndexActionName)" class="navbar-brand">PTWD</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <a asp-area="@AreaNames.Default" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.IndexActionName)" class="navbar-brand">PTWD</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="@(ActionNames.Index)" title="Home" aria-label="Home">
-                        <span class="fa fa-home"></span>
-                        <span class="sr-only">(home)</span>
-                        <span class="d-md-none ml-1">Home</span>
-                    </a>
-                </li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <partial name="Navbars/Main/_LayoutMenuPartial" />
-                    <partial name="Navbars/Main/_DocumentsMenuPartial" />
-                }
-            </ul>
-            <partial name="Navbars/Main/_HelpMenuPartial" />
-            <partial name="Navbars/Main/_LoginPartial" />
-        </div>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-action="@(ActionNames.Index)" title="Home" aria-label="Home">
+                    <span class="fa fa-home"></span>
+                    <span class="sr-only">(home)</span>
+                    <span class="d-md-none ml-1">Home</span>
+                </a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <partial name="Navbars/Main/_LayoutMenuPartial" />
+                <partial name="Navbars/Main/_DocumentsMenuPartial" />
+            }
+        </ul>
+        <partial name="Navbars/Main/_HelpMenuPartial" />
+        <partial name="Navbars/Main/_LoginPartial" />
     </div>
 </nav>
