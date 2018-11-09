@@ -9,5 +9,9 @@ namespace ProcessingTools.Models.Contracts.Files.Mediatypes
     /// </summary>
     public interface IMediatypeBaseModel : IMediatypeMetaModel
     {
+        /// <summary>
+        /// Gets the description of the mediatype.
+        /// </summary>
+        string Description { get; }
     }
 }

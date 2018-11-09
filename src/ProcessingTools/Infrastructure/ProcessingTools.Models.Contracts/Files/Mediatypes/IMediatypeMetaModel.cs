@@ -23,10 +23,5 @@ namespace ProcessingTools.Models.Contracts.Files.Mediatypes
         /// Gets the MIME subtype.
         /// </summary>
         string MimeSubtype { get; }
-
-        /// <summary>
-        /// Gets the description of the mediatype.
-        /// </summary>
-        string Description { get; }
     }
 }
