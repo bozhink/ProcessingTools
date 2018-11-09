@@ -1,0 +1,71 @@
+﻿@model ProcessingTools.Web.Models.Files.Mediatypes.MediatypeDeleteViewModel
+@{
+    ViewData[ContextKeys.Title] = "Delete Mediatype";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main" class="container">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Extension)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.Extension)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ContentType)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ContentType)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.MimeType)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.MimeType)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.MimeSubtype)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.MimeSubtype)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.Description)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedOn)</dd>
+        </dl>
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-outline-danger" value="Delete" />
+                    <a asp-action="@(MediatypesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(MediatypesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
