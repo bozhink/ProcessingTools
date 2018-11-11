@@ -20,6 +20,11 @@ namespace ProcessingTools.Common.Constants
         public const string DocumentsDatabaseMongoDBConnectionStringName = "DocumentsDatabaseMongoDB";
 
         /// <summary>
+        /// Files database MongoDB connection string name.
+        /// </summary>
+        public const string FilesDatabaseMongoDBConnectionStringName = "FilesDatabaseMongoDB";
+
+        /// <summary>
         /// Layout database MongoDB connection string name.
         /// </summary>
         public const string LayoutDatabaseMongoDBConnectionStringName = "LayoutDatabaseMongoDB";
@@ -33,6 +38,11 @@ namespace ProcessingTools.Common.Constants
         /// Documents MongoDB database name.
         /// </summary>
         public const string DocumentsMongoDBDatabaseName = "DatabaseNames:DocumentsMongoDB";
+
+        /// <summary>
+        /// Files MongoDB database name.
+        /// </summary>
+        public const string FilesMongoDBDatabaseName = "DatabaseNames:FilesMongoDB";
 
         /// <summary>
         /// Layout MongoDB database name.
