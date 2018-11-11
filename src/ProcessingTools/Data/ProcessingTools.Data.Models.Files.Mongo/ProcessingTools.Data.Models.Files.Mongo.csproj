@@ -40,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
   </ItemGroup>
 </Project>
