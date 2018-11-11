@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Services.Contracts.Cache;
 
     [TestClass]

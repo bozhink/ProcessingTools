@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Miners.Abstractions
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Services.Contracts.Bio.Biorepositories;
 
     /// <summary>

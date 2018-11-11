@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Confirm email";
+    ViewData[ContextKeys.Title] = "Confirm email";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div>
-    <p>
-        Thank you for confirming your email.
-    </p>
-</div>
+<section role="main" class="container">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+    <p>Thank you for confirming your email.</p>
+</section>

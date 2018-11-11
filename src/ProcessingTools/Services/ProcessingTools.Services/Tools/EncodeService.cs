@@ -47,7 +47,7 @@ namespace ProcessingTools.Services.Tools
             if (!string.IsNullOrEmpty(source))
             {
                 byte[] bytes = this.encoding.GetBytes(source);
-                result = ProcessingTools.Security.Utils.ToBase64Url(bytes);
+                result = ProcessingTools.Security.SecurityUtilities.ToBase64Url(bytes);
             }
 
             return Task.FromResult(result);

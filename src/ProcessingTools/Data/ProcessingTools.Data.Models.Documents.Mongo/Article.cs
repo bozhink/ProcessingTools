@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using System;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Articles;
 
     /// <summary>
@@ -33,6 +33,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         [BsonRequired]
         [BsonRepresentation(BsonType.String)]
         public Guid ObjectId { get; set; }
+
+        /// <inheritdoc/>
+        public string ArticleId { get; set; }
 
         /// <inheritdoc/>
         [BsonRequired]
@@ -62,6 +65,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
 
         /// <inheritdoc/>
         public DateTime? PublishedOn { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? ArchivedOn { get; set; }
 
         /// <inheritdoc/>
         public DateTime? AcceptedOn { get; set; }

@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
@@ -16,18 +16,15 @@
         where TModel : class, IIntegerIdentifiable
         where TFilter : IFilter
     {
-        private readonly IGeoRepository<TEntity> repository;
-        private readonly IApplicationContext applicationContext;
-
         protected AbstractGeoRepository(IGeoRepository<TEntity> repository, IApplicationContext applicationContext)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            this.Repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.ApplicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
-        protected IGeoRepository<TEntity> Repository => this.repository;
+        protected IGeoRepository<TEntity> Repository { get; }
 
-        protected IApplicationContext ApplicationContext => this.applicationContext;
+        protected IApplicationContext ApplicationContext { get; }
 
         protected abstract Func<TEntity, TModel> MapEntityToModel { get; }
 
@@ -51,7 +48,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            this.repository.Delete(id: id);
+            this.Repository.Delete(id: id);
             return Task.FromResult(id);
         }
 
@@ -62,7 +59,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = this.repository.Get(id);
+            var entity = this.Repository.Get(id);
             if (entity == null)
             {
                 return Task.FromResult<TModel>(null);
@@ -83,7 +80,7 @@
             return await this.InsertEntityAsync(entity).ConfigureAwait(false);
         }
 
-        public virtual Task<object> SaveChangesAsync() => this.repository.SaveChangesAsync();
+        public virtual Task<object> SaveChangesAsync() => this.Repository.SaveChangesAsync();
 
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
@@ -127,15 +124,15 @@
 
         protected async Task<TEntity> InsertEntityAsync(TEntity entity)
         {
-            string user = this.applicationContext.UserContext?.UserId;
-            var now = this.applicationContext.DateTimeProvider.Invoke();
+            string user = this.ApplicationContext.UserContext?.UserId;
+            var now = this.ApplicationContext.DateTimeProvider.Invoke();
 
             entity.CreatedBy = user;
             entity.CreatedOn = now;
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
 
-            this.repository.Add(entity);
+            this.Repository.Add(entity);
             return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
@@ -146,13 +143,13 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            string user = this.applicationContext.UserContext?.UserId;
-            var now = this.applicationContext.DateTimeProvider.Invoke();
+            string user = this.ApplicationContext.UserContext?.UserId;
+            var now = this.ApplicationContext.DateTimeProvider.Invoke();
 
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
 
-            this.repository.Update(entity);
+            this.Repository.Update(entity);
             return await Task.FromResult(entity).ConfigureAwait(false);
         }
 

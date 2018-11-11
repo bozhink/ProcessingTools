@@ -7,9 +7,9 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using System;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Enumerations.Nlm;
 
     /// <summary>
     /// Float object tag style.
@@ -22,7 +22,7 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
         /// </summary>
         public FloatObjectTagStyle()
         {
-            this.ObjectId = Guid.NewGuid();
+            ObjectId = Guid.NewGuid();
         }
 
         /// <inheritdoc/>

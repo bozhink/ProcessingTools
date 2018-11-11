@@ -6,8 +6,8 @@ namespace ProcessingTools.Data.Models.Cache.Mongo
 {
     using System;
     using MongoDB.Bson.Serialization.Attributes;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Data.Models.Contracts.Cache;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>

@@ -6,9 +6,9 @@ namespace ProcessingTools.Services.Xml
 {
     using System;
     using System.Xml;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Document wrapper.

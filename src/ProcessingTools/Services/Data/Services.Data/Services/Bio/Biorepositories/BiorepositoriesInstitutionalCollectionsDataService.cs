@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Contracts.Bio.Biorepositories;
     using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;

@@ -11,7 +11,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using ProcessingTools.Clients.ConnectedServices.Bio.Aphia;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 

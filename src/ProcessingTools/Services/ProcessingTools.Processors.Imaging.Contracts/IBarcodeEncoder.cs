@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Imaging.Contracts
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Barcode encoder.

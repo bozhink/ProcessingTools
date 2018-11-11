@@ -79,8 +79,8 @@
     <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Principal.Windows.4.5.1\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
@@ -128,21 +128,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
-      <Project>{9f7ef778-c698-498e-b3d5-5cf91fa69b24}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
-      <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
-      <Name>ProcessingTools.Constants</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
-      <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
-      <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
@@ -172,25 +160,13 @@
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
       <Name>Bio.Taxonomy.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
-      <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
-      <Name>Bio.Taxonomy.Data.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Seed\Bio.Taxonomy.Data.Seed.csproj">
       <Project>{2fa391d3-d129-4799-98f4-0969d27b1b11}</Project>
       <Name>Bio.Taxonomy.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
-      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
-      <Name>Bio.Taxonomy.Data.Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Common\Data.Common.File\Data.Common.File.csproj">
-      <Project>{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}</Project>
-      <Name>Data.Common.File</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo\Geo.Data.Entity\Geo.Data.Entity.csproj">
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
@@ -228,9 +204,17 @@
       <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
       <Name>DataResources.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Interceptors\Interceptors.csproj">
-      <Project>{ef204549-80d1-4665-8cfe-8e57c5c88ee6}</Project>
-      <Name>Interceptors</Name>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
+      <Project>{ebd6c134-433a-4d4d-864a-50745ce94bca}</Project>
+      <Name>ProcessingTools.Common.Code</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
+      <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Ninject.Interceptors\ProcessingTools.Ninject.Interceptors.csproj">
+      <Project>{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}</Project>
+      <Name>ProcessingTools.Ninject.Interceptors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
       <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>
@@ -238,9 +222,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.3.0.5690\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.3.0.5690\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.3.0.5690\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.5.0.6605\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.5.0.6605\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.5.0.6605\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>

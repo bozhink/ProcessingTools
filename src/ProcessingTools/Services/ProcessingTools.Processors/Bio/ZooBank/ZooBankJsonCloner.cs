@@ -8,10 +8,10 @@ namespace ProcessingTools.Processors.Bio.ZooBank
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Constants.Uri;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Constants.Uri;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     /// <summary>

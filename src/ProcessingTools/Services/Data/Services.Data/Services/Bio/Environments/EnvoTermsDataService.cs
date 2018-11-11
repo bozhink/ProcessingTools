@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Bio.Environments.Data.Entity.Models;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.Bio.Environments;
     using ProcessingTools.Services.Models.Contracts.Bio.Environments;
     using ProcessingTools.Services.Models.Data.Bio.Environments;

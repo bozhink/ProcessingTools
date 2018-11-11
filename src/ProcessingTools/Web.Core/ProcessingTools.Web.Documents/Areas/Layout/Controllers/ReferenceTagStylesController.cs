@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Layout.Styles.References;
     using ProcessingTools.Web.Services.Contracts.Layout.Styles;

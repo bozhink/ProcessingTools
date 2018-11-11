@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Validation
 {
     using System;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Validation;
 
     /// <summary>

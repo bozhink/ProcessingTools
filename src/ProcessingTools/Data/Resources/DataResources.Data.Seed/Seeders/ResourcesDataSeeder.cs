@@ -5,7 +5,7 @@
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Common.Entity.Seed;
     using ProcessingTools.DataResources.Data.Entity;
     using ProcessingTools.DataResources.Data.Entity.Contracts;

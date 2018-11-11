@@ -94,9 +94,6 @@ namespace ProcessingTools.Data.Documents.Mongo
             return true;
         }
 
-        private IMongoCollection<B> GetCollection<B>()
-        {
-            return this.db.GetCollection<B>(MongoCollectionNameFactory.Create<B>());
-        }
+        private IMongoCollection<T> GetCollection<T>() => this.db.GetCollection<T>(MongoCollectionNameFactory.Create<T>());
     }
 }

@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Documents.Models
     using System;
     using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Application user.

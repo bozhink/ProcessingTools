@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Constants.Data.Geo;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts;
 
     public class PostCode : BaseModel, IIntegerIdentifiable, IDataModel

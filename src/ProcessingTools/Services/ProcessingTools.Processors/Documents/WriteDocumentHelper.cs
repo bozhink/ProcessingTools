@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Documents
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Documents;

@@ -6,9 +6,9 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Web;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Web;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Data.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

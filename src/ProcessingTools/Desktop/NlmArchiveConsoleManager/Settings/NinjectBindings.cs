@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
-    using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Factory;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
-    using Ninject.Modules;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Configuration;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Extensions.Factory;
+    using global::Ninject.Extensions.Interception.Infrastructure.Language;
+    using global::Ninject.Modules;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Documents.Mongo;
-    using ProcessingTools.Interceptors;
+    using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
     using ProcessingTools.Services.IO;
@@ -31,7 +31,7 @@
             });
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
@@ -45,7 +45,7 @@
                 .With<FileExistsRaiseWarningInterceptor>();
 
             this.Bind<ProcessingTools.Contracts.Serialization.IDeserializer>()
-                .To<ProcessingTools.Common.Serialization.DataContractJsonDeserializer>()
+                .To<ProcessingTools.Common.Code.Serialization.DataContractJsonDeserializer>()
                 .InSingletonScope();
 
             this.Bind<IProcessorFactory>()

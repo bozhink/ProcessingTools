@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Tasks.Models.Contracts.Tasks
 {
-    using ProcessingTools.Enumerations.Tasks;
+    using ProcessingTools.Common.Enumerations.Tasks;
 
     /// <summary>
     /// Task action.

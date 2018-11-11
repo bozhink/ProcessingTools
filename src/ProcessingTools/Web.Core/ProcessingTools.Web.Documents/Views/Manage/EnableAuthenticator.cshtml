@@ -1,10 +1,10 @@
 ﻿@model EnableAuthenticatorViewModel
 @{
-    ViewData["Title"] = "Enable authenticator";
+    ViewData[ContextKeys.Title] = "Enable authenticator";
     ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
 }
 
-<h4>@ViewData["Title"]</h4>
+<h4>@ViewData[ContextKeys.Title]</h4>
 <div>
     <p>To use an authenticator app go through the following steps:</p>
     <ol class="list">

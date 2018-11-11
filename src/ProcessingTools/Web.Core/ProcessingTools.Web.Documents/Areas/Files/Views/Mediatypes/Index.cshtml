@@ -1,0 +1,75 @@
+﻿@model ProcessingTools.Web.Models.Files.Mediatypes.MediatypesIndexViewModel
+
+@{
+    ViewData[ContextKeys.Title] = "Mediatypes";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main" class="container">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    @if (Model == null)
+    {
+        <div class="alert alert-info">No items found.</div>
+    }
+    else
+    {
+        <p><a asp-action="@(MediatypesController.CreateActionName)">Create New Parse Style</a></p>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Extension)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().ContentType)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Description)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().CreatedOn)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().ModifiedOn)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0; }
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@(++i)</td>
+                            <td>@Html.DisplayFor(m => item.Extension)</td>
+                            <td>@Html.DisplayFor(m => item.ContentType)</td>
+                            <td>@Html.DisplayFor(m => item.Description)</td>
+                            <td>@Html.DisplayFor(m => item.CreatedOn)</td>
+                            <td>@Html.DisplayFor(m => item.ModifiedOn)</td>
+                            <td>
+                                <a asp-action="@(MediatypesController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |
+                                <a asp-action="@(MediatypesController.DeleteActionName)" asp-route-id="@(item.Id)">Delete</a> |
+                                <a asp-action="@(MediatypesController.DetailsActionName)" asp-route-id="@(item.Id)">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <footer>
+                <partial name="@ViewNames.NavigationFootPartial" />
+            </footer>
+        }
+    }
+</section>
+
+@section Scripts {
+    <partial name="@ViewNames.PaginationScriptsPartial" />
+}
+

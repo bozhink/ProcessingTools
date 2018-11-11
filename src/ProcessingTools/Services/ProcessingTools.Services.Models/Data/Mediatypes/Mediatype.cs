@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Data.Mediatypes
 {
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Models.Contracts.Mediatypes;
 
     /// <summary>

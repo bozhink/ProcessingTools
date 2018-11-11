@@ -3,8 +3,8 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Common.Constants.Data.Documents;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents;
 
     public class File : ModelWithUserInformation, IFile

@@ -15,7 +15,7 @@
     }
 }
 
-<section role="main">
+<section role="main" class="container">
     <header>
         <h2>@ViewData[ContextKeys.Title]</h2>
     </header>
@@ -50,7 +50,7 @@
                     <label asp-for="FloatReferenceType"></label>
                 </div>
                 <div class="col-md-10">
-                    <select asp-for="FloatReferenceType" asp-items="Html.GetEnumSelectList<ProcessingTools.Enumerations.Nlm.ReferenceType>()" class="form-control"></select>
+                    <select asp-for="FloatReferenceType" asp-items="Html.GetEnumSelectList<ProcessingTools.Common.Enumerations.Nlm.ReferenceType>()" class="form-control"></select>
                     <span asp-validation-for="FloatReferenceType" class="text-danger"></span>
                 </div>
             </div>

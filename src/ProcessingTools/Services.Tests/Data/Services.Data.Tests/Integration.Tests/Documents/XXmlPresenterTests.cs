@@ -7,7 +7,7 @@
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Documents.Services.Data.Services;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.IO;

@@ -2,7 +2,7 @@
 {
     using System.Xml;
     using NUnit.Framework;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
 
     [TestFixture]

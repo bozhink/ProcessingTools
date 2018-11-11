@@ -5,12 +5,13 @@
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
-    using System.Text;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.Hashes;
+    using ProcessingTools.Web.Services.Contracts.Tools;
 
     /// <summary>
     /// Hashes controller.
@@ -34,48 +35,53 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string AllActionName = nameof(All);
 
-        private readonly Encoding encoding;
+        private readonly IHashesWebService hashesWebService;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HashesController"/> class.
         /// </summary>
-        /// <param name="encoding">Character encoding</param>
+        /// <param name="hashesWebService">Instance of <see cref="IHashesWebService"/>.</param>
         /// <param name="logger">Logger</param>
-        public HashesController(Encoding encoding, ILogger<HashesController> logger)
+        public HashesController(IHashesWebService hashesWebService, ILogger<HashesController> logger)
         {
-            this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
+            this.hashesWebService = hashesWebService ?? throw new ArgumentNullException(nameof(hashesWebService));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
         /// GET Hash
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl)
         {
             const string LogMessage = "GET Hash/Index";
 
             this.logger.LogTrace(LogMessage);
 
-            return this.RedirectToAction(ActionNames.Index, ControllerNames.Home);
+            return this.RedirectToAction(ActionNames.Index, ControllerNames.Home, new { returnUrl });
         }
 
         /// <summary>
         /// GET Hash/All
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(AllActionName)]
-        public IActionResult All()
+        public async Task<IActionResult> All(string returnUrl)
         {
             const string LogMessage = "GET Hash/All";
 
             this.logger.LogTrace(LogMessage);
 
-            HashesViewModel viewModel = new HashesViewModel();
+            HashesViewModel viewModel = await this.hashesWebService.GetHashesViewModelAsync().ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
+
             return this.View(model: viewModel);
         }
 
@@ -83,38 +89,24 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// POST Hash/All
         /// </summary>
         /// <param name="model">Request model.</param>
+        /// /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(AllActionName)]
-        public IActionResult All([Bind(nameof(HashContentRequestModel.Content))]HashContentRequestModel model)
+        public async Task<IActionResult> All([Bind(nameof(HashContentRequestModel.Content))]HashContentRequestModel model, string returnUrl)
         {
             const string LogMessage = "POST Hash/All";
 
             this.logger.LogTrace(LogMessage);
 
-            HashesViewModel viewModel = new HashesViewModel();
+            HashesViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
             {
                 try
                 {
-                    viewModel.Content = model.Content;
-
-                    viewModel.MD5String = ProcessingTools.Security.Utils.GetMD5HashAsString(model.Content, this.encoding);
-                    viewModel.MD5Base64String = ProcessingTools.Security.Utils.GetMD5HashAsBase64String(model.Content, this.encoding);
-
-                    viewModel.SHA1String = ProcessingTools.Security.Utils.GetSHA1HashAsString(model.Content, this.encoding);
-                    viewModel.SHA1Base64String = ProcessingTools.Security.Utils.GetSHA1HashAsBase64String(model.Content, this.encoding);
-
-                    viewModel.SHA256String = ProcessingTools.Security.Utils.GetSHA256HashAsString(model.Content, this.encoding);
-                    viewModel.SHA256Base64String = ProcessingTools.Security.Utils.GetSHA256HashAsBase64String(model.Content, this.encoding);
-
-                    viewModel.SHA384String = ProcessingTools.Security.Utils.GetSHA384HashAsString(model.Content, this.encoding);
-                    viewModel.SHA384Base64String = ProcessingTools.Security.Utils.GetSHA384HashAsBase64String(model.Content, this.encoding);
-
-                    viewModel.SHA512String = ProcessingTools.Security.Utils.GetSHA512HashAsString(model.Content, this.encoding);
-                    viewModel.SHA512Base64String = ProcessingTools.Security.Utils.GetSHA512HashAsBase64String(model.Content, this.encoding);
+                    viewModel = await this.hashesWebService.HashAsync(model).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -122,6 +114,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                     this.logger.LogError(ex, LogMessage);
                 }
             }
+
+            viewModel = viewModel ?? await this.hashesWebService.MapToViewModelAsync(model).ConfigureAwait(false);
+
+            viewModel.ReturnUrl = returnUrl;
 
             return this.View(model: viewModel);
         }

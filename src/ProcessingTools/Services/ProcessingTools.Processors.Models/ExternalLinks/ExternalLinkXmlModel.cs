@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Models.ExternalLinks
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
 
     /// <summary>
     /// External link XML model.

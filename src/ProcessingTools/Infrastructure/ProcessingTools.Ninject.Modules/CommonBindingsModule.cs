@@ -6,7 +6,7 @@ namespace ProcessingTools.Ninject.Modules
 {
     using global::Ninject.Extensions.Conventions;
     using global::Ninject.Modules;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Common Bindings Module

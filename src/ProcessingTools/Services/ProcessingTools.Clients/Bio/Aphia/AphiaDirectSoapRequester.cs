@@ -7,7 +7,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 

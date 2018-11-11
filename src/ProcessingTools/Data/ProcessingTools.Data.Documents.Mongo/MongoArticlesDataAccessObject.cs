@@ -9,13 +9,13 @@ namespace ProcessingTools.Data.Documents.Mongo
     using System.Threading.Tasks;
     using AutoMapper;
     using MongoDB.Driver;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Contracts.Documents.Articles;
     using ProcessingTools.Data.Models.Documents.Mongo;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Documents.Articles;
 
@@ -234,11 +234,13 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<Article>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Article>()
+                .Set(m => m.ArticleId, model.ArticleId)
                 .Set(m => m.Title, model.Title)
                 .Set(m => m.SubTitle, model.SubTitle)
                 .Set(m => m.Doi, model.Doi)
                 .Set(m => m.JournalId, model.JournalId)
                 .Set(m => m.PublishedOn, model.PublishedOn)
+                .Set(m => m.ArchivedOn, model.ArchivedOn)
                 .Set(m => m.AcceptedOn, model.AcceptedOn)
                 .Set(m => m.ReceivedOn, model.ReceivedOn)
                 .Set(m => m.VolumeSeries, model.VolumeSeries)

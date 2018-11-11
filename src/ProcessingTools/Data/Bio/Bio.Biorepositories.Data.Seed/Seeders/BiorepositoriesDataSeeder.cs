@@ -6,14 +6,14 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
-    using ProcessingTools.Common.Data.Seed;
-    using ProcessingTools.Common.Serialization.Csv;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Common.Code.Data.Seed;
+    using ProcessingTools.Common.Code.Serialization.Csv;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Extensions;
 
@@ -70,7 +70,7 @@
                 var fileNameAttribute = seedModelType.GetCustomAttributes(typeof(FileNameAttribute), false)?.FirstOrDefault() as FileNameAttribute;
                 if (fileNameAttribute == null)
                 {
-                    throw new ProcessingTools.Exceptions.InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
+                    throw new ProcessingTools.Common.Exceptions.InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
                 }
 
                 string fileName = string.Format("{0}/{1}", this.dataFilesDirectoryPath, fileNameAttribute.Name);
@@ -85,7 +85,7 @@
                     .ToArray();
                 if (items == null || items.Length < 1)
                 {
-                    throw new ProcessingTools.Exceptions.InvalidDataException("De-serialized items are not valid.");
+                    throw new ProcessingTools.Common.Exceptions.InvalidDataException("De-serialized items are not valid.");
                 }
 
                 var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);

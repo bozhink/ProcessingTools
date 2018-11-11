@@ -8,8 +8,8 @@
     using System.Xml;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts.Documents;

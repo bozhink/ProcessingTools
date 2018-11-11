@@ -4,13 +4,12 @@ namespace ProcessingTools.Web.Api
 {
     using System.Web.Http;
     using Owin;
-    using ProcessingTools.Constants;
 
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            AutoMapperConfig.RegisterMappings(Assemblies.WebApi);
+            AutoMapperConfig.RegisterMappings(this.GetType().Assembly.FullName);
 
             this.ConfigureAuth(app);
 

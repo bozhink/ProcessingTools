@@ -1,12 +1,13 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Tests
 {
     using System.IO;
+    using System.Linq;
     using System.Xml;
     using System.Xml.Serialization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
-    using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Constants.Data.Bio.Taxonomy;
+    using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
+    using ProcessingTools.Data.Models.Bio.Taxonomy.Xml;
 
     [TestClass]
     public class BlackListXmlModelTests
@@ -27,12 +28,13 @@
 
             Assert.IsNotNull(list, "BlackList object should not be null.");
 
-            Assert.IsTrue(list.Items.Length > 0, "Number of items should be greater than zero.");
+            Assert.IsTrue(list.Items.Any(), "Number of items should be greater than zero.");
 
-            Assert.AreEqual(NumberOfListItems, list.Items.Length, $"The number of BlackList items should be {NumberOfListItems}.");
+            Assert.AreEqual(NumberOfListItems, list.Items.Count(), $"The number of BlackList items should be {NumberOfListItems}.");
 
-            Assert.AreEqual("Abdominal", list.Items[0], "First item should match.");
-            Assert.AreEqual("Abbreviations", list.Items[1], "Second item should match.");
+            var items = list.Items.ToArray();
+            Assert.AreEqual("Abdominal", items[0], "First item should match.");
+            Assert.AreEqual("Abbreviations", items[1], "Second item should match.");
         }
 
         [TestMethod]

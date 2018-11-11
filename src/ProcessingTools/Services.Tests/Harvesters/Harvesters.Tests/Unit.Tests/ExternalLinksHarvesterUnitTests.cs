@@ -3,12 +3,12 @@
     using System;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Contracts;
     using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Harvesters.ExternalLinks;
     using ProcessingTools.Harvesters.Models.Contracts.ExternalLinks;
-    using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]
     public class ExternalLinksHarvesterUnitTests

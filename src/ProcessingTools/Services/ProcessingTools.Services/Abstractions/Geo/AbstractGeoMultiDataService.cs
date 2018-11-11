@@ -8,8 +8,8 @@ namespace ProcessingTools.Services.Abstractions.Geo
     using System.Collections.Concurrent;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts;
 

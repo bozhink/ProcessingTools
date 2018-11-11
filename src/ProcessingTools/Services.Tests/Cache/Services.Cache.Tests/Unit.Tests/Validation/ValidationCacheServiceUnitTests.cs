@@ -4,12 +4,12 @@
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Cache;
     using ProcessingTools.Data.Models.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Services.Cache.Tests.Common;
-    using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit", TestOf = typeof(ValidationCacheService))]
     public class ValidationCacheServiceUnitTests

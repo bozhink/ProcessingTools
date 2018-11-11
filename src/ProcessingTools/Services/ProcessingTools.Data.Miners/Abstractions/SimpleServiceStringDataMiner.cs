@@ -9,9 +9,9 @@ namespace ProcessingTools.Data.Miners.Abstractions
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts;

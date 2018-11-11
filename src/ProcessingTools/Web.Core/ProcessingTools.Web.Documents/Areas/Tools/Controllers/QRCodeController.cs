@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.QRCode;

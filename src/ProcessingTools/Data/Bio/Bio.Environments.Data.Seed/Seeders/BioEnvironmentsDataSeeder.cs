@@ -10,7 +10,7 @@
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
     using ProcessingTools.Bio.Environments.Data.Entity.Models;
     using ProcessingTools.Bio.Environments.Data.Seed.Contracts;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
 
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {

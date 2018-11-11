@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Journals;
+    using ProcessingTools.Common.Constants.Data.Journals;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>

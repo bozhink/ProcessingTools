@@ -9,7 +9,7 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
 
     /// <summary>

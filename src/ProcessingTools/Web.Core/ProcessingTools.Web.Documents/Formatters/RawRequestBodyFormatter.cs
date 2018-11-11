@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Formatters
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.Net.Http.Headers;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Raw request body formatter.

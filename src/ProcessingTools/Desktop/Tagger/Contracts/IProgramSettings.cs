@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using ProcessingTools.Commands.Models.Contracts;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     public interface IProgramSettings : ICommandSettings
     {

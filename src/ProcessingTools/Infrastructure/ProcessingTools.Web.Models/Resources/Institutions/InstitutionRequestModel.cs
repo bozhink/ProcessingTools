@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Resources.Institutions
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.DataResources;
+    using ProcessingTools.Common.Constants.Data.DataResources;
     using ProcessingTools.Models.Contracts.Resources;
 
     /// <summary>

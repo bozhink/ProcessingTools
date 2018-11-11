@@ -1,4 +1,4 @@
-﻿@using ImagingConstants = ProcessingTools.Constants.ImagingConstants
+﻿@using ImagingConstants = ProcessingTools.Common.Constants.ImagingConstants
 
 @model ProcessingTools.Web.Models.Tools.QRCode.QRCodeViewModel
 
@@ -6,7 +6,7 @@
     ViewData[ContextKeys.Title] = "QR Code Generator";
 }
 
-<section role="main">
+<section role="main" class="container">
     <header>
         <h2>@ViewData[ContextKeys.Title]</h2>
     </header>

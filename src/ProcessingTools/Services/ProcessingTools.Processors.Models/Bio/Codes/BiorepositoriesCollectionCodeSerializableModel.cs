@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Models.Bio.Codes
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
 
     /// <summary>
     /// Biorepositories collection code serializable model.

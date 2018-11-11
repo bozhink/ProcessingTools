@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Models.Contracts;
 
     public class GeoName : BaseModel, INameableIntegerIdentifiable, IDataModel

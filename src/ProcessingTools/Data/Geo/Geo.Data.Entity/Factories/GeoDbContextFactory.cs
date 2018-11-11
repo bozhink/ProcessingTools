@@ -2,7 +2,7 @@
 {
     using System;
     using Contracts;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
 
     public class GeoDbContextFactory : IGeoDbContextFactory
     {

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Layout.Styles.Floats
 {
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
 
     /// <summary>
     /// Float object insert tag style model.

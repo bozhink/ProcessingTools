@@ -8,9 +8,9 @@
     using Models;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Data.Common.Memory.Contracts;
     using ProcessingTools.Data.Common.Memory.Repositories;
-    using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>))]
     public class MemoryKeyCollectionValuePairsRepositoryOfTweetUnitTests

@@ -6,10 +6,10 @@
     using NUnit.Framework;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Code.Tests;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Layout;
-    using ProcessingTools.Tests.Library;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(InitialFormatCommand))]
     public class InitialFormatCommandUnitTests

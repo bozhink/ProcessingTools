@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using Ninject.Modules;
-    using ProcessingTools.Constants.Configuration;
+    using global::Ninject.Modules;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Mediatypes;

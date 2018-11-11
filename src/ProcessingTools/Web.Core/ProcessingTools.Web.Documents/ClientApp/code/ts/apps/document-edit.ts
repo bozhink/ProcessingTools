@@ -5,14 +5,13 @@ import { IRequesterBase } from "../contracts/http/requester-base";
 import { JsonRequester } from "../services/http/json-requester";
 
 import { IStorageKeys } from "../contracts/models/services.models";
-import { IDocumentContentData } from "../contracts/documents/document-content-data";
+import { IDocumentContentData } from "../contracts/services.documents";
 import { DocumentContentData } from "../services/documents/document-content-data";
 import { DocumentController } from "../controllers/documents.controllers";
-import { SHA1 } from "crypto-js";
 
 import { IEditorMode, IEditorTheme } from "../contracts/models/configuration.models";
 import { IConfiguredEditor, IMonacoEditorConfig, MonacoEditorConfig } from "../configurations/monaco-editor-config";
-import { EventHandlerFactory } from "../configurations/event.handlers.configuration";
+import { EventHandlersFactory } from "../components/event.handlers.factory";
 import { ToastrConfiguration } from "../configurations/toastr-config";
 
 declare let window: Window;
@@ -41,12 +40,12 @@ const keys: IStorageKeys = {
 
 let requirejs: any = (window as any).require;
 
-let eventHandlerFactory: EventHandlerFactory = new EventHandlerFactory(window);
+let eventHandlerFactory: EventHandlersFactory = new EventHandlersFactory();
 let monacoEditorConfig: IMonacoEditorConfig = new MonacoEditorConfig(window, requirejs);
 
 let storage: Storage = window.sessionStorage;
 let jsonRequester: IRequesterBase<any> = new JsonRequester($);
-let dataService: IDocumentContentData = new DocumentContentData(storage, keys, jsonRequester, SHA1);
+let dataService: IDocumentContentData = new DocumentContentData(storage, keys, jsonRequester);
 let reporter: IReporter = new ToastrReporter(toastr);
 let documentController: DocumentController = new DocumentController(dataService, reporter);
 
@@ -55,11 +54,9 @@ let editor: any; // monaco.editor.ICodeEditor;
 ToastrConfiguration.configure(toastr);
 
 let loadContentAction: () => void = documentController.createGetAction(getUrl, false, function (content: string): void {
-    let contentHash: string;
     if (content) {
         editor.setValue(content);
-        contentHash = SHA1(editor.getValue()).toString();
-        storage.setItem(keys.contentHashKey, contentHash);
+        dataService.initializeContent(editor.getValue());
     }
 }, function (): void {
     reporter.report(ReportType.SUCCESS, "Content is retrieved");

@@ -7,7 +7,7 @@
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     public class ProgramSettingsBuilder
     {

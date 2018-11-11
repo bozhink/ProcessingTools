@@ -8,7 +8,7 @@ namespace ProcessingTools.Harvesters.Meta
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Meta;
     using ProcessingTools.Harvesters.Models.Contracts.Meta;

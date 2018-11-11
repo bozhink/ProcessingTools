@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac;
     using Autofac.Core;
     using Microsoft.Extensions.Configuration;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Services.Contracts.Documents;

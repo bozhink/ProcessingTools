@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Account
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Web;
+    using ProcessingTools.Common.Constants.Web;
 
     /// <summary>
     /// Reset password view model

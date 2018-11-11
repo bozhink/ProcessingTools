@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Bio.SpecimenCodes;
     using ProcessingTools.Harvesters.Contracts.Content;

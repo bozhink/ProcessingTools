@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Shared
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// API response model.

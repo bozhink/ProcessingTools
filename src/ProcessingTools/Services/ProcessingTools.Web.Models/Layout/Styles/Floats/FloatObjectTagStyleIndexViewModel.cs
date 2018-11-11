@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
 
     /// <summary>
     /// Float object tag style index view model.

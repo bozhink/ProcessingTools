@@ -4,8 +4,8 @@
 
 namespace ProcessingTools.Processors.Contracts.Layout
 {
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Initial format transformer factory.

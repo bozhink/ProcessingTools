@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.DbSeeder.Settings
 {
     using System.Reflection;
-    using Ninject;
+    using global::Ninject;
 
     public static class NinjectConfig
     {

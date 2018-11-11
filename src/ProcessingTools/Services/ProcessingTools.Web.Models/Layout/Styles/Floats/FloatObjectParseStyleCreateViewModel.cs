@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>

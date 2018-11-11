@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Common.Constants.Data.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
 
     /// <summary>
@@ -16,6 +16,10 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     {
         /// <inheritdoc/>
         public string Id { get; set; }
+
+        /// <inheritdoc/>
+        [StringLength(ValidationConstants.MaximalLengthOfId)]
+        public string ArticleId { get; set; }
 
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
@@ -36,6 +40,9 @@ namespace ProcessingTools.Web.Models.Documents.Articles
 
         /// <inheritdoc/>
         public DateTime? PublishedOn { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? ArchivedOn { get; set; }
 
         /// <inheritdoc/>
         public DateTime? AcceptedOn { get; set; }

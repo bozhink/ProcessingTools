@@ -15,7 +15,7 @@
     }
 }
 
-<section role="main">
+<section role="main" class="container">
     <header>
         <h2>@ViewData[ContextKeys.Title]</h2>
     </header>
@@ -28,6 +28,15 @@
     {
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <input type="hidden" asp-for="Id" />
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="ArticleId"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ArticleId" class="form-control" />
+                    <span asp-validation-for="ArticleId" class="text-danger"></span>
+                </div>
+            </div>
             <div class="form-group row">
                 <div class="col-md-2">
                     <label asp-for="Title"></label>
@@ -79,6 +88,15 @@
                 <div class="col-md-10">
                     <input type="datetime" asp-for="PublishedOn" class="form-control" />
                     <span asp-validation-for="PublishedOn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="ArchivedOn"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="ArchivedOn" class="form-control" />
+                    <span asp-validation-for="ArchivedOn" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">

@@ -2,9 +2,9 @@
 {
     using System.Data.Entity;
     using System.Linq;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Models.Contracts;

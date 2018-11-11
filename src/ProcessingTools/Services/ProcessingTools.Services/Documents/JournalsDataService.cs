@@ -8,10 +8,10 @@ namespace ProcessingTools.Services.Documents
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Contracts.Documents.Journals;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Contracts.Documents.Journals;

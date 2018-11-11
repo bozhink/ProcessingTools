@@ -7,8 +7,8 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using ProcessingTools.Constants.Web;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Constants.Web;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Web.Documents.ViewModels.Manage;
     using ProcessingTools.Web.Services;
 

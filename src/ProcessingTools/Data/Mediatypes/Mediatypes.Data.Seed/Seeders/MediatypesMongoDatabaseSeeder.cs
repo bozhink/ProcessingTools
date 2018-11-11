@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using Newtonsoft.Json;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
@@ -39,7 +39,7 @@
 
             if (mediatypesJson.Length < 1)
             {
-                throw new ProcessingTools.Exceptions.InvalidDataException("Mediatypes data json file is empty or invalid.");
+                throw new ProcessingTools.Common.Exceptions.InvalidDataException("Mediatypes data json file is empty or invalid.");
             }
 
             await this.ImportMediatypesToDatabase(mediatypesJson).ConfigureAwait(false);

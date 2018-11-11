@@ -6,7 +6,7 @@ namespace ProcessingTools.Harvesters.Meta
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts.Meta;
     using ProcessingTools.Harvesters.Models.Contracts.Meta;

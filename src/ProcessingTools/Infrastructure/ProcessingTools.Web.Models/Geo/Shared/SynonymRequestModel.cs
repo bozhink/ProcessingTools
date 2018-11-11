@@ -5,8 +5,8 @@
 namespace ProcessingTools.Web.Models.Geo.Shared
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Constants.Data.Geo;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Geo;
 
     /// <summary>

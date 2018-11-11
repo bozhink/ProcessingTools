@@ -4,12 +4,14 @@
 
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
     /// QRCodes Generator
     /// </summary>
+    [Authorize]
     [Area(AreaNames.Tools)]
     public class QRCodesGeneratorController : Controller
     {

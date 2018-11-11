@@ -13,8 +13,8 @@ namespace ProcessingTools.Processors.Processors.Floats
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Floats;
     using ProcessingTools.Processors.Models.Contracts.Floats;

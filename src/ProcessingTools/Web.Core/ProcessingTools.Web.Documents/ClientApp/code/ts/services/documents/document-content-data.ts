@@ -1,18 +1,19 @@
 const MINIMAL_TIME_SPAN_BETWEEN_SEQUENTIAL_SAVES_MILLISECONDS: number = 5000;
 const MINIMAL_TIME_SPAN_BETWEEN_SEQUENTIAL_GETS_MILLISECONDS: number = 5000;
 
+import { enc, SHA1 } from "crypto-js";
+
 import { IStorageKeys, IMessageResponse, MessageType } from "../../contracts/models/services.models";
 import { IRequesterBase } from "../../contracts/http/requester-base";
-import { IDocumentContentData } from "../../contracts/documents/document-content-data";
+import { IDocumentContentData } from "../../contracts/services.documents";
 
 export class DocumentContentData implements IDocumentContentData {
 
     private storage: Storage;
     private keys: IStorageKeys;
     private requester: IRequesterBase<any>;
-    private sha1: (x: any) => any;
 
-    public constructor(storage: Storage, keys: IStorageKeys, requester: IRequesterBase<any>, sha1: (x: any) => any) {
+    public constructor(storage: Storage, keys: IStorageKeys, requester: IRequesterBase<any>) {
         if (!storage) {
             throw `Storage is null`;
         }
@@ -25,14 +26,9 @@ export class DocumentContentData implements IDocumentContentData {
             throw `Requester is null`;
         }
 
-        if (!sha1) {
-            throw `SHA1 is null`;
-        }
-
         this.storage = storage;
         this.keys = keys;
         this.requester = requester;
-        this.sha1 = sha1;
     }
 
     private getTimeToNextPossibleSave(lastSavedTime: string): number {
@@ -98,6 +94,12 @@ export class DocumentContentData implements IDocumentContentData {
         });
     }
 
+    public initializeContent(content: string): void {
+        let contentHash: string = enc.Hex.stringify(SHA1(content));
+        let self: DocumentContentData = this;
+        self.storage.setItem(self.keys.contentHashKey, contentHash);
+    }
+
     public save(url: string, content: string): Promise<any> {
         if (!url) {
             throw `URL is null`;
@@ -111,7 +113,7 @@ export class DocumentContentData implements IDocumentContentData {
             let lastSavedHash: string = self.storage.getItem(self.keys.contentHashKey);
 
             if (!lastSavedTime || self.getTimeToNextPossibleSave(lastSavedTime) < 0) {
-                let contentHash: string = self.sha1(content).toString();
+                let contentHash: string = enc.Hex.stringify(SHA1(content));
 
                 if (contentHash !== lastSavedHash) {
                     self.requester.put(url, {

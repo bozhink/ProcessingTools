@@ -46,7 +46,7 @@ namespace ProcessingTools.Services.Tools
 
             if (!string.IsNullOrEmpty(source))
             {
-                byte[] bytes = ProcessingTools.Security.Utils.FromBase64Url(source.Trim(new[] { ' ', '\t', '\r', '\n' }));
+                byte[] bytes = ProcessingTools.Security.SecurityUtilities.FromBase64Url(source.Trim(new[] { ' ', '\t', '\r', '\n' }));
                 result = this.encoding.GetString(bytes);
             }
 

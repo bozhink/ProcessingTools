@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Layout.Styles
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;

@@ -7,7 +7,7 @@ namespace ProcessingTools.Net
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Extensions for <see cref="HttpClient"/>.

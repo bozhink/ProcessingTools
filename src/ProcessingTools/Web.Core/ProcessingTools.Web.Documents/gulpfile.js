@@ -38,8 +38,11 @@ const TESTS_PATH = "ClientApp/tests";
 /**
  * Common
  */
+var PluginError = require("plugin-error");
 var gulp = require("gulp");
-var gulpUtil = require("gulp-util");
+var log = require("fancy-log");
+var debug = require("gulp-debug");
+var sourcemaps = require("gulp-sourcemaps");
 var concat = require("gulp-concat");
 var less = require("gulp-less");
 var cssmin = require("gulp-cssmin");
@@ -58,6 +61,11 @@ var webpackStream = require("webpack-stream");
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config");
+var named = require("vinyl-named");
+
+var Fiber = require("fibers");
+var sass = require("gulp-sass");
+sass.compiler = require("node-sass");
 
 function renameForMinify(path) {
     //path.dirname += "/ciao";
@@ -71,11 +79,228 @@ function getBundles(regexPattern) {
     });
 }
 
+function bundleconfigProcessJavaScript() {
+    var tasks = getBundles(regex.js).map(function (bundle) {
+        return gulp.src(bundle.inputFiles, {
+                base: "."
+            })
+            .pipe(debug({
+                title: "bundleconfigProcessJavaScript"
+            }))
+            .pipe(concat(bundle.outputFileName))
+            .pipe(uglify())
+            .pipe(gulp.dest("."));
+    });
+    return merge(tasks);
+}
+
+function bundleconfigProcessCss() {
+    var tasks = getBundles(regex.css).map(function (bundle) {
+        return gulp.src(bundle.inputFiles, {
+                base: "."
+            })
+            .pipe(debug({
+                title: "bundleconfigProcessCss"
+            }))
+            .pipe(concat(bundle.outputFileName))
+            .pipe(cssmin())
+            .pipe(gulp.dest("."));
+    });
+    return merge(tasks);
+}
+
+function bundleconfigProcessHtml() {
+    var tasks = getBundles(regex.html).map(function (bundle) {
+        return gulp.src(bundle.inputFiles, {
+                base: "."
+            })
+            .pipe(debug({
+                title: "bundleconfigProcessHtml"
+            }))
+            .pipe(concat(bundle.outputFileName))
+            .pipe(htmlmin({
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true
+            }))
+            .pipe(gulp.dest("."));
+    });
+    return merge(tasks);
+}
+
+function bundleconfigWatch() {
+    getBundles(regex.js).forEach(function (bundle) {
+        gulp.watch(bundle.inputFiles, ["min:js"]);
+    });
+
+    getBundles(regex.css).forEach(function (bundle) {
+        gulp.watch(bundle.inputFiles, ["min:css"]);
+    });
+
+    getBundles(regex.html).forEach(function (bundle) {
+        gulp.watch(bundle.inputFiles, ["min:html"]);
+    });
+}
+
+function cleanBundle() {
+    var files = bundleconfig.map(function (bundle) {
+        return bundle.outputFileName;
+    });
+
+    return del(files);
+}
+
+function cleanBuild() {
+    return del([
+        JS_OUT_PATH,
+        JS_DIST_PATH,
+        CSS_DIST_PATH,
+        tsProject.config.compilerOptions.outDir.toString(),
+        OUT_PATH,
+        DIST_PATH
+    ]);
+}
+
+function copyTemplates() {
+    return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
+        .pipe(debug({
+            title: "copyTemplates"
+        }))
+        .pipe(rename(path => {
+            path.extname += ".html";
+        }))
+        .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
+}
+
+function copyAndMinifyTemplates() {
+    return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
+        .pipe(debug({
+            title: "copyAndMinifyTemplates"
+        }))
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            minifyCSS: true,
+            minifyJS: true
+        }))
+        .pipe(rename(path => {
+            path.extname += ".min.html";
+        }))
+        .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
+}
+
+function compileCss() {
+    return gulp.src(path.join(CSS_SRC_PATH, "**/*.css"))
+        .pipe(debug({
+            title: "compileCss"
+        }))
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
+}
+
+function compileAndMinifyCss() {
+    return gulp.src(path.join(CSS_SRC_PATH, "**/*.css"))
+        .pipe(debug({
+            title: "compileAndMinifyCss"
+        }))
+        .pipe(cssmin())
+        .pipe(rename(renameForMinify))
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
+}
+
+function compileSass() {
+    return gulp.src(path.join(SASS_SRC_PATH, "**/*.scss"))
+        .pipe(debug({
+            title: "compileSass"
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(sass({ fiber: Fiber }).on("error", sass.logError))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
+}
+
+function compileAndMinifySass() {
+    return gulp.src(path.join(SASS_SRC_PATH, "**/*.scss"))
+        .pipe(debug({
+            title: "compileSass"
+        }))
+        .pipe(sass({ fiber: Fiber, outputStyle: "compressed" }).on("error", sass.logError))
+        .pipe(cssmin())
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
+}
+
+function compileLess() {
+    return gulp.src(path.join(LESS_SRC_PATH, "**/*.less"))
+        .pipe(debug({
+            title: "compileLess"
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(less())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
+}
+
+function compileAndMinifyLess() {
+    return gulp.src(path.join(LESS_SRC_PATH, "**/*.less"))
+        .pipe(debug({
+            title: "compileAndMinifyLess"
+        }))
+        .pipe(less())
+        .pipe(cssmin())
+        .pipe(rename(renameForMinify))
+        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
+}
+
+function compileJavaScript() {
+    return gulp.src(path.join(JS_SRC_PATH, "**/*.js"))
+        .pipe(debug({
+            title: "compileJavaScript"
+        }))
+        .pipe(gulp.dest(path.join(JS_OUT_PATH)));
+}
+
+function compileTypeScript() {
+    return gulp.src(path.join(TS_SRC_PATH, "**/*.ts"))
+        .pipe(debug({
+            title: "compileTypeScript"
+        }))
+        .pipe(tsProject())
+        .js.pipe(gulp.dest(path.join(JS_OUT_PATH)));
+}
+
+function copyCode() {
+    return gulp.src(path.join(JS_OUT_PATH, "**/*.js"))
+        .pipe(debug({
+            title: "copyCode"
+        }))
+        .pipe(gulp.dest(JS_DIST_PATH));
+}
+
+function copyAndMinifyCode() {
+    return pump([
+        //gulp.src(path.join(JS_OUT_PATH, "**/*.js")),
+        gulp.src([path.join(JS_OUT_PATH, "**/site.js"), path.join(JS_OUT_PATH, "**/cookie-consent.js")]),
+        debug({
+            title: "copyAndMinifyCode"
+        }),
+        uglify(),
+        rename(renameForMinify),
+        gulp.dest(JS_DIST_PATH)
+    ]);
+}
+
 function JsAppFactory() {
     this.createBuild = function (srcFileName, distFileName, runUglify) {
         return function () {
             var stream = gulp.src(path.join(JS_OUT_PATH, APPS_RELATIVE_PATH, srcFileName))
-                .pipe(webpackStream(webpackConfig))
+                .pipe(debug({
+                    title: "JsAppFactory " + srcFileName
+                }))
+                //.pipe(named())
+                .pipe(webpackStream({
+                    config: webpackConfig
+                }))
+                .on("error", function handleError() {
+                    this.emit("end");
+                })
                 .pipe(concat(distFileName));
 
             if (runUglify) {
@@ -105,86 +330,19 @@ var regex = {
  * min
  */
 
+gulp.task("min:js", bundleconfigProcessJavaScript);
+gulp.task("min:css", bundleconfigProcessCss);
+gulp.task("min:html", bundleconfigProcessHtml);
 gulp.task("min", ["min:js", "min:css", "min:html"]);
-
-gulp.task("min:js", function () {
-    var tasks = getBundles(regex.js).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, {
-                base: "."
-            })
-            .pipe(concat(bundle.outputFileName))
-            .pipe(uglify())
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
-
-gulp.task("min:css", function () {
-    var tasks = getBundles(regex.css).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, {
-                base: "."
-            })
-            .pipe(concat(bundle.outputFileName))
-            .pipe(cssmin())
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
-
-gulp.task("min:html", function () {
-    var tasks = getBundles(regex.html).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, {
-                base: "."
-            })
-            .pipe(concat(bundle.outputFileName))
-            .pipe(htmlmin({
-                collapseWhitespace: true,
-                minifyCSS: true,
-                minifyJS: true
-            }))
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
 
 /**
  * clean
  */
-
+gulp.task("clean:bundle", cleanBundle);
+gulp.task("clean:build", cleanBuild);
 gulp.task("clean", ["clean:bundle", "clean:build"]);
 
-gulp.task("clean:bundle", function () {
-    var files = bundleconfig.map(function (bundle) {
-        return bundle.outputFileName;
-    });
-
-    return del(files);
-});
-
-gulp.task("clean:build", function () {
-    return del([
-        JS_OUT_PATH,
-        JS_DIST_PATH,
-        CSS_DIST_PATH,
-        tsProject.config.compilerOptions.outDir.toString(),
-        OUT_PATH,
-        DIST_PATH
-    ]);
-});
-
-gulp.task("watch", function () {
-    getBundles(regex.js).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:js"]);
-    });
-
-    getBundles(regex.css).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:css"]);
-    });
-
-    getBundles(regex.html).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:html"]);
-    });
-});
+gulp.task("watch", bundleconfigWatch);
 
 /**
  * *************************************************************
@@ -194,32 +352,9 @@ gulp.task("watch", function () {
  * *************************************************************
  */
 
-gulp.task("build:templates", [
-    "compile:templates:copy",
-    "compile:templates:copy:min"
-]);
-
-/**
- * Copy all templates to the distribution directory
- */
-gulp.task("compile:templates:copy", function () {
-    return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
-        .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
-});
-
-/**
- * Copy and minify all templates to the distribution directory
- */
-gulp.task("compile:templates:copy:min", function () {
-    return gulp.src(path.join(TEMPLATES_SRC_PATH, "**/*"))
-        .pipe(htmlmin({
-            collapseWhitespace: true,
-            minifyCSS: true,
-            minifyJS: true
-        }))
-        .pipe(rename(renameForMinify))
-        .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
-});
+gulp.task("compile:templates:copy", copyTemplates);
+gulp.task("compile:templates:copy:min", copyAndMinifyTemplates);
+gulp.task("build:templates", ["compile:templates:copy", "compile:templates:copy:min"]);
 
 /**
  * *************************************************************
@@ -229,6 +364,12 @@ gulp.task("compile:templates:copy:min", function () {
  * *************************************************************
  */
 
+gulp.task("compile:styles:css", compileCss);
+gulp.task("compile:styles:css:min", compileAndMinifyCss);
+gulp.task("compile:styles:sass", compileSass);
+gulp.task("compile:styles:sass:min", compileAndMinifySass);
+gulp.task("compile:styles:less", compileLess);
+gulp.task("compile:styles:less:min", compileAndMinifyLess);
 gulp.task("build:styles", [
     "compile:styles:less",
     "compile:styles:less:min",
@@ -237,58 +378,6 @@ gulp.task("build:styles", [
     "compile:styles:css",
     "compile:styles:css:min"
 ]);
-
-/**
- * Copy CSS files.
- */
-gulp.task("compile:styles:css", function () {
-    return gulp.src(path.join(CSS_SRC_PATH, "**/*.css"))
-        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
-});
-
-/**
- * Minify and copy CSS files.
- */
-gulp.task("compile:styles:css:min", function () {
-    return gulp.src(path.join(CSS_SRC_PATH, "**/*.css"))
-        .pipe(cssmin())
-        .pipe(rename(renameForMinify))
-        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
-});
-
-/**
- * Compile SASS files.
- */
-gulp.task("compile:styles:sass", function () {
-    // not supported
-});
-
-/**
- * Compile and minify SASS files.
- */
-gulp.task("compile:styles:sass:min", function () {
-    // not supported
-});
-
-/**
- * Compile LESS files.
- */
-gulp.task("compile:styles:less", function () {
-    return gulp.src(path.join(LESS_SRC_PATH, "**/*.less"))
-        .pipe(less())
-        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
-});
-
-/**
- * Compile and minify LESS files.
- */
-gulp.task("compile:styles:less:min", function () {
-    return gulp.src(path.join(LESS_SRC_PATH, "**/*.less"))
-        .pipe(less())
-        .pipe(cssmin())
-        .pipe(rename(renameForMinify))
-        .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
-});
 
 /**
  * *************************************************************
@@ -303,11 +392,12 @@ gulp.task("webpack", function (callback) {
         // configuration
     }, function (error, stats) {
         if (error) {
-            throw new gulpUtil.PluginError("webpack", error);
+            throw new PluginError("webpack", error);
         }
 
-        gulpUtil.log("[webpack]", stats.toString({
-            // output options
+        log("[webpack]", stats.toString({
+            all: true,
+            env: true
         }));
 
         if (callback && typeof callback === "function") {
@@ -325,10 +415,10 @@ gulp.task("webpack-dev-server", function (callback) {
         // server and middleware options
     }).listen(9090, "localhost", function (error) {
         if (error) {
-            throw new gulpUtil.PluginError("webpack-dev-server", error);
+            throw new PluginError("webpack-dev-server", error);
         }
 
-        gulpUtil.log("[webpack-dev-server]", "http://localhost:9090/webpack-dev-server/index.html");
+        log("[webpack-dev-server]", "http://localhost:9090/webpack-dev-server/index.html");
 
         // keep the server alive or continue?
         // if (callback && typeof callback === "function") {
@@ -340,61 +430,45 @@ gulp.task("webpack-dev-server", function (callback) {
 /**
  * Compile code.
  */
+gulp.task("compile:code:js", compileJavaScript);
+gulp.task("compile:code:ts", compileTypeScript);
 gulp.task("compile:code", [
     "compile:code:js",
     "compile:code:ts"
 ]);
 
 /**
- * Copy JavaScript files to the output directory.
- */
-gulp.task("compile:code:js", function () {
-    return gulp.src(path.join(JS_SRC_PATH, "**/*.js"))
-        .pipe(gulp.dest(path.join(JS_OUT_PATH)));
-});
-
-/**
- * Compile Typescript files to the output directory.
- */
-gulp.task("compile:code:ts", function () {
-    return gulp.src(path.join(TS_SRC_PATH, "**/*.ts"))
-        .pipe(tsProject())
-        .js.pipe(gulp.dest(path.join(JS_OUT_PATH)));
-});
-
-/**
  * Copy code.
  */
 
-gulp.task("copy:code", ["compile:code"], function () {
-    return gulp.src(path.join(JS_OUT_PATH, "**/*.js"))
-        .pipe(gulp.dest(JS_DIST_PATH));
-});
-
-gulp.task("copy:code:min", ["compile:code"], function () {
-    return pump([
-        //gulp.src(path.join(JS_OUT_PATH, "**/*.js")),
-        gulp.src([path.join(JS_OUT_PATH, "**/site.js"), path.join(JS_OUT_PATH, "**/cookie-consent.js")]),
-        uglify(),
-        rename(renameForMinify),
-        gulp.dest(JS_DIST_PATH)
-    ]);
-});
+gulp.task("copy:code", ["compile:code"], copyCode);
+gulp.task("copy:code:min", ["compile:code"], copyAndMinifyCode);
 
 /**
  * Link apps.
  */
-gulp.task("link:code:apps", [
-    "link:code:app:bio:data",
-    "link:code:app:documents:edit",
-    "link:code:app:documents:preview",
-    "link:code:app:index:page"
-]);
+// gulp.task("link:code:apps", [
+//     "link:code:app:bio:data",
+//     "link:code:app:documents:edit",
+//     "link:code:app:documents:preview",
+//     "link:code:app:index:page",
+//     "link:code:app:tools:jsonToCSharp",
+//     "link:code:app:tools:textEditor:monaco"
+// ]);
 
-gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
-gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true));
-gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
-gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
+// gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
+// gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true));
+// gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
+// gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
+// gulp.task("link:code:app:tools:jsonToCSharp", ["compile:code", "copy:code"], jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
+// gulp.task("link:code:app:tools:textEditor:monaco", ["compile:code", "copy:code"], jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
+
+gulp.task("link1", jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
+gulp.task("link2", jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", false));
+gulp.task("link3", jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", false));
+gulp.task("link4", jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
+gulp.task("link5", jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
+gulp.task("link6", jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
 
 /**
  * Build all code.
@@ -403,7 +477,7 @@ gulp.task("build:code", [
     "compile:code",
     "copy:code",
     "copy:code:min",
-    "link:code:apps"
+    // "link:code:apps"
 ]);
 
 /**
@@ -420,6 +494,9 @@ gulp.task("build", [
  */
 gulp.task("test", function () {
     return gulp.src(path.join(TESTS_PATH, "**/*.js"))
+        .pipe(debug({
+            title: "test"
+        }))
         .pipe(mocha())
         .on("error", function () {
             this.emit("end");
@@ -433,4 +510,4 @@ gulp.task("watch-tests", function () {
 /**
  * Default task.
  */
-gulp.task("default", ["build", "test"]);
+gulp.task("default", ["clean", "build", "test"]);

@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData[ContextKeys.Title] = "Monaco Editor";
+}
+
+@section Styles {
+    <link href="~/build/dist/css/tools-editors.min.css" rel="stylesheet" />
+}
+
+<section role="main" class="container">
+    <nav class="navbar navbar-light bg-light bg-faded navbar-expand-md py-0 py-md-0">
+        <div class="container">
+            <a href="#" class="navbar-brand small-text">@ViewData[ContextKeys.Title]</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTools" aria-controls="navbarTools" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarTools">
+                <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="language-picker" id="language-picker-label">Language</label>
+                        </div>
+                        <select class="form-control language-picker" name="language-picker" id="language-picker" aria-label="Language Picker" aria-describedby="language-picker-label"></select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="monaco-editor">
+        <div id="editor-container"></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script src="~/build/dist/js/apps/text-editor.monaco.min.js"></script>
+}

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Layout.Styles.Floats
 {
     using System;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
 
     /// <summary>
     /// Float object details tag style model.

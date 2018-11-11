@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Geo.GeoEpithets
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Models.Contracts.Geo;
 
     /// <summary>

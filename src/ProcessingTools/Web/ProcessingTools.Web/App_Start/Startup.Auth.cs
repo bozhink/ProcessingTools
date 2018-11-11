@@ -1,26 +1,24 @@
 ﻿namespace ProcessingTools.Web
 {
     using System;
-    using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
+    using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.Facebook;
     using Microsoft.Owin.Security.Google;
     using Microsoft.Owin.Security.MicrosoftAccount;
     using Microsoft.Owin.Security.Twitter;
     using Owin;
-    using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Web.Security;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Services;
 
     public partial class Startup
     {
-        private readonly ICertificateValidatorFactory certificateValidatorFactory = DependencyResolver.Current.GetService<ICertificateValidatorFactory>();
-
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
@@ -86,7 +84,7 @@
                         ConsumerKey = twitterConsumerKey,
                         ConsumerSecret = twitterConsumerSecret,
                         CallbackPath = new PathString("/signin-twitter"),
-                        BackchannelCertificateValidator = this.certificateValidatorFactory.Create()
+                        BackchannelCertificateValidator = new CertificateSubjectKeyIdentifierValidator(CertificateValidationConstants.ValidSubjectKeyIdentifiers)
                     });
                 }
             }

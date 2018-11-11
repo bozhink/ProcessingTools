@@ -25,6 +25,11 @@ namespace ProcessingTools.Web.Documents.Constants
         public const string Documents = nameof(Documents);
 
         /// <summary>
+        /// Files area.
+        /// </summary>
+        public const string Files = nameof(Files);
+
+        /// <summary>
         /// Layout area.
         /// </summary>
         public const string Layout = nameof(Layout);

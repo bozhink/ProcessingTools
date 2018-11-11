@@ -1,4 +1,4 @@
-import { IDocumentContentData } from "../contracts/documents/document-content-data";
+import { IDocumentContentData } from "../contracts/services.documents";
 import { ReportType, IReporter } from "../contracts/reporters/reporter";
 import { IMessageResponse } from "../contracts/models/services.models";
 

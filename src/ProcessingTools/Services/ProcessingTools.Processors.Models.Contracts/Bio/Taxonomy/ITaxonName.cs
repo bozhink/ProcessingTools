@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy
 {
     using System.Linq;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Taxon name.

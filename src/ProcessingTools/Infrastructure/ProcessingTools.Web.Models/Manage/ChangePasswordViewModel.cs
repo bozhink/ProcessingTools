@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Manage
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Web;
+    using ProcessingTools.Common.Constants.Web;
 
     /// <summary>
     /// Change password view model

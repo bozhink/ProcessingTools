@@ -10,8 +10,8 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;

@@ -9,6 +9,8 @@
     <RepositoryType>git</RepositoryType>
     <Description>Web documents</Description>
     <UserSecretsId>aspnet-ProcessingTools.Web.Documents-D49806DF-C017-4940-A9FC-61557E17DED5</UserSecretsId>
+    <DebugType>Full</DebugType>
+    <LangVersion>Latest</LangVersion>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -28,26 +30,29 @@
     <Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.5.0.6605">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
-    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.4.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
     <PackageReference Include="Castle.Core" Version="4.3.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.3" PrivateAssets="All" />
-    <PackageReference Include="NLog" Version="4.5.8" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
+    <PackageReference Include="NLog" Version="4.5.10" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
-    <ProjectReference Include="..\..\Common\ProcessingTools.Security\ProcessingTools.Security.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Security\ProcessingTools.Security.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Layout.Mongo\ProcessingTools.Data.Layout.Mongo.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo\ProcessingTools.Geo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Xml\ProcessingTools.Xml.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
@@ -67,6 +72,5 @@
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.History.Mongo\ProcessingTools.Data.History.Mongo.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Documents.Mongo\ProcessingTools.Data.Documents.Mongo.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
-    <ProjectReference Include="..\..\Common\ProcessingTools.Attributes\ProcessingTools.Attributes.csproj" />
   </ItemGroup>
 </Project>

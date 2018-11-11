@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
 

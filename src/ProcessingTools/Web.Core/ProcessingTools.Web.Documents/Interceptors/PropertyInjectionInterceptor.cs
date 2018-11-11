@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Documents.Interceptors
 {
     using System;
     using Castle.DynamicProxy;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
 
     /// <summary>
     /// Property injection interceptor.

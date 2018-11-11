@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Documents
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Documents;
 

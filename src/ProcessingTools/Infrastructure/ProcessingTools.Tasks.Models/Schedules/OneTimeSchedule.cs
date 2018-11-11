@@ -6,8 +6,8 @@ namespace ProcessingTools.Tasks.Models.Schedules
 {
     using System;
     using Newtonsoft.Json;
-    using ProcessingTools.Attributes.Tasks;
-    using ProcessingTools.Enumerations.Tasks;
+    using ProcessingTools.Common.Attributes.Tasks;
+    using ProcessingTools.Common.Enumerations.Tasks;
     using ProcessingTools.Tasks.Models.Contracts.Schedules;
     using ProcessingTools.Tasks.Models.Contracts.Tasks;
 

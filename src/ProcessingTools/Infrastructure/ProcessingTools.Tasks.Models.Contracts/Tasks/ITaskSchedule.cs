@@ -5,7 +5,7 @@
 namespace ProcessingTools.Tasks.Models.Contracts.Tasks
 {
     using System;
-    using ProcessingTools.Enumerations.Tasks;
+    using ProcessingTools.Common.Enumerations.Tasks;
 
     /// <summary>
     /// Task schedule.

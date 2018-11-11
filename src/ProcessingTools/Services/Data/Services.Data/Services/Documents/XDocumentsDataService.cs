@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts.Services.Data.Documents;
@@ -138,7 +138,7 @@
                 throw new ArgumentNullException(nameof(inputStream));
             }
 
-            string path = await this.xmlFileReaderWriter.GetNewFilePathAsync(document.FileName, this.DataDirectory, ProcessingTools.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName).ConfigureAwait(false);
+            string path = await this.xmlFileReaderWriter.GetNewFilePathAsync(document.FileName, this.DataDirectory, ProcessingTools.Common.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName).ConfigureAwait(false);
 
             var entity = new Documents.Data.Entity.Models.Document
             {

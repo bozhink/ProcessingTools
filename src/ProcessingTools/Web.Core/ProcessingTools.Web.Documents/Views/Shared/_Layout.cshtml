@@ -3,29 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData[ContextKeys.Title] - ProcessingTools.Web.Documents</title>
-
+    <title>@(ViewData[ContextKeys.Title]) - ProcessingTools.Web.Documents</title>
     <partial name="_DefaultStylesPartial" />
-
-    @RenderSection("Styles", required: false)
+    @(RenderSection("Styles", required: false))
 </head>
 <body>
     <partial name="Navbars/Main/_MainPartial" />
     <partial name="_CookieConsentPartial" />
 
-    <main role="main">
-        <div class="container body-content">
-            @RenderBody()
-        </div>
+    <main role="main" class="body-content">
+        @(RenderBody())
     </main>
+
     <footer class="page-footer">
-        <div class="container">
-            <p>&copy; @(DateTime.Now.Year) - ProcessingTools.Web.Documents</p>
-        </div>
+        <partial name="_FooterPartial" />
     </footer>
-
+    
     <partial name="_DefaultScriptsPartial" />
-
-    @RenderSection("Scripts", required: false)
+    @(RenderSection("Scripts", required: false))
 </body>
 </html>

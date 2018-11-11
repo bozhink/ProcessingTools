@@ -5,14 +5,18 @@
     ViewData[ContextKeys.Title] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<section role="main" class="container">
+    <header>
+        <h1 class="text-danger">Error.</h1>
+        <h2 class="text-danger">An error occurred while processing your request.</h2>
+    </header>
 
-@if (Enum.TryParse(typeof(HttpStatusCode), Model, true, out object code))
-{
-    <p>Status code: @Model (@code)</p>
-}
-else
-{
-    <p>Status code: @Model</p>
-}
+    @if (Enum.TryParse(typeof(HttpStatusCode), Model, true, out object code))
+    {
+        <p>Status code: @Model (@code)</p>
+    }
+    else
+    {
+        <p>Status code: @Model</p>
+    }
+</section>

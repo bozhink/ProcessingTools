@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using Ninject.Extensions.Conventions;
-    using Ninject.Modules;
-    using ProcessingTools.Constants.Configuration;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Modules;
+    using ProcessingTools.Common.Constants.Configuration;
 
     /// <summary>
     /// NinjectModule to bind database objects.
@@ -13,35 +13,15 @@
         {
             this.Bind(b =>
             {
-                b.From(Cache.Data.Redis.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
                 b.From(Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
                 b.From(Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Data.Common.Redis.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

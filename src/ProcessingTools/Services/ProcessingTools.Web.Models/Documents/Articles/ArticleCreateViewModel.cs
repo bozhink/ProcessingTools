@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Common.Constants.Data.Documents;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
@@ -36,6 +36,13 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// Gets the user context.
         /// </summary>
         public UserContext UserContext { get; }
+
+        /// <summary>
+        /// Gets or sets the article ID.
+        /// </summary>
+        [StringLength(ValidationConstants.MaximalLengthOfId, ErrorMessage = "The {0} must be at max {1} characters long.")]
+        [Display(Name = "Article ID")]
+        public string ArticleId { get; set; }
 
         /// <summary>
         /// Gets or sets the title.
@@ -76,6 +83,12 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// </summary>
         [Display(Name = "Published on")]
         public DateTime? PublishedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the archival date.
+        /// </summary>
+        [Display(Name = "Archived on")]
+        public DateTime? ArchivedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the accepted date.

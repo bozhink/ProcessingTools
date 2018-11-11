@@ -10,7 +10,7 @@ namespace ProcessingTools.Net
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Form URL encoded content.
