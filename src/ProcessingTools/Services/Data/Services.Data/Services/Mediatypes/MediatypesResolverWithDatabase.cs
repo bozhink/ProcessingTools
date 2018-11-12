@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Data.Contracts.Mediatypes;
+    using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Mediatypes;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
@@ -33,11 +33,11 @@
 
                 if (response == null || response.Count < 1)
                 {
-                    return this.GetStaticResult(ContentTypes.DefaultMimetype, ContentTypes.DefaultMimesubtype);
+                    return this.GetStaticResult(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype);
                 }
                 else
                 {
-                    return response.Select(e => new Mediatype(e.Mimetype, e.Mimesubtype)).ToArray();
+                    return response.Select(e => new Mediatype(e.MimeType, e.MimeSubtype)).ToArray();
                 }
             }
             catch

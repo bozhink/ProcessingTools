@@ -65,8 +65,8 @@
 
         private async Task SeedTaxonRankTypeCollectionAsync()
         {
-            string collectionName = MongoCollectionNameFactory.Create<TaxonRankTypeItem>();
-            var collection = this.db.GetCollection<TaxonRankTypeItem>(collectionName);
+            //// TODO string collectionName = MongoCollectionNameFactory.Create<TaxonRankTypeItem>();
+            var collection = this.db.GetCollection<TaxonRankTypeItem>("taxonRankType");
 
             var entities = Enum.GetValues(typeof(TaxonRankType)).Cast<TaxonRankType>()
                 .Select(rank => new TaxonRankTypeItem

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Mediatypes;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 

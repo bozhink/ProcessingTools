@@ -75,10 +75,6 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Mediatypes.Data.Mongo.Contracts.IMediatypesMongoDatabaseInitializer>()
-                .To<ProcessingTools.Mediatypes.Data.Mongo.MediatypesMongoDatabaseInitializer>()
-                .InSingletonScope();
-
             this.Bind(b =>
             {
                 b.From(ProcessingTools.Mediatypes.Data.Seed.Assembly.Assembly.GetType().Assembly)

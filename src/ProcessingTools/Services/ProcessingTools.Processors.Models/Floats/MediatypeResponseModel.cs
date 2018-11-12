@@ -16,9 +16,9 @@ namespace ProcessingTools.Processors.Models.Floats
         public string FileExtension { get; set; }
 
         /// <inheritdoc/>
-        public string MimeType { get; set; } = ContentTypes.DefaultMimetype;
+        public string MimeType { get; set; } = ContentTypes.DefaultMimeType;
 
         /// <inheritdoc/>
-        public string MimeSubtype { get; set; } = ContentTypes.DefaultMimesubtype;
+        public string MimeSubtype { get; set; } = ContentTypes.DefaultMimeSubtype;
     }
 }

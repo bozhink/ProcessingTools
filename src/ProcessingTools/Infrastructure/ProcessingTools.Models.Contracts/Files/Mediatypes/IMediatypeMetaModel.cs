@@ -7,21 +7,11 @@ namespace ProcessingTools.Models.Contracts.Files.Mediatypes
     /// <summary>
     /// Mediatype meta model.
     /// </summary>
-    public interface IMediatypeMetaModel
+    public interface IMediatypeMetaModel : IMediatype
     {
         /// <summary>
         /// Gets the file extension.
         /// </summary>
         string Extension { get; }
-
-        /// <summary>
-        /// Gets the MIME type.
-        /// </summary>
-        string MimeType { get; }
-
-        /// <summary>
-        /// Gets the MIME subtype.
-        /// </summary>
-        string MimeSubtype { get; }
     }
 }

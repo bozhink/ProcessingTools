@@ -184,10 +184,6 @@
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>Mediatypes.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Mongo\Mediatypes.Data.Mongo.csproj">
-      <Project>{326F9B92-08F1-46C4-9B66-F8AE39170674}</Project>
-      <Name>Mediatypes.Data.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Seed\Mediatypes.Data.Seed.csproj">
       <Project>{d284eedf-76af-4bd1-a10d-cefe39ff59d0}</Project>
       <Name>Mediatypes.Data.Seed</Name>

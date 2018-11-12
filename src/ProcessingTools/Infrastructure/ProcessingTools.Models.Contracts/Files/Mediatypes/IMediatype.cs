@@ -2,21 +2,21 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Models.Contracts.Mediatypes
+namespace ProcessingTools.Models.Contracts.Files.Mediatypes
 {
     /// <summary>
-    /// Media type.
+    /// Mediatype.
     /// </summary>
     public interface IMediatype
     {
         /// <summary>
-        /// Gets mime sub-type.
+        /// Gets MIME type.
         /// </summary>
-        string Mimesubtype { get; }
+        string MimeType { get; }
 
         /// <summary>
-        /// Gets mime type.
+        /// Gets the MIME subtype.
         /// </summary>
-        string Mimetype { get; }
+        string MimeSubtype { get; }
     }
 }

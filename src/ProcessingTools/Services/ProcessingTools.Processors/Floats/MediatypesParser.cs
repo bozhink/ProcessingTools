@@ -122,8 +122,8 @@ namespace ProcessingTools.Processors.Processors.Floats
 
             if (response != null)
             {
-                result.MimeType = response.Mimetype;
-                result.MimeSubtype = response.Mimesubtype;
+                result.MimeType = response.MimeType;
+                result.MimeSubtype = response.MimeSubtype;
             }
 
             return result;

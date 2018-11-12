@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Data.Mediatypes
 {
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
     /// <summary>
     /// Mediatype service model.
@@ -22,8 +22,8 @@ namespace ProcessingTools.Services.Models.Data.Mediatypes
         /// <param name="mimesubtype">Mime sub-type.</param>
         public Mediatype(string mimetype, string mimesubtype)
         {
-            this.Mimetype = mimetype;
-            this.Mimesubtype = mimesubtype;
+            this.MimeType = mimetype;
+            this.MimeSubtype = mimesubtype;
         }
 
         /// <summary>
@@ -33,12 +33,21 @@ namespace ProcessingTools.Services.Models.Data.Mediatypes
         public Mediatype(string mediatype)
         {
             int slashIndex = mediatype.IndexOf('/');
-            this.Mimetype = mediatype.Substring(0, slashIndex);
-            this.Mimesubtype = mediatype.Substring(slashIndex + 1);
+            this.MimeType = mediatype.Substring(0, slashIndex);
+            this.MimeSubtype = mediatype.Substring(slashIndex + 1);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Mediatype"/> class.
+        /// </summary>
+        public Mediatype()
+        {
+            this.MimeType = ContentTypes.DefaultMimeType;
+            this.MimeSubtype = ContentTypes.DefaultMimeSubtype;
         }
 
         /// <inheritdoc/>
-        public string Mimetype
+        public string MimeType
         {
             get
             {
@@ -49,7 +58,7 @@ namespace ProcessingTools.Services.Models.Data.Mediatypes
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    this.mimetype = ContentTypes.DefaultMimetype;
+                    this.mimetype = ContentTypes.DefaultMimeType;
                 }
                 else
                 {
@@ -59,7 +68,7 @@ namespace ProcessingTools.Services.Models.Data.Mediatypes
         }
 
         /// <inheritdoc/>
-        public string Mimesubtype
+        public string MimeSubtype
         {
             get
             {
@@ -70,7 +79,7 @@ namespace ProcessingTools.Services.Models.Data.Mediatypes
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    this.mimesubtype = ContentTypes.DefaultMimesubtype;
+                    this.mimesubtype = ContentTypes.DefaultMimeSubtype;
                 }
                 else
                 {

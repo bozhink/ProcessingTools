@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Contracts.Mediatypes;
+    using ProcessingTools.Data.Contracts.Files;
+    using ProcessingTools.Data.Models.Mongo.Files;
     using ProcessingTools.Data.Mongo;
-    using ProcessingTools.Mediatypes.Data.Mongo.Models;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
     public class MongoMediatypesSearchableRepository : ISearchableMediatypesRepository
     {
@@ -23,10 +23,10 @@
             this.collection = databaseProvider.Create().GetCollection<Mediatype>(collectionName);
         }
 
-        public IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension)
+        public IEnumerable<IMediatypeBaseModel> GetByFileExtension(string fileExtension)
         {
             var extension = fileExtension?.ToLower().Trim(' ', '.');
-            var cursor = this.collection.Find(e => e.FileExtension.ToLower() == extension).ToCursor();
+            var cursor = this.collection.Find(e => e.Extension.ToLower() == extension).ToCursor();
             return cursor.ToEnumerable();
         }
     }

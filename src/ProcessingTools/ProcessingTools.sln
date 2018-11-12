@@ -129,8 +129,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Miners.Tests", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Data.Tests", "Services.Tests\Data\Services.Data.Tests\Services.Data.Tests.csproj", "{8F8E65C8-BA68-473C-B154-CC7080DF237E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Mongo", "Data\Mediatypes\Mediatypes.Data.Mongo\Mediatypes.Data.Mongo.csproj", "{326F9B92-08F1-46C4-9B66-F8AE39170674}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processors.Tests", "Services.Tests\Processors\Processors.Tests\Processors.Tests.csproj", "{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Commands.Tests", "Infrastructure.Tests\Tagger.Commands.Tests\Tagger.Commands.Tests.csproj", "{2ED11DE3-DA3D-47A9-9556-94DB495F0FC2}"
@@ -303,9 +301,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Bio.Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.Bio.Taxonomy.Xml", "Data\ProcessingTools.Data.Models.Bio.Taxonomy.Xml\ProcessingTools.Data.Models.Bio.Taxonomy.Xml.csproj", "{D2DC6E67-ADE9-41B5-9035-096CD651955B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Models.Mongo", "Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj", "{A84A59AE-A52A-4F51-B2A8-AD8306ED395A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.Mongo", "Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj", "{A84A59AE-A52A-4F51-B2A8-AD8306ED395A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Mongo", "Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj", "{85CC9358-E237-4C2F-9138-85DB4FB33307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Mongo", "Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj", "{85CC9358-E237-4C2F-9138-85DB4FB33307}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -627,14 +625,6 @@ Global
 		{8F8E65C8-BA68-473C-B154-CC7080DF237E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8F8E65C8-BA68-473C-B154-CC7080DF237E}.Release|x64.ActiveCfg = Release|Any CPU
 		{8F8E65C8-BA68-473C-B154-CC7080DF237E}.Release|x64.Build.0 = Release|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Debug|x64.Build.0 = Debug|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Release|Any CPU.Build.0 = Release|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Release|x64.ActiveCfg = Release|Any CPU
-		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Release|x64.Build.0 = Release|Any CPU
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1366,7 +1356,6 @@ Global
 		{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0} = {1EE1058C-9F30-4EA7-A371-8778B7752109}
 		{E3A530BD-D7FD-4E2B-A1BB-10CBECB3207C} = {FB9B4337-2799-4D5D-8497-BD6D6C8AF08F}
 		{8F8E65C8-BA68-473C-B154-CC7080DF237E} = {1939D374-F0BC-47AE-9F2D-F5C736A40E50}
-		{326F9B92-08F1-46C4-9B66-F8AE39170674} = {1EE1058C-9F30-4EA7-A371-8778B7752109}
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20} = {CF0F1E82-0745-4398-924F-0316CD406FC7}
 		{2ED11DE3-DA3D-47A9-9556-94DB495F0FC2} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{0564FB47-4545-4251-90FD-061C8A07C712} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
@@ -1456,7 +1445,7 @@ Global
 		{85CC9358-E237-4C2F-9138-85DB4FB33307} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal

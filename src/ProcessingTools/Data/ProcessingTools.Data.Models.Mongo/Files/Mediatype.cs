@@ -47,6 +47,7 @@ namespace ProcessingTools.Data.Models.Mongo.Files
         public string MimeSubtype { get; set; }
 
         /// <inheritdoc/>
+        [BsonIgnoreIfDefault]
         public string Description { get; set; }
 
         /// <inheritdoc/>

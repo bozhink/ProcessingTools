@@ -2,10 +2,10 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Contracts.Mediatypes
+namespace ProcessingTools.Data.Contracts.Files
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
     /// <summary>
     /// Mediatypes repository.
@@ -17,7 +17,7 @@ namespace ProcessingTools.Data.Contracts.Mediatypes
         /// </summary>
         /// <param name="mediatype">Entity to be added.</param>
         /// <returns>Task of result.</returns>
-        Task<object> Add(IMediatypeEntity mediatype);
+        Task<object> Add(IMediatypeBaseModel mediatype);
 
         /// <summary>
         /// Remove entity by file extension.

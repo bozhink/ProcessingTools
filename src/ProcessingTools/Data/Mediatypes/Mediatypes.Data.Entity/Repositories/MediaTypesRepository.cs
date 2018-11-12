@@ -5,10 +5,10 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Mediatypes;
+    using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
     public class MediatypesRepository : IMediatypesRepository, ISearchableMediatypesRepository, IDisposable
     {
@@ -24,7 +24,7 @@
             this.Dispose(false);
         }
 
-        public async Task<object> Add(IMediatypeEntity mediatype)
+        public async Task<object> Add(IMediatypeBaseModel mediatype)
         {
             if (mediatype == null)
             {
@@ -32,26 +32,26 @@
             }
 
             var mimetype = await this.db.Mimetypes
-                .FirstOrDefaultAsync(m => m.Name.ToLower() == mediatype.Mimetype.ToLower())
+                .FirstOrDefaultAsync(m => m.Name.ToLower() == mediatype.MimeType.ToLower())
                 .ConfigureAwait(false);
 
             if (mimetype == null)
             {
                 mimetype = new Mimetype
                 {
-                    Name = mediatype.Mimetype.ToLower()
+                    Name = mediatype.MimeType.ToLower()
                 };
             }
 
             var mimesubtype = await this.db.Mimesubtypes
-                .FirstOrDefaultAsync(s => s.Name.ToLower() == mediatype.Mimesubtype.ToLower())
+                .FirstOrDefaultAsync(s => s.Name.ToLower() == mediatype.MimeSubtype.ToLower())
                 .ConfigureAwait(false);
 
             if (mimesubtype == null)
             {
                 mimesubtype = new Mimesubtype
                 {
-                    Name = mediatype.Mimesubtype.ToLower()
+                    Name = mediatype.MimeSubtype.ToLower()
                 };
             }
 
@@ -69,14 +69,14 @@
             }
 
             var entity = await this.db.FileExtensions
-                .FirstOrDefaultAsync(e => e.Name.ToLower() == mediatype.FileExtension.ToLower())
+                .FirstOrDefaultAsync(e => e.Name.ToLower() == mediatype.Extension.ToLower())
                 .ConfigureAwait(false);
 
             if (entity == null)
             {
                 entity = new FileExtension
                 {
-                    Name = mediatype.FileExtension.ToLower()
+                    Name = mediatype.Extension.ToLower()
                 };
             }
 
@@ -96,7 +96,7 @@
             return true;
         }
 
-        public IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension)
+        public IEnumerable<IMediatypeBaseModel> GetByFileExtension(string fileExtension)
         {
             if (string.IsNullOrWhiteSpace(fileExtension))
             {
@@ -107,12 +107,12 @@
                 .Where(e => e.Name.ToLower() == fileExtension.ToLower())
                 .SelectMany(e => e.MimetypePairs.Select(p => new Mediatype
                 {
-                    FileExtension = e.Name,
+                    Extension = e.Name,
                     Description = e.Description,
-                    Mimetype = p.Mimetype.Name,
-                    Mimesubtype = p.Mimesubtype.Name
+                    MimeType = p.Mimetype.Name,
+                    MimeSubtype = p.Mimesubtype.Name
                 }))
-                .AsEnumerable<IMediatypeEntity>();
+                .AsEnumerable<IMediatypeBaseModel>();
 
             return result;
         }

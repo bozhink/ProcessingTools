@@ -1,13 +1,13 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using Abstractions.Seeders;
-    using Contracts.Seeders;
-    using ProcessingTools.Mediatypes.Data.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.DbSeeder.Abstractions.Seeders;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;
 
-    public class MediatypesMongoDbSeeder : GenericDbSeeder<IMediatypesMongoDatabaseInitializer, IMediatypesMongoDatabaseSeeder>, IMediatypesMongoDbSeeder
+    public class MediatypesMongoDbSeeder : GenericDbSeeder<IDatabaseInitializer, IMediatypesMongoDatabaseSeeder>, IMediatypesMongoDbSeeder
     {
-        public MediatypesMongoDbSeeder(IMediatypesMongoDatabaseInitializer initializer, IMediatypesMongoDatabaseSeeder seeder)
+        public MediatypesMongoDbSeeder(IDatabaseInitializer initializer, IMediatypesMongoDatabaseSeeder seeder)
             : base(initializer, seeder)
         {
         }

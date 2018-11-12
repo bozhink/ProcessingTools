@@ -17,7 +17,7 @@ namespace ProcessingTools.Common.Constants
         /// <summary>
         /// Default mime-subtype.
         /// </summary>
-        public const string DefaultMimesubtype = "unknown";
+        public const string DefaultMimeSubtype = "unknown";
 
         /// <summary>
         /// Default mime-subtype returned on exception.
@@ -27,7 +27,7 @@ namespace ProcessingTools.Common.Constants
         /// <summary>
         /// Default mime-type.
         /// </summary>
-        public const string DefaultMimetype = "unknown";
+        public const string DefaultMimeType = "unknown";
 
         /// <summary>
         /// Default mime-type returned on exception.

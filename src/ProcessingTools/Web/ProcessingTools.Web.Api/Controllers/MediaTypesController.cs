@@ -6,7 +6,7 @@
     using System.Web.Http;
     using AutoMapper;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Mediatypes;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 

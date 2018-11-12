@@ -241,10 +241,6 @@
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>Mediatypes.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Mongo\Mediatypes.Data.Mongo.csproj">
-      <Project>{326F9B92-08F1-46C4-9B66-F8AE39170674}</Project>
-      <Name>Mediatypes.Data.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
       <Name>ProcessingTools.Data.Contracts</Name>

@@ -2,10 +2,10 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Contracts.Mediatypes
+namespace ProcessingTools.Data.Contracts.Files
 {
     using System.Collections.Generic;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
     /// <summary>
     /// Searchable mediatypes repository.
@@ -17,6 +17,6 @@ namespace ProcessingTools.Data.Contracts.Mediatypes
         /// </summary>
         /// <param name="fileExtension">The file extension.</param>
         /// <returns>Mediatypes matching the specified file extension.</returns>
-        IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension);
+        IEnumerable<IMediatypeBaseModel> GetByFileExtension(string fileExtension);
     }
 }
