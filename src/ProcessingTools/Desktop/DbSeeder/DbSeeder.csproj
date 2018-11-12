@@ -128,13 +128,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj">
+      <Project>{a84a59ae-a52a-4f51-b2a8-ad8306ed395a}</Project>
+      <Name>ProcessingTools.Data.Models.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj">
+      <Project>{85cc9358-e237-4c2f-9138-85db4fb33307}</Project>
+      <Name>ProcessingTools.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
-      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
-      <Name>Bio.Biorepositories.Data.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Seed\Bio.Biorepositories.Data.Seed.csproj">
       <Project>{dda1c4f8-aa95-4fee-9e85-d7d0bea6fac3}</Project>
@@ -187,10 +191,6 @@
     <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Seed\Mediatypes.Data.Seed.csproj">
       <Project>{d284eedf-76af-4bd1-a10d-cefe39ff59d0}</Project>
       <Name>Mediatypes.Data.Seed</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
-      <Project>{A77B11A8-45A0-45BA-9003-7A81514D8BDA}</Project>
-      <Name>ProcessingTools.Data.Common.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>

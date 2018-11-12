@@ -6,10 +6,7 @@
     using global::Ninject.Extensions.Conventions;
     using global::Ninject.Extensions.Interception.Infrastructure.Language;
     using global::Ninject.Modules;
-    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.DbSeeder.Core;
@@ -89,28 +86,6 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<IMongoDatabaseProvider>()
-                .To<MongoDatabaseProvider>()
-                .WhenInjectedInto<ProcessingTools.Mediatypes.Data.Seed.Seeders.MediatypesMongoDatabaseSeeder>()
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.MediatypesMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.MediatypesMongoDatabaseName);
-
-            this.Bind<IMongoDatabaseProvider>()
-               .To<MongoDatabaseProvider>()
-               .WhenInjectedInto<ProcessingTools.Mediatypes.Data.Mongo.MediatypesMongoDatabaseInitializer>()
-               .InSingletonScope()
-               .WithConstructorArgument(
-                   ParameterNames.ConnectionString,
-                   AppSettings.MediatypesMongoConnection)
-               .WithConstructorArgument(
-                   ParameterNames.DatabaseName,
-                   AppSettings.MediatypesMongoDatabaseName);
-
             // DataResources
             this.Bind(b =>
             {
@@ -122,54 +97,6 @@
             this.Bind(b =>
             {
                 b.From(ProcessingTools.DataResources.Data.Seed.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            // Bio.Biorepositories.Data
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto(typeof(ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.BiorepositoriesRepository<>))
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.BiorepositoriesMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDatabaseName);
-
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto(typeof(ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.BiorepositoriesRepositoryProvider<>))
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.BiorepositoriesMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDatabaseName);
-
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto<ProcessingTools.Bio.Biorepositories.Data.Seed.Seeders.BiorepositoriesDataSeeder>()
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.BiorepositoriesMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDatabaseName);
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Bio.Biorepositories.Data.Mongo.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Bio.Biorepositories.Data.Seed.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

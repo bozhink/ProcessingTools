@@ -51,9 +51,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Files.Mongo\ProcessingTools.Data.Files.Mongo.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Security\ProcessingTools.Security.csproj" />
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Layout.Mongo\ProcessingTools.Data.Layout.Mongo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo\ProcessingTools.Geo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Xml\ProcessingTools.Xml.csproj" />
@@ -69,10 +69,7 @@
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors\ProcessingTools.Processors.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.History.Mongo\ProcessingTools.Data.History.Mongo.csproj" />
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Documents.Mongo\ProcessingTools.Data.Documents.Mongo.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
   </ItemGroup>
 </Project>

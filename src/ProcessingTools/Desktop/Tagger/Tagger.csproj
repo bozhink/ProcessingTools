@@ -205,6 +205,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj">
+      <Project>{a84a59ae-a52a-4f51-b2a8-ad8306ed395a}</Project>
+      <Name>ProcessingTools.Data.Models.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj">
+      <Project>{85cc9358-e237-4c2f-9138-85db4fb33307}</Project>
+      <Name>ProcessingTools.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -212,10 +220,6 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
       <Project>{720d359f-49d1-4126-a79b-f63cce9780a0}</Project>
       <Name>ProcessingTools.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
-      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
-      <Name>Bio.Biorepositories.Data.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Data.Entity\Bio.Data.Entity.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
@@ -240,10 +244,6 @@
     <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Mongo\Mediatypes.Data.Mongo.csproj">
       <Project>{326F9B92-08F1-46C4-9B66-F8AE39170674}</Project>
       <Name>Mediatypes.Data.Mongo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
-      <Project>{a77b11a8-45a0-45ba-9003-7a81514d8bda}</Project>
-      <Name>ProcessingTools.Data.Common.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>

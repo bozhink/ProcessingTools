@@ -541,6 +541,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj">
+      <Project>{a84a59ae-a52a-4f51-b2a8-ad8306ed395a}</Project>
+      <Name>ProcessingTools.Data.Models.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj">
+      <Project>{85cc9358-e237-4c2f-9138-85db4fb33307}</Project>
+      <Name>ProcessingTools.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -556,10 +564,6 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
       <Project>{a620dfde-28c3-46c7-bed3-0afb99db9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
-      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
-      <Name>Bio.Biorepositories.Data.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Data.Entity\Bio.Data.Entity.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
@@ -584,10 +588,6 @@
     <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Entity\Mediatypes.Data.Entity.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>Mediatypes.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
-      <Project>{A77B11A8-45A0-45BA-9003-7A81514D8BDA}</Project>
-      <Name>ProcessingTools.Data.Common.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
