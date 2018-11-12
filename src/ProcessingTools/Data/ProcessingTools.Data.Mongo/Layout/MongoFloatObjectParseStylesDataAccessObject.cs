@@ -7,9 +7,8 @@ namespace ProcessingTools.Data.Mongo.Layout
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Abstractions;
     using AutoMapper;
-    using Common;
-    using Common.Contracts;
     using Contracts.Layout.Styles;
     using Extensions;
     using Models.Contracts.Layout.Styles;

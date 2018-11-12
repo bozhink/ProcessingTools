@@ -7,9 +7,8 @@ namespace ProcessingTools.Data.Mongo.History
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Abstractions;
     using AutoMapper;
-    using Common;
-    using Common.Contracts;
     using Contracts.History;
     using Models.Mongo.History;
     using MongoDB.Driver;

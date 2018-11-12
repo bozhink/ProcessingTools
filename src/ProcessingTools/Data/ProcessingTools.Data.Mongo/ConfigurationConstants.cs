@@ -2,12 +2,12 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Common.Constants
+namespace ProcessingTools.Data.Mongo
 {
     /// <summary>
     /// Configuration constants.
     /// </summary>
-    public static class ConfigurationConstants
+    internal static class ConfigurationConstants
     {
         /// <summary>
         /// Camel case convention pack name.

@@ -5,8 +5,7 @@
     using Contracts;
     using Models;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Mongo.Common;
-    using ProcessingTools.Data.Mongo.Common.Contracts;
+    using ProcessingTools.Data.Mongo;
 
     public class MediatypesMongoDatabaseInitializer : IMediatypesMongoDatabaseInitializer
     {

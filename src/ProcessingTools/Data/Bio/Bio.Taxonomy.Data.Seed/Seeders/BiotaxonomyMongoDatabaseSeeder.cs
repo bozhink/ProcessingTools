@@ -9,8 +9,7 @@
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Mongo.Bio.Taxonomy;
-    using ProcessingTools.Data.Mongo.Common;
-    using ProcessingTools.Data.Mongo.Common.Contracts;
+    using ProcessingTools.Data.Mongo;
     using ProcessingTools.Extensions;
 
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder

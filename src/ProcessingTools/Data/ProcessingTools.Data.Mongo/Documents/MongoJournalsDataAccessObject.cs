@@ -7,9 +7,8 @@ namespace ProcessingTools.Data.Mongo.Documents
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Abstractions;
     using AutoMapper;
-    using Common;
-    using Common.Contracts;
     using Contracts.Documents;
     using Extensions;
     using Models.Contracts.Documents.Journals;

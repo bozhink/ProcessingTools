@@ -6,8 +6,6 @@ namespace ProcessingTools.Data.Mongo.Layout
 {
     using System;
     using System.Threading.Tasks;
-    using Common;
-    using Common.Contracts;
     using Contracts.Documents;
     using Models.Mongo.Layout;
     using MongoDB.Driver;

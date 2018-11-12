@@ -2,9 +2,9 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Common.Contracts
+namespace ProcessingTools.Data.Mongo.Abstractions
 {
-    using Data.Contracts;
+    using Contracts;
 
     /// <summary>
     /// Generic MongoDB searchable repository.

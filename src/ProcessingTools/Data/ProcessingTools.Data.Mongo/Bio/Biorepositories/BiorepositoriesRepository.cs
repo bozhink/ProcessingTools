@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Data.Mongo.Bio.Biorepositories
 {
-    using Common.Contracts;
-    using Common.Repositories;
+    using Abstractions;
 
     public class BiorepositoriesRepository<T> : MongoGenericRepository<T>, IBiorepositoriesRepository<T>
         where T : class

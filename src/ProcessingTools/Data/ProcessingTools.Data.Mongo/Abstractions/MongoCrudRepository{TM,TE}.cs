@@ -2,13 +2,12 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Common.Repositories
+namespace ProcessingTools.Data.Mongo.Abstractions
 {
     using System;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
     using MongoDB.Driver;
     using ProcessingTools.Contracts.Data.Expressions;
 

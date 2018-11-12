@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo.Tests.IntegrtionTests
 {
     using System.Linq;
-    using Data.Mongo.Common.Repositories;
+    using Data.Mongo.Abstractions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Data.Common.Mongo.Tests.Fakes;
     using ProcessingTools.Data.Common.Mongo.Tests.Models;
