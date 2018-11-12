@@ -8,8 +8,6 @@
     using ProcessingTools.Mediatypes.Data.Entity.Factories;
     using ProcessingTools.Mediatypes.Data.Entity.Providers;
     using ProcessingTools.Mediatypes.Data.Mongo.Repositories;
-    using ProcessingTools.Services.Contracts.Mediatypes;
-    using ProcessingTools.Services.Data.Services.Mediatypes;
 
     public class NinjectMediatypesBindings : NinjectModule
     {
@@ -39,13 +37,6 @@
             this.Bind<IMediatypesDbContextProvider>()
                 .To<MediatypesDbContextProvider>()
                 .InSingletonScope();
-
-            this.Bind<IMediatypeStringResolver>()
-                .To<MediatypeStringResolverWithStaticDictionary>()
-                .InSingletonScope();
-
-            this.Bind<IMediatypesResolver>()
-                .To<MediatypesResolverWithDatabase>();
         }
     }
 }

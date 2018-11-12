@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Mediatypes
+namespace ProcessingTools.Services.Contracts.Files
 {
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Files.Mediatypes;

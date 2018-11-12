@@ -16,7 +16,7 @@ namespace ProcessingTools.Processors.Processors.Floats
     using ProcessingTools.Processors.Contracts.Floats;
     using ProcessingTools.Processors.Models.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
-    using ProcessingTools.Services.Contracts.Mediatypes;
+    using ProcessingTools.Services.Contracts.Files;
 
     /// <summary>
     /// Mediatypes parser.

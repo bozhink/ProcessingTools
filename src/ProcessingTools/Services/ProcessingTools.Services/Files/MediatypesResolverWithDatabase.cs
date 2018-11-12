@@ -1,22 +1,21 @@
-﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
+﻿namespace ProcessingTools.Services.Files
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Data.Contracts.Files;
-    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts.Files.Mediatypes;
-    using ProcessingTools.Services.Contracts.Mediatypes;
+    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithDatabase : IMediatypesResolver
     {
-        private readonly ISearchableMediatypesRepository repository;
+        private readonly IMediatypesDataAccessObject dataAccessObject;
 
-        public MediatypesResolverWithDatabase(ISearchableMediatypesRepository repository)
+        public MediatypesResolverWithDatabase(IMediatypesDataAccessObject dataAccessObject)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
         public async Task<IMediatype[]> ResolveMediatypeAsync(string fileExtension)
@@ -29,9 +28,9 @@
 
             try
             {
-                var response = await this.repository.GetByFileExtension(extension).ToListAsync().ConfigureAwait(false);
+                var response = await this.dataAccessObject.GetMediatypesByExtensionAsync(extension).ConfigureAwait(false);
 
-                if (response == null || response.Count < 1)
+                if (response == null || !response.Any())
                 {
                     return this.GetStaticResult(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype);
                 }

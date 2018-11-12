@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
+﻿namespace ProcessingTools.Services.Files
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Files.Mediatypes;
-    using ProcessingTools.Services.Contracts.Mediatypes;
+    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithMediatypeStringResolver : IMediatypesResolver
