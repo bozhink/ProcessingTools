@@ -2,13 +2,13 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Files.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Files
 {
     using System;
+    using Common.Attributes;
+    using Contracts.Files.Mediatypes;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Files.Mediatypes;
 
     /// <summary>
     /// Mediatype

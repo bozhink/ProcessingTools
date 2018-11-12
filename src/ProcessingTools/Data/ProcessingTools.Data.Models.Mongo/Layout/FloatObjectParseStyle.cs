@@ -2,14 +2,14 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Layout.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Layout
 {
     using System;
+    using Common.Attributes;
+    using Common.Enumerations.Nlm;
+    using Contracts.Layout.Styles.Floats;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Common.Enumerations.Nlm;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
 
     /// <summary>
     /// Float object parse style.

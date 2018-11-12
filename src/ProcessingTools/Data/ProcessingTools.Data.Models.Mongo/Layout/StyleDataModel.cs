@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Layout.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Layout
 {
     using System;
 

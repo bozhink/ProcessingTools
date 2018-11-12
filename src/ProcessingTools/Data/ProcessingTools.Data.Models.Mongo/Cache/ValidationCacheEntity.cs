@@ -2,12 +2,12 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Cache.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Cache
 {
     using System;
+    using Common.Enumerations;
+    using Contracts.Cache;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Data.Models.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>

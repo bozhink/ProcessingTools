@@ -2,9 +2,9 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Mongo.Contracts
+namespace ProcessingTools.Data.Mongo.Common.Contracts
 {
-    using ProcessingTools.Data.Contracts;
+    using Data.Contracts;
 
     /// <summary>
     /// Generic MongoDB CRUD repository.

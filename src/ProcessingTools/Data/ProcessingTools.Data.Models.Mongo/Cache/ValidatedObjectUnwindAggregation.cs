@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Cache.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Cache
 {
     using MongoDB.Bson.Serialization.Attributes;
 

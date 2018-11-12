@@ -2,14 +2,14 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Bio.Taxonomy.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
+    using Common.Attributes;
+    using Common.Enumerations;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

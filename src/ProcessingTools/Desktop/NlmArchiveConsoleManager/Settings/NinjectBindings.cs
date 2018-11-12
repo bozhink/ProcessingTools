@@ -1,6 +1,9 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
+    using Data.Mongo.Common;
+    using Data.Mongo.Common.Contracts;
+    using Data.Mongo.Documents;
     using global::Ninject.Extensions.Conventions;
     using global::Ninject.Extensions.Factory;
     using global::Ninject.Extensions.Interception.Infrastructure.Language;
@@ -8,7 +11,6 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Documents.Mongo;
     using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
@@ -90,8 +92,8 @@
             string documentsMongoConnection = AppSettings.DocumentsMongoConnection;
             string documentsMongoDabaseName = AppSettings.DocumentsMongoDatabaseName;
 
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
                 .WhenInjectedInto<MongoJournalMetaDataAccessObject>()
                 .InSingletonScope()
                 .WithConstructorArgument(

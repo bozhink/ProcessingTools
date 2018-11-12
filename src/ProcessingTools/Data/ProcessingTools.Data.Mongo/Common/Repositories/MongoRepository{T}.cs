@@ -2,12 +2,12 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Mongo.Repositories
+namespace ProcessingTools.Data.Mongo.Common.Repositories
 {
     using System;
     using System.Threading.Tasks;
+    using Contracts;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     /// <summary>
     /// Generic MongoDB repository.

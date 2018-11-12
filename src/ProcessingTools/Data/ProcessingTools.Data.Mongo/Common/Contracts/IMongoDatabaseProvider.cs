@@ -2,10 +2,10 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Mongo.Contracts
+namespace ProcessingTools.Data.Mongo.Common.Contracts
 {
+    using Data.Contracts;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Contracts;
 
     /// <summary>
     /// MongoDB database provider.

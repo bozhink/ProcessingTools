@@ -2,16 +2,15 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Mongo
+namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
 {
     using System;
     using System.Threading.Tasks;
+    using Common;
+    using Common.Contracts;
+    using Contracts.Bio.Taxonomy;
+    using Models.Mongo.Bio.Taxonomy;
     using MongoDB.Driver;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Data.Models.Bio.Taxonomy.Mongo;
 
     /// <summary>
     /// Implementation of <see cref="IBiotaxonomyDatabaseInitializer"/>.

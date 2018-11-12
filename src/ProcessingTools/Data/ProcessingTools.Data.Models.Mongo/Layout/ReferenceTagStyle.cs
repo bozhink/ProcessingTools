@@ -2,13 +2,13 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Layout.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Layout
 {
     using System;
+    using Common.Attributes;
+    using Contracts.Layout.Styles.References;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
 
     /// <summary>
     /// Reference tag style.

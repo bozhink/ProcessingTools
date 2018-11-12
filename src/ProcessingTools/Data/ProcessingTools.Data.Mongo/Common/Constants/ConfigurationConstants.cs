@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Mongo.Constants
+namespace ProcessingTools.Data.Mongo.Common.Constants
 {
     /// <summary>
     /// Configuration constants.

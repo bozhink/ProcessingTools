@@ -2,13 +2,13 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Mongo
+namespace ProcessingTools.Data.Mongo.Common
 {
     using System;
+    using Constants;
+    using Contracts;
     using MongoDB.Bson.Serialization.Conventions;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Common.Mongo.Constants;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     /// <summary>
     /// MongoDB database provider.

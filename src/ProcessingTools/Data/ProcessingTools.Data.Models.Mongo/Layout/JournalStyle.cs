@@ -2,14 +2,14 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Layout.Mongo
+namespace ProcessingTools.Data.Models.Mongo.Layout
 {
     using System;
     using System.Collections.Generic;
+    using Common.Attributes;
+    using Contracts.Layout.Styles.Journals;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Models.Contracts.Layout.Styles.References;
