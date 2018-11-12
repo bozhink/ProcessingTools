@@ -1,7 +1,8 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
-    using Data.Mongo;
+    using Data.Mongo.Common;
+    using Data.Mongo.Common.Contracts;
     using Data.Mongo.Documents;
     using global::Ninject.Extensions.Conventions;
     using global::Ninject.Extensions.Factory;

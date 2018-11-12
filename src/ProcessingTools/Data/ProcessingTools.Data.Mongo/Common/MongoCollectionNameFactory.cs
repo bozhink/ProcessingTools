@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo
+namespace ProcessingTools.Data.Mongo.Common
 {
     using System;
     using System.Collections.Concurrent;
@@ -12,7 +12,7 @@ namespace ProcessingTools.Data.Mongo
     /// <summary>
     /// MongoDB collection name factory.
     /// </summary>
-    internal static class MongoCollectionNameFactory
+    public static class MongoCollectionNameFactory
     {
         private static readonly ConcurrentDictionary<Type, string> CollectionNames = new ConcurrentDictionary<Type, string>();
 

@@ -4,7 +4,8 @@
     using System.Collections.Generic;
     using MongoDB.Driver;
     using ProcessingTools.Data.Contracts.Mediatypes;
-    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Common;
+    using ProcessingTools.Data.Mongo.Common.Contracts;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
     using ProcessingTools.Models.Contracts.Mediatypes;
 

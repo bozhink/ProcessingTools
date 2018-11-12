@@ -6,6 +6,8 @@ namespace ProcessingTools.Data.Mongo.Files
 {
     using System;
     using System.Threading.Tasks;
+    using Common;
+    using Common.Contracts;
     using Contracts.Files;
     using Models.Mongo.Files;
     using MongoDB.Driver;

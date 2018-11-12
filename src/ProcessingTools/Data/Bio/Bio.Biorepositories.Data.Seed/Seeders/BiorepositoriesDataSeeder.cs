@@ -13,8 +13,8 @@
     using ProcessingTools.Common.Code.Serialization.Csv;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
-    using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Bio.Biorepositories;
+    using ProcessingTools.Data.Mongo.Common.Contracts;
     using ProcessingTools.Extensions;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder

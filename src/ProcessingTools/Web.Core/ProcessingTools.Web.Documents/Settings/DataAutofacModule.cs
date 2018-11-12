@@ -15,7 +15,8 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Data.Contracts.History;
     using ProcessingTools.Data.Contracts.Layout.Styles;
-    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Common;
+    using ProcessingTools.Data.Mongo.Common.Contracts;
     using ProcessingTools.Data.Mongo.Documents;
     using ProcessingTools.Data.Mongo.Files;
     using ProcessingTools.Data.Mongo.History;
