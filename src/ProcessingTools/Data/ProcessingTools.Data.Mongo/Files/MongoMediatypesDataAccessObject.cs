@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Files.Mongo
+namespace ProcessingTools.Data.Mongo.Files
 {
     using System;
     using System.Linq;
@@ -11,11 +11,10 @@ namespace ProcessingTools.Data.Files.Mongo
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Data.Models.Contracts.Files.Mediatypes;
-    using ProcessingTools.Data.Models.Files.Mongo;
+    using ProcessingTools.Data.Models.Mongo.Files;
+    using ProcessingTools.Data.Mongo.Abstractions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Files.Mediatypes;
 

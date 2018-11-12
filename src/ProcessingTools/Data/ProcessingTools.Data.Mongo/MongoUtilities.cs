@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Mongo
+namespace ProcessingTools.Data.Mongo
 {
     using System;
     using System.Linq;
@@ -13,7 +13,7 @@ namespace ProcessingTools.Data.Common.Mongo
     /// <summary>
     /// MongoDB utilities.
     /// </summary>
-    public static class MongoUtilities
+    internal static class MongoUtilities
     {
         /// <summary>
         /// Gets filter definition for the ID property.

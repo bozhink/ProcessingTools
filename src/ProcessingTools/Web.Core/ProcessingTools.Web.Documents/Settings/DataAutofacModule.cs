@@ -10,17 +10,16 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac.Core;
     using Microsoft.Extensions.Configuration;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Data.Contracts.History;
     using ProcessingTools.Data.Contracts.Layout.Styles;
-    using ProcessingTools.Data.Documents.Mongo;
-    using ProcessingTools.Data.Files.Mongo;
-    using ProcessingTools.Data.History.Mongo;
-    using ProcessingTools.Data.Layout.Mongo;
+    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Documents;
+    using ProcessingTools.Data.Mongo.Files;
+    using ProcessingTools.Data.Mongo.History;
+    using ProcessingTools.Data.Mongo.Layout;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Data.*

@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.History.Mongo
+namespace ProcessingTools.Data.Mongo.History
 {
     using System;
     using System.Linq;
@@ -10,10 +10,9 @@ namespace ProcessingTools.Data.History.Mongo
     using AutoMapper;
     using MongoDB.Driver;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.History;
-    using ProcessingTools.Data.Models.History.Mongo;
+    using ProcessingTools.Data.Models.Mongo.History;
+    using ProcessingTools.Data.Mongo.Abstractions;
     using ProcessingTools.Models.Contracts.History;
 
     /// <summary>

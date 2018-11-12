@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Mongo.Models
+namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;

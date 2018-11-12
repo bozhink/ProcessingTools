@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories
+﻿namespace ProcessingTools.Data.Mongo.Bio.Biorepositories
 {
-    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Mongo.Abstractions;
 
     public interface IBiorepositoriesRepository<T> : IMongoGenericRepository<T>
         where T : class

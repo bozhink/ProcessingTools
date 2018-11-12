@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Bio.Taxonomy.Mongo
+namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;

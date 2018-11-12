@@ -8,7 +8,8 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Documents.Mongo;
+    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Documents;
     using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
@@ -90,8 +91,8 @@
             string documentsMongoConnection = AppSettings.DocumentsMongoConnection;
             string documentsMongoDabaseName = AppSettings.DocumentsMongoDatabaseName;
 
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
                 .WhenInjectedInto<MongoJournalMetaDataAccessObject>()
                 .InSingletonScope()
                 .WithConstructorArgument(

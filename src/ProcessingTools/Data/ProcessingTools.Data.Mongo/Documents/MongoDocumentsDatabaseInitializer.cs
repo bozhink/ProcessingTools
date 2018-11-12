@@ -2,15 +2,13 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Documents.Mongo
+namespace ProcessingTools.Data.Mongo.Documents
 {
     using System;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Models.Documents.Mongo;
+    using ProcessingTools.Data.Models.Mongo.Documents;
 
     /// <summary>
     /// MongoDB implementation for <see cref="IDocumentsDatabaseInitializer"/>.

@@ -3,10 +3,9 @@
     using System;
     using System.Threading.Tasks;
     using Contracts;
-    using Models;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Mediatypes.Data.Mongo.Models;
 
     public class MediatypesMongoDatabaseInitializer : IMediatypesMongoDatabaseInitializer
     {

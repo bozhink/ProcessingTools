@@ -6,15 +6,15 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Code.Data.Seed;
     using ProcessingTools.Common.Code.Serialization.Csv;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
+    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Bio.Biorepositories;
     using ProcessingTools.Extensions;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder

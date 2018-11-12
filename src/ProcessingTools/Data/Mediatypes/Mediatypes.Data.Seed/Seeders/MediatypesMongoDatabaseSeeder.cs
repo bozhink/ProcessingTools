@@ -8,8 +8,7 @@
     using MongoDB.Driver;
     using Newtonsoft.Json;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Mongo;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;
     using ProcessingTools.Mediatypes.Data.Seed.Models;

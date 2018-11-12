@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Models
+﻿namespace ProcessingTools.Data.Models.Mongo.Bio.Biorepositories
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;

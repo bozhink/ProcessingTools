@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.History.Mongo
+namespace ProcessingTools.Data.Models.Mongo.History
 {
     using System;
     using MongoDB.Bson;
