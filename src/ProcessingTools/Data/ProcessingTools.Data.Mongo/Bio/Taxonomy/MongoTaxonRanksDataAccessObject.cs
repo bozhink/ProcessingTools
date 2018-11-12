@@ -2,16 +2,16 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
+namespace ProcessingTools.Data.Bio.Taxonomy.Mongo
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
-    using Models.Mongo.Bio.Taxonomy;
     using MongoDB.Bson;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Data.Models.Bio.Taxonomy.Mongo;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

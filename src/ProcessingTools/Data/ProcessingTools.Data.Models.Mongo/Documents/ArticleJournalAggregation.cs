@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Mongo.Documents
+namespace ProcessingTools.Data.Models.Documents.Mongo
 {
     using System;
     using System.Collections.Generic;

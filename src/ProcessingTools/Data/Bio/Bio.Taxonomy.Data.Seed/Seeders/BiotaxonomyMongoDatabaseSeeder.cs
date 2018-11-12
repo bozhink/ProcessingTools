@@ -6,11 +6,11 @@
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Data.Common.Mongo;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Data.Models.Mongo.Bio.Taxonomy;
-    using ProcessingTools.Data.Mongo.Common;
-    using ProcessingTools.Data.Mongo.Common.Contracts;
+    using ProcessingTools.Data.Models.Bio.Taxonomy.Mongo;
     using ProcessingTools.Extensions;
 
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder

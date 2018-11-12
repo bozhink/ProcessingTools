@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo.Tests.Fakes
 {
-    using Data.Mongo.Common.Contracts;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public class RealMongoDatabaseProvider : IMongoDatabaseProvider
     {

@@ -2,11 +2,11 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
+namespace ProcessingTools.Data.Bio.Taxonomy.Mongo
 {
-    using Contracts.Bio.Taxonomy;
-    using Models.Mongo.Bio.Taxonomy;
     using MongoDB.Driver;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IBlackListDataAccessObject"/>.

@@ -3,19 +3,18 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
-    using ProcessingTools.Data.Mongo.Bio.Biorepositories;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Contracts.Bio.Biorepositories;
     using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
     public class BiorepositoriesInstitutionsDataService : IBiorepositoriesInstitutionsDataService
     {
-        private readonly IBiorepositoriesRepositoryProvider<Institution> repositoryProvider;
+        private readonly IBiorepositoriesRepositoryProvider<Biorepositories.Data.Mongo.Models.Institution> repositoryProvider;
 
-        public BiorepositoriesInstitutionsDataService(IBiorepositoriesRepositoryProvider<Institution> repositoryProvider)
+        public BiorepositoriesInstitutionsDataService(IBiorepositoriesRepositoryProvider<Biorepositories.Data.Mongo.Models.Institution> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }

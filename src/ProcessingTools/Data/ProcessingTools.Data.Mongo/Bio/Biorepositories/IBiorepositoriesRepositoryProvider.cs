@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Data.Mongo.Bio.Biorepositories
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories
 {
-    using Contracts;
+    using ProcessingTools.Data.Contracts;
 
     public interface IBiorepositoriesRepositoryProvider<T> : ICrudRepositoryProvider<T>
         where T : class

@@ -2,9 +2,9 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Mongo.Documents
+namespace ProcessingTools.Data.Models.Documents.Mongo
 {
-    using Contracts.Documents.Journals;
+    using ProcessingTools.Data.Models.Contracts.Documents.Journals;
 
     /// <summary>
     /// Journal publisher

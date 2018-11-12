@@ -1,8 +1,9 @@
-﻿namespace ProcessingTools.Data.Mongo.Bio.Biorepositories
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories
 {
     using System;
-    using Common.Contracts;
-    using Contracts;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts;
 
     public class BiorepositoriesRepositoryProvider<T> : IBiorepositoriesRepositoryProvider<T>
         where T : class

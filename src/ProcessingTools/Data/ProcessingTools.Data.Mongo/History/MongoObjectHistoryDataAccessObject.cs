@@ -2,18 +2,18 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.History
+namespace ProcessingTools.Data.History.Mongo
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Common;
-    using Common.Contracts;
-    using Contracts.History;
-    using Models.Mongo.History;
     using MongoDB.Driver;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Common.Mongo;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts.History;
+    using ProcessingTools.Data.Models.History.Mongo;
     using ProcessingTools.Models.Contracts.History;
 
     /// <summary>

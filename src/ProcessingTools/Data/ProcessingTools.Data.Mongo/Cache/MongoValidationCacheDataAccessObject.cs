@@ -2,15 +2,15 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Cache
+namespace ProcessingTools.Data.Cache.Mongo
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Cache;
-    using Models.Contracts.Cache;
-    using Models.Mongo.Cache;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Contracts.Cache;
+    using ProcessingTools.Data.Models.Cache.Mongo;
+    using ProcessingTools.Data.Models.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>

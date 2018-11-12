@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Common
+namespace ProcessingTools.Data.Common.Mongo
 {
     using System;
     using System.Linq;

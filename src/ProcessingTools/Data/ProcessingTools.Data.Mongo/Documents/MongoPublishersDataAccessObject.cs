@@ -2,21 +2,21 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Documents
+namespace ProcessingTools.Data.Documents.Mongo
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Common;
-    using Common.Contracts;
-    using Contracts.Documents;
-    using Extensions;
-    using Models.Contracts.Documents.Publishers;
-    using Models.Mongo.Documents;
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Common.Mongo;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Data.Models.Documents.Mongo;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Documents.Publishers;
 
     /// <summary>

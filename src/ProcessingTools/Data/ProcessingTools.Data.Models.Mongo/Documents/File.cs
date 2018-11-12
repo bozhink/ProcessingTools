@@ -2,13 +2,13 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Mongo.Documents
+namespace ProcessingTools.Data.Models.Documents.Mongo
 {
     using System;
-    using Common.Attributes;
-    using Contracts.Documents.Files;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
+    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Data.Models.Contracts.Documents.Files;
     using ProcessingTools.Models.Contracts.Documents.Documents;
 
     /// <summary>

@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Data.Models.Mongo.Bio.Biorepositories
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Models
 {
-    using Common.Enumerations;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Bio.Biorepositories;
 

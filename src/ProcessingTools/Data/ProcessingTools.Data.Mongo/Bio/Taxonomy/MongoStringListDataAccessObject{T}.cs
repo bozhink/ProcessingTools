@@ -2,16 +2,16 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
+namespace ProcessingTools.Data.Bio.Taxonomy.Mongo
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Contracts;
-    using Models.Contracts;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Models.Contracts;
 
     /// <summary>
     /// Generic MongoDB implementation of <see cref="IStringListDataAccessObject"/>.

@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Mongo.Common.Contracts
+namespace ProcessingTools.Data.Common.Mongo.Contracts
 {
     /// <summary>
     /// Generic MongoDB repository.
