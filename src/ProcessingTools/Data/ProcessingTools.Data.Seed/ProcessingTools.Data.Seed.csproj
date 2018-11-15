@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
+    <Authors>Bozhin Karaivanov</Authors>
+    <Company>ProcessingTools</Company>
+    <Description>Seeders of databases</Description>
+    <Copyright>Copyright © 2018 ProcessingTools</Copyright>
+    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Seed.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Seed.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="MongoDB.Bson" Version="2.7.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.2" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.7.2" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.8.0.7320">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
