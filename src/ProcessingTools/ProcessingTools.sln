@@ -305,6 +305,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Mongo", "Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj", "{85CC9358-E237-4C2F-9138-85DB4FB33307}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Models.Entity", "Data\ProcessingTools.Data.Models.Entity\ProcessingTools.Data.Models.Entity.csproj", "{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Entity", "Data\ProcessingTools.Data.Entity\ProcessingTools.Data.Entity.csproj", "{151CBF78-B672-42B5-BBDD-04C6C7F45A25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1297,6 +1301,22 @@ Global
 		{85CC9358-E237-4C2F-9138-85DB4FB33307}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85CC9358-E237-4C2F-9138-85DB4FB33307}.Release|x64.ActiveCfg = Release|Any CPU
 		{85CC9358-E237-4C2F-9138-85DB4FB33307}.Release|x64.Build.0 = Release|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Debug|x64.Build.0 = Debug|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Release|x64.ActiveCfg = Release|Any CPU
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55}.Release|x64.Build.0 = Release|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Debug|x64.Build.0 = Debug|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Release|x64.ActiveCfg = Release|Any CPU
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1443,9 +1463,11 @@ Global
 		{D2DC6E67-ADE9-41B5-9035-096CD651955B} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{A84A59AE-A52A-4F51-B2A8-AD8306ED395A} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{85CC9358-E237-4C2F-9138-85DB4FB33307} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{151CBF78-B672-42B5-BBDD-04C6C7F45A25} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal

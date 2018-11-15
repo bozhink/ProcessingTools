@@ -10,6 +10,8 @@
     <Description>Object history data Entity Framework implementation</Description>
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Data.History.Entity.xml</DocumentationFile>
