@@ -24,6 +24,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DataFiles\Seed\DataResources\english-common-words.txt" />
+    <None Remove="DataFiles\Seed\DataResources\institutions.txt" />
+    <None Remove="DataFiles\Seed\DataResources\journals.txt" />
+    <None Remove="DataFiles\Seed\DataResources\products.txt" />
+    <None Remove="DataFiles\Seed\DataResources\sec-types-1.txt" />
+    <None Remove="DataFiles\Seed\DataResources\sec-types.txt" />
+    <None Remove="DataFiles\Seed\DataResources\words.txt" />
     <None Remove="DataFiles\Seed\Geo\continents.txt" />
     <None Remove="DataFiles\Seed\Geo\country-codes.txt" />
     <None Remove="DataFiles\Seed\Geo\geo-epithets.txt" />
@@ -51,6 +58,17 @@
     </Content>
     <Content Include="DataFiles\Seed\Bio\Taxonomy\taxonomy.blackList.xml" />
     <Content Include="DataFiles\Seed\Bio\Taxonomy\taxonomy.rankList.xml" />
+    <Content Include="DataFiles\Seed\DataResources\english-common-words.txt" />
+    <Content Include="DataFiles\Seed\DataResources\institutions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\DataResources\journals.txt" />
+    <Content Include="DataFiles\Seed\DataResources\products.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\DataResources\sec-types-1.txt" />
+    <Content Include="DataFiles\Seed\DataResources\sec-types.txt" />
+    <Content Include="DataFiles\Seed\DataResources\words.txt" />
     <Content Include="DataFiles\Seed\Geo\continents.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -129,6 +147,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="DataFiles\Seed\Bio\Environments\environments_names.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\mime.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
