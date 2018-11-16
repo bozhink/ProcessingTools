@@ -24,6 +24,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DataFiles\Seed\Geo\continents.txt" />
+    <None Remove="DataFiles\Seed\Geo\country-codes.txt" />
+    <None Remove="DataFiles\Seed\Geo\geo-epithets.txt" />
+    <None Remove="DataFiles\Seed\Geo\geo-names.txt" />
     <None Remove="DataFiles\Seed\morphological-epithets.txt" />
     <None Remove="DataFiles\Seed\type-statuses.txt" />
     <None Remove="stylecop.json" />
@@ -47,6 +51,18 @@
     </Content>
     <Content Include="DataFiles\Seed\Bio\Taxonomy\taxonomy.blackList.xml" />
     <Content Include="DataFiles\Seed\Bio\Taxonomy\taxonomy.rankList.xml" />
+    <Content Include="DataFiles\Seed\Geo\continents.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Geo\country-codes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Geo\geo-epithets.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Geo\geo-names.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
