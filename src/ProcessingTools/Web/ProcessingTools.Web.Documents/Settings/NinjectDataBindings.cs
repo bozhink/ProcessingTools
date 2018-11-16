@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Documents.Settings
 {
-    using Ninject.Extensions.Conventions;
     using Ninject.Modules;
 
     /// <summary>
@@ -10,47 +9,6 @@
     {
         public override void Load()
         {
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.DataResources.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Mediatypes.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Documents.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
         }
     }
 }

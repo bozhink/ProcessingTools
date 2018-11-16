@@ -36,12 +36,6 @@
     <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -74,6 +68,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Entity\ProcessingTools.Data.Entity.csproj">
+      <Project>{151cbf78-b672-42b5-bbdd-04c6c7f45a25}</Project>
+      <Name>ProcessingTools.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Models.Entity\ProcessingTools.Data.Models.Entity.csproj">
+      <Project>{2c57696d-2f5b-45a8-abf8-42fcdc573d55}</Project>
+      <Name>ProcessingTools.Data.Models.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj">
       <Project>{a84a59ae-a52a-4f51-b2a8-ad8306ed395a}</Project>
       <Name>ProcessingTools.Data.Models.Mongo</Name>
@@ -94,29 +96,9 @@
       <Project>{a620dfde-28c3-46c7-bed3-0afb99db9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Bio\Bio.Data.Entity\Bio.Data.Entity.csproj">
-      <Project>{715850DD-6FFB-45C6-B858-8D8E86C772D0}</Project>
-      <Name>Bio.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Bio\Bio.Environments.Data.Entity\Bio.Environments.Data.Entity.csproj">
-      <Project>{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}</Project>
-      <Name>Bio.Environments.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
-      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
-      <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Documents\Documents.Data.Entity\Documents.Data.Entity.csproj">
-      <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
-      <Name>Documents.Data.Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
       <Name>ProcessingTools.Data.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
-      <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
-      <Name>DataResources.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
@@ -156,9 +138,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.5.0.6605\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.5.0.6605\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.5.0.6605\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.8.0.7320\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.8.0.7320\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.8.0.7320\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>

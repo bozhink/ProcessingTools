@@ -22,9 +22,7 @@
             var appSettingsReader = new AppSettingsReader();
             var dataFilesDirectoryPath = appSettingsReader.GetValue("SeedCsvDataFiles", typeof(string)).ToString();
 
-            var modelTypes = ProcessingTools.Bio.Biorepositories.Data.Seed.Assembly.Assembly
-                .GetType()
-                .Assembly
+            var modelTypes = typeof(ProcessingTools.Data.Seed.Bio.Biorepositories.BiorepositoriesDataSeeder).Assembly
                 .GetTypes()
                 .Where(t => !t.IsAbstract && t.IsClass && Attribute.IsDefined(t, typeof(FileNameAttribute)) && Attribute.IsDefined(t, typeof(CsvObjectAttribute)));
 

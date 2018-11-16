@@ -12,17 +12,6 @@
         {
             this.Bind(b =>
             {
-                b.From(Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-
-                b.From(Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-
-                b.From(Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
             });
         }
     }

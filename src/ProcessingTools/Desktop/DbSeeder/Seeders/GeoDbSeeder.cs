@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using Abstractions.Seeders;
-    using Contracts.Seeders;
-    using ProcessingTools.Geo.Data.Entity.Contracts;
-    using ProcessingTools.Geo.Data.Seed.Contracts;
+    using ProcessingTools.Data.Entity.Geo;
+    using ProcessingTools.Data.Seed.Geo;
+    using ProcessingTools.DbSeeder.Abstractions.Seeders;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     public class GeoDbSeeder : GenericDbSeeder<IGeoDataInitializer, IGeoDataSeeder>, IGeoDbSeeder
     {

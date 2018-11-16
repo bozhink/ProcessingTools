@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
     using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Seed.Files;
     using ProcessingTools.DbSeeder.Abstractions.Seeders;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
-    using ProcessingTools.Mediatypes.Data.Seed.Contracts;
 
     public class MediatypesMongoDbSeeder : GenericDbSeeder<IDatabaseInitializer, IMediatypesMongoDatabaseSeeder>, IMediatypesMongoDbSeeder
     {

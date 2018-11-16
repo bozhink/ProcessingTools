@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Seed.Seeders
+﻿namespace ProcessingTools.Data.Seed.Geo
 {
     using System;
     using System.Collections.Concurrent;
@@ -9,7 +9,6 @@
     using ProcessingTools.Data.Entity.Abstractions;
     using ProcessingTools.Data.Entity.Geo;
     using ProcessingTools.Data.Models.Entity.Geo;
-    using ProcessingTools.Geo.Data.Seed.Contracts;
 
     public class GeoDataSeeder : IGeoDataSeeder
     {

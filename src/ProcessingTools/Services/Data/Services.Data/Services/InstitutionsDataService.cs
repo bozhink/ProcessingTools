@@ -2,8 +2,8 @@
 {
     using System;
     using System.Linq.Expressions;
-    using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.Data.Entity.DataResources;
+    using ProcessingTools.Data.Models.Entity.DataResources;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Abstractions;
@@ -22,7 +22,7 @@
             Name = e.Name
         };
 
-        protected override Expression<Func<IInstitution, Institution>> MapModelToEntity => m => new DataResources.Data.Entity.Models.Institution
+        protected override Expression<Func<IInstitution, Institution>> MapModelToEntity => m => new Institution
         {
             Id = m.Id,
             Name = m.Name
