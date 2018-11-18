@@ -8,6 +8,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Admin;
     using ProcessingTools.Services.Contracts.Admin;
     using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.Geo.Coordinates;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.IO;
@@ -15,6 +16,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Contracts.Rules;
     using ProcessingTools.Services.Contracts.Tools;
     using ProcessingTools.Services.Documents;
+    using ProcessingTools.Services.Files;
     using ProcessingTools.Services.Geo.Coordinates;
     using ProcessingTools.Services.History;
     using ProcessingTools.Services.IO;
@@ -37,6 +39,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ArticlesDataService>().As<IArticlesDataService>().InstancePerLifetimeScope();
             builder.RegisterType<DocumentsDataService>().As<IDocumentsDataService>().InstancePerLifetimeScope();
             builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerLifetimeScope();
+
+            builder.RegisterType<MediatypesDataService>().As<IMediatypesDataService>().InstancePerLifetimeScope();
 
             builder.RegisterType<JournalsService>().As<IJournalsService>().InstancePerLifetimeScope();
             builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerLifetimeScope();

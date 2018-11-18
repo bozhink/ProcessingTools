@@ -45,16 +45,9 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IUsersDataInitializer.cs" />
-    <Compile Include="Contracts\IUsersDbContextFactory.cs" />
-    <Compile Include="UsersDbContextFactory.cs" />
-    <Compile Include="UsersDataInitializer.cs" />
     <Compile Include="UsersDbContext.cs" />
-    <Compile Include="Assembly.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,16 +58,6 @@
     </None>
     <None Include="packages.config" />
     <None Include="Users.Data.Entity.ruleset" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
-      <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
-      <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
-      <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
-      <Name>ProcessingTools.Data.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.5.0.6605\analyzers\Google.Protobuf.dll" />

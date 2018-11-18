@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using Abstractions.Seeders;
-    using Contracts.Seeders;
-    using ProcessingTools.Mediatypes.Data.Entity.Contracts;
-    using ProcessingTools.Mediatypes.Data.Seed.Contracts;
+    using ProcessingTools.Data.Entity.Files;
+    using ProcessingTools.Data.Seed.Files;
+    using ProcessingTools.DbSeeder.Abstractions.Seeders;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     public class MediatypesDbSeeder : GenericDbSeeder<IMediatypesDataInitializer, IMediatypesDataSeeder>, IMediatypesDbSeeder
     {

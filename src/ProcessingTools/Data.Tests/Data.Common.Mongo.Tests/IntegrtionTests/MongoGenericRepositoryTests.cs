@@ -2,9 +2,9 @@
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Data.Common.Mongo.Repositories;
     using ProcessingTools.Data.Common.Mongo.Tests.Fakes;
     using ProcessingTools.Data.Common.Mongo.Tests.Models;
+    using ProcessingTools.Data.Mongo.Abstractions;
 
     [TestClass]
     public class MongoGenericRepositoryTests

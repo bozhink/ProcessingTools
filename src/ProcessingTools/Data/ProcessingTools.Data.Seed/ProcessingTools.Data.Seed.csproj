@@ -1,0 +1,157 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
+    <Authors>Bozhin Karaivanov</Authors>
+    <Company>ProcessingTools</Company>
+    <Description>Seeders of databases</Description>
+    <Copyright>Copyright © 2018 ProcessingTools</Copyright>
+    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Seed.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Seed.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DataFiles\Seed\DataResources\english-common-words.txt" />
+    <None Remove="DataFiles\Seed\DataResources\institutions.txt" />
+    <None Remove="DataFiles\Seed\DataResources\journals.txt" />
+    <None Remove="DataFiles\Seed\DataResources\products.txt" />
+    <None Remove="DataFiles\Seed\DataResources\sec-types-1.txt" />
+    <None Remove="DataFiles\Seed\DataResources\sec-types.txt" />
+    <None Remove="DataFiles\Seed\DataResources\words.txt" />
+    <None Remove="DataFiles\Seed\Geo\continents.txt" />
+    <None Remove="DataFiles\Seed\Geo\country-codes.txt" />
+    <None Remove="DataFiles\Seed\Geo\geo-epithets.txt" />
+    <None Remove="DataFiles\Seed\Geo\geo-names.txt" />
+    <None Remove="DataFiles\Seed\morphological-epithets.txt" />
+    <None Remove="DataFiles\Seed\type-statuses.txt" />
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DataFiles\Seed\Bio\Biorepositories\biorepositories.sql" />
+    <Content Include="DataFiles\Seed\Bio\Biorepositories\institutional-codes.txt" />
+    <Content Include="DataFiles\Seed\Bio\morphological-epithets.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Bio\type-statuses.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Bio\Taxonomy\ranks.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Bio\Taxonomy\taxonomy.blackList.xml" />
+    <Content Include="DataFiles\Seed\Bio\Taxonomy\taxonomy.rankList.xml" />
+    <Content Include="DataFiles\Seed\DataResources\english-common-words.txt" />
+    <Content Include="DataFiles\Seed\DataResources\institutions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\DataResources\journals.txt" />
+    <Content Include="DataFiles\Seed\DataResources\products.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\DataResources\sec-types-1.txt" />
+    <Content Include="DataFiles\Seed\DataResources\sec-types.txt" />
+    <Content Include="DataFiles\Seed\DataResources\words.txt" />
+    <Content Include="DataFiles\Seed\Geo\continents.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Geo\country-codes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Geo\geo-epithets.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\Geo\geo-names.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="MongoDB.Bson" Version="2.7.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.2" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.7.2" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.8.0.7320">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Bio.Taxonomy.Xml\ProcessingTools.Data.Bio.Taxonomy.Xml.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Entity\ProcessingTools.Data.Entity.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Models.Entity\ProcessingTools.Data.Models.Entity.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_collections.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_collections_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_collections_pers.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_collections_pers_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_institutions.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_institutions_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_staff.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Biorepositories\grbio\grbio_staff_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Environments\environments_entities.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Environments\environments_global.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Environments\environments_groups.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\Bio\Environments\environments_names.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Seed\mime.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

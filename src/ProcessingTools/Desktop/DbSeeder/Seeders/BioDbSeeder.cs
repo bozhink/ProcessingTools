@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using Abstractions.Seeders;
-    using Contracts.Seeders;
-    using ProcessingTools.Bio.Data.Entity.Contracts;
-    using ProcessingTools.Bio.Data.Seed.Contracts;
+    using ProcessingTools.Data.Entity.Bio;
+    using ProcessingTools.Data.Seed.Bio;
+    using ProcessingTools.DbSeeder.Abstractions.Seeders;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     public class BioDbSeeder : GenericDbSeeder<IBioDataInitializer, IBioDataSeeder>, IBioDbSeeder
     {

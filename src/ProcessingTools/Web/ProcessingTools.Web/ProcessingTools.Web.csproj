@@ -366,7 +366,6 @@
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\Data\Services\GeoEpithetsWebService.cs" />
     <Compile Include="Areas\Data\Services\GeoNamesWebService.cs" />
-    <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
     <Compile Include="Areas\Journals\Models\Shared\Address.cs" />
@@ -710,22 +709,6 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
-      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
-      <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Geo\Geo.Data.Entity\Geo.Data.Entity.csproj">
-      <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
-      <Name>Geo.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\History\History.Data.Entity\History.Data.Entity.csproj">
-      <Project>{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}</Project>
-      <Name>History.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Journals\Journals.Data.Entity\Journals.Data.Entity.csproj">
-      <Project>{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}</Project>
-      <Name>Journals.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>

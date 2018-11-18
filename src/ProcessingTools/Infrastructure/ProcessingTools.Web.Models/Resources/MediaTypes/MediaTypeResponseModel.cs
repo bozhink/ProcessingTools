@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Resources.MediaTypes
 {
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
     /// <summary>
     /// Represents response model for the media-types API.
@@ -14,16 +14,16 @@ namespace ProcessingTools.Web.Models.Resources.MediaTypes
         /// <summary>
         /// Gets or sets the file extension.
         /// </summary>
-        public string FileExtension { get; set; }
+        public string Extension { get; set; }
 
         /// <summary>
         /// Gets or sets the mime-type.
         /// </summary>
-        public string Mimetype { get; set; }
+        public string MimeType { get; set; }
 
         /// <summary>
         /// Gets or sets the mime-subtype.
         /// </summary>
-        public string Mimesubtype { get; set; }
+        public string MimeSubtype { get; set; }
     }
 }

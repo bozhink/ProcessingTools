@@ -16,7 +16,7 @@ namespace ProcessingTools.Processors.Processors.Floats
     using ProcessingTools.Processors.Contracts.Floats;
     using ProcessingTools.Processors.Models.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
-    using ProcessingTools.Services.Contracts.Mediatypes;
+    using ProcessingTools.Services.Contracts.Files;
 
     /// <summary>
     /// Mediatypes parser.
@@ -122,8 +122,8 @@ namespace ProcessingTools.Processors.Processors.Floats
 
             if (response != null)
             {
-                result.MimeType = response.Mimetype;
-                result.MimeSubtype = response.Mimesubtype;
+                result.MimeType = response.MimeType;
+                result.MimeSubtype = response.MimeSubtype;
             }
 
             return result;

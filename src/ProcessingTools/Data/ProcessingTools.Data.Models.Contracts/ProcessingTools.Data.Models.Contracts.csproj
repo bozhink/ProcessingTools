@@ -10,6 +10,8 @@
     <Description>Data models contracts</Description>
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
+    <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Data.Models.Contracts.xml</DocumentationFile>

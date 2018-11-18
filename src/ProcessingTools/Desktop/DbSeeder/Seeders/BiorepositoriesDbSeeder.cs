@@ -2,10 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-
-    using Contracts.Seeders;
-
-    using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
+    using ProcessingTools.Data.Seed.Bio.Biorepositories;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     public class BiorepositoriesDbSeeder : IBiorepositoriesDbSeeder
     {

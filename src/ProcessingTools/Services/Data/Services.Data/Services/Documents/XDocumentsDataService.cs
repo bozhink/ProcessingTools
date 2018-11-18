@@ -1,27 +1,26 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Services
 {
-    using System;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts.Services.Data.Documents;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml;
 
     public class XDocumentsDataService : IXDocumentsDataService
     {
-        private readonly IDocumentsRepositoryProvider<Documents.Data.Entity.Models.Document> repositoryProvider;
+        private readonly dynamic repositoryProvider;
         private readonly IXmlFileReaderWriter xmlFileReaderWriter;
 
-        public XDocumentsDataService(IDocumentsRepositoryProvider<Documents.Data.Entity.Models.Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
+        public XDocumentsDataService(dynamic repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
             this.xmlFileReaderWriter = xmlFileReaderWriter ?? throw new ArgumentNullException(nameof(xmlFileReaderWriter));
@@ -64,31 +63,31 @@
                 throw new InvalidItemsPerPageException();
             }
 
-            var repository = this.repositoryProvider.Create();
+            ////var repository = this.repositoryProvider.Create();
 
-            var query = repository.Query
-                .Where(d => d.CreatedBy == userId.ToString())
-                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .OrderByDescending(d => d.ModifiedOn)
-                .Skip(pageNumber * itemsPerPage)
-                .Take(itemsPerPage)
-                .Select(d => new ProcessingTools.Services.Models.Data.Documents.Document
-                {
-                    Id = d.Id.ToString(),
-                    FileName = d.FileName,
-                    FileExtension = d.FileExtension,
-                    Comment = d.Comment,
-                    ContentType = d.ContentType,
-                    ContentLength = d.ContentLength,
-                    DateCreated = d.CreatedOn,
-                    DateModified = d.ModifiedOn
-                });
+            ////var query = repository.Query
+            ////    .Where(d => d.CreatedBy == userId.ToString())
+            ////    //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+            ////    .OrderByDescending(d => d.ModifiedOn)
+            ////    .Skip(pageNumber * itemsPerPage)
+            ////    .Take(itemsPerPage)
+            ////    .Select(d => new ProcessingTools.Services.Models.Data.Documents.Document
+            ////    {
+            ////        Id = d.Id.ToString(),
+            ////        FileName = d.FileName,
+            ////        FileExtension = d.FileExtension,
+            ////        Comment = d.Comment,
+            ////        ContentType = d.ContentType,
+            ////        ContentLength = d.ContentLength,
+            ////        DateCreated = d.CreatedOn,
+            ////        DateModified = d.ModifiedOn
+            ////    });
 
-            var documents = await query.ToArrayAsync().ConfigureAwait(false);
+            ////var documents = await query.ToArrayAsync().ConfigureAwait(false);
 
-            repository.TryDispose();
+            ////repository.TryDispose();
 
-            return documents;
+            return Array.Empty<IDocument>();
         }
 
         public async Task<long> CountAsync(object userId, object articleId)
@@ -103,17 +102,17 @@
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            var repository = this.repositoryProvider.Create();
+            ////var repository = this.repositoryProvider.Create();
 
-            long count = await repository.Query
-                .Where(d => d.CreatedBy == userId.ToString())
-                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .LongCountAsync()
-                .ConfigureAwait(false);
+            ////long count = await repository.Query
+            ////    .Where(d => d.CreatedBy == userId.ToString())
+            ////    //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+            ////    .LongCountAsync()
+            ////    .ConfigureAwait(false);
 
-            repository.TryDispose();
+            ////repository.TryDispose();
 
-            return count;
+            return -1L;
         }
 
         public async Task<object> CreateAsync(object userId, object articleId, IDocument document, Stream inputStream)
@@ -140,7 +139,7 @@
 
             string path = await this.xmlFileReaderWriter.GetNewFilePathAsync(document.FileName, this.DataDirectory, ProcessingTools.Common.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName).ConfigureAwait(false);
 
-            var entity = new Documents.Data.Entity.Models.Document
+            var entity = new ProcessingTools.Data.Models.Entity.Documents.Document
             {
                 FileName = document.FileName,
                 OriginalFileName = document.FileName,
@@ -216,24 +215,24 @@
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            var repository = this.repositoryProvider.Create();
+            ////var repository = this.repositoryProvider.Create();
 
-            var entities = repository.Query
-                .Where(d => d.CreatedBy == userId.ToString())
-                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .AsEnumerable();
+            ////var entities = repository.Query
+            ////    .Where(d => d.CreatedBy == userId.ToString())
+            ////    //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+            ////    .AsEnumerable();
 
-            foreach (var entity in entities)
-            {
-                await this.xmlFileReaderWriter.DeleteAsync(entity.FilePath, this.DataDirectory).ConfigureAwait(false);
-                await repository.DeleteAsync(entity.Id).ConfigureAwait(false);
-            }
+            ////foreach (var entity in entities)
+            ////{
+            ////    await this.xmlFileReaderWriter.DeleteAsync(entity.FilePath, this.DataDirectory).ConfigureAwait(false);
+            ////    await repository.DeleteAsync(entity.Id).ConfigureAwait(false);
+            ////}
 
-            var result = await repository.SaveChangesAsync().ConfigureAwait(false);
+            ////var result = await repository.SaveChangesAsync().ConfigureAwait(false);
 
-            repository.TryDispose();
+            ////repository.TryDispose();
 
-            return result;
+            return null;
         }
 
         public async Task<IDocument> GetAsync(object userId, object articleId, object documentId)
@@ -338,7 +337,7 @@
             return entity.ContentLength;
         }
 
-        private async Task<Documents.Data.Entity.Models.Document> GetDocumentAsync(object userId, object articleId, object documentId)
+        private async Task<ProcessingTools.Data.Models.Entity.Documents.Document> GetDocumentAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {
@@ -364,7 +363,7 @@
             return entity;
         }
 
-        private async Task<Documents.Data.Entity.Models.Document> GetEntityAsync(object userId, object articleId, object documentId, ICrudRepository<Documents.Data.Entity.Models.Document> repository)
+        private async Task<ProcessingTools.Data.Models.Entity.Documents.Document> GetEntityAsync(object userId, object articleId, object documentId, ICrudRepository<ProcessingTools.Data.Models.Entity.Documents.Document> repository)
         {
             var entity = await repository.Query
                 .Where(d => d.CreatedBy == userId.ToString())

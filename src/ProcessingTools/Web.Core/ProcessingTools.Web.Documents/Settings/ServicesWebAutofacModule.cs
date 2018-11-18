@@ -8,10 +8,12 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Web.Services.Admin;
     using ProcessingTools.Web.Services.Contracts.Admin;
     using ProcessingTools.Web.Services.Contracts.Documents;
+    using ProcessingTools.Web.Services.Contracts.Files;
     using ProcessingTools.Web.Services.Contracts.Geo.Coordinates;
     using ProcessingTools.Web.Services.Contracts.Layout.Styles;
     using ProcessingTools.Web.Services.Contracts.Tools;
     using ProcessingTools.Web.Services.Documents;
+    using ProcessingTools.Web.Services.Files;
     using ProcessingTools.Web.Services.Geo.Coordinates;
     using ProcessingTools.Web.Services.Layout.Styles;
     using ProcessingTools.Web.Services.Tools;
@@ -28,6 +30,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<JournalsWebService>().As<IJournalsWebService>().InstancePerDependency();
             builder.RegisterType<ArticlesWebService>().As<IArticlesWebService>().InstancePerDependency();
             builder.RegisterType<DocumentsWebService>().As<IDocumentsWebService>().InstancePerDependency();
+
+            builder.RegisterType<MediatypesWebService>().As<IMediatypesWebService>().InstancePerDependency();
 
             builder.RegisterType<FloatObjectTagStylesWebService>().As<IFloatObjectTagStylesWebService>().InstancePerDependency();
             builder.RegisterType<FloatObjectParseStylesWebService>().As<IFloatObjectParseStylesWebService>().InstancePerDependency();

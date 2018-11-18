@@ -10,15 +10,16 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac.Core;
     using Microsoft.Extensions.Configuration;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Data.Contracts.History;
     using ProcessingTools.Data.Contracts.Layout.Styles;
-    using ProcessingTools.Data.Documents.Mongo;
-    using ProcessingTools.Data.History.Mongo;
-    using ProcessingTools.Data.Layout.Mongo;
+    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Documents;
+    using ProcessingTools.Data.Mongo.Files;
+    using ProcessingTools.Data.Mongo.History;
+    using ProcessingTools.Data.Mongo.Layout;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Data.*
@@ -40,12 +41,14 @@ namespace ProcessingTools.Web.Documents.Settings
                    return () => new IDatabaseInitializer[]
                    {
                         context.Resolve<MongoDocumentsDatabaseInitializer>(),
+                        context.Resolve<MongoFilesDatabaseInitializer>(),
                         context.Resolve<MongoLayoutDatabaseInitializer>()
                    };
                })
                .As<Func<IEnumerable<IDatabaseInitializer>>>()
                .InstancePerDependency();
 
+            // Documents DB provider
             builder
                 .RegisterType<MongoDatabaseProvider>()
                 .As<IMongoDatabaseProvider>()
@@ -54,6 +57,16 @@ namespace ProcessingTools.Web.Documents.Settings
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.DocumentsMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
 
+            // Files DB provider
+            builder
+                .RegisterType<MongoDatabaseProvider>()
+                .As<IMongoDatabaseProvider>()
+                .Named<IMongoDatabaseProvider>(InjectionConstants.MongoDBFilesDatabaseBindingName)
+                .WithParameter(InjectionConstants.ConnectionStringParameterName, this.Configuration.GetConnectionString(ConfigurationConstants.FilesDatabaseMongoDBConnectionStringName))
+                .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.FilesMongoDBDatabaseName])
+                .InstancePerLifetimeScope();
+
+            // Layout DB provider
             builder
                 .RegisterType<MongoDatabaseProvider>()
                 .As<IMongoDatabaseProvider>()
@@ -62,6 +75,7 @@ namespace ProcessingTools.Web.Documents.Settings
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.LayoutMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
 
+            // History DB provider
             builder
                 .RegisterType<MongoDatabaseProvider>()
                 .As<IMongoDatabaseProvider>()
@@ -70,6 +84,7 @@ namespace ProcessingTools.Web.Documents.Settings
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.HistoryMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
 
+            // History DAO
             builder
                 .RegisterType<MongoObjectHistoryDataAccessObject>()
                 .As<IObjectHistoryDataAccessObject>()
@@ -79,6 +94,7 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBHistoryDatabaseBindingName)))
                 .InstancePerLifetimeScope();
 
+            // Documents DAO
             builder
                 .RegisterType<MongoPublishersDataAccessObject>()
                 .As<IPublishersDataAccessObject>()
@@ -120,6 +136,7 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
                 .InstancePerLifetimeScope();
 
+            // Documents DB initializer
             builder
                 .RegisterType<MongoDocumentsDatabaseInitializer>()
                 .AsSelf()
@@ -129,6 +146,27 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
                 .InstancePerDependency();
 
+            // Files DAO
+            builder
+                .RegisterType<MongoMediatypesDataAccessObject>()
+                .As<IMediatypesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBFilesDatabaseBindingName)))
+                .InstancePerLifetimeScope();
+
+            // Files DB initializer
+            builder
+                .RegisterType<MongoFilesDatabaseInitializer>()
+                .AsSelf()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBFilesDatabaseBindingName)))
+                .InstancePerDependency();
+
+            // Layout DAO
             builder
                 .RegisterType<MongoFloatObjectTagStylesDataAccessObject>()
                 .As<IFloatObjectTagStylesDataAccessObject>()
@@ -170,6 +208,7 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
                 .InstancePerLifetimeScope();
 
+            // Layout DB initializer
             builder
                 .RegisterType<MongoLayoutDatabaseInitializer>()
                 .AsSelf()

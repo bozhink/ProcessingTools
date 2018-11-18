@@ -113,6 +113,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj">
+      <Project>{a84a59ae-a52a-4f51-b2a8-ad8306ed395a}</Project>
+      <Name>ProcessingTools.Data.Models.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj">
+      <Project>{85cc9358-e237-4c2f-9138-85db4fb33307}</Project>
+      <Name>ProcessingTools.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -125,17 +133,9 @@
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
-      <Project>{a77b11a8-45a0-45ba-9003-7a81514d8bda}</Project>
-      <Name>ProcessingTools.Data.Common.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
       <Name>ProcessingTools.Data.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Documents.Mongo\ProcessingTools.Data.Documents.Mongo.csproj">
-      <Project>{73DE24F7-DC71-4B96-A4D8-4442DB0EBA8B}</Project>
-      <Name>ProcessingTools.Data.Documents.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
       <Project>{ebd6c134-433a-4d4d-864a-50745ce94bca}</Project>

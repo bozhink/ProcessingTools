@@ -80,7 +80,7 @@ namespace ProcessingTools.Web.Documents
             app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
 
             app.UseHttpsRedirection();
-            
+
             app.ConfigureStaticFiles();
             if (env.IsDevelopment() || env.IsStaging())
             {

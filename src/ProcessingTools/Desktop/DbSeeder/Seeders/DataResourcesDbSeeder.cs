@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using Abstractions.Seeders;
-    using Contracts.Seeders;
-    using ProcessingTools.DataResources.Data.Entity.Contracts;
-    using ProcessingTools.DataResources.Data.Seed.Contracts;
+    using ProcessingTools.Data.Entity.DataResources;
+    using ProcessingTools.Data.Seed.DataResources;
+    using ProcessingTools.DbSeeder.Abstractions.Seeders;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     public class DataResourcesDbSeeder : GenericDbSeeder<IResourcesDatabaseInitializer, IResourcesDataSeeder>, IDataResourcesDbSeeder
     {
