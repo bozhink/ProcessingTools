@@ -27,7 +27,7 @@ namespace ProcessingTools.Web.Documents
             var logger = NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
             try
             {
-                logger.Debug("init main");
+                logger.Debug("Start application");
                 CreateWebHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace ProcessingTools.Web.Documents
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
-                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    logging.SetMinimumLevel(LogLevel.Trace);
                     logging.AddConsole();
                     logging.AddDebug();
                 })
