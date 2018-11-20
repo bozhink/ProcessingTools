@@ -38,7 +38,7 @@ namespace ProcessingTools.Web.Documents.Settings
                     options.Lockout.MaxFailedAccessAttempts = 5;
                     options.Lockout.AllowedForNewUsers = true;
 
-                    // Signin settings
+                    // Sign-in settings
                     options.SignIn.RequireConfirmedEmail = false;
                     options.SignIn.RequireConfirmedPhoneNumber = false;
 
