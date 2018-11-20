@@ -15,22 +15,22 @@ namespace ProcessingTools.Web.Documents.Controllers
     public class ErrorController : Controller
     {
         /// <summary>
-        /// Controller Name
+        /// Controller name.
         /// </summary>
         public const string ControllerName = "Error";
 
         /// <summary>
-        /// Index Action Name
+        /// Index action name.
         /// </summary>
         public const string IndexActionName = nameof(Index);
 
         /// <summary>
-        /// Code Action Name
+        /// Code action name.
         /// </summary>
         public const string CodeActionName = nameof(Code);
 
         /// <summary>
-        /// Handle Unknown Action Action Name
+        /// HandleUnknownAction action name.
         /// </summary>
         public const string HandleUnknownActionActionName = nameof(HandleUnknownAction);
 
