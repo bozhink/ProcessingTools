@@ -592,7 +592,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
-            // Strip spaces and hypens
+            // Strip spaces and hyphens
             var verificationCode = model.Code.Replace(" ", string.Empty).Replace("-", string.Empty);
 
             var is2faTokenValid = await this.userManager.VerifyTwoFactorTokenAsync(user, this.userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode).ConfigureAwait(false);
