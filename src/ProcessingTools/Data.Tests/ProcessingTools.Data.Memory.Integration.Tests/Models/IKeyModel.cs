@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Memory.Tests.Models
+﻿namespace ProcessingTools.Data.Memory.Integration.Tests.Models
 {
     public interface IKeyModel
     {

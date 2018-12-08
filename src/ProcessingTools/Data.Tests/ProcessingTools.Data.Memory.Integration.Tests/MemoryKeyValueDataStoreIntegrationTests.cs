@@ -1,16 +1,19 @@
-﻿namespace ProcessingTools.Data.Common.Memory.Tests.Integration.Tests
+﻿namespace ProcessingTools.Data.Memory.Integration.Tests
 {
     using System;
     using System.Linq;
-    using Models;
     using NUnit.Framework;
-    using ProcessingTools.Data.Common.Memory;
+    using ProcessingTools.Data.Memory.Abstractions;
+    using ProcessingTools.Data.Memory.Integration.Tests.Models;
 
     [TestFixture(Category = "Integration", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>))]
     public class MemoryKeyValueDataStoreIntegrationTests
     {
+        /// <summary>
+        /// MemoryKeyValueDataStore Add Get Remove of one key should work.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore Add Get Remove of one key should work.")]
-        [Timeout(5000)]
+        [MaxTime(5000)]
         public void MemoryKeyValueDataStore_AddGetRemoveOfOneKey_ShouldWork()
         {
             // Arrange
@@ -57,8 +60,11 @@
             Assert.IsFalse(keysAfterRemove.Contains(key), "Removed key should not be present in the Keys list.");
         }
 
+        /// <summary>
+        /// MemoryKeyValueDataStore Add Update Get Remove of one key should work.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore Add Update Get Remove of one key should work.")]
-        [Timeout(5000)]
+        [MaxTime(5000)]
         public void MemoryKeyValueDataStore_AddUpdateGetRemoveOfOneKey_ShouldWork()
         {
             // Arrange

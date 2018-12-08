@@ -84,14 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Constants.cs" />
-    <Compile Include="Integration.Tests\MemoryKeyValueDataStoreIntegrationTests.cs" />
-    <Compile Include="Models\IKeyModel.cs" />
-    <Compile Include="Models\ITweet.cs" />
-    <Compile Include="Models\IValueModel.cs" />
-    <Compile Include="Models\KeyModel.cs" />
-    <Compile Include="Models\Tweet.cs" />
-    <Compile Include="Models\ValueModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Common\" />
     <Folder Include="Integration.Tests\Repositories\" />
   </ItemGroup>
   <ItemGroup>
