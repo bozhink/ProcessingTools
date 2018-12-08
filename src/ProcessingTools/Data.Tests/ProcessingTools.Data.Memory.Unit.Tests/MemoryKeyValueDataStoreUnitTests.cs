@@ -1,17 +1,16 @@
-﻿namespace ProcessingTools.Data.Common.Memory.Tests.Unit.Tests
+﻿namespace ProcessingTools.Data.Memory.Unit.Tests
 {
     using System;
-    using Common;
-    using Models;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Data.Common.Memory;
+    using ProcessingTools.Data.Memory.Abstractions;
+    using ProcessingTools.Data.Memory.Unit.Tests.Models;
 
     [TestFixture(Category = "Unit", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>))]
     public class MemoryKeyValueDataStoreUnitTests
     {
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore AddOrUpdate with all null parameters should throw ArgumentNullException.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_AddOrUpdateAllNullParameters_ShouldThrowArgumentNullException()
         {
             // Arrange
@@ -25,7 +24,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore AddOrUpdate with null addValueFactory should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_AddOrUpdateWithNullAddValueFactory_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -47,7 +46,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore AddOrUpdate with null addValueFactory and null updateValueFactory should throw ArgumentNullException.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_AddOrUpdateWithNullAddValueFactoryAndNullUpdateValueFactory_ShouldThrowArgumentNullException()
         {
             // Arrange
@@ -66,7 +65,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore AddOrUpdate with null key should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_AddOrUpdateWithNullKey_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -83,7 +82,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore AddOrUpdate with null key and null addValueFactory should throw ArgumentNullException.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_AddOrUpdateWithNullKeyAndNullAddValueFactory_ShouldThrowArgumentNullException()
         {
             // Arrange
@@ -98,7 +97,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore AddOrUpdate with null key and null updateValueFactory should throw ArgumentNullException.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_AddOrUpdateWithNullKeyAndNullUpdateValueFactory_ShouldThrowArgumentNullException()
         {
             // Arrange
@@ -113,7 +112,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore AddOrUpdate with null updateValueFactory should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_AddOrUpdateWithNullUpdateValueFactory_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -135,7 +134,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore Index with null key should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_IndexWithNullKey_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -153,7 +152,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore invocation of Keys should not throw.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_InvocationOfKeys_ShouldNotThrow()
         {
             // Arrange
@@ -167,7 +166,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore Remove with null key should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(500)]
+        [MaxTime(500)]
         public void MemoryKeyValueDataStore_RemoveWithNullKey_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -183,7 +182,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>), Description = "MemoryKeyValueDataStore with default constructor should initialize object correctly.")]
-        [Timeout(100)]
+        [MaxTime(100)]
         public void MemoryKeyValueDataStore_WithDefaultConstructor_ShouldInitializeObjectCorrectly()
         {
             // Act + Assert

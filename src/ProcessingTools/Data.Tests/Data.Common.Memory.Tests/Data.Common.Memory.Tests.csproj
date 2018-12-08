@@ -93,8 +93,6 @@
     <Compile Include="Models\Tweet.cs" />
     <Compile Include="Models\ValueModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.Tests\MemoryKeyValueDataStoreUnitTests.cs" />
-    <Compile Include="Unit.Tests\Repositories\MemoryKeyCollectionValuePairsRepositoryOfTweetUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Memory\ProcessingTools.Data.Common.Memory.csproj">

@@ -54,4 +54,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Memory\ProcessingTools.Data.Memory.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
+  </ItemGroup>
+
 </Project>
