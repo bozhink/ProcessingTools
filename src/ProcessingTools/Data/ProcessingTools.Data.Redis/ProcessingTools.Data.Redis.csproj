@@ -1,18 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.0</Version>
     <Copyright>Copyright © 2018 ProcessingTools</Copyright>
-    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <Description>Redis implementation for data cache objects.</Description>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Redis implementation for data objects.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Cache.Redis.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Redis.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S1075;S4456;S4457</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -32,7 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Data.Models.Cache.Redis\ProcessingTools.Data.Models.Cache.Redis.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Models.Redis\ProcessingTools.Data.Models.Redis.csproj" />
   </ItemGroup>
 </Project>

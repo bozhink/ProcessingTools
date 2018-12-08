@@ -1,8 +1,8 @@
-﻿// <copyright file="ValidationCacheEntity.cs" company="ProcessingTools">
+// <copyright file="ValidationCacheEntity.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Cache.Redis
+namespace ProcessingTools.Data.Models.Redis.Cache
 {
     using System;
     using ProcessingTools.Common.Enumerations;

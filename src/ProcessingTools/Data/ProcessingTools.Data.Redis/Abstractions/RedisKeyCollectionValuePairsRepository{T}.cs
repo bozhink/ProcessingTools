@@ -1,29 +1,37 @@
-﻿// <copyright file="RedisKeyValuePairsRepository{T}.cs" company="ProcessingTools">
+﻿// <copyright file="RedisKeyCollectionValuePairsRepository{T}.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Redis.Repositories
+namespace ProcessingTools.Data.Redis.Abstractions
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Redis;
+    using ServiceStack.Text;
 
     /// <summary>
-    /// Redis key-value pairs repository.
+    /// Redis key-collection-value pairs repository.
     /// </summary>
     /// <typeparam name="T">Type of the entity.</typeparam>
-    public class RedisKeyValuePairsRepository<T> : RedisSavableRepository, IRedisKeyValuePairsRepository<T>
+    public class RedisKeyCollectionValuePairsRepository<T> : RedisSavableRepository, IRedisKeyCollectionValuePairsRepository<T>
     {
+        private readonly IStringSerializer serializer;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="RedisKeyValuePairsRepository{T}"/> class.
+        /// Initializes a new instance of the <see cref="RedisKeyCollectionValuePairsRepository{T}"/> class.
         /// </summary>
         /// <param name="client">Redis client to be used.</param>
-        public RedisKeyValuePairsRepository(IRedisClient client)
+        public RedisKeyCollectionValuePairsRepository(IRedisClient client)
             : base(client)
         {
+            this.serializer = new JsonStringSerializer();
         }
+
+        private Func<string, T> Deserialize => s => this.serializer.DeserializeFromString<T>(s);
+
+        private Func<T, string> Serialize => e => this.serializer.SerializeToString(e);
 
         /// <inheritdoc/>
         public virtual Task<object> AddAsync(string key, T value)
@@ -40,32 +48,23 @@ namespace ProcessingTools.Data.Common.Redis.Repositories
 
             return Task.Run<object>(() =>
             {
-                if (this.Client.ContainsKey(key))
-                {
-                    throw new KeyExistsException();
-                }
+                var list = this.Client.Lists[key];
+                this.AddValueToList(list, value);
 
-                return this.Client.Add(key, value);
+                return true;
             });
         }
 
         /// <inheritdoc/>
-        public virtual Task<T> GetAsync(string key)
+        public virtual IEnumerable<T> GetAll(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return Task.Run(() =>
-            {
-                if (!this.Client.ContainsKey(key))
-                {
-                    throw new KeyNotFoundException();
-                }
-
-                return this.Client.Get<T>(key);
-            });
+            var list = this.Client.Lists[key];
+            return list.Select(this.Deserialize);
         }
 
         /// <inheritdoc/>
@@ -88,7 +87,7 @@ namespace ProcessingTools.Data.Common.Redis.Repositories
         }
 
         /// <inheritdoc/>
-        public virtual Task<object> UpdateAsync(string key, T value)
+        public virtual Task<object> RemoveAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -102,32 +101,15 @@ namespace ProcessingTools.Data.Common.Redis.Repositories
 
             return Task.Run<object>(() =>
             {
-                if (!this.Client.ContainsKey(key))
-                {
-                    throw new KeyNotFoundException();
-                }
+                var list = this.Client.Lists[key];
+                var result = this.RemoveValueFromList(list, value);
 
-                return this.Client.Replace(key, value);
+                return result;
             });
         }
 
-        /// <inheritdoc/>
-        public virtual Task<object> UpsertAsync(string key, T value)
-        {
-            if (string.IsNullOrWhiteSpace(key))
-            {
-                throw new ArgumentNullException(nameof(key));
-            }
+        private void AddValueToList(ICollection<string> list, T value) => list.Add(this.Serialize(value));
 
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            return Task.Run<object>(() =>
-            {
-                return this.Client.Set(key, value);
-            });
-        }
+        private bool RemoveValueFromList(ICollection<string> list, T value) => list.Remove(this.Serialize(value));
     }
 }

@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Redis.Contracts
+namespace ProcessingTools.Data.Redis.Abstractions
 {
     using ProcessingTools.Data.Contracts;
 

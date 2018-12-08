@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Redis.Repositories
+namespace ProcessingTools.Data.Redis.Abstractions
 {
     using System;
     using System.Collections.Generic;

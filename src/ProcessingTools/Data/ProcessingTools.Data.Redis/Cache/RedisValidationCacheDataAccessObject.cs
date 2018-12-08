@@ -2,14 +2,14 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Cache.Redis
+namespace ProcessingTools.Data.Redis.Cache
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Contracts.Cache;
-    using ProcessingTools.Data.Models.Cache.Redis;
     using ProcessingTools.Data.Models.Contracts.Cache;
+    using ProcessingTools.Data.Models.Redis.Cache;
     using ProcessingTools.Models.Contracts.Cache;
     using ServiceStack.Redis;
     using ServiceStack.Text;
