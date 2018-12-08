@@ -2,12 +2,11 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Memory.Repositories
+namespace ProcessingTools.Data.Memory.Abstractions
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Common.Memory.Contracts;
 
     /// <summary>
     /// Memory key-collection-value pairs repository.

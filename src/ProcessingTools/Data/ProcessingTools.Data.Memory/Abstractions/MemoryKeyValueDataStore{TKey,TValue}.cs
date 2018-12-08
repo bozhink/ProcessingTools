@@ -2,12 +2,11 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Memory
+namespace ProcessingTools.Data.Memory.Abstractions
 {
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using ProcessingTools.Data.Common.Memory.Contracts;
 
     /// <summary>
     /// Memory key-value data store.
