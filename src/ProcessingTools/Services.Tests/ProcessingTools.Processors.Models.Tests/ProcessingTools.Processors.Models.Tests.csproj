@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.0</Version>
     <Copyright>Copyright © 2018 ProcessingTools</Copyright>
@@ -13,12 +13,12 @@
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Processors.Models.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S3237;S4456;S4457</NoWarn>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
