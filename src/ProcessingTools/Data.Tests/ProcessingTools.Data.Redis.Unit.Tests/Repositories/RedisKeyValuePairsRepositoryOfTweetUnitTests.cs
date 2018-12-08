@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
+namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
 {
     using System;
     using System.Collections.Generic;
@@ -10,8 +10,8 @@ namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Repositories
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Tests;
-    using ProcessingTools.Data.Common.Redis.Repositories;
-    using ProcessingTools.Data.Common.Redis.Unit.Tests.Models;
+    using ProcessingTools.Data.Redis.Abstractions;
+    using ProcessingTools.Data.Redis.Unit.Tests.Models;
     using ServiceStack.Redis;
 
     /// <summary>

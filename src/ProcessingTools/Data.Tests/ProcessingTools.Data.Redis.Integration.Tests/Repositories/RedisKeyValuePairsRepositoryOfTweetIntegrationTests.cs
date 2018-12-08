@@ -2,15 +2,15 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Redis.Integration.Tests.Repositories
+namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Tests;
-    using ProcessingTools.Data.Common.Redis.Integration.Tests.Models;
-    using ProcessingTools.Data.Common.Redis.Repositories;
+    using ProcessingTools.Data.Redis.Abstractions;
+    using ProcessingTools.Data.Redis.Integration.Tests.Models;
     using ServiceStack.Redis;
 
     /// <summary>

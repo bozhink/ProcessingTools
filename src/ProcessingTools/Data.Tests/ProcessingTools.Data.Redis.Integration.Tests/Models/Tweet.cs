@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Redis.Unit.Tests.Models
+namespace ProcessingTools.Data.Redis.Integration.Tests.Models
 {
     using System;
 
