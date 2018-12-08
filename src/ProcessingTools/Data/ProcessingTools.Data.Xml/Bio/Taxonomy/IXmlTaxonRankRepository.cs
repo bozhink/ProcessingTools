@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts.Repositories
+﻿namespace ProcessingTools.Data.Xml.Bio.Taxonomy
 {
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
 

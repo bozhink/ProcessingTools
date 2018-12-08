@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Bio.Taxonomy.Xml
+﻿namespace ProcessingTools.Data.Xml.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
@@ -6,8 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
-    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts;
-    using ProcessingTools.Data.Models.Bio.Taxonomy.Xml;
+    using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext

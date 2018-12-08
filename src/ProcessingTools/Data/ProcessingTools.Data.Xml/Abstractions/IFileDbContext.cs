@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.File.Contracts
+namespace ProcessingTools.Data.Xml.Abstractions
 {
     using System.Linq;
     using System.Threading.Tasks;

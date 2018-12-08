@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Bio.Taxonomy.Xml
+namespace ProcessingTools.Data.Models.Xml.Bio.Taxonomy
 {
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 

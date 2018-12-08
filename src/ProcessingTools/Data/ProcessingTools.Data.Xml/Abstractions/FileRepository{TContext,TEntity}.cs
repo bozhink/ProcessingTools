@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.File.Repositories
+namespace ProcessingTools.Data.Xml.Abstractions
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,6 @@ namespace ProcessingTools.Data.Common.File.Repositories
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Expressions;
-    using ProcessingTools.Data.Common.File.Contracts;
 
     /// <summary>
     /// Generic file repository.

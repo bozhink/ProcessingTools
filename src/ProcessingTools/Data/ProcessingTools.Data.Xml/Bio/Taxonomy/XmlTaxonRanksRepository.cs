@@ -1,18 +1,16 @@
-﻿namespace ProcessingTools.Data.Bio.Taxonomy.Xml.Repositories
+﻿namespace ProcessingTools.Data.Xml.Bio.Taxonomy
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts;
-    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts.Repositories;
-    using ProcessingTools.Data.Common.File.Repositories;
+    using ProcessingTools.Data.Xml.Abstractions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class XmlBiotaxonomicBlackListRepository : FileRepository<IXmlBiotaxonomicBlackListContext, IBlackListItem>, IXmlBiotaxonomicBlackListRepository
+    public class XmlTaxonRanksRepository : FileRepository<IXmlTaxaContext, ITaxonRankItem>, IXmlTaxonRankRepository
     {
         private readonly string dataFileName;
 
-        public XmlBiotaxonomicBlackListRepository(string dataFileName, IFactory<IXmlBiotaxonomicBlackListContext> contextFactory)
+        public XmlTaxonRanksRepository(string dataFileName, IFactory<IXmlTaxaContext> contextFactory)
             : base(contextFactory)
         {
             if (string.IsNullOrWhiteSpace(dataFileName))
@@ -26,7 +24,5 @@
         }
 
         public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFileAsync(this.dataFileName).ConfigureAwait(false);
-
-        public override Task<object> UpdateAsync(IBlackListItem entity) => this.AddAsync(entity);
     }
 }
