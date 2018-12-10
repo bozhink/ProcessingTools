@@ -44,7 +44,7 @@
     "del": "^3.0.0",
     "eslint": "^5.1.0",
     "eslint-plugin-react": "^7.10.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-browserify": "^0.5.1",
     "gulp-clean-css": "^3.0.4",
     "gulp-concat": "^2.6.1",
