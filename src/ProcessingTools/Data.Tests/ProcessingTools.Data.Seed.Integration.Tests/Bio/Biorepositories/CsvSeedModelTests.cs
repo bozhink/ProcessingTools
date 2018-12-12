@@ -1,13 +1,20 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Tests
+﻿// <copyright file="CsvSeedModelTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Integration.Tests.Bio.Biorepositories
 {
     using System;
-    using System.Configuration;
     using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Code.Serialization.Csv;
+    using ProcessingTools.Data.Seed.Bio.Biorepositories;
 
+    /// <summary>
+    /// CSV seed model tests.
+    /// </summary>
     [TestClass]
     public class CsvSeedModelTests
     {
@@ -16,13 +23,15 @@
         /// </summary>
         public TestContext TestContext { get; set; }
 
+        /// <summary>
+        /// CSV seed files deserialization should work.
+        /// </summary>
         [TestMethod]
         public void CsvSeedFiles_Deserialization_ShouldWork()
         {
-            var appSettingsReader = new AppSettingsReader();
-            var dataFilesDirectoryPath = appSettingsReader.GetValue("SeedCsvDataFiles", typeof(string)).ToString();
+            var dataFilesDirectoryPath = Path.Combine(Path.GetDirectoryName(this.GetType().Assembly.Location), "DataFiles", "grbio");
 
-            var modelTypes = typeof(ProcessingTools.Data.Seed.Bio.Biorepositories.BiorepositoriesDataSeeder).Assembly
+            var modelTypes = typeof(BiorepositoriesDataSeeder).Assembly
                 .GetTypes()
                 .Where(t => !t.IsAbstract && t.IsClass && Attribute.IsDefined(t, typeof(FileNameAttribute)) && Attribute.IsDefined(t, typeof(CsvObjectAttribute)));
 
@@ -32,7 +41,7 @@
 
                 var fileNameAttribute = modelType.GetCustomAttributes(typeof(FileNameAttribute), false).FirstOrDefault() as FileNameAttribute;
 
-                string fileName = string.Format("{0}/{1}", dataFilesDirectoryPath, fileNameAttribute.Name);
+                string fileName = $"{dataFilesDirectoryPath}/{fileNameAttribute.Name}";
                 Assert.IsTrue(File.Exists(fileName), $"FileName ‘{fileName}’ should be valid.");
 
                 string csvText = File.ReadAllText(fileName);
