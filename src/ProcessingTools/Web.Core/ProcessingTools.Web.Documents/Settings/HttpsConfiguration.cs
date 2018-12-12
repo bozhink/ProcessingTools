@@ -32,7 +32,7 @@ namespace ProcessingTools.Web.Documents.Settings
             services.AddHttpsRedirection(options =>
             {
                 options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-                options.HttpsPort = 24173;
+                ////options.HttpsPort = 24173;
             });
 
             services.Configure<MvcOptions>(options =>
