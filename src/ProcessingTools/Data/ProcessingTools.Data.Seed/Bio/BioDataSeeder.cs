@@ -23,7 +23,7 @@
 
             this.seeder = new FileByLineDbContextSeeder<BioDbContext>(contextFactory);
 
-            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
+            this.dataFilesDirectoryPath = "DataFiles";
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 

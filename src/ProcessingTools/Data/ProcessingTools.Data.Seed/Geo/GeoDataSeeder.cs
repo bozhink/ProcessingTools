@@ -28,7 +28,7 @@
 
             this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(contextFactory);
 
-            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
+            this.dataFilesDirectoryPath = "DataFiles";
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 

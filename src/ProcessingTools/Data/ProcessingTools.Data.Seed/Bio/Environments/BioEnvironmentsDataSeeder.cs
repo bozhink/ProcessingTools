@@ -19,7 +19,7 @@
         public BioEnvironmentsDataSeeder(Func<BioEnvironmentsDbContext> contextFactory)
         {
             this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
-            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
+            this.dataFilesDirectoryPath = "DataFiles";
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 

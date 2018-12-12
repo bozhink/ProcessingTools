@@ -24,7 +24,7 @@
 
             this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(contextFactory);
 
-            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
+            this.dataFilesDirectoryPath = "DataFiles";
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
