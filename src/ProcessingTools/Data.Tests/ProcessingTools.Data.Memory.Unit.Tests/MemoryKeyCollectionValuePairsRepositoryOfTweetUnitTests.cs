@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Memory.Unit.Tests
+﻿// <copyright file="MemoryKeyCollectionValuePairsRepositoryOfTweetUnitTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Memory.Unit.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -10,11 +14,18 @@
     using ProcessingTools.Data.Memory.Abstractions;
     using ProcessingTools.Data.Memory.Unit.Tests.Models;
 
+    /// <summary>
+    /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> unit tests.
+    /// </summary>
     [TestFixture(Category = "Unit", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>))]
     public class MemoryKeyCollectionValuePairsRepositoryOfTweetUnitTests
     {
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add valid key and valid value should work.
+        /// </summary>
+        /// <returns>Task</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Add valid key and valid value should work.")]
-        [MaxTime(1000)]
+        [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_AddValidNonPresentKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -44,11 +55,15 @@
                 Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add with invalid key and null value should throw <see cref="ArgumentNullException"/>.
+        /// </summary>
+        /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Add with invalid key and null value should throw ArgumentNullException.")]
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_AddWithInvalidKeyAndNullValue_ShouldThrowArgumentNullException(string key)
         {
             // Arrange
@@ -67,11 +82,15 @@
                 Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add with invalid key and valid value should throw <see cref="ArgumentNullException"/> with correct ParamName
+        /// </summary>
+        /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Add with invalid key and valid value should throw ArgumentNullException with correct ParamName.")]
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_AddWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -94,8 +113,11 @@
                 Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add with valid key and null value should throw <see cref="ArgumentNullException"/> with correct ParamName
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Add with valid key and null value should throw ArgumentNullException with correct ParamName.")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_AddWithValidKeyAndNullValue_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -118,9 +140,12 @@
                 Times.Never);
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet GetAll valid key and empty list should return empty IEnumerable.")]
-        [MaxTime(1000)]
-        public void MemoryKeyCollectionValuePairsRepositoryOfTweet_GetAllValidKeyAndEmptyList_ShouldReturnEmptyIEnumerable()
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> GetAll valid key and empty list should return empty collection.
+        /// </summary>
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet GetAll valid key and empty list should return empty collection.")]
+        [MaxTime(100000)]
+        public void MemoryKeyCollectionValuePairsRepositoryOfTweet_GetAllValidKeyAndEmptyList_ShouldReturnEmptyCollection()
         {
             // Arrange
             string key = "some key";
@@ -144,11 +169,15 @@
             dataStoreMock.Verify(s => s[key], Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> GetAll with invalid key should throw <see cref="ArgumentNullException"/> with correct ParamName
+        /// </summary>
+        /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet GetAll with invalid key should throw ArgumentNullException with correct ParamName.")]
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_GetAllWithInvalidKey_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -167,8 +196,11 @@
             dataStoreMock.Verify(s => s[It.IsAny<string>()], Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Get Keys should work.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Get Keys should work.")]
-        [MaxTime(1000)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_GetKeys_ShouldWork()
         {
             // Arrange
@@ -190,8 +222,12 @@
             dataStoreMock.Verify(s => s.Keys, Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove valid key and valid value should work
+        /// </summary>
+        /// <returns>Task</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove valid key and valid value should work.")]
-        [MaxTime(1000)]
+        [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveValidKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -217,8 +253,12 @@
                 Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove valid non-present key should work.
+        /// </summary>
+        /// <returns>Task</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove valid non-present key should work.")]
-        [MaxTime(1000)]
+        [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveValidNonPresentKey_ShouldWork()
         {
             // Arrange
@@ -227,7 +267,7 @@
             var dataStoreMock = new Mock<IMemoryStringKeyCollectionValueDataStore<ITweet>>();
             dataStoreMock
                 .Setup(s => s.Remove(key))
-                .Returns(true);
+                .Returns(false);
 
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
@@ -235,14 +275,18 @@
             var result = await repository.RemoveAsync(key).ConfigureAwait(false);
 
             // Asset
-            Assert.That(result, Is.EqualTo(true));
+            Assert.That(result, Is.EqualTo(false));
 
             dataStoreMock.Verify(s => s.Remove(It.IsAny<string>()), Times.Once);
             dataStoreMock.Verify(s => s.Remove(key), Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove valid yet-present key should work.
+        /// </summary>
+        /// <returns>task</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove valid yet-present key should work.")]
-        [MaxTime(1000)]
+        [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveValidYetPresentKey_ShouldWork()
         {
             // Arrange
@@ -265,11 +309,15 @@
             dataStoreMock.Verify(s => s.Remove(key), Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove with invalid key should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
+        /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove with invalid key should throw ArgumentNullException with correct ParamName.")]
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKey_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -288,11 +336,15 @@
             dataStoreMock.Verify(s => s.Remove(It.IsAny<string>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove with invalid key and null value should throw <see cref="ArgumentNullException"/>.
+        /// </summary>
+        /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove with invalid key and null value should throw ArgumentNullException.")]
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKeyAndNullValue_ShouldThrowArgumentNullException(string key)
         {
             // Arrange
@@ -309,11 +361,15 @@
             dataStoreMock.Verify(s => s.Remove(It.IsAny<string>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove with invalid key and valid value should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
+        /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove with invalid key and valid value should throw ArgumentNullException with correct ParamName.")]
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -335,8 +391,11 @@
             dataStoreMock.Verify(s => s.Remove(It.IsAny<string>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove with valid key and null value should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove with valid key and null value should throw ArgumentNullException with correct ParamName.")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveWithValidKeyAndNullValue_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -357,8 +416,12 @@
             dataStoreMock.Verify(s => s.Remove(It.IsAny<string>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> SaveChanges should work.
+        /// </summary>
+        /// <returns>Task</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet SaveChanges should work.")]
-        [MaxTime(1000)]
+        [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_SaveChanges_ShouldWork()
         {
             // Arrange
@@ -375,8 +438,11 @@
             dataStoreMock.Verify();
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> with null dataStore in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet with null dataStore in constructor should throw ArgumentNullException with correct ParamName.")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_WithNullDataStoreInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Act + Assert
@@ -388,8 +454,11 @@
             Assert.AreEqual(Constants.DataStoreParamName, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> with valid dataStore in constructor should be initialized correctly.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet with valid dataStore in constructor should be initialized correctly.")]
-        [MaxTime(300)]
+        [MaxTime(100000)]
         public void MemoryKeyCollectionValuePairsRepositoryOfTweet_WithValidDataStoreInConstructor_ShouldBeInitializedCorrectly()
         {
             // Arrange
