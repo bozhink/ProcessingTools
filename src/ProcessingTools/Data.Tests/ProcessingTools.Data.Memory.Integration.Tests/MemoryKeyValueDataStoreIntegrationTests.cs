@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Memory.Integration.Tests
+﻿// <copyright file="MemoryKeyValueDataStoreIntegrationTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Memory.Integration.Tests
 {
     using System;
     using System.Linq;
@@ -6,6 +10,9 @@
     using ProcessingTools.Data.Memory.Abstractions;
     using ProcessingTools.Data.Memory.Integration.Tests.Models;
 
+    /// <summary>
+    /// <see cref="MemoryKeyValueDataStore{IKeyModel, IValueModel}"/> integration tests.
+    /// </summary>
     [TestFixture(Category = "Integration", TestOf = typeof(MemoryKeyValueDataStore<IKeyModel, IValueModel>))]
     public class MemoryKeyValueDataStoreIntegrationTests
     {

@@ -30,12 +30,14 @@
     <DefineConstants />
     <DocumentationFile>bin\docs\ProcessingTools.Data.Xml.Integration.Tests.xml</DocumentationFile>
     <WarningLevel>3</WarningLevel>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DocumentationFile>bin\docs\ProcessingTools.Data.Xml.Integration.Tests.xml</DocumentationFile>
     <WarningLevel>3</WarningLevel>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

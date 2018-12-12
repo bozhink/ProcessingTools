@@ -29,10 +29,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DocumentationFile>bin\docs\ProcessingTools.Data.Memory.Integration.Tests.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Data.Memory.Integration.Tests.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -6,11 +6,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Data.Bio.Taxonomy.Xml.Contracts.Repositories;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Entity.Abstractions;
     using ProcessingTools.Data.Entity.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Entity.Bio.Taxonomy;
+    using ProcessingTools.Data.Xml.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
 

@@ -1,9 +1,22 @@
-﻿namespace ProcessingTools.Data.Memory.Integration.Tests.Models
+﻿// <copyright file="ValueModel.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Memory.Integration.Tests.Models
 {
+    /// <summary>
+    /// Value model.
+    /// </summary>
     internal class ValueModel : IValueModel
     {
-        public string Content { get; set; }
-
+        /// <summary>
+        /// Gets or sets the ID of the model.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the content of the model.
+        /// </summary>
+        public string Content { get; set; }
     }
 }
