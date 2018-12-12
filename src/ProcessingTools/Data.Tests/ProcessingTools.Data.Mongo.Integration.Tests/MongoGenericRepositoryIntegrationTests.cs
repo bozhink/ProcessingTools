@@ -1,13 +1,20 @@
-﻿namespace ProcessingTools.Data.Common.Mongo.Tests.IntegrtionTests
+﻿// <copyright file="MongoGenericRepositoryIntegrationTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Mongo.Integration.Tests
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Data.Common.Mongo.Tests.Fakes;
-    using ProcessingTools.Data.Common.Mongo.Tests.Models;
     using ProcessingTools.Data.Mongo.Abstractions;
+    using ProcessingTools.Data.Mongo.Integration.Tests.Fakes;
+    using ProcessingTools.Data.Mongo.Integration.Tests.Models;
 
+    /// <summary>
+    /// <see cref="MongoGenericRepository{Book}"/> integration tests.
+    /// </summary>
     [TestClass]
-    public class MongoGenericRepositoryTests
+    public class MongoGenericRepositoryIntegrationTests
     {
         private const string DatabaseName = "MongoGenericRepository_Integration_Tests_F92F80C9";
 
@@ -16,6 +23,9 @@
         /// </summary>
         public TestContext TestContext { get; set; }
 
+        /// <summary>
+        /// <see cref="MongoGenericRepository{Book}"/> add-all-delete should work.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
         [Ignore] // Integration test
@@ -51,6 +61,9 @@
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");
         }
 
+        /// <summary>
+        /// <see cref="MongoGenericRepository{Book}"/> add-all-find-delete should work.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
         [Ignore] // Integration test
@@ -86,6 +99,9 @@
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");
         }
 
+        /// <summary>
+        /// <see cref="MongoGenericRepository{Book}"/> add-all-update-delete should work.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
         [Ignore] // Integration test
