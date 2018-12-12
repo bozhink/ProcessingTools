@@ -30,7 +30,7 @@
             // Arrange
             const int ExpectedNumberOfAbbreviations = 22;
 
-            var xmlFileName = Path.Combine(AppSettings.SampleFiles, "article-with-abbrev.xml");
+            var xmlFileName = Path.Combine("Samples", "article -with-abbrev.xml");
             XmlDocument document = new XmlDocument
             {
                 PreserveWhitespace = true

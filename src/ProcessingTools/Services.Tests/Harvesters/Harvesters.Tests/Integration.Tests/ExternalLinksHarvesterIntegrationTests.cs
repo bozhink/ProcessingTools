@@ -30,7 +30,7 @@
             const int ExpectedNumberOfExternalLinks = 10;
             const int ExpectedNumberOfExternalLinksOfTypeDoi = 9;
 
-            var xmlFileName = Path.Combine(AppSettings.SampleFiles, "article-with-external-links.xml");
+            var xmlFileName = Path.Combine("Samples", "article -with-external-links.xml");
             var document = new XmlDocument
             {
                 PreserveWhitespace = true
