@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Tests
+﻿// <copyright file="BlackListXmlModelTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Xml.Integration.Tests
 {
     using System.IO;
     using System.Linq;
@@ -7,20 +11,29 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
-    using ProcessingTools.Data.Models.Bio.Taxonomy.Xml;
+    using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
 
+    /// <summary>
+    /// <see cref="BlackListXmlModel"/> tests.
+    /// </summary>
     [TestClass]
     public class BlackListXmlModelTests
     {
+        /// <summary>
+        /// <see cref="BlackListXmlModel"/> deserialize should work.
+        /// </summary>
         [TestMethod]
         public void BlackListXmlModel_Deserialize_ShouldWork()
         {
             const int NumberOfListItems = 2;
-            string directoryFileName = AppSettings.DataFilesDirectoryName;
-            string fileName = AppSettings.BlackListSampleFileName;
+
+            string dataFilesDirectory = "DataFiles";
+            string sampleFileName = "blacklist-sample.xml";
+
+            string source = Path.Combine(Directory.GetCurrentDirectory(), dataFilesDirectory, sampleFileName);
 
             BlackListXmlModel list = null;
-            using (var stream = new FileStream($"{directoryFileName}/{fileName}", FileMode.Open))
+            using (var stream = new FileStream(source, FileMode.Open))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(BlackListXmlModel));
                 list = serializer.Deserialize(stream) as BlackListXmlModel;
@@ -37,6 +50,9 @@
             Assert.AreEqual("Abbreviations", items[1], "Second item should match.");
         }
 
+        /// <summary>
+        /// <see cref="BlackListXmlModel"/> serialize should work.
+        /// </summary>
         [TestMethod]
         public void BlackListXmlModel_Serialize_ShouldWork()
         {

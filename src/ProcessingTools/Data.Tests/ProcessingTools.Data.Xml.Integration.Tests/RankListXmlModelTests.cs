@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Tests
+﻿// <copyright file="RankListXmlModelTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Xml.Integration.Tests
 {
     using System.IO;
     using System.Xml;
@@ -6,20 +10,29 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
-    using ProcessingTools.Data.Models.Bio.Taxonomy.Xml;
+    using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
 
+    /// <summary>
+    /// <see cref="RankListXmlModel"/> tests.
+    /// </summary>
     [TestClass]
     public class RankListXmlModelTests
     {
+        /// <summary>
+        /// <see cref="RankListXmlModel"/> deserialize should work.
+        /// </summary>
         [TestMethod]
         public void RankListXmlModel_Deserialize_ShouldWork()
         {
             const int NumberOfListItems = 5;
-            string directoryFileName = AppSettings.DataFilesDirectoryName;
-            string fileName = AppSettings.RankListSampleFileName;
+
+            string dataFilesDirectory = "DataFiles";
+            string sampleFileName = "ranklist-sample.xml";
+
+            string source = Path.Combine(Directory.GetCurrentDirectory(), dataFilesDirectory, sampleFileName);
 
             RankListXmlModel list = null;
-            using (var stream = new FileStream($"{directoryFileName}/{fileName}", FileMode.Open))
+            using (var stream = new FileStream(source, FileMode.Open))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(RankListXmlModel));
                 list = serializer.Deserialize(stream) as RankListXmlModel;
@@ -57,6 +70,9 @@
             Assert.AreEqual(false, list.Taxa[taxonNumber].IsWhiteListed, "Fifth taxon should not be white-listed.");
         }
 
+        /// <summary>
+        /// <see cref="RankListXmlModel"/> serialize object with single rank value should work.
+        /// </summary>
         [TestMethod]
         public void RankListXmlModel_SerializeObjectWithSingleRankValue_ShouldWork()
         {
@@ -171,6 +187,9 @@
             Assert.AreEqual(ClassTaxonRank, xmlTaxonPartRankValue.InnerText, $"First child of the ranks element of the taxon part element should have value '{ClassTaxonRank}'.");
         }
 
+        /// <summary>
+        /// <see cref="RankListXmlModel"/> serialize object with two rank values should work.
+        /// </summary>
         [TestMethod]
         public void RankListXmlModel_SerializeObjectWithTwoRankValues_ShouldWork()
         {
@@ -295,6 +314,9 @@
             Assert.AreEqual(ClassTaxonRank2, xmlTaxonPartRankLastValue.InnerText, $"Last child of the ranks element of the taxon part element should have value '{ClassTaxonRank2}'.");
         }
 
+        /// <summary>
+        /// <see cref="RankListXmlModel"/> serialize object with single rank value with not set white listed attribute should set default value false.
+        /// </summary>
         [TestMethod]
         public void RankListXmlModel_SerializeObjectWithSingleRankValue_WithNotSetWhiteListedAttribute_ShouldSetDefaultValueFalse()
         {

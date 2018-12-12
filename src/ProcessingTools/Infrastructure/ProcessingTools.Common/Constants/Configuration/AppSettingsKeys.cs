@@ -85,11 +85,6 @@ namespace ProcessingTools.Common.Constants.Configuration
         internal const string CountryCodesSeedFileName = "CountryCodesSeedFileName";
 
         /// <summary>
-        /// DataFilesDirectoryName
-        /// </summary>
-        internal const string DataFilesDirectoryName = "DataFilesDirectoryName";
-
-        /// <summary>
         /// DocumentsMongoConnection
         /// </summary>
         internal const string DocumentsMongoConnection = "DocumentsMongoConnection";
@@ -308,21 +303,6 @@ namespace ProcessingTools.Common.Constants.Configuration
         /// ZooBankRegistrationNlmXslFileName
         /// </summary>
         internal const string ZooBankRegistrationNlmXslFileName = "ZooBankRegistrationNlmXslFileName";
-
-        /// <summary>
-        /// BlackListSampleFileName
-        /// </summary>
-        internal const string BlackListSampleFileName = "BlackListSampleFileName";
-
-        /// <summary>
-        /// RankListSampleFileName
-        /// </summary>
-        internal const string RankListSampleFileName = "RankListSampleFileName";
-
-        /// <summary>
-        /// SampleFiles
-        /// </summary>
-        internal const string SampleFiles = "SampleFiles";
 
         /// <summary>
         /// BingMapKey

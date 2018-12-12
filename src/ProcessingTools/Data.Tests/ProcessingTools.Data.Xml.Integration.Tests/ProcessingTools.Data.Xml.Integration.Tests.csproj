@@ -41,11 +41,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DataFiles\blacklist-sample.xml" />
+    <None Remove="DataFiles\ranklist-sample.xml" />
     <None Remove="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DataFiles\blacklist-sample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\ranklist-sample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -86,6 +97,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Xml\ProcessingTools.Data.Models.Xml.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
   </ItemGroup>
 
 </Project>
