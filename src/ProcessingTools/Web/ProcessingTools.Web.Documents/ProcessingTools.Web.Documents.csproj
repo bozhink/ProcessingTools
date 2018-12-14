@@ -637,10 +637,6 @@
       <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>
       <Name>ProcessingTools.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Processors\Image.Processors\Imaging.csproj">
-      <Project>{D3890589-8338-42AE-9A1D-4FD746978BF5}</Project>
-      <Name>Imaging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>

@@ -1,8 +1,11 @@
-﻿namespace ProcessingTools.Imaging.Processors
+﻿// <copyright file="BarcodeEncoder.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Imaging
 {
     using System;
     using System.Drawing;
-    using System.Drawing.Imaging;
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
@@ -14,6 +17,7 @@
     /// </summary>
     public class BarcodeEncoder : IBarcodeEncoder
     {
+        /// <inheritdoc/>
         public Task<byte[]> EncodeAsync(BarcodeType type, string content, int width, int height)
         {
             return Task.Run(() =>
@@ -23,6 +27,7 @@
             });
         }
 
+        /// <inheritdoc/>
         public Task<string> EncodeBase64Async(BarcodeType type, string content, int width, int height)
         {
             return Task.Run(() =>
@@ -62,7 +67,7 @@
         /// Converts <see cref="Image"/> to Base64 encoded string.
         /// </summary>
         /// <param name="image"><see cref="Image"/> object to be converted.</param>
-        /// <param name="format"><see cref="ImageFormat"/> of the image.</param>
+        /// <param name="format"><see cref="System.Drawing.Imaging.ImageFormat"/> of the image.</param>
         /// <returns>Base64 encoded string as image presentation.</returns>
         /// <remarks>
         /// See http://stackoverflow.com/questions/7350679/convert-a-bitmap-into-a-byte-array
@@ -80,7 +85,7 @@
         /// Converts <see cref="Image"/> to byte array.
         /// </summary>
         /// <param name="image"><see cref="Image"/> object to be converted.</param>
-        /// <param name="format"><see cref="ImageFormat"/> of the image.</param>
+        /// <param name="format"><see cref="System.Drawing.Imaging.ImageFormat"/> of the image.</param>
         /// <returns>Byte array of the image.</returns>
         /// <remarks>
         /// See http://stackoverflow.com/questions/10889764/how-to-convert-bitmap-to-a-base64-string
