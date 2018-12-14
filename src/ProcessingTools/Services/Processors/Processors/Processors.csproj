@@ -51,9 +51,6 @@
     <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsTagger.cs" />
     <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />
-    <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
-    <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
-    <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
