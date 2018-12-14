@@ -1,11 +1,16 @@
-﻿namespace ProcessingTools.Services.Validation.Tests.UnitTests
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
 {
+    using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
+    using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Net;
     using ProcessingTools.Services.Contracts.Cache;
+    using ProcessingTools.Services.Validation;
 
     [TestClass]
     public class TaxaValidationServiceTests
@@ -16,11 +21,13 @@
         [TestInitialize]
         public void Initialize()
         {
-            var cacheServiceMock = new Mock<IValidationCacheService>();
-            this.cacheService = cacheServiceMock.Object;
-
-            var requesterMock = new Mock<IGlobalNamesResolverDataRequester>();
-            this.requester = requesterMock.Object;
+            ////var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
+            var applicationContextMock = new Mock<IApplicationContext>();
+            applicationContextMock
+                .SetupGet(e => e.DateTimeProvider)
+                .Returns(() => DateTime.UtcNow);
+            ////this.cacheService = new ValidationCacheService(repository, applicationContextMock.Object); // TODO: IValidationCacheService
+            this.requester = new GlobalNamesResolverDataRequester(new NetConnectorFactory());
         }
 
         [TestMethod]
@@ -31,13 +38,14 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
         {
             new TaxaValidationService(null, this.requester);
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItems_SchouldReturnThreeValidatedItems()
         {
@@ -64,6 +72,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItemsWithOneInvalid_SchouldReturnThreeValidatedItems()
         {

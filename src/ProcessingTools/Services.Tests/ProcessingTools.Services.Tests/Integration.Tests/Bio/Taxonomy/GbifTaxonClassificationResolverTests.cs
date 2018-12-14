@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Tests.Integration.Tests.Bio.Taxonomy
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
 {
     using System.Linq;
     using NUnit.Framework;
@@ -20,7 +20,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(GbifTaxonClassificationResolver))]
-        [Timeout(5000)]
+        [MaxTime(100000)]
         [Ignore(reason: "Integration test")]
         public void GbifTaxonClassificationResolver_Resolve_ShouldWork()
         {
