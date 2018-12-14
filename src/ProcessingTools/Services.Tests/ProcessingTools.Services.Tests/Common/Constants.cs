@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Cache.Tests.Common
+﻿namespace ProcessingTools.Services.Tests.Common
 {
     internal static class Constants
     {

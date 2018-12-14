@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Cache.Tests.Unit.Tests.Validation
+﻿namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
 {
     using System;
     using System.Threading.Tasks;
@@ -9,13 +9,14 @@
     using ProcessingTools.Data.Contracts.Cache;
     using ProcessingTools.Data.Models.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
-    using ProcessingTools.Services.Cache.Tests.Common;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Tests.Common;
 
     [TestFixture(Category = "Unit", TestOf = typeof(ValidationCacheService))]
     public class ValidationCacheServiceUnitTests
     {
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add valid key and valid value should work.")]
-        [Timeout(5000)]
+        [MaxTime(100000)]
         public async Task ValidationCacheService_AddValidNonPresentKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -45,7 +46,7 @@
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [Timeout(1000)]
+        [MaxTime(100000)]
         public void ValidationCacheService_AddWithInvalidKeyAndNullValue_ShouldThrowArgumentNullException(string key)
         {
             // Arrange
@@ -67,7 +68,7 @@
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [Timeout(300)]
+        [MaxTime(100000)]
         public void ValidationCacheService_AddWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -89,7 +90,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add with valid key and null value should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(300)]
+        [MaxTime(100000)]
         public void ValidationCacheService_AddWithValidKeyAndNullValue_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -111,7 +112,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key from cache in which is not present should return null.")]
-        [Timeout(1000)]
+        [MaxTime(100000)]
         public async Task ValidationCacheService_GetAllValidKeyFromCacheInWhichIsNotPresent_ShouldReturnEmptyIEnumerable()
         {
             // Arrange
@@ -137,7 +138,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with empty list should return null.")]
-        [Timeout(1000)]
+        [MaxTime(100000)]
         public async Task ValidationCacheService_GetAllValidKeyWithEmptyList_ShouldReturnEmptyIEnumerable()
         {
             // Arrange
@@ -168,7 +169,7 @@
         [TestCase(null)]
         [TestCase("")]
         [TestCase("         ")]
-        [Timeout(300)]
+        [MaxTime(100000)]
         public void ValidationCacheService_GetAllWithInvalidKey_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
@@ -189,7 +190,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with list with single value should return a new copy of it.")]
-        [Timeout(1000)]
+        [MaxTime(100000)]
         public async Task ValidationCacheService_GetValidKeyWithListWithSingleValue_ShouldReturnANewCopyIt()
         {
             // Arrange
@@ -221,7 +222,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null DAO and null applicationContext in constructor should throw ArgumentNullException.")]
-        [Timeout(300)]
+        [MaxTime(100000)]
         public void ValidationCacheService_WithNullDataAccessObjectAndNullApplicationContextInConstructor_ShouldThrowArgumentNullException()
         {
             // Act + Assert
@@ -232,7 +233,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null DAO and valid applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(300)]
+        [MaxTime(100000)]
         public void ValidationCacheService_WithNullDataAccessObjectAndValidApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
@@ -248,7 +249,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid parameters in constructor should be initialized correctly.")]
-        [Timeout(1000)]
+        [MaxTime(100000)]
         public void ValidationCacheService_WithValidParametersInConstructor_ShouldBeInitializedCorrectly()
         {
             // Arrange
@@ -270,7 +271,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid DAO and null applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
-        [Timeout(300)]
+        [MaxTime(100000)]
         public void ValidationCacheService_WithValidDataAccessObjectAndNullApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
