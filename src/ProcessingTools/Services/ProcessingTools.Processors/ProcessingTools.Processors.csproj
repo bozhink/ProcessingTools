@@ -38,6 +38,7 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo.Contracts\ProcessingTools.Geo.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Miners.Contracts\ProcessingTools.Data.Miners.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />

@@ -4,7 +4,7 @@ specimen_code -> @institutionalCode
 <institutional_code description="Australian National Insect Collection, CSIRO, Canberra City, Australia" attribute1="http://grbio.org/institution/queensland-museum">ANIC</institutional_code>
 */
 
-namespace ProcessingTools.Processors.Processors.Bio.Codes
+namespace ProcessingTools.Processors.Bio.Codes
 {
     using System;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.EnvironmentTerms
+﻿namespace ProcessingTools.Processors.Bio.EnvironmentTerms
 {
     using System;
     using System.Linq;
@@ -11,18 +11,18 @@
     using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
 
-    public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
+    public class EnvironmentTermsTagger : IEnvironmentTermsTagger
     {
         private const string XPath = "./*";
 
-        private readonly IExtractHcmrDataMiner miner;
+        private readonly IEnvoTermsDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
-        private readonly ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger;
+        private readonly ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger;
 
-        public EnvironmentTermsWithExtractTagger(
-            IExtractHcmrDataMiner miner,
+        public EnvironmentTermsTagger(
+            IEnvoTermsDataMiner miner,
             ITextContentHarvester contentHarvester,
-            ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger)
+            ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger)
         {
             this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
             this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
@@ -37,12 +37,19 @@
             }
 
             var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement);
-            var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
-                .Select(t => new EnvoExtractHcmrSerializableModel
+            var data = (await this.miner.MineAsync(textContent))
+                .Select(t => new EnvoTermResponseModel
+                {
+                    EntityId = t.EntityId,
+                    EnvoId = t.EnvoId,
+                    Content = t.Content
+                })
+                .Select(t => new EnvoTermSerializableModel
                 {
                     Value = t.Content,
-                    Type = string.Join("|", t.Types),
-                    Identifier = string.Join("|", t.Identifiers)
+                    EnvoId = t.EnvoId,
+                    Id = t.EntityId,
+                    VerbatimTerm = t.Content
                 });
 
             var settings = new ContentTaggerSettings
@@ -51,7 +58,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.TagAsync(context.XmlDocument, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);
+            await this.contentTagger.TagAsync(context.XmlDocument.DocumentElement, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);
 
             return true;
         }

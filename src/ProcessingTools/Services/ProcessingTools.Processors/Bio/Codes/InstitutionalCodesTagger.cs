@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Codes
+﻿namespace ProcessingTools.Processors.Bio.Codes
 {
     using System;
     using System.Linq;

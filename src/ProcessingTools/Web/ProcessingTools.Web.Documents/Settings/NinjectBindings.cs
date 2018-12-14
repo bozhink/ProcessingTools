@@ -47,13 +47,6 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
             this.Bind<ProcessingTools.Services.Contracts.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
 
