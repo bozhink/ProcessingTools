@@ -47,7 +47,7 @@
                 c.CreateMap<IContinent, ContinentViewModel>()
                     .ForMember(
                         destinationMember: d => d.Synonyms,
-                        memberOptions: o => o.ResolveUsing(x => x.Synonyms?.Select(s => new SynonymViewModel
+                        memberOptions: o => o.MapFrom(x => x.Synonyms.Select(s => new SynonymViewModel
                         {
                             Id = s.Id,
                             Name = s.Name,
@@ -55,7 +55,7 @@
                         })))
                     .ForMember(
                         destinationMember: d => d.Countries,
-                        memberOptions: o => o.ResolveUsing(x => x.Countries?.Select(s => new CountryViewModel
+                        memberOptions: o => o.MapFrom(x => x.Countries.Select(s => new CountryViewModel
                         {
                             Id = s.Id,
                             Name = s.Name,
@@ -63,12 +63,12 @@
                         })))
                     .ForMember(
                         destinationMember: d => d.NumberOfCountries,
-                        memberOptions: o => o.ResolveUsing(x => x.Countries.Count));
+                        memberOptions: o => o.MapFrom(x => x.Countries.Count));
 
                 c.CreateMap<ContinentRequestModel, ContinentViewModel>()
                     .ForMember(
                         destinationMember: d => d.Synonyms,
-                        memberOptions: o => o.ResolveUsing(x => x.Synonyms?.Select(s => new SynonymViewModel
+                        memberOptions: o => o.MapFrom(x => x.Synonyms.Select(s => new SynonymViewModel
                         {
                             Id = s.Id,
                             Name = s.Name,
@@ -76,7 +76,7 @@
                         })))
                     .ForMember(
                         destinationMember: d => d.Countries,
-                        memberOptions: o => o.ResolveUsing(x => x.Countries?.Select(s => new CountryViewModel
+                        memberOptions: o => o.MapFrom(x => x.Countries.Select(s => new CountryViewModel
                         {
                             Id = s.Id,
                             Name = s.Name,
@@ -84,7 +84,7 @@
                         })))
                     .ForMember(
                         destinationMember: d => d.NumberOfCountries,
-                        memberOptions: o => o.ResolveUsing(x => x.Countries.Count));
+                        memberOptions: o => o.MapFrom(x => x.Countries.Count));
 
                 c.CreateMap<IContinentSynonym, SynonymResponseModel>();
             });
