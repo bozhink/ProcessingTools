@@ -1,10 +1,17 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.BarcodeGenerator
+﻿// <copyright file="BarcodeRequestModel.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Models.Tools.Barcode
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants;
     using ValidationConstants = ProcessingTools.Common.Constants.ValidationConstants;
 
-    public class IndexRequestModel
+    /// <summary>
+    /// Barcode request model.
+    /// </summary>
+    public class BarcodeRequestModel
     {
         [Required]
         [Range(ImagingConstants.MinimalBarcodeWidth, ImagingConstants.MaximalBarcodeWidth)]

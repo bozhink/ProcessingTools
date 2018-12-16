@@ -328,8 +328,6 @@
     <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Tagger\FileViewModel.cs" />
-    <Compile Include="Areas\Data\Controllers\BarcodeGeneratorController.cs" />
-    <Compile Include="Areas\Data\Models\BarcodeGenerator\IndexRequestModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\BlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\Contracts\IBlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\SearchResposeModel.cs" />
@@ -344,7 +342,6 @@
     <Compile Include="Areas\Data\Controllers\BioController.cs" />
     <Compile Include="Areas\Data\Controllers\BioTaxonomyTaxaRanksDataController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
-    <Compile Include="Areas\Data\ViewModels\BarcodeGenerator\IndexViewModel.cs" />
     <Compile Include="Areas\Files\Controllers\MetadataController.cs" />
     <Compile Include="Areas\Files\Controllers\UploadController.cs" />
     <Compile Include="Areas\Files\FilesAreaRegistration.cs" />
@@ -524,8 +521,6 @@
     <Content Include="Areas\Articles\Views\Tagger\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Tagger\_Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Files\DeleteAll.cshtml" />
-    <Content Include="Areas\Data\Views\BarcodeGenerator\Help.cshtml" />
-    <Content Include="Areas\Data\Views\BarcodeGenerator\Index.cshtml" />
     <Content Include="ProcessingTools.Web.Documents.ruleset" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
     <Content Include="README.md" />

@@ -1,5 +1,10 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Data.ViewModels.BarcodeGenerator
+﻿// <copyright file="BarcodeViewModel.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Models.Tools.Barcode
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using ProcessingTools.Common.Constants;
@@ -7,20 +12,20 @@
     using ProcessingTools.Extensions;
     using ValidationConstants = ProcessingTools.Common.Constants.ValidationConstants;
 
-    public class IndexViewModel
+    /// <summary>
+    /// Barcode view model.
+    /// </summary>
+    public class BarcodeViewModel
     {
-        public IndexViewModel()
+        public BarcodeViewModel()
             : this(0)
         {
         }
 
-        public IndexViewModel(int selectedValue)
+        public BarcodeViewModel(int selectedValue)
         {
             this.Width = ImagingConstants.DefaultBarcodeWidth;
             this.Height = ImagingConstants.DefaultBarcodeHeight;
-
-            var listItems = typeof(BarcodeType).GetEnumValueTextPairs();
-            this.Type = new SelectList(listItems, dataValueField: "Value", dataTextField: "Text", selectedValue: selectedValue);
         }
 
         [Required]
@@ -40,7 +45,7 @@
 
         [Required]
         [Display(Name = "Barcode Type", Description = "Barcode Type")]
-        public SelectList Type { get; set; }
+        public IDictionary<int, string> Type => typeof(BarcodeType).EnumToDictionary();
 
         public object Image { get; set; }
     }
