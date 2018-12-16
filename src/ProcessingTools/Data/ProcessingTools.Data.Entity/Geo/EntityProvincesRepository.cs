@@ -50,7 +50,7 @@
 
                 c.CreateMap<IProvinceSynonym, ProvinceSynonym>()
                     .ForMember(d => d.Province, o => o.Ignore())
-                    .ForMember(d => d.ProvinceId, o => o.ResolveUsing(x => x.ParentId))
+                    .ForMember(d => d.ProvinceId, o => o.MapFrom(x => x.ParentId))
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore())
                     .ForMember(d => d.ModifiedBy, o => o.Ignore())

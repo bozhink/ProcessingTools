@@ -39,9 +39,9 @@ namespace ProcessingTools.Services.Documents
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IFileDataModel, FileModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IFileDetailsDataModel, FileDetailsModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }

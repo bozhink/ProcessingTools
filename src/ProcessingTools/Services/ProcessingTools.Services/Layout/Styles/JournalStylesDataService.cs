@@ -48,27 +48,27 @@ namespace ProcessingTools.Services.Layout.Styles
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IJournalStyleDataModel, JournalStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
 
                 c.CreateMap<IFloatObjectParseStyleDataModel, FloatObjectParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IFloatObjectParseStyleDataModel, IFloatObjectParseStyleModel>().As<FloatObjectParseStyleModel>();
 
                 c.CreateMap<IFloatObjectTagStyleDataModel, FloatObjectTagStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IFloatObjectTagStyleDataModel, IFloatObjectTagStyleModel>().As<FloatObjectTagStyleModel>();
 
                 c.CreateMap<IReferenceParseStyleDataModel, ReferenceParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IReferenceParseStyleDataModel, IReferenceParseStyleModel>().As<ReferenceParseStyleModel>();
 
                 c.CreateMap<IReferenceTagStyleDataModel, ReferenceTagStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IReferenceTagStyleDataModel, IReferenceTagStyleModel>().As<ReferenceTagStyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();

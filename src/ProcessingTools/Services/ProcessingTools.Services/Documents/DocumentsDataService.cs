@@ -39,9 +39,9 @@ namespace ProcessingTools.Services.Documents
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IDocumentDataModel, DocumentModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IDocumentDetailsDataModel, DocumentDetailsModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IDocumentArticleDataModel, DocumentArticleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();

@@ -38,7 +38,7 @@
 
                 c.CreateMap<IContinentSynonym, ContinentSynonym>()
                     .ForMember(d => d.Continent, o => o.Ignore())
-                    .ForMember(d => d.ContinentId, o => o.ResolveUsing(x => x.ParentId))
+                    .ForMember(d => d.ContinentId, o => o.MapFrom(x => x.ParentId))
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore())
                     .ForMember(d => d.ModifiedBy, o => o.Ignore())

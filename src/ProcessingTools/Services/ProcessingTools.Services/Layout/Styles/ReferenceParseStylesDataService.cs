@@ -42,11 +42,11 @@ namespace ProcessingTools.Services.Layout.Styles
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IReferenceParseStyleDataModel, ReferenceParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IReferenceDetailsParseStyleDataModel, ReferenceDetailsParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();

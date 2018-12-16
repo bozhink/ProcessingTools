@@ -42,9 +42,9 @@ namespace ProcessingTools.Services.Documents
                 c.CreateMap<IJournalPublisherDataModel, IJournalPublisherModel>().As<JournalPublisherModel>();
 
                 c.CreateMap<IJournalDataModel, JournalModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IJournalDetailsDataModel, JournalDetailsModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()))
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()))
                     .ForMember(sm => sm.Publisher, o => o.MapFrom(dm => dm.Publisher));
             });
             this.mapper = mapperConfiguration.CreateMapper();

@@ -57,7 +57,7 @@ namespace ProcessingTools.Web.Services.Documents
                 c.CreateMap<IDocumentFileStreamModel, DocumentDownloadResponseModel>();
 
                 c.CreateMap<IFormFile, DocumentFileRequestModel>()
-                    .ForMember(rm => rm.ContentLength, o => o.ResolveUsing(m => m.Length));
+                    .ForMember(rm => rm.ContentLength, o => o.MapFrom(m => m.Length));
                 c.CreateMap<IFormFile, IDocumentFileModel>().As<DocumentFileRequestModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();

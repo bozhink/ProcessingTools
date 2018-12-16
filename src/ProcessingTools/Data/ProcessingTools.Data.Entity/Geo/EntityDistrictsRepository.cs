@@ -50,7 +50,7 @@
 
                 c.CreateMap<IDistrictSynonym, DistrictSynonym>()
                     .ForMember(d => d.District, o => o.Ignore())
-                    .ForMember(d => d.DistrictId, o => o.ResolveUsing(x => x.ParentId))
+                    .ForMember(d => d.DistrictId, o => o.MapFrom(x => x.ParentId))
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore())
                     .ForMember(d => d.ModifiedBy, o => o.Ignore())

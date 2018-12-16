@@ -42,9 +42,9 @@ namespace ProcessingTools.Services.Files
                 c.CreateMap<ProcessingTools.Models.Contracts.Files.Mediatypes.IMediatypeMetaModel, IMediatypeMetaModel>().As<MediatypeMetaModel>();
 
                 c.CreateMap<IMediatypeDataModel, MediatypeModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IMediatypeDetailsDataModel, MediatypeDetailsModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }

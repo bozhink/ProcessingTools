@@ -52,7 +52,7 @@
 
                 c.CreateMap<ICitySynonym, CitySynonym>()
                     .ForMember(d => d.City, o => o.Ignore())
-                    .ForMember(d => d.CityId, o => o.ResolveUsing(x => x.ParentId))
+                    .ForMember(d => d.CityId, o => o.MapFrom(x => x.ParentId))
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore())
                     .ForMember(d => d.ModifiedBy, o => o.Ignore())

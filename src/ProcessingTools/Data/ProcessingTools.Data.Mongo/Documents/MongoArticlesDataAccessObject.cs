@@ -41,7 +41,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 c.CreateMap<IArticleInsertModel, Article>();
                 c.CreateMap<IArticleUpdateModel, Article>();
                 c.CreateMap<Journal, ArticleJournal>()
-                    .ForMember(aj => aj.Id, o => o.ResolveUsing(j => j.ObjectId.ToString()));
+                    .ForMember(aj => aj.Id, o => o.MapFrom(j => j.ObjectId.ToString()));
                 c.CreateMap<Journal, IArticleJournalDataModel>().As<ArticleJournal>();
             });
 
