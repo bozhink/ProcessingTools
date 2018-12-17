@@ -234,9 +234,6 @@
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="XQuery\harvesters\abbrev.xq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
