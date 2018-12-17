@@ -11,7 +11,7 @@
 {
     using Newtonsoft.Json;
 
-    public class SerializationModels
+    public partial class SerializationModels
     {
 </xsl:text>
     <xsl:copy>
@@ -67,7 +67,7 @@
     <xsl:text> { get; set; }</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xs:element[@maxOccurs='1']">
+  <xsl:template match="xs:element[@maxOccurs='1' or not(@maxOccurs)]">
     <xsl:text>
 </xsl:text>
     <xsl:if test="@minOccurs='1'">
