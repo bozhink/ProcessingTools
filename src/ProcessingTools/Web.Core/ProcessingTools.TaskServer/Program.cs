@@ -57,6 +57,7 @@ namespace ProcessingTools.TaskServer
                 .UseConfiguration(configuration)
                 .UseEnvironment("Development")
                 .UseStartup<Startup>()
+                .UseShutdownTimeout(TimeSpan.FromSeconds(10))
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();

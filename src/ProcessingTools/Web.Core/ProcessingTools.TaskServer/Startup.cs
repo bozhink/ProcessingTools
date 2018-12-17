@@ -41,8 +41,10 @@ namespace ProcessingTools.TaskServer
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
+            services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
 
             services.AddHostedService<ConsumeScopedServiceHostedService>();
+            services.AddHostedService<QueuedHostedService>();
             services.AddHostedService<TimedHostedService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

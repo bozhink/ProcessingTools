@@ -79,9 +79,15 @@ namespace ProcessingTools.TaskServer.Services
 
             if (disposing)
             {
+                /*
+                 * Free any other managed objects here.
+                 */
                 this.timer?.Dispose();
             }
 
+            /*
+             * Free any unmanaged objects here.
+             */
             this.disposed = true;
         }
 
