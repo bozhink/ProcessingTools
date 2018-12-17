@@ -6,7 +6,6 @@ namespace ProcessingTools.Web.Models.Tools.Barcode
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Extensions;
