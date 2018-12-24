@@ -30,9 +30,6 @@ export function CoordinatesToolboxesControl(
         let e: Event = event || window.event,
             $target: JQuery = $(e.target as HTMLElement);
 
-        console.log($target);
-        (window as any).xyz = $target;
-
         e.stopPropagation();
         e.preventDefault();
 
