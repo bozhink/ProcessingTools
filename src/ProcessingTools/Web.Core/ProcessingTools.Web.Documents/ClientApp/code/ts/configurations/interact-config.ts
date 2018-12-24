@@ -50,9 +50,9 @@
     public static registerDragabbleBehavior(interact: any/*Interact.InteractStatic*/, selector: string | HTMLElement): any {
         interact(selector as string)
             .draggable({
+                ignoreFrom: ".panel-body",
                 inertia: true,
                 restrict: {
-                    /*restriction: "parent",*/
                     endOnly: true,
                     elementRect: {
                         top: 0,
