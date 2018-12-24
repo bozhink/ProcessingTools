@@ -1,6 +1,7 @@
 import { ITemplatesProvider } from "../contracts/services";
+import * as leaflet from "leaflet";
 
-declare let leaflet: any;
+//declare let leaflet: any;
 
 interface ICoordinate {
     id?: string;
@@ -200,7 +201,7 @@ export function CoordinatesToolboxesControl(
                     worldCopyJump: true
                 });
 
-                leaflet.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+                leaflet.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
                     attribution: `&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors`
                 }).addTo(map);
 
@@ -218,6 +219,9 @@ export function CoordinatesToolboxesControl(
                 $(toolboxSelector + " .minimize-button").on("click", clickMinimizeButtonEventHandler);
                 $(toolboxSelector + " .maximize-button").on("click", clickMaximizeButtonEventHandler);
                 $(toolboxSelector + " .close-button").on("click", clickCloseButtonEventHandler);
+            })
+            .catch(function (reason: any){
+                console.error(reason);
             });
     }
 
