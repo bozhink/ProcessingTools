@@ -26,77 +26,18 @@ export function CoordinatesToolboxesControl(
     templatesProvider: ITemplatesProvider
 ): ICoordinatesToolboxesComponent {
 
-    function clickMinimizeButtonEventHandler(event: Event): any {
-        let e: Event = event || window.event,
-            target: HTMLElement = e.target as HTMLElement,
-            toolbox: HTMLElement,
-            body: HTMLElement;
-
-        e.stopPropagation();
-        e.preventDefault();
-
-        if (target) {
-            try {
-                toolbox = target.parentNode.parentNode.parentNode as HTMLElement;
-                if (toolbox instanceof HTMLElement) {
-                    body = toolbox.querySelector(".panel-body");
-                }
-
-                if (body instanceof HTMLElement) {
-                    body.style.display = "none";
-                    toolbox.style.height = "60px";
-                }
-            } catch (ex) {
-                // skip
-            }
-        }
-    }
-
-    function clickMaximizeButtonEventHandler(event: Event): any {
-        let e: Event = event || window.event,
-            target: HTMLElement = e.target as HTMLElement,
-            toolbox: HTMLElement,
-            body: HTMLElement;
-
-        e.stopPropagation();
-        e.preventDefault();
-
-        if (target) {
-            try {
-                toolbox = target.parentNode.parentNode.parentNode as HTMLElement;
-                if (toolbox instanceof HTMLElement) {
-                    body = toolbox.querySelector(".panel-body");
-                }
-
-                if (body instanceof HTMLElement) {
-                    body.style.display = "block";
-                    toolbox.style.height = "400px";
-                }
-            } catch (ex) {
-                // skip
-            }
-        }
-    }
-
     function clickCloseButtonEventHandler(event: Event): any {
         let e: Event = event || window.event,
-            target: HTMLElement = e.target as HTMLElement,
-            toolbox: HTMLElement;
+            $target: JQuery = $(e.target as HTMLElement);
+
+        console.log($target);
+        (window as any).xyz = $target;
 
         e.stopPropagation();
         e.preventDefault();
 
-        if (target) {
-            try {
-                toolbox = target.parentNode.parentNode.parentNode as HTMLElement;
-                if (toolbox instanceof HTMLElement) {
-                    toolbox.parentNode.removeChild(toolbox);
-                    document.body.style.cursor = "auto";
-                }
-            } catch (ex) {
-                // skip
-            }
-        }
+        $target.parents(".toolbox-container").remove();
+        document.body.style.cursor = "auto";
     }
 
     function listAnchorClickEventHandler(event: Event): any {
@@ -158,21 +99,22 @@ export function CoordinatesToolboxesControl(
             };
 
         // remove all coordinates list toolboxes yet present.
-        $(toolboxSelector).remove();
+        $(toolboxSelector).parents(".toolbox-container").remove();
 
         templatesProvider.get("coordinates-toolbox")
             .then(function (template: (vm: any) => string): void {
                 $("<div>")
+                    .addClass("toolbox-container")
                     .html(template(toolbox))
                     .appendTo($aside);
             })
             .then(function (): void {
                 $(toolboxSelector + " .panel-body .coordinates-list").on("click", listAnchorClickEventHandler);
-
-                $(toolboxSelector + " .minimize-button").on("click", clickMinimizeButtonEventHandler);
-                $(toolboxSelector + " .maximize-button").on("click", clickMaximizeButtonEventHandler);
                 $(toolboxSelector + " .close-button").on("click", clickCloseButtonEventHandler);
-            });
+            })
+            .catch(function (reason: any){
+                console.error(reason);
+            });;
     }
 
     function generateCoordinatesMapToolbox(selector: string): void {
@@ -184,16 +126,18 @@ export function CoordinatesToolboxesControl(
             };
 
         // remove all coordinates list toolboxes yet present.
-        $(toolboxSelector).remove();
+        $(toolboxSelector).parents(".toolbox-container").remove();
 
         templatesProvider.get("coordinates-map")
             .then(function (template: (vm: any) => string): void {
                 let coordinates: Array<ICoordinate> = toolbox.coordinates;
-                let $div: JQuery = $("<div>");
 
-                $div.html(template({
-                    title: toolbox.title
-                })).appendTo($aside);
+                $("<div>")
+                    .addClass("toolbox-container")
+                    .html(template({
+                        title: toolbox.title
+                    }))
+                    .appendTo($aside);
 
                 let map: any = leaflet.map("coordinates-map", {
                     center: [0.0, 0.0],
@@ -215,9 +159,6 @@ export function CoordinatesToolboxesControl(
             })
             .then(function (): void {
                 $(toolboxSelector).on("click", ".coordinate-item", listAnchorClickEventHandler);
-
-                $(toolboxSelector + " .minimize-button").on("click", clickMinimizeButtonEventHandler);
-                $(toolboxSelector + " .maximize-button").on("click", clickMaximizeButtonEventHandler);
                 $(toolboxSelector + " .close-button").on("click", clickCloseButtonEventHandler);
             })
             .catch(function (reason: any){
