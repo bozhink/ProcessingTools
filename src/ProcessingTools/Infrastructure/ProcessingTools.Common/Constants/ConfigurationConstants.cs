@@ -183,5 +183,20 @@ namespace ProcessingTools.Common.Constants
         /// Microsoft application password.
         /// </summary>
         public const string AuthenticationMicrosoftPassword = "Authentication:Microsoft:Password";
+
+        /// <summary>
+        /// Users database type.
+        /// </summary>
+        public const string UsersDatabaseType = "DatabaseTypes:UsersDatabase";
+
+        /// <summary>
+        /// Users database SQLite connection string name.
+        /// </summary>
+        public const string UsersDatabaseSQLiteConnectionStringName = "UsersDatabaseSQLite";
+
+        /// <summary>
+        /// Users database MSSQL connection string name.
+        /// </summary>
+        public const string UsersDatabaseMSSQLConnectionStringName = "UsersDatabaseMSSQL";
     }
 }

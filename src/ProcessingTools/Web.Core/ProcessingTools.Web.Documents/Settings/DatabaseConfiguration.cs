@@ -25,7 +25,18 @@ namespace ProcessingTools.Web.Documents.Settings
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlite(configuration.GetConnectionString(ConfigurationConstants.DefaultConnectionConnectionStringName));
+                string usersDatabaseType = (configuration.GetValue<string>(ConfigurationConstants.UsersDatabaseType) ?? string.Empty).ToUpperInvariant();
+
+                switch (usersDatabaseType)
+                {
+                    case "MSSQL":
+                        options.UseSqlServer(configuration.GetConnectionString(ConfigurationConstants.UsersDatabaseMSSQLConnectionStringName));
+                        break;
+
+                    default:
+                        options.UseSqlite(configuration.GetConnectionString(ConfigurationConstants.UsersDatabaseSQLiteConnectionStringName));
+                        break;
+                }
             });
 
             return services;
