@@ -43,6 +43,7 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<DecodeWebService>().As<IDecodeWebService>().InstancePerDependency();
             builder.RegisterType<EncodeWebService>().As<IEncodeWebService>().InstancePerDependency();
             builder.RegisterType<HashesWebService>().As<IHashesWebService>().InstancePerDependency();
+            builder.RegisterType<BarcodeWebService>().As<IBarcodeWebService>().InstancePerDependency();
 
             builder.RegisterType<DatabasesWebService>().As<IDatabasesWebService>().InstancePerDependency();
         }

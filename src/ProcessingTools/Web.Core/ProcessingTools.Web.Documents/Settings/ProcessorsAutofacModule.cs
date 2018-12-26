@@ -42,6 +42,7 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ReferencesTagger>().As<IReferencesTagger>().InstancePerDependency();
 
             builder.RegisterType<QRCodeEncoder>().As<IQRCodeEncoder>().InstancePerLifetimeScope();
+            builder.RegisterType<BarcodeEncoder>().As<IBarcodeEncoder>().InstancePerLifetimeScope();
 
             builder.RegisterType<CoordinateParser>().As<ICoordinateParser>().InstancePerLifetimeScope();
             builder.RegisterType<Coordinate2DParser>().As<ICoordinate2DParser>().InstancePerLifetimeScope();

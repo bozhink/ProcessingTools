@@ -9,11 +9,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.Barcode;
+    using ProcessingTools.Web.Services.Contracts.Tools;
 
     /// <summary>
     /// Barcode
@@ -32,17 +30,17 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string IndexActionName = nameof(Index);
 
-        private readonly IBarcodeEncoder encoder;
+        private readonly IBarcodeWebService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BarcodeController"/> class.
         /// </summary>
-        /// <param name="encoder">Instance of <see cref="IBarcodeEncoder"/>.</param>
+        /// <param name="service">Instance of <see cref="IBarcodeWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public BarcodeController(IBarcodeEncoder encoder, ILogger<BarcodeController> logger)
+        public BarcodeController(IBarcodeWebService service, ILogger<BarcodeController> logger)
         {
-            this.encoder = encoder ?? throw new ArgumentNullException(nameof(encoder));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -52,13 +50,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var viewModel = new BarcodeViewModel
-            {
-                Width = ImagingConstants.DefaultBarcodeWidth,
-                Height = ImagingConstants.DefaultBarcodeHeight
-            };
+            var viewModel = await this.service.GetBarcodeViewModelAsync().ConfigureAwait(false);
 
             return this.View(viewModel);
         }
@@ -73,18 +67,12 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ActionName(IndexActionName)]
         public async Task<ActionResult> Index([Bind(nameof(BarcodeRequestModel.Width), nameof(BarcodeRequestModel.Height), nameof(BarcodeRequestModel.Type), nameof(BarcodeRequestModel.Content))]BarcodeRequestModel model)
         {
-            var viewModel = new BarcodeViewModel(model.Type)
-            {
-                Content = model.Content,
-                Width = model.Width,
-                Height = model.Height
-            };
-
+            var viewModel = await this.service.MapToViewModel(model).ConfigureAwait(false);
             try
             {
                 if (this.ModelState.IsValid)
                 {
-                    viewModel.Image = await this.encoder.EncodeBase64Async((BarcodeType)model.Type, model.Content, model.Width, model.Height).ConfigureAwait(false);
+                    viewModel.Image = await this.service.EncodeAsync(model).ConfigureAwait(false);
                 }
                 else
                 {
@@ -94,7 +82,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
             catch (Exception e)
             {
                 this.ModelState.AddModelError(nameof(model.Content), e.Message);
-                this.logger.LogError(e, "POST QRCode/Index");
+                this.logger.LogError(e, "POST Barcode/Index");
             }
 
             return this.View(viewModel);
