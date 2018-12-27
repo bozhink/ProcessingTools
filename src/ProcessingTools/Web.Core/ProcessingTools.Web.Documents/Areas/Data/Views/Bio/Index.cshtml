@@ -3,5 +3,38 @@
     ViewData[ContextKeys.Title] = "Bio Data";
 }
 
+<link href="~/build/dist/css/biotaxonomic-lists.min.css" rel="stylesheet" />
+
+<section role="main" class="container">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+
+    <div ng-app="bioDataApp">
+        <div ng-view>
+            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Loading...
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/node_modules/angular/angular.min.js"></script>
+    <script src="~/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="~/build/dist/js/apps/bio-data-app.min.js"></script>
+    <script>
+        angular.module("bioDataApp").constant("UrlMap", {
+            "bio-data-home.view.html": "@(Url.Content("~/build/dist/templates/views/data/bio/home.view.html.min.html"))",
+            "bio-data-taxon-ranks.view.html": "@(Url.Content("~/build/dist/templates/views/data/bio/taxon-ranks.view.html.min.html"))",
+            "bio-data-black-list.view.html": "@(Url.Content("~/build/dist/templates/views/data/bio/black-list.view.html.min.html"))",
+            "taxon-ranks.tpl.html": "@(Url.Content("~/build/dist/templates/directives/data/bio/taxon-ranks.tpl.html.min.html"))",
+            "black-list.tpl.html": "@(Url.Content("~/build/dist/templates/directives/data/bio/black-list.tpl.html.min.html"))",
+            "navigation-tabs.tpl.html": "@(Url.Content("~/build/dist/templates/directives/navigation-tabs.tpl.html.min.html"))",
+            "blackListSearchUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/blacklist/search"))",
+            "blackListSubmitUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/blacklist/insert"))",
+            "taxonRanksSearchUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/taxonranks/search"))",
+            "taxibRanksSubmitUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/taxonranks/insert"))"
+        });
+    </script>
+}
 
 

@@ -1,17 +1,12 @@
 import { IDataModel } from "./data.models";
 
 export interface ITaxonRank extends IDataModel {
-    taxonName: string;
+    name: string;
     rank: string;
 }
 
-export interface ITaxa {
-    taxa: Array<ITaxonRank>;
-}
-
-export interface ITaxaResponseModel {
-    data: ITaxa;
-    status: (number | string);
+export interface ITaxonRanks {
+    items: Array<ITaxonRank>;
 }
 
 export interface IBlackListItem extends IDataModel {
@@ -20,9 +15,4 @@ export interface IBlackListItem extends IDataModel {
 
 export interface IBlackListItems {
     items: Array<IBlackListItem>;
-}
-
-export interface IBlackListItemsResponseModel {
-    data: IBlackListItems;
-    status: (number | string);
 }
