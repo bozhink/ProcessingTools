@@ -61,6 +61,26 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             });
         }
 
+        /// <inheritdoc/>
+        public Task<string[]> SearchAsync(string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                return Task.FromResult(Array.Empty<string>());
+            }
+
+            return this.repositoryProvider.ExecuteAsync((repository) =>
+            {
+                var searchString = filter.ToUpperInvariant();
+
+                return repository.Entities
+                    .Where(s => s.Content.ToUpperInvariant().Contains(searchString))
+                    .Select(s => s.Content)
+                    .Distinct()
+                    .ToArray();
+            });
+        }
+
         private IEnumerable<string> ValidateInputItems(params string[] items)
         {
             if (items == null || items.Length < 1)

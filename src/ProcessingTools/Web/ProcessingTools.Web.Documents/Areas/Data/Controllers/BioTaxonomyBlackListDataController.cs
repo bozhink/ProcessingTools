@@ -12,15 +12,11 @@
     [Authorize]
     public class BioTaxonomyBlackListDataController : Controller
     {
-        private readonly IBlackListDataService dataService;
-        private readonly IBlackListSearchService searchService;
+        private readonly IBlackListDataService service;
 
-        public BioTaxonomyBlackListDataController(
-            IBlackListDataService dataService,
-            IBlackListSearchService searchService)
+        public BioTaxonomyBlackListDataController(IBlackListDataService service)
         {
-            this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
-            this.searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         [HttpPost]
@@ -35,7 +31,7 @@
                 .Select(i => i.Content)
                 .ToArray();
 
-            await this.dataService.AddAsync(taxa);
+            await this.service.AddAsync(taxa);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();
@@ -50,7 +46,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundItems = (await this.searchService.SearchAsync(searchString))
+            var foundItems = (await this.service.SearchAsync(searchString))
                 .ToList();
 
             if (foundItems.Count < 1)

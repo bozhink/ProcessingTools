@@ -14,15 +14,11 @@
     [Authorize]
     public class BioTaxonomyTaxaRanksDataController : Controller
     {
-        private readonly ITaxonRankDataService dataService;
-        private readonly ITaxonRanksSearchService searchService;
+        private readonly ITaxonRankDataService service;
 
-        public BioTaxonomyTaxaRanksDataController(
-            ITaxonRankDataService dataService,
-            ITaxonRanksSearchService searchService)
+        public BioTaxonomyTaxaRanksDataController(ITaxonRankDataService service)
         {
-            this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
-            this.searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         [HttpPost]
@@ -41,7 +37,7 @@
                 })
                 .ToArray();
 
-            await this.dataService.AddAsync(taxa).ConfigureAwait(false);
+            await this.service.AddAsync(taxa).ConfigureAwait(false);
 
             return this.GetEmptyJsonResult();
         }
@@ -55,7 +51,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundTaxa = await this.searchService.SearchAsync(searchString);
+            var foundTaxa = await this.service.SearchAsync(searchString);
             if (foundTaxa == null || !foundTaxa.Any())
             {
                 this.Response.StatusCode = (int)HttpStatusCode.NotFound;

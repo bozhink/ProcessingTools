@@ -71,6 +71,28 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return await this.taxonRanksDataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
+        public async Task<ITaxonRank[]> SearchAsync(string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                return Array.Empty<ITaxonRank>();
+            }
+
+            var data = await this.taxonRanksDataAccessObject.FindAsync(filter).ConfigureAwait(false);
+
+            var result = data.SelectMany(
+                t => t.Ranks.Select(rank => new TaxonRank
+                {
+                    ScientificName = t.Name,
+                    Rank = rank
+                }))
+                .Take(PaginationConstants.DefaultLargeNumberOfItemsPerPage)
+                .ToArray();
+
+            return result;
+        }
+
         private ITaxonRank[] ValidateTaxa(ITaxonRank[] taxa)
         {
             if (taxa == null || taxa.Length < 1)
