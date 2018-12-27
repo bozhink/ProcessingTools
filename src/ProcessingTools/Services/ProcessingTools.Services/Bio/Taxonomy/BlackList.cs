@@ -6,45 +6,27 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
-    /// Taxonomic black list.
+    /// Taxonomic blacklist.
     /// </summary>
     public class BlackList : IBlackList
     {
-        private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
+        private readonly IBlackListDataAccessObject dataAccessObject;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BlackList"/> class.
         /// </summary>
-        /// <param name="repositoryProvider">Repository provider.</param>
-        public BlackList(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
+        /// <param name="dataAccessObject">Data access object.</param>
+        public BlackList(IBlackListDataAccessObject dataAccessObject)
         {
-            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
         /// <inheritdoc/>
-        public IEnumerable<string> GetItems()
-        {
-            return this.GetItemsAsync().Result;
-        }
-
-        /// <inheritdoc/>
-        public Task<IEnumerable<string>> GetItemsAsync()
-        {
-            return this.repositoryProvider.ExecuteAsync<IEnumerable<string>>((repository) =>
-            {
-                var result = repository.Entities
-                    .Select(s => s.Content)
-                    .ToList();
-
-                return new HashSet<string>(result);
-            });
-        }
+        public Task<IList<string>> GetItemsAsync() => this.dataAccessObject.GetAllAsync();
     }
 }

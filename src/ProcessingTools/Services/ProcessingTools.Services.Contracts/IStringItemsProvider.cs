@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
+namespace ProcessingTools.Services.Contracts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -15,13 +15,7 @@ namespace ProcessingTools.Contracts
         /// <summary>
         /// Get items.
         /// </summary>
-        /// <returns>String items.</returns>
-        IEnumerable<string> GetItems();
-
-        /// <summary>
-        /// Get items.
-        /// </summary>
         /// <returns>Task</returns>
-        Task<IEnumerable<string>> GetItemsAsync();
+        Task<IList<string>> GetItemsAsync();
     }
 }
