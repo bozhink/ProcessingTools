@@ -44,13 +44,13 @@ namespace ProcessingTools.Data.Contracts
         /// Finds string items by matching filter.
         /// </summary>
         /// <param name="filter">Filter value to be applied.</param>
-        /// <returns>Task of result as string array.</returns>
+        /// <returns>Task of result as string collection.</returns>
         Task<IList<string>> FindAsync(string filter);
 
         /// <summary>
         /// Gets all string items from the data list.
         /// </summary>
-        /// <returns>Task of result as string array.</returns>
+        /// <returns>Task of result as string collection.</returns>
         Task<IList<string>> GetAllAsync();
     }
 }

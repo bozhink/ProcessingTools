@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Data.Contracts.Bio.Taxonomy
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
@@ -30,13 +31,13 @@ namespace ProcessingTools.Data.Contracts.Bio.Taxonomy
         /// Finds taxon-rank items by matching taxon name.
         /// </summary>
         /// <param name="filter">Filter value to be applied.</param>
-        /// <returns>Task of result as taxon-rank array.</returns>
-        Task<ITaxonRankItem[]> FindAsync(string filter);
+        /// <returns>Task of result as taxon-rank collection.</returns>
+        Task<IList<ITaxonRankItem>> FindAsync(string filter);
 
         /// <summary>
         /// Gets all white-listed taxon-rank items.
         /// </summary>
-        /// <returns>Task of result as string array.</returns>
-        Task<string[]> GetWhiteListedAsync();
+        /// <returns>Task of result as string collection.</returns>
+        Task<IList<string>> GetWhiteListedAsync();
     }
 }

@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -72,7 +73,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<ITaxonRankItem[]> FindAsync(string filter)
+        public async Task<IList<ITaxonRankItem>> FindAsync(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
@@ -87,7 +88,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<string[]> GetWhiteListedAsync()
+        public async Task<IList<string>> GetWhiteListedAsync()
         {
             FilterDefinition<TaxonRankItem> filter = Builders<TaxonRankItem>.Filter.Eq(x => x.IsWhiteListed, true);
 
