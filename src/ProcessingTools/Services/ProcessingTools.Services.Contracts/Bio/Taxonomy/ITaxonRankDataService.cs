@@ -31,7 +31,7 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
         /// Do search with a specified filter.
         /// </summary>
         /// <param name="filter">Filter string for search.</param>
-        /// <returns>Array of found taxon ranks.</returns>
+        /// <returns>Collection of found taxon ranks.</returns>
         Task<IList<ITaxonRank>> SearchAsync(string filter);
     }
 }

@@ -20,16 +20,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     public class TaxonRankDataService : ITaxonRankDataService
     {
-        private readonly ITaxonRanksDataAccessObject taxonRanksDataAccessObject;
+        private readonly ITaxonRanksDataAccessObject dataAccessObject;
         private readonly Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxonRankDataService"/> class.
         /// </summary>
-        /// <param name="taxonRanksDataAccessObject">Data access object.</param>
-        public TaxonRankDataService(ITaxonRanksDataAccessObject taxonRanksDataAccessObject)
+        /// <param name="dataAccessObject">Data access object.</param>
+        public TaxonRankDataService(ITaxonRanksDataAccessObject dataAccessObject)
         {
-            this.taxonRanksDataAccessObject = taxonRanksDataAccessObject ?? throw new ArgumentNullException(nameof(taxonRanksDataAccessObject));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
         private Func<ITaxonRank, ITaxonRankItem> MapServiceModelToDbModel => t =>
@@ -52,11 +52,11 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
             var tasks = validTaxa
                 .Select(this.MapServiceModelToDbModel)
-                .Select(t => this.taxonRanksDataAccessObject.UpsertAsync(t))
+                .Select(t => this.dataAccessObject.UpsertAsync(t))
                 .ToArray();
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
-            return await this.taxonRanksDataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+            return await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
@@ -65,11 +65,11 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             var validTaxa = this.ValidateTaxa(taxonRanks);
 
             var tasks = validTaxa
-                .Select(t => this.taxonRanksDataAccessObject.DeleteAsync(t.ScientificName))
+                .Select(t => this.dataAccessObject.DeleteAsync(t.ScientificName))
                 .ToArray();
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
-            return await this.taxonRanksDataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+            return await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
@@ -80,7 +80,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 return Array.Empty<ITaxonRank>();
             }
 
-            var data = await this.taxonRanksDataAccessObject.FindAsync(filter).ConfigureAwait(false);
+            var data = await this.dataAccessObject.FindAsync(filter).ConfigureAwait(false);
 
             var result = data.SelectMany(
                 t => t.Ranks.Select(rank => new TaxonRank

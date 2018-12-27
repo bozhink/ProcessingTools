@@ -31,7 +31,7 @@
                 .Select(i => i.Content)
                 .ToArray();
 
-            await this.service.AddAsync(taxa);
+            await this.service.InsertAsync(taxa);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();

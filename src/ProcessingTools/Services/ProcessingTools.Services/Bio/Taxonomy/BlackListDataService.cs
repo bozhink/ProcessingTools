@@ -8,82 +8,58 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     /// <summary>
     /// Taxonomic black list data service.
     /// </summary>
     public class BlackListDataService : IBlackListDataService
     {
-        private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
+        private readonly IBlackListDataAccessObject dataAccessObject;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BlackListDataService"/> class.
         /// </summary>
-        /// <param name="repositoryProvider">Repository provider.</param>
-        public BlackListDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
+        /// <param name="dataAccessObject">Data access object.</param>
+        public BlackListDataService(IBlackListDataAccessObject dataAccessObject)
         {
-            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
         /// <inheritdoc/>
-        public Task<object> AddAsync(params string[] models)
+        public async Task<object> InsertAsync(IEnumerable<string> items)
         {
-            var validItems = this.ValidateInputItems(models);
+            var validItems = this.ValidateInputItems(items);
 
-            return this.repositoryProvider.ExecuteAsync(async (repository) =>
-            {
-                var tasks = validItems.Select(s => new BlackListEntity
-                {
-                    Content = s
-                })
-                .Select(b => repository.AddAsync(b))
-                .ToArray();
-
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-                return await repository.SaveChangesAsync().ConfigureAwait(false);
-            });
+            await this.dataAccessObject.InsertManyAsync(validItems).ConfigureAwait(false);
+            return await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public Task<object> DeleteAsync(params string[] models)
+        public async Task<object> DeleteAsync(IEnumerable<string> items)
         {
-            var validItems = this.ValidateInputItems(models);
+            var validItems = this.ValidateInputItems(items);
 
-            return this.repositoryProvider.ExecuteAsync(async (repository) =>
-            {
-                var tasks = validItems.Select(b => repository.DeleteAsync(b)).ToArray();
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-                return await repository.SaveChangesAsync().ConfigureAwait(false);
-            });
+            await this.dataAccessObject.DeleteManyAsync(validItems).ConfigureAwait(false);
+            return await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public Task<string[]> SearchAsync(string filter)
+        public async Task<IList<string>> SearchAsync(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
-                return Task.FromResult(Array.Empty<string>());
+                return Array.Empty<string>();
             }
 
-            return this.repositoryProvider.ExecuteAsync((repository) =>
-            {
-                var searchString = filter.ToUpperInvariant();
-
-                return repository.Entities
-                    .Where(s => s.Content.ToUpperInvariant().Contains(searchString))
-                    .Select(s => s.Content)
-                    .Distinct()
-                    .ToArray();
-            });
+            var data = await this.dataAccessObject.FindAsync(filter).ConfigureAwait(false);
+            return data;
         }
 
-        private IEnumerable<string> ValidateInputItems(params string[] items)
+        private IList<string> ValidateInputItems(IEnumerable<string> items)
         {
-            if (items == null || items.Length < 1)
+            if (items == null || !items.Any())
             {
                 throw new ArgumentNullException(nameof(items));
             }
