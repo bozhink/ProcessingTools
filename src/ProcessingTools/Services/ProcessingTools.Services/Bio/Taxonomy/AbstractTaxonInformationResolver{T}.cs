@@ -6,18 +6,19 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
-    /// Abstract taxa information resolver.
+    /// Abstract taxon information resolver.
     /// </summary>
     /// <typeparam name="T">Type of result object.</typeparam>
     public abstract class AbstractTaxonInformationResolver<T> : ITaxonInformationResolver<T>
     {
         /// <inheritdoc/>
-        public async Task<T[]> ResolveAsync(params string[] scientificNames)
+        public async Task<IList<T>> ResolveAsync(IEnumerable<string> scientificNames)
         {
             var queue = new ConcurrentQueue<T>();
             var exceptions = new ConcurrentQueue<Exception>();

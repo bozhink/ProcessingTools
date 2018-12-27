@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
@@ -18,14 +19,14 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     public class AboveGenusTaxonRankResolver : IAboveGenusTaxonRankResolver
     {
         /// <inheritdoc/>
-        public Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
+        public Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
         {
             if (scientificNames == null || !scientificNames.Any())
             {
-                return Task.FromResult(Array.Empty<ITaxonRank>());
+                return Task.FromResult<IList<ITaxonRank>>(Array.Empty<ITaxonRank>());
             }
 
-            return Task.Run(() => scientificNames
+            return Task.Run<IList<ITaxonRank>>(() => scientificNames
                 .Select(scientificName => new TaxonRank
                 {
                     ScientificName = scientificName,

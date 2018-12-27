@@ -6,6 +6,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
+        public async Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
         {
             var result = new ConcurrentQueue<ITaxonRank>();
 
@@ -40,9 +41,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return result.ToArray();
         }
 
-        private async Task ResolveAsync(string[] scientificNames, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task ResolveAsync(IEnumerable<string> scientificNames, ConcurrentQueue<ITaxonRank> outputCollection)
         {
-            if (scientificNames == null || scientificNames.Length < 1)
+            if (scientificNames == null || !scientificNames.Any())
             {
                 return;
             }

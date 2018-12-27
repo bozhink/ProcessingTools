@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -17,6 +18,6 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
         /// </summary>
         /// <param name="scientificNames">Scientific names to be resolved.</param>
         /// <returns>Information about specified scientific names.</returns>
-        Task<T[]> ResolveAsync(params string[] scientificNames);
+        Task<IList<T>> ResolveAsync(IEnumerable<string> scientificNames);
     }
 }

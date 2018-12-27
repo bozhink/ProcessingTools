@@ -35,7 +35,7 @@
         {
             try
             {
-                var result = await this.resolver.ResolveAsync(id).ConfigureAwait(false);
+                var result = await this.resolver.ResolveAsync(new[] { id }).ConfigureAwait(false);
                 if (result == null)
                 {
                     return this.NotFound();

@@ -5,12 +5,14 @@
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
-    /// Abstract taxa rank resolver over taxa classification resolver.
+    /// Abstract taxon rank resolver over taxon classification resolver.
     /// </summary>
     public abstract class AbstractTaxonRankResolverOverTaxaClassificationResolver : ITaxonRankResolver
     {
@@ -26,9 +28,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
+        public async Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
         {
-            return await this.classificationResolver.ResolveAsync(scientificNames).ConfigureAwait(false);
+            var classifications = await this.classificationResolver.ResolveAsync(scientificNames).ConfigureAwait(false);
+
+            if (classifications != null && classifications.Any())
+            {
+                return classifications.ToArray<ITaxonRank>();
+            }
+
+            return Array.Empty<ITaxonRank>();
         }
     }
 }
