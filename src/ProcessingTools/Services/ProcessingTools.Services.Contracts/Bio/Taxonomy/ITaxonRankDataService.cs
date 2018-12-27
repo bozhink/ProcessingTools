@@ -14,11 +14,11 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
     public interface ITaxonRankDataService
     {
         /// <summary>
-        /// Add taxon ranks.
+        /// Insert taxon ranks.
         /// </summary>
         /// <param name="taxonRanks">Taxon ranks to be added.</param>
         /// <returns>Task</returns>
-        Task<object> AddAsync(IEnumerable<ITaxonRank> taxonRanks);
+        Task<object> InsertAsync(IEnumerable<ITaxonRank> taxonRanks);
 
         /// <summary>
         /// Delete taxon ranks.

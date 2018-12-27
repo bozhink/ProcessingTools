@@ -46,7 +46,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         };
 
         /// <inheritdoc/>
-        public virtual async Task<object> AddAsync(IEnumerable<ITaxonRank> taxonRanks)
+        public virtual async Task<object> InsertAsync(IEnumerable<ITaxonRank> taxonRanks)
         {
             var validTaxa = this.ValidateTaxa(taxonRanks);
 

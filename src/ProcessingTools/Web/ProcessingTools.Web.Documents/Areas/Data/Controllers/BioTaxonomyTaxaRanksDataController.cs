@@ -37,7 +37,7 @@
                 })
                 .ToArray();
 
-            await this.service.AddAsync(taxa).ConfigureAwait(false);
+            await this.service.InsertAsync(taxa).ConfigureAwait(false);
 
             return this.GetEmptyJsonResult();
         }
