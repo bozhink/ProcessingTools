@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
@@ -13,24 +14,24 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
     public interface ITaxonRankDataService
     {
         /// <summary>
-        /// Adds models.
+        /// Add taxon ranks.
         /// </summary>
-        /// <param name="models">Models to be added.</param>
+        /// <param name="taxonRanks">Taxon ranks to be added.</param>
         /// <returns>Task</returns>
-        Task<object> AddAsync(params ITaxonRank[] models);
+        Task<object> AddAsync(IEnumerable<ITaxonRank> taxonRanks);
 
         /// <summary>
-        /// Deletes models.
+        /// Delete taxon ranks.
         /// </summary>
-        /// <param name="models">Models to be deleted.</param>
+        /// <param name="taxonRanks">Taxon ranks to be deleted.</param>
         /// <returns>Task</returns>
-        Task<object> DeleteAsync(params ITaxonRank[] models);
+        Task<object> DeleteAsync(IEnumerable<ITaxonRank> taxonRanks);
 
         /// <summary>
         /// Do search with a specified filter.
         /// </summary>
-        /// <param name="filter">Filter object for search.</param>
-        /// <returns>Array of found objects.</returns>
+        /// <param name="filter">Filter string for search.</param>
+        /// <returns>Array of found taxon ranks.</returns>
         Task<ITaxonRank[]> SearchAsync(string filter);
     }
 }

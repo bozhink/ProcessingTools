@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -45,9 +46,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         };
 
         /// <inheritdoc/>
-        public virtual async Task<object> AddAsync(params ITaxonRank[] models)
+        public virtual async Task<object> AddAsync(IEnumerable<ITaxonRank> taxonRanks)
         {
-            var validTaxa = this.ValidateTaxa(models);
+            var validTaxa = this.ValidateTaxa(taxonRanks);
 
             var tasks = validTaxa
                 .Select(this.MapServiceModelToDbModel)
@@ -59,9 +60,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public virtual async Task<object> DeleteAsync(params ITaxonRank[] models)
+        public virtual async Task<object> DeleteAsync(IEnumerable<ITaxonRank> taxonRanks)
         {
-            var validTaxa = this.ValidateTaxa(models);
+            var validTaxa = this.ValidateTaxa(taxonRanks);
 
             var tasks = validTaxa
                 .Select(t => this.taxonRanksDataAccessObject.DeleteAsync(t.ScientificName))
@@ -93,18 +94,18 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return result;
         }
 
-        private ITaxonRank[] ValidateTaxa(ITaxonRank[] taxa)
+        private ITaxonRank[] ValidateTaxa(IEnumerable<ITaxonRank> taxonRanks)
         {
-            if (taxa == null || taxa.Length < 1)
+            if (taxonRanks == null || !taxonRanks.Any())
             {
-                throw new ArgumentNullException(nameof(taxa));
+                throw new ArgumentNullException(nameof(taxonRanks));
             }
 
-            var validTaxa = taxa.Where(t => t != null).ToArray();
+            var validTaxa = taxonRanks.Where(t => t != null).ToArray();
 
             if (validTaxa.Length < 1)
             {
-                throw new ArgumentNullException(nameof(taxa));
+                throw new ArgumentNullException(nameof(taxonRanks));
             }
 
             return validTaxa;
