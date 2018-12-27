@@ -88,6 +88,21 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
+        public async Task<IList<ITaxonRankItem>> FindExactAsync(string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                return Array.Empty<ITaxonRankItem>();
+            }
+
+            var query = this.collection.Aggregate().Match(i => i.Name.ToUpper() == filter.ToUpper());
+
+            var data = await query.ToListAsync().ConfigureAwait(false);
+
+            return data?.ToArray<ITaxonRankItem>() ?? Array.Empty<ITaxonRankItem>();
+        }
+
+        /// <inheritdoc/>
         public async Task<IList<string>> GetWhiteListedAsync()
         {
             FilterDefinition<TaxonRankItem> filter = Builders<TaxonRankItem>.Filter.Eq(x => x.IsWhiteListed, true);
