@@ -124,7 +124,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<string[]> FindAsync(string filter)
+        public async Task<IList<string>> FindAsync(string filter)
         {
             if (string.IsNullOrEmpty(filter))
             {
@@ -153,7 +153,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<string[]> GetAllAsync()
+        public async Task<IList<string>> GetAllAsync()
         {
             FilterDefinition<T> filter = Builders<T>.Filter.Empty;
 

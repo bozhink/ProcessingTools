@@ -45,12 +45,12 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="filter">Filter value to be applied.</param>
         /// <returns>Task of result as string array.</returns>
-        Task<string[]> FindAsync(string filter);
+        Task<IList<string>> FindAsync(string filter);
 
         /// <summary>
         /// Gets all string items from the data list.
         /// </summary>
         /// <returns>Task of result as string array.</returns>
-        Task<string[]> GetAllAsync();
+        Task<IList<string>> GetAllAsync();
     }
 }
