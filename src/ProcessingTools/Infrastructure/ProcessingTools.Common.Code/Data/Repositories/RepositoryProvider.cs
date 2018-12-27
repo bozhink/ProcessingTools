@@ -36,29 +36,5 @@ namespace ProcessingTools.Common.Code.Data.Repositories
 
             return action.Invoke(this.repository);
         }
-
-        /// <inheritdoc/>
-        public Task<T> ExecuteAsync<T>(Func<TRepository, Task<T>> action)
-        {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            return action.Invoke(this.repository);
-        }
-
-        /// <inheritdoc/>
-        public Task<T> ExecuteAsync<T>(Func<TRepository, T> action)
-        {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            var result = action.Invoke(this.repository);
-
-            return Task.FromResult(result);
-        }
     }
 }

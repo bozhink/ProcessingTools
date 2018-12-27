@@ -48,49 +48,5 @@ namespace ProcessingTools.Common.Code.Data.Repositories
                 }
             });
         }
-
-        /// <inheritdoc/>
-        public Task<T> ExecuteAsync<T>(Func<TRepository, Task<T>> action)
-        {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            return Task.Run(() =>
-            {
-                var repository = this.repositoryFactory.Create();
-                try
-                {
-                    return action.Invoke(repository).Result;
-                }
-                finally
-                {
-                    repository.TryDispose();
-                }
-            });
-        }
-
-        /// <inheritdoc/>
-        public Task<T> ExecuteAsync<T>(Func<TRepository, T> action)
-        {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            return Task.Run(() =>
-            {
-                var repository = this.repositoryFactory.Create();
-                try
-                {
-                    return action.Invoke(repository);
-                }
-                finally
-                {
-                    repository.TryDispose();
-                }
-            });
-        }
     }
 }

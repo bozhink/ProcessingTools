@@ -20,21 +20,5 @@ namespace ProcessingTools.Data.Contracts
         /// <param name="action">Awaitable function to be executed.</param>
         /// <returns>Task.</returns>
         Task ExecuteAsync(Func<TRepository, Task> action);
-
-        /// <summary>
-        /// Executes generic function on repository.
-        /// </summary>
-        /// <typeparam name="T">Type of returned result.</typeparam>
-        /// <param name="action">Function to be executed.</param>
-        /// <returns>Task of result.</returns>
-        Task<T> ExecuteAsync<T>(Func<TRepository, T> action);
-
-        /// <summary>
-        /// Executes generic function on repository.
-        /// </summary>
-        /// <typeparam name="T">Type of returned result.</typeparam>
-        /// <param name="action">Function to be executed.</param>
-        /// <returns>Task of result.</returns>
-        Task<T> ExecuteAsync<T>(Func<TRepository, Task<T>> action);
     }
 }
