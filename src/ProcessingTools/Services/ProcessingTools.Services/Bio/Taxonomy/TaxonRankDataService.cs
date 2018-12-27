@@ -73,7 +73,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<ITaxonRank[]> SearchAsync(string filter)
+        public async Task<IList<ITaxonRank>> SearchAsync(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
@@ -94,7 +94,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return result;
         }
 
-        private ITaxonRank[] ValidateTaxa(IEnumerable<ITaxonRank> taxonRanks)
+        private IList<ITaxonRank> ValidateTaxa(IEnumerable<ITaxonRank> taxonRanks)
         {
             if (taxonRanks == null || !taxonRanks.Any())
             {
