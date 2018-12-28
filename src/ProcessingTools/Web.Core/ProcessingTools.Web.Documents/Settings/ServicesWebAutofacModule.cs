@@ -46,6 +46,15 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<BarcodeWebService>().As<IBarcodeWebService>().InstancePerDependency();
 
             builder.RegisterType<DatabasesWebService>().As<IDatabasesWebService>().InstancePerDependency();
+
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Bio.Taxonomy.BlackListWebService>()
+                .As<ProcessingTools.Web.Services.Contracts.Bio.Taxonomy.IBlackListWebService>()
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Bio.Taxonomy.TaxonRanksWebService>()
+                .As<ProcessingTools.Web.Services.Contracts.Bio.Taxonomy.ITaxonRanksWebService>()
+                .InstancePerDependency();
         }
     }
 }

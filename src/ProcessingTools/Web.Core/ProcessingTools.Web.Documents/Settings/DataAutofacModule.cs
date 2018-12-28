@@ -20,6 +20,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Data.Mongo.Files;
     using ProcessingTools.Data.Mongo.History;
     using ProcessingTools.Data.Mongo.Layout;
+    using ProcessingTools.Web.Documents.Extensions;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Data.*
@@ -42,7 +43,8 @@ namespace ProcessingTools.Web.Documents.Settings
                    {
                         context.Resolve<MongoDocumentsDatabaseInitializer>(),
                         context.Resolve<MongoFilesDatabaseInitializer>(),
-                        context.Resolve<MongoLayoutDatabaseInitializer>()
+                        context.Resolve<MongoLayoutDatabaseInitializer>(),
+                        context.Resolve<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>()
                    };
                })
                .As<Func<IEnumerable<IDatabaseInitializer>>>()
@@ -73,6 +75,15 @@ namespace ProcessingTools.Web.Documents.Settings
                 .Named<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
                 .WithParameter(InjectionConstants.ConnectionStringParameterName, this.Configuration.GetConnectionString(ConfigurationConstants.LayoutDatabaseMongoDBConnectionStringName))
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.LayoutMongoDBDatabaseName])
+                .InstancePerLifetimeScope();
+
+            // Biotaxonomy DB provider
+            builder
+                .RegisterType<MongoDatabaseProvider>()
+                .As<IMongoDatabaseProvider>()
+                .Named<IMongoDatabaseProvider>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                .WithParameter(InjectionConstants.ConnectionStringParameterName, this.Configuration.GetConnectionString(ConfigurationConstants.BiotaxonomyDatabaseMongoDBConnectionStringName))
+                .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.BiotaxonomyMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
 
             // History DB provider
@@ -217,6 +228,31 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
                 .InstancePerDependency();
+
+            // Biotaxonomy DAO
+            builder
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.BlackListItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.TaxonRankItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName);
+            builder
+                .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBlackListDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.Bio.Taxonomy.IBlackListDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoTaxonRanksDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.Bio.Taxonomy.ITaxonRanksDataAccessObject>()
+                .InstancePerLifetimeScope();
+
+            // Biotaxonomy DB initializer
+            builder
+                .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>()
+                .AsSelf()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)))
+                .InstancePerDependency();
         }
+
+       
     }
 }
