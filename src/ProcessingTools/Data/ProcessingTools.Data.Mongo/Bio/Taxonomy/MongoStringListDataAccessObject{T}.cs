@@ -8,7 +8,6 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using AutoMapper;
     using MongoDB.Driver;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Models.Contracts;
@@ -18,10 +17,9 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
     /// </summary>
     /// <typeparam name="T">Type of the database model.</typeparam>
     public class MongoStringListDataAccessObject<T> : IStringListDataAccessObject
-        where T : IStringListItem
+        where T : IStringListItem, new()
     {
         private readonly IMongoCollection<T> collection;
-        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoStringListDataAccessObject{T}"/> class.
@@ -30,12 +28,6 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         public MongoStringListDataAccessObject(IMongoCollection<T> collection)
         {
             this.collection = collection ?? throw new ArgumentNullException(nameof(collection));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<string, T>().ForMember(m => m.Content, o => o.MapFrom(s => s));
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>
@@ -73,7 +65,10 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
 
             var itemsToInsert = items.Except(data.Select(e => e.Content))
                 .Distinct()
-                .Select(this.mapper.Map<string, T>)
+                .Select(s => new T
+                {
+                    Content = s
+                })
                 .ToList();
 
             InsertManyOptions insertOptions = new InsertManyOptions
@@ -138,9 +133,13 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             };
 
             FilterDefinition<T> filterDefinition = Builders<T>.Filter.Text(filter, searchOptions);
-            SortDefinition<T> sortDefinition = Builders<T>.Sort.MetaTextScore("textScore");
+            SortDefinition<T> sortDefinition = Builders<T>.Sort.MetaTextScore("score");
+            ProjectionDefinition<T> projectionDefinition = Builders<T>.Projection.MetaTextScore("score");
 
-            var query = this.collection.Find(filterDefinition).Sort(sortDefinition).Project(e => new { e.Content });
+            var query = this.collection
+                .Find(filterDefinition)
+                .Project(projectionDefinition)
+                .Sort(sortDefinition);
 
             var data = await query.ToListAsync().ConfigureAwait(false);
 
@@ -149,7 +148,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
                 return Array.Empty<string>();
             }
 
-            return data.Select(e => e.Content).ToArray();
+            return data.Select(e => e["content"]?.ToString() ?? e["Content"]?.ToString()).ToArray();
         }
 
         /// <inheritdoc/>

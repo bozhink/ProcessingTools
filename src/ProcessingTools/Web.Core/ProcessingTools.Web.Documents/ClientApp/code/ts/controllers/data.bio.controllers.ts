@@ -7,7 +7,8 @@ import {
     IBlackListItem,
     IBlackListItems,
     ITaxonRank,
-    ITaxonRanks
+    ITaxonRanks,
+    IResponse
 } from "../contracts/models/data.bio.models";
 
 import { BlackListItem, TaxonRank } from "../models/data.bio.models";
@@ -76,11 +77,11 @@ export class BlackListController implements IBioDataController<IBlackListItem> {
         }
 
         self.searchService.search(url, searchString)
-            .then(function (response: IBlackListItems): void {
-                if (response && Array.isArray(response.items)) {
-                    self.dataSet.addMulti(response.items, (e: IBlackListItem) => new BlackListItem(e.content));
+            .then(function (response: IResponse<IBlackListItems>): void {
+                if (response.data != null && Array.isArray(response.data.items) && response.status < 400) {
+                    self.dataSet.addMulti(response.data.items, (e: IBlackListItem) => new BlackListItem(e.content));
                 } else {
-                    self.reporter.report(ReportType.ERROR, "Invalid data from server");
+                    self.reporter.report(ReportType.ERROR, `${response.statusText} (${response.status})`);
                 }
             }).catch(function (error: string): void {
                 self.reporter.report(ReportType.ERROR, error);
@@ -165,11 +166,11 @@ export class TaxonRanksController implements IBioDataController<ITaxonRank> {
         }
 
         self.searchService.search(url, searchString)
-            .then(function (response: ITaxonRanks): void {
-                if (response && Array.isArray(response.items)) {
-                    self.dataSet.addMulti(response.items, (e: ITaxonRank) => new TaxonRank(e.name, e.rank));
+            .then(function (response: IResponse<ITaxonRanks>): void {
+                if (response.data != null && Array.isArray(response.data.items) && response.status < 400) {
+                    self.dataSet.addMulti(response.data.items, (e: ITaxonRank) => new TaxonRank(e.name, e.rank));
                 } else {
-                    self.reporter.report(ReportType.ERROR, "Invalid data from server");
+                    self.reporter.report(ReportType.ERROR, `${response.statusText} (${response.status})`);
                 }
             }).catch(function (error: string): void {
                 self.reporter.report(ReportType.ERROR, error);

@@ -16,3 +16,10 @@ export interface IBlackListItem extends IDataModel {
 export interface IBlackListItems {
     items: Array<IBlackListItem>;
 }
+
+export interface IResponse<T> {
+    data?: T;
+    status?: number;
+    statusText?: string;
+    xhrStatus?: string;
+}
