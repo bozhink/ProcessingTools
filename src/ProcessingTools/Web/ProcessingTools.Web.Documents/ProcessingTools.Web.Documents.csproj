@@ -379,7 +379,6 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Documents\Preview.cshtml" />
-    <Content Include="gulpfile.js" />
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFiles.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
@@ -451,37 +450,9 @@
     <Content Include="Views\Shared\Help.cshtml" />
     <Content Include="Views\Shared\_EditHeader.cshtml" />
     <Content Include="Views\Shared\_EditFooter.cshtml" />
-    <Content Include="wwwroot\src\js\apps\bio-data-app.js" />
-    <Content Include="wwwroot\src\js\apps\document-edit.js" />
-    <Content Include="wwwroot\src\js\apps\document-preview.js" />
-    <Content Include="wwwroot\src\js\components\coordinates-toolboxes.js" />
-    <Content Include="wwwroot\src\js\components\html-selection-tagger.js" />
-    <Content Include="wwwroot\src\js\configurations\interact-config.js" />
-    <Content Include="wwwroot\src\js\configurations\monaco-editor-config.js" />
-    <Content Include="wwwroot\src\js\configurations\require-config.js" />
     <Content Include="wwwroot\src\js\configurations\toastr-config.js" />
     <Content Include="wwwroot\src\js\controllers\address-list-controller.js" />
-    <Content Include="wwwroot\src\js\controllers\data\bio\black-list-controller.js" />
-    <Content Include="wwwroot\src\js\controllers\data\bio\taxa-ranks-controller.js" />
-    <Content Include="wwwroot\src\js\controllers\documents\document-controller.js" />
     <Content Include="wwwroot\src\js\apps\files-index.js" />
-    <Content Include="wwwroot\src\js\controllers\nav-controller.js" />
-    <Content Include="wwwroot\src\js\data\data-set.js" />
-    <Content Include="wwwroot\src\js\directives\black-list.js" />
-    <Content Include="wwwroot\src\js\directives\navigation-tabs.js" />
-    <Content Include="wwwroot\src\js\directives\taxa-ranks.js" />
-    <Content Include="wwwroot\src\js\event-handlers\documents\document-preview-event-handlers.js" />
-    <Content Include="wwwroot\src\js\event-handlers\event-handler-factory.js" />
-    <Content Include="wwwroot\src\js\models\data\black-list-item.js" />
-    <Content Include="wwwroot\src\js\models\data\taxon-rank.js" />
-    <Content Include="wwwroot\src\js\routers\bio-data-router.js" />
-    <Content Include="wwwroot\src\js\services\documents\document-content-data.js" />
-    <Content Include="wwwroot\src\js\services\json-requester.js" />
-    <Content Include="wwwroot\src\js\services\message-reporter.js" />
-    <Content Include="wwwroot\src\js\services\ng-json-requester.js" />
-    <Content Include="wwwroot\src\js\services\search-string-service.js" />
-    <Content Include="wwwroot\src\js\services\templates-provider.js" />
-    <Content Include="wwwroot\src\js\services\toastr-reporter.js" />
     <Content Include="wwwroot\src\less\address-list.less" />
     <Content Include="wwwroot\src\less\biotaxonomic-lists.less" />
     <Content Include="wwwroot\src\less\document-edit.less" />
@@ -491,15 +462,6 @@
     <Content Include="wwwroot\src\less\site.less" />
     <Content Include="wwwroot\src\less\toolbox.less" />
     <Content Include="wwwroot\src\less\tooltips.less" />
-    <Content Include="wwwroot\src\templates\coordinates-map.handlebars" />
-    <Content Include="wwwroot\src\templates\coordinates-toolbox.handlebars" />
-    <Content Include="wwwroot\src\templates\directives\data\bio\black-list.tpl.html" />
-    <Content Include="wwwroot\src\templates\directives\data\bio\taxa-ranks.tpl.html" />
-    <Content Include="wwwroot\src\templates\directives\navigation-tabs.tpl.html" />
-    <Content Include="wwwroot\src\templates\views\data\bio\black-list.view.html" />
-    <Content Include="wwwroot\src\templates\views\data\bio\home.view.html" />
-    <Content Include="wwwroot\src\templates\views\data\bio\taxa-ranks.view.html" />
-    <Content Include="wwwroot\tests\data-set-tests.js" />
     <Content Include="Areas\Articles\Views\Tagger\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Tagger\_Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Files\DeleteAll.cshtml" />
@@ -508,10 +470,8 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\Files\Views\Shared\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
