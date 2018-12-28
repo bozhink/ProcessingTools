@@ -14,7 +14,7 @@ export function BlackListDirective(): ng.IDirective {
 
 export function TaxonRanksDirective(): ng.IDirective {
     return {
-        controller: "TaxonRanksController as taxonRanks",
+        controller: "TaxonRanksController as taxonRankList",
         templateUrl: "taxon-ranks.tpl.html"
     };
 }

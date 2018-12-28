@@ -1,44 +1,51 @@
 <div class="container-fluid">
-    <div class="col-md-4">
-        <div class="contols">
-            <div class="form-group row">
-                <fieldset>
-                    <legend>Add taxon-rank items</legend>
-                    <form ng-submit="taxonRanks.addItem()" class="form-horizontal">
-                        <textarea ng-model="taxonRanks.textArea" name="items" cols="30" rows="4" placeholder="add taxon-rank pairs here" class="form-control"></textarea>
-                        <input class="btn btn-primary" type="submit" value="add" />
-                    </form>
-                </fieldset>
-            </div>
-            <div class="form-group row">
-                <fieldset>
-                    <legend>Search taxon name</legend>
-                    <form ng-submit="taxonRanks.search('taxonRanksSearchUrl')" class="form-horizontal">
-                        <input ng-model="taxonRanks.searchString" type="text" size="30" placeholder="input taxon name to search here" class="form-control"
-                            pattern=".+" />
-                        <input class="btn btn-primary" type="submit" value="search" />
-                    </form>
-                </fieldset>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Add taxon-rank items</legend>
+                        <form ng-submit="taxonRankList.addItem()">
+                            <textarea ng-model="taxonRankList.textArea" name="items" cols="30" rows="4" placeholder="add taxon-rank pairs here"
+                                class="form-control"></textarea>
+                            <div class="mt-1">
+                                <input class="btn btn-outline-primary" type="submit" value="Add" />
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Search taxon name</legend>
+                        <form ng-submit="taxonRankList.search('taxonRankListSearchUrl')">
+                            <input ng-model="taxonRankList.searchString" type="text" size="30" placeholder="input taxon name to search here"
+                                class="form-control" pattern=".+" />
+                            <div class="mt-1">
+                                <input class="btn btn-outline-primary" type="submit" value="Search" />
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group row" ng-if="taxonRanks.items.length">
-            <fieldset>
-                <legend>Taxa list</legend>
-                <ul class="view-list">
-                    <li ng-repeat="taxon in taxonRanks.items | orderBy: 'name'" class="list-item">
-                        <span class="index">{{$index + 1}}.</span>
-                        <span class="taxon-name">{{taxon.name}}</span>
-                        <span class="taxon-rank">{{taxon.rank}}</span>
-                        <span ng-click="taxonRanks.removeItem(taxon.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
-                    </li>
-                </ul>
-                <div class="form-group row">
-                    <span ng-click="taxonRanks.clearList()" class="btn btn-outline-secondary">Clear List</span>
-                    <span ng-click="taxonRanks.submitItems('taxibRanksSubmitUrl')" class="btn btn-outline-primary">Submit</span>
-                </div>
-            </fieldset>
+        <div class="col-md-6">
+            <div ng-if="taxonRankList.items.length">
+                <fieldset>
+                    <legend>Taxon-rank list</legend>
+                    <ul class="view-list">
+                        <li ng-repeat="taxon in taxonRankList.items | orderBy: 'name'" class="list-item">
+                            <span class="index">{{$index + 1}}.</span>
+                            <span class="taxon-name">{{taxon.name}}</span>
+                            <span class="taxon-rank">{{taxon.rank}}</span>
+                            <span ng-click="taxonRankList.removeItem(taxon.id)" class="fa fa-times remove-button" title="Remove"></span>
+                        </li>
+                    </ul>
+                    <div class="mt-1">
+                        <span ng-click="taxonRankList.submitItems('taxonRankListSubmitUrl')" class="btn btn-outline-primary">Submit</span>
+                        <span ng-click="taxonRankList.clearList()" class="btn btn-outline-danger">Clear List</span>
+                    </div>
+                </fieldset>
+            </div>
         </div>
     </div>
 </div>
