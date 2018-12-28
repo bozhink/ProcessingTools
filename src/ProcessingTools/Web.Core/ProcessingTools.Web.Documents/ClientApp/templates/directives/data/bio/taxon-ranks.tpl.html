@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <fieldset>
                         <legend>Search taxon name</legend>
-                        <form ng-submit="taxonRankList.search('taxonRankListSearchUrl')">
+                        <form ng-submit="taxonRankList.search('taxonRanksSearchUrl')">
                             <input ng-model="taxonRankList.searchString" type="text" size="30" placeholder="input taxon name to search here"
                                 class="form-control" pattern=".+" />
                             <div class="mt-1">
@@ -41,7 +41,7 @@
                         </li>
                     </ul>
                     <div class="mt-1">
-                        <span ng-click="taxonRankList.submitItems('taxonRankListSubmitUrl')" class="btn btn-outline-primary">Submit</span>
+                        <span ng-click="taxonRankList.submitItems('taxibRanksSubmitUrl')" class="btn btn-outline-primary">Submit</span>
                         <span ng-click="taxonRankList.clearList()" class="btn btn-outline-danger">Clear List</span>
                     </div>
                 </fieldset>
