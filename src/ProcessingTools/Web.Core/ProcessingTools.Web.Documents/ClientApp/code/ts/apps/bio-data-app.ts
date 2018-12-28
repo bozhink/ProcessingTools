@@ -1,5 +1,6 @@
 import { MessageReporter as Reporter } from "../services/reporters/message-reporter";
-import { DataSet as DataSet } from "../models/data.common.models";
+import { createDataSet } from "../models/data.common.models";
+import { TaxonRank, BlackListItem } from "../models/data.bio.models";
 import { NgJsonRequester as Requester } from "../services/http/ng-json-requester";
 import { SearchStringService as SearchStringService } from "../services/search-string-service";
 import { BioDataRouter as Router } from "../routers/data.bio.routers";
@@ -33,10 +34,14 @@ angular.module("bioDataApp", ["ng", "ngRoute"])
         route: "/black-list"
     }])
     .factory("TaxonRanksDataSet", [
-        DataSet
+        function (): any {
+            return createDataSet<TaxonRank>();
+        }
     ])
     .factory("BlackListDataSet", [
-        DataSet
+        function (): any {
+            return createDataSet<BlackListItem>();
+        }
     ])
     .service("JsonRequester", [
         "$http",
