@@ -1,5 +1,5 @@
 import { IDataSet } from "../../../code/ts/contracts/models/data.common.models";
-import { DataSet } from "../../../code/ts/models/data.common.models";
+import { DataSet, createDataSet } from "../../../code/ts/models/data.common.models";
 import { expect } from "chai";
 import * as sinon from "sinon";
 
@@ -236,7 +236,7 @@ describe("TS DataSet tests", function (): void {
             };
             let item2: any = {
                 a: 2
-            };
+            };new DataSet
 
             let spy1: sinon.SinonSpy = sinon.spy(item1, "getHash");
 
@@ -367,5 +367,30 @@ describe("TS DataSet tests", function (): void {
 
             expect(dataSet.data.length).to.equal(1);
         });
+    });
+});
+
+// tslint:disable-next-line:max-line-length
+describe("TS createDataSet tests", function (): void {
+
+    // tslint:disable-next-line:max-line-length
+    it("Expect call with any type to not throw", function (): void {
+        expect(function (): void {
+            let dataSet: IDataSet<any> = createDataSet<any>();
+        }).to.not.throw();
+    });
+
+    // tslint:disable-next-line:max-line-length
+    it("Expect call with any type to return valid data set", function (): void {
+        let dataSet: IDataSet<any> = createDataSet<any>();
+
+        expect(dataSet).to.not.be.null;
+    });
+
+    // tslint:disable-next-line:max-line-length
+    it("Expect call with any type to return instance of data set", function (): void {
+        let dataSet: IDataSet<any> = createDataSet<any>();
+
+        expect(dataSet).to.be.instanceOf(DataSet);
     });
 });
