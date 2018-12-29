@@ -54,6 +54,15 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
+        public Task<IList<ITaxonRankItem>> GetAllAsync()
+        {
+            return Task.Run<IList<ITaxonRankItem>>(() =>
+            {
+                return this.Context.DataSet.ToArray();
+            });
+        }
+
+        /// <inheritdoc/>
         public Task<IList<string>> GetWhiteListedAsync()
         {
             return Task.Run<IList<string>>(() =>

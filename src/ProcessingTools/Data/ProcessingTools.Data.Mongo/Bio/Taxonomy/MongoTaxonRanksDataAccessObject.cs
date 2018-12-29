@@ -103,6 +103,15 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
+        public async Task<IList<ITaxonRankItem>> GetAllAsync()
+        {
+            FilterDefinition<TaxonRankItem> filter = Builders<TaxonRankItem>.Filter.Empty;
+
+            var data = await this.collection.Find(filter).ToListAsync().ConfigureAwait(false);
+            return data.ToArray();
+        }
+
+        /// <inheritdoc/>
         public async Task<IList<string>> GetWhiteListedAsync()
         {
             FilterDefinition<TaxonRankItem> filter = Builders<TaxonRankItem>.Filter.Eq(x => x.IsWhiteListed, true);

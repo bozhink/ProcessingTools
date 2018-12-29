@@ -42,6 +42,12 @@ namespace ProcessingTools.Data.Contracts.Bio.Taxonomy
         Task<IList<ITaxonRankItem>> FindExactAsync(string filter);
 
         /// <summary>
+        /// Gets all taxon-rank items.
+        /// </summary>
+        /// <returns>Task of result as taxon-rank collection.</returns>
+        Task<IList<ITaxonRankItem>> GetAllAsync();
+
+        /// <summary>
         /// Gets all white-listed taxon-rank items.
         /// </summary>
         /// <returns>Task of result as string collection.</returns>
