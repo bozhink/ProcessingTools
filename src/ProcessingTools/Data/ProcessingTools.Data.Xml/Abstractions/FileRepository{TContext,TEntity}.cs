@@ -20,7 +20,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
     /// <typeparam name="TContext">Type of file DB context.</typeparam>
     /// <typeparam name="TEntity">Type of entity.</typeparam>
     public abstract class FileRepository<TContext, TEntity> : IFileRepository<TEntity>
-        where TContext : IFileDbContext<TEntity>
+        where TContext : IXmlDbContext<TEntity>
         where TEntity : class
     {
         /// <summary>
@@ -94,7 +94,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return this.Context.AddAsync(entity);
+            return this.Context.InsertAsync(entity);
         }
 
         /// <inheritdoc/>

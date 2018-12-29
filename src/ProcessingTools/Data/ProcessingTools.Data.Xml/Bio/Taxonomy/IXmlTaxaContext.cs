@@ -3,7 +3,7 @@
     using ProcessingTools.Data.Xml.Abstractions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public interface IXmlTaxaContext : IFileDbContext<ITaxonRankItem>
+    public interface IXmlTaxaContext : IXmlDbContext<ITaxonRankItem>
     {
     }
 }

@@ -25,7 +25,7 @@
 
         private ConcurrentQueue<IBlackListItem> Items { get; set; }
 
-        public async Task<object> AddAsync(IBlackListItem entity)
+        public async Task<object> InsertAsync(IBlackListItem entity)
         {
             if (entity == null)
             {
@@ -96,7 +96,7 @@
             .ConfigureAwait(false);
         }
 
-        public Task<object> UpdateAsync(IBlackListItem entity) => this.AddAsync(entity);
+        public Task<object> UpdateAsync(IBlackListItem entity) => this.InsertAsync(entity);
 
         public async Task<long> WriteToFileAsync(string fileName)
         {

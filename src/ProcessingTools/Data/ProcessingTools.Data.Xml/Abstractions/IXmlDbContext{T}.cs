@@ -1,4 +1,4 @@
-﻿// <copyright file="IFileDbContext.cs" company="ProcessingTools">
+﻿// <copyright file="IXmlDbContext{T}.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
     /// File DB context.
     /// </summary>
     /// <typeparam name="T">Type of file entity.</typeparam>
-    public interface IFileDbContext<T>
+    public interface IXmlDbContext<T>
     {
         /// <summary>
         /// Gets the data set.
@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
         /// </summary>
         /// <param name="entity">Entity to be inserted.</param>
         /// <returns>Task of result.</returns>
-        Task<object> AddAsync(T entity);
+        Task<object> InsertAsync(T entity);
 
         /// <summary>
         /// Deletes entity from the DB context.

@@ -43,7 +43,7 @@
             }
         };
 
-        public Task<object> AddAsync(ITaxonRankItem entity) => Task.Run<object>(() => this.Upsert(entity));
+        public Task<object> InsertAsync(ITaxonRankItem entity) => Task.Run<object>(() => this.Upsert(entity));
 
         public Task<object> DeleteAsync(object id)
         {
