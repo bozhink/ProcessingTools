@@ -41,7 +41,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
         public virtual IEnumerable<TEntity> Entities => this.Context.DataSet;
 
         /// <inheritdoc/>
-        public virtual IQueryable<TEntity> Query => this.Context.DataSet;
+        public virtual IQueryable<TEntity> Query => this.Context.DataSet.AsQueryable();
 
         /// <summary>
         /// Gets the context.
@@ -58,7 +58,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
 
             return Task.Run(() =>
             {
-                var query = this.Context.DataSet.Where(filter);
+                var query = this.Context.DataSet.Where(filter.Compile());
                 var data = query.ToArray();
                 return data;
             });
@@ -72,7 +72,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            return Task.Run(() => this.Context.DataSet.FirstOrDefault(filter));
+            return Task.Run(() => this.Context.DataSet.FirstOrDefault(filter.Compile()));
         }
 
         /// <inheritdoc/>
@@ -83,7 +83,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                 throw new ArgumentNullException(nameof(id));
             }
 
-            return this.Context.GetAsync(id);
+            return Task.FromResult(this.Context.Get(id));
         }
 
         /// <inheritdoc/>
@@ -94,7 +94,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return this.Context.InsertAsync(entity);
+            return Task.FromResult(this.Context.Upsert(entity));
         }
 
         /// <inheritdoc/>
@@ -105,7 +105,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                 throw new ArgumentNullException(nameof(id));
             }
 
-            return this.Context.DeleteAsync(id);
+            return Task.FromResult(this.Context.Delete(id));
         }
 
         /// <inheritdoc/>
@@ -116,7 +116,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return this.Context.UpdateAsync(entity);
+            return Task.FromResult(this.Context.Upsert(entity));
         }
 
         /// <inheritdoc/>
@@ -141,7 +141,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
             var updater = new Updater<TEntity>(updateExpression);
             updater.Invoke(entity);
 
-            return await this.Context.UpdateAsync(entity).ConfigureAwait(false);
+            return this.Context.Upsert(entity);
         }
 
         /// <inheritdoc/>

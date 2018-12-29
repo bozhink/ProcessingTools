@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Data.Xml.Abstractions
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -16,42 +17,35 @@ namespace ProcessingTools.Data.Xml.Abstractions
         /// <summary>
         /// Gets the data set.
         /// </summary>
-        IQueryable<T> DataSet { get; }
+        IEnumerable<T> DataSet { get; }
 
         /// <summary>
-        /// Inserts new entity into the DB context.
+        /// Updates or inserts entity into the DB context.
         /// </summary>
         /// <param name="entity">Entity to be inserted.</param>
-        /// <returns>Task of result.</returns>
-        Task<object> InsertAsync(T entity);
+        /// <returns>Result.</returns>
+        object Upsert(T entity);
 
         /// <summary>
         /// Deletes entity from the DB context.
         /// </summary>
         /// <param name="id">ID of the entity to be deleted.</param>
-        /// <returns>Task of result.</returns>
-        Task<object> DeleteAsync(object id);
+        /// <returns>Result.</returns>
+        object Delete(object id);
 
         /// <summary>
         /// Gets entity by ID.
         /// </summary>
         /// <param name="id">ID of the entity.</param>
-        /// <returns>Task of resultant entity.</returns>
-        Task<T> GetAsync(object id);
-
-        /// <summary>
-        /// Updates entity in the DB context.
-        /// </summary>
-        /// <param name="entity">Entity to update.</param>
-        /// <returns>Task of resultant object.</returns>
-        Task<object> UpdateAsync(T entity);
+        /// <returns>Resultant entity.</returns>
+        T Get(object id);
 
         /// <summary>
         /// Loads data into the DB context from file.
         /// </summary>
         /// <param name="fileName">Name of the file to be loaded.</param>
-        /// <returns>Task of number of loaded entities.</returns>
-        Task<long> LoadFromFileAsync(string fileName);
+        /// <returns>Number of loaded entities.</returns>
+        long LoadFromFile(string fileName);
 
         /// <summary>
         /// Writes entities from the context to file.

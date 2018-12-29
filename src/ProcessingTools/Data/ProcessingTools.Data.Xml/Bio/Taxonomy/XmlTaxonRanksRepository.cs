@@ -20,7 +20,7 @@
 
             this.dataFileName = dataFileName;
 
-            this.Context.LoadFromFileAsync(this.dataFileName).Wait();
+            this.Context.LoadFromFile(this.dataFileName);
         }
 
         public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFileAsync(this.dataFileName).ConfigureAwait(false);

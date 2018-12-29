@@ -48,7 +48,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                     {
                         if (!this.isContentLoaded && !context.DataSet.Any())
                         {
-                            context.LoadFromFileAsync(this.dataFileName).Wait();
+                            context.LoadFromFile(this.dataFileName);
                             this.isContentLoaded = true;
                         }
                     }

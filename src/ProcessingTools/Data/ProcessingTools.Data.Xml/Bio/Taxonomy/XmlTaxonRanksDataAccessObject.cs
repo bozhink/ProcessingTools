@@ -28,20 +28,19 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public Task<object> UpsertAsync(ITaxonRankItem item) => this.Context.UpdateAsync(item);
+        public Task<object> UpsertAsync(ITaxonRankItem item) => Task.FromResult(this.Context.Upsert(item));
 
         /// <inheritdoc/>
-        public Task<object> DeleteAsync(string name) => this.Context.DeleteAsync(name);
+        public Task<object> DeleteAsync(string name) => Task.FromResult(this.Context.Delete(name));
 
         /// <inheritdoc/>
         public Task<IList<ITaxonRankItem>> FindAsync(string filter)
         {
             return Task.Run<IList<ITaxonRankItem>>(() =>
             {
-                Regex re = new Regex("(?i)" + Regex.Escape(filter));
-                bool predicate(ITaxonRankItem t) => re.IsMatch(t.Name);
+                Regex re = new Regex("(?i)" + Regex.Escape(filter), RegexOptions.Compiled);
 
-                return this.Context.DataSet.Where(predicate).ToArray();
+                return this.Context.DataSet.Where(t => re.IsMatch(t.Name)).ToArray();
             });
         }
 

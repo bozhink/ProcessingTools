@@ -1,4 +1,4 @@
-﻿// <copyright file="IXmlTaxaContext.cs" company="ProcessingTools">
+﻿// <copyright file="IXmlBlackListContext.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
-    /// XML taxa context.
+    /// XML blacklist context.
     /// </summary>
-    public interface IXmlTaxaContext : IXmlDbContext<ITaxonRankItem>
+    public interface IXmlBlackListContext : IXmlDbContext<IBlackListItem>
     {
     }
 }

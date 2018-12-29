@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Xml.Bio.Taxonomy
+﻿// <copyright file="XmlTaxaContext.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Xml.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
@@ -14,18 +18,25 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// XML taxa context.
+    /// </summary>
     public class XmlTaxaContext : IXmlTaxaContext
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlTaxaContext"/> class.
+        /// </summary>
         public XmlTaxaContext()
         {
             this.Taxa = new ConcurrentDictionary<string, ITaxonRankItem>();
         }
 
-        public IQueryable<ITaxonRankItem> DataSet => new HashSet<ITaxonRankItem>(this.Taxa.Values).AsQueryable();
+        /// <inheritdoc/>
+        public IEnumerable<ITaxonRankItem> DataSet => new HashSet<ITaxonRankItem>(this.Taxa.Values);
 
-        protected ConcurrentDictionary<string, ITaxonRankItem> Taxa { get; private set; }
+        private ConcurrentDictionary<string, ITaxonRankItem> Taxa { get; }
 
         private Func<ITaxonRankItem, TaxonXmlModel> MapTaxonRankEntityToTaxonXmlModel => t => new TaxonXmlModel
         {
@@ -43,9 +54,33 @@
             }
         };
 
-        public Task<object> InsertAsync(ITaxonRankItem entity) => Task.Run<object>(() => this.Upsert(entity));
+        /// <inheritdoc/>
+        public object Upsert(ITaxonRankItem entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
-        public Task<object> DeleteAsync(object id)
+            ITaxonRankItem update(string k, ITaxonRankItem t)
+            {
+                var ranks = entity.Ranks.Concat(t.Ranks);
+
+                var result = new Taxon
+                {
+                    IsWhiteListed = entity.IsWhiteListed,
+                    Name = entity.Name,
+                    Ranks = new HashSet<TaxonRankType>(ranks)
+                };
+
+                return result;
+            }
+
+            return this.Taxa.AddOrUpdate(entity.Name, entity, update);
+        }
+
+        /// <inheritdoc/>
+        public object Delete(object id)
         {
             if (id == null)
             {
@@ -53,10 +88,11 @@
             }
 
             this.Taxa.TryRemove(id.ToString(), out ITaxonRankItem taxon);
-            return Task.FromResult<object>(taxon);
+            return taxon;
         }
 
-        public Task<ITaxonRankItem> GetAsync(object id)
+        /// <inheritdoc/>
+        public ITaxonRankItem Get(object id)
         {
             if (id == null)
             {
@@ -64,36 +100,32 @@
             }
 
             this.Taxa.TryGetValue(id.ToString(), out ITaxonRankItem taxon);
-            return Task.FromResult(taxon);
+            return taxon;
         }
 
-        public async Task<long> LoadFromFileAsync(string fileName)
+        /// <inheritdoc/>
+        public long LoadFromFile(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            return await Task.Run(() =>
+            IList<ITaxonRankItem> taxa;
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                IEnumerable<ITaxonRankItem> taxa;
-                using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var serializer = new XmlSerializer(typeof(RankListXmlModel));
-                    var result = (RankListXmlModel)serializer.Deserialize(stream);
+                var serializer = new XmlSerializer(typeof(RankListXmlModel));
+                var result = (RankListXmlModel)serializer.Deserialize(stream);
 
-                    taxa = result.Taxa.Select(this.MapTaxonXmlModelToTaxonRankEntity).ToList();
-                }
+                taxa = result.Taxa.Select(this.MapTaxonXmlModelToTaxonRankEntity).ToList();
+            }
 
-                taxa.AsParallel().ForAll(taxon => this.Upsert(taxon));
+            taxa.AsParallel().ForAll(taxon => this.Upsert(taxon));
 
-                return taxa.LongCount();
-            })
-            .ConfigureAwait(false);
+            return taxa.LongCount();
         }
 
-        public Task<object> UpdateAsync(ITaxonRankItem entity) => Task.Run<object>(() => this.Upsert(entity));
-
+        /// <inheritdoc/>
         public async Task<long> WriteToFileAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
@@ -116,30 +148,6 @@
             }
 
             return rankList.Taxa.Length;
-        }
-
-        private ITaxonRankItem Upsert(ITaxonRankItem taxon)
-        {
-            if (taxon == null)
-            {
-                throw new ArgumentNullException(nameof(taxon));
-            }
-
-            ITaxonRankItem update(string k, ITaxonRankItem t)
-            {
-                var ranks = taxon.Ranks.Concat(t.Ranks);
-
-                var result = new Taxon
-                {
-                    IsWhiteListed = taxon.IsWhiteListed,
-                    Name = taxon.Name,
-                    Ranks = new HashSet<TaxonRankType>(ranks)
-                };
-
-                return result;
-            }
-
-            return this.Taxa.AddOrUpdate(taxon.Name, taxon, update);
         }
 
         private ITaxonRankItem MapTaxonXmlModelToTaxonRankEntity(TaxonXmlModel taxon)
