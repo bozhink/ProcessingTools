@@ -41,7 +41,14 @@
                         <select asp-for="Type" class="form-control">
                             @foreach (var type in Model.Type)
                             {
-                                <option value="@(type.Key)">@(type.Value)</option>
+                                if (type.Key == Model.SelectedType)
+                                {
+                                    <option value="@(type.Key)" selected="selected">@(type.Value)</option>
+                                }
+                                else
+                                {
+                                    <option value="@(type.Key)">@(type.Value)</option>
+                                }
                             }
                         </select>
                         <span asp-validation-for="Type" class="text-danger" />

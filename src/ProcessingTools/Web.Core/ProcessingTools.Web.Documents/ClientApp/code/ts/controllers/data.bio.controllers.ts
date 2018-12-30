@@ -6,10 +6,9 @@ import { IDataSet } from "../contracts/models/data.common.models";
 import {
     IBlackListItem,
     IBlackListItems,
-    IBlackListItemsResponseModel,
     ITaxonRank,
-    ITaxa,
-    ITaxaResponseModel
+    ITaxonRanks,
+    IResponse
 } from "../contracts/models/data.bio.models";
 
 import { BlackListItem, TaxonRank } from "../models/data.bio.models";
@@ -78,11 +77,11 @@ export class BlackListController implements IBioDataController<IBlackListItem> {
         }
 
         self.searchService.search(url, searchString)
-            .then(function (response: IBlackListItemsResponseModel): void {
-                if (response.status === 200) {
-                    self.dataSet.addMulti(response.data.items, (e: any) => new BlackListItem(e.Content));
+            .then(function (response: IResponse<IBlackListItems>): void {
+                if (response.data != null && Array.isArray(response.data.items) && response.status < 400) {
+                    self.dataSet.addMulti(response.data.items, (e: IBlackListItem) => new BlackListItem(e.content));
                 } else {
-                    self.reporter.report(ReportType.ERROR, response.status.toString());
+                    self.reporter.report(ReportType.ERROR, `${response.statusText} (${response.status})`);
                 }
             }).catch(function (error: string): void {
                 self.reporter.report(ReportType.ERROR, error);
@@ -109,7 +108,7 @@ export class BlackListController implements IBioDataController<IBlackListItem> {
     }
 }
 
-export class TaxaRanksController implements IBioDataController<ITaxonRank> {
+export class TaxonRanksController implements IBioDataController<ITaxonRank> {
 
     public items: Array<ITaxonRank>;
     public textArea: string;
@@ -127,7 +126,7 @@ export class TaxaRanksController implements IBioDataController<ITaxonRank> {
     }
 
     public addItem(): void {
-        let self: TaxaRanksController = this;
+        let self: TaxonRanksController = this;
 
         let text: string = self.textArea || "";
         text = text.replace(/[^\w\-]+/g, " ").trim();
@@ -159,7 +158,7 @@ export class TaxaRanksController implements IBioDataController<ITaxonRank> {
     }
 
     public search(url: string): void {
-        let self: TaxaRanksController = this;
+        let self: TaxonRanksController = this;
         let searchString: string = self.searchString || "";
         searchString = searchString.replace(/\s+/g, " ").trim();
         if (!url || searchString === "") {
@@ -167,11 +166,11 @@ export class TaxaRanksController implements IBioDataController<ITaxonRank> {
         }
 
         self.searchService.search(url, searchString)
-            .then(function (response: ITaxaResponseModel): void {
-                if (response.status === 200) {
-                    self.dataSet.addMulti(response.data.taxa, (e: ITaxonRank) => new TaxonRank(e.taxonName, e.rank));
+            .then(function (response: IResponse<ITaxonRanks>): void {
+                if (response.data != null && Array.isArray(response.data.items) && response.status < 400) {
+                    self.dataSet.addMulti(response.data.items, (e: ITaxonRank) => new TaxonRank(e.name, e.rank));
                 } else {
-                    self.reporter.report(ReportType.ERROR, response.status.toString());
+                    self.reporter.report(ReportType.ERROR, `${response.statusText} (${response.status})`);
                 }
             }).catch(function (error: string): void {
                 self.reporter.report(ReportType.ERROR, error);
@@ -179,14 +178,14 @@ export class TaxaRanksController implements IBioDataController<ITaxonRank> {
     }
 
     public submitItems(url: string): void {
-        let self: TaxaRanksController = this;
+        let self: TaxonRanksController = this;
 
         if (!url) {
             return;
         }
 
-        let taxa: Array<ITaxonRank> = self.dataSet.data.slice(0);
-        let data: ITaxa = { taxa: taxa };
+        let items: Array<ITaxonRank> = self.dataSet.data.slice(0);
+        let data: ITaxonRanks = { items: items };
 
         self.jsonRequester.post(url, { data: data })
             .then(function (): void {

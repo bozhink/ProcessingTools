@@ -30,6 +30,11 @@ namespace ProcessingTools.Common.Constants
         public const string LayoutDatabaseMongoDBConnectionStringName = "LayoutDatabaseMongoDB";
 
         /// <summary>
+        /// Biotaxonomy database MongoDB connection string name.
+        /// </summary>
+        public const string BiotaxonomyDatabaseMongoDBConnectionStringName = "BiotaxonomyDatabaseMongoDB";
+
+        /// <summary>
         /// History database MongoDB connection string name,
         /// </summary>
         public const string HistoryDatabaseMongoDBConnectionStringName = "HistoryDatabaseMongoDB";
@@ -48,6 +53,11 @@ namespace ProcessingTools.Common.Constants
         /// Layout MongoDB database name.
         /// </summary>
         public const string LayoutMongoDBDatabaseName = "DatabaseNames:LayoutMongoDB";
+
+        /// <summary>
+        /// Biotaxonomy MongoDB database name.
+        /// </summary>
+        public const string BiotaxonomyMongoDBDatabaseName = "DatabaseNames:BiotaxonomyMongoDB";
 
         /// <summary>
         /// History MongoDB database name.
@@ -183,5 +193,20 @@ namespace ProcessingTools.Common.Constants
         /// Microsoft application password.
         /// </summary>
         public const string AuthenticationMicrosoftPassword = "Authentication:Microsoft:Password";
+
+        /// <summary>
+        /// Users database type.
+        /// </summary>
+        public const string UsersDatabaseType = "DatabaseTypes:UsersDatabase";
+
+        /// <summary>
+        /// Users database SQLite connection string name.
+        /// </summary>
+        public const string UsersDatabaseSQLiteConnectionStringName = "UsersDatabaseSQLite";
+
+        /// <summary>
+        /// Users database MSSQL connection string name.
+        /// </summary>
+        public const string UsersDatabaseMSSQLConnectionStringName = "UsersDatabaseMSSQL";
     }
 }

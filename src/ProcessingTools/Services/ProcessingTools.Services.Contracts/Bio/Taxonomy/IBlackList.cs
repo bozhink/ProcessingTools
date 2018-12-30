@@ -4,10 +4,8 @@
 
 namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
 {
-    using ProcessingTools.Contracts;
-
     /// <summary>
-    /// Taxonomic black list.
+    /// Taxonomic blacklist.
     /// </summary>
     public interface IBlackList : IStringItemsProvider
     {

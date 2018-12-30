@@ -4,10 +4,8 @@
 
 namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
 {
-    using ProcessingTools.Contracts;
-
     /// <summary>
-    /// Taxonomic white-list.
+    /// Taxonomic whitelist.
     /// </summary>
     public interface IWhiteList : IStringItemsProvider
     {

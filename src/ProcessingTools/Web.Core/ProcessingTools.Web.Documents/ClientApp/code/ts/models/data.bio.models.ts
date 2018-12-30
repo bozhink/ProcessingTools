@@ -2,12 +2,12 @@ import { ITaxonRank, IBlackListItem } from "../contracts/models/data.bio.models"
 
 export class TaxonRank implements ITaxonRank {
     public id: string;
-    public taxonName: string;
+    public name: string;
     public rank: string;
 
-    public constructor(taxonName: string, rank: string) {
-        taxonName = taxonName ? taxonName.replace(/\s+/g, "") : "";
-        if (taxonName.length < 1) {
+    public constructor(name: string, rank: string) {
+        name = name ? name.replace(/\s+/g, "") : "";
+        if (name.length < 1) {
             throw "'Null or whitespace taxon name";
         }
 
@@ -17,12 +17,12 @@ export class TaxonRank implements ITaxonRank {
         }
 
         this.id = undefined;
-        this.taxonName = taxonName;
+        this.name = name;
         this.rank = rank;
     }
 
     public getHash(): string {
-        return `${this.taxonName}${this.rank}`;
+        return `${this.name}${this.rank}`;
     }
 }
 

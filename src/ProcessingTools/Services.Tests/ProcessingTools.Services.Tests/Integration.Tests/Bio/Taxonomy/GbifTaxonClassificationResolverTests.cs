@@ -30,7 +30,7 @@
             var connectorFactory = new NetConnectorFactory();
             var requester = new GbifApiV09DataRequester(connectorFactory);
             var service = new GbifTaxonClassificationResolver(requester);
-            var response = service.ResolveAsync(CanonicalName).Result;
+            var response = service.ResolveAsync(new[] { CanonicalName }).Result;
 
             var defaultClassification = response.FirstOrDefault();
 

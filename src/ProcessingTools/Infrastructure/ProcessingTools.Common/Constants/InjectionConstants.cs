@@ -30,6 +30,11 @@ namespace ProcessingTools.Common.Constants
         public const string MongoDBHistoryDatabaseBindingName = nameof(MongoDBHistoryDatabaseBindingName);
 
         /// <summary>
+        /// Binding name for the MongoDB biotaxonomy database.
+        /// </summary>
+        public const string MongoDBBiotaxonomyDatabaseBindingName = nameof(MongoDBBiotaxonomyDatabaseBindingName);
+
+        /// <summary>
         /// Connection string parameter name.
         /// </summary>
         public const string ConnectionStringParameterName = "connectionString";

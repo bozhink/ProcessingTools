@@ -28,9 +28,6 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
-                .To(typeof(ProcessingTools.Common.Code.Data.Repositories.RepositoryProviderAsync<>));
-
             this.Bind<ITypesProvider>()
                 .To<SeederTypesProvider>()
                 .InSingletonScope();

@@ -46,14 +46,20 @@ namespace ProcessingTools.Web.Services.Files
                 c.CreateMap<MediatypeUpdateRequestModel, MediatypeEditViewModel>();
                 c.CreateMap<MediatypeDeleteRequestModel, MediatypeDeleteViewModel>();
 
-                c.CreateMap<IMediatypeModel, MediatypeDeleteViewModel>();
-                c.CreateMap<IMediatypeModel, MediatypeDetailsViewModel>();
+                c.CreateMap<IMediatypeModel, MediatypeDeleteViewModel>()
+                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
+                c.CreateMap<IMediatypeModel, MediatypeDetailsViewModel>()
+                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
                 c.CreateMap<IMediatypeModel, MediatypeEditViewModel>();
-                c.CreateMap<IMediatypeModel, MediatypeIndexViewModel>();
-                c.CreateMap<IMediatypeDetailsModel, MediatypeDeleteViewModel>();
-                c.CreateMap<IMediatypeDetailsModel, MediatypeDetailsViewModel>();
+                c.CreateMap<IMediatypeModel, MediatypeIndexViewModel>()
+                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
+                c.CreateMap<IMediatypeDetailsModel, MediatypeDeleteViewModel>()
+                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
+                c.CreateMap<IMediatypeDetailsModel, MediatypeDetailsViewModel>()
+                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
                 c.CreateMap<IMediatypeDetailsModel, MediatypeEditViewModel>();
-                c.CreateMap<IMediatypeDetailsModel, MediatypeIndexViewModel>();
+                c.CreateMap<IMediatypeDetailsModel, MediatypeIndexViewModel>()
+                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -115,7 +121,15 @@ namespace ProcessingTools.Web.Services.Files
         {
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
-            return new MediatypeCreateViewModel(userContext);
+            var viewModel = new MediatypeCreateViewModel(userContext);
+
+            var mimeTypesTask = this.mediatypesDataService.GetMimeTypesAsync();
+            var mimeSubtypesTask = this.mediatypesDataService.GetMimeSubtypesAsync();
+
+            viewModel.MimeTypes = await mimeTypesTask.ConfigureAwait(false);
+            viewModel.MimeSubtypes = await mimeSubtypesTask.ConfigureAwait(false);
+
+            return viewModel;
         }
 
         /// <inheritdoc/>
@@ -130,6 +144,12 @@ namespace ProcessingTools.Web.Services.Files
                 {
                     var viewModel = new MediatypeEditViewModel(userContext);
                     this.mapper.Map(mediatype, viewModel);
+
+                    var mimeTypesTask = this.mediatypesDataService.GetMimeTypesAsync();
+                    var mimeSubtypesTask = this.mediatypesDataService.GetMimeSubtypesAsync();
+
+                    viewModel.MimeTypes = await mimeTypesTask.ConfigureAwait(false);
+                    viewModel.MimeSubtypes = await mimeSubtypesTask.ConfigureAwait(false);
 
                     return viewModel;
                 }
@@ -188,6 +208,12 @@ namespace ProcessingTools.Web.Services.Files
                 var viewModel = new MediatypeCreateViewModel(userContext);
                 this.mapper.Map(model, viewModel);
 
+                var mimeTypesTask = this.mediatypesDataService.GetMimeTypesAsync();
+                var mimeSubtypesTask = this.mediatypesDataService.GetMimeSubtypesAsync();
+
+                viewModel.MimeTypes = await mimeTypesTask.ConfigureAwait(false);
+                viewModel.MimeSubtypes = await mimeSubtypesTask.ConfigureAwait(false);
+
                 return viewModel;
             }
 
@@ -211,6 +237,12 @@ namespace ProcessingTools.Web.Services.Files
                     viewModel.CreatedOn = mediatype.CreatedOn;
                     viewModel.ModifiedBy = mediatype.ModifiedBy;
                     viewModel.ModifiedOn = mediatype.ModifiedOn;
+
+                    var mimeTypesTask = this.mediatypesDataService.GetMimeTypesAsync();
+                    var mimeSubtypesTask = this.mediatypesDataService.GetMimeSubtypesAsync();
+
+                    viewModel.MimeTypes = await mimeTypesTask.ConfigureAwait(false);
+                    viewModel.MimeSubtypes = await mimeSubtypesTask.ConfigureAwait(false);
 
                     return viewModel;
                 }

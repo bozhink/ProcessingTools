@@ -17,8 +17,8 @@ describe("TS TaxonRank tests", function (): void {
         let name: string = "name";
         let rank: string = "rank";
         let model: ITaxonRank = new TaxonRank(name, rank);
-        expect(model).to.have.property("taxonName");
-        expect(model.taxonName).to.be.equal(name);
+        expect(model).to.have.property("name");
+        expect(model.name).to.be.equal(name);
     });
 
     // tslint:disable-next-line:max-line-length

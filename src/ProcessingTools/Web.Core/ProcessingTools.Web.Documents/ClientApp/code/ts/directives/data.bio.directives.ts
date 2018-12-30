@@ -12,9 +12,9 @@ export function BlackListDirective(): ng.IDirective {
     };
 }
 
-export function TaxaRanksDirective(): ng.IDirective {
+export function TaxonRanksDirective(): ng.IDirective {
     return {
-        controller: "TaxaRanksController as taxaList",
-        templateUrl: "taxa-ranks.tpl.html"
+        controller: "TaxonRanksController as taxonRankList",
+        templateUrl: "taxon-ranks.tpl.html"
     };
 }

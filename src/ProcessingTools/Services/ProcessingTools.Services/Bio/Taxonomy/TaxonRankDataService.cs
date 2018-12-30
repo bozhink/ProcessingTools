@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -19,16 +20,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     public class TaxonRankDataService : ITaxonRankDataService
     {
-        private readonly ITaxonRanksDataAccessObject taxonRanksDataAccessObject;
+        private readonly ITaxonRanksDataAccessObject dataAccessObject;
         private readonly Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxonRankDataService"/> class.
         /// </summary>
-        /// <param name="taxonRanksDataAccessObject">Data access object.</param>
-        public TaxonRankDataService(ITaxonRanksDataAccessObject taxonRanksDataAccessObject)
+        /// <param name="dataAccessObject">Data access object.</param>
+        public TaxonRankDataService(ITaxonRanksDataAccessObject dataAccessObject)
         {
-            this.taxonRanksDataAccessObject = taxonRanksDataAccessObject ?? throw new ArgumentNullException(nameof(taxonRanksDataAccessObject));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
         private Func<ITaxonRank, ITaxonRankItem> MapServiceModelToDbModel => t =>
@@ -45,44 +46,66 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         };
 
         /// <inheritdoc/>
-        public virtual async Task<object> AddAsync(params ITaxonRank[] models)
+        public virtual async Task<object> InsertAsync(IEnumerable<ITaxonRank> taxonRanks)
         {
-            var validTaxa = this.ValidateTaxa(models);
+            var validTaxa = this.ValidateTaxa(taxonRanks);
 
             var tasks = validTaxa
                 .Select(this.MapServiceModelToDbModel)
-                .Select(t => this.taxonRanksDataAccessObject.UpsertAsync(t))
+                .Select(t => this.dataAccessObject.UpsertAsync(t))
                 .ToArray();
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
-            return await this.taxonRanksDataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+            return await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public virtual async Task<object> DeleteAsync(params ITaxonRank[] models)
+        public virtual async Task<object> DeleteAsync(IEnumerable<ITaxonRank> taxonRanks)
         {
-            var validTaxa = this.ValidateTaxa(models);
+            var validTaxa = this.ValidateTaxa(taxonRanks);
 
             var tasks = validTaxa
-                .Select(t => this.taxonRanksDataAccessObject.DeleteAsync(t.ScientificName))
+                .Select(t => this.dataAccessObject.DeleteAsync(t.ScientificName))
                 .ToArray();
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
-            return await this.taxonRanksDataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+            return await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
         }
 
-        private ITaxonRank[] ValidateTaxa(ITaxonRank[] taxa)
+        /// <inheritdoc/>
+        public async Task<IList<ITaxonRank>> SearchAsync(string filter)
         {
-            if (taxa == null || taxa.Length < 1)
+            if (string.IsNullOrWhiteSpace(filter))
             {
-                throw new ArgumentNullException(nameof(taxa));
+                return Array.Empty<ITaxonRank>();
             }
 
-            var validTaxa = taxa.Where(t => t != null).ToArray();
+            var data = await this.dataAccessObject.FindAsync(filter).ConfigureAwait(false);
+
+            var result = data.SelectMany(
+                t => t.Ranks.Select(rank => new TaxonRank
+                {
+                    ScientificName = t.Name,
+                    Rank = rank
+                }))
+                .Take(PaginationConstants.DefaultLargeNumberOfItemsPerPage)
+                .ToArray();
+
+            return result;
+        }
+
+        private IList<ITaxonRank> ValidateTaxa(IEnumerable<ITaxonRank> taxonRanks)
+        {
+            if (taxonRanks == null || !taxonRanks.Any())
+            {
+                throw new ArgumentNullException(nameof(taxonRanks));
+            }
+
+            var validTaxa = taxonRanks.Where(t => t != null).ToArray();
 
             if (validTaxa.Length < 1)
             {
-                throw new ArgumentNullException(nameof(taxa));
+                throw new ArgumentNullException(nameof(taxonRanks));
             }
 
             return validTaxa;

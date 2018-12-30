@@ -1,11 +1,12 @@
 import { MessageReporter as Reporter } from "../services/reporters/message-reporter";
-import { DataSet as DataSet } from "../models/data.common.models";
+import { createDataSet } from "../models/data.common.models";
+import { TaxonRank, BlackListItem } from "../models/data.bio.models";
 import { NgJsonRequester as Requester } from "../services/http/ng-json-requester";
 import { SearchStringService as SearchStringService } from "../services/search-string-service";
 import { BioDataRouter as Router } from "../routers/data.bio.routers";
-import { NavigationTabsDirective, TaxaRanksDirective, BlackListDirective } from "../directives/data.bio.directives";
+import { NavigationTabsDirective, TaxonRanksDirective, BlackListDirective } from "../directives/data.bio.directives";
 import { NavigationController } from "../controllers/nav-controller";
-import { BlackListController, TaxaRanksController } from "../controllers/data.bio.controllers";
+import { BlackListController, TaxonRanksController } from "../controllers/data.bio.controllers";
 
 declare let angular: ng.IAngularStatic;
 
@@ -26,17 +27,21 @@ angular.module("bioDataApp", ["ng", "ngRoute"])
         title: "Home",
         route: "/"
     }, {
-        title: "Taxa Ranks",
-        route: "/taxa-ranks"
+        title: "Taxon Ranks",
+        route: "/taxon-ranks"
     }, {
         title: "Black List",
         route: "/black-list"
     }])
-    .factory("TaxaRanksDataSet", [
-        DataSet
+    .factory("TaxonRanksDataSet", [
+        function (): any {
+            return createDataSet<TaxonRank>();
+        }
     ])
     .factory("BlackListDataSet", [
-        DataSet
+        function (): any {
+            return createDataSet<BlackListItem>();
+        }
     ])
     .service("JsonRequester", [
         "$http",
@@ -52,18 +57,18 @@ angular.module("bioDataApp", ["ng", "ngRoute"])
     .directive("navigationTabs", [
         NavigationTabsDirective
     ])
-    .directive("taxaRanks", [
-        TaxaRanksDirective
+    .directive("taxonRanks", [
+        TaxonRanksDirective
     ])
     .directive("blackList", [
         BlackListDirective
     ])
-    .controller("TaxaRanksController", [
-        "TaxaRanksDataSet",
+    .controller("TaxonRanksController", [
+        "TaxonRanksDataSet",
         "SearchStringService",
         "JsonRequester",
         "Reporter",
-        TaxaRanksController
+        TaxonRanksController
     ])
     .controller("BlackListController", [
         "BlackListDataSet",

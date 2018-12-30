@@ -13,18 +13,30 @@ namespace ProcessingTools.Web.Models.Tools.Barcode
     /// </summary>
     public class BarcodeRequestModel
     {
+        /// <summary>
+        /// Gets or sets the width of the barcode.
+        /// </summary>
         [Required]
         [Range(ImagingConstants.MinimalBarcodeWidth, ImagingConstants.MaximalBarcodeWidth)]
         public int Width { get; set; }
 
+        /// <summary>
+        /// Gets or sets the height of the barcode.
+        /// </summary>
         [Required]
         [Range(ImagingConstants.MinimalBarcodeHeight, ImagingConstants.MaximalBarcodeHeight)]
         public int Height { get; set; }
 
+        /// <summary>
+        /// Gets or sets the content to be encoded.
+        /// </summary>
         [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.DefaultMaximalLengthOfContent)]
         public string Content { get; set; }
 
+        /// <summary>
+        /// Gets or sets the type of the barcode.
+        /// </summary>
         [Required]
         public int Type { get; set; }
     }

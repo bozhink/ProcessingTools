@@ -10,8 +10,8 @@ namespace ProcessingTools.Data.Models.Contracts
     public interface IStringListItem
     {
         /// <summary>
-        /// Gets content.
+        /// Gets or sets the content.
         /// </summary>
-        string Content { get; }
+        string Content { get; set; }
     }
 }

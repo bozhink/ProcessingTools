@@ -85,3 +85,7 @@ export class DataSet<T extends IDataModel> implements IDataSet<T> {
         this.data.splice(0, this.data.length);
     }
 }
+
+export function createDataSet<T extends IDataModel>(): IDataSet<T>{
+    return new DataSet<T>();
+}

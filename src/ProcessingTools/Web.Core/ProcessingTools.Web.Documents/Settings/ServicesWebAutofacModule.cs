@@ -43,8 +43,18 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<DecodeWebService>().As<IDecodeWebService>().InstancePerDependency();
             builder.RegisterType<EncodeWebService>().As<IEncodeWebService>().InstancePerDependency();
             builder.RegisterType<HashesWebService>().As<IHashesWebService>().InstancePerDependency();
+            builder.RegisterType<BarcodeWebService>().As<IBarcodeWebService>().InstancePerDependency();
 
             builder.RegisterType<DatabasesWebService>().As<IDatabasesWebService>().InstancePerDependency();
+
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Bio.Taxonomy.BlackListWebService>()
+                .As<ProcessingTools.Web.Services.Contracts.Bio.Taxonomy.IBlackListWebService>()
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Bio.Taxonomy.TaxonRanksWebService>()
+                .As<ProcessingTools.Web.Services.Contracts.Bio.Taxonomy.ITaxonRanksWebService>()
+                .InstancePerDependency();
         }
     }
 }

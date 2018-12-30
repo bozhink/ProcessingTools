@@ -45,9 +45,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
+        public Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
         {
-            return Task.Run(() =>
+            return Task.Run<IList<ITaxonRank>>(() =>
             {
                 var result = new HashSet<ITaxonRank>();
 

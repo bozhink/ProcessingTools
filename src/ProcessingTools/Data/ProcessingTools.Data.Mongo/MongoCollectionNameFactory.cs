@@ -12,7 +12,7 @@ namespace ProcessingTools.Data.Mongo
     /// <summary>
     /// MongoDB collection name factory.
     /// </summary>
-    internal static class MongoCollectionNameFactory
+    public static class MongoCollectionNameFactory
     {
         private static readonly ConcurrentDictionary<Type, string> CollectionNames = new ConcurrentDictionary<Type, string>();
 

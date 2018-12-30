@@ -3,8 +3,8 @@ export function BioDataRouter($routeProvider: ng.route.IRouteProvider): void {
         .when("/", {
             templateUrl: "bio-data-home.view.html"
         })
-        .when("/taxa-ranks", {
-            templateUrl: "bio-data-taxa-ranks.view.html"
+        .when("/taxon-ranks", {
+            templateUrl: "bio-data-taxon-ranks.view.html"
         })
         .when("/black-list", {
             templateUrl: "bio-data-black-list.view.html"
