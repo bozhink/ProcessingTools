@@ -117,13 +117,18 @@ namespace ProcessingTools.Processors.Processors.Floats
                 FileExtension = extension
             };
 
-            var response = (await this.mediatypesResolver.ResolveMediatypeAsync(extension).ConfigureAwait(false))
-                .FirstOrDefault();
+            string fileName = $"sample.{extension}";
+            var mediatypes = await this.mediatypesResolver.ResolveMediatypeAsync(fileName).ConfigureAwait(false);
 
-            if (response != null)
+            if (mediatypes != null && mediatypes.Count > 0)
             {
-                result.MimeType = response.MimeType;
-                result.MimeSubtype = response.MimeSubtype;
+                var mediatype = mediatypes[0];
+
+                if (mediatype != null)
+                {
+                    result.MimeType = mediatype.MimeType;
+                    result.MimeSubtype = mediatype.MimeSubtype;
+                }
             }
 
             return result;

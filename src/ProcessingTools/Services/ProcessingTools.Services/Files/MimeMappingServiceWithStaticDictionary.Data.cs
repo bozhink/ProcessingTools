@@ -1,9 +1,15 @@
-﻿namespace ProcessingTools.Services.Files
+﻿// <copyright file="MimeMappingServiceWithStaticDictionary.Data.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Files
 {
     using System.Collections.Generic;
-    using ProcessingTools.Services.Contracts.Files;
 
-    public partial class MediatypeStringResolverWithStaticDictionary : IMediatypeStringResolver
+    /// <summary>
+    /// MIME mapping service with static dictionary data.
+    /// </summary>
+    public partial class MimeMappingServiceWithStaticDictionary
     {
         private readonly Dictionary<string, string> mimetypes = new Dictionary<string, string>
         {

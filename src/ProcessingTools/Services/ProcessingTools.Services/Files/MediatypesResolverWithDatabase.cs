@@ -1,31 +1,46 @@
-﻿namespace ProcessingTools.Services.Files
+﻿// <copyright file="MediatypesResolverWithDatabase.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Files
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Models.Contracts.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
+    /// <summary>
+    /// Mediatypes resolver with database.
+    /// </summary>
     public class MediatypesResolverWithDatabase : IMediatypesResolver
     {
         private readonly IMediatypesDataAccessObject dataAccessObject;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediatypesResolverWithDatabase"/> class.
+        /// </summary>
+        /// <param name="dataAccessObject">Data access object.</param>
         public MediatypesResolverWithDatabase(IMediatypesDataAccessObject dataAccessObject)
         {
             this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
-        public async Task<IList<IMediatype>> ResolveMediatypeAsync(string fileExtension)
+        /// <inheritdoc/>
+        public async Task<IList<IMediatype>> ResolveMediatypeAsync(string fileName)
         {
-            string extension = fileExtension?.Trim('.', ' ', '\n', '\r');
-            if (string.IsNullOrWhiteSpace(extension))
+            if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fileExtension));
+                throw new FileNameIsNullOrWhitespaceException();
             }
+
+            string extension = Path.GetExtension(fileName).Trim('.', ' ', '\n', '\r');
 
             try
             {
@@ -33,7 +48,7 @@
 
                 if (response == null || !response.Any())
                 {
-                    return this.GetStaticResult(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype);
+                    return this.GetDefaultResult();
                 }
                 else
                 {
@@ -42,15 +57,15 @@
             }
             catch
             {
-                return this.GetStaticResult(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype);
+                return this.GetDefaultResult();
             }
         }
 
-        private IMediatype[] GetStaticResult(string mimetype, string mimesubtype)
+        private IList<IMediatype> GetDefaultResult()
         {
             return new[]
             {
-                new Mediatype(mimetype, mimesubtype)
+                new Mediatype(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype)
             };
         }
     }

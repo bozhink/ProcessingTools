@@ -16,8 +16,8 @@ namespace ProcessingTools.Services.Contracts.Files
         /// <summary>
         /// Resolves file mediatype by its extension.
         /// </summary>
-        /// <param name="fileExtension">The file extension.</param>
+        /// <param name="fileName">The file name.</param>
         /// <returns>Matched mediatypes.</returns>
-        Task<IList<IMediatype>> ResolveMediatypeAsync(string fileExtension);
+        Task<IList<IMediatype>> ResolveMediatypeAsync(string fileName);
     }
 }
