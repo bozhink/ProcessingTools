@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Services.Files
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
@@ -18,7 +19,7 @@
             this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
-        public async Task<IMediatype[]> ResolveMediatypeAsync(string fileExtension)
+        public async Task<IList<IMediatype>> ResolveMediatypeAsync(string fileExtension)
         {
             string extension = fileExtension?.Trim('.', ' ', '\n', '\r');
             if (string.IsNullOrWhiteSpace(extension))

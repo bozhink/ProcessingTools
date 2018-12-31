@@ -1,4 +1,4 @@
-﻿// <copyright file="MimeMappingService.cs" company="ProcessingTools">
+﻿// <copyright file="MimeMappingServiceWithMediatypesResolver.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -15,15 +15,15 @@ namespace ProcessingTools.Services.Files
     /// <summary>
     /// MIME mapping service.
     /// </summary>
-    public class MimeMappingService : IMimeMappingService
+    public class MimeMappingServiceWithMediatypesResolver : IMimeMappingService
     {
         private readonly IMediatypesResolver resolver;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MimeMappingService"/> class.
+        /// Initializes a new instance of the <see cref="MimeMappingServiceWithMediatypesResolver"/> class.
         /// </summary>
         /// <param name="resolver">Instance of <see cref="IMediatypesResolver"/>.</param>
-        public MimeMappingService(IMediatypesResolver resolver)
+        public MimeMappingServiceWithMediatypesResolver(IMediatypesResolver resolver)
         {
             this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }

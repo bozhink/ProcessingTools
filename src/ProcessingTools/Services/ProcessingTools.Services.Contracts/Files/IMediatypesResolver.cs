@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Services.Contracts.Files
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
@@ -17,6 +18,6 @@ namespace ProcessingTools.Services.Contracts.Files
         /// </summary>
         /// <param name="fileExtension">The file extension.</param>
         /// <returns>Matched mediatypes.</returns>
-        Task<IMediatype[]> ResolveMediatypeAsync(string fileExtension);
+        Task<IList<IMediatype>> ResolveMediatypeAsync(string fileExtension);
     }
 }
