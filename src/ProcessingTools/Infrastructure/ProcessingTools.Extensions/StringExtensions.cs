@@ -1,5 +1,5 @@
 ﻿// <copyright file="StringExtensions.cs" company="ProcessingTools">
-// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://github.com/RickStrahl/Westwind.AspNetCore/blob/master/Westwind.AspNetCore.Markdown/Utilities/StringUtils.cs

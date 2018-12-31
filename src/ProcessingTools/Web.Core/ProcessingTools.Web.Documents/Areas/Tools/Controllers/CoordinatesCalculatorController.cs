@@ -1,5 +1,5 @@
 ﻿// <copyright file="CoordinatesCalculatorController.cs" company="ProcessingTools">
-// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
