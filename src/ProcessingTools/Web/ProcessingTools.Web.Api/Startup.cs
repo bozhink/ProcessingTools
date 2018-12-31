@@ -9,8 +9,6 @@ namespace ProcessingTools.Web.Api
     {
         public void Configuration(IAppBuilder app)
         {
-            AutoMapperConfig.RegisterMappings(this.GetType().Assembly.FullName);
-
             this.ConfigureAuth(app);
 
             var httpConfig = new HttpConfiguration();

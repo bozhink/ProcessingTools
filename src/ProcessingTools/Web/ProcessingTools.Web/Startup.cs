@@ -8,8 +8,6 @@ namespace ProcessingTools.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            AutoMapperConfig.RegisterMappings(this.GetType().Assembly);
-
             this.ConfigureAuth(app);
         }
     }

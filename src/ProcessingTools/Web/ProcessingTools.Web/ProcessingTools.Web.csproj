@@ -352,7 +352,6 @@
     <Compile Include="Abstractions\Controllers\BaseMvcController.cs" />
     <Compile Include="ApiControllers\CitiesController.cs" />
     <Compile Include="ApiControllers\CountriesController.cs" />
-    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
