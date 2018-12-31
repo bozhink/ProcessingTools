@@ -1,0 +1,51 @@
+﻿// <copyright file="MimeMappingService.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Files
+{
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Services.Contracts.Files;
+
+    /// <summary>
+    /// MIME mapping service.
+    /// </summary>
+    public class MimeMappingService : IMimeMappingService
+    {
+        private readonly IMediatypesResolver resolver;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MimeMappingService"/> class.
+        /// </summary>
+        /// <param name="resolver">Instance of <see cref="IMediatypesResolver"/>.</param>
+        public MimeMappingService(IMediatypesResolver resolver)
+        {
+            this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+        }
+
+        /// <inheritdoc/>
+        public async Task<string> MapAsync(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new FileNameIsNullOrWhitespaceException();
+            }
+
+            var mediatypes = await this.resolver.ResolveMediatypeAsync(Path.GetExtension(fileName)).ConfigureAwait(false);
+
+            if (mediatypes == null || !mediatypes.Any())
+            {
+                return ContentTypes.OctetStream;
+            }
+
+            var mediatype = mediatypes.First();
+
+            return $"{mediatype.MimeType}/{mediatype.MimeSubtype}";
+        }
+    }
+}
