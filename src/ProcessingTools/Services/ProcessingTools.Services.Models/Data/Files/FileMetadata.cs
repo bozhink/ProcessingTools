@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Models.Data.Files
     using ProcessingTools.Models.Contracts.Files;
 
     /// <summary>
-    /// File metadata service model.
+    /// File meta-data service model.
     /// </summary>
     public class FileMetadata : IFileMetadata
     {

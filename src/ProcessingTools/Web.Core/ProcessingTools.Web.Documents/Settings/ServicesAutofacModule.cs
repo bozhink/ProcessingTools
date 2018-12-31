@@ -8,7 +8,6 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Admin;
     using ProcessingTools.Services.Contracts.Admin;
     using ProcessingTools.Services.Contracts.Documents;
-    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.Geo.Coordinates;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.IO;
@@ -16,7 +15,6 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Contracts.Rules;
     using ProcessingTools.Services.Contracts.Tools;
     using ProcessingTools.Services.Documents;
-    using ProcessingTools.Services.Files;
     using ProcessingTools.Services.Geo.Coordinates;
     using ProcessingTools.Services.History;
     using ProcessingTools.Services.IO;
@@ -39,8 +37,6 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ArticlesDataService>().As<IArticlesDataService>().InstancePerLifetimeScope();
             builder.RegisterType<DocumentsDataService>().As<IDocumentsDataService>().InstancePerLifetimeScope();
             builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerLifetimeScope();
-
-            builder.RegisterType<MediatypesDataService>().As<IMediatypesDataService>().InstancePerLifetimeScope();
 
             builder.RegisterType<JournalsService>().As<IJournalsService>().InstancePerLifetimeScope();
             builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerLifetimeScope();
@@ -79,6 +75,19 @@ namespace ProcessingTools.Web.Documents.Settings
                 .RegisterType<ProcessingTools.Services.Bio.Taxonomy.TaxonRankDataService>()
                 .As<ProcessingTools.Services.Contracts.Bio.Taxonomy.ITaxonRankDataService>()
                 .InstancePerDependency();
+
+            builder
+                .RegisterType<Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider>()
+                .As<Microsoft.AspNetCore.StaticFiles.IContentTypeProvider>().
+                SingleInstance();
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Files.MimeMappingService>()
+                .As<ProcessingTools.Services.Contracts.Files.IMimeMappingService>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.Services.Files.MediatypesDataService>()
+                .As<ProcessingTools.Services.Contracts.Files.IMediatypesDataService>()
+                .InstancePerLifetimeScope();
         }
     }
 }

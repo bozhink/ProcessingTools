@@ -12,7 +12,6 @@
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Processors.Imaging;
     using ProcessingTools.Processors.Imaging.Contracts;
-    using ProcessingTools.Services.Data.Services.Files;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -42,9 +41,6 @@
             this.Bind<ICoordinateFactory>()
                 .ToFactory()
                 .InSingletonScope();
-
-            this.Bind<ProcessingTools.Services.Contracts.Files.IStreamingFilesDataService>()
-                .To<StreamingSystemFilesDataService>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
                 .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()

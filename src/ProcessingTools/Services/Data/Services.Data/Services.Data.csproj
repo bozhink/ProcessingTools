@@ -61,8 +61,6 @@
     <Compile Include="Services\Bio\TypeStatusDataService.cs" />
     <Compile Include="Services\Documents\XDocumentsDataService.cs" />
     <Compile Include="Services\Documents\XXmlPresenter.cs" />
-    <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
-    <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

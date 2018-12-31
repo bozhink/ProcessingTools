@@ -9,9 +9,9 @@
 
     public class MetadataController : Controller
     {
-        private readonly IStreamingFilesDataService filesDataService;
+        private readonly IFilesDataService filesDataService;
 
-        public MetadataController(IStreamingFilesDataService filesDataService)
+        public MetadataController(IFilesDataService filesDataService)
         {
             this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
         }

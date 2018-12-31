@@ -41,7 +41,7 @@
             }
             catch
             {
-                return this.GetStaticResult(ContentTypes.DefaultMimetypeOnException, ContentTypes.DefaultMimesubtypeOnException);
+                return this.GetStaticResult(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype);
             }
         }
 

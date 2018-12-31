@@ -17,22 +17,12 @@ namespace ProcessingTools.Common.Constants
         /// <summary>
         /// Default mime-subtype.
         /// </summary>
-        public const string DefaultMimeSubtype = "unknown";
-
-        /// <summary>
-        /// Default mime-subtype returned on exception.
-        /// </summary>
-        public const string DefaultMimesubtypeOnException = "octet-stream";
+        public const string DefaultMimeSubtype = "octet-stream";
 
         /// <summary>
         /// Default mime-type.
         /// </summary>
-        public const string DefaultMimeType = "unknown";
-
-        /// <summary>
-        /// Default mime-type returned on exception.
-        /// </summary>
-        public const string DefaultMimetypeOnException = "application";
+        public const string DefaultMimeType = "application";
 
         /// <summary>
         /// JPEG

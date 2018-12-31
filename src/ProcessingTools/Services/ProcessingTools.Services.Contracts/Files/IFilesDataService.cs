@@ -1,4 +1,4 @@
-﻿// <copyright file="IStreamingFilesDataService.cs" company="ProcessingTools">
+﻿// <copyright file="IFilesDataService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -9,16 +9,16 @@ namespace ProcessingTools.Services.Contracts.Files
     using ProcessingTools.Models.Contracts.Files;
 
     /// <summary>
-    /// Streaming files data service.
+    /// Files data service.
     /// </summary>
-    public interface IStreamingFilesDataService
+    public interface IFilesDataService
     {
         /// <summary>
-        /// Creates a file by file metadata and stream.
+        /// Creates a file by file meta-data and stream.
         /// </summary>
-        /// <param name="metadata">Metadata of the file.</param>
+        /// <param name="metadata">Meta-data of the file.</param>
         /// <param name="stream">Stream of the content of the file.</param>
-        /// <returns>Task of the file metadata.</returns>
+        /// <returns>Task of the file meta-data.</returns>
         Task<IFileMetadata> CreateAsync(IFileMetadata metadata, Stream stream);
 
         /// <summary>
@@ -29,10 +29,10 @@ namespace ProcessingTools.Services.Contracts.Files
         Task<bool> DeleteAsync(object id);
 
         /// <summary>
-        /// Gets metadata of a file by ID.
+        /// Gets meta-data of a file by ID.
         /// </summary>
         /// <param name="id">ID of the file.</param>
-        /// <returns>Task of file metadata.</returns>
+        /// <returns>Task of file meta-data.</returns>
         Task<IFileMetadata> GetMetadataAsync(object id);
 
         /// <summary>
@@ -50,19 +50,42 @@ namespace ProcessingTools.Services.Contracts.Files
         Stream ReadToStream(object id);
 
         /// <summary>
+        /// Updates file meta-data.
+        /// </summary>
+        /// <param name="metadata">Meta-data of the file to be updated.</param>
+        /// <returns>Task of file meta-data.</returns>
+        Task<IFileMetadata> UpdateAsync(IFileMetadata metadata);
+
+        /// <summary>
         /// Updates file content by ID.
         /// </summary>
         /// <param name="id">ID of the file.</param>
         /// <param name="stream">Stream of the file.</param>
-        /// <returns>Task of file metadata.</returns>
+        /// <returns>Task of file meta-data.</returns>
         Task<IFileMetadata> UpdateAsync(object id, Stream stream);
 
         /// <summary>
-        /// Updates file metadata and file content.
+        /// Updates file meta-data and file content.
         /// </summary>
-        /// <param name="metadata">Metadata of the file to be updated.</param>
+        /// <param name="metadata">Meta-data of the file to be updated.</param>
         /// <param name="stream">Stream of the file.</param>
-        /// <returns>Task of file metadata.</returns>
+        /// <returns>Task of file meta-data.</returns>
         Task<IFileMetadata> UpdateAsync(IFileMetadata metadata, Stream stream);
+
+        /// <summary>
+        /// Writes stream to a file.
+        /// </summary>
+        /// <param name="id">ID of the file.</param>
+        /// <param name="stream"><see cref="Stream"/> of the file content.</param>
+        /// <returns>Task</returns>
+        Task<object> WriteAsync(object id, Stream stream);
+
+        /// <summary>
+        /// Writes content of a <see cref="StreamReader"/> to a file.
+        /// </summary>
+        /// <param name="id">ID of the file.</param>
+        /// <param name="streamReader"><see cref="StreamReader"/> for the file content</param>
+        /// <returns>Task</returns>
+        Task<object> WriteAsync(object id, StreamReader streamReader);
     }
 }

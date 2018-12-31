@@ -15,9 +15,9 @@
     [Authorize]
     public class UploadController : Controller
     {
-        private readonly IStreamingFilesDataService filesDataService;
+        private readonly IFilesDataService filesDataService;
 
-        public UploadController(IStreamingFilesDataService filesDataService)
+        public UploadController(IFilesDataService filesDataService)
         {
             this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
         }
