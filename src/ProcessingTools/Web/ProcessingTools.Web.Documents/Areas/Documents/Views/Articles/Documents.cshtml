@@ -59,8 +59,11 @@
                 <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.PublishedOn)</dt>
                 <dd class="col-md-10">@Html.DisplayFor(m => m.PublishedOn)</dd>
 
+                @if (Model.ArchivedOn.HasValue)
+                {
                 <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ArchivedOn)</dt>
                 <dd class="col-md-10">@Html.DisplayFor(m => m.ArchivedOn)</dd>
+                }
 
                 <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.AcceptedOn)</dt>
                 <dd class="col-md-10">@Html.DisplayFor(m => m.AcceptedOn)</dd>
