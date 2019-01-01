@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -40,8 +40,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbSeeder", "Desktop\DbSeeder\DbSeeder.csproj", "{A2274DFB-1408-48B0-B31D-EF1FE3613CDF}"
 EndProject
 Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Scripts", "Desktop\Scripts\Scripts.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Documents", "Web\ProcessingTools.Web.Documents\ProcessingTools.Web.Documents.csproj", "{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xml", "Infrastructure\Xml\Xml.csproj", "{15C673AF-40BD-43E9-AEE9-1A819AC6145C}"
 EndProject
@@ -235,7 +233,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Seed.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.XslTransformer", "Desktop\ProcessingTools.XslTransformer\ProcessingTools.XslTransformer.csproj", "{B5545106-BE82-44E8-8FC5-BF8847AFCC28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.TaskServer", "Web.Core\ProcessingTools.TaskServer\ProcessingTools.TaskServer.csproj", "{4E7CC36E-3ACC-450B-B7A6-B622CBDAC911}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.TaskServer", "Web.Core\ProcessingTools.TaskServer\ProcessingTools.TaskServer.csproj", "{4E7CC36E-3ACC-450B-B7A6-B622CBDAC911}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -309,14 +307,6 @@ Global
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|x64.ActiveCfg = Release|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|x64.Build.0 = Release|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Debug|x64.Build.0 = Debug|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Release|x64.ActiveCfg = Release|Any CPU
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}.Release|x64.Build.0 = Release|Any CPU
 		{15C673AF-40BD-43E9-AEE9-1A819AC6145C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15C673AF-40BD-43E9-AEE9-1A819AC6145C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C673AF-40BD-43E9-AEE9-1A819AC6145C}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1068,7 +1058,6 @@ Global
 		{FB9B4337-2799-4D5D-8497-BD6D6C8AF08F} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
 		{A2274DFB-1408-48B0-B31D-EF1FE3613CDF} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
-		{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
 		{15C673AF-40BD-43E9-AEE9-1A819AC6145C} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{EA38EF7B-B6DA-44A6-B26A-B314A8A32922} = {1E79B9F1-0090-481F-8AAC-C9C580704061}
 		{38E8E64F-DE1D-4FA8-9805-B817C2562950} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
@@ -1167,7 +1156,7 @@ Global
 		{4E7CC36E-3ACC-450B-B7A6-B622CBDAC911} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
