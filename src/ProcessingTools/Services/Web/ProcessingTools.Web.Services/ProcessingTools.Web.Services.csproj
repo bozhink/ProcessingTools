@@ -114,8 +114,6 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Geo\CitiesApiService.cs" />
-    <Compile Include="Geo\CountriesApiService.cs" />
     <Compile Include="HelpPage\ModelDescriptionGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -146,10 +144,6 @@
     <Analyzer Include="..\..\..\packages\Text.Analyzers.2.6.2\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts.Web\ProcessingTools.Contracts.Web.csproj">
-      <Project>{00fccc5a-d81f-4c05-9082-023837220f69}</Project>
-      <Name>ProcessingTools.Contracts.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>

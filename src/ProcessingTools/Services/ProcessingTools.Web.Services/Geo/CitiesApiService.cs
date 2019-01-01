@@ -5,13 +5,14 @@
 namespace ProcessingTools.Web.Services.Geo
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Web.Models.Geo.Cities;
+    using ProcessingTools.Web.Services.Contracts.Geo;
 
     /// <summary>
     /// Default implementation of <see cref="ICitiesApiService"/>.
@@ -31,6 +32,7 @@ namespace ProcessingTools.Web.Services.Geo
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
+                c.CreateMap<ICountry, CountryResponseModel>();
                 c.CreateMap<ICity, CityResponseModel>().ConstructUsing(i => new CityResponseModel
                 {
                     Id = i.Id,
@@ -47,7 +49,7 @@ namespace ProcessingTools.Web.Services.Geo
         }
 
         /// <inheritdoc/>
-        public async Task<CityResponseModel[]> GetAllAsync()
+        public async Task<IList<CityResponseModel>> GetAllAsync()
         {
             var items = await this.service.SelectAsync(null).ConfigureAwait(false);
             if (items == null || !items.Any())

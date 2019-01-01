@@ -2,8 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Web.Services.Geo
+namespace ProcessingTools.Web.Services.Contracts.Geo
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Web.Models.Geo.Cities;
 
@@ -16,7 +17,7 @@ namespace ProcessingTools.Contracts.Web.Services.Geo
         /// Gets all city objects.
         /// </summary>
         /// <returns>Task of array of the response model</returns>
-        Task<CityResponseModel[]> GetAllAsync();
+        Task<IList<CityResponseModel>> GetAllAsync();
 
         /// <summary>
         /// Gets single city object by its ID.
