@@ -186,3 +186,18 @@ function keyDownEventHandler(event: KeyboardEvent): any {
 }
 
 document.addEventListener("keydown", keyDownEventHandler, false);
+
+function toggleSidebarActionsEventHandler(e: Event): void {
+    let $target: JQuery = $(e.target as HTMLElement).closest(".sidebar-heading"),
+        $next: JQuery = $target.next(),
+        $chevron: JQuery = $target.find(".fa");
+    if ($next.is(":visible")) {
+        $next.hide();
+        $chevron.removeClass("fa-chevron-down").addClass("fa-chevron-right");
+    } else {
+        $next.show();
+        $chevron.addClass("fa-chevron-down").removeClass("fa-chevron-right");
+    }
+}
+
+$(document).on("click", ".sidebar .sidebar-heading", toggleSidebarActionsEventHandler);

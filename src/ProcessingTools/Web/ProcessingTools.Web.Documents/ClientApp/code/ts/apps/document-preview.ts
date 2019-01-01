@@ -244,7 +244,7 @@ $("#supermenu")
     .on("click", ".mi-fig", eventHandlers.tagFiguresCitation)
     .on("click", ".mi-move", eventHandlers.moveFloatingObject);
 
-$(document).on("click", ".sidebar .sidebar-heading", toggleSidebarActionsEventHandler)
+$(document).on("click", ".sidebar .sidebar-heading", toggleSidebarActionsEventHandler);
 
 document
     .getElementById(HtmlElementIds.SAVE_BUTTON_ID)
