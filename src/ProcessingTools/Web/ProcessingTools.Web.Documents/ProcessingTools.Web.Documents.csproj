@@ -313,20 +313,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
-    <Compile Include="Areas\Articles\Controllers\DocumentContentController.cs" />
-    <Compile Include="Areas\Articles\Controllers\DocumentsController.cs" />
-    <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
-    <Compile Include="Areas\Articles\Controllers\TaggerController.cs" />
-    <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
-    <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
-    <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
-    <Compile Include="Areas\Articles\Models\Tagger\FileModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Documents\DocumentIdViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Documents\Contracts\IDocumentIdViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Tagger\FileViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -367,26 +353,12 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\Articles\Views\web.config" />
-    <Content Include="Areas\Articles\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
-    <Content Include="Areas\Articles\Views\Documents\Preview.cshtml" />
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFiles.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
     <Content Include="bower.json" />
-    <Content Include="Areas\Articles\Views\Documents\Edit.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Delete.cshtml" />
-    <Content Include="Areas\Articles\Views\Documents\_HelpSubmenu.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Help.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\_Details.cshtml" />
     <Content Include="Views\Shared\_DeleteFooter.cshtml" />
     <Content Include="Views\Shared\_DeleteHeader.cshtml" />
-    <Content Include="Areas\Articles\Views\Documents\Help.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\_Edit.cshtml" />
     <Content Include="package.json" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -449,16 +421,11 @@
     <Content Include="wwwroot\src\less\site.less" />
     <Content Include="wwwroot\src\less\toolbox.less" />
     <Content Include="wwwroot\src\less\tooltips.less" />
-    <Content Include="Areas\Articles\Views\Tagger\Edit.cshtml" />
-    <Content Include="Areas\Articles\Views\Tagger\_Edit.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\DeleteAll.cshtml" />
     <Content Include="ProcessingTools.Web.Documents.ruleset" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
     <Content Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Articles\Views\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

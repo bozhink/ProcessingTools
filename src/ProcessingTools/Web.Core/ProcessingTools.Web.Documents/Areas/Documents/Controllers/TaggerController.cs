@@ -5,15 +5,22 @@
 namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger.Contracts;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Web.Documents.Constants;
-    using ProcessingTools.Web.Models.Documents.Publishers;
-    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
     /// /Documents/Tagger
@@ -138,6 +145,134 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
             return this.View();
+        }
+
+        public class TaggerCore
+        {
+            private readonly Func<Type, ITaggerCommand> commandFactory;
+            private readonly IFactory<ICommandSettings> commandSettingsFactory;
+            private readonly IDocumentFactory documentFactory;
+            private readonly IDocumentPostReadNormalizer documentReadNormalizer;
+            private readonly IDocumentPreWriteNormalizer documentWriteNormalizer;
+            private IDictionary<Type, ICommandInfo> commandsInformation;
+
+            public TaggerCore(
+                ICommandInfoProvider commandInfoProvider,
+                IDocumentFactory documentFactory,
+                IDocumentPostReadNormalizer documentReadNormalizer,
+                IDocumentPreWriteNormalizer documentWriteNormalizer,
+                Func<Type, ITaggerCommand> commandFactory,
+                IFactory<ICommandSettings> commandSettingsFactory)
+            {
+                if (commandInfoProvider == null)
+                {
+                    throw new ArgumentNullException(nameof(commandInfoProvider));
+                }
+
+                this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
+                this.documentReadNormalizer = documentReadNormalizer ?? throw new ArgumentNullException(nameof(documentReadNormalizer));
+                this.documentWriteNormalizer = documentWriteNormalizer ?? throw new ArgumentNullException(nameof(documentWriteNormalizer));
+                this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
+                this.commandSettingsFactory = commandSettingsFactory ?? throw new ArgumentNullException(nameof(commandSettingsFactory));
+
+                this.GetCommands(commandInfoProvider);
+            }
+
+            private void GetCommands(ICommandInfoProvider commandInfoProvider)
+            {
+                commandInfoProvider.ProcessInformation();
+
+                var commandsInformation = commandInfoProvider.CommandsInformation
+                    .Where(p => p.Key.GetInterfaces()
+                    .Contains(typeof(ISimpleTaggerCommand)));
+
+                this.commandsInformation = new Dictionary<Type, ICommandInfo>();
+                foreach (var commandInformation in commandsInformation)
+                {
+                    this.commandsInformation.Add(commandInformation.Key, commandInformation.Value);
+                }
+            }
+
+            public IList<CommandSelectListItem> GetCommandsAsSelectList()
+            {
+                return this.commandsInformation.Values.OrderBy(i => i.Description)
+                    .Select(c => new CommandSelectListItem
+                    {
+                        CommandValue = c.Name,
+                        CommandText = c.Description
+                    })
+                    .ToList();
+            }
+
+            /// <summary>
+            /// Executes command specified by ID.
+            /// </summary>
+            /// <param name="commandId">ID of the command to be executed.</param>
+            /// <param name="xmldocument"><see cref="XmlDocument"/> to be processed.</param>
+            /// <returns>Processed <see cref="XmlDocument"/>.</returns>
+            /// <example>
+            ///  var xmldocument = new XmlDocument(); // Read document
+            /// await this.RunCommand(model, xmldocument)
+            ///    .ContinueWith(_ =>
+            ///    {
+            ///        _.Wait();
+            ///       // Write document
+            ///        return;
+            ///    })
+            ///    .ConfigureAwait(false);
+            /// </example>
+            public async Task<XmlDocument> RunCommand(string commandId, XmlDocument xmldocument)
+            {
+                var document = this.documentFactory.Create(xmldocument.OuterXml);
+                if (document.XmlDocument.DocumentElement.Name == ElementNames.Article)
+                {
+                    document.SchemaType = SchemaType.Nlm;
+                }
+                else
+                {
+                    document.SchemaType = SchemaType.System;
+                }
+
+                await this.documentReadNormalizer.NormalizeAsync(document).ConfigureAwait(false);
+
+                var commandType = this.commandsInformation
+                    .First(p => p.Value.Name == commandId)
+                    .Key;
+
+                var command = this.commandFactory.Invoke(commandType);
+                var settings = this.commandSettingsFactory.Create();
+
+                var result = await command.RunAsync(document, settings)
+                    .ContinueWith(_ =>
+                    {
+                        _.Wait();
+                        return this.documentWriteNormalizer.NormalizeAsync(document);
+                    })
+                    .ContinueWith(_ =>
+                    {
+                        _.Wait();
+                        return document.XmlDocument;
+                    })
+                    .ConfigureAwait(false);
+
+                return result;
+            }
+
+            /// <summary>
+            /// Command select list item.
+            /// </summary>
+            public class CommandSelectListItem
+            {
+                /// <summary>
+                /// Gets or sets the command ID as the value field.
+                /// </summary>
+                public string CommandValue { get; set; }
+
+                /// <summary>
+                /// Gets or sets the commad description as the text field.
+                /// </summary>
+                public string CommandText { get; set; }
+            }
         }
     }
 }
