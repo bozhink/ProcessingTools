@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.Web.Api.Abstractions
+﻿namespace ProcessingTools.Web.Core.Api.Abstractions
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Web.Http;
     using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts;
 
-    public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
+    public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ControllerBase
         where TFilter : class, IFilter
         where TServiceModel : class, IIntegerIdentifiable
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
@@ -26,7 +26,7 @@
 
         protected abstract IMapper Mapper { get; }
 
-        public async Task<IHttpActionResult> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
@@ -46,7 +46,7 @@
             }
         }
 
-        public async Task<IHttpActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
@@ -66,7 +66,7 @@
             }
         }
 
-        public async Task<IHttpActionResult> GetPaged(string sortKey, int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
+        public async Task<IActionResult> GetPaged(string sortKey, int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
         {
             if (string.IsNullOrWhiteSpace(sortKey))
             {
@@ -96,7 +96,7 @@
         /// </summary>
         /// <param name="entities">Entity to be added.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Post([FromBody]TRequestModel[] entities)
+        public async Task<IActionResult> Post([FromBody]TRequestModel[] entities)
         {
             if (entities == null || entities.Length < 1)
             {
@@ -120,7 +120,7 @@
         /// </summary>
         /// <param name="entities">Entity to be updated.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Put([FromBody]TRequestModel[] entities)
+        public async Task<IActionResult> Put([FromBody]TRequestModel[] entities)
         {
             if (entities == null || entities.Length < 1)
             {
@@ -139,7 +139,7 @@
             }
         }
 
-        public async Task<IHttpActionResult> Put(int id, [FromBody]TRequestModel entity)
+        public async Task<IActionResult> Put(int id, [FromBody]TRequestModel entity)
         {
             if (entity == null)
             {
@@ -167,7 +167,7 @@
         /// </summary>
         /// <param name="entities">Entity to be deleted.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Delete([FromBody]TRequestModel[] entities)
+        public async Task<IActionResult> Delete([FromBody]TRequestModel[] entities)
         {
             if (entities == null || entities.Length < 1)
             {
@@ -191,7 +191,7 @@
         /// </summary>
         /// <param name="id">Id of the entity to be deleted.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
@@ -204,7 +204,7 @@
             }
         }
 
-        public async Task<IHttpActionResult> Delete([FromBody]int[] ids)
+        public async Task<IActionResult> Delete([FromBody]int[] ids)
         {
             try
             {

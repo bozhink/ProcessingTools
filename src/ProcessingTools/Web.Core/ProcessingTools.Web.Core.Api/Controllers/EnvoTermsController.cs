@@ -2,16 +2,19 @@
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
-    using System.Web.Http;
     using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Models.Contracts.Bio;
     using ProcessingTools.Services.Contracts.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.EnvoTerms;
 
-    public class EnvoTermsController : ApiController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EnvoTermsController : ControllerBase
     {
         private readonly IEnvoTermsDataService service;
         private readonly ILogger logger;
@@ -30,7 +33,8 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public async Task<IHttpActionResult> Get(int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
+        [HttpGet]
+        public async Task<IActionResult> Get(int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
         {
             try
             {
@@ -46,7 +50,7 @@
             catch (Exception ex)
             {
                 this.logger.LogError(ex, string.Empty);
-                return this.InternalServerError();
+                return this.StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
     }

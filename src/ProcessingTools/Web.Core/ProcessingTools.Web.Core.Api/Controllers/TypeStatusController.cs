@@ -1,12 +1,15 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts.Bio;
     using ProcessingTools.Services.Models.Contracts.Bio;
-    using ProcessingTools.Web.Api.Abstractions;
+    using ProcessingTools.Web.Core.Api.Abstractions;
     using ProcessingTools.Web.Models.Bio.TypeStatuses;
 
+    [Route("api/[controller]")]
+    [ApiController]
     public class TypeStatusController : GenericDataServiceController<ITypeStatusDataService, ITypeStatus, TypeStatusRequestModel, TypeStatusResponseModel, IFilter>
     {
         private readonly IMapper mapper;

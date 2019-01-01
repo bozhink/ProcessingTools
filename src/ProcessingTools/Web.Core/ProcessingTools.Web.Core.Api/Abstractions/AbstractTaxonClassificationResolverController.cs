@@ -1,17 +1,17 @@
-﻿namespace ProcessingTools.Web.Api.Abstractions
+﻿namespace ProcessingTools.Web.Core.Api.Abstractions
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
-    using System.Web.Http;
-    using System.Web.Http.Cors;
     using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 
-    public abstract class AbstractTaxonClassificationResolverController : ApiController
+    public abstract class AbstractTaxonClassificationResolverController : ControllerBase
     {
         private readonly ITaxonClassificationResolver resolver;
         private readonly ILogger logger;
@@ -30,8 +30,7 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        [EnableCors("*", "*", "*")]
-        public async Task<IHttpActionResult> Get(string id)
+        public async Task<IActionResult> Get(string id)
         {
             try
             {
@@ -47,7 +46,7 @@
             catch (Exception ex)
             {
                 this.logger.LogError(ex, string.Empty);
-                return this.InternalServerError();
+                return this.StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
     }

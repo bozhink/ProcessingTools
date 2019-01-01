@@ -1,12 +1,15 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts.Geo;
-    using ProcessingTools.Web.Api.Abstractions;
+    using ProcessingTools.Web.Core.Api.Abstractions;
     using ProcessingTools.Web.Models.Geo.GeoNames;
 
+    [Route("api/[controller]")]
+    [ApiController]
     public class GeoNamesController : GenericDataServiceController<IGeoNamesDataService, IGeoName, GeoNameRequestModel, GeoNameResponseModel, ITextFilter>
     {
         private readonly IMapper mapper;
