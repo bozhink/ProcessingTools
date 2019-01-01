@@ -1,0 +1,11 @@
+@using ProcessingTools.Web.Documents.Areas.Tools.Controllers;
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="toolsNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tools</a>
+    <div class="dropdown-menu" aria-labelledby="toolsNavbarDropdown">
+        <a class="dropdown-item" asp-area="@(AreaNames.Tools)" asp-controller="@(ControllerNames.Home)" asp-action="@(ActionNames.Index)">All tools</a>
+        <a class="dropdown-item" asp-area="@(AreaNames.Tools)" asp-controller="@(CoordinatesCalculatorController.ControllerName)" asp-action="@(CoordinatesCalculatorController.IndexActionName)">Coordinates calculator</a>
+        <a class="dropdown-item" asp-area="@(AreaNames.Tools)" asp-controller="@(BarcodeController.ControllerName)" asp-action="@(BarcodeController.IndexActionName)">Barcode encoder</a>
+        <a class="dropdown-item" asp-area="@(AreaNames.Tools)" asp-controller="@(QRCodeController.ControllerName)" asp-action="@(QRCodeController.IndexActionName)">QR code encoder</a>
+    </div>
+</li>
