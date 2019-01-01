@@ -252,7 +252,5 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)))
                 .InstancePerDependency();
         }
-
-       
     }
 }

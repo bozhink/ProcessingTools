@@ -1,8 +1,7 @@
-﻿@using ProcessingTools.Web.Documents.Areas.Files.ViewModels.Metadata;
-@model FileMetadataViewModel
+﻿@model ProcessingTools.Web.Models.Files.Metadata.FileMetadataViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewData[ContextKeys.Title] = "Details";
 }
 
 <h2>Details</h2>
@@ -29,7 +28,6 @@
         @Html.DisplayFor(model => model.ContentLength)
     </dd>
 
-
     <dt>
         @Html.LabelFor(model => model.ContentType)
     </dt>
@@ -37,39 +35,31 @@
         @Html.DisplayFor(model => model.ContentType)
     </dd>
 
-
-
-
-
-
-
-
     <dt>
-        @Html.LabelFor(model => model.DateCreated)
+        @Html.LabelFor(model => model.CreatedOn)
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.DateCreated)
+        @Html.DisplayFor(model => model.CreatedOn)
     </dd>
 
     <dt>
-        @Html.LabelFor(model => model.DateModified)
+        @Html.LabelFor(model => model.ModifiedOn)
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.DateModified)
-    </dd>
-
-
-    <dt>
-        @Html.LabelFor(model => model.CreatedByUser)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.CreatedByUser)
+        @Html.DisplayFor(model => model.ModifiedOn)
     </dd>
 
     <dt>
-        @Html.LabelFor(model => model.ModifiedByUser)
+        @Html.LabelFor(model => model.CreatedBy)
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.ModifiedByUser)
+        @Html.DisplayFor(model => model.CreatedBy)
+    </dd>
+
+    <dt>
+        @Html.LabelFor(model => model.ModifiedBy)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ModifiedBy)
     </dd>
 </dl>

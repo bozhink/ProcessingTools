@@ -55,7 +55,10 @@ namespace ProcessingTools.Web.Documents.Settings
                 Configuration = configuration
             });
             builder.RegisterModule<ServicesWebAutofacModule>();
-            builder.RegisterModule<ServicesAutofacModule>();
+            builder.RegisterModule(new ServicesAutofacModule
+            {
+                Configuration = configuration
+            });
 
             var container = builder.Build();
 

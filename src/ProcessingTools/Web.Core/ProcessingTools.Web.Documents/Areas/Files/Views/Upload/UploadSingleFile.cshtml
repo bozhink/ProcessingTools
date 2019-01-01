@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Upload Single File";
+    ViewData[ContextKeys.Title] = "Upload Single File";
 }
 
 <h2>Upload Single File</h2>
 
-@using (Html.BeginForm(nameof(UploadController.UploadSingleFile), ControllerNames.UploadControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UploadSingleFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-group">

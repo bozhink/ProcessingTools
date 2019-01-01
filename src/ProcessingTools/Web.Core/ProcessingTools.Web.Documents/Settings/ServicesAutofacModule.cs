@@ -5,6 +5,8 @@
 namespace ProcessingTools.Web.Documents.Settings
 {
     using Autofac;
+    using Microsoft.Extensions.Configuration;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Services.Admin;
     using ProcessingTools.Services.Contracts.Admin;
     using ProcessingTools.Services.Contracts.Documents;
@@ -27,6 +29,11 @@ namespace ProcessingTools.Web.Documents.Settings
     /// </summary>
     public class ServicesAutofacModule : Module
     {
+        /// <summary>
+        /// Gets or sets the configuration.
+        /// </summary>
+        public IConfiguration Configuration { get; set; }
+
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
@@ -87,6 +94,24 @@ namespace ProcessingTools.Web.Documents.Settings
             builder
                 .RegisterType<ProcessingTools.Services.Files.MediatypesDataService>()
                 .As<ProcessingTools.Services.Contracts.Files.IMediatypesDataService>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.Services.Files.FilesDataService>()
+                .As<ProcessingTools.Services.Contracts.Files.IFilesDataService>()
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Services.Files.FileNameGeneratorWithUniqueNaming>()
+                .As<ProcessingTools.Services.Contracts.Files.IFileNameGenerator>()
+                .InstancePerLifetimeScope();
+            builder
+                .Register(c =>
+                {
+                    return new ProcessingTools.Services.Files.FileNameResolver
+                    {
+                        BaseDirectoryName = this.Configuration[ConfigurationConstants.FilesRootDirectory]
+                    };
+                })
+                .As<ProcessingTools.Services.Contracts.Files.IFileNameResolver>()
                 .InstancePerLifetimeScope();
         }
     }

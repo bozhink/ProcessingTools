@@ -327,11 +327,6 @@
     <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Tagger\FileViewModel.cs" />
-    <Compile Include="Areas\Files\Controllers\MetadataController.cs" />
-    <Compile Include="Areas\Files\Controllers\UploadController.cs" />
-    <Compile Include="Areas\Files\FilesAreaRegistration.cs" />
-    <Compile Include="Areas\Files\Models\FileMetadataModel.cs" />
-    <Compile Include="Areas\Files\ViewModels\Metadata\FileMetadataViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -392,13 +387,6 @@
     <Content Include="Areas\Articles\Views\Documents\Help.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Files\_Edit.cshtml" />
-    <Content Include="Areas\Files\Views\web.config" />
-    <Content Include="Areas\Files\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Files\Views\Upload\Index.cshtml" />
-    <Content Include="Areas\Files\Views\Upload\UploadSingleFile.cshtml" />
-    <Content Include="Areas\Files\Views\Upload\UploadMultipleFiles.cshtml" />
-    <Content Include="Areas\Files\Views\Metadata\Index.cshtml" />
-    <Content Include="Areas\Files\Views\Metadata\Details.cshtml" />
     <Content Include="package.json" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -470,7 +458,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Articles\Views\Shared\" />
-    <Folder Include="Areas\Files\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
