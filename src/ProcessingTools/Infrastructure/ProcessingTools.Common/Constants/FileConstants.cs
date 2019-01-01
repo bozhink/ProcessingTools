@@ -22,7 +22,7 @@ namespace ProcessingTools.Common.Constants
         /// <summary>
         /// Maximal length of generated file name.
         /// </summary>
-        public const int MaximalLengthOfGeneratedNewFileName = 50;
+        public const int MaximalLengthOfGeneratedNewFileName = 150;
 
         /// <summary>
         /// Maximal number of iterations to generate new file name.
