@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -68,8 +68,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.Web", "Infrastructure\ProcessingTools.Contracts.Web\ProcessingTools.Contracts.Web.csproj", "{00FCCC5A-D81F-4C05-9082-023837220F69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Services", "Services\Web\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj", "{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Models", "Infrastructure\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj", "{667D4391-17F1-4433-BC96-685AEE89650A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts", "Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj", "{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}"
 EndProject
@@ -385,14 +383,6 @@ Global
 		{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A}.Release|x64.ActiveCfg = Release|Any CPU
 		{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A}.Release|x64.Build.0 = Release|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Debug|x64.Build.0 = Debug|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Release|x64.ActiveCfg = Release|Any CPU
-		{667D4391-17F1-4433-BC96-685AEE89650A}.Release|x64.Build.0 = Release|Any CPU
 		{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1062,7 +1052,6 @@ Global
 		{222509D0-22BD-46D4-8486-6600331D87EC} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{00FCCC5A-D81F-4C05-9082-023837220F69} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A} = {222509D0-22BD-46D4-8486-6600331D87EC}
-		{667D4391-17F1-4433-BC96-685AEE89650A} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{720D359F-49D1-4126-A79B-F63CCE9780A0} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{11702307-F670-4A55-B936-3E468604A584} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
@@ -1145,7 +1134,7 @@ Global
 		{4E7CC36E-3ACC-450B-B7A6-B622CBDAC911} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
