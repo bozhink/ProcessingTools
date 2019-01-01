@@ -1,10 +1,10 @@
 ﻿// <copyright file="MinimalTaxonNamePart.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Models.Bio.Taxonomy
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

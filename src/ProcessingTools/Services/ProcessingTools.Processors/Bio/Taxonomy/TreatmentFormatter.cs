@@ -1,5 +1,5 @@
 ﻿// <copyright file="TreatmentFormatter.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Bio.Taxonomy
@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;

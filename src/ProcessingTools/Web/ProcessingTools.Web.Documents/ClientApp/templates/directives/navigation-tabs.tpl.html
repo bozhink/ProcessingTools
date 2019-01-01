@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs" ng-init="nav.getActivePage()">
+  <li role="presentation" ng-repeat="page in nav.pages" class="nav-item">
+    <a class="nav-link {{page.route === nav.activePage ? 'active' : null}}" href="#!{{page.route}}">{{page.title}}</a>
+  </li>
+</ul>

@@ -1,5 +1,5 @@
 ﻿// <copyright file="DocumentMerger.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Documents
@@ -7,9 +7,9 @@ namespace ProcessingTools.Processors.Documents
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
 
     /// <summary>

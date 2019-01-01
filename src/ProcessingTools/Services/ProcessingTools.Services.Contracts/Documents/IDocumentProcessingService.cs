@@ -1,5 +1,5 @@
 ﻿// <copyright file="IDocumentProcessingService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Contracts.Documents
@@ -26,5 +26,20 @@ namespace ProcessingTools.Services.Contracts.Documents
         /// <param name="articleId">Object ID of the article of the document.</param>
         /// <returns>Resultant object.</returns>
         Task<object> TagReferencesAsync(object documentId, object articleId);
+
+        /// <summary>
+        /// Updates document meta-data.
+        /// </summary>
+        /// <param name="documentId">Object ID of the document to be processed.</param>
+        /// <param name="articleId">Object ID of the article of the document.</param>
+        /// <returns>Resultant object.</returns>
+        Task<object> UpdateDocumentMetaAsync(object documentId, object articleId);
+
+        /// <summary>
+        /// Updates article documents meta-data.
+        /// </summary>
+        /// <param name="articleId">Object ID of the article of the document.</param>
+        /// <returns>Resultant object.</returns>
+        Task<object> UpdateArticleDocumentsMetaAsync(object articleId);
     }
 }

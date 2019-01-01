@@ -1,8 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using Ninject.Extensions.Conventions;
-    using Ninject.Modules;
-    using ProcessingTools.Constants.Configuration;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Modules;
 
     /// <summary>
     /// NinjectModule to bind database objects.
@@ -13,67 +12,6 @@
         {
             this.Bind(b =>
             {
-                b.From(Cache.Data.Redis.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Data.Common.Redis.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            // Bio.Biorepositories.Data
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto(typeof(ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.BiorepositoriesRepository<>))
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.BiorepositoriesMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDatabaseName);
-
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto(typeof(ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.BiorepositoriesRepositoryProvider<>))
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.BiorepositoriesMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDatabaseName);
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Bio.Biorepositories.Data.Mongo.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
             });
         }
     }

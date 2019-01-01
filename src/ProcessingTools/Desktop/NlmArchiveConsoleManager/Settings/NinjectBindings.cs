@@ -1,16 +1,16 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
-    using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Factory;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
-    using Ninject.Modules;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Configuration;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Extensions.Factory;
+    using global::Ninject.Extensions.Interception.Infrastructure.Language;
+    using global::Ninject.Modules;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Documents.Mongo;
-    using ProcessingTools.Interceptors;
-    using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Documents;
+    using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
     using ProcessingTools.Services.IO;
@@ -32,11 +32,7 @@
             });
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
-                .InSingletonScope();
-
-            this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ConsoleLogger>()
+                .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
@@ -50,7 +46,7 @@
                 .With<FileExistsRaiseWarningInterceptor>();
 
             this.Bind<ProcessingTools.Contracts.Serialization.IDeserializer>()
-                .To<ProcessingTools.Common.Serialization.DataContractJsonDeserializer>()
+                .To<ProcessingTools.Common.Code.Serialization.DataContractJsonDeserializer>()
                 .InSingletonScope();
 
             this.Bind<IProcessorFactory>()
@@ -59,10 +55,6 @@
 
             this.Bind<IModelFactory>()
                 .ToFactory()
-                .InSingletonScope();
-
-            this.Bind<ProcessingTools.Contracts.IReporter>()
-                .To<ProcessingTools.Reporters.LogReporter>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalMetaDataService>()
@@ -99,8 +91,8 @@
             string documentsMongoConnection = AppSettings.DocumentsMongoConnection;
             string documentsMongoDabaseName = AppSettings.DocumentsMongoDatabaseName;
 
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
                 .WhenInjectedInto<MongoJournalMetaDataAccessObject>()
                 .InSingletonScope()
                 .WithConstructorArgument(

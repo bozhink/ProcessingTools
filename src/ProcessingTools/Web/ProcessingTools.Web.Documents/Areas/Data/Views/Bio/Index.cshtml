@@ -1,35 +1,40 @@
-﻿@using ProcessingTools.Web.Documents.Areas.Data.Controllers
-
+﻿
 @{
-    this.ViewBag.Title = "Bio Data";
+    ViewData[ContextKeys.Title] = "Bio Data";
 }
-<link href="~/wwwroot/build/dist/css/biotaxonomic-lists.css" rel="stylesheet" />
-<header>
-    <h2>Bio Data</h2>
-</header>
 
-<div ng-app="bioDataApp">
-    <div ng-view>
-        <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Loading...
+<link href="~/build/dist/css/biotaxonomic-lists.min.css" rel="stylesheet" />
+
+<section role="main" class="container">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+
+    <div ng-app="bioDataApp">
+        <div ng-view>
+            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Loading...
+        </div>
     </div>
-</div>
+</section>
 
 @section Scripts {
-    <script src="~/bower_components/angular/angular.min.js"></script>
-    <script src="~/bower_components/angular-route/angular-route.min.js"></script>
-    <script src="~/wwwroot/build/dist/js/apps/bio-data-app.min.js"></script>
+    <script src="~/node_modules/angular/angular.min.js"></script>
+    <script src="~/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="~/build/dist/js/apps/bio-data-app.min.js"></script>
     <script>
-        angular.module('bioDataApp').constant('UrlMap', {
-            'bio-data-home.view.html': '/wwwroot/build/dist/templates/views/data/bio/home.view.html',
-            'bio-data-taxa-ranks.view.html': '/wwwroot/build/dist/templates/views/data/bio/taxa-ranks.view.html',
-            'bio-data-black-list.view.html': '/wwwroot/build/dist/templates/views/data/bio/black-list.view.html',
-            'taxa-ranks.tpl.html': '/wwwroot/build/dist/templates/directives/data/bio/taxa-ranks.tpl.html',
-            'black-list.tpl.html': '/wwwroot/build/dist/templates/directives/data/bio/black-list.tpl.html',
-            'navigation-tabs.tpl.html': '/wwwroot/build/dist/templates/directives/navigation-tabs.tpl.html',
-            'blackListSearchUrl': '@(Url.Action(actionName: nameof(BioTaxonomyBlackListDataController.Search), controllerName: ControllerNames.BioTaxonomyBlackListDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))',
-            'blackListSubmitUrl': '@(Url.Action(actionName: nameof(BioTaxonomyBlackListDataController.Post), controllerName: ControllerNames.BioTaxonomyBlackListDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))',
-            'taxaRanksSearchUrl': '@(Url.Action(actionName: nameof(BioTaxonomyTaxaRanksDataController.Search), controllerName: ControllerNames.BioTaxonomyTaxaRanksDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))',
-            'taxaRanksSubmitUrl': '@(Url.Action(actionName: nameof(BioTaxonomyTaxaRanksDataController.Post), controllerName: ControllerNames.BioTaxonomyTaxaRanksDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))'
+        angular.module("bioDataApp").constant("UrlMap", {
+            "bio-data-home.view.html": "@(Url.Content("~/build/dist/templates/views/data/bio/home.view.html.min.html"))",
+            "bio-data-taxon-ranks.view.html": "@(Url.Content("~/build/dist/templates/views/data/bio/taxon-ranks.view.html.min.html"))",
+            "bio-data-black-list.view.html": "@(Url.Content("~/build/dist/templates/views/data/bio/black-list.view.html.min.html"))",
+            "taxon-ranks.tpl.html": "@(Url.Content("~/build/dist/templates/directives/data/bio/taxon-ranks.tpl.html.min.html"))",
+            "black-list.tpl.html": "@(Url.Content("~/build/dist/templates/directives/data/bio/black-list.tpl.html.min.html"))",
+            "navigation-tabs.tpl.html": "@(Url.Content("~/build/dist/templates/directives/navigation-tabs.tpl.html.min.html"))",
+            "blackListSearchUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/blacklist/search"))",
+            "blackListSubmitUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/blacklist/insert"))",
+            "taxonRanksSearchUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/taxonranks/search"))",
+            "taxibRanksSubmitUrl": "@(Url.Content("~/api/v1/data/bio/taxonomy/taxonranks/insert"))"
         });
     </script>
 }
+
+

@@ -1,5 +1,5 @@
 ﻿// <copyright file="AbstractValidationService{T}.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Abstractions.Validation
@@ -8,8 +8,8 @@ namespace ProcessingTools.Services.Abstractions.Validation
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Models.Contracts.Validation;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Contracts.Validation;

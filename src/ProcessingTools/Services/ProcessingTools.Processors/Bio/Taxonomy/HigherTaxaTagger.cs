@@ -1,5 +1,5 @@
 ﻿// <copyright file="HigherTaxaTagger.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Bio.Taxonomy
@@ -9,9 +9,9 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Harvesters.Contracts.Meta;
@@ -64,7 +64,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
             var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement);
             var seed = await this.whitelist.GetItemsAsync();
 
-            var data = await this.miner.MineAsync(textContent, seed, stopWords).ConfigureAwait(false) ?? new string[] { };
+            var data = await this.miner.MineAsync(textContent, seed, stopWords).ConfigureAwait(false) ?? Array.Empty<string>();
 
             var taxaNames = new HashSet<string>(data.Where(s => s != null && s.Length > 0 && s[0] == s.ToUpperInvariant()[0]));
 

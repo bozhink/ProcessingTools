@@ -1,0 +1,207 @@
+﻿@model ProcessingTools.Web.Models.Documents.Articles.ArticleCreateViewModel
+@{
+    ViewData[ContextKeys.Title] = "Create New Article";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main" class="container">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="ArticleId"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ArticleId" class="form-control" />
+                    <span asp-validation-for="ArticleId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="Title"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="SubTitle"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="SubTitle" class="form-control" />
+                    <span asp-validation-for="SubTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="Doi"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Doi" class="form-control" />
+                    <span asp-validation-for="Doi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="JournalId"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="JournalId" class="form-control">
+                        @if (Model.Journals != null && Model.Journals.Any())
+                        {
+                            foreach (var journal in Model.Journals)
+                            {
+                                <option value="@journal.Id">@journal.Name</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="JournalId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="PublishedOn"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="PublishedOn" class="form-control" />
+                    <span asp-validation-for="PublishedOn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="ArchivedOn"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="ArchivedOn" class="form-control" />
+                    <span asp-validation-for="ArchivedOn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="AcceptedOn"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="AcceptedOn" class="form-control" />
+                    <span asp-validation-for="AcceptedOn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="ReceivedOn"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="ReceivedOn" class="form-control" />
+                    <span asp-validation-for="AcceptedOn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="VolumeSeries"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="VolumeSeries" class="form-control" />
+                    <span asp-validation-for="VolumeSeries" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="Volume"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Volume" class="form-control" />
+                    <span asp-validation-for="Volume" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="Issue"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Issue" class="form-control" />
+                    <span asp-validation-for="Issue" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="IssuePart"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="IssuePart" class="form-control" />
+                    <span asp-validation-for="IssuePart" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="ELocationId"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ELocationId" class="form-control" />
+                    <span asp-validation-for="ELocationId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="FirstPage"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="FirstPage" class="form-control" />
+                    <span asp-validation-for="FirstPage" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="LastPage"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="LastPage" class="form-control" />
+                    <span asp-validation-for="LastPage" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="NumberOfPages"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="NumberOfPages" class="form-control" />
+                    <span asp-validation-for="NumberOfPages" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-outline-primary" value="Save" />
+                    <input type="reset" class="btn btn-outline-secondary" value="Reset" />
+                    <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(ArticlesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    <partial name="@ViewNames.ValidationScriptsPartial" />
+}

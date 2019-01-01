@@ -1,13 +1,12 @@
 ﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
 {
-    using System;
     using System.IO;
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Common.Serialization;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Code.Serialization;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Harvesters;
     using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Harvesters.ExternalLinks;
@@ -18,6 +17,11 @@
     [TestClass]
     public class ExternalLinksHarvesterIntegrationTests
     {
+        /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
         [Timeout(5000)]
         public void ExternalLinksHarvester_WithSampleXmlFile_ShouldExtractCorrectlyExternalLinks()
@@ -26,7 +30,7 @@
             const int ExpectedNumberOfExternalLinks = 10;
             const int ExpectedNumberOfExternalLinksOfTypeDoi = 9;
 
-            var xmlFileName = Path.Combine(AppSettings.SampleFiles, "article-with-external-links.xml");
+            var xmlFileName = Path.Combine("Samples", "article -with-external-links.xml");
             var document = new XmlDocument
             {
                 PreserveWhitespace = true
@@ -57,7 +61,7 @@
 
             // Assert
             Assert.IsNotNull(externalLinks);
-            externalLinks?.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.BaseAddress, i.Uri, i.Value));
+            externalLinks?.ForEach(i => this.TestContext.WriteLine("{0} | {1} | {2}", i.BaseAddress, i.Uri, i.Value));
 
             Assert.AreEqual(ExpectedNumberOfExternalLinks, externalLinks?.Count);
 

@@ -1,16 +1,17 @@
 ﻿// <copyright file="ZooBankJsonCloner.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Bio.ZooBank
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Constants.Uri;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Constants.Uri;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     /// <summary>
@@ -24,7 +25,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
         /// Initializes a new instance of the <see cref="ZooBankJsonCloner"/> class.
         /// </summary>
         /// <param name="logger">Logger.</param>
-        public ZooBankJsonCloner(ILogger logger)
+        public ZooBankJsonCloner(ILogger<ZooBankJsonCloner> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -91,7 +92,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
             {
                 this.ResolveEmptyParentNames(source, nomenclaturalAct);
 
-                this.logger?.Log(
+                this.logger.LogDebug(
                     "\n\n{0}{1}{2} {3}",
                     nomenclaturalAct.Parentname,
                     string.IsNullOrEmpty(nomenclaturalAct.Parentname) ? string.Empty : " ",
@@ -107,7 +108,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
                         objectIdNode.InnerText = UrlConstants.ZooBankPrefix + nomenclaturalAct.TnuUuid.Trim();
                         numberOfNewNomenclaturalActs++;
 
-                        this.logger?.Log(
+                        this.logger.LogDebug(
                             "{0}{1}{2} {3}",
                             nomenclaturalAct.Parentname,
                             string.IsNullOrEmpty(nomenclaturalAct.Parentname) ? string.Empty : " ",
@@ -117,7 +118,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
                 }
             }
 
-            this.logger?.Log(
+            this.logger.LogDebug(
                 "\n\n\nNumber of nomenclatural acts = {0}.\nNumber of new nomenclatural acts = {1}.\n\n\n",
                 numberOfNomenclaturalActs,
                 numberOfNewNomenclaturalActs);

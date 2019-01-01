@@ -1,11 +1,11 @@
 ﻿// <copyright file="CoordinateParser.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Geo.Coordinates
 {
     using System;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Processors.Models.Contracts.Geo.Coordinates;
 

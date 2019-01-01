@@ -1,5 +1,5 @@
 ﻿// <copyright file="AbbreviationsHarvester.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Harvesters.Abbreviations
@@ -43,7 +43,7 @@ namespace ProcessingTools.Harvesters.Abbreviations
             var transformer = this.transformerFactory.GetAbbreviationsTransformer();
             var model = await this.serializer.DeserializeAsync<AbbreviationsXmlModel>(transformer, document.DocumentElement).ConfigureAwait(false);
 
-            return model?.Abbreviations ?? new IAbbreviationModel[] { };
+            return model?.Abbreviations ?? Array.Empty<IAbbreviationModel>();
         }
     }
 }

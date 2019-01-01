@@ -1,5 +1,5 @@
 ﻿// <copyright file="ParseHigherTaxaAboveGenusCommand.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Commands.Tagger
@@ -15,14 +15,14 @@ namespace ProcessingTools.Commands.Tagger
     /// Parse higher taxa above genus command.
     /// </summary>
     [System.ComponentModel.Description("Make higher taxa of type 'above-genus'.")]
-    public class ParseHigherTaxaAboveGenusCommand : ParseHigherTaxaCommand<IAboveGenusTaxaRankResolver>, IParseHigherTaxaAboveGenusCommand
+    public class ParseHigherTaxaAboveGenusCommand : ParseHigherTaxaCommand<IAboveGenusTaxonRankResolver>, IParseHigherTaxaAboveGenusCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseHigherTaxaAboveGenusCommand"/> class.
         /// </summary>
         /// <param name="parser">Instance of <see cref="IHigherTaxaParserWithDataService{IAboveGenusTaxaRankResolver,ITaxonRank}"/>.</param>
         /// <param name="reporter">Instance of <see cref="IReporter"/>.</param>
-        public ParseHigherTaxaAboveGenusCommand(IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolver, ITaxonRank> parser, IReporter reporter)
+        public ParseHigherTaxaAboveGenusCommand(IHigherTaxaParserWithDataService<IAboveGenusTaxonRankResolver, ITaxonRank> parser, IReporter reporter)
             : base(parser, reporter)
         {
         }

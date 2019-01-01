@@ -1,5 +1,5 @@
 ﻿// <copyright file="ParseTreatmentMetaWithGbifCommand.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Commands.Tagger
@@ -13,13 +13,13 @@ namespace ProcessingTools.Commands.Tagger
     /// Parse treatment meta with GBIF command.
     /// </summary>
     [System.ComponentModel.Description("Parse treatment meta with GBIF.")]
-    public class ParseTreatmentMetaWithGbifCommand : DocumentParserCommand<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>, IParseTreatmentMetaWithGbifCommand
+    public class ParseTreatmentMetaWithGbifCommand : DocumentParserCommand<ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver>>, IParseTreatmentMetaWithGbifCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseTreatmentMetaWithGbifCommand"/> class.
         /// </summary>
         /// <param name="parser">Instance of <see cref="ITreatmentMetaParserWithDataService{IGbifTaxaClassificationResolver}"/>.</param>
-        public ParseTreatmentMetaWithGbifCommand(ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver> parser)
+        public ParseTreatmentMetaWithGbifCommand(ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver> parser)
             : base(parser)
         {
         }

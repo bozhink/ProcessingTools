@@ -1,14 +1,14 @@
 ﻿// <copyright file="AbstractGeoSynonymisableDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Abstractions.Geo
 {
     using System;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts;

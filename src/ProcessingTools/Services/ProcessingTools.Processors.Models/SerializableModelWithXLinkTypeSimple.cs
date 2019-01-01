@@ -1,12 +1,12 @@
 ﻿// <copyright file="SerializableModelWithXLinkTypeSimple.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Models
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
 
     /// <summary>
     /// Serializable model with @xlink-type="simple".
@@ -21,7 +21,7 @@ namespace ProcessingTools.Processors.Models
         {
             get
             {
-                return ProcessingTools.Enumerations.Nlm.XLinkType.Simple.ToString().ToLowerInvariant();
+                return ProcessingTools.Common.Enumerations.Nlm.XLinkType.Simple.ToString().ToLowerInvariant();
             }
 
             set

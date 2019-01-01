@@ -1,14 +1,14 @@
 ﻿// <copyright file="DocumentReader.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Documents
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
 

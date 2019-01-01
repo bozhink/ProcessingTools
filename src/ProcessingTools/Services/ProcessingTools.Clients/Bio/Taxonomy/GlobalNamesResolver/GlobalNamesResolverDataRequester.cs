@@ -1,5 +1,5 @@
 ﻿// <copyright file="GlobalNamesResolverDataRequester.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
@@ -12,7 +12,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 

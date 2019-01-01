@@ -1,0 +1,67 @@
+﻿@model ProcessingTools.Web.Models.Documents.Documents.DocumentDetailsViewModel
+@{
+    ViewData[ContextKeys.Title] = "Document Details";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main" class="container">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+        <h3>@(Model?.Article?.ArticleTitle) (@(Model?.Article?.JournalName))</h3>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.Description)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.File.FileName)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.File.FileName)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.File.ContentType)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.File.ContentType)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.File.ContentLength)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.File.ContentLength)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IsFinal)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.IsFinal)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedOn)</dd>
+        </dl>
+        <div class="row">
+            <div class="col-md-12">
+                <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+        <footer class="page-navigation">
+            <p><a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)">Back to Documents</a></p>
+        </footer>
+    }
+</section>

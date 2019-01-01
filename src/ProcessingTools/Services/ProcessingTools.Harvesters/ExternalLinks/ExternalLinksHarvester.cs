@@ -1,5 +1,5 @@
 ﻿// <copyright file="ExternalLinksHarvester.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Harvesters.ExternalLinks
@@ -43,7 +43,7 @@ namespace ProcessingTools.Harvesters.ExternalLinks
             var transformer = this.transformerFactory.GetExternalLinksTransformer();
             var items = await this.serializer.DeserializeAsync<ExternalLinksModel>(transformer, document.OuterXml).ConfigureAwait(false);
 
-            return items?.ExternalLinks ?? new IExternalLinkModel[] { };
+            return items?.ExternalLinks ?? Array.Empty<IExternalLinkModel>();
         }
     }
 }

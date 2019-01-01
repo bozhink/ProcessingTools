@@ -2,24 +2,32 @@
 {
     using System;
     using System.IO;
-    using System.Net;
     using System.Threading.Tasks;
-    using System.Web;
-    using System.Web.Mvc;
-    using Microsoft.AspNet.Identity;
-    using ProcessingTools.Exceptions;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Models.Contracts.Files;
     using ProcessingTools.Services.Contracts.Files;
-    using ProcessingTools.Web.Documents.Areas.Files.Models;
+    using ProcessingTools.Web.Documents.Constants;
+    using ProcessingTools.Web.Models.Files.Metadata;
 
+    /// <summary>
+    /// /Files/Upload
+    /// </summary>
     [Authorize]
+    [Area(AreaNames.Files)]
     public class UploadController : Controller
     {
-        private readonly IStreamingFilesDataService filesDataService;
+        private readonly IFilesDataService filesDataService;
+        private readonly IFileNameResolver fileNameResolver;
+        private readonly IFileNameGenerator fileNameGenerator;
 
-        public UploadController(IStreamingFilesDataService filesDataService)
+        public UploadController(IFilesDataService filesDataService, IFileNameResolver fileNameResolver, IFileNameGenerator fileNameGenerator)
         {
             this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
+            this.fileNameResolver = fileNameResolver ?? throw new ArgumentNullException(nameof(fileNameResolver));
+            this.fileNameGenerator = fileNameGenerator ?? throw new ArgumentNullException(nameof(fileNameGenerator));
         }
 
         // GET: Files/Upload
@@ -42,76 +50,45 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult> UploadSingleFile(HttpPostedFileBase file)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UploadSingleFile(IFormFile file)
         {
-            if (file == null || file.ContentLength < 1)
+            if (file == null || file.Length < 1)
             {
                 throw new NullOrEmptyFileException();
             }
 
-            var userId = this.User.Identity.GetUserId();
+            var metadata = await this.UploadFile(file).ConfigureAwait(false);
 
-            var metadata = await this.UploadSingleFile(userId, file).ConfigureAwait(false);
-
-            this.Response.StatusCode = (int)HttpStatusCode.Created;
-
-            return this.View(
-                viewName: "~/Areas/Files/Views/Metadata/Details.cshtml",
-                model: new ViewModels.Metadata.FileMetadataViewModel
-                {
-                    ContentLength = metadata.ContentLength,
-                    ContentType = metadata.ContentType,
-                    CreatedBy = metadata.CreatedBy,
-                    CreatedOn = metadata.CreatedOn,
-                    ModifiedOn = metadata.ModifiedOn,
-                    Description = metadata.Description,
-                    FileExtension = metadata.FileExtension,
-                    FileName = metadata.FileName,
-                    FullName = metadata.FullName,
-                    Id = metadata.Id,
-                    ModifiedBy = metadata.ModifiedBy
-                });
-
-            ////return this.RedirectToAction(
-            ////    actionName: nameof(MetadataController.Details),
-            ////    controllerName: ControllerNames.MetadataControllerName,
-            ////    routeValues: new
-            ////    {
-            ////        id = metadata.Id
-            ////    });
+            return this.RedirectToAction("Details", "Metadata", routeValues: metadata);
         }
 
-        private Task<IFileMetadata> UploadSingleFile(object userId, HttpPostedFileBase file)
+        private Task<IFileMetadata> UploadFile(IFormFile file)
         {
-            if (userId == null)
-            {
-                throw new ArgumentNullException(nameof(userId));
-            }
-
-            if (file == null || file.ContentLength < 1)
+            if (file == null || file.Length < 1)
             {
                 throw new NullOrEmptyFileException();
             }
-
-            var user = userId.ToString();
 
             var metadata = new FileMetadataModel
             {
-                CreatedBy = user,
-                ModifiedBy = user,
-                ContentLength = file.ContentLength,
+                CreatedBy = "system",
+                CreatedOn = DateTime.UtcNow,
+                ModifiedBy = "system",
+                ModifiedOn = DateTime.UtcNow,
+                ContentLength = file.Length,
                 ContentType = file.ContentType,
-                FileExtension = Path.GetExtension(file.FileName).Trim('.'),
-                FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
+                FileExtension = Path.GetExtension(file.FileName),
+                FileName = file.FileName,
             };
 
-            string fullName = Path.Combine(
-                this.Server.MapPath("~/App_Data/"),
-                $"{metadata.FileName}-{Guid.NewGuid().ToString()}.{metadata.FileExtension}");
+            string generatedFileName = this.fileNameGenerator.GetNewFileName(file.FileName);
 
-            metadata.FullName = fullName;
+            string fullFileName = this.fileNameResolver.GetFullFileName(generatedFileName);
 
-            return this.filesDataService.CreateAsync(metadata, file.InputStream);
+            metadata.FullName = fullFileName;
+
+            return this.filesDataService.CreateAsync(metadata, file.OpenReadStream());
         }
     }
 }

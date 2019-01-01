@@ -1,0 +1,16 @@
+﻿<div id="coordinates-list-toolbox" class="panel card draggable">
+    <div class="panel-heading card-header toolbox-titlebar text-muted">
+        <span class="titlebar-text">{{title}}</span>
+        <span class="titlebar-buttons">
+            <button class="btn btn-outline-secondary close-button">×</button>
+        </span>
+    </div>
+    <div class="panel-body card-body">
+        <div class="list-group toolbox-content coordinates-list">
+            {{#each coordinates}}
+            <a id="coordinate-item-{{index}}" class="list-group-item coordinate-item" href="#{{id}}">{{latitude}},
+                {{longitude}}</a>
+            {{/each}}
+        </div>
+    </div>
+</div>

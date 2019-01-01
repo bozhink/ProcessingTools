@@ -1,5 +1,5 @@
 ﻿// <copyright file="WeakFormUrlEncodedContent.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Net
@@ -10,7 +10,7 @@ namespace ProcessingTools.Net
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Form URL encoded content.

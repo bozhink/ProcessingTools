@@ -1,5 +1,5 @@
 ﻿// <copyright file="BingMapService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Maps
@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Maps
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Services.Contracts.Maps;
 
     /// <summary>

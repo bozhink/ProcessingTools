@@ -1,63 +1,77 @@
-﻿@using ProcessingTools.Web.Documents.ViewModels.Account
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
 @model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
 @{
-    ViewBag.Title = "Log in";
+    ViewData[ContextKeys.Title] = "Log in";
+    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+    bool hasLoginProviders = loginProviders.Count > 0;
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
+<section role="main" class="container">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+    <div class="row">
+        <section class="col-md-6 my-3">
+            <header>
                 <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </header>
+            <form asp-route-returnurl="@ViewData[ContextKeys.ReturnUrl]" method="post" class="form-login">
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <label asp-for="Email" class="sr-only"></label>
+                    <input asp-for="Email" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Email)" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="sr-only"></label>
+                    <input asp-for="Password" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Password)" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @(Html.DisplayNameFor(m => m.RememberMe))
+                        </label>
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log in</button>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
+                    <p><a asp-action="ForgotPassword">Forgot your password?</a></p>
+                    <p><a asp-action="Register" asp-route-returnurl="@ViewData[ContextKeys.ReturnUrl]">Register as a new user?</a></p>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
+            </form>
+        </section>
+        <section class="col-md-6 my-3">
+            <header>
+                <h4>Use another service to log in.</h4>
+            </header>
+            @if (!hasLoginProviders)
+            {
+                <p>There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a> for details on setting up this ASP.NET application to support logging in via external services.</p>
+            }
+            else
+            {
+                <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData[ContextKeys.ReturnUrl]" method="post" class="form-horizontal">
                     <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                        @foreach (var provider in loginProviders)
+                        {
+                            <button type="submit" class="btn btn-outline-secondary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                        }
+                    </p>
+                </form>
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+</section>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <partial name="@ViewNames.ValidationScriptsPartial" />
 }

@@ -1,5 +1,5 @@
 ﻿// <copyright file="ITreatmentMetaParserWithDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Contracts.Bio.Taxonomy
@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors.Contracts.Bio.Taxonomy
     /// </summary>
     /// <typeparam name="TService">Type of data service.</typeparam>
     public interface ITreatmentMetaParserWithDataService<TService> : ITreatmentMetaParser
-        where TService : ITaxaClassificationResolver
+        where TService : ITaxonClassificationResolver
     {
     }
 }

@@ -1,11 +1,11 @@
 ﻿// <copyright file="ExternalLink.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Data.Miners.Models.ExternalLinks
 {
+    using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Data.Miners.Models.Contracts.ExternalLinks;
-    using ProcessingTools.Enumerations.Nlm;
 
     /// <summary>
     /// External link.

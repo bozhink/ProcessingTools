@@ -3,12 +3,12 @@
     using System;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Contracts;
     using ProcessingTools.Harvesters.Contracts.Abbreviations;
     using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
-    using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(AbbreviationsHarvester))]
     public class AbbreviationsHarvesterUnitTests

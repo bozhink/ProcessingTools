@@ -1,11 +1,11 @@
 ﻿// <copyright file="FloatObjectDetailsTagStyleModel.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Models.Layout.Styles.Floats
 {
     using System;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
 
     /// <summary>
     /// Float object details tag style model.

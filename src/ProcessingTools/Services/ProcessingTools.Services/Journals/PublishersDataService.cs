@@ -1,5 +1,5 @@
 ﻿// <copyright file="PublishersDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Journals
@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Journals
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Data.Expressions;
+    using ProcessingTools.Common.Code.Data.Expressions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;
     using ProcessingTools.Services.Abstractions.Journals;

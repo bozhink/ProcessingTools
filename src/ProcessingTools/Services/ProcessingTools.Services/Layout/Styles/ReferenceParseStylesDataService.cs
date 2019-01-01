@@ -1,5 +1,5 @@
 ﻿// <copyright file="ReferenceParseStylesDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Layout.Styles
@@ -8,11 +8,11 @@ namespace ProcessingTools.Services.Layout.Styles
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;
@@ -42,11 +42,11 @@ namespace ProcessingTools.Services.Layout.Styles
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IReferenceParseStyleDataModel, ReferenceParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IReferenceDetailsParseStyleDataModel, ReferenceDetailsParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
@@ -165,7 +165,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return new IReferenceParseStyleModel[] { };
+                return Array.Empty<IReferenceParseStyleModel>();
             }
 
             var items = parseStyles.Select(this.mapper.Map<IReferenceParseStyleDataModel, ReferenceParseStyleModel>).ToArray();
@@ -189,7 +189,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return new IReferenceDetailsParseStyleModel[] { };
+                return Array.Empty<IReferenceDetailsParseStyleModel>();
             }
 
             var items = parseStyles.Select(this.mapper.Map<IReferenceDetailsParseStyleDataModel, ReferenceDetailsParseStyleModel>).ToArray();

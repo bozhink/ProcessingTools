@@ -1,5 +1,5 @@
 ﻿// <copyright file="IRepository.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Data.Contracts
@@ -11,12 +11,6 @@ namespace ProcessingTools.Data.Contracts
     /// </summary>
     public interface IRepository
     {
-        /// <summary>
-        /// Commit staged changes and save.
-        /// </summary>
-        /// <returns>Object</returns>
-        object SaveChanges();
-
         /// <summary>
         /// Commit staged changes and save.
         /// </summary>

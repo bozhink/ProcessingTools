@@ -1,5 +1,5 @@
 ﻿// <copyright file="AbstractAddresssableDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Abstractions.Journals
@@ -10,13 +10,13 @@ namespace ProcessingTools.Services.Abstractions.Journals
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Data.Expressions;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Code.Data.Expressions;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Journals;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions.Linq.Expressions;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;

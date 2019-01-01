@@ -3,7 +3,7 @@
     using System;
     using System.Diagnostics;
     using Contracts.Core;
-    using Ninject;
+    using global::Ninject;
     using Settings;
 
     public static class Program

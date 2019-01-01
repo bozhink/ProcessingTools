@@ -1,12 +1,12 @@
 ﻿// <copyright file="CommonBindingsModule.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Ninject.Modules
 {
     using global::Ninject.Extensions.Conventions;
     using global::Ninject.Modules;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Common Bindings Module

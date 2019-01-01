@@ -1,5 +1,5 @@
 ﻿// <copyright file="JournalsDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Documents
@@ -8,10 +8,10 @@ namespace ProcessingTools.Services.Documents
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Contracts.Documents.Journals;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Contracts.Documents.Journals;
@@ -42,9 +42,9 @@ namespace ProcessingTools.Services.Documents
                 c.CreateMap<IJournalPublisherDataModel, IJournalPublisherModel>().As<JournalPublisherModel>();
 
                 c.CreateMap<IJournalDataModel, JournalModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IJournalDetailsDataModel, JournalDetailsModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()))
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()))
                     .ForMember(sm => sm.Publisher, o => o.MapFrom(dm => dm.Publisher));
             });
             this.mapper = mapperConfiguration.CreateMapper();
@@ -163,7 +163,7 @@ namespace ProcessingTools.Services.Documents
 
             if (journals == null || !journals.Any())
             {
-                return new IJournalModel[] { };
+                return Array.Empty<IJournalModel>();
             }
 
             var items = journals.Select(this.mapper.Map<IJournalDataModel, JournalModel>).ToArray();
@@ -186,7 +186,7 @@ namespace ProcessingTools.Services.Documents
             var journals = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (journals == null || !journals.Any())
             {
-                return new IJournalDetailsModel[] { };
+                return Array.Empty<IJournalDetailsModel>();
             }
 
             var items = journals.Select(this.mapper.Map<IJournalDetailsDataModel, JournalDetailsModel>).ToArray();
@@ -202,7 +202,7 @@ namespace ProcessingTools.Services.Documents
             var publishers = await this.dataAccessObject.GetJournalPublishersAsync().ConfigureAwait(false);
             if (publishers == null || !publishers.Any())
             {
-                return new IJournalPublisherModel[] { };
+                return Array.Empty<IJournalPublisherModel>();
             }
 
             return publishers.Select(this.mapper.Map<IJournalPublisherDataModel, JournalPublisherModel>).ToArray();

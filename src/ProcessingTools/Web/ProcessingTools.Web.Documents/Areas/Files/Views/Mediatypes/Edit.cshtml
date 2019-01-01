@@ -1,0 +1,128 @@
+﻿@model ProcessingTools.Web.Models.Files.Mediatypes.MediatypeEditViewModel
+@{
+    ViewData[ContextKeys.Title] = "Edit Mediatype";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main" class="container">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="Extension"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Extension" class="form-control" autocomplete="on" />
+                    <span asp-validation-for="Extension" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="MimeType"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="MimeType" class="form-control" autocomplete="on" list="mimetypes" />
+                    <span asp-validation-for="MimeType" class="text-danger"></span>
+                    <datalist id="mimetypes">
+                        @foreach (string mimetype in Model.MimeTypes ?? Array.Empty<string>())
+                        {
+                            <option value="@mimetype" />
+                        }
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="MimeSubtype"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="MimeSubtype" class="form-control" autocomplete="on" list="mimesubtypes" />
+                    <span asp-validation-for="MimeSubtype" class="text-danger"></span>
+                    <datalist id="mimesubtypes">
+                        @foreach (string mimesubtype in Model.MimeSubtypes ?? Array.Empty<string>())
+                        {
+                            <option value="@mimesubtype" />
+                        }
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+           <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="CreatedBy"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="CreatedOn"></label>
+                </div>
+                <div class="col-md-10">
+
+                    <input type="datetime" asp-for="CreatedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="ModifiedBy"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ModifiedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2 col-form-label bold">
+                    <label asp-for="ModifiedOn"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="ModifiedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-outline-primary" value="Save" />
+                    <input type="reset" class="btn btn-outline-secondary" value="Reset" />
+                    <a asp-action="@(MediatypesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(MediatypesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    <partial name="@ViewNames.ValidationScriptsPartial" />
+}

@@ -1,5 +1,5 @@
 ﻿// <copyright file="ArticleModel.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Models.Documents.Articles
@@ -22,6 +22,9 @@ namespace ProcessingTools.Services.Models.Documents.Articles
         public bool IsDeployed { get; set; }
 
         /// <inheritdoc/>
+        public string ArticleId { get; set; }
+
+        /// <inheritdoc/>
         public string Title { get; set; }
 
         /// <inheritdoc/>
@@ -35,6 +38,9 @@ namespace ProcessingTools.Services.Models.Documents.Articles
 
         /// <inheritdoc/>
         public DateTime? PublishedOn { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? ArchivedOn { get; set; }
 
         /// <inheritdoc/>
         public DateTime? AcceptedOn { get; set; }

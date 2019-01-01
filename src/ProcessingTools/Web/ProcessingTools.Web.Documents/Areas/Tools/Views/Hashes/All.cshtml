@@ -1,0 +1,99 @@
+﻿@model ProcessingTools.Web.Models.Tools.Hashes.HashesViewModel
+
+@{
+    ViewData[ContextKeys.Title] = "Evaluate Hashes";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main" class="container">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Content</legend>
+                <form method="post" class="container">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.ReturnUrl)
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <textarea type="text" asp-for="Content" cols="30" rows="4" placeholder="Text to encode" class="form-control"></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn btn-outline-secondary" />
+                            <input type="reset" value="Reset" class="btn btn-outline-secondary" />
+                            <a asp-area="@(AreaNames.Tools)" asp-controller="@(EncodeController.ControllerName)" asp-action="@(EncodeController.Base64ActionName)" asp-route-returnUrl="@(Model.ReturnUrl)" class="btn btn-outline-secondary">Clear</a>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+        @if (Model != null && !string.IsNullOrEmpty(Model.Content))
+        {
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>Base64 Encoded String</legend>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Algorithm</th>
+                                <th scope="col">Hash as binary string</th>
+                                <th scope="col">Hash as Base64 string</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">MD5</th>
+                                <td class="hard-word-wrap">@Model.MD5String</td>
+                                <td class="hard-word-wrap">@Model.MD5Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SHA1</th>
+                                <td class="hard-word-wrap">@Model.SHA1String</td>
+                                <td class="hard-word-wrap">@Model.SHA1Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SHA256</th>
+                                <td class="hard-word-wrap">@Model.SHA256String</td>
+                                <td class="hard-word-wrap">@Model.SHA256Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SHA384</th>
+                                <td class="hard-word-wrap">@Model.SHA384String</td>
+                                <td class="hard-word-wrap">@Model.SHA384Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SHA512</th>
+                                <td class="hard-word-wrap">@Model.SHA512String</td>
+                                <td class="hard-word-wrap">@Model.SHA512Base64String</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        }
+    </div>
+    <footer class="page-navigation">
+        <p><a asp-action="@(ActionNames.Index)" asp-controller="@(ControllerNames.Home)" asp-route-returnUrl="@(Model.ReturnUrl)">Back to List of Tools</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    <partial name="@ViewNames.ValidationScriptsPartial" />
+}

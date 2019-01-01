@@ -1,0 +1,71 @@
+﻿@model ProcessingTools.Web.Models.Layout.Styles.References.ReferenceParseStyleDetailsViewModel
+@{
+    ViewData[ContextKeys.Title] = "Reference Parse Style Details";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/node_modules/codemirror/lib/codemirror.css" />
+}
+
+<section role="main" class="container">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Name)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.Name)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.Description)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Script)</dt>
+            <dd class="col-md-10"><textarea id="Script">@Html.DisplayFor(m => m.Script)</textarea></dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ReferenceXPath)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ReferenceXPath)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedOn)</dd>
+        </dl>
+        <div class="row">
+            <div class="col-md-12">
+                <a asp-action="@(ReferenceParseStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(ReferenceParseStylesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync("_DetailsScripts")
+}

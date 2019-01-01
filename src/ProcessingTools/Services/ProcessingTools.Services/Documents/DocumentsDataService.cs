@@ -1,5 +1,5 @@
 ﻿// <copyright file="DocumentsDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Documents
@@ -8,10 +8,10 @@ namespace ProcessingTools.Services.Documents
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Contracts.Documents.Documents;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Contracts.Documents.Documents;
@@ -39,9 +39,9 @@ namespace ProcessingTools.Services.Documents
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IDocumentDataModel, DocumentModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IDocumentDetailsDataModel, DocumentDetailsModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IDocumentArticleDataModel, DocumentArticleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
@@ -155,7 +155,7 @@ namespace ProcessingTools.Services.Documents
 
             if (documents == null || !documents.Any())
             {
-                return new IDocumentModel[] { };
+                return Array.Empty<IDocumentModel>();
             }
 
             var model = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
@@ -212,7 +212,7 @@ namespace ProcessingTools.Services.Documents
 
             if (documents == null || !documents.Any())
             {
-                return new IDocumentModel[] { };
+                return Array.Empty<IDocumentModel>();
             }
 
             var items = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
@@ -235,7 +235,7 @@ namespace ProcessingTools.Services.Documents
             var documents = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (documents == null || !documents.Any())
             {
-                return new IDocumentDetailsModel[] { };
+                return Array.Empty<IDocumentDetailsModel>();
             }
 
             var items = documents.Select(this.mapper.Map<IDocumentDetailsDataModel, DocumentDetailsModel>).ToArray();

@@ -1,5 +1,5 @@
 ﻿// <copyright file="Coordinate2DParser.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Geo.Coordinates
@@ -7,9 +7,9 @@ namespace ProcessingTools.Processors.Geo.Coordinates
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Processors.Models.Contracts.Geo.Coordinates;
@@ -55,7 +55,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
             try
             {
                 {
-                    var integerUtmCoordinatesMatchPatterns = new string[]
+                    var integerUtmCoordinatesMatchPatterns = new[]
                     {
                     // UTM WGS84: 33T 455.4683
                     @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\s*\Z",
@@ -85,7 +85,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
                         .RegexReplace("[–—−-]", "-")
                         .RegexReplace(@"\s*:\s*", " ");
 
-                    var simpleSphericalCoordinatesPatterns = new string[]
+                    var simpleSphericalCoordinatesPatterns = new[]
                     {
                     // 29.5423°, -86.1926°  /see test case/
                     @"\A(?<latitude>\-?[0-9]+\.[0-9]+\W?)[;,\s]+(?<longitude>\-?[0-9]+\.[0-9]+\W?)\Z",

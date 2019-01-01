@@ -1,16 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
-    using Ninject;
-    using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Factory;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
-    using Ninject.Modules;
+    using global::Ninject;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Extensions.Interception.Infrastructure.Language;
+    using global::Ninject.Modules;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Interceptors;
-    using ProcessingTools.Loggers.Loggers;
-    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.Services.IO;
 
     /// <summary>
@@ -27,9 +23,6 @@
                  .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
-                .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
-
             this.Bind(b =>
             {
                 b.From(typeof(ProcessingTools.Net.NetConnector).Assembly)
@@ -37,48 +30,10 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Geo.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind<ICoordinateFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
-            //this.Bind<ICoordinate2DParser>()
-            //    .To<Coordinate2DParser>()
-            //    .WhenInjectedInto<CoordinateParser>()
-            //    .Intercept()
-            //    .With<LogParsedCoordinatesInterceptor>();
-
             // Custom hard-coded bindings
-            this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ConsoleLogger>()
-                .InSingletonScope();
-
-            this.Bind<ProcessingTools.Contracts.IReporter>()
-                .To<Reporters.LogReporter>();
-
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
                 .InSingletonScope();
-
-            this.Bind<ProcessingTools.Data.Contracts.Cache.IValidationCacheDataRepository>()
-                ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
-                .To<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>();
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>()
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.CacheMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.CacheMongoDatabaseName);
 
             this.Bind<Func<Type, ITaggerCommand>>()
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
@@ -98,8 +53,8 @@
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Services.Contracts.IO.IFileNameGenerator>()
-                .To<ProcessingTools.Services.IO.SequentialFileNameGenerator>()
+            this.Bind<ProcessingTools.Services.Contracts.Files.IFileNameGenerator>()
+                .To<ProcessingTools.Services.Files.FileNameGeneratorWithSequentialNumbering>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()

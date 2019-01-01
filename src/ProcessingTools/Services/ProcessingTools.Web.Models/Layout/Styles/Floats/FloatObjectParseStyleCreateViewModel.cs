@@ -1,12 +1,12 @@
 ﻿// <copyright file="FloatObjectParseStyleCreateViewModel.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Web.Models.Layout.Styles.Floats
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>

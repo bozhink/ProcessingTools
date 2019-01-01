@@ -1,12 +1,12 @@
 ﻿// <copyright file="JatsArticleMetaModel.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Harvesters.Models.Meta
 {
     using System;
-    using ProcessingTools.Attributes;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Harvesters.Models.Contracts.Meta;
 
     /// <summary>

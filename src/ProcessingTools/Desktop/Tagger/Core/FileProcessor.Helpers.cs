@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
     public partial class FileProcessor
@@ -19,23 +19,22 @@
 
             try
             {
-                logger?.Log(message: message);
+                logger.LogDebug(message: message);
                 await action.Invoke().ConfigureAwait(false);
             }
             catch (AggregateException e)
             {
                 foreach (var exception in e.InnerExceptions)
                 {
-                    logger?.Log(exception, message: string.Empty);
-                    logger?.Log();
+                    logger.LogError(exception, string.Empty);
                 }
             }
             catch (Exception e)
             {
-                logger?.Log(e, message: string.Empty);
+                logger.LogError(e, string.Empty);
             }
 
-            logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
+            logger.LogDebug(Messages.ElapsedTimeMessageFormat, timer.Elapsed);
         }
 
         private async Task InvokeProcessor<TCommand>(XmlNode context)

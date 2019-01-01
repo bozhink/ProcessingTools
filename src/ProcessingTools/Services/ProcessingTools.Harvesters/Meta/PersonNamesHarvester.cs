@@ -1,5 +1,5 @@
 ﻿// <copyright file="PersonNamesHarvester.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Harvesters.Meta
@@ -8,7 +8,7 @@ namespace ProcessingTools.Harvesters.Meta
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Meta;
     using ProcessingTools.Harvesters.Models.Contracts.Meta;

@@ -6,22 +6,23 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Tagger.Contracts;
 
     public partial class FileProcessor : IFileProcessor
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
+        private readonly IFileNameGenerator fileNameGenerator;
         private readonly IDocumentWrapper documentWrapper;
         private readonly IDocumentManager documentManager;
-        private readonly IFileNameGenerator fileNameGenerator;
         private readonly ILogger logger;
 
         private IProgramSettings settings;
@@ -32,13 +33,13 @@
             IDocumentWrapper documentWrapper,
             IDocumentManager documentManager,
             Func<Type, ITaggerCommand> commandFactory,
-            ILogger logger)
+            ILogger<FileProcessor> logger)
         {
             this.fileNameGenerator = fileNameGenerator ?? throw new ArgumentNullException(nameof(fileNameGenerator));
             this.documentWrapper = documentWrapper ?? throw new ArgumentNullException(nameof(documentWrapper));
             this.documentManager = documentManager ?? throw new ArgumentNullException(nameof(documentManager));
             this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             this.tasks = new ConcurrentQueue<Task>();
         }
@@ -62,7 +63,7 @@
                 }
                 catch
                 {
-                    this.logger?.Log(LogType.Error, message: "One or more input files cannot be read.");
+                    this.logger.LogError("One or more input files cannot be read.");
                     return;
                 }
 
@@ -77,7 +78,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
                 throw;
             }
         }
@@ -99,19 +100,24 @@
 
             if (this.settings.MergeInputFiles)
             {
-                outputFileName = this.fileNameGenerator.Generate(
-                    Path.Combine(Path.GetDirectoryName(inputFileName), FileConstants.DefaultBundleXmlFileName),
-                    FileConstants.MaximalLengthOfGeneratedNewFileName,
-                    true);
+                string directoryName = Path.GetDirectoryName(inputFileName);
+                string bundleFullFileName = Path.Combine(directoryName, FileConstants.DefaultBundleXmlFileName);
+                string newFileName = this.fileNameGenerator.GetNewFileName(bundleFullFileName);
+
+                outputFileName = Path.Combine(directoryName, newFileName);
             }
             else
             {
-                outputFileName = numberOfFileNames > 1 ?
-                    this.settings.FileNames[1] :
-                    this.fileNameGenerator.Generate(
-                        inputFileName,
-                        FileConstants.MaximalLengthOfGeneratedNewFileName,
-                        true);
+                if (numberOfFileNames > 1)
+                {
+                    outputFileName = this.settings.FileNames[1];
+                }
+                else
+                {
+                    string directoryName = Path.GetDirectoryName(inputFileName);
+                    string newFileName = this.fileNameGenerator.GetNewFileName(inputFileName);
+                    outputFileName = Path.Combine(directoryName, newFileName);
+                }
 
                 inputFileNameMessage = inputFileName;
             }
@@ -121,7 +127,7 @@
                 outputFileNameMessage = outputFileName;
             }
 
-            this.logger?.Log(
+            this.logger?.LogDebug(
                 Messages.InputOutputFileNamesMessageFormat,
                 inputFileNameMessage,
                 outputFileNameMessage);
@@ -331,8 +337,6 @@
             {
                 await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeCommand>(context).ConfigureAwait(false);
             }
-
-            return;
         }
 
         private Task WriteOutputFile(IDocument document) => InvokeProcessor(

@@ -1,5 +1,5 @@
 ﻿// <copyright file="AbstractMultiDataServiceAsync{TEntity,TModel,TFilter}.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Abstractions
@@ -9,10 +9,10 @@ namespace ProcessingTools.Services.Abstractions
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts;

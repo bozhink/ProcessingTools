@@ -1,5 +1,5 @@
 ﻿// <copyright file="Abbreviation.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Models.Abbreviations
@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Models.Abbreviations
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Models.Contracts.Abbreviations;
 

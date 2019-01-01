@@ -1,5 +1,5 @@
 ﻿// <copyright file="ReferencesTagger.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.References
@@ -123,7 +123,7 @@ namespace ProcessingTools.Processors.References
                                         @"<xref ref-type=""bibr"" rid=""" + id + @""">" + Regex.Escape(l.Value) + "</xref>");
                                 }
                             }
-                            catch (Exception e)
+                            catch
                             {
                                 // skip
                             }
@@ -163,7 +163,7 @@ namespace ProcessingTools.Processors.References
                                         @"<xref ref-type=""bibr"" rid=""" + id + @""">" + l.Value + "</xref>");
                                 }
                             }
-                            catch (Exception e)
+                            catch
                             {
                                 // skip
                             }

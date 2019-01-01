@@ -1,5 +1,5 @@
 ﻿// <copyright file="AbbreviationXmlModel.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Harvesters.Models.Abbreviations
@@ -7,7 +7,7 @@ namespace ProcessingTools.Harvesters.Models.Abbreviations
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
 
     /// <summary>

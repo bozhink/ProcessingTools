@@ -6,11 +6,11 @@
     using NUnit.Framework;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Code.Tests;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Tests.Library;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand))]
     public class ParseTreatmentMetaWithCatalogueOfLifeCommandUnitTests
@@ -35,7 +35,7 @@
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_WithValidParser_ShouldCorrectlyInitializeObject()
         {
             // Arrange + Act
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithCatalogueOfLifeCommand(parserMock.Object);
 
             // Assert
@@ -59,7 +59,7 @@
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithCatalogueOfLifeCommand(parserMock.Object);
 
             // Act + Assert
@@ -76,7 +76,7 @@
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithCatalogueOfLifeCommand(parserMock.Object);
             var settingsMock = new Mock<ICommandSettings>();
 
@@ -96,7 +96,7 @@
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithCatalogueOfLifeCommand(parserMock.Object);
             var documentMock = new Mock<IDocument>();
 
@@ -116,7 +116,7 @@
         public async Task ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithValidDocumentAndValidProgramSettings_ShouldCallParserWithCorrectParameter()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithCatalogueOfLifeCommand(parserMock.Object);
             var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();

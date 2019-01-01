@@ -1,5 +1,5 @@
 ﻿// <copyright file="AltitudesDataMiner.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 /*
@@ -34,7 +34,7 @@ namespace ProcessingTools.Data.Miners.Geo
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var patterns = new string[]
+            var patterns = new[]
             {
                 DistancePattern + @"\W{0,4}(?i)(?:a\W*s\W*l|a\W*l\W*t)[^\w<>]?",
                 @"(?:(?i)a\W*l\W*t(?:[^\w<>]{0,3}c\W*a)?)[^\w<>]{0,5}" + DistancePattern

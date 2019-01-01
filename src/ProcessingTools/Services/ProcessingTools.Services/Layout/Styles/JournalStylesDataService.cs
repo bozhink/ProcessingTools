@@ -1,5 +1,5 @@
 ﻿// <copyright file="JournalStylesDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Layout.Styles
@@ -8,13 +8,13 @@ namespace ProcessingTools.Services.Layout.Styles
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;
@@ -48,27 +48,27 @@ namespace ProcessingTools.Services.Layout.Styles
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IJournalStyleDataModel, JournalStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
 
                 c.CreateMap<IFloatObjectParseStyleDataModel, FloatObjectParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IFloatObjectParseStyleDataModel, IFloatObjectParseStyleModel>().As<FloatObjectParseStyleModel>();
 
                 c.CreateMap<IFloatObjectTagStyleDataModel, FloatObjectTagStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IFloatObjectTagStyleDataModel, IFloatObjectTagStyleModel>().As<FloatObjectTagStyleModel>();
 
                 c.CreateMap<IReferenceParseStyleDataModel, ReferenceParseStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IReferenceParseStyleDataModel, IReferenceParseStyleModel>().As<ReferenceParseStyleModel>();
 
                 c.CreateMap<IReferenceTagStyleDataModel, ReferenceTagStyleModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IReferenceTagStyleDataModel, IReferenceTagStyleModel>().As<ReferenceTagStyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
@@ -187,7 +187,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return new IJournalStyleModel[] { };
+                return Array.Empty<IJournalStyleModel>();
             }
 
             var items = journalStyles.Select(this.mapper.Map<IJournalStyleDataModel, JournalStyleModel>).ToArray();
@@ -211,7 +211,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return new IJournalDetailsStyleModel[] { };
+                return Array.Empty<IJournalDetailsStyleModel>();
             }
 
             var items = journalStyles.Select(this.mapper.Map<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>).ToArray();

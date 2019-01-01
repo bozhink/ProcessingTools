@@ -1,5 +1,5 @@
 ﻿// <copyright file="EnumerableXmlHarvesterCore{TModel}.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Harvesters
@@ -43,7 +43,7 @@ namespace ProcessingTools.Harvesters
             var document = this.contextWrapper.Create(context);
             if (document == null)
             {
-                return Task.FromResult(new TModel[] { });
+                return Task.FromResult(Array.Empty<TModel>());
             }
 
             return Task.Run(() => action(document));
@@ -65,7 +65,7 @@ namespace ProcessingTools.Harvesters
             var document = this.contextWrapper.Create(context);
             if (document == null)
             {
-                return Task.FromResult(new TModel[] { });
+                return Task.FromResult(Array.Empty<TModel>());
             }
 
             return actionAsync(document);

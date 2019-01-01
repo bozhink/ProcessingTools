@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Articles.IArticleBaseModel" Collapsed="true">
+    <Position X="26.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Articles\IArticleBaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Articles.IArticleDetailsModel" Collapsed="true">
+    <Position X="26.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Articles\IArticleDetailsModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Articles.IArticleInsertModel" Collapsed="true">
+    <Position X="24.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Articles\IArticleInsertModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Articles.IArticleJournalModel" Collapsed="true">
+    <Position X="36.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Articles\IArticleJournalModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Articles.IArticleMetaModel" Collapsed="true">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEAAAAAAAAAAEAkAAAAEECACAAAAAAAAFMAAAAAAAA=</HashCode>
+      <FileName>Documents\Articles\IArticleMetaModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Articles.IArticleModel" Collapsed="true">
+    <Position X="26.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Articles\IArticleModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Articles.IArticleUpdateModel" Collapsed="true">
+    <Position X="29" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Articles\IArticleUpdateModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentArticleModel" Collapsed="true">
+    <Position X="35" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAADAAAEAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentArticleModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentBaseModel" Collapsed="true">
+    <Position X="26.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAIAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentBaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentContentModel" Collapsed="true">
+    <Position X="36.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentContentModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentDetailsModel" Collapsed="true">
+    <Position X="26.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentDetailsModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentFileModel" Collapsed="true">
+    <Position X="31.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentFileModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentInsertModel" Collapsed="true">
+    <Position X="29" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentInsertModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentModel" Collapsed="true">
+    <Position X="26.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Documents.IDocumentUpdateModel" Collapsed="true">
+    <Position X="24.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Documents\IDocumentUpdateModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Files.IFileBaseModel" Collapsed="true">
+    <Position X="16.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Files\IFileBaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Files.IFileDetailsModel" Collapsed="true">
+    <Position X="16.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Files\IFileDetailsModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Files.IFileInsertModel" Collapsed="true">
+    <Position X="14.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Files\IFileInsertModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Files.IFileModel" Collapsed="true">
+    <Position X="16.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Files\IFileModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Files.IFileUpdateModel" Collapsed="true">
+    <Position X="19" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Files\IFileUpdateModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Journals.IJournalBaseModel" Collapsed="true">
+    <Position X="21.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Journals\IJournalBaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Journals.IJournalDetailsModel" Collapsed="true">
+    <Position X="21.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Journals\IJournalDetailsModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Journals.IJournalInsertModel" Collapsed="true">
+    <Position X="19.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Journals\IJournalInsertModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Journals.IJournalMetaModel">
+    <Position X="21.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAEAAQAAAABAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Journals\IJournalMetaModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Journals.IJournalModel" Collapsed="true">
+    <Position X="21.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Journals\IJournalModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Journals.IJournalPublisherModel" Collapsed="true">
+    <Position X="31.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Journals\IJournalPublisherModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Journals.IJournalUpdateModel" Collapsed="true">
+    <Position X="24" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Journals\IJournalUpdateModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Publishers.IPublisherBaseModel" Collapsed="true">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Publishers\IPublisherBaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Publishers.IPublisherDetailsModel" Collapsed="true">
+    <Position X="16.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Publishers\IPublisherDetailsModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Publishers.IPublisherInsertModel" Collapsed="true">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Publishers\IPublisherInsertModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Publishers.IPublisherMetaModel" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Publishers\IPublisherMetaModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Publishers.IPublisherModel" Collapsed="true">
+    <Position X="16.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Publishers\IPublisherModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.Publishers.IPublisherUpdateModel" Collapsed="true">
+    <Position X="19" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Publishers\IPublisherUpdateModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IAddress" Collapsed="true">
+    <Position X="31.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAABAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IAddress.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IAddressable" Collapsed="true">
+    <Position X="15.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IAddressable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IAffiliation" Collapsed="true">
+    <Position X="33.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IAffiliation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IArticle" Collapsed="true">
+    <Position X="35" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAEAAAAAEAAKAAIBAAAACAFIQAAAAAAA=</HashCode>
+      <FileName>Documents\IArticle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IAuthor" Collapsed="true">
+    <Position X="31.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IAuthor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IDocument" Collapsed="true">
+    <Position X="33.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACEAAAAABAAAAAAAAAAAAAAAAAAABAAgAFQAABAAgA=</HashCode>
+      <FileName>Documents\IDocument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IFile" Collapsed="true">
+    <Position X="33.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAABAAAAEQAABAAAA=</HashCode>
+      <FileName>Documents\IFile.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IInstitution" Collapsed="true">
+    <Position X="16.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IInstitution.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IJournal" Collapsed="true">
+    <Position X="35" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAQABAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IJournal.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IJournalMeta" Collapsed="true">
+    <Position X="36.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIAAAAAIEAAAAAAAAAAEAAAIAAACAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Documents\IJournalMeta.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Models.Contracts.Documents.IPublisher" Collapsed="true">
+    <Position X="14.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IPublisher.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

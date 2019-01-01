@@ -1,6 +1,8 @@
-﻿@model ProcessingTools.Models.Contracts.ViewModels.IPagingViewModel
+﻿@model ProcessingTools.Models.Contracts.ViewModels.IPagedViewModel
 
 @{
+    var actionName = ViewContext.RouteData.Values[RouteKeys.Action];
+    
     if (Model.LastPage > 0)
     {
         const long MaximalNumberOfPagesToShow = 5;
@@ -32,13 +34,8 @@
             <ul class="pagination">
                 @if (Model.CurrentPage > Model.FirstPage)
                 {
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.FirstPage, n = Model.NumberOfItemsPerPage }, new { id = "page-first", @class = "glyphicon glyphicon-fast-backward" })
-                    </li>
-
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.PreviousPage, n = Model.NumberOfItemsPerPage }, new { id = "page-prev", @class = "glyphicon glyphicon-backward" })
-                    </li>
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.FirstPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-first" class="glyphicon glyphicon-fast-backward"></a></li>
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.PreviousPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-prev" class="glyphicon glyphicon-backward"></a></li>
                 }
 
                 @if (leftPage > Model.FirstPage)
@@ -48,9 +45,7 @@
 
                 @for (long i = leftPage; i <= rightPage; ++i)
                 {
-                    <li class="@((i == Model.CurrentPage) ? "active" : null)">
-                        @Html.ActionLink((i + 1).ToString(), Model.ActionName, new { p = i, n = Model.NumberOfItemsPerPage })
-                    </li>
+                    <li class="@((i == Model.CurrentPage) ? "active" : null)"><a asp-action="@(actionName)" asp-route-p="@(i)" asp-route-n="@(Model.NumberOfItemsPerPage)">@(i + 1)</a></li>
                 }
 
                 @if (rightPage < Model.LastPage)
@@ -60,13 +55,8 @@
 
                 @if (Model.CurrentPage < Model.LastPage)
                 {
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.NextPage, n = Model.NumberOfItemsPerPage }, new { id = "page-next", @class = "glyphicon glyphicon-forward" })
-                    </li>
-
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.LastPage, n = Model.NumberOfItemsPerPage }, new { id = "page-last", @class = "glyphicon glyphicon-fast-forward" })
-                    </li>
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.NextPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-next" class="glyphicon glyphicon-forward"></a></li>
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.LastPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-last" class="glyphicon glyphicon-fast-forward"></a></li>
                 }
             </ul>
         </nav>

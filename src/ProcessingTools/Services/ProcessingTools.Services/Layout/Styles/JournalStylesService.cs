@@ -1,12 +1,12 @@
 // <copyright file="JournalStylesService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Layout.Styles
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;

@@ -1,13 +1,13 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using Abstractions.Seeders;
-    using Contracts.Seeders;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Data.Seed.Bio.Taxonomy;
+    using ProcessingTools.DbSeeder.Abstractions.Seeders;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
 
-    public class BiotaxonomyMongoDbSeeder : GenericDbSeeder<IBiotaxonomyMongoDatabaseInitializer, IBiotaxonomyMongoDatabaseSeeder>, IBiotaxonomyMongoDbSeeder
+    public class BiotaxonomyMongoDbSeeder : GenericDbSeeder<IBiotaxonomyDatabaseInitializer, IBiotaxonomyMongoDatabaseSeeder>, IBiotaxonomyMongoDbSeeder
     {
-        public BiotaxonomyMongoDbSeeder(IBiotaxonomyMongoDatabaseInitializer initializer, IBiotaxonomyMongoDatabaseSeeder seeder)
+        public BiotaxonomyMongoDbSeeder(IBiotaxonomyDatabaseInitializer initializer, IBiotaxonomyMongoDatabaseSeeder seeder)
             : base(initializer, seeder)
         {
         }

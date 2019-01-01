@@ -1,89 +1,110 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
+﻿// <copyright file="BioTaxonomyBlackListDataController.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
     using System;
-    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using ProcessingTools.Web.Models.Bio.Taxonomy.BlackList;
+    using ProcessingTools.Web.Services.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Bio-taxonomy blacklist data controller.
+    /// </summary>
+    [Route("api/v1/data/bio/taxonomy/blacklist/[action]")]
+    [ApiController]
     [Authorize]
-    public class BioTaxonomyBlackListDataController : Controller
+    public class BioTaxonomyBlackListDataController : ControllerBase
     {
-        private readonly IBlackListDataService dataService;
-        private readonly IBlackListSearchService searchService;
+        private readonly IBlackListWebService service;
+        private readonly ILogger logger;
 
-        public BioTaxonomyBlackListDataController(
-            IBlackListDataService dataService,
-            IBlackListSearchService searchService)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BioTaxonomyBlackListDataController"/> class.
+        /// </summary>
+        /// <param name="service">Web service.</param>
+        /// <param name="logger">Logger.</param>
+        public BioTaxonomyBlackListDataController(IBlackListWebService service, ILogger<BioTaxonomyBlackListDataController> logger)
         {
-            this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
-            this.searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// Inserts items.
+        /// </summary>
+        /// <param name="model">Request model.</param>
+        /// <returns>Task of result.</returns>
         [HttpPost]
-        public async Task<JsonResult> Post(BlackListItemsRequestModel viewModel)
+        public async Task<IActionResult> Insert([FromBody] ItemsRequestModel model)
         {
-            if (viewModel == null || !this.ModelState.IsValid)
+            if (model == null)
             {
-                throw new ArgumentException(nameof(viewModel));
+                return this.BadRequest();
             }
 
-            var taxa = viewModel.Items
-                .Select(i => i.Content)
-                .ToArray();
+            try
+            {
+                var response = await this.service.InsertAsync(model).ConfigureAwait(false);
 
-            await this.dataService.AddAsync(taxa);
+                if (response == null)
+                {
+                    return this.StatusCode((int)HttpStatusCode.UnprocessableEntity);
+                }
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.GetEmptyJsonResult();
+                return this.Ok();
+            }
+            catch (ArgumentException ex)
+            {
+                this.logger.LogError(ex, "Insert Bad Request");
+                return this.BadRequest();
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, "Insert Internal Server Error");
+                return this.StatusCode((int)HttpStatusCode.InternalServerError);
+            }
         }
 
+        /// <summary>
+        /// Search by search string.
+        /// </summary>
+        /// <param name="model">Request model.</param>
+        /// <returns>Task of result.</returns>
         [HttpPost]
-        public async Task<JsonResult> Search(string searchString)
+        public async Task<IActionResult> Search([FromBody] SearchRequestModel model)
         {
-            if (string.IsNullOrWhiteSpace(searchString))
+            if (string.IsNullOrWhiteSpace(model?.SearchString))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.GetEmptyJsonResult();
+                return this.BadRequest();
             }
 
-            var foundItems = (await this.searchService.SearchAsync(searchString))
-                .ToList();
-
-            if (foundItems.Count < 1)
+            try
             {
-                this.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                return this.GetEmptyJsonResult();
+                var response = await this.service.SearchAsync(model).ConfigureAwait(false);
+
+                if (response == null)
+                {
+                    this.NotFound();
+                }
+
+                return this.Ok(response);
             }
-
-            var responseItems = foundItems.Select(i => new BlackListItemResponseModel
+            catch (ArgumentException ex)
             {
-                Content = i
-            });
-
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.GetJsonResult(
-                new SearchResposeModel(
-                    responseItems.ToArray()));
-        }
-
-        private JsonResult GetEmptyJsonResult()
-        {
-            return this.GetJsonResult(null);
-        }
-
-        private JsonResult GetJsonResult(object data)
-        {
-            return new JsonResult
+                this.logger.LogError(ex, "Search Bad Request");
+                return this.BadRequest();
+            }
+            catch (Exception ex)
             {
-                ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.Encoding,
-                JsonRequestBehavior = JsonRequestBehavior.DenyGet,
-                Data = data
-            };
+                this.logger.LogError(ex, "Search Internal Server Error");
+                return this.StatusCode((int)HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

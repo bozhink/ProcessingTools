@@ -1,5 +1,5 @@
 ﻿// <copyright file="HigherTaxaParserWithDataService.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Bio.Taxonomy
@@ -9,10 +9,9 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
+    using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
@@ -25,7 +24,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     /// <typeparam name="TService">Type of the data service.</typeparam>
     /// <typeparam name="T">Type of the data service model.</typeparam>
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
-        where TService : class, ITaxaRankResolver
+        where TService : class, ITaxonRankResolver
         where T : ITaxonRank
     {
         private readonly TService service;
@@ -36,7 +35,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         /// </summary>
         /// <param name="service">Taxon rank data service.</param>
         /// <param name="logger">Logger.</param>
-        public HigherTaxaParserWithDataService(TService service, ILogger logger)
+        public HigherTaxaParserWithDataService(TService service, ILogger<HigherTaxaParserWithDataService<TService, T>> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -109,13 +108,11 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
         private void ProcessMultipleRanksCase(string scientificName, IEnumerable<string> ranks)
         {
-            this.logger?.Log(LogType.Warning, "{0} --> Multiple matches.", scientificName);
+            this.logger.LogWarning("{0} --> Multiple matches.", scientificName);
             foreach (var rank in ranks)
             {
-                this.logger?.Log("{0} --> {1}", scientificName, rank);
+                this.logger.LogDebug("{0} --> {1}", scientificName, rank);
             }
-
-            this.logger?.Log();
         }
 
         private void ProcessSingleRankCase(string scientificName, IEnumerable<string> ranks, XmlNode context)
@@ -138,7 +135,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
         private void ProcessZeroRanksCase(string scientificName)
         {
-            this.logger?.Log(LogType.Warning, "{0} --> No match or error.\n", scientificName);
+            this.logger.LogWarning("{0} --> No match or error.\n", scientificName);
         }
     }
 }

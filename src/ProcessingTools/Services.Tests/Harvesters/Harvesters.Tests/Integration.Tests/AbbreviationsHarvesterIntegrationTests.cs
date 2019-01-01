@@ -1,13 +1,12 @@
 ﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
 {
-    using System;
     using System.IO;
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Common.Serialization;
-    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Common.Code.Serialization;
+    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Harvesters;
     using ProcessingTools.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Contracts.Abbreviations;
@@ -19,6 +18,11 @@
     [TestClass]
     public class AbbreviationsHarvesterIntegrationTests
     {
+        /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
         [Timeout(5000)]
         public void AbbreviationsHarvester_HarvestSampleDocument_ShouldSucceed()
@@ -26,7 +30,7 @@
             // Arrange
             const int ExpectedNumberOfAbbreviations = 22;
 
-            var xmlFileName = Path.Combine(AppSettings.SampleFiles, "article-with-abbrev.xml");
+            var xmlFileName = Path.Combine("Samples", "article -with-abbrev.xml");
             XmlDocument document = new XmlDocument
             {
                 PreserveWhitespace = true
@@ -55,7 +59,7 @@
             var abbreviations = harvester.HarvestAsync(document.DocumentElement).Result?.ToList();
 
             Assert.IsNotNull(abbreviations);
-            abbreviations?.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.Value, i.ContentType, i.Definition));
+            abbreviations?.ForEach(i => this.TestContext.WriteLine("{0} | {1} | {2}", i.Value, i.ContentType, i.Definition));
 
             Assert.AreEqual(ExpectedNumberOfAbbreviations, abbreviations?.Count);
         }

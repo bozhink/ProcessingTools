@@ -1,5 +1,5 @@
 ﻿// <copyright file="BlackListEntity.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Models.Data.Bio.Taxonomy
@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Models.Data.Bio.Taxonomy
     /// <summary>
     /// Black list entity.
     /// </summary>
-    public class BlackListEntity : IBlackListEntity
+    public class BlackListEntity : IBlackListItem
     {
         /// <inheritdoc/>
         public string Content { get; set; }

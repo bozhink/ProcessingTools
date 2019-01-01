@@ -1,5 +1,5 @@
 ﻿// <copyright file="ParseHigherTaxaWithCatalogueOfLifeCommand.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Commands.Tagger
@@ -15,14 +15,14 @@ namespace ProcessingTools.Commands.Tagger
     /// Parse higher taxa with Catalogue of Life command.
     /// </summary>
     [System.ComponentModel.Description("Parse higher taxa using CoL.")]
-    public class ParseHigherTaxaWithCatalogueOfLifeCommand : ParseHigherTaxaCommand<ICatalogueOfLifeTaxaRankResolver>, IParseHigherTaxaWithCatalogueOfLifeCommand
+    public class ParseHigherTaxaWithCatalogueOfLifeCommand : ParseHigherTaxaCommand<ICatalogueOfLifeTaxonRankResolver>, IParseHigherTaxaWithCatalogueOfLifeCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseHigherTaxaWithCatalogueOfLifeCommand"/> class.
         /// </summary>
         /// <param name="parser">Instance of <see cref="IHigherTaxaParserWithDataService{ICatalogueOfLifeTaxaRankResolver,ITaxonRank}"/>.</param>
         /// <param name="reporter">Instance of <see cref="IReporter"/>.</param>
-        public ParseHigherTaxaWithCatalogueOfLifeCommand(IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolver, ITaxonRank> parser, IReporter reporter)
+        public ParseHigherTaxaWithCatalogueOfLifeCommand(IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxonRankResolver, ITaxonRank> parser, IReporter reporter)
             : base(parser, reporter)
         {
         }

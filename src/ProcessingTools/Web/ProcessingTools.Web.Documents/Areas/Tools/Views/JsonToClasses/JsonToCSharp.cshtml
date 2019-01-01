@@ -1,0 +1,34 @@
+
+@{
+    ViewData[ContextKeys.Title] = "JSON to C#";
+}
+
+
+
+<section role="main" class="container">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <textarea id="text-content" placeholder="Your text here" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <button id="btn-generate" class="btn btn-outline-secondary">Generate</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <textarea id="csharp-classes" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    <footer class="page-navigation">
+        <p><a asp-action="@(ActionNames.Index)" asp-controller="@(ControllerNames.Home)">Back to List of Tools</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    <script src="~/build/dist/js/apps/json-to-csharp.min.js"></script>
+}

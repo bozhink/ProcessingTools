@@ -1,5 +1,5 @@
 ﻿// <copyright file="LowerTaxaTagger.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Bio.Taxonomy
@@ -11,8 +11,9 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Meta;
@@ -50,12 +51,12 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         /// <param name="blacklist">Taxonomic black list.</param>
         /// <param name="contentTagger">Content tagger.</param>
         /// <param name="logger">Logger.</param>
-        public LowerTaxaTagger(IPersonNamesHarvester personNamesHarvester, IBlackList blacklist, IContentTagger contentTagger, ILogger logger)
+        public LowerTaxaTagger(IPersonNamesHarvester personNamesHarvester, IBlackList blacklist, IContentTagger contentTagger, ILogger<LowerTaxaTagger> logger)
         {
             this.personNamesHarvester = personNamesHarvester ?? throw new ArgumentNullException(nameof(personNamesHarvester));
             this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <inheritdoc/>
@@ -137,7 +138,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 .AsParallel()
                 .ForAll(this.TagInfrarankTaxaSync);
 
-            var xpaths = new string[]
+            var xpaths = new[]
             {
                 SequentialStructureXPath,
                 ".//value[.//tn[@type='lower']]"
@@ -175,7 +176,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
             replace = Regex.Replace(replace, @" (?:<(?:[a-z-]+)?authority></(?:[a-z-]+)?authority>|<(?:[a-z-]+)?authority\s*/>)", string.Empty);
 
-            await node.SafeReplaceInnerXml(replace, this.logger).ConfigureAwait(false);
+            await node.SafeReplaceInnerXmlAsync(replace).ConfigureAwait(false);
         }
 
         // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
@@ -189,7 +190,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 result,
                 @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
 
-            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
+            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
         }
 
         // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
@@ -230,7 +231,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1");
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
+            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
         }
 
         // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
@@ -275,7 +276,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 }
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
+            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
         }
 
         // Tag bare infraspecific citations in text
@@ -294,7 +295,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                     @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
+            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
         }
 
         // Tag bare infraspecific citations in text
@@ -313,7 +314,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                     @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
+            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
         }
 
         private bool IsMatchingLowerTaxaFormat(string textToCheck)
@@ -380,7 +381,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 }
                 catch (Exception e)
                 {
-                    this.logger.Log(e, "‘{0}’", item);
+                    this.logger.LogError(e, "‘{0}’", item);
                 }
             }
         }
@@ -388,7 +389,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         private string GetSystemTaxonNameString(XmlNode node)
         {
             const string SpeciesFormatString = " {0}";
-            var specificTaxonNamePartsRanks = new string[]
+            var specificTaxonNamePartsRanks = new[]
             {
                 "species",
                 "subspecies",
@@ -417,7 +418,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
             string taxonNameFullString = stringBuilder.ToString().Trim();
 
-            this.logger?.Log("{0} -> {1}", nameof(this.GetSystemTaxonNameString), taxonNameFullString);
+            this.logger.LogDebug("{0} -> {1}", nameof(this.GetSystemTaxonNameString), taxonNameFullString);
 
             return taxonNameFullString;
         }

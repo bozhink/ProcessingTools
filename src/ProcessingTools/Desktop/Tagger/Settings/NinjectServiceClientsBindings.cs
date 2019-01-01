@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using Ninject.Extensions.Conventions;
-    using Ninject.Modules;
+    using global::Ninject.Extensions.Conventions;
+    using global::Ninject.Modules;
 
     /// <summary>
     /// NinjectModule to bind external service client objects.

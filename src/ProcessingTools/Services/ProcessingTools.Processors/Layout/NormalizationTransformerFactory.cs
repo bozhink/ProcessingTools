@@ -1,12 +1,12 @@
 ﻿// <copyright file="NormalizationTransformerFactory.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Layout
 {
     using System;
+    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Layout;
 
     /// <summary>

@@ -1,5 +1,5 @@
 ﻿// <copyright file="MediatypesParser.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Processors.Floats
@@ -11,12 +11,12 @@ namespace ProcessingTools.Processors.Processors.Floats
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Floats;
     using ProcessingTools.Processors.Models.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
-    using ProcessingTools.Services.Contracts.Mediatypes;
+    using ProcessingTools.Services.Contracts.Files;
 
     /// <summary>
     /// Mediatypes parser.
@@ -117,13 +117,18 @@ namespace ProcessingTools.Processors.Processors.Floats
                 FileExtension = extension
             };
 
-            var response = (await this.mediatypesResolver.ResolveMediatypeAsync(extension).ConfigureAwait(false))
-                .FirstOrDefault();
+            string fileName = $"sample.{extension}";
+            var mediatypes = await this.mediatypesResolver.ResolveMediatypeAsync(fileName).ConfigureAwait(false);
 
-            if (response != null)
+            if (mediatypes != null && mediatypes.Count > 0)
             {
-                result.MimeType = response.Mimetype;
-                result.MimeSubtype = response.Mimesubtype;
+                var mediatype = mediatypes[0];
+
+                if (mediatype != null)
+                {
+                    result.MimeType = mediatype.MimeType;
+                    result.MimeSubtype = mediatype.MimeSubtype;
+                }
             }
 
             return result;

@@ -1,5 +1,5 @@
 ﻿// <copyright file="SpeciesPartsPrefixesResolver.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Bio.Taxonomy
@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Common.Enumerations;
 
     /// <summary>
     /// Species parts prefixes resolver.
@@ -17,7 +17,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         /// <summary>
         /// Gets species parts ranks.
         /// </summary>
-        public static readonly IDictionary<string, SpeciesPartType> SpeciesPartsRanks = new Dictionary<string, SpeciesPartType>
+        public static readonly IImmutableDictionary<string, SpeciesPartType> SpeciesPartsRanks = new Dictionary<string, SpeciesPartType>
         {
                 { "?", SpeciesPartType.Species },
                 { "a", SpeciesPartType.Aberration },

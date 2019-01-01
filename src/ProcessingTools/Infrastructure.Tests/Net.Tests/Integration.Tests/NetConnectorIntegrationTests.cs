@@ -162,8 +162,8 @@
             Assert.IsTrue(response.Contains(category), "Response should contain the category.");
             Assert.IsTrue(response.Contains(price.ToString()), "Response should contain the price.");
 
-            Console.WriteLine(content);
-            Console.WriteLine(response);
+            TestContext.WriteLine(content);
+            TestContext.WriteLine(response);
         }
 
         [TestCase("/api/products/add", "Tomato Soup - 1", "Groceries", 1)]

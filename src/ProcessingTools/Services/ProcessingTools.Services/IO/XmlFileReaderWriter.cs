@@ -1,5 +1,5 @@
 ﻿// <copyright file="XmlFileReaderWriter.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.IO
@@ -9,8 +9,8 @@ namespace ProcessingTools.Services.IO
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
