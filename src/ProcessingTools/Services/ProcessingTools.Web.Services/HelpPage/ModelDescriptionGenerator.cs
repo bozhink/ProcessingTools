@@ -12,12 +12,11 @@ namespace ProcessingTools.Web.Services.HelpPage
     using System.Globalization;
     using System.Reflection;
     using System.Runtime.Serialization;
-    using System.Web.Http;
-    using System.Web.Http.Description;
     using System.Xml.Serialization;
+    using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
-    using ProcessingTools.Contracts.Web.Services.HelpPage;
     using ProcessingTools.Web.Models.HelpPage.ModelDescriptions;
+    using ProcessingTools.Web.Services.Contracts.HelpPage;
 
     /// <summary>
     /// Generates model descriptions for given types.
@@ -110,15 +109,15 @@ namespace ProcessingTools.Web.Services.HelpPage
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelDescriptionGenerator"/> class.
         /// </summary>
-        /// <param name="config"><see cref="HttpConfiguration"/> object</param>
-        public ModelDescriptionGenerator(HttpConfiguration config)
+        /// <param name="factory">Factory for <see cref="IModelDocumentationProvider"/> object</param>
+        public ModelDescriptionGenerator(Func<IModelDocumentationProvider> factory)
         {
-            if (config == null)
+            if (factory == null)
             {
-                throw new ArgumentNullException(nameof(config));
+                throw new ArgumentNullException(nameof(factory));
             }
 
-            this.documentationProvider = new Lazy<IModelDocumentationProvider>(() => config.Services.GetDocumentationProvider() as IModelDocumentationProvider);
+            this.documentationProvider = new Lazy<IModelDocumentationProvider>(factory);
 
             this.GeneratedModels = new Dictionary<string, ModelDescription>(StringComparer.OrdinalIgnoreCase);
         }

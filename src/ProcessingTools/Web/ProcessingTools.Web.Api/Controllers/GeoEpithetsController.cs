@@ -17,7 +17,7 @@
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IGeoEpithet, GeoEpithetResponseModel>();
-                c.CreateMap<GeoEpithetRequestModel, IGeoEpithet>().ConvertUsing(g => g);
+                c.CreateMap<GeoEpithetRequestModel, IGeoEpithet>().As<GeoEpithetResponseModel>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();

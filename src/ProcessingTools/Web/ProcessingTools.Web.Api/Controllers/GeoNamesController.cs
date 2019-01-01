@@ -17,7 +17,7 @@
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IGeoName, GeoNameResponseModel>();
-                c.CreateMap<GeoNameRequestModel, IGeoName>().ConvertUsing(g => g);
+                c.CreateMap<GeoNameRequestModel, IGeoName>().As<GeoNameResponseModel>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();

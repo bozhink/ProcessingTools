@@ -362,8 +362,16 @@
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj">
-      <Project>{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A}</Project>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj">
+      <Project>{9582c59e-2f00-4c2a-b96c-dc306306ef64}</Project>
+      <Name>ProcessingTools.Web.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj">
+      <Project>{d1a8546a-af73-470f-9836-f78314211f59}</Project>
+      <Name>ProcessingTools.Web.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj">
+      <Project>{62c040d1-dd91-40f8-9c89-9271c34b364a}</Project>
       <Name>ProcessingTools.Web.Services</Name>
     </ProjectReference>
   </ItemGroup>
