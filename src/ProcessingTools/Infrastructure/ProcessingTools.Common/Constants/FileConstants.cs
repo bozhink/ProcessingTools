@@ -10,11 +10,6 @@ namespace ProcessingTools.Common.Constants
     public static class FileConstants
     {
         /// <summary>
-        /// Maximal length of generated file name.
-        /// </summary>
-        public const int MaximalLengthOfGeneratedNewFileName = 50;
-
-        /// <summary>
         /// Default bundle XML file name.
         /// </summary>
         public const string DefaultBundleXmlFileName = "bundle.xml";
@@ -23,6 +18,16 @@ namespace ProcessingTools.Common.Constants
         /// DLL file extension.
         /// </summary>
         public const string DllFileExtension = "dll";
+
+        /// <summary>
+        /// Maximal length of generated file name.
+        /// </summary>
+        public const int MaximalLengthOfGeneratedNewFileName = 50;
+
+        /// <summary>
+        /// Maximal number of iterations to generate new file name.
+        /// </summary>
+        public const int MaximalNumberOfIterationsToGenerateNewFileName = 200;
 
         /// <summary>
         /// XML file extension.

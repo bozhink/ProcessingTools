@@ -13,15 +13,16 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Tagger.Contracts;
 
     public partial class FileProcessor : IFileProcessor
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
+        private readonly IFileNameGenerator fileNameGenerator;
         private readonly IDocumentWrapper documentWrapper;
         private readonly IDocumentManager documentManager;
-        private readonly IFileNameGenerator fileNameGenerator;
         private readonly ILogger logger;
 
         private IProgramSettings settings;
@@ -99,19 +100,24 @@
 
             if (this.settings.MergeInputFiles)
             {
-                outputFileName = this.fileNameGenerator.Generate(
-                    Path.Combine(Path.GetDirectoryName(inputFileName), FileConstants.DefaultBundleXmlFileName),
-                    FileConstants.MaximalLengthOfGeneratedNewFileName,
-                    true);
+                string directoryName = Path.GetDirectoryName(inputFileName);
+                string bundleFullFileName = Path.Combine(directoryName, FileConstants.DefaultBundleXmlFileName);
+                string newFileName = this.fileNameGenerator.GetNewFileName(bundleFullFileName);
+
+                outputFileName = Path.Combine(directoryName, newFileName);
             }
             else
             {
-                outputFileName = numberOfFileNames > 1 ?
-                    this.settings.FileNames[1] :
-                    this.fileNameGenerator.Generate(
-                        inputFileName,
-                        FileConstants.MaximalLengthOfGeneratedNewFileName,
-                        true);
+                if (numberOfFileNames > 1)
+                {
+                    outputFileName = this.settings.FileNames[1];
+                }
+                else
+                {
+                    string directoryName = Path.GetDirectoryName(inputFileName);
+                    string newFileName = this.fileNameGenerator.GetNewFileName(inputFileName);
+                    outputFileName = Path.Combine(directoryName, newFileName);
+                }
 
                 inputFileNameMessage = inputFileName;
             }

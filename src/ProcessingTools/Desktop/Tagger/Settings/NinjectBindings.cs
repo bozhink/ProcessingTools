@@ -53,8 +53,8 @@
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Services.Contracts.IO.IFileNameGenerator>()
-                .To<ProcessingTools.Services.IO.SequentialFileNameGenerator>()
+            this.Bind<ProcessingTools.Services.Contracts.Files.IFileNameGenerator>()
+                .To<ProcessingTools.Services.Files.FileNameGeneratorWithSequentialNumbering>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
