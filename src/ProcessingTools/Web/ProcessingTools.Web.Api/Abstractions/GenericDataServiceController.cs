@@ -70,7 +70,7 @@
         {
             if (string.IsNullOrWhiteSpace(sortKey))
             {
-                return this.BadRequest(Messages.InvalidValueForSortKeyQueryParameterMessage);
+                return this.BadRequest("Invalid value for sort key query parameter");
             }
 
             try

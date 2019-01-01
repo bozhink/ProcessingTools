@@ -9,8 +9,6 @@ namespace ProcessingTools.Web.Api
     {
         public void Configuration(IAppBuilder app)
         {
-            this.ConfigureAuth(app);
-
             var httpConfig = new HttpConfiguration();
             httpConfig.EnableCors();
             WebApiConfig.Register(httpConfig);

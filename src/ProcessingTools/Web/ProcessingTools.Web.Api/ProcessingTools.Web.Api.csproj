@@ -286,15 +286,9 @@
   <ItemGroup>
     <Compile Include="Abstractions\AbstractTaxonClassificationResolverController.cs" />
     <Compile Include="Abstractions\GenericDataServiceController.cs" />
-    <Compile Include="App_Start\ApplicationUserManager.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AphiaController.cs" />
     <Compile Include="Controllers\CoLController.cs" />
     <Compile Include="Controllers\EnvoTermsController.cs" />
@@ -310,11 +304,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -323,8 +312,6 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="bower.json" />
-    <Content Include="package.json" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -334,13 +321,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -395,12 +375,6 @@
       <Project>{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A}</Project>
       <Name>ProcessingTools.Web.Services</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.9.1.7622\analyzers\Google.Protobuf.dll" />
