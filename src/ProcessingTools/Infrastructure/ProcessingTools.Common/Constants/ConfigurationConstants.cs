@@ -65,6 +65,11 @@ namespace ProcessingTools.Common.Constants
         public const string HistoryMongoDBDatabaseName = "DatabaseNames:HistoryMongoDB";
 
         /// <summary>
+        /// Files root directory.
+        /// </summary>
+        public const string FilesRootDirectory = "Files:RootDirectory";
+
+        /// <summary>
         /// Format HTML-to-XML XSL file path.
         /// </summary>
         public const string FormatHtmlToXmlXslFilePath = "StaticFiles:FormatHtmlToXmlXslFilePath";
