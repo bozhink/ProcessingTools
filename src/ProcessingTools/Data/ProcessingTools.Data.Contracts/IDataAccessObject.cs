@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Contracts
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Data access object.
+    /// Data access object (DAO).
     /// </summary>
     public interface IDataAccessObject
     {
