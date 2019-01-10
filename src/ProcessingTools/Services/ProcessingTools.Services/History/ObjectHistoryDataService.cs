@@ -48,8 +48,8 @@ namespace ProcessingTools.Services.History
 
             var settings = new JsonSerializerSettings
             {
-                MaxDepth = 5,
-                Formatting = Formatting.None
+                Formatting = Formatting.None,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
 
             var objectType = source.GetType();
