@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Net
 {
     using System;
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
@@ -37,16 +38,21 @@
 
             httpRequestResponse.RequestMessage = GetPostJsonHttpRequestMessage(requestUri, model);
 
-            httpRequestResponse.RequestIn = DateTime.Now;
-
-            httpRequestResponse.ResponseMessage = await client.SendAsync(httpRequestResponse.RequestMessage).ConfigureAwait(false);
-
-            httpRequestResponse.ResponseOut = DateTime.Now;
-
             if (httpRequestResponse.RequestMessage?.Content != null)
             {
                 httpRequestResponse.RequestContent = await httpRequestResponse.RequestMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
+
+            httpRequestResponse.RequestIn = DateTime.UtcNow;
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+            // Trust all certificates
+            ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+
+            httpRequestResponse.ResponseMessage = await client.SendAsync(httpRequestResponse.RequestMessage).ConfigureAwait(false);
+
+            httpRequestResponse.ResponseOut = DateTime.UtcNow;
 
             if (httpRequestResponse.ResponseMessage?.Content != null)
             {
@@ -64,8 +70,8 @@
                 this.ResponseMessage = null;
                 this.RequestContent = null;
                 this.ResponseContent = null;
-                this.RequestIn = DateTime.Now;
-                this.ResponseOut = DateTime.Now;
+                this.RequestIn = DateTime.UtcNow;
+                this.ResponseOut = DateTime.UtcNow;
             }
 
             public HttpRequestResponseModel(HttpRequestResponseModel model)
