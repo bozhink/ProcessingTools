@@ -69,6 +69,7 @@
     "merge-stream": "^1.0.1",
     "minimatch": "^3.0.4",
     "mocha": "^5.2.0",
+    "natives": "^1.1.6",
     "node-sass": "^4.11.0",
     "npm": "^6.5.0",
     "plugin-error": "^1.0.1",
