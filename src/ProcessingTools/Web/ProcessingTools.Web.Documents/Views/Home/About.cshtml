@@ -22,7 +22,15 @@
         <hr />
         <footer>
             <p><strong>APPLICATION_NAME:</strong> @hostingEnvironment.ApplicationName</p>
+            <p><strong>APPLICATION_VERSION:</strong> @(typeof(Startup).Assembly.GetName().Version)</p>
             <p><strong>ASPNETCORE_ENVIRONMENT:</strong> @hostingEnvironment.EnvironmentName</p>
+        </footer>
+    }
+    else
+    {
+        <hr />
+        <footer>
+            <p><small>ProcessingTools.Web.Documents v@(typeof(Startup).Assembly.GetName().Version)</small></p>
         </footer>
     }
 </section>
