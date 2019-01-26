@@ -17,71 +17,76 @@
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
-@section Styles {
-    <link rel="stylesheet" href="~/node_modules/toastr/build/toastr.min.css" />
-    <link rel="stylesheet" href="~/build/dist/css/document-edit.min.css" />
+@if (Model == null)
+{
+    <div class="alert alert-danger">Invalid view model.</div>
+}
+else
+{
+    @section Styles {
+        <link rel="stylesheet" href="~/node_modules/toastr/build/toastr.min.css" />
+        <link rel="stylesheet" href="~/build/dist/css/document-edit.min.css" />
     }
 
-
-
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1 text-muted">
-                    <span>Document</span>
-                    <span class="fa fa-chevron-down"></span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="save-button" title="Save document">Save</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="refresh-button" title="Refresh document content">Refresh</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" title="Download XML">Download</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" asp-action="@(DocumentsController.HtmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank" title="Open document's HTML for edit">Preview HTML</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" asp-action="@DocumentsController.IndexActionName" asp-route-articleId="@Model.ArticleId" title="Leave document and return to article">Close</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <section role="main" class="col-md-9 col-lg-10 ml-sm-auto px-4">
-            <div id="editor-container"></div>
-            <nav class="navbar navbar-light bg-light navbar-expand-md pl-0">
-                <form class="form-inline my-lg-0 mr-auto">
-                    <div class="input-group mr-2">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="language-picker" id="language-picker-label">Language</label>
-                        </div>
-                        <select class="form-control language-picker" name="language-picker" id="language-picker" aria-label="Language Picker" aria-describedby="language-picker-label"></select>
-                    </div>
-                    <div class="input-group ml-2">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="theme-picker" id="theme-picker-label">Theme</label>
-                        </div>
-                        <select class="form-control theme-picker" name="theme-picker" id="theme-picker" aria-label="Theme picker" aria-describedby="theme-picker-label"></select>
-                    </div>
-                </form>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1 text-muted">
+                        <span>Document</span>
+                        <span class="fa fa-chevron-down"></span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="save-button" title="Save document">Save</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="refresh-button" title="Refresh document content">Refresh</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" title="Download XML">Download</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" asp-action="@(DocumentsController.HtmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank" title="Open document's HTML for edit">Preview HTML</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" asp-action="@DocumentsController.IndexActionName" asp-route-articleId="@Model.ArticleId" title="Leave document and return to article">Close</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
-        </section>
+            <section role="main" class="col-md-9 col-lg-10 ml-sm-auto px-4">
+                <div id="editor-container"></div>
+                <nav class="navbar navbar-light bg-light navbar-expand-md pl-0">
+                    <form class="form-inline my-lg-0 mr-auto">
+                        <div class="input-group mr-2">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="language-picker" id="language-picker-label">Language</label>
+                            </div>
+                            <select class="form-control language-picker" name="language-picker" id="language-picker" aria-label="Language Picker" aria-describedby="language-picker-label"></select>
+                        </div>
+                        <div class="input-group ml-2">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="theme-picker" id="theme-picker-label">Theme</label>
+                            </div>
+                            <select class="form-control theme-picker" name="theme-picker" id="theme-picker" aria-label="Theme picker" aria-describedby="theme-picker-label"></select>
+                        </div>
+                    </form>
+                </nav>
+            </section>
+        </div>
     </div>
-</div>
 
-<aside style="display: none;">
-    <a id="get-link" asp-action="@DocumentsController.GetXmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
-    <a id="save-link" asp-action="@DocumentsController.SetXmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
-</aside>
+    <aside style="display: none;">
+        <a id="get-link" asp-action="@DocumentsController.GetXmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+        <a id="save-link" asp-action="@DocumentsController.SetXmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+    </aside>
 
-@section Scripts {
-    <script src="~/node_modules/crypto-js/crypto-js.js"></script>
-    <script src="~/node_modules/crypto-js/sha1.js"></script>
-    <script src="~/node_modules/toastr/build/toastr.min.js"></script>
-    <script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
-    <script src="~/build/dist/js/apps/document-edit.min.js"></script>
+    @section Scripts {
+        <script src="~/node_modules/crypto-js/crypto-js.js"></script>
+        <script src="~/node_modules/crypto-js/sha1.js"></script>
+        <script src="~/node_modules/toastr/build/toastr.min.js"></script>
+        <script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
+        <script src="~/build/dist/js/apps/document-edit.min.js"></script>
+    }
 }

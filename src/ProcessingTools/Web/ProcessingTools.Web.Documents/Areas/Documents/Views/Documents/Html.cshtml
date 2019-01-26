@@ -15,114 +15,119 @@
     }
 }
 
-@section Styles {
-    <link rel="stylesheet" href="~/node_modules/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="~/node_modules/toastr/build/toastr.min.css" />
-    <link rel="stylesheet" href="~/build/dist/css/document-preview.min.css" />
-}
-
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1 text-muted">
-                    <span>Document</span>
-                    <span class="fa fa-chevron-down"></span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="save-button" title="Save document">Save</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="refresh-button" title="Refresh document content">Refresh</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" title="Download XML">Download</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" asp-action="@(DocumentsController.XmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank"  title="Open document's XML for edit">Edit XML</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" asp-action="@DocumentsController.IndexActionName" asp-route-articleId="@Model.ArticleId" title="Leave document and return to article">Close</a>
-                    </li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Manual actions</span>
-                    <span class="fa fa-chevron-down"></span>
-                </h6>
-                <ul class="nav flex-column manual-actions">
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="move-floating-objects">Move floating objects</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="tag-figures-citations-menu-item">Figures citations</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="tag-tables-citations-menu-item">Tables citations</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="tag-suppl-materials-citations-menu-item">Suppl. materials citations</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="tag-appendices-citations-menu-item">Appendices citations</a>
-                    </li>
-                    <li class="nav-item ml-2">
-                        <a class="nav-link" id="tag-bibliographic-citations-menu-item">Bibliographic citations</a>
-                    </li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Window</span>
-                    <span class="fa fa-chevron-down"></span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" id="window-map">Map</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="window-coordinates">Coordinates</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <section role="main" class="col-md-9 col-lg-10 ml-sm-auto px-4">
-            <article id="article" contextmenu="supermenu"></article>
-        </section>
-    </div>
-</div>
-
-
-
-<aside id="aside-main-box"></aside>
-<aside style="display: none;">
-    <a id="get-link" asp-action="@DocumentsController.GetHtmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
-    <a id="save-link" asp-action="@DocumentsController.SetHtmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
-</aside>
-
-@section Scripts {
-    <script src="~/node_modules/crypto-js/crypto-js.js"></script>
-    <script src="~/node_modules/crypto-js/sha1.js"></script>
-    <script src="~/node_modules/handlebars/dist/handlebars.js"></script>
-    <script src="~/node_modules/interactjs/dist/interact.js"></script>
-    <script src="~/node_modules/toastr/build/toastr.min.js"></script>
-    <script src="~/build/dist/js/apps/document-preview.min.js"></script>
+@if (Model == null)
+{
+    <div class="alert alert-danger">Invalid view model.</div>
 }
+else
+{
+    @section Styles {
+        <link rel="stylesheet" href="~/node_modules/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" href="~/node_modules/toastr/build/toastr.min.css" />
+        <link rel="stylesheet" href="~/build/dist/css/document-preview.min.css" />
+    }
 
-<menu type="context" id="supermenu">
-    <menuitem id="menu-item-refresh" label="Refresh"></menuitem>
-    <menu id="menu-item-bibliography" label="Bibliography">
-        @{
-            var tags = new[] { "article-title", "annotation", "chapter-title", "comment", "collab", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "given-names", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "person-group", "publisher-loc", "publisher-name", "page-range", "part-title", "patent", "prefix", "pub-id", "role", "source", "season", "series", "size", "std", "string-name", "sub", "sup", "suffix", "supplement", "surname", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
-            foreach (var tag in tags)
-            {
-                <menuitem id="menu-item-@tag" label="@tag"></menuitem>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1 text-muted">
+                        <span>Document</span>
+                        <span class="fa fa-chevron-down"></span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="save-button" title="Save document">Save</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="refresh-button" title="Refresh document content">Refresh</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" title="Download XML">Download</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" asp-action="@DocumentsController.XmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" asp-route-returnUrl="@Model.ReturnUrl" target="_blank"  title="Open document's XML for edit">Edit XML</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" asp-action="@DocumentsController.IndexActionName" asp-route-articleId="@Model.ArticleId" title="Leave document and return to article">Close</a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Manual actions</span>
+                        <span class="fa fa-chevron-down"></span>
+                    </h6>
+                    <ul class="nav flex-column manual-actions">
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="move-floating-objects">Move floating objects</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="tag-figures-citations-menu-item">Figures citations</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="tag-tables-citations-menu-item">Tables citations</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="tag-suppl-materials-citations-menu-item">Suppl. materials citations</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="tag-appendices-citations-menu-item">Appendices citations</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" id="tag-bibliographic-citations-menu-item">Bibliographic citations</a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Window</span>
+                        <span class="fa fa-chevron-down"></span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" id="window-map">Map</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="window-coordinates">Coordinates</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <section role="main" class="col-md-9 col-lg-10 ml-sm-auto px-4">
+                <article id="article" contextmenu="supermenu"></article>
+            </section>
+        </div>
+    </div>
+
+    <aside id="aside-main-box"></aside>
+    <aside style="display: none;">
+        <a id="get-link" asp-action="@DocumentsController.GetHtmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+        <a id="save-link" asp-action="@DocumentsController.SetHtmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+    </aside>
+
+    @section Scripts {
+        <script src="~/node_modules/crypto-js/crypto-js.js"></script>
+        <script src="~/node_modules/crypto-js/sha1.js"></script>
+        <script src="~/node_modules/handlebars/dist/handlebars.js"></script>
+        <script src="~/node_modules/interactjs/dist/interact.js"></script>
+        <script src="~/node_modules/toastr/build/toastr.min.js"></script>
+        <script src="~/build/dist/js/apps/document-preview.min.js"></script>
+    }
+
+    <menu type="context" id="supermenu">
+        <menuitem id="menu-item-refresh" label="Refresh"></menuitem>
+        <menu id="menu-item-bibliography" label="Bibliography">
+            @{
+                var tags = new[] { "article-title", "annotation", "chapter-title", "comment", "collab", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "given-names", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "person-group", "publisher-loc", "publisher-name", "page-range", "part-title", "patent", "prefix", "pub-id", "role", "source", "season", "series", "size", "std", "string-name", "sub", "sup", "suffix", "supplement", "surname", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
+                foreach (var tag in tags)
+                {
+                    <menuitem id="menu-item-@tag" label="@tag"></menuitem>
+                }
             }
-        }
+        </menu>
+        <menuitem id="menu-item-tag-link" label="Tag link"></menuitem>
+        <menuitem id="menu-item-tag-coordinate" label="Tag coordinate"></menuitem>
     </menu>
-    <menuitem id="menu-item-tag-link" label="Tag link"></menuitem>
-    <menuitem id="menu-item-tag-coordinate" label="Tag coordinate"></menuitem>
-</menu>
+}
