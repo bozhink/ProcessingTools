@@ -1,6 +1,6 @@
 {
   "name": "processingtools.web.documents",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Document management system",
   "main": "index.js",
   "scripts": {

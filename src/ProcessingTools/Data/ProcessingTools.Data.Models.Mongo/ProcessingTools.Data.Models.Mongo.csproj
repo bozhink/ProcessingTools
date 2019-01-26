@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
     <Description>Data models for MongoDB implementation</Description>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>

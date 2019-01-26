@@ -12,7 +12,7 @@
     <!-- see https://github.com/aspnet/Razor/issues/2406 -->
     <_RazorBuildServerPipeName>razor-issues-2406</_RazorBuildServerPipeName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Bozhin Karaivanov</Authors>
     <Company>ProcessingTools</Company>
     <Description>Documents application</Description>
