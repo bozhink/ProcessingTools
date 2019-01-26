@@ -36,7 +36,7 @@ namespace ProcessingTools.Web.Documents.Settings
             {
                 options.Cookie.Name = "921532ED76434551BB453EA4ABFC8DA8";
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.ExpireTimeSpan = TimeSpan.FromHours(10);
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
                 options.AccessDeniedPath = "/Account/AccessDenied";
