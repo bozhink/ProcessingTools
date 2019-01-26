@@ -43,7 +43,7 @@
                         <a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" title="Download XML">Download</a>
                     </li>
                     <li class="nav-item ml-2">
-                        <a class="nav-link" asp-action="@(DocumentsController.HtmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank" title="Open document's HTML for edit">Edit HTML</a>
+                        <a class="nav-link" asp-action="@(DocumentsController.HtmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank" title="Open document's HTML for edit">Preview HTML</a>
                     </li>
                     <li class="nav-item ml-2">
                         <a class="nav-link" asp-action="@DocumentsController.IndexActionName" asp-route-articleId="@Model.ArticleId" title="Leave document and return to article">Close</a>
