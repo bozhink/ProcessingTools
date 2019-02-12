@@ -2,6 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+// See https://www.datacamp.com/community/tutorials/fuzzy-string-python
 namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Strings
 {
     using NUnit.Framework;
@@ -24,6 +25,7 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Strings
         [TestCase("aunt", "ant", 1)]
         [TestCase("Sam", "Samantha", 5)]
         [TestCase("flomax", "volmax", 3)]
+        [TestCase("Apple Inc.", "apple Inc", 2)]
         public void LevenshteinDistance_ComputeWithValidStrings_ShouldWork(string string1, string string2, int distance)
         {
             // Act
@@ -43,6 +45,7 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Strings
         [TestCase("aunt", "ant")]
         [TestCase("Sam", "Samantha")]
         [TestCase("flomax", "volmax")]
+        [TestCase("Apple Inc.", "apple Inc")]
         public void LevenshteinDistance_Compute_IsCommutative(string leftString, string rightString)
         {
             // Act
@@ -51,6 +54,28 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Strings
 
             // Assert
             Assert.AreEqual(distanceLeft, distanceRight);
+        }
+
+        /// <summary>
+        /// Liechtenstein distance compute similarity ration should work.
+        /// </summary>
+        /// <param name="leftString">Left string to compare.</param>
+        /// <param name="rightString">Right string to compare.</param>
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(LevenshteinDistance), Description = "LevenshteinDistance.ComputeSimilarityRatio is should work.")]
+        [TestCase("ant", "ant")]
+        [TestCase("aunt", "ant")]
+        [TestCase("Sam", "Samantha")]
+        [TestCase("flomax", "volmax")]
+        [TestCase("Apple Inc.", "apple Inc")]
+        public void LevenshteinDistance_ComputeSimilarityRatio_ShouldWork(string leftString, string rightString)
+        {
+            // Act
+            var distance = LevenshteinDistance.ComputeSimilarityRatio(leftString, rightString);
+
+            TestContext.WriteLine("lev('{0}', '{1}') = {2}", leftString, rightString, distance);
+
+            // Assert
+            Assert.IsTrue(distance > 0);
         }
     }
 }

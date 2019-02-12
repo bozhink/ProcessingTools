@@ -2,6 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+// See https://www.datacamp.com/community/tutorials/fuzzy-string-python
 namespace ProcessingTools.Common.Code.Strings
 {
     using System;
@@ -101,6 +102,25 @@ namespace ProcessingTools.Common.Code.Strings
             }
 
             return SimilarityType.Similar;
+        }
+
+        /// <summary>
+        /// Computes the similarity ratio of two strings.
+        /// </summary>
+        /// <param name="string1">Left string to be compared.</param>
+        /// <param name="string2">Right string to be compared.</param>
+        /// <returns>Double value of the similarity ratio.</returns>
+        public static double ComputeSimilarityRatio(string string1, string string2)
+        {
+            var totalLength = (string1?.Length ?? 0) + (string2?.Length ?? 0);
+            if (totalLength < 1)
+            {
+                return 0;
+            }
+
+            var distance = Compute(string1, string2);
+
+            return (totalLength - distance) * 1.0 / totalLength;
         }
     }
 }
