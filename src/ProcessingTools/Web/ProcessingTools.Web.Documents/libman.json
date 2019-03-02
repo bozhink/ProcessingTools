@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.3.1",
+      "destination": "wwwroot/lib/jquery"
+    },
+    {
+      "library": "jquery-validate@1.19.0",
+      "destination": "wwwroot/lib/jquery-validate"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui"
+    },
+    {
+      "library": "popper.js@1.14.7",
+      "destination": "wwwroot/lib/popper.js/"
+    },
+    {
+      "library": "twitter-bootstrap@4.3.1",
+      "destination": "wwwroot/lib/bootstrap"
+    },
+    {
+      "library": "font-awesome@5.7.2",
+      "destination": "wwwroot/lib/font-awesome"
+    },
+    {
+      "library": "toastr.js@2.1.4",
+      "destination": "wwwroot/lib/toastr"
+    },
+    {
+      "library": "leaflet@1.4.0",
+      "destination": "wwwroot/lib/leaflet"
+    },
+    {
+      "library": "knockout@3.5.0",
+      "destination": "wwwroot/lib/knockout"
+    },
+    {
+      "library": "knockout-validation@2.0.3",
+      "destination": "wwwroot/lib/knockout-validation"
+    },
+    {
+      "library": "codemirror@5.44.0",
+      "destination": "wwwroot/lib/codemirror"
+    }
+  ]
+}
