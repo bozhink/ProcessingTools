@@ -24,3 +24,5 @@ exclude_paths:
   - spec/**/*
   - benchmarks/**/*
   - '*.min.js'
+  - '*.min.css'
+  - wwwroot/lib/*
