@@ -8,11 +8,10 @@
     "test": "mocha -r ts-node/register ClientApp/tests/**/*.ts && mocha ClientApp/tests/**/*.js",
     "test-kitten": "mocha -R nyan ClientApp/tests/**/*.js",
     "watch-tests": "gulp watch-tests",
-    "build": "gulp build && gulp link1 && gulp link2 && gulp link3 && gulp link4 && gulp link5 && gulp link6",
-    "rebuild": "gulp clean && gulp build && gulp link1 && gulp link2 && gulp link3 && gulp link4 && gulp link5 && gulp link6",
+    "build": "gulp build && gulp link:code:apps",
+    "rebuild": "gulp clean && gulp build && gulp link:code:apps",
     "clean-compile": "gulp clean && gulp build",
     "compile": "gulp build",
-    "link": "gulp link1 && gulp link2 && gulp link3 && gulp link4 && gulp link5 && gulp link6",
     "min": "gulp min",
     "watch": "gulp watch"
   },
@@ -47,6 +46,7 @@
     "chai": "^4.2.0",
     "clean-css": "^4.2.1",
     "del": "^4.0.0",
+    "eslint": "^5.15.1",
     "fancy-log": "^1.3.3",
     "fibers": "^3.1.1",
     "gulp": "^4.0.0",
@@ -76,7 +76,6 @@
     "typescript": "^3.3.3333",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.29.6",
-    "webpack-dev-server": "^3.2.1",
     "webpack-stream": "^5.2.1"
   },
   "dependencies": {

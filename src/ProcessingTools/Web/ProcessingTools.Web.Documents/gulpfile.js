@@ -59,10 +59,7 @@ var path = require("path");
 var pump = require("pump");
 var webpackStream = require("webpack-stream");
 var webpack = require("webpack");
-var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config");
-var named = require("vinyl-named");
-
 var Fiber = require("fibers");
 var sass = require("gulp-sass");
 sass.compiler = require("node-sass");
@@ -79,7 +76,7 @@ function getBundles(regexPattern) {
     });
 }
 
-function bundleconfigProcessJavaScript() {
+function bundleconfigProcessJavaScript(done) {
     var tasks = getBundles(regex.js).map(function (bundle) {
         return gulp.src(bundle.inputFiles, {
                 base: "."
@@ -91,10 +88,10 @@ function bundleconfigProcessJavaScript() {
             .pipe(uglify())
             .pipe(gulp.dest("."));
     });
-    return merge(tasks);
+    return merge(tasks).end(done);
 }
 
-function bundleconfigProcessCss() {
+function bundleconfigProcessCss(done) {
     var tasks = getBundles(regex.css).map(function (bundle) {
         return gulp.src(bundle.inputFiles, {
                 base: "."
@@ -106,10 +103,10 @@ function bundleconfigProcessCss() {
             .pipe(cssmin())
             .pipe(gulp.dest("."));
     });
-    return merge(tasks);
+    return merge(tasks).end(done);
 }
 
-function bundleconfigProcessHtml() {
+function bundleconfigProcessHtml(done) {
     var tasks = getBundles(regex.html).map(function (bundle) {
         return gulp.src(bundle.inputFiles, {
                 base: "."
@@ -125,7 +122,7 @@ function bundleconfigProcessHtml() {
             }))
             .pipe(gulp.dest("."));
     });
-    return merge(tasks);
+    return merge(tasks).end(done);
 }
 
 function bundleconfigWatch() {
@@ -254,6 +251,9 @@ function compileJavaScript() {
         .pipe(debug({
             title: "compileJavaScript"
         }))
+        .pipe(rename(p => {
+            p.dirname = path.relative(JS_SRC_PATH, p.dirname);
+        }))
         .pipe(gulp.dest(path.join(JS_OUT_PATH)));
 }
 
@@ -263,7 +263,11 @@ function compileTypeScript() {
             title: "compileTypeScript"
         }))
         .pipe(tsProject())
-        .js.pipe(gulp.dest(path.join(JS_OUT_PATH)));
+        .js
+        .pipe(rename(p => {
+            p.dirname = path.relative(TS_SRC_PATH, p.dirname);
+        }))
+        .pipe(gulp.dest(path.join(JS_OUT_PATH)));
 }
 
 function copyCode() {
@@ -329,20 +333,20 @@ var regex = {
 /**
  * min
  */
-
-gulp.task("min:js", bundleconfigProcessJavaScript);
-gulp.task("min:css", bundleconfigProcessCss);
-gulp.task("min:html", bundleconfigProcessHtml);
-gulp.task("min", ["min:js", "min:css", "min:html"]);
+gulp.task("min:js", gulp.series(bundleconfigProcessJavaScript));
+gulp.task("min:css", gulp.series(bundleconfigProcessCss));
+gulp.task("min:html", gulp.series(bundleconfigProcessHtml));
+gulp.task("min", gulp.parallel("min:js", "min:css", "min:html"));
 
 /**
  * clean
  */
-gulp.task("clean:bundle", cleanBundle);
-gulp.task("clean:build", cleanBuild);
-gulp.task("clean", ["clean:bundle", "clean:build"]);
+gulp.task("clean", gulp.series(
+    cleanBundle,
+    cleanBuild
+));
 
-gulp.task("watch", bundleconfigWatch);
+gulp.task("watch", gulp.series(bundleconfigWatch));
 
 /**
  * *************************************************************
@@ -351,10 +355,10 @@ gulp.task("watch", bundleconfigWatch);
  * 
  * *************************************************************
  */
-
-gulp.task("compile:templates:copy", copyTemplates);
-gulp.task("compile:templates:copy:min", copyAndMinifyTemplates);
-gulp.task("build:templates", ["compile:templates:copy", "compile:templates:copy:min"]);
+gulp.task("build:templates", gulp.series(
+    copyTemplates,
+    copyAndMinifyTemplates
+));
 
 /**
  * *************************************************************
@@ -364,20 +368,20 @@ gulp.task("build:templates", ["compile:templates:copy", "compile:templates:copy:
  * *************************************************************
  */
 
-gulp.task("compile:styles:css", compileCss);
-gulp.task("compile:styles:css:min", compileAndMinifyCss);
-gulp.task("compile:styles:sass", compileSass);
-gulp.task("compile:styles:sass:min", compileAndMinifySass);
-gulp.task("compile:styles:less", compileLess);
-gulp.task("compile:styles:less:min", compileAndMinifyLess);
-gulp.task("build:styles", [
-    "compile:styles:less",
-    "compile:styles:less:min",
-    "compile:styles:sass",
-    "compile:styles:sass:min",
-    "compile:styles:css",
-    "compile:styles:css:min"
-]);
+gulp.task("compile:styles", gulp.parallel(
+    compileCss,
+    compileSass,
+    compileLess
+));
+gulp.task("compile:styles:min", gulp.parallel(
+    compileAndMinifyCss,
+    compileAndMinifySass,
+    compileAndMinifyLess
+));
+gulp.task("build:styles", gulp.series(
+    "compile:styles",
+    "compile:styles:min"
+));
 
 /**
  * *************************************************************
@@ -387,10 +391,12 @@ gulp.task("build:styles", [
  * *************************************************************
  */
 
-gulp.task("webpack", function (callback) {
-    webpack({
+gulp.task("webpack", gulp.series(function (callback) {
+    var wp = webpack({
         // configuration
-    }, function (error, stats) {
+    });
+
+    wp.run(function (error, stats) {
         if (error) {
             throw new PluginError("webpack", error);
         }
@@ -404,95 +410,69 @@ gulp.task("webpack", function (callback) {
             callback();
         }
     });
-});
-
-gulp.task("webpack-dev-server", function (callback) {
-    var compiler = webpack({
-        // configuration
-    });
-
-    new WebpackDevServer(compiler, {
-        // server and middleware options
-    }).listen(9090, "localhost", function (error) {
-        if (error) {
-            throw new PluginError("webpack-dev-server", error);
-        }
-
-        log("[webpack-dev-server]", "http://localhost:9090/webpack-dev-server/index.html");
-
-        // keep the server alive or continue?
-        // if (callback && typeof callback === "function") {
-        //     callback();
-        // }
-    })
-});
+}));
 
 /**
  * Compile code.
  */
-gulp.task("compile:code:js", compileJavaScript);
-gulp.task("compile:code:ts", compileTypeScript);
-gulp.task("compile:code", [
+gulp.task("compile:code:js", gulp.series(compileJavaScript));
+gulp.task("compile:code:ts", gulp.series(compileTypeScript));
+
+gulp.task("compile:code", gulp.series(
     "compile:code:js",
     "compile:code:ts"
-]);
+));
 
 /**
  * Copy code.
  */
-
-gulp.task("copy:code", ["compile:code"], copyCode);
-gulp.task("copy:code:min", ["compile:code"], copyAndMinifyCode);
+gulp.task("copy:code", gulp.series("compile:code", copyCode));
+gulp.task("copy:code:min", gulp.series("compile:code", copyAndMinifyCode));
 
 /**
  * Link apps.
  */
-// gulp.task("link:code:apps", [
-//     "link:code:app:bio:data",
-//     "link:code:app:documents:edit",
-//     "link:code:app:documents:preview",
-//     "link:code:app:index:page",
-//     "link:code:app:tools:jsonToCSharp",
-//     "link:code:app:tools:textEditor:monaco"
-// ]);
 
-// gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
-// gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true));
-// gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
-// gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
-// gulp.task("link:code:app:tools:jsonToCSharp", ["compile:code", "copy:code"], jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
-// gulp.task("link:code:app:tools:textEditor:monaco", ["compile:code", "copy:code"], jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
 
-gulp.task("link1", jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
-gulp.task("link2", jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", false));
-gulp.task("link3", jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", false));
-gulp.task("link4", jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
-gulp.task("link5", jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false));
-gulp.task("link6", jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false));
+gulp.task("pack:app:bio:data", gulp.series(jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true)));
+gulp.task("pack:app:documents:edit", gulp.series(jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true)));
+gulp.task("pack:app:documents:preview", gulp.series(jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true)));
+gulp.task("pack:app:index:page", gulp.series(jsAppFactory.createBuild("files-index.js", "files-index.min.js", true)));
+gulp.task("pack:app:tools:jsonToCSharp", gulp.series(jsAppFactory.createBuild("json-to-csharp.js", "json-to-csharp.min.js", false)));
+gulp.task("pack:app:tools:textEditor:monaco", gulp.series(jsAppFactory.createBuild("text-editor.monaco.js", "text-editor.monaco.min.js", false)));
+
+gulp.task("link:code:apps", gulp.series(
+    "copy:code",
+    "pack:app:bio:data",
+    "pack:app:documents:edit",
+    "pack:app:documents:preview",
+    "pack:app:index:page",
+    "pack:app:tools:jsonToCSharp",
+    "pack:app:tools:textEditor:monaco"
+));
 
 /**
  * Build all code.
  */
-gulp.task("build:code", [
+gulp.task("build:code", gulp.series(
     "compile:code",
     "copy:code",
-    "copy:code:min",
-    // "link:code:apps"
-]);
+    "copy:code:min"
+));
 
 /**
  * Build all.
  */
-gulp.task("build", [
+gulp.task("build", gulp.series(
     "build:code",
     "build:styles",
     "build:templates"
-]);
+));
 
 /**
  * Run tests.
  */
-gulp.task("test", function () {
+gulp.task("test", gulp.series(function () {
     return gulp.src(path.join(TESTS_PATH, "**/*.js"))
         .pipe(debug({
             title: "test"
@@ -501,13 +481,13 @@ gulp.task("test", function () {
         .on("error", function () {
             this.emit("end");
         });
-});
+}));
 
-gulp.task("watch-tests", function () {
+gulp.task("watch-tests", gulp.series(function () {
     gulp.watch(path.join(TESTS_PATH, "**/*.js"), ["test"]);
-});
+}));
 
 /**
  * Default task.
  */
-gulp.task("default", ["clean", "build", "test"]);
+gulp.task("default", gulp.series("clean", "build", "test"));
