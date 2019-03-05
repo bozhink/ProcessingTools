@@ -49,30 +49,6 @@
     {
       "library": "codemirror@5.44.0",
       "destination": "wwwroot/lib/codemirror"
-    },
-    {
-      "library": "monaco-editor@0.15.6",
-      "destination": "wwwroot/lib/monaco-editor"
-    },
-    {
-      "library": "require.js@2.3.6",
-      "destination": "wwwroot/lib/require.js"
-    },
-    {
-      "library": "handlebars.js@4.1.0",
-      "destination": "wwwroot/lib/handlebars.js"
-    },
-    {
-      "library": "interact.js@1.2.9",
-      "destination": "wwwroot/lib/interact.js"
-    },
-    {
-      "library": "signalr.js@2.4.0",
-      "destination": "wwwroot/lib/signalr.js"
-    },
-    {
-      "library": "angular.js@1.7.7",
-      "destination": "wwwroot/lib/angular.js"
     }
   ]
 }
