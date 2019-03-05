@@ -64,12 +64,6 @@ var Fiber = require("fibers");
 var sass = require("gulp-sass");
 sass.compiler = require("node-sass");
 
-function renameForMinify(path) {
-    //path.dirname += "/ciao";
-    path.basename += ".min";
-    //path.extname = ".md";
-}
-
 function getBundles(regexPattern) {
     return bundleconfig.filter(function (bundle) {
         return regexPattern.test(bundle.outputFileName);
@@ -163,8 +157,8 @@ function copyTemplates() {
         .pipe(debug({
             title: "copyTemplates"
         }))
-        .pipe(rename(path => {
-            path.extname += ".html";
+        .pipe(rename(p => {
+            p.dirname = path.relative(TEMPLATES_SRC_PATH, p.dirname);
         }))
         .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
 }
@@ -179,8 +173,9 @@ function copyAndMinifyTemplates() {
             minifyCSS: true,
             minifyJS: true
         }))
-        .pipe(rename(path => {
-            path.extname += ".min.html";
+        .pipe(rename(p => {
+            p.dirname = path.relative(TEMPLATES_SRC_PATH, p.dirname);
+            p.basename += ".min";
         }))
         .pipe(gulp.dest(path.join(TEMPLATES_DIST_PATH)));
 }
@@ -189,6 +184,9 @@ function compileCss() {
     return gulp.src(path.join(CSS_SRC_PATH, "**/*.css"))
         .pipe(debug({
             title: "compileCss"
+        }))
+        .pipe(rename(p => {
+            p.dirname = path.relative(CSS_SRC_PATH, p.dirname);
         }))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
@@ -199,7 +197,10 @@ function compileAndMinifyCss() {
             title: "compileAndMinifyCss"
         }))
         .pipe(cssmin())
-        .pipe(rename(renameForMinify))
+        .pipe(rename(p => {
+            p.dirname = path.relative(CSS_SRC_PATH, p.dirname);
+            p.basename += ".min";
+        }))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
@@ -211,6 +212,9 @@ function compileSass() {
         .pipe(sourcemaps.init())
         .pipe(sass({ fiber: Fiber }).on("error", sass.logError))
         .pipe(sourcemaps.write())
+        .pipe(rename(p => {
+            p.dirname = path.relative(SASS_SRC_PATH, p.dirname);
+        }))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
@@ -221,6 +225,10 @@ function compileAndMinifySass() {
         }))
         .pipe(sass({ fiber: Fiber, outputStyle: "compressed" }).on("error", sass.logError))
         .pipe(cssmin())
+        .pipe(rename(p => {
+            p.dirname = path.relative(SASS_SRC_PATH, p.dirname);
+            p.basename += ".min";
+        }))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
@@ -232,6 +240,9 @@ function compileLess() {
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(sourcemaps.write())
+        .pipe(rename(p => {
+            p.dirname = path.relative(LESS_SRC_PATH, p.dirname);
+        }))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
@@ -242,7 +253,10 @@ function compileAndMinifyLess() {
         }))
         .pipe(less())
         .pipe(cssmin())
-        .pipe(rename(renameForMinify))
+        .pipe(rename(p => {
+            p.dirname = path.relative(LESS_SRC_PATH, p.dirname);
+            p.basename += ".min";
+        }))
         .pipe(gulp.dest(path.join(CSS_DIST_PATH)));
 }
 
@@ -286,7 +300,10 @@ function copyAndMinifyCode() {
             title: "copyAndMinifyCode"
         }),
         uglify(),
-        rename(renameForMinify),
+        rename(p => {
+            p.dirname = path.relative(JS_OUT_PATH, p.dirname);
+            p.basename += ".min";
+        }),
         gulp.dest(JS_DIST_PATH)
     ]);
 }
