@@ -25,4 +25,4 @@ exclude_paths:
   - benchmarks/**/*
   - '*.min.js'
   - '*.min.css'
-  - wwwroot/lib/*
+  - 'wwwroot/lib/**/*'
