@@ -3,34 +3,59 @@
     "outputFileName": "wwwroot/build/dist/css/site.min.css",
     "inputFiles": [
       "ClientApp/styles/css/site.css"
-    ]
+    ],
+    "minify": { "enabled": true }
   },
   {
     "outputFileName": "wwwroot/build/dist/css/site.css",
     "inputFiles": [
       "ClientApp/styles/css/site.css"
-    ]
+    ],
+    "minify": { "enabled": false }
   },
+
   {
     "outputFileName": "wwwroot/build/dist/js/site.min.js",
     "inputFiles": [
       "ClientApp/code/js/site.js"
     ],
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    },
-    "sourceMap": false
+    "minify": { "enabled": true }
   },
   {
     "outputFileName": "wwwroot/build/dist/js/site.js",
     "inputFiles": [
       "ClientApp/code/js/site.js"
     ],
-    "minify": {
-      "enabled": false,
-      "renameLocals": false
-    },
-    "sourceMap": false
+    "minify": { "enabled": false }
+  },
+
+  {
+    "outputFileName": "wwwroot/build/dist/js/cookie-consent.min.js",
+    "inputFiles": [
+      "ClientApp/code/js/cookie-consent.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/build/dist/js/cookie-consent.js",
+    "inputFiles": [
+      "ClientApp/code/js/cookie-consent.js"
+    ],
+    "minify": { "enabled": false }
+  },
+
+  {
+    "outputFileName": "wwwroot/build/dist/js/apps/files-index.min.js",
+    "inputFiles": [
+      "ClientApp/code/js/apps/files-index.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/build/dist/js/apps/files-index.js",
+    "inputFiles": [
+      "ClientApp/code/js/apps/files-index.js"
+    ],
+    "minify": { "enabled": false }
   }
 ]
