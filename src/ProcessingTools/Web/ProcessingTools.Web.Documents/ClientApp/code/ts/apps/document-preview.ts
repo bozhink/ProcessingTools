@@ -110,7 +110,7 @@ let dataService: IDocumentContentData = new DocumentContentData(storage, keys, j
 let reporter: IReporter = new ToastrReporter(toastr);
 let documentController: DocumentController = new DocumentController(dataService, reporter);
 
-let templatesProvider: ITemplatesProvider = new HandlebarsTemplatesProvider("../../../build/dist/templates", ".handlebars.min.html");
+let templatesProvider: ITemplatesProvider = new HandlebarsTemplatesProvider("../../../build/dist/templates", ".min.handlebars");
 let coordinatesToolboxes: ICoordinatesToolboxesComponent = CoordinatesToolboxesControl(window, $, templatesProvider);
 let eventHandlersFactory: IEventHandlersFactory = new EventHandlersFactory();
 let htmlSelectionTagger: IHtmlSelectionTagger = HtmlSelectionTagger(window, document);
