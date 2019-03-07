@@ -24,7 +24,9 @@ function getBundles(re) {
 
 module.exports.processJavaScript = function (done) {
     var streams = getBundles(regex.js).map(function (bundle) {
-        var stream = gulp.src(bundle.inputFiles, { base: "." })
+        var stream = gulp.src(bundle.inputFiles, {
+                base: "."
+            })
             .pipe(debug({
                 title: "bundleconfig: Process JavaScript"
             }))
@@ -33,7 +35,7 @@ module.exports.processJavaScript = function (done) {
         if (bundle.sourceMap) {
             stream = stream.pipe(sourcemaps.init());
         }
-        
+
         if (bundle.minify && bundle.minify.enabled) {
             stream = stream.pipe(uglify());
         }
@@ -43,7 +45,7 @@ module.exports.processJavaScript = function (done) {
         }
 
         stream = stream.pipe(gulp.dest("."));
-        
+
         return stream;
     });
 
@@ -52,7 +54,9 @@ module.exports.processJavaScript = function (done) {
 
 module.exports.processCss = function (done) {
     var streams = getBundles(regex.css).map(function (bundle) {
-        var stream = gulp.src(bundle.inputFiles, { base: "." })
+        var stream = gulp.src(bundle.inputFiles, {
+                base: "."
+            })
             .pipe(debug({
                 title: "bundleconfig: Process CSS"
             }))
@@ -61,7 +65,7 @@ module.exports.processCss = function (done) {
         if (bundle.minify && bundle.minify.enabled) {
             stream = stream.pipe(cssmin());
         }
-        
+
         stream = stream.pipe(gulp.dest("."));
 
         return stream;
@@ -72,18 +76,20 @@ module.exports.processCss = function (done) {
 
 module.exports.processHtml = function (done) {
     var streams = getBundles(regex.html).map(function (bundle) {
-        var stream = gulp.src(bundle.inputFiles, { base: "." })
+        var stream = gulp.src(bundle.inputFiles, {
+                base: "."
+            })
             .pipe(debug({
                 title: "bundleconfig: Process HTML"
             }))
             .pipe(concat(bundle.outputFileName));
-        
+
         if (bundle.minify && bundle.minify.enabled) {
             stream = stream.pipe(htmlmin({
-                    collapseWhitespace: true,
-                    minifyCSS: true,
-                    minifyJS: true
-                }));
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true
+            }));
         }
 
         stream = stream.pipe(gulp.dest("."));
@@ -95,20 +101,25 @@ module.exports.processHtml = function (done) {
 }
 
 module.exports.clean = function () {
-    var files = bundleconfig.map((bundle) => bundle.outputFileName );
+    var files = bundleconfig.map((bundle) => bundle.outputFileName);
     return del(files);
 }
 
-module.exports.watch = function () {
-    getBundles(regex.js).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, gulp.series("min:js"));
-    });
+module.exports.watch = function (...tasks) {
+    return function () {
+        if (Array.isArray(tasks) && tasks.length > 2) {
 
-    getBundles(regex.css).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, gulp.series("min:css"));
-    });
+            getBundles(regex.css).forEach(function (bundle) {
+                gulp.watch(bundle.inputFiles, gulp.series(tasks[0]));
+            });
 
-    getBundles(regex.html).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, gulp.series("min:html"));
-    });
+            getBundles(regex.js).forEach(function (bundle) {
+                gulp.watch(bundle.inputFiles, gulp.series(tasks[1]));
+            });
+
+            getBundles(regex.html).forEach(function (bundle) {
+                gulp.watch(bundle.inputFiles, gulp.series(tasks[2]));
+            });
+        }
+    }
 }
