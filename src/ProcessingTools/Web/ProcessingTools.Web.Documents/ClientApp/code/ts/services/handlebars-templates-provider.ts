@@ -1,6 +1,7 @@
 import { ITemplatesProvider } from "../contracts/services";
 
 declare let $: JQueryStatic;
+declare let Handlebars: any;
 
 export class HandlebarsTemplatesProvider implements ITemplatesProvider {
 
