@@ -5,53 +5,53 @@
 namespace ProcessingTools.Common.Enumerations.Tasks
 {
     /// <summary>
-    /// Action type.
+    /// Action types.
     /// </summary>
     public enum ActionType
     {
         /// <summary>
         /// Copy files.
         /// </summary>
-        CopyFiles,
+        CopyFiles = 110,
 
         /// <summary>
         /// Delete files.
         /// </summary>
-        DeleteFiles,
+        DeleteFiles = 120,
 
         /// <summary>
         /// Move files.
         /// </summary>
-        MoveFiles,
+        MoveFiles = 130,
 
         /// <summary>
         /// Unzip files.
         /// </summary>
-        UnZipFiles,
+        UnzipFiles = 210,
 
         /// <summary>
         /// Zip files.
         /// </summary>
-        ZipFiles,
+        ZipFiles = 220,
 
         /// <summary>
-        /// Read email.
+        /// Read e-mail.
         /// </summary>
-        ReadEmail,
+        ReadEmail = 310,
 
         /// <summary>
-        /// Send email.
+        /// Send e-mail.
         /// </summary>
-        SendEmail,
+        SendEmail = 320,
 
         /// <summary>
-        /// Download FTP files.
+        /// FTP download files.
         /// </summary>
-        DownloadFtpFiles,
+        FtpDownloadFiles = 410,
 
         /// <summary>
-        /// Upload FTP files.
+        /// FTP upload files.
         /// </summary>
-        UploadFtpFiles
+        FtpUploadFiles = 420
     }
 }
