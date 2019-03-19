@@ -215,6 +215,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Core.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Documents", "Web\ProcessingTools.Web.Documents\ProcessingTools.Web.Documents.csproj", "{38686FB5-665C-4530-8AF5-3C47B457980F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.PowerShell", "Desktop\ProcessingTools.PowerShell\ProcessingTools.PowerShell.csproj", "{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -967,6 +969,14 @@ Global
 		{38686FB5-665C-4530-8AF5-3C47B457980F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38686FB5-665C-4530-8AF5-3C47B457980F}.Release|x64.ActiveCfg = Release|Any CPU
 		{38686FB5-665C-4530-8AF5-3C47B457980F}.Release|x64.Build.0 = Release|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Debug|x64.Build.0 = Debug|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Release|x64.ActiveCfg = Release|Any CPU
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1069,9 +1079,10 @@ Global
 		{6D98BA68-D2BC-4338-B5AC-C4273D35645F} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{F9003823-B2B1-41ED-A0FA-771467197C85} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{38686FB5-665C-4530-8AF5-3C47B457980F} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
+		{FF9A2407-CF12-4803-8BBF-253B6C49FCF5} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
