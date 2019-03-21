@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProcessingTools.CheckHost": {
+      "commandName": "Project",
+      "commandLineArgs": "localhost 80"
+    }
+  }
+}
