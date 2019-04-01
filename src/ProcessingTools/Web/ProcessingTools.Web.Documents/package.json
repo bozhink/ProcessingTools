@@ -34,7 +34,7 @@
   "devDependencies": {
     "@types/angular": "^1.6.16",
     "@types/jquery": "^3.3.4",
-    "@types/node": "^11.9.0",
+    "@types/node": "^11.12.3",
     "babel-eslint": "^8.2.5",
     "babel-preset-es2015": "^6.24.1",
     "babelify": "^8.0.0",
