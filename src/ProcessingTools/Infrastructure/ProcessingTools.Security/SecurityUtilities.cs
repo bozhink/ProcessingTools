@@ -631,5 +631,25 @@ namespace ProcessingTools.Security
 
             File.WriteAllBytes(fileName, certificate.Export(X509ContentType.Pkcs12, password));
         }
+
+        /// <summary>
+        /// Compute HMAC hash.
+        /// </summary>
+        /// <param name="message">Message to be hashed.</param>
+        /// <param name="secret">Secret to be used for hashing.</param>
+        /// <returns>Computed hash.</returns>
+        /// <remarks>
+        /// See https://stackoverflow.com/questions/12804231/c-sharp-equivalent-to-hash-hmac-in-php
+        /// </remarks>
+        public static string HashHmac(string message, string secret)
+        {
+            Encoding encoding = Encoding.UTF8;
+            using (HMACSHA512 hmac = new HMACSHA512(encoding.GetBytes(secret)))
+            {
+                var msg = encoding.GetBytes(message);
+                var hash = hmac.ComputeHash(msg);
+                return BitConverter.ToString(hash).ToUpperInvariant().Replace("-", string.Empty);
+            }
+        }
     }
 }
