@@ -7,6 +7,7 @@ namespace ProcessingTools.Extensions
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -147,7 +148,7 @@ namespace ProcessingTools.Extensions
                 throw new ArgumentNullException(nameof(content));
             }
 
-            Stream stream = null;
+            Stream stream;
 
             try
             {
@@ -391,7 +392,7 @@ namespace ProcessingTools.Extensions
         }
 
         /// <summary>
-        /// Replace DateTime whildcard in the source string.
+        /// Replace DateTime wildcard in the source string.
         /// </summary>
         /// <param name="source">Source string to be processed.</param>
         /// <param name="dateTime">DateTime value to be applied.</param>
@@ -419,6 +420,53 @@ namespace ProcessingTools.Extensions
             sb.Append(source.Substring(i));
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Encode non-ASCII characters.
+        /// </summary>
+        /// <param name="source">Source string to be encoded.</param>
+        /// <returns>Encoded string as ASCII.</returns>
+        /// <remarks>
+        /// See https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string
+        /// </remarks>
+        public static string EncodeNonAsciiCharacters(this string source)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in source)
+            {
+                if (c > 127)
+                {
+                    // This character is too big for ASCII
+                    string encodedValue = "\\u" + ((int)c).ToString("x4");
+                    sb.Append(encodedValue);
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Decode encoded non-ASCII characters.
+        /// </summary>
+        /// <param name="source">Source string to be decoded.</param>
+        /// <returns>Decoded string as Unicode.</returns>
+        /// <remarks>
+        /// See https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string
+        /// </remarks>
+        public static string DecodeEncodedNonAsciiCharacters(this string source)
+        {
+            return Regex.Replace(
+                source,
+                @"\\u(?<Value>[a-zA-Z0-9]{4})",
+                m =>
+                {
+                    return ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString();
+                });
         }
     }
 }
