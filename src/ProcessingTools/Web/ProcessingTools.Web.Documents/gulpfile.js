@@ -7,9 +7,13 @@ var bundles = require("./gulpfile.bundles");
 var styles = require("./gulpfile.styles");
 var scripts = require("./gulpfile.scripts");
 var templates = require("./gulpfile.templates");
+var lib = require("./gulpfile.lib");
 var tests = require("./gulpfile.tests");
 
+
 gulp.task("clean", gulp.series(() => del([ "wwwroot/build" ])));
+
+gulp.task("lib", gulp.series(lib.deploy));
 
 gulp.task("bundles:min:css", gulp.series(bundles.processCss));
 gulp.task("bundles:min:js", gulp.series(bundles.processJavaScript));
