@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProcessingTools.Security.BaseHasher" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAACAAAAAQAAAAAAAAAAAAAIAAAAAACAAAAAA=</HashCode>
+      <FileName>BaseHasher.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.Security.CertificateValidator" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAARAQAAAAAAAAgAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>CertificateValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.Security.JwsUtilities" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAEAAAAAAAAAAAAABAAAAAAgAAAAABAAQAAAQAA=</HashCode>
+      <FileName>JwsUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.Security.SecurityUtilities" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQYAACAAAAgAAEADogAAgFASgBEAAASIIAAEAIQABA=</HashCode>
+      <FileName>SecurityUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.Security.SHA256Hasher" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SHA256Hasher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.Security.SHA384Hasher" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SHA384Hasher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.Security.SHA512Hasher" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SHA512Hasher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
