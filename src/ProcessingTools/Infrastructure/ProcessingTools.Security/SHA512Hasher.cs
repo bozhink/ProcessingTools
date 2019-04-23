@@ -1,4 +1,4 @@
-﻿// <copyright file="SHA256Hasher.cs" company="ProcessingTools">
+﻿// <copyright file="SHA512Hasher.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,15 +10,15 @@ namespace ProcessingTools.Security
     using ProcessingTools.Common.Constants;
 
     /// <summary>
-    /// SHA256 hasher.
+    /// SHA512 hasher.
     /// </summary>
-    public class SHA256Hasher : BaseHasher
+    public class SHA512Hasher : BaseHasher
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SHA256Hasher"/> class.
+        /// Initializes a new instance of the <see cref="SHA512Hasher"/> class.
         /// </summary>
-        public SHA256Hasher()
-            : base(SHA256.Create(), Defaults.Encoding)
+        public SHA512Hasher()
+            : base(SHA512.Create(), Defaults.Encoding)
         {
         }
     }
