@@ -3,14 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Web.Http;
-
     using ProcessingTools.TestWebApiServer.Models;
 
     /// <summary>
-    /// See http://www.asp.net/web-api/overview/older-versions/self-host-a-web-api
-    /// and http://www.asp.net/web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api
+    /// See [http://www.asp.net/web-api/overview/older-versions/self-host-a-web-api]
+    /// and [http://www.asp.net/web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api].
     /// </summary>
     public class ProductsController : ApiController
     {
@@ -22,20 +20,28 @@
             {
                 new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1M },
                 new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
-                new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
+                new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M },
             };
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductsController"/> class.
+        /// </summary>
         public ProductsController()
         {
         }
 
+        /// <summary>
+        /// Add new product to the list.
+        /// </summary>
+        /// <param name="product">Product item to be added.</param>
+        /// <returns>Action result.</returns>
         [HttpPost]
-        public async Task<IHttpActionResult> Add(Product product)
+        public IHttpActionResult Add(Product product)
         {
             if (product == null)
             {
-                return await Task.FromResult(this.BadRequest()).ConfigureAwait(false);
+                return this.BadRequest();
             }
 
             int id = 1;
@@ -49,44 +55,59 @@
                 Id = id,
                 Name = product.Name,
                 Category = product.Category,
-                Price = product.Price
+                Price = product.Price,
             };
 
             Products.Add(entity);
-            return await Task.FromResult(this.Created(entity.Id.ToString(), entity)).ConfigureAwait(false);
+            return this.Created(entity.Id.ToString(), entity);
         }
 
+        /// <summary>
+        /// Delete all products.
+        /// </summary>
+        /// <returns>Action result.</returns>
         [HttpDelete]
-        public async Task<IHttpActionResult> DeleteAll()
+        public IHttpActionResult DeleteAll()
         {
             Products.Clear();
-            return await Task.FromResult(this.Ok()).ConfigureAwait(false);
+            return this.Ok();
         }
 
-        // /api/products
-        public async Task<IHttpActionResult> GetAllProducts()
+        /// <summary>
+        /// Gets all the products.
+        /// </summary>
+        /// <returns>Action result.</returns>
+        public IHttpActionResult GetAllProducts()
         {
-            return await Task.FromResult(this.Ok(Products)).ConfigureAwait(false);
+            return this.Ok(Products);
         }
 
-        // /api/products/id
-        public async Task<IHttpActionResult> GetProduct(int id)
+        /// <summary>
+        /// Gets a product specified by ID.
+        /// </summary>
+        /// <param name="id">ID of the product.</param>
+        /// <returns>Action result.</returns>
+        public IHttpActionResult GetProduct(int id)
         {
             var product = Products.FirstOrDefault((p) => p.Id == id);
             if (product == null)
             {
-                return await Task.FromResult(this.NotFound()).ConfigureAwait(false);
+                return this.NotFound();
             }
 
-            return await Task.FromResult(this.Ok(product)).ConfigureAwait(false);
+            return this.Ok(product);
         }
 
-        // /api/products/?category=category
-        public async Task<IHttpActionResult> GetProductsByCategory(string category)
+        /// <summary>
+        /// Gets products by category.
+        /// </summary>
+        /// <param name="category">Category of the products.</param>
+        /// <returns>Action result.</returns>
+        public IHttpActionResult GetProductsByCategory(string category)
         {
             var result = Products.Where(p => string.Equals(p.Category, category, StringComparison.OrdinalIgnoreCase));
 
-            return await Task.FromResult(this.Ok(result)).ConfigureAwait(false);
+            return this.Ok(result);
         }
     }
 }
