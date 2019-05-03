@@ -32,15 +32,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="MongoDB.Bson" Version="2.7.3" />
-    <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.7.3" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.9.1.7622">
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.8.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.8.0" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.8.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.13.0.8313">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
