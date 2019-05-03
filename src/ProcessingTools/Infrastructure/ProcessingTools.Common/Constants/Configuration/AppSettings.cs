@@ -7,308 +7,308 @@ namespace ProcessingTools.Common.Constants.Configuration
     using System.Configuration;
 
     /// <summary>
-    /// AppSettings
+    /// Application settings.
     /// </summary>
     public static class AppSettings
     {
         /// <summary>
-        /// AbbreviationsXQueryFileName
+        /// Abbreviations XQuery file name.
         /// </summary>
         public static readonly string AbbreviationsXQueryFileName = ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFileName];
 
         /// <summary>
-        /// AppDataDirectoryName
+        /// AppData directory name.
         /// </summary>
         public static readonly string AppDataDirectoryName = ConfigurationManager.AppSettings[AppSettingsKeys.AppDataDirectoryName];
 
         /// <summary>
-        /// BiorepositoriesMongoConnection
+        /// Biorepositories Mongo connection.
         /// </summary>
         public static readonly string BiorepositoriesMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection];
 
         /// <summary>
-        /// BiorepositoriesMongoDatabaseName
+        /// Biorepositories Mongo database name.
         /// </summary>
         public static readonly string BiorepositoriesMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDatabaseName];
 
         /// <summary>
-        /// BiorepositoriesSeedCsvDataFilesDirectoryName
+        /// Biorepositories seed CSV data files directory name.
         /// </summary>
         public static readonly string BiorepositoriesSeedCsvDataFilesDirectoryName = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesSeedCsvDataFilesDirectoryName];
 
         /// <summary>
-        /// BiotaxonomyBlackListXmlFileName
+        /// Biotaxonomy black list XML file name.
         /// </summary>
         public static readonly string BiotaxonomyBlackListXmlFileName = ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyBlackListXmlFileName];
 
         /// <summary>
-        /// BiotaxonomyMongoConnection
+        /// Biotaxonomy Mongo connection.
         /// </summary>
         public static readonly string BiotaxonomyMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection];
 
         /// <summary>
-        /// BiotaxonomyMongoDatabaseName
+        /// Biotaxonomy Mongo database name.
         /// </summary>
         public static readonly string BiotaxonomyMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDatabaseName];
 
         /// <summary>
-        /// BiotaxonomyRankListXmlFileName
+        /// Biotaxonomy rank list XML file name.
         /// </summary>
         public static readonly string BiotaxonomyRankListXmlFileName = ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyRankListXmlFileName];
 
         /// <summary>
-        /// CacheMongoConnection
+        /// Cache Mongo connection.
         /// </summary>
         public static readonly string CacheMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoConnection];
 
         /// <summary>
-        /// CacheMongoDatabaseName
+        /// Cache Mongo database name.
         /// </summary>
         public static readonly string CacheMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoDatabaseName];
 
         /// <summary>
-        /// ClientSettingsProvider
+        /// Client settings provider.
         /// </summary>
         public static readonly string ClientSettingsProvider = ConfigurationManager.AppSettings[AppSettingsKeys.ClientSettingsProvider];
 
         /// <summary>
-        /// CodesRemoveNonCodeNodesXslFileName
+        /// Codes remove non-code nodes XSL file name.
         /// </summary>
         public static readonly string CodesRemoveNonCodeNodesXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.CodesRemoveNonCodeNodesXslFileName];
 
         /// <summary>
-        /// ContinentsCodesSeedFileName
+        /// Continent codes seed file name.
         /// </summary>
-        public static readonly string ContinentsCodesSeedFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ContinentsCodesSeedFileName];
+        public static readonly string ContinentCodesSeedFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ContinentCodesSeedFileName];
 
         /// <summary>
-        /// CountryCodesSeedFileName
+        /// Country codes seed file name.
         /// </summary>
         public static readonly string CountryCodesSeedFileName = ConfigurationManager.AppSettings[AppSettingsKeys.CountryCodesSeedFileName];
 
         /// <summary>
-        /// DocumentsMongoConnection
+        /// Documents Mongo connection.
         /// </summary>
         public static readonly string DocumentsMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.DocumentsMongoConnection];
 
         /// <summary>
-        /// DocumentsMongoDatabaseName
+        /// Documents Mongo database name.
         /// </summary>
         public static readonly string DocumentsMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.DocumentsMongoDatabaseName];
 
         /// <summary>
-        /// EnvironmentsEntitiesFileName
+        /// Environments entities file name.
         /// </summary>
         public static readonly string EnvironmentsEntitiesFileName = ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsEntitiesFileName];
 
         /// <summary>
-        /// EnvironmentsGlobalFileName
+        /// Environments global file name.
         /// </summary>
         public static readonly string EnvironmentsGlobalFileName = ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsGlobalFileName];
 
         /// <summary>
-        /// EnvironmentsGroupsFileName
+        /// Environments groups file name.
         /// </summary>
         public static readonly string EnvironmentsGroupsFileName = ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsGroupsFileName];
 
         /// <summary>
-        /// EnvironmentsNamesFileName
+        /// Environments names file name.
         /// </summary>
         public static readonly string EnvironmentsNamesFileName = ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsNamesFileName];
 
         /// <summary>
-        /// ExternalLinksXslFileName
+        /// External links XSL file name.
         /// </summary>
         public static readonly string ExternalLinksXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFileName];
 
         /// <summary>
-        /// FacebookAppId
+        /// Facebook App ID.
         /// </summary>
         public static readonly string FacebookAppId = ConfigurationManager.AppSettings[AppSettingsKeys.FacebookAppId];
 
         /// <summary>
-        /// FacebookAppSecret
+        /// Facebook App secret.
         /// </summary>
         public static readonly string FacebookAppSecret = ConfigurationManager.AppSettings[AppSettingsKeys.FacebookAppSecret];
 
         /// <summary>
-        /// FormatHtmlToXmlXslFileName
+        /// Format HTML-to-XML XSL file name.
         /// </summary>
         public static readonly string FormatHtmlToXmlXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFileName];
 
         /// <summary>
-        /// FormatNlmToSystemXslFileName
+        /// Format NLM-to-system XSL file name.
         /// </summary>
         public static readonly string FormatNlmToSystemXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.FormatNlmToSystemXslFileName];
 
         /// <summary>
-        /// FormatSystemToNlmXslFileName
+        /// Format system-to-NLM XSL file name.
         /// </summary>
         public static readonly string FormatSystemToNlmXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.FormatSystemToNlmXslFileName];
 
         /// <summary>
-        /// FormatTaxonTreatmentsXslFileName
+        /// Format taxon treatments XSL file name.
         /// </summary>
         public static readonly string FormatTaxonTreatmentsXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.FormatTaxonTreatmentsXslFileName];
 
         /// <summary>
-        /// FormatXmlToHtmlXslFileName
+        /// Format XML-to-HTML XSL file name.
         /// </summary>
         public static readonly string FormatXmlToHtmlXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFileName];
 
         /// <summary>
-        /// GavinLaurensXslFileName
+        /// Gavin-Laurens XSL file name.
         /// </summary>
         public static readonly string GavinLaurensXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.GavinLaurensXslFileName];
 
         /// <summary>
-        /// GeoEpithetsSeedFileName
+        /// Geo-epithets seed file name.
         /// </summary>
         public static readonly string GeoEpithetsSeedFileName = ConfigurationManager.AppSettings[AppSettingsKeys.GeoEpithetsSeedFileName];
 
         /// <summary>
-        /// GeoNamesSeedFileName
+        /// Geo-names seed file name.
         /// </summary>
         public static readonly string GeoNamesSeedFileName = ConfigurationManager.AppSettings[AppSettingsKeys.GeoNamesSeedFileName];
 
         /// <summary>
-        /// GoogleClientId
+        /// Google client ID.
         /// </summary>
         public static readonly string GoogleClientId = ConfigurationManager.AppSettings[AppSettingsKeys.GoogleClientId];
 
         /// <summary>
-        /// GoogleClientSecret
+        /// Google client secret.
         /// </summary>
         public static readonly string GoogleClientSecret = ConfigurationManager.AppSettings[AppSettingsKeys.GoogleClientSecret];
 
         /// <summary>
-        /// InstitutionsSeedFileName
+        /// Institutions seed file name.
         /// </summary>
         public static readonly string InstitutionsSeedFileName = ConfigurationManager.AppSettings[AppSettingsKeys.InstitutionsSeedFileName];
 
         /// <summary>
-        /// JournalsJsonFilesDirectoryName
+        /// Journals JSON files directory name.
         /// </summary>
         public static readonly string JournalsJsonFilesDirectoryName = ConfigurationManager.AppSettings[AppSettingsKeys.JournalsJsonFilesDirectoryName];
 
         /// <summary>
-        /// MaximalTimeInMinutesToWaitTheMainThread
+        /// Maximal time in minutes to wait the main thread.
         /// </summary>
         public static readonly string MaximalTimeInMinutesToWaitTheMainThread = ConfigurationManager.AppSettings[AppSettingsKeys.MaximalTimeInMinutesToWaitTheMainThread];
 
         /// <summary>
-        /// MediaTypeDataJsonFileName
+        /// Media type data JSON file name.
         /// </summary>
         public static readonly string MediaTypeDataJsonFileName = ConfigurationManager.AppSettings[AppSettingsKeys.MediaTypeDataJsonFileName];
 
         /// <summary>
-        /// MediatypesMongoConnection
+        /// Mediatypes Mongo connection.
         /// </summary>
         public static readonly string MediatypesMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoConnection];
 
         /// <summary>
-        /// MediatypesMongoDatabaseName
+        /// Mediatypes Mongo database name.
         /// </summary>
         public static readonly string MediatypesMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDatabaseName];
 
         /// <summary>
-        /// MicrosoftClientId
+        /// Microsoft client ID.
         /// </summary>
         public static readonly string MicrosoftClientId = ConfigurationManager.AppSettings[AppSettingsKeys.MicrosoftClientId];
 
         /// <summary>
-        /// MicrosoftClientSecret
+        /// Microsoft client secret.
         /// </summary>
         public static readonly string MicrosoftClientSecret = ConfigurationManager.AppSettings[AppSettingsKeys.MicrosoftClientSecret];
 
         /// <summary>
-        /// MorphologicalEpithetsFileName
+        /// Morphological epithets file name.
         /// </summary>
         public static readonly string MorphologicalEpithetsFileName = ConfigurationManager.AppSettings[AppSettingsKeys.MorphologicalEpithetsFileName];
 
         /// <summary>
-        /// NlmInitialFormatXslFileName
+        /// NLM initial format XSL file name.
         /// </summary>
         public static readonly string NlmInitialFormatXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.NlmInitialFormatXslFileName];
 
         /// <summary>
-        /// ParseTreatmentMetaWithInternalInformationXslFileName
+        /// Parse treatment meta with internal information XSL file name.
         /// </summary>
         public static readonly string ParseTreatmentMetaWithInternalInformationXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ParseTreatmentMetaWithInternalInformationXslFileName];
 
         /// <summary>
-        /// ProductsSeedFileName
+        /// Products seed file name.
         /// </summary>
         public static readonly string ProductsSeedFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ProductsSeedFileName];
 
         /// <summary>
-        /// RanksDataFileName
+        /// Ranks data file name.
         /// </summary>
         public static readonly string RanksDataFileName = ConfigurationManager.AppSettings[AppSettingsKeys.RanksDataFileName];
 
         /// <summary>
-        /// RedisConnection
+        /// Redis connection.
         /// </summary>
         public static readonly string RedisConnection = ConfigurationManager.AppSettings[AppSettingsKeys.RedisConnection];
 
         /// <summary>
-        /// ReferencesGetReferencesXslFileName
+        /// References get references XSL file name.
         /// </summary>
         public static readonly string ReferencesGetReferencesXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ReferencesGetReferencesXslFileName];
 
         /// <summary>
-        /// ReferencesTagTemplateXslFileName
+        /// References tag template XSL file name.
         /// </summary>
         public static readonly string ReferencesTagTemplateXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ReferencesTagTemplateXslFileName];
 
         /// <summary>
-        /// RemoveTaxonNamePartsXslFileName
+        /// Remove taxon name parts XSL file name.
         /// </summary>
         public static readonly string RemoveTaxonNamePartsXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.RemoveTaxonNamePartsXslFileName];
 
         /// <summary>
-        /// SystemInitialFormatXslFileName
+        /// System initial format XSL file name.
         /// </summary>
         public static readonly string SystemInitialFormatXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.SystemInitialFormatXslFileName];
 
         /// <summary>
-        /// TaxonTreatmentExtractMaterialsXslFileName
+        /// Taxon treatment extract materials XSL file name.
         /// </summary>
         public static readonly string TaxonTreatmentExtractMaterialsXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.TaxonTreatmentExtractMaterialsXslFileName];
 
         /// <summary>
-        /// TaxPubDtdPath
+        /// TaxPub DTD path.
         /// </summary>
         public static readonly string TaxPubDtdPath = ConfigurationManager.AppSettings[AppSettingsKeys.TaxPubDtdPath];
 
         /// <summary>
-        /// TextContentXslFileName
+        /// Text content XSL file name.
         /// </summary>
         public static readonly string TextContentXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.TextContentXslFileName];
 
         /// <summary>
-        /// TwitterConsumerKey
+        /// Twitter consumer key.
         /// </summary>
         public static readonly string TwitterConsumerKey = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerKey];
 
         /// <summary>
-        /// TwitterConsumerSecret
+        /// Twitter consumer secret.
         /// </summary>
         public static readonly string TwitterConsumerSecret = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerSecret];
 
         /// <summary>
-        /// TypeStatusesFileName
+        /// Type statuses file name.
         /// </summary>
         public static readonly string TypeStatusesFileName = ConfigurationManager.AppSettings[AppSettingsKeys.TypeStatusesFileName];
 
         /// <summary>
-        /// ZooBankRegistrationNlmXslFileName
+        /// ZooBank registration NLM XSL file name.
         /// </summary>
         public static readonly string ZooBankRegistrationNlmXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ZooBankRegistrationNlmXslFileName];
 
         /// <summary>
-        /// BingMapKey
+        /// BingMaps Key.
         /// </summary>
-        public static readonly string BingMapKey = ConfigurationManager.AppSettings[AppSettingsKeys.BingMapKey];
+        public static readonly string BingMapsKey = ConfigurationManager.AppSettings[AppSettingsKeys.BingMapsKey];
     }
 }

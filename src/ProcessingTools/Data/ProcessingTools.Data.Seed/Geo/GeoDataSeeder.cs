@@ -41,7 +41,7 @@
             {
                 this.SeedGeoNamesAsync(AppSettings.GeoNamesSeedFileName),
                 this.SeedGeoEpithetsAsync(AppSettings.GeoEpithetsSeedFileName),
-                this.SeedContinentsAsync(AppSettings.ContinentsCodesSeedFileName),
+                this.SeedContinentsAsync(AppSettings.ContinentCodesSeedFileName),
                 this.SeedCountryCodesAsync(AppSettings.CountryCodesSeedFileName)
             };
 

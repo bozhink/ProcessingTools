@@ -10,303 +10,303 @@ namespace ProcessingTools.Common.Constants.Configuration
     internal static class AppSettingsKeys
     {
         /// <summary>
-        /// AbbreviationsXQueryFileName
+        /// Abbreviations XQuery file name.
         /// </summary>
         internal const string AbbreviationsXQueryFileName = "AbbreviationsXQueryFileName";
 
         /// <summary>
-        /// AppDataDirectoryName
+        /// AppData directory name.
         /// </summary>
         internal const string AppDataDirectoryName = "AppDataDirectoryName";
 
         /// <summary>
-        /// BiorepositoriesMongoConnection
+        /// Biorepositories Mongo connection.
         /// </summary>
         internal const string BiorepositoriesMongoConnection = "BiorepositoriesMongoConnection";
 
         /// <summary>
-        /// BiorepositoriesMongoDatabaseName
+        /// Biorepositories Mongo database name.
         /// </summary>
         internal const string BiorepositoriesMongoDatabaseName = "BiorepositoriesMongoDatabaseName";
 
         /// <summary>
-        /// BiorepositoriesSeedCsvDataFilesDirectoryName
+        /// Biorepositories seed CSV data files directory name.
         /// </summary>
         internal const string BiorepositoriesSeedCsvDataFilesDirectoryName = "BiorepositoriesSeedCsvDataFilesDirectoryName";
 
         /// <summary>
-        /// BiotaxonomyBlackListXmlFileName
+        /// Biotaxonomy black list XML file name.
         /// </summary>
         internal const string BiotaxonomyBlackListXmlFileName = "BiotaxonomyBlackListXmlFileName";
 
         /// <summary>
-        /// BiotaxonomyMongoConnection
+        /// Biotaxonomy Mongo connection.
         /// </summary>
         internal const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
 
         /// <summary>
-        /// BiotaxonomyMongoDatabaseName
+        /// Biotaxonomy Mongo database name.
         /// </summary>
         internal const string BiotaxonomyMongoDatabaseName = "BiotaxonomyMongoDatabaseName";
 
         /// <summary>
-        /// BiotaxonomyRankListXmlFileName
+        /// Biotaxonomy rank list XML file name.
         /// </summary>
         internal const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
 
         /// <summary>
-        /// CacheMongoConnection
+        /// Cache Mongo connection.
         /// </summary>
         internal const string CacheMongoConnection = "CacheMongoConnection";
 
         /// <summary>
-        /// CacheMongoDatabaseName
+        /// Cache Mongo database name.
         /// </summary>
         internal const string CacheMongoDatabaseName = "CacheMongoDatabaseName";
 
         /// <summary>
-        /// ClientSettingsProvider
+        /// Client settings provider.
         /// </summary>
         internal const string ClientSettingsProvider = "ClientSettingsProvider";
 
         /// <summary>
-        /// CodesRemoveNonCodeNodesXslFileName
+        /// Codes remove non-code nodes XSL file name.
         /// </summary>
         internal const string CodesRemoveNonCodeNodesXslFileName = "CodesRemoveNonCodeNodesXslFileName";
 
         /// <summary>
-        /// ContinentsCodesSeedFileName
+        /// Continent codes seed file name.
         /// </summary>
-        internal const string ContinentsCodesSeedFileName = "ContinentsCodesSeedFileName";
+        internal const string ContinentCodesSeedFileName = "ContinentCodesSeedFileName";
 
         /// <summary>
-        /// CountryCodesSeedFileName
+        /// Country codes seed file name.
         /// </summary>
         internal const string CountryCodesSeedFileName = "CountryCodesSeedFileName";
 
         /// <summary>
-        /// DocumentsMongoConnection
+        /// Documents Mongo connection.
         /// </summary>
         internal const string DocumentsMongoConnection = "DocumentsMongoConnection";
 
         /// <summary>
-        /// DocumentsMongoDatabaseName
+        /// Documents Mongo database name.
         /// </summary>
         internal const string DocumentsMongoDatabaseName = "DocumentsMongoDatabaseName";
 
         /// <summary>
-        /// EnvironmentsEntitiesFileName
+        /// Environments entities file name.
         /// </summary>
         internal const string EnvironmentsEntitiesFileName = "EnvironmentsEntitiesFileName";
 
         /// <summary>
-        /// EnvironmentsGlobalFileName
+        /// Environments global file name.
         /// </summary>
         internal const string EnvironmentsGlobalFileName = "EnvironmentsGlobalFileName";
 
         /// <summary>
-        /// EnvironmentsGroupsFileName
+        /// Environments groups file name.
         /// </summary>
         internal const string EnvironmentsGroupsFileName = "EnvironmentsGroupsFileName";
 
         /// <summary>
-        /// EnvironmentsNamesFileName
+        /// Environments names file name.
         /// </summary>
         internal const string EnvironmentsNamesFileName = "EnvironmentsNamesFileName";
 
         /// <summary>
-        /// ExternalLinksXslFileName
+        /// External links XSL file name.
         /// </summary>
         internal const string ExternalLinksXslFileName = "ExternalLinksXslFileName";
 
         /// <summary>
-        /// FacebookAppId
+        /// Facebook App ID.
         /// </summary>
         internal const string FacebookAppId = "FacebookAppId";
 
         /// <summary>
-        /// FacebookAppSecret
+        /// Facebook App secret.
         /// </summary>
         internal const string FacebookAppSecret = "FacebookAppSecret";
 
         /// <summary>
-        /// FormatHtmlToXmlXslFileName
+        /// Format HTML-to-XML XSL file name.
         /// </summary>
         internal const string FormatHtmlToXmlXslFileName = "FormatHtmlToXmlXslFileName";
 
         /// <summary>
-        /// FormatNlmToSystemXslFileName
+        /// Format NLM-to-system XSL file name.
         /// </summary>
         internal const string FormatNlmToSystemXslFileName = "FormatNlmToSystemXslFileName";
 
         /// <summary>
-        /// FormatSystemToNlmXslFileName
+        /// Format system-to-NLM XSL file name.
         /// </summary>
         internal const string FormatSystemToNlmXslFileName = "FormatSystemToNlmXslFileName";
 
         /// <summary>
-        /// FormatTaxonTreatmentsXslFileName
+        /// Format taxon treatments XSL file name.
         /// </summary>
         internal const string FormatTaxonTreatmentsXslFileName = "FormatTaxonTreatmentsXslFileName";
 
         /// <summary>
-        /// FormatXmlToHtmlXslFileName
+        /// Format XML-to-HTML XSL file name.
         /// </summary>
         internal const string FormatXmlToHtmlXslFileName = "FormatXmlToHtmlXslFileName";
 
         /// <summary>
-        /// GavinLaurensXslFileName
+        /// Gavin-Laurens XSL file name.
         /// </summary>
         internal const string GavinLaurensXslFileName = "GavinLaurensXslFileName";
 
         /// <summary>
-        /// GeoEpithetsSeedFileName
+        /// Geo-epithets seed file name.
         /// </summary>
         internal const string GeoEpithetsSeedFileName = "GeoEpithetsSeedFileName";
 
         /// <summary>
-        /// GeoNamesSeedFileName
+        /// Geo-names seed file name.
         /// </summary>
         internal const string GeoNamesSeedFileName = "GeoNamesSeedFileName";
 
         /// <summary>
-        /// GoogleClientId
+        /// Google client ID.
         /// </summary>
         internal const string GoogleClientId = "GoogleClientId";
 
         /// <summary>
-        /// GoogleClientSecret
+        /// Google client secret.
         /// </summary>
         internal const string GoogleClientSecret = "GoogleClientSecret";
 
         /// <summary>
-        /// InstitutionsSeedFileName
+        /// Institutions seed file name.
         /// </summary>
         internal const string InstitutionsSeedFileName = "InstitutionsSeedFileName";
 
         /// <summary>
-        /// JournalsJsonFilesDirectoryName
+        /// Journals JSON files directory name.
         /// </summary>
         internal const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectoryName";
 
         /// <summary>
-        /// MaximalTimeInMinutesToWaitTheMainThread
+        /// Maximal time in minutes to wait the main thread.
         /// </summary>
         internal const string MaximalTimeInMinutesToWaitTheMainThread = "MaximalTimeInMinutesToWaitTheMainThread";
 
         /// <summary>
-        /// MediaTypeDataJsonFileName
+        /// Media type data JSON file name.
         /// </summary>
         internal const string MediaTypeDataJsonFileName = "MediaTypeDataJsonFileName";
 
         /// <summary>
-        /// MediatypesMongoConnection
+        /// Mediatypes Mongo connection.
         /// </summary>
         internal const string MediatypesMongoConnection = "MediatypesMongoConnection";
 
         /// <summary>
-        /// MediatypesMongoDatabaseName
+        /// Mediatypes Mongo database name.
         /// </summary>
         internal const string MediatypesMongoDatabaseName = "MediatypesMongoDatabaseName";
 
         /// <summary>
-        /// MicrosoftClientId
+        /// Microsoft client ID.
         /// </summary>
         internal const string MicrosoftClientId = "MicrosoftClientId";
 
         /// <summary>
-        /// MicrosoftClientSecret
+        /// Microsoft client secret.
         /// </summary>
         internal const string MicrosoftClientSecret = "MicrosoftClientSecret";
 
         /// <summary>
-        /// MorphologicalEpithetsFileName
+        /// Morphological epithets file name.
         /// </summary>
         internal const string MorphologicalEpithetsFileName = "MorphologicalEpithetsFileName";
 
         /// <summary>
-        /// NlmInitialFormatXslFileName
+        /// NLM initial format XSL file name.
         /// </summary>
         internal const string NlmInitialFormatXslFileName = "NlmInitialFormatXslFileName";
 
         /// <summary>
-        /// ParseTreatmentMetaWithInternalInformationXslFileName
+        /// Parse treatment meta with internal information XSL file name.
         /// </summary>
         internal const string ParseTreatmentMetaWithInternalInformationXslFileName = "ParseTreatmentMetaWithInternalInformationXslFileName";
 
         /// <summary>
-        /// ProductsSeedFileName
+        /// Products seed file name.
         /// </summary>
         internal const string ProductsSeedFileName = "ProductsSeedFileName";
 
         /// <summary>
-        /// RanksDataFileName
+        /// Ranks data file name.
         /// </summary>
         internal const string RanksDataFileName = "RanksDataFileName";
 
         /// <summary>
-        /// RedisConnection
+        /// Redis connection.
         /// </summary>
         internal const string RedisConnection = "RedisConnection";
 
         /// <summary>
-        /// ReferencesGetReferencesXslFileName
+        /// References get references XSL file name.
         /// </summary>
         internal const string ReferencesGetReferencesXslFileName = "ReferencesGetReferencesXslFileName";
 
         /// <summary>
-        /// ReferencesTagTemplateXslFileName
+        /// References tag template XSL file name.
         /// </summary>
         internal const string ReferencesTagTemplateXslFileName = "ReferencesTagTemplateXslFileName";
 
         /// <summary>
-        /// RemoveTaxonNamePartsXslFileName
+        /// Remove taxon name parts XSL file name.
         /// </summary>
         internal const string RemoveTaxonNamePartsXslFileName = "RemoveTaxonNamePartsXslFileName";
 
         /// <summary>
-        /// SystemInitialFormatXslFileName
+        /// System initial format XSL file name.
         /// </summary>
         internal const string SystemInitialFormatXslFileName = "SystemInitialFormatXslFileName";
 
         /// <summary>
-        /// TaxonTreatmentExtractMaterialsXslFileName
+        /// Taxon treatment extract materials XSL file name.
         /// </summary>
         internal const string TaxonTreatmentExtractMaterialsXslFileName = "TaxonTreatmentExtractMaterialsXslFileName";
 
         /// <summary>
-        /// TaxPubDtdPath
+        /// TaxPub DTD path.
         /// </summary>
         internal const string TaxPubDtdPath = "TaxPubDtdPath";
 
         /// <summary>
-        /// TextContentXslFileName
+        /// Text content XSL file name.
         /// </summary>
         internal const string TextContentXslFileName = "TextContentXslFileName";
 
         /// <summary>
-        /// TwitterConsumerKey
+        /// Twitter consumer key.
         /// </summary>
         internal const string TwitterConsumerKey = "TwitterConsumerKey";
 
         /// <summary>
-        /// TwitterConsumerSecret
+        /// Twitter consumer secret.
         /// </summary>
         internal const string TwitterConsumerSecret = "TwitterConsumerSecret";
 
         /// <summary>
-        /// TypeStatusesFileName
+        /// Type statuses file name.
         /// </summary>
         internal const string TypeStatusesFileName = "TypeStatusesFileName";
 
         /// <summary>
-        /// ZooBankRegistrationNlmXslFileName
+        /// ZooBank registration NLM XSL file name.
         /// </summary>
         internal const string ZooBankRegistrationNlmXslFileName = "ZooBankRegistrationNlmXslFileName";
 
         /// <summary>
-        /// BingMapKey
+        /// BingMaps key.
         /// </summary>
-        internal const string BingMapKey = "BingMapKey";
+        internal const string BingMapsKey = "BingMapsKey";
     }
 }
