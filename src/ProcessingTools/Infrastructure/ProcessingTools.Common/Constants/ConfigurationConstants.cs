@@ -35,7 +35,7 @@ namespace ProcessingTools.Common.Constants
         public const string BiotaxonomyDatabaseMongoDBConnectionStringName = "BiotaxonomyDatabaseMongoDB";
 
         /// <summary>
-        /// History database MongoDB connection string name,
+        /// History database MongoDB connection string name.
         /// </summary>
         public const string HistoryDatabaseMongoDBConnectionStringName = "HistoryDatabaseMongoDB";
 

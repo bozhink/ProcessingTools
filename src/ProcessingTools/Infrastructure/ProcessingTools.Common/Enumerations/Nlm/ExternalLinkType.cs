@@ -9,8 +9,8 @@ namespace ProcessingTools.Common.Enumerations.Nlm
 
     /// <summary>
     /// Describes the type of external link — for example, the specific source to which the link points
-    /// (“pdb”, “pir”), the identifier type (“doi”,“aoi”), or the access method (“ftp”, “uri”)
-    /// See http://dtd.nlm.nih.gov/publishing/tag-library/3.0/n-7vr0.html
+    /// (“pdb”, “pir”), the identifier type (“doi”,“aoi”), or the access method (“ftp”, “uri”).
+    /// See [http://dtd.nlm.nih.gov/publishing/tag-library/3.0/n-7vr0.html].
     /// </summary>
     public enum ExternalLinkType
     {
@@ -130,6 +130,6 @@ namespace ProcessingTools.Common.Enumerations.Nlm
         /// </summary>
         [Display(Name = "uri")]
         [XmlEnum(Name = "uri")]
-        Uri
+        Uri,
     }
 }

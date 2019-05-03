@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Update status
+    /// Update status.
     /// </summary>
     public enum UpdateStatus
     {
@@ -27,6 +27,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Removed
         /// </summary>
-        Removed = 3
+        Removed = 3,
     }
 }

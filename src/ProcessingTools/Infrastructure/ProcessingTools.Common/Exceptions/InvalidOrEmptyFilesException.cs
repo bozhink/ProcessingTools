@@ -21,7 +21,7 @@ namespace ProcessingTools.Common.Exceptions
         /// Initializes a new instance of the <see cref="InvalidOrEmptyFilesException"/> class with default
         /// error message, and a list of the names of all invalid files.
         /// </summary>
-        /// <param name="fileNames">List of the names of all invalid files</param>
+        /// <param name="fileNames">List of the names of all invalid files.</param>
         public InvalidOrEmptyFilesException(IEnumerable<string> fileNames)
         {
             this.fileNames = fileNames;
@@ -32,7 +32,7 @@ namespace ProcessingTools.Common.Exceptions
         /// error message, and a list of the names of all invalid files.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        /// <param name="fileNames">List of the names of all invalid files</param>
+        /// <param name="fileNames">List of the names of all invalid files.</param>
         public InvalidOrEmptyFilesException(string message, IEnumerable<string> fileNames)
             : base(message: message)
         {
@@ -46,7 +46,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
-        /// <param name="fileNames">List of the names of all invalid files</param>
+        /// <param name="fileNames">List of the names of all invalid files.</param>
         public InvalidOrEmptyFilesException(string message, Exception innerException, IEnumerable<string> fileNames)
             : base(message: message, innerException: innerException)
         {
@@ -55,7 +55,7 @@ namespace ProcessingTools.Common.Exceptions
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidOrEmptyFilesException"/> class with serialized data, and
-        /// a list of the names of all invalid files
+        /// a list of the names of all invalid files.
         /// </summary>
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>

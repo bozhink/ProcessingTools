@@ -10,62 +10,62 @@ namespace ProcessingTools.Common.Constants.Configuration
     public static class ParameterNames
     {
         /// <summary>
-        /// connectionString
+        /// connectionString.
         /// </summary>
         public const string ConnectionString = "connectionString";
 
         /// <summary>
-        /// databaseName
+        /// databaseName.
         /// </summary>
         public const string DatabaseName = "databaseName";
 
         /// <summary>
-        /// dataFileName
+        /// dataFileName.
         /// </summary>
         public const string DataFileName = "dataFileName";
 
         /// <summary>
-        /// document
+        /// document.
         /// </summary>
         public const string Document = "document";
 
         /// <summary>
-        /// formatter
+        /// formatter.
         /// </summary>
         public const string Formatter = "formatter";
 
         /// <summary>
-        /// harvester
+        /// harvester.
         /// </summary>
         public const string Harvester = "harvester";
 
         /// <summary>
-        /// journalMetaFilesDirectory
+        /// journalMetaFilesDirectory.
         /// </summary>
         public const string JournalMetaFilesDirectoryName = "journalMetaFilesDirectory";
 
         /// <summary>
-        /// parser
+        /// parser.
         /// </summary>
         public const string Parser = "parser";
 
         /// <summary>
-        /// reporter
+        /// reporter.
         /// </summary>
         public const string Reporter = "reporter";
 
         /// <summary>
-        /// settings
+        /// settings.
         /// </summary>
         public const string Settings = "settings";
 
         /// <summary>
-        /// xqueryFileName
+        /// xqueryFileName.
         /// </summary>
         public const string XQueyFileName = "xqueryFileName";
 
         /// <summary>
-        /// xslFileName
+        /// xslFileName.
         /// </summary>
         public const string XslFileName = "xslFileName";
     }

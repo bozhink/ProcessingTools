@@ -8,12 +8,12 @@ namespace ProcessingTools.Common.Constants.Security
     /// JWS Header Parameters.
     /// </summary>
     /// <remarks>
-    /// See https://tools.ietf.org/html/rfc7515
+    /// See [https://tools.ietf.org/html/rfc7515].
     /// </remarks>
     public static class JwsHeaderParameters
     {
         /// <summary>
-        /// Type Header Parameter.
+        /// Type header parameter.
         /// </summary>
         /// <remarks>
         /// The "typ" (type) Header Parameter is used by JWS applications to
@@ -48,7 +48,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string Type = "typ";
 
         /// <summary>
-        /// Content Type Header Parameter
+        /// Content type header parameter.
         /// </summary>
         /// <remarks>
         /// The "cty" (content type) Header Parameter is used by JWS applications
@@ -77,7 +77,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string ContentType = "cty";
 
         /// <summary>
-        /// Critical Header Parameter.
+        /// Critical header parameter.
         /// </summary>
         /// <remarks>
         /// The "crit" (critical) Header Parameter indicates that extensions to
@@ -103,12 +103,12 @@ namespace ProcessingTools.Common.Constants.Security
         ///   "alg":"ES256",
         ///   "crit":["exp"],
         ///   "exp":1363284000
-        /// }
+        /// }.
         /// </remarks>
-    public const string Critical = "crit";
+        public const string Critical = "crit";
 
         /// <summary>
-        /// JWS Algorithm Header Parameter.
+        /// JWS algorithm header parameter.
         /// </summary>
         /// <remarks>
         /// The "alg" (algorithm) Header Parameter identifies the cryptographic
@@ -126,7 +126,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string Algorithm = "alg";
 
         /// <summary>
-        /// JWK Set URL Header Parameter.
+        /// JWK set URL header parameter.
         /// </summary>
         /// <remarks>
         /// The "jku" (JWK Set URL) Header Parameter is a URI [RFC3986] that
@@ -143,7 +143,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string JwkSetUrl = "jku";
 
         /// <summary>
-        /// JSON Web Key Header Parameter
+        /// JSON web key header parameter.
         /// </summary>
         /// <remarks>
         /// The "jwk" (JSON Web Key) Header Parameter is the public key that
@@ -154,7 +154,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string JsonWebKey = "jwk";
 
         /// <summary>
-        /// Key ID Header Parameter.
+        /// Key ID header parameter.
         /// </summary>
         /// <remarks>
         /// The "kid" (key ID) Header Parameter is a hint indicating which key
@@ -168,7 +168,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string KeyId = "kid";
 
         /// <summary>
-        /// X.509 URL Header Parameter.
+        /// X.509 URL header parameter.
         /// </summary>
         /// <remarks>
         /// The "x5u" (X.509 URL) Header Parameter is a URI [RFC3986] that refers
@@ -191,7 +191,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string X509Url = "x5u";
 
         /// <summary>
-        /// X.509 Certificate Chain Header Parameter.
+        /// X.509 certificate chain header parameter.
         /// </summary>
         /// <remarks>
         /// The "x5c" (X.509 certificate chain) Header Parameter contains the
@@ -212,7 +212,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string X509CertificateChain = "x5c";
 
         /// <summary>
-        /// X.509 Certificate SHA-1 Thumbprint Header Parameter.
+        /// X.509 certificate SHA-1 thumbprint header parameter.
         /// </summary>
         /// <remarks>
         /// The "x5t" (X.509 certificate SHA-1 thumbprint) Header Parameter is a
@@ -225,7 +225,7 @@ namespace ProcessingTools.Common.Constants.Security
         public const string X509CertificateSHA1Thumbprint = "x5t";
 
         /// <summary>
-        /// X.509 Certificate SHA-256 Thumbprint Header Parameter.
+        /// X.509 certificate SHA-256 thumbprint header parameter.
         /// </summary>
         /// <remarks>
         /// The "x5t#S256" (X.509 certificate SHA-256 thumbprint) Header

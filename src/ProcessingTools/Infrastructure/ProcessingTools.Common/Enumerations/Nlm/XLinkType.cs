@@ -8,8 +8,8 @@ namespace ProcessingTools.Common.Enumerations.Nlm
     using System.Xml.Serialization;
 
     /// <summary>
-    /// XLink type
-    /// See https://dtd.nlm.nih.gov/publishing/tag-library/3.0/index.html
+    /// XLink type.
+    /// See [https://dtd.nlm.nih.gov/publishing/tag-library/3.0/index.html].
     /// </summary>
     public enum XLinkType
     {
@@ -39,6 +39,6 @@ namespace ProcessingTools.Common.Enumerations.Nlm
         /// </summary>
         [Display(Name = "extended")]
         [XmlEnum(Name = "extended")]
-        Extended
+        Extended,
     }
 }

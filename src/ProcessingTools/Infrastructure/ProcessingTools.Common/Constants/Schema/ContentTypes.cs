@@ -10,57 +10,57 @@ namespace ProcessingTools.Common.Constants.Schema
     public static class ContentTypes
     {
         /// <summary>
-        /// altitude
+        /// altitude.
         /// </summary>
         public const string AltitudeContentType = "altitude";
 
         /// <summary>
-        /// date
+        /// date.
         /// </summary>
         public const string DateContentType = "date";
 
         /// <summary>
-        /// geo epithet
+        /// geo epithet.
         /// </summary>
         public const string GeoEpithetContentType = "geo epithet";
 
         /// <summary>
-        /// geographic deviation
+        /// geographic deviation.
         /// </summary>
         public const string GeographicDeviationContentType = "geographic deviation";
 
         /// <summary>
-        /// geo name
+        /// geo name.
         /// </summary>
         public const string GeoNameContentType = "geo name";
 
         /// <summary>
-        /// institution
+        /// institution.
         /// </summary>
         public const string InstitutionContentType = "institution";
 
         /// <summary>
-        /// morphological epithet
+        /// morphological epithet.
         /// </summary>
         public const string MorphologicalEpithetContentType = "morphological epithet";
 
         /// <summary>
-        /// product
+        /// product.
         /// </summary>
         public const string ProductContentType = "product";
 
         /// <summary>
-        /// quantity
+        /// quantity.
         /// </summary>
         public const string QuantityContentType = "quantity";
 
         /// <summary>
-        /// specimen-count
+        /// specimen-count.
         /// </summary>
         public const string SpecimenCountContentType = "specimen-count";
 
         /// <summary>
-        /// dwc:typeStatus
+        /// dwc:typeStatus.
         /// </summary>
         public const string TypeStatusContentType = "dwc:typeStatus";
     }

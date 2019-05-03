@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Species part type
+    /// Species part type.
     /// </summary>
     public enum SpeciesPartType
     {
@@ -102,6 +102,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Race
         /// </summary>
-        Race = 202
+        Race = 202,
     }
 }

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Manage message
+    /// Manage message.
     /// </summary>
     public enum ManageMessageId
     {
@@ -42,6 +42,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Error
         /// </summary>
-        Error
+        Error,
     }
 }

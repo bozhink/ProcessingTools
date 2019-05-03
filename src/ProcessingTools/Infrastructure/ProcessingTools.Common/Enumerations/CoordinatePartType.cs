@@ -22,6 +22,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Longitude
         /// </summary>
-        Longitude = 2
+        Longitude = 2,
     }
 }

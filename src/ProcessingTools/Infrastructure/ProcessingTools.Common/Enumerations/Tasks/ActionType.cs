@@ -52,6 +52,6 @@ namespace ProcessingTools.Common.Enumerations.Tasks
         /// <summary>
         /// FTP upload files.
         /// </summary>
-        FtpUploadFiles = 420
+        FtpUploadFiles = 420,
     }
 }

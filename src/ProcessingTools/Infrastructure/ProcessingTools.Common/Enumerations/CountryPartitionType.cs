@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Administrative units within a country
+    /// Administrative units within a country.
     /// </summary>
     public enum CountryPartitionType
     {
@@ -47,6 +47,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// City
         /// </summary>
-        City = 7
+        City = 7,
     }
 }

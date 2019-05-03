@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// User role
+    /// User role.
     /// </summary>
     public enum UserRole
     {
@@ -17,6 +17,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Administrator.
         /// </summary>
-        Admin = 1
+        Admin = 1,
     }
 }

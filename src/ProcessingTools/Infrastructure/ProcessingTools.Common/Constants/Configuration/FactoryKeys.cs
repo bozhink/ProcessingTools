@@ -10,92 +10,92 @@ namespace ProcessingTools.Common.Constants.Configuration
     public static class FactoryKeys
     {
         /// <summary>
-        /// AbbreviationsTransformerName
+        /// Abbreviations transformer name.
         /// </summary>
         public const string AbbreviationsTransformerName = "AbbreviationsTransformer";
 
         /// <summary>
-        /// CodesRemoveNonCodeNodesTransformerName
+        /// Codes remove non-code nodes transformer name.
         /// </summary>
         public const string CodesRemoveNonCodeNodesTransformerName = "CodesRemoveNonCodeNodesTransformer";
 
         /// <summary>
-        /// ExternalLinksTransformerName
+        /// External links transformer name.
         /// </summary>
         public const string ExternalLinksTransformerName = "ExternalLinksTransformer";
 
         /// <summary>
-        /// FormatHtmlToXmlTransformerName
+        /// Format HTML-to-XML transformer name.
         /// </summary>
         public const string FormatHtmlToXmlTransformerName = "FormatHtmlToXmlTransformer";
 
         /// <summary>
-        /// FormatToNlmTransformerName
+        /// Format to NLM transformer name.
         /// </summary>
         public const string FormatToNlmTransformerName = "FormatToNlmTransformer";
 
         /// <summary>
-        /// FormatToSystemTransformerName
+        /// Format to system transformer name.
         /// </summary>
         public const string FormatToSystemTransformerName = "FormatToSystemTransformer";
 
         /// <summary>
-        /// FormatXmlToHtmlTransformerName
+        /// Format XML-to-HTML transformer name.
         /// </summary>
         public const string FormatXmlToHtmlTransformerName = "FormatXmlToHtmlTransformer";
 
         /// <summary>
-        /// GavinLaurensTransformerName
+        /// Gavin-Laurens transformer name.
         /// </summary>
         public const string GavinLaurensTransformerName = "GavinLaurensTransformer";
 
         /// <summary>
-        /// NlmInitialFormatTransformerName
+        /// NLM initial format transformer name.
         /// </summary>
         public const string NlmInitialFormatTransformerName = "NlmInitialFormatTransformer";
 
         /// <summary>
-        /// ParseTreatmentMetaWithInternalInformationTransformerName
+        /// Parse treatment meta with internal information transformer name.
         /// </summary>
         public const string ParseTreatmentMetaWithInternalInformationTransformerName = "ParseTreatmentMetaWithInternalInformationTransformer";
 
         /// <summary>
-        /// ReferencesGetReferencesTransformerName
+        /// References get references transformer name.
         /// </summary>
         public const string ReferencesGetReferencesTransformerName = "ReferencesGetReferencesTransformer";
 
         /// <summary>
-        /// ReferencesTagTemplateTransformerName
+        /// References tag template transformer name.
         /// </summary>
         public const string ReferencesTagTemplateTransformerName = "ReferencesTagTemplateTransformer";
 
         /// <summary>
-        /// RemoveTaxonNamePartsTransformerName
+        /// Remove taxon name parts transformer name.
         /// </summary>
         public const string RemoveTaxonNamePartsTransformerName = "RemoveTaxonNamePartsTransformer";
 
         /// <summary>
-        /// SystemInitialFormatTransformerName
+        /// System initial format transformer name.
         /// </summary>
         public const string SystemInitialFormatTransformerName = "SystemInitialFormatTransformer";
 
         /// <summary>
-        /// TaxonTreatmentExtractMaterialsTransformerName
+        /// Taxon treatment extract materials transformer name.
         /// </summary>
         public const string TaxonTreatmentExtractMaterialsTransformerName = "TaxonTreatmentExtractMaterialsTransformer";
 
         /// <summary>
-        /// TaxonTreatmentFormatTransformerName
+        /// Taxon treatment format transformer name.
         /// </summary>
         public const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
 
         /// <summary>
-        /// TextContentTransformerName
+        /// Text content transformer name.
         /// </summary>
         public const string TextContentTransformerName = "TextContentTransformer";
 
         /// <summary>
-        /// ZooBankRegistrationTransformerName
+        /// ZooBank registration transformer name.
         /// </summary>
         public const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
     }

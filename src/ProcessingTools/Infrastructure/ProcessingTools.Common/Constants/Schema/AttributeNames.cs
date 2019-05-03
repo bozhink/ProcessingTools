@@ -10,122 +10,122 @@ namespace ProcessingTools.Common.Constants.Schema
     public static class AttributeNames
     {
         /// <summary>
-        /// Content-type
+        /// Content-type.
         /// </summary>
         public const string ContentType = "content-type";
 
         /// <summary>
-        /// Delete
+        /// Delete.
         /// </summary>
         public const string Delete = "delete";
 
         /// <summary>
-        /// Description
+        /// Description.
         /// </summary>
         public const string Description = "description";
 
         /// <summary>
-        /// ExtLinkType
+        /// ExtLinkType.
         /// </summary>
         public const string ExtLinkType = "ext-link-type";
 
         /// <summary>
-        /// Full name
+        /// Full name.
         /// </summary>
         public const string FullName = "full-name";
 
         /// <summary>
-        /// Id
+        /// Id.
         /// </summary>
         public const string Id = "id";
 
         /// <summary>
-        /// Latitude
+        /// Latitude.
         /// </summary>
         public const string Latitude = "latitude";
 
         /// <summary>
-        /// Longitude
+        /// Longitude.
         /// </summary>
         public const string Longitude = "longitude";
 
         /// <summary>
-        /// MIME-subtype
+        /// MIME-subtype.
         /// </summary>
         public const string MimeSubtype = "mime-subtype";
 
         /// <summary>
-        /// MIME-type
+        /// MIME-type.
         /// </summary>
         public const string MimeType = "mimetype";
 
         /// <summary>
-        /// Position
+        /// Position.
         /// </summary>
         public const string Position = "position";
 
         /// <summary>
-        /// Reference id
+        /// Reference id.
         /// </summary>
         public const string ReferenceId = "rid";
 
         /// <summary>
-        /// Reference type
+        /// Reference type.
         /// </summary>
         public const string RefType = "ref-type";
 
         /// <summary>
-        /// Specific use
+        /// Specific use.
         /// </summary>
         public const string SpecificUse = "specific-use";
 
         /// <summary>
-        /// Type
+        /// Type.
         /// </summary>
         public const string Type = "type";
 
         /// <summary>
-        /// Url
+        /// Url.
         /// </summary>
         public const string Url = "url";
 
         /// <summary>
-        /// XLink href local name
+        /// XLink href local name.
         /// </summary>
         public const string XLinkHref = "href";
 
         /// <summary>
-        /// XLinkHref full attribute name
+        /// XLinkHref full attribute name.
         /// </summary>
         public const string XLinkHrefFullAttributeName = "xlink:href";
 
         /// <summary>
-        /// XLink title local name
+        /// XLink title local name.
         /// </summary>
         public const string XLinkTitle = "title";
 
         /// <summary>
-        /// XLink type local name
+        /// XLink type local name.
         /// </summary>
         public const string XLinkType = "type";
 
         /// <summary>
-        /// journal-id-type
+        /// journal-id-type.
         /// </summary>
         public const string JournalIdType = "journal-id-type";
 
         /// <summary>
-        /// pub-type
+        /// pub-type.
         /// </summary>
         public const string PubType = "pub-type";
 
         /// <summary>
-        /// pub-id-type
+        /// pub-id-type.
         /// </summary>
         public const string PubIdType = "pub-id-type";
 
         /// <summary>
-        /// date-type
+        /// date-type.
         /// </summary>
         public const string DateType = "date-type";
     }

@@ -22,6 +22,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Can not determine if the returned result is valid or invalid.
         /// </summary>
-        Undefined = 0
+        Undefined = 0,
     }
 }

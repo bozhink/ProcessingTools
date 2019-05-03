@@ -25,12 +25,12 @@ namespace ProcessingTools.Common.Constants
         public const string DefaultMimeType = "application";
 
         /// <summary>
-        /// JPEG
+        /// JPEG.
         /// </summary>
         public const string Jpeg = "image/jpeg";
 
         /// <summary>
-        /// JSON
+        /// JSON.
         /// </summary>
         public const string Json = "application/json";
 
@@ -45,12 +45,12 @@ namespace ProcessingTools.Common.Constants
         public const string PlainText = "text/plain";
 
         /// <summary>
-        /// URL-encoded
+        /// URL-encoded.
         /// </summary>
         public const string UrlEncoded = "application/x-www-form-urlencoded";
 
         /// <summary>
-        /// XML
+        /// XML.
         /// </summary>
         public const string Xml = "application/xml";
     }

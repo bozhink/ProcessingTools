@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Barcode Type
+    /// Barcode type.
     /// </summary>
     public enum BarcodeType
     {
@@ -192,6 +192,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// PHARMACODE
         /// </summary>
-        PHARMACODE = 36
+        PHARMACODE = 36,
     }
 }

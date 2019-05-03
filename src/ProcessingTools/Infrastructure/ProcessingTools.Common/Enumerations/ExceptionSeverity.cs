@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Exception severity
+    /// Exception severity.
     /// </summary>
     public enum ExceptionSeverity
     {
@@ -32,6 +32,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Undefined
         /// </summary>
-        Undefined = 4
+        Undefined = 4,
     }
 }

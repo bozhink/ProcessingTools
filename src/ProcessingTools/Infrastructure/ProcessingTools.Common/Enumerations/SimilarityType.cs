@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Similarity Type.
+    /// Similarity type.
     /// </summary>
     public enum SimilarityType
     {
@@ -22,6 +22,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Same.
         /// </summary>
-        Same = 2
+        Same = 2,
     }
 }

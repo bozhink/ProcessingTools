@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Taxon type
+    /// Taxon type.
     /// </summary>
     public enum TaxonType
     {
@@ -27,6 +27,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Any
         /// </summary>
-        Any = 3
+        Any = 3,
     }
 }

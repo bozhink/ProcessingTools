@@ -10,257 +10,257 @@ namespace ProcessingTools.Common.Constants.Schema
     public static class ElementNames
     {
         /// <summary>
-        /// abbrev
+        /// abbrev.
         /// </summary>
         public const string Abbrev = "abbrev";
 
         /// <summary>
-        /// article
+        /// article.
         /// </summary>
         public const string Article = "article";
 
         /// <summary>
-        /// front
+        /// front.
         /// </summary>
         public const string Front = "front";
 
         /// <summary>
-        /// journal-meta
+        /// journal-meta.
         /// </summary>
         public const string JournalMeta = "journal-meta";
 
         /// <summary>
-        /// article-meta
+        /// article-meta.
         /// </summary>
         public const string ArticleMeta = "article-meta";
 
         /// <summary>
-        /// title-group
+        /// title-group.
         /// </summary>
         public const string TitleGroup = "title-group";
 
         /// <summary>
-        /// journal-id
+        /// journal-id.
         /// </summary>
         public const string JournalId = "journal-id";
 
         /// <summary>
-        /// journal-title-group
+        /// journal-title-group.
         /// </summary>
         public const string JournalTitleGroup = "journal-title-group";
 
         /// <summary>
-        /// journal-title
+        /// journal-title.
         /// </summary>
         public const string JournalTitle = "journal-title";
 
         /// <summary>
-        /// abbrev-journal-title
+        /// abbrev-journal-title.
         /// </summary>
         public const string AbbrevJournalTitle = "abbrev-journal-title";
 
         /// <summary>
-        /// body
+        /// body.
         /// </summary>
         public const string Body = "body";
 
         /// <summary>
-        /// comment
+        /// comment.
         /// </summary>
         public const string Comment = "comment";
 
         /// <summary>
-        /// def
+        /// def.
         /// </summary>
         public const string Def = "def";
 
         /// <summary>
-        /// ext-link
+        /// ext-link.
         /// </summary>
         public const string ExtLink = "ext-link";
 
         /// <summary>
-        /// locality-coordinates
+        /// locality-coordinates.
         /// </summary>
         public const string GeoCoordinate = "locality-coordinates";
 
         /// <summary>
-        /// given-names
+        /// given-names.
         /// </summary>
         public const string GivenNames = "given-names";
 
         /// <summary>
-        /// institutional_code
+        /// institutional_code.
         /// </summary>
         public const string InstitutionalCode = "institutional_code";
 
         /// <summary>
-        /// label
+        /// label.
         /// </summary>
         public const string Label = "label";
 
         /// <summary>
-        /// named-content
+        /// named-content.
         /// </summary>
         public const string NamedContent = "named-content";
 
         /// <summary>
-        /// object-id
+        /// object-id.
         /// </summary>
         public const string ObjectId = "object-id";
 
         /// <summary>
-        /// p
+        /// p.
         /// </summary>
         public const string Paragraph = "p";
 
         /// <summary>
-        /// prefix
+        /// prefix.
         /// </summary>
         public const string Prefix = "prefix";
 
         /// <summary>
-        /// suffix
+        /// suffix.
         /// </summary>
         public const string Suffix = "suffix";
 
         /// <summary>
-        /// surname
+        /// surname.
         /// </summary>
         public const string Surname = "surname";
 
         /// <summary>
-        /// table
+        /// table.
         /// </summary>
         public const string Table = "table";
 
         /// <summary>
-        /// taxon-authority
+        /// taxon-authority.
         /// </summary>
         public const string TaxonAuthority = "taxon-authority";
 
         /// <summary>
-        /// tn
+        /// tn.
         /// </summary>
         public const string TaxonName = "tn";
 
         /// <summary>
-        /// tn-part
+        /// tn-part.
         /// </summary>
         public const string TaxonNamePart = "tn-part";
 
         /// <summary>
-        /// taxon-status
+        /// taxon-status.
         /// </summary>
         public const string TaxonStatus = "taxon-status";
 
         /// <summary>
-        /// title
+        /// title.
         /// </summary>
         public const string Title = "title";
 
         /// <summary>
-        /// xref
+        /// xref.
         /// </summary>
         public const string XRef = "xref";
 
         /// <summary>
-        /// pub-date
+        /// pub-date.
         /// </summary>
         public const string PubDate = "pub-date";
 
         /// <summary>
-        /// date
+        /// date.
         /// </summary>
         public const string Date = "date";
 
         /// <summary>
-        /// day
+        /// day.
         /// </summary>
         public const string Day = "day";
 
         /// <summary>
-        /// month
+        /// month.
         /// </summary>
         public const string Month = "month";
 
         /// <summary>
-        /// year
+        /// year.
         /// </summary>
         public const string Year = "year";
 
         /// <summary>
-        /// issn
+        /// issn.
         /// </summary>
         public const string Issn = "issn";
 
         /// <summary>
-        /// publisher
+        /// publisher.
         /// </summary>
         public const string Publisher = "publisher";
 
         /// <summary>
-        /// publisher-name
+        /// publisher-name.
         /// </summary>
         public const string PublisherName = "publisher-name";
 
         /// <summary>
-        /// publisher-loc
+        /// publisher-loc.
         /// </summary>
         public const string PublisherLocation = "publisher-loc";
 
         /// <summary>
-        /// article-id
+        /// article-id.
         /// </summary>
         public const string ArticleId = "article-id";
 
         /// <summary>
-        /// article-title
+        /// article-title.
         /// </summary>
         public const string ArticleTitle = "article-title";
 
         /// <summary>
-        /// article-subtitle
+        /// article-subtitle.
         /// </summary>
         public const string ArticleSubTitle = "article-subtitle";
 
         /// <summary>
-        /// volume-series
+        /// volume-series.
         /// </summary>
         public const string VolumeSeries = "volume-series";
 
         /// <summary>
-        /// volume
+        /// volume.
         /// </summary>
         public const string Volume = "volume";
 
         /// <summary>
-        /// issue
+        /// issue.
         /// </summary>
         public const string Issue = "issue";
 
         /// <summary>
-        /// issue-part
+        /// issue-part.
         /// </summary>
         public const string IssuePart = "issue-part";
 
         /// <summary>
-        /// elocation-id
+        /// elocation-id.
         /// </summary>
         public const string ELocationId = "elocation-id";
 
         /// <summary>
-        /// fpage
+        /// fpage.
         /// </summary>
         public const string FirstPage = "fpage";
 
         /// <summary>
-        /// lpage
+        /// lpage.
         /// </summary>
         public const string LastPage = "lpage";
 
         /// <summary>
-        /// history
+        /// history.
         /// </summary>
         public const string History = "history";
     }

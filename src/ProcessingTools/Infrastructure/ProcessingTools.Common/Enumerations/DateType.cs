@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Date Type.
+    /// Date type.
     /// </summary>
     public enum DateType
     {
@@ -27,6 +27,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Year
         /// </summary>
-        Year = 3
+        Year = 3,
     }
 }

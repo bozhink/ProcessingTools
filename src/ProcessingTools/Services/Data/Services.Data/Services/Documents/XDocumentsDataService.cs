@@ -1,5 +1,10 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Services
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Common.Exceptions;
@@ -9,11 +14,6 @@
     using ProcessingTools.Models.Contracts.Services.Data.Documents;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
-    using System;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
 
     public class XDocumentsDataService : IXDocumentsDataService
     {

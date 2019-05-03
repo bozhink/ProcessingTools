@@ -10,57 +10,57 @@ namespace ProcessingTools.Common.Constants.Configuration
     internal static class ConnectionStringsKeys
     {
         /// <summary>
-        /// BioDatabaseConnection
+        /// Bio-database connection.
         /// </summary>
         internal const string BioDatabaseConnection = "BioDatabaseConnection";
 
         /// <summary>
-        /// BioEnvironmentsDatabaseConnection
+        /// Bio-environments database connection.
         /// </summary>
         internal const string BioEnvironmentsDatabaseConnection = "BioEnvironmentsDatabaseConnection";
 
         /// <summary>
-        /// BioTaxonomyDatabaseConnection
+        /// Bio-taxonomy database connection.
         /// </summary>
         internal const string BioTaxonomyDatabaseConnection = "BioTaxonomyDatabaseConnection";
 
         /// <summary>
-        /// DataDatabseConnection
+        /// Data database connection.
         /// </summary>
-        internal const string DataDatabseConnection = "DataDatabseConnection";
+        internal const string DataDatabaseConnection = "DataDatabaseConnection";
 
         /// <summary>
-        /// DataResourcesDatabaseConnection
+        /// Data resources database connection.
         /// </summary>
         internal const string DataResourcesDatabaseConnection = "DataResourcesDatabaseConnection";
 
         /// <summary>
-        /// DefaultConnection
+        /// Default connection.
         /// </summary>
         internal const string DefaultConnection = "DefaultConnection";
 
         /// <summary>
-        /// DocumentsDatabaseConnection
+        /// Documents database connection.
         /// </summary>
         internal const string DocumentsDatabaseConnection = "DocumentsDatabaseConnection";
 
         /// <summary>
-        /// GeoDatabseConnection
+        /// Geo database connection.
         /// </summary>
-        internal const string GeoDatabseConnection = "GeoDatabseConnection";
+        internal const string GeoDatabaseConnection = "GeoDatabaseConnection";
 
         /// <summary>
-        /// HistoryDatabaseConnection
+        /// History database connection.
         /// </summary>
         internal const string HistoryDatabaseConnection = "HistoryDatabaseConnection";
 
         /// <summary>
-        /// JournalsDatabaseConnection
+        /// Journals database connection.
         /// </summary>
         internal const string JournalsDatabaseConnection = "JournalsDatabaseConnection";
 
         /// <summary>
-        /// MediatypesDatabaseConnection
+        /// Mediatypes database connection.
         /// </summary>
         internal const string MediatypesDatabaseConnection = "MediatypesDatabaseConnection";
     }

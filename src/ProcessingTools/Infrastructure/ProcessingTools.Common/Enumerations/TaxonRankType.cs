@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Taxon rank type
+    /// Taxon rank type.
     /// </summary>
     public enum TaxonRankType
     {
@@ -257,6 +257,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Above family
         /// </summary>
-        AboveFamily = 202
+        AboveFamily = 202,
     }
 }

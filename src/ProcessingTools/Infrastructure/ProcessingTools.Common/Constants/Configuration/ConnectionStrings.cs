@@ -7,61 +7,62 @@ namespace ProcessingTools.Common.Constants.Configuration
     using System.Configuration;
 
     /// <summary>
-    /// Connection strings
+    /// Connection strings.
     /// </summary>
     public static class ConnectionStrings
-    { /// <summary>
-      /// BioDatabaseConnection
-      /// </summary>
+    {
+        /// <summary>
+        /// Bio-database connection.
+        /// </summary>
         public static readonly string BioDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.BioDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// BioEnvironmentsDatabaseConnection
+        /// Bio-environments database connection.
         /// </summary>
         public static readonly string BioEnvironmentsDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.BioEnvironmentsDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// BioTaxonomyDatabaseConnection
+        /// Bio-taxonomy database connection.
         /// </summary>
         public static readonly string BioTaxonomyDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.BioTaxonomyDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// DataDatabseConnection
+        /// Data database connection.
         /// </summary>
-        public static readonly string DataDatabseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.DataDatabseConnection].ConnectionString;
+        public static readonly string DataDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.DataDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// DataResourcesDatabaseConnection
+        /// Data resources database connection.
         /// </summary>
         public static readonly string DataResourcesDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.DataResourcesDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// DefaultConnection
+        /// Default connection.
         /// </summary>
         public static readonly string DefaultConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.DefaultConnection].ConnectionString;
 
         /// <summary>
-        /// DocumentsDatabaseConnection
+        /// Documents database connection.
         /// </summary>
         public static readonly string DocumentsDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.DocumentsDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// GeoDatabseConnection
+        /// Geo database connection.
         /// </summary>
-        public static readonly string GeoDatabseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.GeoDatabseConnection].ConnectionString;
+        public static readonly string GeoDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.GeoDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// HistoryDatabaseConnection
+        /// History database connection.
         /// </summary>
         public static readonly string HistoryDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.HistoryDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// JournalsDatabaseConnection
+        /// Journals database connection.
         /// </summary>
         public static readonly string JournalsDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.JournalsDatabaseConnection].ConnectionString;
 
         /// <summary>
-        /// MediatypesDatabaseConnection
+        /// Mediatypes database connection.
         /// </summary>
         public static readonly string MediatypesDatabaseConnection = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.MediatypesDatabaseConnection].ConnectionString;
     }

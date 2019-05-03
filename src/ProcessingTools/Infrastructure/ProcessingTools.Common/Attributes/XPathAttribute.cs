@@ -15,7 +15,7 @@ namespace ProcessingTools.Common.Attributes
         /// <summary>
         /// Initializes a new instance of the <see cref="XPathAttribute"/> class.
         /// </summary>
-        /// <param name="xpath">XPath</param>
+        /// <param name="xpath">XPath.</param>
         public XPathAttribute(string xpath)
         {
             this.XPath = xpath;

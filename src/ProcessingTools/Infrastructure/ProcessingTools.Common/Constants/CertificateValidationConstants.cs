@@ -32,7 +32,7 @@ namespace ProcessingTools.Common.Constants
             "5168FF90AF0207753CCCD9656462A212B859723B",
 
             // DigiCert High Assurance EV Root CA
-            "B13EC36903F8BF4701D498261A0802EF63642BC3"
+            "B13EC36903F8BF4701D498261A0802EF63642BC3",
         };
     }
 }

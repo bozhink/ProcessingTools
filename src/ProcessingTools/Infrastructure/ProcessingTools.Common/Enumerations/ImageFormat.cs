@@ -37,6 +37,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Unknown
         /// </summary>
-        Unknown
+        Unknown,
     }
 }

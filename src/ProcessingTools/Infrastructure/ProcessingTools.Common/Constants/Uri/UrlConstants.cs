@@ -5,17 +5,17 @@
 namespace ProcessingTools.Common.Constants.Uri
 {
     /// <summary>
-    /// URL constants
+    /// URL constants.
     /// </summary>
     public static class UrlConstants
     {
         /// <summary>
-        /// DOI prefix
+        /// DOI prefix.
         /// </summary>
         public const string DoiPrefix = "https://doi.org/";
 
         /// <summary>
-        /// ZooBank prefix
+        /// ZooBank prefix.
         /// </summary>
         public const string ZooBankPrefix = "http://zoobank.org/";
     }

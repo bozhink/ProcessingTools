@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Method type
+    /// Method type.
     /// </summary>
     public enum MethodType
     {
@@ -22,6 +22,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Asynchronous function
         /// </summary>
-        AsyncFunction = 2
+        AsyncFunction = 2,
     }
 }

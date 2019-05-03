@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Dispose status
+    /// Dispose status.
     /// </summary>
     public enum DisposeStatus
     {
@@ -22,6 +22,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Object is not disposed
         /// </summary>
-        NotDisposed = 2
+        NotDisposed = 2,
     }
 }

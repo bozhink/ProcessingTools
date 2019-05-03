@@ -5,67 +5,67 @@
 namespace ProcessingTools.Common.Constants.Schema
 {
     /// <summary>
-    /// XML namespaces
+    /// XML namespaces.
     /// </summary>
     public static class Namespaces
     {
         /// <summary>
-        /// AbbreviationsNamespace
+        /// Abbreviations namespace.
         /// </summary>
         public const string AbbreviationsNamespace = "urn:processing-tools-abbreviations";
 
         /// <summary>
-        /// ExternalLinksNamespace
+        /// External links namespace.
         /// </summary>
         public const string ExternalLinksNamespace = "urn:processing-tools-external-links";
 
         /// <summary>
-        /// TaxPubNamespacePrefix
+        /// TaxPub namespace prefix.
         /// </summary>
         public const string TaxPubNamespacePrefix = "tp";
 
         /// <summary>
-        /// TaxPubNamespaceUri
+        /// TaxPub namespace URI.
         /// </summary>
         public const string TaxPubNamespaceUri = "http://www.plazi.org/taxpub";
 
         /// <summary>
-        /// XlinkNamespacePrefix
+        /// Xlink namespace prefix.
         /// </summary>
         public const string XlinkNamespacePrefix = "xlink";
 
         /// <summary>
-        /// XlinkNamespaceUri
+        /// Xlink namespace URI.
         /// </summary>
         public const string XlinkNamespaceUri = "http://www.w3.org/1999/xlink";
 
         /// <summary>
-        /// XmlNamespacePrefix
+        /// XML namespace prefix.
         /// </summary>
         public const string XmlNamespacePrefix = "xml";
 
         /// <summary>
-        /// XmlNamespaceUri
+        /// XML namespace URI.
         /// </summary>
         public const string XmlNamespaceUri = "http://www.w3.org/XML/1998/namespace";
 
         /// <summary>
-        /// XsiNamespacePrefix
+        /// Xsi namespace prefix.
         /// </summary>
         public const string XsiNamespacePrefix = "xsi";
 
         /// <summary>
-        /// XsiNamespaceUri
+        /// Xsi namespace uri.
         /// </summary>
         public const string XsiNamespaceUri = "http://www.w3.org/2001/XMLSchema-instance";
 
         /// <summary>
-        /// MathMLNamespacePrefix
+        /// MathML namespace prefix.
         /// </summary>
         public const string MathMLNamespacePrefix = "mml";
 
         /// <summary>
-        /// MathMLNamespaceUri
+        /// MathML namespace URI.
         /// </summary>
         public const string MathMLNamespaceUri = "http://www.w3.org/1998/Math/MathML";
     }

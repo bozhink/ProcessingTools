@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Schema type
+    /// Schema type.
     /// </summary>
     public enum SchemaType
     {
@@ -17,6 +17,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// System
         /// </summary>
-        System = 0
+        System = 0,
     }
 }

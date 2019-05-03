@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Post Code type
+    /// Post code type.
     /// </summary>
     public enum PostCodeType
     {
@@ -17,6 +17,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Zip code
         /// </summary>
-        ZipCode = 1
+        ZipCode = 1,
     }
 }

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Log message type
+    /// Log message type.
     /// </summary>
     public enum LogType
     {
@@ -37,6 +37,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Exception
         /// </summary>
-        Exception = 5
+        Exception = 5,
     }
 }

@@ -8,8 +8,8 @@ namespace ProcessingTools.Common.Enumerations.Nlm
     using System.Xml.Serialization;
 
     /// <summary>
-    /// Type of Cross Reference
-    /// See https://dtd.nlm.nih.gov/publishing/tag-library/3.0/index.html
+    /// Type of cross reference.
+    /// See [https://dtd.nlm.nih.gov/publishing/tag-library/3.0/index.html].
     /// </summary>
     public enum ReferenceType
     {
@@ -158,6 +158,6 @@ namespace ProcessingTools.Common.Enumerations.Nlm
         /// </summary>
         [Display(Name = "boxed-text")]
         [XmlEnum(Name = "boxed-text")]
-        BoxedText
+        BoxedText,
     }
 }

@@ -5,12 +5,12 @@
 namespace ProcessingTools.Common.Constants.Uri
 {
     /// <summary>
-    /// Permalink prefixes
+    /// Permalink prefixes.
     /// </summary>
     public static class PermalinkPrefixes
     {
         /// <summary>
-        /// ValidationCacheTaxonName
+        /// Validation cache taxon name.
         /// </summary>
         public const string ValidationCacheTaxonName = "urn:processing-tools-xml:validation-cache:taxon-name";
     }

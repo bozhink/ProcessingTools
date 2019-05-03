@@ -10,167 +10,167 @@ namespace ProcessingTools.Common.Constants.Schema
     public static class AttributeValues
     {
         /// <summary>
-        /// dwc:collectionCode
+        /// dwc:collectionCode.
         /// </summary>
         public const string BiorepositoriesCollectionCodeContentType = "dwc:collectionCode";
 
         /// <summary>
-        /// collection
+        /// collection.
         /// </summary>
         public const string BiorepositoriesCollectionContentType = "collection";
 
         /// <summary>
-        /// institution
+        /// institution.
         /// </summary>
         public const string BiorepositoriesInstitutionContentType = "institution";
 
         /// <summary>
-        /// hybrid-sign
+        /// hybrid-sign.
         /// </summary>
         public const string HybridSign = "hybrid-sign";
 
         /// <summary>
-        /// infraspecific-rank
+        /// infraspecific-rank.
         /// </summary>
         public const string InfraRank = "infraspecific-rank";
 
         /// <summary>
-        /// infraspecific
+        /// infraspecific.
         /// </summary>
         public const string Infraspecific = "infraspecific";
 
         /// <summary>
-        /// aff
+        /// aff.
         /// </summary>
         public const string RefTypeAffiliation = "aff";
 
         /// <summary>
-        /// app
+        /// app.
         /// </summary>
         public const string RefTypeAppendix = "app";
 
         /// <summary>
-        /// bibr
+        /// bibr.
         /// </summary>
         public const string RefTypeBibliographicReference = "bibr";
 
         /// <summary>
-        /// fig
+        /// fig.
         /// </summary>
         public const string RefTypeFigure = "fig";
 
         /// <summary>
-        /// fn
+        /// fn.
         /// </summary>
         public const string RefTypeFootnote = "fn";
 
         /// <summary>
-        /// supplementary-material
+        /// supplementary-material.
         /// </summary>
         public const string RefTypeSupplementaryMaterial = "supplementary-material";
 
         /// <summary>
-        /// table
+        /// table.
         /// </summary>
         public const string RefTypeTable = "table";
 
         /// <summary>
-        /// table-fn
+        /// table-fn.
         /// </summary>
         public const string RefTypeTableFootnote = "table-fn";
 
         /// <summary>
-        /// boxed-text
+        /// boxed-text.
         /// </summary>
         public const string RefTypeTextBox = "boxed-text";
 
         /// <summary>
-        /// sensu
+        /// sensu.
         /// </summary>
         public const string Sensu = "sensu";
 
         /// <summary>
-        /// voucher code
+        /// voucher code.
         /// </summary>
         public const string SpecimenCode = "voucher code";
 
         /// <summary>
-        /// TN
+        /// TN.
         /// </summary>
         public const string TaxonNameIdPrefix = "TN";
 
         /// <summary>
-        /// TNP
+        /// TNP.
         /// </summary>
         public const string TaxonNamePartIdPrefix = "TNP";
 
         /// <summary>
-        /// any
+        /// any.
         /// </summary>
         public const string TaxonTypeAny = "any";
 
         /// <summary>
-        /// higher
+        /// higher.
         /// </summary>
         public const string TaxonTypeHigher = "higher";
 
         /// <summary>
-        /// lower
+        /// lower.
         /// </summary>
         public const string TaxonTypeLower = "lower";
 
         /// <summary>
-        /// uncertainty-rank
+        /// uncertainty-rank.
         /// </summary>
         public const string UncertaintyRank = "uncertainty-rank";
 
         /// <summary>
-        /// x-rank
+        /// x-rank.
         /// </summary>
         public const string XRank = "x-rank";
 
         /// <summary>
-        /// publisher-id
+        /// publisher-id.
         /// </summary>
         public const string JournalIdTypePublisherId = "publisher-id";
 
         /// <summary>
-        /// ppub
+        /// ppub.
         /// </summary>
         public const string PubTypePrint = "ppub";
 
         /// <summary>
-        /// epub
+        /// epub.
         /// </summary>
         public const string PubTypeElectronic = "epub";
 
         /// <summary>
-        /// archival-date
+        /// archival-date.
         /// </summary>
         public const string PubTypeArchival = "archival-date";
 
         /// <summary>
-        /// doi
+        /// doi.
         /// </summary>
         public const string PubIdTypeDoi = "doi";
 
         /// <summary>
-        /// publisher-id
+        /// publisher-id.
         /// </summary>
         public const string PubIdTypePublisherId = "publisher-id";
 
         /// <summary>
-        /// pub-type="collection"
+        /// pub-type="collection".
         /// </summary>
         public const string PubTypeCollection = "collection";
 
         /// <summary>
-        /// received
+        /// received.
         /// </summary>
         public const string Received = "received";
 
         /// <summary>
-        /// accepted
+        /// accepted.
         /// </summary>
         public const string Accepted = "accepted";
     }

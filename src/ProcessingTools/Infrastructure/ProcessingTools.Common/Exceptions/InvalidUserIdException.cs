@@ -18,7 +18,7 @@ namespace ProcessingTools.Common.Exceptions
         /// Initializes a new instance of the <see cref="InvalidUserIdException"/> class with default
         /// error message and id of user.
         /// </summary>
-        /// <param name="userId">ID of user that is the cause of the current exception</param>
+        /// <param name="userId">ID of user that is the cause of the current exception.</param>
         public InvalidUserIdException(object userId)
             : base(message: $@"User Id ""{userId}"" not found.")
         {
@@ -28,7 +28,7 @@ namespace ProcessingTools.Common.Exceptions
         /// Initializes a new instance of the <see cref="InvalidUserIdException"/> class with a specified
         /// error message and id of user.
         /// </summary>
-        /// <param name="userId">ID of user that is the cause of the current exception</param>
+        /// <param name="userId">ID of user that is the cause of the current exception.</param>
         /// <param name="message">The message that describes the error.</param>
         public InvalidUserIdException(object userId, string message)
             : base(message: $@"User Id ""{userId}"" not found.{Environment.NewLine}{message ?? string.Empty}")
@@ -39,7 +39,7 @@ namespace ProcessingTools.Common.Exceptions
         /// Initializes a new instance of the <see cref="InvalidUserIdException"/> class with a specified
         /// error message and a reference to the inner exception that is the cause of this exception and id of user.
         /// </summary>
-        /// /// <param name="userId">ID of user that is the cause of the current exception</param>
+        /// /// <param name="userId">ID of user that is the cause of the current exception.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public InvalidUserIdException(object userId, string message, Exception innerException)

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Enumerations
 {
     /// <summary>
-    /// Sort order
+    /// Sort order.
     /// </summary>
     public enum SortOrder
     {
@@ -17,6 +17,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Descending
         /// </summary>
-        Descending = 1
+        Descending = 1,
     }
 }

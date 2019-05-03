@@ -27,6 +27,6 @@ namespace ProcessingTools.Common.Enumerations.Tasks
         /// <summary>
         /// Schedule with monthly execution.
         /// </summary>
-        Monthly
+        Monthly,
     }
 }

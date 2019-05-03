@@ -222,6 +222,6 @@ namespace ProcessingTools.Common.Enumerations.Nlm
         /// </summary>
         [Display(Name = "translation")]
         [XmlEnum(Name = "translation")]
-        Translation
+        Translation,
     }
 }

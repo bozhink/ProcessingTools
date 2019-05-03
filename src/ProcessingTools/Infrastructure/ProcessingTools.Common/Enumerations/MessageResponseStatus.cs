@@ -22,6 +22,6 @@ namespace ProcessingTools.Common.Enumerations
         /// <summary>
         /// Error
         /// </summary>
-        Error = 2
+        Error = 2,
     }
 }
