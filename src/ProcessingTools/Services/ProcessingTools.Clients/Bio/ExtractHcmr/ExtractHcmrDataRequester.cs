@@ -43,7 +43,7 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
             {
                 { "document", content },
                 { "entity_types", "-25 -26 -27" },
-                { "format", "xml" }
+                { "format", "xml" },
             };
 
             var connector = this.connectorFactory.Create(BaseAddress);

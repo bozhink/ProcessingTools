@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityStatesRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System.Linq;
     using AutoMapper;
@@ -69,9 +73,9 @@
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<IStateSynonym>()
+                            .ToList<IStateSynonym>(),
                     });
 
                 c.CreateMap<StateSynonym, IStateSynonym>()
@@ -80,15 +84,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.StateId
+                        ParentId = s.StateId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<State> GetQuery(IStatesFilter filter)
         {
             var query = this.Repository.Queryable();

@@ -25,7 +25,7 @@ namespace ProcessingTools.Web.Services.Geo
         /// <summary>
         /// Initializes a new instance of the <see cref="CitiesApiService"/> class.
         /// </summary>
-        /// <param name="service">Instance of <see cref="ICitiesDataService"/></param>
+        /// <param name="service">Instance of <see cref="ICitiesDataService"/>.</param>
         public CitiesApiService(ICitiesDataService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
@@ -40,8 +40,8 @@ namespace ProcessingTools.Web.Services.Geo
                     Country = new CountryResponseModel
                     {
                         Id = i.Country.Id,
-                        Name = i.Country.Name
-                    }
+                        Name = i.Country.Name,
+                    },
                 });
             });
 

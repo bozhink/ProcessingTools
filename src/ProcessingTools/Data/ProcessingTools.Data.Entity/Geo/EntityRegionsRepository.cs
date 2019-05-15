@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityRegionsRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System.Linq;
     using AutoMapper;
@@ -71,9 +75,9 @@
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<IRegionSynonym>()
+                            .ToList<IRegionSynonym>(),
                     });
 
                 c.CreateMap<RegionSynonym, IRegionSynonym>()
@@ -82,15 +86,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.RegionId
+                        ParentId = s.RegionId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<Region> GetQuery(IRegionsFilter filter)
         {
             var query = this.Repository.Queryable();

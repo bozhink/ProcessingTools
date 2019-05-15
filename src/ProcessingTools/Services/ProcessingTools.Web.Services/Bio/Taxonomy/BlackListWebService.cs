@@ -61,7 +61,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
                 var items = foundItems
                     .Select(i => new ItemResponseModel
                     {
-                        Content = i
+                        Content = i,
                     })
                     .ToArray();
 

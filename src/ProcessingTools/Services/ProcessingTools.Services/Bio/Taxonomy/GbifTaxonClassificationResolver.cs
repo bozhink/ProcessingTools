@@ -64,43 +64,43 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             {
                 ScientificName = taxon.ScientificName,
                 CanonicalName = taxon.CanonicalName,
-                Rank = taxon.Rank.MapTaxonRankStringToTaxonRankType()
+                Rank = taxon.Rank.MapTaxonRankStringToTaxonRankType(),
             };
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Kingdom,
-                ScientificName = taxon.Kingdom
+                ScientificName = taxon.Kingdom,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Phylum,
-                ScientificName = taxon.Phylum
+                ScientificName = taxon.Phylum,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Class,
-                ScientificName = taxon.Class
+                ScientificName = taxon.Class,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Order,
-                ScientificName = taxon.Order
+                ScientificName = taxon.Order,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Family,
-                ScientificName = taxon.Family
+                ScientificName = taxon.Family,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Genus,
-                ScientificName = taxon.Genus
+                ScientificName = taxon.Genus,
             });
 
             return result;

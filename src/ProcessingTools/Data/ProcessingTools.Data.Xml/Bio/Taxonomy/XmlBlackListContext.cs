@@ -103,7 +103,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
                 .AsParallel()
                 .ForAll(element => this.Items.Enqueue(new BlackListItem
                 {
-                    Content = element.Value
+                    Content = element.Value,
                 }));
 
             this.lastUpdated = DateTime.Now;

@@ -77,7 +77,7 @@
                             Name = m.Country.Name,
                             CallingCode = m.Country.CallingCode,
                             Iso639xCode = m.Country.Iso639xCode,
-                            LanguageCode = m.Country.LanguageCode
+                            LanguageCode = m.Country.LanguageCode,
                         },
                         PostCodes = m.PostCodes
                             .Select(p => new PostCodeModel
@@ -85,7 +85,7 @@
                                 Id = p.Id,
                                 Code = p.Code,
                                 Type = p.Type,
-                                CityId = m.Id
+                                CityId = m.Id,
                             })
                             .ToList<IPostCode>(),
                         Synonyms = m.Synonyms
@@ -94,9 +94,9 @@
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<ICitySynonym>()
+                            .ToList<ICitySynonym>(),
                     });
 
                 c.CreateMap<CitySynonym, ICitySynonym>()
@@ -105,15 +105,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.CityId
+                        ParentId = s.CityId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<City> GetQuery(ICitiesFilter filter)
         {
             var query = this.Repository.Queryable();

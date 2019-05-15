@@ -65,7 +65,7 @@ namespace ProcessingTools.Services.Files
         {
             return new[]
             {
-                new Mediatype(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype)
+                new Mediatype(ContentTypes.DefaultMimeType, ContentTypes.DefaultMimeSubtype),
             };
         }
     }

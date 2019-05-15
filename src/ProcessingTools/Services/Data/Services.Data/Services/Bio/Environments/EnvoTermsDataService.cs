@@ -11,15 +11,23 @@
     using ProcessingTools.Services.Models.Contracts.Bio.Environments;
     using ProcessingTools.Services.Models.Data.Bio.Environments;
 
+    /// <summary>
+    /// ENVO terms data service.
+    /// </summary>
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
         private readonly IBioEnvironmentsRepository<EnvoName> repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnvoTermsDataService"/> class.
+        /// </summary>
+        /// <param name="repository">ENVO names repository.</param>
         public EnvoTermsDataService(IBioEnvironmentsRepository<EnvoName> repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        /// <inheritdoc/>
         public Task<IEnvoTerm[]> AllAsync()
         {
             return Task.Run(() =>
@@ -31,7 +39,7 @@
                     {
                         EntityId = n.EnvoEntityId,
                         Content = n.Content,
-                        EnvoId = n.EnvoEntity.EnvoId
+                        EnvoId = n.EnvoEntity.EnvoId,
                     })
                     .ToArray<IEnvoTerm>();
 
@@ -39,6 +47,7 @@
             });
         }
 
+        /// <inheritdoc/>
         public Task<IEnvoTerm[]> GetAsync(int skip, int take)
         {
             if (skip < 0)
@@ -62,7 +71,7 @@
                     {
                         EntityId = n.EnvoEntityId,
                         Content = n.Content,
-                        EnvoId = n.EnvoEntity.EnvoId
+                        EnvoId = n.EnvoEntity.EnvoId,
                     })
                     .ToArray<IEnvoTerm>();
 

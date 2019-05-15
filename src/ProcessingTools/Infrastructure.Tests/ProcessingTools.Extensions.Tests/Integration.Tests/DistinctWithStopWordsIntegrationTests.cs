@@ -23,7 +23,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
             // Arrange
             var stopWords = new List<string>
             {
-                "item"
+                "item",
             };
 
             var words = new List<string>();
@@ -37,7 +37,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         }
 
         /// <summary>
-        /// DistinctWithStopWords with empty stopWords should return input words
+        /// DistinctWithStopWords with empty stopWords should return input words.
         /// </summary>
         [Test(Author = "Bozhin Karaivanov", Description = "DistinctWithStopWords with empty stopWords should return input words")]
         public void DistinctWithStopWords_WithEmptyStopWords_ShouldReturnInputWords()
@@ -47,7 +47,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
 
             var words = new List<string>
             {
-                "item1"
+                "item1",
             };
 
             // Act

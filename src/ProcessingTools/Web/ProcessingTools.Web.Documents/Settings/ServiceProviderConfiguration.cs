@@ -45,19 +45,19 @@ namespace ProcessingTools.Web.Documents.Settings
 
             builder.RegisterModule(new XmlTransformersAutofacModule
             {
-                Configuration = configuration
+                Configuration = configuration,
             });
             builder.RegisterModule<TransformersFactoriesAutofacModule>();
             builder.RegisterModule<ProcessorsAutofacModule>();
             builder.RegisterModule<InterceptorsAutofacModule>();
             builder.RegisterModule(new DataAutofacModule
             {
-                Configuration = configuration
+                Configuration = configuration,
             });
             builder.RegisterModule<ServicesWebAutofacModule>();
             builder.RegisterModule(new ServicesAutofacModule
             {
-                Configuration = configuration
+                Configuration = configuration,
             });
 
             var container = builder.Build();

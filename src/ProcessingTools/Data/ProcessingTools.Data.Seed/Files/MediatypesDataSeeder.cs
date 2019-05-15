@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Seed.Files
+﻿// <copyright file="MediatypesDataSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Files
 {
     using System;
     using System.Collections.Concurrent;
@@ -24,6 +28,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
+        /// <inheritdoc/>
         public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -61,7 +66,7 @@
                 Extension = m.Extension.ToLowerInvariant(),
                 Mimetype = m.Mimetype.ToLowerInvariant(),
                 Mimesubtype = m.Mimesubtype.ToLowerInvariant(),
-                Description = m.Description
+                Description = m.Description,
             })
             .ToArray();
         }
@@ -113,7 +118,7 @@
                         .Select(p => new MimetypePair
                         {
                             Mimetype = mimeTypes.FirstOrDefault(m => m.Name == p.Mimetype),
-                            Mimesubtype = mimeSubtypes.FirstOrDefault(s => s.Name == p.Mimesubtype)
+                            Mimesubtype = mimeSubtypes.FirstOrDefault(s => s.Name == p.Mimesubtype),
                         })
                         .ToArray();
 
@@ -136,7 +141,7 @@
                     var fileExtension = new HashSet<string>(mediatypesJson.Select(e => e.Extension))
                     .Select(e => new FileExtension
                     {
-                        Name = e
+                        Name = e,
                     })
                     .ToArray();
 
@@ -159,7 +164,7 @@
                     var mimeSubtypesNames = new HashSet<string>(mediatypesJson.Select(t => t.Mimesubtype))
                     .Select(s => new Mimesubtype
                     {
-                        Name = s
+                        Name = s,
                     })
                     .ToArray();
 
@@ -182,7 +187,7 @@
                     var mimeTypesNames = new HashSet<string>(mediatypesJson.Select(t => t.Mimetype))
                     .Select(m => new Mimetype
                     {
-                        Name = m
+                        Name = m,
                     })
                     .ToArray();
 

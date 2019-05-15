@@ -130,7 +130,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
                 FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList()
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
             };
 
             return viewModel;
@@ -191,7 +191,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
                 FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList()
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
             };
 
             if (!string.IsNullOrWhiteSpace(id))
@@ -234,7 +234,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
                 FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList()
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
             };
 
             if (model != null)
@@ -260,7 +260,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
                 FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
                 ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList()
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
             };
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))

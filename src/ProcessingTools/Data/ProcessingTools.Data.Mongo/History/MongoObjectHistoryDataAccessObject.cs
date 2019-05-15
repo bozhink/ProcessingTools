@@ -45,7 +45,7 @@ namespace ProcessingTools.Data.Mongo.History
                 AssignIdOnInsert = true,
                 GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard,
                 ReadPreference = new ReadPreference(ReadPreferenceMode.SecondaryPreferred),
-                WriteConcern = new WriteConcern(WriteConcern.Unacknowledged.W)
+                WriteConcern = new WriteConcern(WriteConcern.Unacknowledged.W),
             };
         }
 

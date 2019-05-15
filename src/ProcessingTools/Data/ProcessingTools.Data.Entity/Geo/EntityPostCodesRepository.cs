@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityPostCodesRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System;
     using System.Linq;
@@ -20,17 +24,19 @@
             Id = m.Id,
             CityId = m.CityId,
             Code = m.Code,
-            Type = m.Type
+            Type = m.Type,
         };
 
+        /// <inheritdoc/>
         protected override Func<IPostCode, PostCode> MapModelToEntity => m => new PostCode
         {
             Id = m.Id,
             CityId = m.CityId,
             Code = m.Code,
-            Type = m.Type
+            Type = m.Type,
         };
 
+        /// <inheritdoc/>
         protected override IQueryable<PostCode> GetQuery(IPostCodesFilter filter)
         {
             var query = this.Repository.Queryable();

@@ -88,7 +88,7 @@ namespace ProcessingTools.Security
         /// <summary>
         /// Dispose unmanaged resources.
         /// </summary>
-        /// <param name="disposing">Value that indicates whether the method call comes from a Dispose method (its value is true) or from a finalizer (its value is false)</param>
+        /// <param name="disposing">Value that indicates whether the method call comes from a Dispose method (its value is true) or from a finalizer (its value is false).</param>
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)

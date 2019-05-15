@@ -47,7 +47,7 @@ namespace ProcessingTools.Data.Miners.Bio.Environments
                 {
                     Content = i.Name,
                     Types = i.Entities?.Select(e => e.Type)?.ToArray(),
-                    Identifiers = i.Entities?.Select(e => e.Identifier)?.ToArray()
+                    Identifiers = i.Entities?.Select(e => e.Identifier)?.ToArray(),
                 })
                 .ToArray();
 

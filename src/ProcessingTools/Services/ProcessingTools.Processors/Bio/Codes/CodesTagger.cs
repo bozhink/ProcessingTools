@@ -1,4 +1,8 @@
-﻿/*
+﻿// <copyright file="CodesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+/*
 institutional_code -> @description
 specimen_code -> @institutionalCode
 <institutional_code description="Australian National Insect Collection, CSIRO, Canberra City, Australia" attribute1="http://grbio.org/institution/queensland-museum">ANIC</institutional_code>
@@ -23,6 +27,9 @@ namespace ProcessingTools.Processors.Bio.Codes
     using ProcessingTools.Processors.Models.Bio.Codes;
     using ProcessingTools.Processors.Models.Contracts.Bio.Codes;
 
+    /// <summary>
+    /// Codes tagger.
+    /// </summary>
     public class CodesTagger : ICodesTagger
     {
         private const string SpecimenCodeTagName = "specimen_code";
@@ -125,6 +132,13 @@ namespace ProcessingTools.Processors.Bio.Codes
             @"ZUTC",
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CodesTagger"/> class.
+        /// </summary>
+        /// <param name="transformerFactory">Instance of <see cref="ICodesTransformerFactory"/>.</param>
+        /// <param name="contentHarvester">Instance of <see cref="ITextContentHarvester"/>.</param>
+        /// <param name="contentTagger">Instance of <see cref="IContentTagger"/>.</param>
+        /// <param name="logger">Logger.</param>
         public CodesTagger(
             ICodesTransformerFactory transformerFactory,
             ITextContentHarvester contentHarvester,
@@ -137,6 +151,7 @@ namespace ProcessingTools.Processors.Bio.Codes
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public async Task TagKnownSpecimenCodesAsync(IDocument document)
         {
             if (document == null)
@@ -157,6 +172,7 @@ namespace ProcessingTools.Processors.Bio.Codes
             await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathStrings.ContentNodes, tagModel).ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public async Task TagSpecimenCodesAsync(IDocument document)
         {
             if (document == null)
@@ -188,7 +204,7 @@ namespace ProcessingTools.Processors.Bio.Codes
         {
             XmlDocument cleanedXmlDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             cleanedXmlDocument.LoadXml(document.Xml);
@@ -215,8 +231,10 @@ namespace ProcessingTools.Processors.Bio.Codes
         /// <returns>ICollection of found different Janzen specimen codes.</returns>
         /// <example>
         /// Janzen codes:
+        /// ```
         /// yy-SRNP-xxxxxx
         /// DHJPARxxxxxxx
+        /// ```.
         /// </example>
         private IEnumerable<ISpecimenCode> GetJanzenCodes(IDocument document)
         {
@@ -245,7 +263,7 @@ namespace ProcessingTools.Processors.Bio.Codes
         /// <summary>
         /// Gets all plausible specimen codes which contains a used in the article institutional code.
         /// </summary>
-        /// <param name="document">Document to be processed</param>
+        /// <param name="document">Document to be processed.</param>
         /// <param name="potentialSpecimenCodes">The list of potential specimen codes.</param>
         /// <returns>Filtered list of plausible specimen codes.</returns>
         private IEnumerable<ISpecimenCode> GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(IDocument document, IEnumerable<string> potentialSpecimenCodes)
@@ -349,10 +367,10 @@ namespace ProcessingTools.Processors.Bio.Codes
         /// <summary>
         /// Tags next specimen codes when we have some tagged ones.
         /// </summary>
-        /// <param name="document">Document to be processed</param>
+        /// <param name="document">Document to be processed.</param>
         /// <param name="tagModel">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         private async Task GuessSequentalSpecimenCodes(IDocument document, XmlNode tagModel, string xpathTemplate)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
@@ -378,7 +396,7 @@ namespace ProcessingTools.Processors.Bio.Codes
                 var settings = new ContentTaggerSettings
                 {
                     CaseSensitive = true,
-                    MinimalTextSelect = false
+                    MinimalTextSelect = false,
                 };
 
                 await this.contentTagger.TagContentInDocumentAsync(specimenCode.Code, codeElement, xpathTemplate, document, settings).ConfigureAwait(false);

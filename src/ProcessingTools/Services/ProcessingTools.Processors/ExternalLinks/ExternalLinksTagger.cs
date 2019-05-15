@@ -54,13 +54,13 @@ namespace ProcessingTools.Processors.ExternalLinks
                 {
                     Href = i.Href,
                     ExternalLinkType = i.Type.GetName(),
-                    Value = i.Content
+                    Value = i.Content,
                 });
 
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = false,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.contentTagger.TagAsync(context.XmlDocument.DocumentElement, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);

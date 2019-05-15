@@ -34,7 +34,7 @@ namespace ProcessingTools.Harvesters.Meta
                     GivenNames = n[ElementNames.GivenNames]?.InnerText,
                     Surname = n[ElementNames.Surname]?.InnerText,
                     Prefix = n[ElementNames.Prefix]?.InnerText,
-                    Suffix = n[ElementNames.Suffix]?.InnerText
+                    Suffix = n[ElementNames.Suffix]?.InnerText,
                 });
 
             return query.ToArrayAsync<IPersonNameModel>();

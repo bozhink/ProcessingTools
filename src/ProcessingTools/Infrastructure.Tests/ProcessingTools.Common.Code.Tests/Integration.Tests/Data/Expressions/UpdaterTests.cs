@@ -133,7 +133,7 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
                 .SetupGet(e => e.UpdateCommands)
                 .Returns(new[]
                 {
-                    updateContentCommandMock.Object
+                    updateContentCommandMock.Object,
                 });
 
             var updateExpression = updateExpressionMock.Object;
@@ -211,7 +211,7 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
                 .Returns(new[]
                 {
                     updateContentCommandMock.Object,
-                    updateFavesCommandMock.Object
+                    updateFavesCommandMock.Object,
                 });
 
             var updateExpression = updateExpressionMock.Object;
@@ -313,7 +313,7 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
                 {
                     updateContentCommandMock.Object,
                     updateFavesCommandMock.Object,
-                    updateDatePostedCommandMock.Object
+                    updateDatePostedCommandMock.Object,
                 });
 
             var updateExpression = updateExpressionMock.Object;
@@ -393,7 +393,7 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
                 .SetupGet(e => e.UpdateCommands)
                 .Returns(new[]
                 {
-                    updateUserNameCommandMock.Object
+                    updateUserNameCommandMock.Object,
                 });
 
             var updateExpression = updateExpressionMock.Object;
@@ -461,7 +461,7 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
                 .SetupGet(e => e.UpdateCommands)
                 .Returns(new[]
                 {
-                    updateIdCommandMock.Object
+                    updateIdCommandMock.Object,
                 });
 
             var updateExpression = updateExpressionMock.Object;

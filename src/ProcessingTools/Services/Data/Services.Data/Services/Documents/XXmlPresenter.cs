@@ -18,6 +18,7 @@
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
+        /// <inheritdoc/>
         public async Task<string> GetHtmlAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
@@ -44,6 +45,7 @@
             return content;
         }
 
+        /// <inheritdoc/>
         public async Task<string> GetXmlAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
@@ -63,7 +65,7 @@
 
             var xmlDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             var reader = await this.service.GetReaderAsync(userId, articleId, documentId).ConfigureAwait(false);
@@ -74,6 +76,7 @@
             return xmlDocument.OuterXml;
         }
 
+        /// <inheritdoc/>
         public async Task<object> SaveHtmlAsync(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
@@ -98,7 +101,7 @@
 
             var xmlDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             xmlDocument.LoadXml(content
@@ -117,6 +120,7 @@
             return result;
         }
 
+        /// <inheritdoc/>
         public async Task<object> SaveXmlAsync(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
@@ -141,7 +145,7 @@
 
             var xmlDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             xmlDocument.LoadXml(content);

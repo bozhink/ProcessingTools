@@ -66,7 +66,7 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
             {
                 return new CoordinatesViewModel(userContext, Array.Empty<CoordinateViewModel>())
                 {
-                    ReturnUrl = model?.ReturnUrl
+                    ReturnUrl = model?.ReturnUrl,
                 };
             }
 
@@ -75,7 +75,7 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
             {
                 return new CoordinatesViewModel(userContext, Array.Empty<CoordinateViewModel>())
                 {
-                    ReturnUrl = model?.ReturnUrl
+                    ReturnUrl = model?.ReturnUrl,
                 };
             }
 
@@ -84,7 +84,7 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
 
             return new CoordinatesViewModel(userContext, coordinates)
             {
-                ReturnUrl = model?.ReturnUrl
+                ReturnUrl = model?.ReturnUrl,
             };
         }
     }

@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Add and Remove key-value pair should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Add and Remove key-value pair should work.")]
         [MaxTime(10000)]
         [Ignore("System-dependent integration test. Needs running Redis server.")]
@@ -39,7 +39,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             {
                 Id = 1,
                 PostedOn = now,
-                Content = $"{key} {now.ToLongTimeString()}"
+                Content = $"{key} {now.ToLongTimeString()}",
             };
 
             // Act: Clean-up database
@@ -70,7 +70,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Add multiple values in the same key and Remove one should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Add multiple values in the same key and Remove one should work.")]
         [MaxTime(10000)]
         [Ignore("System-dependent integration test. Needs running Redis server.")]
@@ -97,7 +97,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
                 {
                     Id = i,
                     PostedOn = now,
-                    Content = content
+                    Content = content,
                 };
 
                 values.Add(value);
@@ -108,7 +108,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             {
                 Id = -1,
                 Content = "To be removed",
-                PostedOn = DateTime.Now
+                PostedOn = DateTime.Now,
             };
 
             await repository.AddAsync(key, valueToBeDeleted).ConfigureAwait(false);
@@ -156,7 +156,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Add multiple values in the same key and Remove them should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Add multiple values in the same key and Remove them should work.")]
         [MaxTime(10000)]
         [Ignore("System-dependent integration test. Needs running Redis server.")]
@@ -183,7 +183,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
                 {
                     Id = i,
                     PostedOn = now,
-                    Content = content
+                    Content = content,
                 };
 
                 values.Add(value);
@@ -234,7 +234,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             {
                 Id = 0,
                 Content = Guid.NewGuid().ToString(),
-                PostedOn = DateTime.UtcNow
+                PostedOn = DateTime.UtcNow,
             };
 
             // Act: Add
@@ -280,7 +280,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Get Keys should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Get Keys should work.")]
         [MaxTime(10000)]
         [Ignore("System-dependent integration test. Needs running Redis server.")]
@@ -297,7 +297,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             {
                 Id = 0,
                 Content = Guid.NewGuid().ToString(),
-                PostedOn = DateTime.UtcNow
+                PostedOn = DateTime.UtcNow,
             };
 
             // Act: Add

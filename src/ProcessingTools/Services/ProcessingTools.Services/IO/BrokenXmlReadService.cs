@@ -125,7 +125,7 @@ namespace ProcessingTools.Services.IO
 
             var document = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             var body = document.CreateElement(ElementNames.Body);
@@ -155,7 +155,7 @@ namespace ProcessingTools.Services.IO
 
             var document = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             var body = document.CreateElement(ElementNames.Body);

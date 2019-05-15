@@ -51,7 +51,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Tools/TextEditor
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index()
         {
@@ -65,7 +65,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Tools/TextEditor/MonacoEditor
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(MonacoEditorActionName)]
         public IActionResult MonacoEditor()
         {
@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Tools/TextEditor/CodeMirror
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(CodeMirrorActionName)]
         public IActionResult CodeMirror()
         {

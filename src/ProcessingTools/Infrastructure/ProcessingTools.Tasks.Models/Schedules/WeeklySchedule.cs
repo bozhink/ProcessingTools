@@ -100,7 +100,7 @@ namespace ProcessingTools.Tasks.Models.Schedules
                 { 4, this.Thursday },
                 { 5, this.Friday },
                 { 6, this.Saturday },
-                { 7, this.Sunday }
+                { 7, this.Sunday },
             };
 
             if (!weekValues.ContainsValue(true))

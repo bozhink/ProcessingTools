@@ -11,6 +11,9 @@
     using ProcessingTools.Net.Tests.Models;
     using ProcessingTools.TestWebApiServer;
 
+    /// <summary>
+    /// <see cref="NetConnector"/> integration tests.
+    /// </summary>
     [TestFixture]
     public class NetConnectorIntegrationTests
     {
@@ -18,18 +21,30 @@
 
         private IDisposable server;
 
+        /// <summary>
+        /// Set-up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             this.server = WebApp.Start<Startup>(BaseAddress);
         }
 
+        /// <summary>
+        /// Tear-down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
             this.server.Dispose();
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> get JSON as string with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="checkString">Expected resultant string.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products/1", @"{""Id"":1,")]
         [TestCase("/api/products/2", @"{""Id"":2,")]
         [TestCase("/api/products/3", @"{""Id"":3,")]
@@ -42,6 +57,15 @@
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> get deserialized JSON with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="id">Expected value of the ID.</param>
+        /// <param name="name">Expected value of the name.</param>
+        /// <param name="category">Expected value of the category.</param>
+        /// <param name="price">Expected value of the price.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products/1", 1, "Tomato Soup", "Groceries", 1)]
         [TestCase("/api/products/2", 2, "Yo-yo", "Toys", 3.75)]
         [TestCase("/api/products/3", 3, "Hammer", "Hardware", 16.99)]
@@ -57,6 +81,12 @@
             Assert.AreEqual(price, responseObject.Price, "Price should match.");
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> get deserialized JSON array with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="numberOfItems">Expected number of items.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products", 3)]
         [Timeout(1000)]
         public async Task NetConnector_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
@@ -73,6 +103,12 @@
             }
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> get XML as string with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="checkString">Expected value.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products/1", @"<Id>1</Id>")]
         [TestCase("/api/products/2", @"<Id>2</Id>")]
         [TestCase("/api/products/3", @"<Id>3</Id>")]
@@ -85,6 +121,15 @@
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> get deserialized XML with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="id">Expected value of the ID.</param>
+        /// <param name="name">Expected value of the name.</param>
+        /// <param name="category">Expected value of the category.</param>
+        /// <param name="price">Expected value of the price.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products/1", 1, "Tomato Soup", "Groceries", 1)]
         [TestCase("/api/products/2", 2, "Yo-yo", "Toys", 3.75)]
         [TestCase("/api/products/3", 3, "Hammer", "Hardware", 16.99)]
@@ -100,6 +145,12 @@
             Assert.AreEqual(price, responseObject.Price, "Price should match.");
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> get deserialized XML array with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="numberOfItems">Expected number of items.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products", 3)]
         [Timeout(1000)]
         public async Task NetConnector_GetDeserializedXmlArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
@@ -117,6 +168,14 @@
             }
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> post dictionary with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="name">Expected value of the name.</param>
+        /// <param name="category">Expected value of the category.</param>
+        /// <param name="price">Expected value of the price.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products/add", "Tomato Soup - 1", "Groceries", 1)]
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
@@ -128,7 +187,7 @@
             {
                 { "name", name },
                 { "category", category },
-                { "price", price.ToString() }
+                { "price", price.ToString() },
             };
 
             var response = await connector.PostAsync(url, values, Encoding.UTF8).ConfigureAwait(false);
@@ -139,6 +198,14 @@
             Assert.IsTrue(response.Contains(price.ToString()), "Response should contain the price.");
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> post string with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="name">Expected value of the name.</param>
+        /// <param name="category">Expected value of the category.</param>
+        /// <param name="price">Expected value of the price.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products/add", "Tomato Soup - 1", "Groceries", 1)]
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
@@ -149,7 +216,7 @@
             {
                 Name = name,
                 Category = category,
-                Price = price
+                Price = price,
             };
 
             string content = JsonConvert.SerializeObject(product);
@@ -166,6 +233,14 @@
             TestContext.WriteLine(response);
         }
 
+        /// <summary>
+        /// <see cref="NetConnector"/> post and deserialize dictionary as XML with valid parameters should work.
+        /// </summary>
+        /// <param name="url">Request URL.</param>
+        /// <param name="name">Expected value of the name.</param>
+        /// <param name="category">Expected value of the category.</param>
+        /// <param name="price">Expected value of the price.</param>
+        /// <returns>Task.</returns>
         [TestCase("/api/products/add", "Tomato Soup - 1", "Groceries", 1)]
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
@@ -177,7 +252,7 @@
             {
                 { "name", name },
                 { "category", category },
-                { "price", price.ToString() }
+                { "price", price.ToString() },
             };
 
             var responseObject = await connector.PostXmlObjectAsync<Product>(url, values, Encoding.UTF8).ConfigureAwait(false);

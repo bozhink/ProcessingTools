@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityDistrictsRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System.Linq;
     using AutoMapper;
@@ -72,9 +76,9 @@
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<IDistrictSynonym>()
+                            .ToList<IDistrictSynonym>(),
                     });
 
                 c.CreateMap<DistrictSynonym, IDistrictSynonym>()
@@ -83,15 +87,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.DistrictId
+                        ParentId = s.DistrictId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<District> GetQuery(IDistrictsFilter filter)
         {
             var query = this.Repository.Queryable();

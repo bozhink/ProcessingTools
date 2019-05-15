@@ -15,7 +15,7 @@ namespace ProcessingTools.Security
     /// JWS helper.
     /// </summary>
     /// <remarks>
-    /// See https://hdknr.github.io/docs/identity/impl_jws.html#id11
+    /// See [https://hdknr.github.io/docs/identity/impl_jws.html#id11].
     /// </remarks>
     public static class JwsUtilities
     {
@@ -112,7 +112,7 @@ namespace ProcessingTools.Security
 
             var jsonSerializerSettings = new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             };
 
             string jwsHeader = JsonConvert.SerializeObject(header, jsonSerializerSettings);

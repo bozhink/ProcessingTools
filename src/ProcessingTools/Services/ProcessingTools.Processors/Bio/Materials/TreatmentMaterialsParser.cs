@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Bio.Materials
+﻿// <copyright file="TreatmentMaterialsParser.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Materials
 {
     using System;
     using System.Linq;
@@ -20,6 +24,7 @@
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
+        /// <inheritdoc/>
         public async Task<object> ParseAsync(IDocument context)
         {
             if (context == null)
@@ -54,7 +59,7 @@
         {
             XmlDocument responseDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             responseDocument.LoadXml(response);
@@ -65,7 +70,7 @@
         {
             XmlDocument queryDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             var text = await this.transformerFactory

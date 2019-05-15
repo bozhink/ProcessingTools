@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// /Chat
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index()
         {

@@ -22,7 +22,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Services.Contracts;
 
     /// <summary>
-    /// Manage
+    /// Manage.
     /// </summary>
     [Authorize]
     [Route("[controller]/[action]")]
@@ -149,9 +149,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         private string UserId => this.userManager.GetUserId(this.User);
 
         /// <summary>
-        /// GET Manage
+        /// GET Manage.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index()
@@ -168,17 +168,17 @@ namespace ProcessingTools.Web.Documents.Controllers
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = this.StatusMessage
+                StatusMessage = this.StatusMessage,
             };
 
             return this.View(model);
         }
 
         /// <summary>
-        /// POST Manage
+        /// POST Manage.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(IndexActionName)]
         [ValidateAntiForgeryToken]
@@ -220,10 +220,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST Manage/SendVerificationEmail
+        /// POST Manage/SendVerificationEmail.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(SendVerificationEmailActionName)]
         [ValidateAntiForgeryToken]
@@ -250,9 +250,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/ChangePassword
+        /// GET Manage/ChangePassword.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(ChangePasswordActionName)]
         public async Task<IActionResult> ChangePassword()
@@ -274,10 +274,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST Manage/ChangePassword
+        /// POST Manage/ChangePassword.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(ChangePasswordActionName)]
         [ValidateAntiForgeryToken]
@@ -309,9 +309,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/SetPassword
+        /// GET Manage/SetPassword.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(SetPasswordActionName)]
         public async Task<IActionResult> SetPassword()
@@ -334,10 +334,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST Manage/SetPassword
+        /// POST Manage/SetPassword.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(SetPasswordActionName)]
         [ValidateAntiForgeryToken]
@@ -368,9 +368,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/ExternalLogins
+        /// GET Manage/ExternalLogins.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(ExternalLoginsActionName)]
         public async Task<IActionResult> ExternalLogins()
@@ -392,10 +392,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST Manage/LinkLogin
+        /// POST Manage/LinkLogin.
         /// </summary>
-        /// <param name="provider">Login provider</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <param name="provider">Login provider.</param>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(LinkLoginActionName)]
         [ValidateAntiForgeryToken]
@@ -411,9 +411,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/LinkLoginCallback
+        /// GET Manage/LinkLoginCallback.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(LinkLoginCallbackActionName)]
         public async Task<IActionResult> LinkLoginCallback()
@@ -444,10 +444,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST Manage/RemoveLogin
+        /// POST Manage/RemoveLogin.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(RemoveLoginActionName)]
         [ValidateAntiForgeryToken]
@@ -471,9 +471,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/TwoFactorAuthentication
+        /// GET Manage/TwoFactorAuthentication.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(TwoFactorAuthenticationActionName)]
         public async Task<IActionResult> TwoFactorAuthentication()
@@ -495,9 +495,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/Disable2faWarning
+        /// GET Manage/Disable2faWarning.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Disable2faWarningActionName)]
         public async Task<IActionResult> Disable2faWarning()
@@ -517,9 +517,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST Manage/Disable2fa
+        /// POST Manage/Disable2fa.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(Disable2faActionName)]
         [ValidateAntiForgeryToken]
@@ -542,9 +542,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/EnableAuthenticator
+        /// GET Manage/EnableAuthenticator.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EnableAuthenticatorActionName)]
         public async Task<IActionResult> EnableAuthenticator()
@@ -565,17 +565,17 @@ namespace ProcessingTools.Web.Documents.Controllers
             var model = new EnableAuthenticatorViewModel
             {
                 SharedKey = this.FormatKey(unformattedKey),
-                AuthenticatorUri = this.GenerateQrCodeUri(user.Email, unformattedKey)
+                AuthenticatorUri = this.GenerateQrCodeUri(user.Email, unformattedKey),
             };
 
             return this.View(model);
         }
 
         /// <summary>
-        /// POST Manage/EnableAuthenticator
+        /// POST Manage/EnableAuthenticator.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(EnableAuthenticatorActionName)]
         [ValidateAntiForgeryToken]
@@ -609,9 +609,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/ResetAuthenticatorWarning
+        /// GET Manage/ResetAuthenticatorWarning.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(ResetAuthenticatorWarningActionName)]
         public IActionResult ResetAuthenticatorWarning()
@@ -620,9 +620,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST Manage/ResetAuthenticator
+        /// POST Manage/ResetAuthenticator.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(ResetAuthenticatorActionName)]
         [ValidateAntiForgeryToken]
@@ -642,9 +642,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET Manage/GenerateRecoveryCodes
+        /// GET Manage/GenerateRecoveryCodes.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(GenerateRecoveryCodesActionName)]
         public async Task<IActionResult> GenerateRecoveryCodes()
@@ -669,9 +669,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

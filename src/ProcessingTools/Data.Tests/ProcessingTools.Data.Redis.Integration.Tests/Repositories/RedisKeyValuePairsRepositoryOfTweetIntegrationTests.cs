@@ -22,7 +22,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Add new valid key-value pair and then Get it and Remove it should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Add new valid key-value pair and then Get it and Remove it should work.")]
         [MaxTime(5000)]
         [Ignore("System-dependent integration test. Needs running Redis server.")]
@@ -36,7 +36,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             {
                 Id = 0,
                 Content = Guid.NewGuid().ToString(),
-                PostedOn = DateTime.UtcNow
+                PostedOn = DateTime.UtcNow,
             };
 
             // Act: Add
@@ -71,7 +71,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Get Keys should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Get Keys should work.")]
         [MaxTime(10000)]
         [Ignore("System-dependent integration test. Needs running Redis server.")]
@@ -90,7 +90,7 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             {
                 Id = 0,
                 Content = Guid.NewGuid().ToString(),
-                PostedOn = DateTime.UtcNow
+                PostedOn = DateTime.UtcNow,
             };
 
             // Act: Add

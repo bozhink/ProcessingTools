@@ -40,7 +40,7 @@ namespace ProcessingTools.Common.Code
                 IgnoreProcessingInstructions = true,
                 IgnoreWhitespace = false,
                 ValidationType = ValidationType.DTD,
-                ValidationFlags = XmlSchemaValidationFlags.ReportValidationWarnings
+                ValidationFlags = XmlSchemaValidationFlags.ReportValidationWarnings,
             };
 
             this.readerSettings.ValidationEventHandler += new ValidationEventHandler(this.ValidationCallBack);

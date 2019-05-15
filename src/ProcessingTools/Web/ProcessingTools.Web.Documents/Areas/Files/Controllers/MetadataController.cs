@@ -1,24 +1,15 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
 {
     using System;
-    using System.Net;
-    using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Files;
-    using System;
-    using System.IO;
-    using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Models.Contracts.Files;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Files.Metadata;
 
     /// <summary>
-    /// /Files/Metadata
+    /// /Files/Metadata.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Files)]
@@ -57,7 +48,7 @@
                 CreatedBy = metadata.CreatedBy,
                 CreatedOn = metadata.CreatedOn,
                 ModifiedBy = metadata.ModifiedBy,
-                ModifiedOn = metadata.ModifiedOn
+                ModifiedOn = metadata.ModifiedOn,
             };
 
             return this.View(viewmodel);
@@ -82,7 +73,7 @@
                 CreatedBy = model.CreatedBy,
                 CreatedOn = model.CreatedOn,
                 ModifiedBy = model.ModifiedBy,
-                ModifiedOn = model.ModifiedOn
+                ModifiedOn = model.ModifiedOn,
             };
 
             return this.View(viewmodel);

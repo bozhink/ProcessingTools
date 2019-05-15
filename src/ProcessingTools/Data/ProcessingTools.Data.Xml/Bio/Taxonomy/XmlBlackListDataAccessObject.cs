@@ -44,7 +44,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
                 {
                     this.Context.Upsert(new BlackListItem
                     {
-                        Content = item
+                        Content = item,
                     });
 
                     count++;
@@ -61,7 +61,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
             {
                 this.Context.Upsert(new BlackListItem
                 {
-                    Content = item
+                    Content = item,
                 });
 
                 return Task.FromResult<object>(item);

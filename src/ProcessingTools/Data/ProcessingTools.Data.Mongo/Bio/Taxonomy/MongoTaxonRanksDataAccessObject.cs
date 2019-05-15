@@ -49,7 +49,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             UpdateOptions updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
-                IsUpsert = true
+                IsUpsert = true,
             };
 
             var result = await this.collection.UpdateOneAsync(filter, update, updateOptions).ConfigureAwait(false);

@@ -23,7 +23,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
-    /// /Documents/Tagger
+    /// /Documents/Tagger.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Documents)]
@@ -44,20 +44,20 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Tagger
+        /// /Documents/Tagger.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         public IActionResult Index()
         {
             return this.View();
         }
 
         /// <summary>
-        /// /Documents/Tagger/ParseReferences
+        /// /Documents/Tagger/ParseReferences.
         /// </summary>
         /// <param name="documentId">Document object ID.</param>
         /// <param name="articleId">Article object ID.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         public async Task<IActionResult> ParseReferences(string documentId, string articleId)
         {
             try
@@ -77,11 +77,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Tagger/TagReferences
+        /// /Documents/Tagger/TagReferences.
         /// </summary>
         /// <param name="documentId">Document object ID.</param>
         /// <param name="articleId">Article object ID.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         public async Task<IActionResult> TagReferences(string documentId, string articleId)
         {
             try
@@ -101,11 +101,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Tagger/UpdateDocumentMeta
+        /// /Documents/Tagger/UpdateDocumentMeta.
         /// </summary>
         /// <param name="documentId">Document object ID.</param>
         /// <param name="articleId">Article object ID.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         public async Task<IActionResult> UpdateDocumentMeta(string documentId, string articleId)
         {
             try
@@ -125,10 +125,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Tagger/UpdateArticleDocumentsMeta
+        /// /Documents/Tagger/UpdateArticleDocumentsMeta.
         /// </summary>
         /// <param name="articleId">Article object ID.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         public async Task<IActionResult> UpdateArticleDocumentsMeta(string articleId)
         {
             try
@@ -199,7 +199,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                     .Select(c => new CommandSelectListItem
                     {
                         CommandValue = c.Name,
-                        CommandText = c.Description
+                        CommandText = c.Description,
                     })
                     .ToList();
             }

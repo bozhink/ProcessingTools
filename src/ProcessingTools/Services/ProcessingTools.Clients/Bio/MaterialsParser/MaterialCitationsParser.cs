@@ -56,7 +56,7 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
                 { "data", content },
                 { "functionName", "XmlExample.webService" },
                 { "dataFormat", "XML" },
-                { "INTERACTIVE", "no" }
+                { "INTERACTIVE", "no" },
             };
 
             var connector = this.connectorFactory.Create(BaseAddress);

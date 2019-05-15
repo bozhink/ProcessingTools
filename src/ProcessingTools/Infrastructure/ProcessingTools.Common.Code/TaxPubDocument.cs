@@ -38,7 +38,7 @@ namespace ProcessingTools.Common.Code
 
             this.XmlDocument = new XmlDocument(this.NameTable)
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             this.Encoding = encoding;

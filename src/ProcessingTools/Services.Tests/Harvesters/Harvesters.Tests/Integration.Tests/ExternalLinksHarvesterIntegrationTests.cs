@@ -14,6 +14,9 @@
     using ProcessingTools.Services.IO;
     using ProcessingTools.Services.Xml;
 
+    /// <summary>
+    /// External links harvester integration tests.
+    /// </summary>
     [TestClass]
     public class ExternalLinksHarvesterIntegrationTests
     {
@@ -22,6 +25,9 @@
         /// </summary>
         public TestContext TestContext { get; set; }
 
+        /// <summary>
+        /// External links harvester with sample xml file should extract correctly external links.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
         public void ExternalLinksHarvester_WithSampleXmlFile_ShouldExtractCorrectlyExternalLinks()
@@ -33,7 +39,7 @@
             var xmlFileName = Path.Combine("Samples", "article -with-external-links.xml");
             var document = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             document.Load(xmlFileName);

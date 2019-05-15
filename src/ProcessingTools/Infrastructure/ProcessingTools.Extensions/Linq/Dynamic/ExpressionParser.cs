@@ -50,7 +50,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
             typeof(TimeSpan),
             typeof(Guid),
             typeof(Math),
-            typeof(Convert)
+            typeof(Convert),
         };
 
         private static readonly Expression TrueLiteral = Expression.Constant(true);
@@ -136,550 +136,550 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
             LessGreater,
             DoubleEqual,
             GreaterThanEqual,
-            DoubleBar
+            DoubleBar,
         }
 
         /// <summary>
-        /// Add Signatures
+        /// Add Signatures.
         /// </summary>
         private interface IAddSignatures : IArithmeticSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTime x, TimeSpan y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(TimeSpan x, TimeSpan y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTime? x, TimeSpan? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(TimeSpan? x, TimeSpan? y);
         }
 
         /// <summary>
-        /// Arithmetic Signatures
+        /// Arithmetic Signatures.
         /// </summary>
         private interface IArithmeticSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(int x, int y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(uint x, uint y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(long x, long y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(ulong x, ulong y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(float x, float y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(double x, double y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(decimal x, decimal y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(int? x, int? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(uint? x, uint? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(long? x, long? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(ulong? x, ulong? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(float? x, float? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(double? x, double? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(decimal? x, decimal? y);
         }
 
         /// <summary>
-        /// Enumerable Signatures
+        /// Enumerable Signatures.
         /// </summary>
         private interface IEnumerableSignatures
         {
             /// <summary>
-            /// All
+            /// All.
             /// </summary>
-            /// <param name="predicate">predicate</param>
+            /// <param name="predicate">predicate.</param>
             void All(bool predicate);
 
             /// <summary>
-            /// Any
+            /// Any.
             /// </summary>
             void Any();
 
             /// <summary>
-            /// Any
+            /// Any.
             /// </summary>
-            /// <param name="predicate">predicate</param>
+            /// <param name="predicate">predicate.</param>
             void Any(bool predicate);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(int selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(int? selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(long selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(long? selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(float selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(float? selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(double selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(double? selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(decimal selector);
 
             /// <summary>
-            /// Average
+            /// Average.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Average(decimal? selector);
 
             /// <summary>
-            /// Contains
+            /// Contains.
             /// </summary>
-            /// <param name="selector">selector</param>
-            /// <returns>bool</returns>
+            /// <param name="selector">selector.</param>
+            /// <returns>Boolean.</returns>
             bool Contains(object selector);
 
             /// <summary>
-            /// Count
+            /// Count.
             /// </summary>
             void Count();
 
             /// <summary>
-            /// Count
+            /// Count.
             /// </summary>
-            /// <param name="predicate">predicate</param>
+            /// <param name="predicate">predicate.</param>
             void Count(bool predicate);
 
             /// <summary>
-            /// Max
+            /// Max.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Max(object selector);
 
             /// <summary>
-            /// Min
+            /// Min.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Min(object selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(int selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(int? selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(long selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(long? selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(float selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(float? selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(double selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(double? selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(decimal selector);
 
             /// <summary>
-            /// Sum
+            /// Sum.
             /// </summary>
-            /// <param name="selector">selector</param>
+            /// <param name="selector">selector.</param>
             void Sum(decimal? selector);
 
             /// <summary>
-            /// Where
+            /// Where.
             /// </summary>
-            /// <param name="predicate">predicate</param>
+            /// <param name="predicate">predicate.</param>
             void Where(bool predicate);
         }
 
         /// <summary>
-        /// Equality Signatures
+        /// Equality Signatures.
         /// </summary>
         private interface IEqualitySignatures : IRelationalSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(bool x, bool y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(bool? x, bool? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(Guid x, Guid y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(Guid? x, Guid? y);
         }
 
         /// <summary>
-        /// Logical Signatures
+        /// Logical Signatures.
         /// </summary>
         private interface ILogicalSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(bool x, bool y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(bool? x, bool? y);
         }
 
         /// <summary>
-        /// Negation Signatures
+        /// Negation Signatures.
         /// </summary>
         private interface INegationSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(int x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(long x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(float x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(double x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(decimal x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(int? x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(long? x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(float? x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(double? x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(decimal? x);
         }
 
         /// <summary>
-        /// Not Signatures
+        /// Not Signatures.
         /// </summary>
         private interface INotSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(bool x);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
+            /// <param name="x">x.</param>
             void F(bool? x);
         }
 
         /// <summary>
-        /// Relational Signatures
+        /// Relational Signatures.
         /// </summary>
         private interface IRelationalSignatures : IArithmeticSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(string x, string y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(char x, char y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTime x, DateTime y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTimeOffset x, DateTimeOffset y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(TimeSpan x, TimeSpan y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(char? x, char? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTime? x, DateTime? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTimeOffset? x, DateTimeOffset? y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(TimeSpan? x, TimeSpan? y);
         }
 
         /// <summary>
-        /// Subtract Signatures
+        /// Subtract Signatures.
         /// </summary>
         private interface ISubtractSignatures : IAddSignatures
         {
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTime x, DateTime y);
 
             /// <summary>
-            /// F
+            /// F.
             /// </summary>
-            /// <param name="x">x</param>
-            /// <param name="y">y</param>
+            /// <param name="x">x.</param>
+            /// <param name="y">y.</param>
             void F(DateTime? x, DateTime? y);
         }
 
@@ -808,7 +808,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                 { KeywordIt, KeywordIt },
                 { KeywordOuterIt, KeywordOuterIt },
                 { KeywordIif, KeywordIif },
-                { KeywordNew, KeywordNew }
+                { KeywordNew, KeywordNew },
             };
 
             foreach (Type type in PredefinedTypes)
@@ -1340,7 +1340,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                 .Select(m => new MethodData
                 {
                     MethodBase = m,
-                    Parameters = m.GetParameters()
+                    Parameters = m.GetParameters(),
                 })
                 .Where(m => this.IsApplicable(m, args))
                 .ToArray();

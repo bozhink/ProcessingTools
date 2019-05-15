@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// GET CoordinatesCalculator
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(string returnUrl)
@@ -68,7 +68,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         /// <param name="model">Request model.</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(IndexActionName)]
@@ -105,7 +105,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

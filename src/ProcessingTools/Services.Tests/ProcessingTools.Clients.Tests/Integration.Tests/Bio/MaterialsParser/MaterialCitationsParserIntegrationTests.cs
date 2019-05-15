@@ -35,7 +35,7 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 
             var requestXml = new XmlDocument
             {
-                PreserveWhitespace = false
+                PreserveWhitespace = false,
             };
 
             requestXml.LoadXml(ZeroTestContent);
@@ -44,7 +44,7 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 
             var responseXml = new XmlDocument
             {
-                PreserveWhitespace = false
+                PreserveWhitespace = false,
             };
 
             responseXml.LoadXml(result);
@@ -73,7 +73,7 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 
             var requestXml = new XmlDocument
             {
-                PreserveWhitespace = false
+                PreserveWhitespace = false,
             };
 
             requestXml.Load(ConfigurationManager.AppSettings["RequestXmlWithTwoMaterialCitations"]);
@@ -82,7 +82,7 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 
             var responseXml = new XmlDocument
             {
-                PreserveWhitespace = false
+                PreserveWhitespace = false,
             };
 
             responseXml.LoadXml(result);

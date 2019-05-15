@@ -56,9 +56,9 @@
                                 Id = s.Id,
                                 Name = s.Name,
                                 LanguageCode = s.LanguageCode,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<IContinentSynonym>()
+                            .ToList<IContinentSynonym>(),
                     });
 
                 c.CreateMap<ContinentSynonym, IContinentSynonym>()
@@ -67,15 +67,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.ContinentId
+                        ParentId = s.ContinentId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<Continent> GetQuery(IContinentsFilter filter)
         {
             {

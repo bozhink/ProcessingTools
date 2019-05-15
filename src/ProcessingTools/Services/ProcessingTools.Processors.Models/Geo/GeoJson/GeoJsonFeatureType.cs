@@ -12,6 +12,6 @@ namespace ProcessingTools.Processors.Models.Geo.GeoJson
         /// <summary>
         /// Feature
         /// </summary>
-        Feature
+        Feature,
     }
 }

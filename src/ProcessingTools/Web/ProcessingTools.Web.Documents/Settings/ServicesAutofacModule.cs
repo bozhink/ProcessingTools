@@ -25,7 +25,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Tools;
 
     /// <summary>
-    /// Autofac bindings for ProcessingTools.Services.*
+    /// Autofac bindings for ProcessingTools.Services.*.
     /// </summary>
     public class ServicesAutofacModule : Module
     {
@@ -108,7 +108,7 @@ namespace ProcessingTools.Web.Documents.Settings
                 {
                     return new ProcessingTools.Services.Files.FileNameResolver
                     {
-                        BaseDirectoryName = this.Configuration[ConfigurationConstants.FilesRootDirectory]
+                        BaseDirectoryName = this.Configuration[ConfigurationConstants.FilesRootDirectory],
                     };
                 })
                 .As<ProcessingTools.Services.Contracts.Files.IFileNameResolver>()

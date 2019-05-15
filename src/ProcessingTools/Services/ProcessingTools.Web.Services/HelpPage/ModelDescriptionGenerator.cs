@@ -77,7 +77,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                     RegularExpressionAttribute regularExpression = (RegularExpressionAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "Matching regular expression pattern: {0}", regularExpression.Pattern);
                 }
-            }
+            },
         };
 
         // Modify this to add more default documentations.
@@ -109,7 +109,7 @@ namespace ProcessingTools.Web.Services.HelpPage
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelDescriptionGenerator"/> class.
         /// </summary>
-        /// <param name="factory">Factory for <see cref="IModelDocumentationProvider"/> object</param>
+        /// <param name="factory">Factory for <see cref="IModelDocumentationProvider"/> object.</param>
         public ModelDescriptionGenerator(Func<IModelDocumentationProvider> factory)
         {
             if (factory == null)
@@ -132,8 +132,8 @@ namespace ProcessingTools.Web.Services.HelpPage
         /// <summary>
         /// Gets or creates model description.
         /// </summary>
-        /// <param name="modelType">Type of the model</param>
-        /// <returns>Model description</returns>
+        /// <param name="modelType">Type of the model.</param>
+        /// <returns>Model description.</returns>
         public ModelDescription GetOrCreateModelDescription(Type modelType)
         {
             if (modelType == null)
@@ -306,7 +306,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                         new ParameterAnnotation
                         {
                             AnnotationAttribute = attribute,
-                            Documentation = textGenerator(attribute)
+                            Documentation = textGenerator(attribute),
                         });
                 }
             }
@@ -344,7 +344,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                 {
                     Name = ModelNameHelper.GetModelName(modelType),
                     ModelType = modelType,
-                    ElementDescription = collectionModelDescription
+                    ElementDescription = collectionModelDescription,
                 };
             }
 
@@ -357,7 +357,7 @@ namespace ProcessingTools.Web.Services.HelpPage
             {
                 Name = ModelNameHelper.GetModelName(modelType),
                 ModelType = modelType,
-                Documentation = this.CreateDefaultDocumentation(modelType)
+                Documentation = this.CreateDefaultDocumentation(modelType),
             };
 
             this.GeneratedModels.Add(complexModelDescription.Name, complexModelDescription);
@@ -369,7 +369,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                 {
                     ParameterDescription propertyModel = new ParameterDescription
                     {
-                        Name = GetMemberName(property, hasDataContractAttribute)
+                        Name = GetMemberName(property, hasDataContractAttribute),
                     };
 
                     if (this.DocumentationProvider != null)
@@ -390,7 +390,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                 {
                     ParameterDescription propertyModel = new ParameterDescription
                     {
-                        Name = GetMemberName(field, hasDataContractAttribute)
+                        Name = GetMemberName(field, hasDataContractAttribute),
                     };
 
                     if (this.DocumentationProvider != null)
@@ -416,7 +416,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                 Name = ModelNameHelper.GetModelName(modelType),
                 ModelType = modelType,
                 KeyModelDescription = keyModelDescription,
-                ValueModelDescription = valueModelDescription
+                ValueModelDescription = valueModelDescription,
             };
         }
 
@@ -426,7 +426,7 @@ namespace ProcessingTools.Web.Services.HelpPage
             {
                 Name = ModelNameHelper.GetModelName(modelType),
                 ModelType = modelType,
-                Documentation = this.CreateDefaultDocumentation(modelType)
+                Documentation = this.CreateDefaultDocumentation(modelType),
             };
             bool hasDataContractAttribute = modelType.GetCustomAttribute<DataContractAttribute>() != null;
             foreach (FieldInfo field in modelType.GetFields(BindingFlags.Public | BindingFlags.Static))
@@ -436,7 +436,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                     EnumValueDescription enumValue = new EnumValueDescription
                     {
                         Name = field.Name,
-                        Value = field.GetRawConstantValue().ToString()
+                        Value = field.GetRawConstantValue().ToString(),
                     };
 
                     if (this.DocumentationProvider != null)
@@ -463,7 +463,7 @@ namespace ProcessingTools.Web.Services.HelpPage
                 Name = ModelNameHelper.GetModelName(modelType),
                 ModelType = modelType,
                 KeyModelDescription = keyModelDescription,
-                ValueModelDescription = valueModelDescription
+                ValueModelDescription = valueModelDescription,
             };
         }
 
@@ -473,7 +473,7 @@ namespace ProcessingTools.Web.Services.HelpPage
             {
                 Name = ModelNameHelper.GetModelName(modelType),
                 ModelType = modelType,
-                Documentation = this.CreateDefaultDocumentation(modelType)
+                Documentation = this.CreateDefaultDocumentation(modelType),
             };
 
             this.GeneratedModels.Add(simpleModelDescription.Name, simpleModelDescription);

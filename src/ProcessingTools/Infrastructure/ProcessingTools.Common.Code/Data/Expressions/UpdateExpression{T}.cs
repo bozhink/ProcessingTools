@@ -40,7 +40,7 @@ namespace ProcessingTools.Common.Code.Data.Expressions
             {
                 FieldName = fieldName,
                 UpdateVerb = nameof(this.Set),
-                Value = value
+                Value = value,
             });
 
             return this;

@@ -51,7 +51,7 @@ namespace ProcessingTools.Web.Services.Tools
             var viewModel = new BarcodeViewModel
             {
                 Width = ImagingConstants.DefaultBarcodeWidth,
-                Height = ImagingConstants.DefaultBarcodeHeight
+                Height = ImagingConstants.DefaultBarcodeHeight,
             };
 
             return Task.FromResult(viewModel);
@@ -64,7 +64,7 @@ namespace ProcessingTools.Web.Services.Tools
             {
                 Content = model?.Content,
                 Width = model?.Width ?? ImagingConstants.DefaultBarcodeWidth,
-                Height = model?.Height ?? ImagingConstants.DefaultBarcodeHeight
+                Height = model?.Height ?? ImagingConstants.DefaultBarcodeHeight,
             };
 
             return Task.FromResult(viewModel);

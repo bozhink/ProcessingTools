@@ -40,7 +40,7 @@ namespace ProcessingTools.Services.Files
 
             return new[]
             {
-                new Mediatype(mediatype)
+                new Mediatype(mediatype),
             };
         }
     }

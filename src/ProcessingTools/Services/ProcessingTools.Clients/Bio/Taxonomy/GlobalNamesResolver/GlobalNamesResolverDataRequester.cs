@@ -61,7 +61,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
         {
             Dictionary<string, string> values = new Dictionary<string, string>
                 {
-                    { "data", string.Join("\r\n", scientificNames) }
+                    { "data", string.Join("\r\n", scientificNames) },
                 };
 
             if (sourceId != null)

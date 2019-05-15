@@ -65,7 +65,7 @@ namespace ProcessingTools.Services.Documents
             {
                 Article = article,
                 Journal = journal,
-                Publisher = publisher
+                Publisher = publisher,
             };
         }
 
@@ -104,7 +104,7 @@ namespace ProcessingTools.Services.Documents
                 Article = article,
                 Journal = journal,
                 Publisher = publisher,
-                Documents = documents
+                Documents = documents,
             };
         }
 
@@ -145,7 +145,7 @@ namespace ProcessingTools.Services.Documents
                 Document = document,
                 Article = article,
                 Journal = journal,
-                Publisher = publisher
+                Publisher = publisher,
             };
         }
     }

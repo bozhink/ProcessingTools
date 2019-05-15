@@ -45,7 +45,7 @@
                     {
                         Code = i.InstitutionCode,
                         Name = i.InstitutionName,
-                        Url = i.Url
+                        Url = i.Url,
                     })
                     .ToArray<IInstitution>();
 

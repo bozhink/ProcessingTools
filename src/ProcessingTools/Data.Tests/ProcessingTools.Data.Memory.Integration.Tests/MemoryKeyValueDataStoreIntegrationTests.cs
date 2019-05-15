@@ -27,13 +27,13 @@ namespace ProcessingTools.Data.Memory.Integration.Tests
             var db = new MemoryKeyValueDataStore<IKeyModel, IValueModel>();
             var key = new KeyModel
             {
-                Id = 7432982
+                Id = 7432982,
             };
 
             var value = new ValueModel
             {
                 Id = 234234,
-                Content = Guid.NewGuid().ToString()
+                Content = Guid.NewGuid().ToString(),
             };
 
             // Act: AddOrUpdate
@@ -78,19 +78,19 @@ namespace ProcessingTools.Data.Memory.Integration.Tests
             var db = new MemoryKeyValueDataStore<IKeyModel, IValueModel>();
             var key = new KeyModel
             {
-                Id = DateTime.Now.Millisecond
+                Id = DateTime.Now.Millisecond,
             };
 
             var value1 = new ValueModel
             {
                 Id = 234234 + DateTime.Now.Millisecond,
-                Content = Guid.NewGuid().ToString()
+                Content = Guid.NewGuid().ToString(),
             };
 
             var value2 = new ValueModel
             {
                 Id = 5354 + DateTime.Now.Millisecond,
-                Content = Guid.NewGuid().ToString()
+                Content = Guid.NewGuid().ToString(),
             };
 
             // Act: AddOrUpdate

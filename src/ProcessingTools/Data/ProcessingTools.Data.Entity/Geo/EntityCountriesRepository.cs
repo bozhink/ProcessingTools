@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityCountriesRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System.Linq;
     using AutoMapper;
@@ -69,7 +73,7 @@
                             .Select(x => new ContinentModel
                             {
                                 Id = x.Id,
-                                Name = x.Name
+                                Name = x.Name,
                             })
                             .ToList<IContinent>(),
                         Synonyms = m.Synonyms
@@ -78,9 +82,9 @@
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<ICountrySynonym>()
+                            .ToList<ICountrySynonym>(),
                     });
 
                 c.CreateMap<CountrySynonym, ICountrySynonym>()
@@ -89,15 +93,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.CountryId
+                        ParentId = s.CountryId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<Country> GetQuery(ICountriesFilter filter)
         {
             var query = this.Repository.Queryable();

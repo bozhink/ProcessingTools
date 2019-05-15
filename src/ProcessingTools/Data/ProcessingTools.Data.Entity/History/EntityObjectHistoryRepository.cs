@@ -35,7 +35,7 @@
                 ObjectType = entity.ObjectType,
                 CreatedBy = entity.CreatedBy,
                 CreatedOn = entity.CreatedOn,
-                Id = entity.Id
+                Id = entity.Id,
             };
 
             this.Add(model);

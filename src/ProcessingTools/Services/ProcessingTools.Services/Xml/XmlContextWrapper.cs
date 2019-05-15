@@ -23,7 +23,7 @@ namespace ProcessingTools.Services.Xml
 
             var wrapper = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             var element = wrapper.CreateElement("context:context-wrapper", "urn:processing-tools-xml:context-wrapper");

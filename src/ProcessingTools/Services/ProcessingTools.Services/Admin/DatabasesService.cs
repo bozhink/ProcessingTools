@@ -53,7 +53,7 @@ namespace ProcessingTools.Services.Admin
             {
                 NumberOfDatabases = initializers.Count(),
                 Success = !exceptions.Any(),
-                Exceptions = exceptions.ToList()
+                Exceptions = exceptions.ToList(),
             };
 
             return response;

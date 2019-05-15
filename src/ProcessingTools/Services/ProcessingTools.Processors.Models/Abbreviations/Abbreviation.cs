@@ -91,7 +91,7 @@ namespace ProcessingTools.Processors.Models.Abbreviations
             {
                 var document = new XmlDocument
                 {
-                    PreserveWhitespace = true
+                    PreserveWhitespace = true,
                 };
 
                 var replacePatternNode = document.CreateElement(ElementNames.Abbrev);

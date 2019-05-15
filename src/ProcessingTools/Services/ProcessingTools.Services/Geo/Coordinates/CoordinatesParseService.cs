@@ -78,7 +78,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
                             return new CoordinateStringModel
                             {
                                 Coordinate = key,
-                                ParseException = ex
+                                ParseException = ex,
                             };
                         }
                     });

@@ -82,7 +82,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                             outputCollection.Enqueue(new TaxonRank
                             {
                                 ScientificName = item.Name,
-                                Rank = rank
+                                Rank = rank,
                             });
                         }
                     }

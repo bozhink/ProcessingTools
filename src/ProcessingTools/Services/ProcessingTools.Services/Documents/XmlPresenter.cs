@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Documents
 
             HtmlDocument htmlDocument = new HtmlDocument
             {
-                OptionOutputAsXml = false
+                OptionOutputAsXml = false,
             };
 
             if (!string.IsNullOrWhiteSpace(transformedContent))
@@ -66,7 +66,7 @@ namespace ProcessingTools.Services.Documents
 
             XmlDocument xmlDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             if (!string.IsNullOrWhiteSpace(content))
@@ -87,7 +87,7 @@ namespace ProcessingTools.Services.Documents
 
             HtmlDocument htmlDocument = new HtmlDocument
             {
-                OptionOutputAsXml = true
+                OptionOutputAsXml = true,
             };
 
             if (!string.IsNullOrWhiteSpace(content))
@@ -99,7 +99,7 @@ namespace ProcessingTools.Services.Documents
 
             XmlDocument xmlDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             xmlDocument.LoadXml(transformedContent);
@@ -120,7 +120,7 @@ namespace ProcessingTools.Services.Documents
 
             XmlDocument xmlDocument = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             if (!string.IsNullOrWhiteSpace(content))

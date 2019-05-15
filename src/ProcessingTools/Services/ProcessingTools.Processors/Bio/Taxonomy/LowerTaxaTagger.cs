@@ -141,7 +141,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
             var xpaths = new[]
             {
                 SequentialStructureXPath,
-                ".//value[.//tn[@type='lower']]"
+                ".//value[.//tn[@type='lower']]",
             };
 
             foreach (string xpath in xpaths)
@@ -374,7 +374,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                     var settings = new ContentTaggerSettings
                     {
                         CaseSensitive = true,
-                        MinimalTextSelect = true
+                        MinimalTextSelect = true,
                     };
 
                     await this.contentTagger.TagContentInDocumentAsync(item, tagModel, LowerTaxaXPath, document, settings).ConfigureAwait(false);
@@ -394,7 +394,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 "species",
                 "subspecies",
                 "variety",
-                "form"
+                "form",
             };
 
             var stringBuilder = new StringBuilder();

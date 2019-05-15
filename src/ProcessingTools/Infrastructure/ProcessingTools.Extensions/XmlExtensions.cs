@@ -27,7 +27,7 @@ namespace ProcessingTools.Extensions
             message = string.Empty;
             var settings = new XmlReaderSettings
             {
-                DtdProcessing = DtdProcessing.Ignore
+                DtdProcessing = DtdProcessing.Ignore,
             };
 
             try

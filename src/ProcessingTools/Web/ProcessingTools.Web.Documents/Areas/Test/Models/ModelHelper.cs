@@ -20,7 +20,7 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Models
         {
             List<object> objs = new List<object>
             {
-                new[] { "x", "sin(x)", "cos(x)", "sin(x)^2" }
+                new[] { "x", "sin(x)", "cos(x)", "sin(x)^2" },
             };
             for (int i = 0; i < 70; i++)
             {

@@ -74,7 +74,7 @@ namespace ProcessingTools.Processors.Language
             { 'ъ', "a" },
             { 'ь', "y" },
             { 'ю', "yu" },
-            { 'я', "ya" }
+            { 'я', "ya" },
         };
 
         /// <inheritdoc/>

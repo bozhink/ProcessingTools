@@ -37,7 +37,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             var taxon = new TaxonRankEntity
             {
                 Name = t.ScientificName,
-                IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(t.ScientificName)
+                IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(t.ScientificName),
             };
 
             taxon.Ranks.Add(t.Rank);
@@ -86,7 +86,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 t => t.Ranks.Select(rank => new TaxonRank
                 {
                     ScientificName = t.Name,
-                    Rank = rank
+                    Rank = rank,
                 }))
                 .Take(PaginationConstants.DefaultLargeNumberOfItemsPerPage)
                 .ToArray();

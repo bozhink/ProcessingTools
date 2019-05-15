@@ -30,7 +30,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 .Select(scientificName => new TaxonRank
                 {
                     ScientificName = scientificName,
-                    Rank = TaxonRankType.AboveGenus
+                    Rank = TaxonRankType.AboveGenus,
                 })
                 .ToArray<ITaxonRank>());
         }

@@ -43,7 +43,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             UpdateOptions updateOptions = new UpdateOptions
             {
                 IsUpsert = true,
-                BypassDocumentValidation = false
+                BypassDocumentValidation = false,
             };
 
             var result = await this.collection.UpdateOneAsync(filter, update, updateOptions).ConfigureAwait(false);
@@ -67,14 +67,14 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
                 .Distinct()
                 .Select(s => new T
                 {
-                    Content = s
+                    Content = s,
                 })
                 .ToList();
 
             InsertManyOptions insertOptions = new InsertManyOptions
             {
                 IsOrdered = false,
-                BypassDocumentValidation = false
+                BypassDocumentValidation = false,
             };
 
             await this.collection.InsertManyAsync(itemsToInsert, insertOptions).ConfigureAwait(false);
@@ -129,7 +129,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             TextSearchOptions searchOptions = new TextSearchOptions
             {
                 CaseSensitive = false,
-                DiacriticSensitive = false
+                DiacriticSensitive = false,
             };
 
             FilterDefinition<T> filterDefinition = Builders<T>.Filter.Text(filter, searchOptions);

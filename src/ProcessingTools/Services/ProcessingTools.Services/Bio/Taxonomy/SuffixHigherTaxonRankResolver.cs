@@ -40,7 +40,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 { "aceae|idae", TaxonRankType.Family },
                 { "oideae|inae", TaxonRankType.Subfamily },
                 { "eae|ini", TaxonRankType.Tribe },
-                { "inae|ina", TaxonRankType.Subtribe }
+                { "inae|ina", TaxonRankType.Subtribe },
             };
         }
 
@@ -62,7 +62,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                         result.Add(new TaxonRank
                         {
                             ScientificName = scientificName,
-                            Rank = rank
+                            Rank = rank,
                         });
                     }
                 }

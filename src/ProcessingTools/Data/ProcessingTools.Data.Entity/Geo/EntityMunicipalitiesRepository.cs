@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityMunicipalitiesRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System.Linq;
     using AutoMapper;
@@ -73,9 +77,9 @@
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<IMunicipalitySynonym>()
+                            .ToList<IMunicipalitySynonym>(),
                     });
 
                 c.CreateMap<MunicipalitySynonym, IMunicipalitySynonym>()
@@ -84,15 +88,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.MunicipalityId
+                        ParentId = s.MunicipalityId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<Municipality> GetQuery(IMunicipalitiesFilter filter)
         {
             var query = this.Repository.Queryable();

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Journals.Data.Entity.Repositories
+﻿// <copyright file="EntityPublishersRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Journals.Data.Entity.Repositories
 {
     using System;
     using System.Linq;
@@ -15,6 +19,7 @@
         {
         }
 
+        /// <inheritdoc/>
         protected override Func<IPublisher, Publisher> MapEntityToDbModel => p => new Publisher
         {
             Id = p.Id,
@@ -24,7 +29,7 @@
             ModifiedBy = p.ModifiedBy,
             CreatedOn = p.CreatedOn,
             ModifiedOn = p.ModifiedOn,
-            Addresses = p.Addresses.Select(this.MapAddressToAddress).ToList()
+            Addresses = p.Addresses.Select(this.MapAddressToAddress).ToList(),
         };
     }
 }

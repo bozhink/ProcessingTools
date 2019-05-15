@@ -23,7 +23,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Web.Documents.Extensions;
 
     /// <summary>
-    /// Autofac bindings for ProcessingTools.Data.*
+    /// Autofac bindings for ProcessingTools.Data.*.
     /// </summary>
     public class DataAutofacModule : Module
     {
@@ -44,7 +44,7 @@ namespace ProcessingTools.Web.Documents.Settings
                         context.Resolve<MongoDocumentsDatabaseInitializer>(),
                         context.Resolve<MongoFilesDatabaseInitializer>(),
                         context.Resolve<MongoLayoutDatabaseInitializer>(),
-                        context.Resolve<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>()
+                        context.Resolve<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>(),
                    };
                })
                .As<Func<IEnumerable<IDatabaseInitializer>>>()

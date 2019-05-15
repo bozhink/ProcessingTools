@@ -49,7 +49,7 @@ namespace ProcessingTools.Data.Mongo.Documents
             {
                 AssignIdOnInsert = true,
                 GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
-                WriteConcern = new WriteConcern(WriteConcern.WMajority.W)
+                WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             };
         }
 
@@ -206,7 +206,7 @@ namespace ProcessingTools.Data.Mongo.Documents
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
-                IsUpsert = false
+                IsUpsert = false,
             };
 
             var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
@@ -257,13 +257,13 @@ namespace ProcessingTools.Data.Mongo.Documents
                     FileId = d.FileId,
                     File = new File
                     {
-                        FileName = d.File.FileName
+                        FileName = d.File.FileName,
                     },
                     IsFinal = d.IsFinal,
                     CreatedBy = d.CreatedBy,
                     CreatedOn = d.CreatedOn,
                     ModifiedBy = d.ModifiedBy,
-                    ModifiedOn = d.ModifiedOn
+                    ModifiedOn = d.ModifiedOn,
                 })
                 .ToListAsync().ConfigureAwait(false);
 
@@ -284,7 +284,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 {
                     ArticleId = a.ObjectId.ToString(),
                     ArticleTitle = a.Title,
-                    JournalId = a.JournalId
+                    JournalId = a.JournalId,
                 })
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
@@ -296,7 +296,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                     .Project(j => new
                     {
                         JournalId = j.ObjectId.ToString(),
-                        JournalName = j.Name
+                        JournalName = j.Name,
                     })
                     .FirstOrDefaultAsync()
                     .ConfigureAwait(false);
@@ -327,7 +327,7 @@ namespace ProcessingTools.Data.Mongo.Documents
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
-                IsUpsert = true
+                IsUpsert = true,
             };
 
             var result = await this.GetCollection<DocumentContent>()
@@ -355,7 +355,7 @@ namespace ProcessingTools.Data.Mongo.Documents
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
-                IsUpsert = false
+                IsUpsert = false,
             };
 
             var resultMany = await this.Collection

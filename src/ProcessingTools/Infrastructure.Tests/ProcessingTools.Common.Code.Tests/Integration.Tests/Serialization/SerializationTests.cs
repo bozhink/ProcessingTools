@@ -32,7 +32,7 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Serialization
             {
                 Value = "http://example.com",
                 ExtLinkType = "uri",
-                Href = "http://example.com"
+                Href = "http://example.com",
             };
 
             XmlSerializer serializer = new XmlSerializer(typeof(ExternalLinkSerializableModel));
@@ -48,6 +48,8 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Serialization
 
                 var xml = new XmlDocument();
                 xml.LoadXml(result);
+
+                Assert.IsNotNull(xml.DocumentElement);
 
                 this.TestContext.WriteLine(xml.DocumentElement.OuterXml);
             }
@@ -62,7 +64,7 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Serialization
             var link = new ExternalLinkSerializableModel
             {
                 Value = "http://example.com",
-                ExtLinkType = "uri"
+                ExtLinkType = "uri",
             };
 
             XmlSerializer serializer = new XmlSerializer(typeof(ExternalLinkSerializableModel));
@@ -78,6 +80,8 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Serialization
 
                 var xml = new XmlDocument();
                 xml.LoadXml(result);
+
+                Assert.IsNotNull(xml.DocumentElement);
 
                 this.TestContext.WriteLine(xml.DocumentElement.OuterXml);
             }

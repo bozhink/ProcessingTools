@@ -23,19 +23,19 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Services.Contracts;
 
     /// <summary>
-    /// Account
+    /// Account.
     /// </summary>
     [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
         /// <summary>
-        /// Controller Name
+        /// Controller name.
         /// </summary>
         public const string ControllerName = "Account";
 
         /// <summary>
-        /// Index Action Name
+        /// Index action name.
         /// </summary>
         public const string IndexActionName = ActionNames.Index;
 
@@ -45,87 +45,87 @@ namespace ProcessingTools.Web.Documents.Controllers
         public const string LoginActionName = nameof(Login);
 
         /// <summary>
-        /// LoginWith2fa Action Name
+        /// LoginWith2fa action name.
         /// </summary>
         public const string LoginWith2faActionName = nameof(LoginWith2fa);
 
         /// <summary>
-        /// LoginWithRecoveryCode Action Name
+        /// LoginWithRecoveryCode action name.
         /// </summary>
         public const string LoginWithRecoveryCodeActionName = nameof(LoginWithRecoveryCode);
 
         /// <summary>
-        /// Lockout Action Name
+        /// Lockout action name.
         /// </summary>
         public const string LockoutActionName = nameof(Lockout);
 
         /// <summary>
-        /// Register Action Name
+        /// Register action name.
         /// </summary>
         public const string RegisterActionName = nameof(Register);
 
         /// <summary>
-        /// Logout Action Name
+        /// Logout action name.
         /// </summary>
         public const string LogoutActionName = nameof(Logout);
 
         /// <summary>
-        /// ExternalLogin Action Name
+        /// ExternalLogin action name.
         /// </summary>
         public const string ExternalLoginActionName = nameof(ExternalLogin);
 
         /// <summary>
-        /// ExternalLoginCallback Action Name
+        /// ExternalLoginCallback action name.
         /// </summary>
         public const string ExternalLoginCallbackActionName = nameof(ExternalLoginCallback);
 
         /// <summary>
-        /// ExternalLoginConfirmation Action Name
+        /// ExternalLoginConfirmation action name.
         /// </summary>
         public const string ExternalLoginConfirmationActionName = nameof(ExternalLoginConfirmation);
 
         /// <summary>
-        /// ConfirmEmail Action Name
+        /// ConfirmEmail action name.
         /// </summary>
         public const string ConfirmEmailActionName = nameof(ConfirmEmail);
 
         /// <summary>
-        /// ForgotPassword Action Name
+        /// ForgotPassword action name.
         /// </summary>
         public const string ForgotPasswordActionName = nameof(ForgotPassword);
 
         /// <summary>
-        /// ForgotPasswordConfirmation Action Name
+        /// ForgotPasswordConfirmation action name.
         /// </summary>
         public const string ForgotPasswordConfirmationActionName = nameof(ForgotPasswordConfirmation);
 
         /// <summary>
-        /// ResetPassword Action Name
+        /// ResetPassword action name.
         /// </summary>
         public const string ResetPasswordActionName = nameof(ResetPassword);
 
         /// <summary>
-        /// ResetPasswordConfirmation Action Name
+        /// ResetPasswordConfirmation action name.
         /// </summary>
         public const string ResetPasswordConfirmationActionName = nameof(ResetPasswordConfirmation);
 
         /// <summary>
-        /// AccessDenied Action Name
+        /// AccessDenied action name.
         /// </summary>
         public const string AccessDeniedActionName = nameof(AccessDenied);
 
         /// <summary>
-        /// ExternalLogin View Name
+        /// ExternalLogin view name.
         /// </summary>
         public const string ExternalLoginViewName = nameof(ExternalLogin);
 
         /// <summary>
-        /// ConfirmEmail View Name
+        /// ConfirmEmail view name.
         /// </summary>
         public const string ConfirmEmailViewName = nameof(ConfirmEmail);
 
         /// <summary>
-        /// Error View Name
+        /// Error view name.
         /// </summary>
         public const string ErrorViewName = "Error";
 
@@ -137,7 +137,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
-        /// <param name="userManager">User manager,</param>
+        /// <param name="userManager">User manager.</param>
         /// <param name="signInManager">Sign In manager.</param>
         /// <param name="emailSender">E-Mail sender.</param>
         /// <param name="logger">Logger.</param>
@@ -160,10 +160,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         public string ErrorMessage { get; set; }
 
         /// <summary>
-        /// /Account
+        /// /Account.
         /// </summary>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index(string returnUrl = null)
         {
@@ -176,10 +176,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/Login
+        /// GET /Account/Login.
         /// </summary>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(LoginActionName)]
@@ -193,11 +193,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/Login
+        /// POST /Account/Login.
         /// </summary>
         /// <param name="model">Login request model.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -238,11 +238,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/LoginWith2fa
+        /// GET /Account/LoginWith2fa.
         /// </summary>
         /// <param name="rememberMe">Remember login.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(LoginWith2faActionName)]
@@ -262,12 +262,12 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/LoginWith2fa
+        /// POST /Account/LoginWith2fa.
         /// </summary>
         /// <param name="model">Login with 2FA request model.</param>
         /// <param name="rememberMe">Remember login.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -308,10 +308,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/LoginWithRecoveryCode
+        /// GET /Account/LoginWithRecoveryCode.
         /// </summary>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(LoginWithRecoveryCodeActionName)]
@@ -330,11 +330,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/LoginWithRecoveryCode
+        /// POST /Account/LoginWithRecoveryCode.
         /// </summary>
         /// <param name="model">Login with recovery code request model.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -376,9 +376,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/Lockout
+        /// GET /Account/Lockout.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(LockoutActionName)]
@@ -388,10 +388,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/Register
+        /// GET /Account/Register.
         /// </summary>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(RegisterActionName)]
@@ -402,11 +402,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/Register
+        /// POST /Account/Register.
         /// </summary>
         /// <param name="model">Register request model.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -439,9 +439,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/Logout
+        /// POST /Account/Logout.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(LogoutActionName)]
@@ -453,11 +453,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/ExternalLogin
+        /// POST /Account/ExternalLogin.
         /// </summary>
         /// <param name="provider">Provider string.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -472,11 +472,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/ExternalLoginCallback
+        /// GET /Account/ExternalLoginCallback.
         /// </summary>
         /// <param name="returnUrl">Return URL.</param>
         /// <param name="remoteError">Remote error.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(ExternalLoginCallbackActionName)]
@@ -517,11 +517,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/ExternalLoginConfirmation
+        /// POST /Account/ExternalLoginConfirmation.
         /// </summary>
         /// <param name="model">External model request model.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -540,7 +540,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
                 };
 
                 var result = await this.userManager.CreateAsync(user);
@@ -564,11 +564,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/ConfirmEmail
+        /// GET /Account/ConfirmEmail.
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <param name="code">Code.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(ConfirmEmailActionName)]
@@ -590,9 +590,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/ForgotPassword
+        /// GET /Account/ForgotPassword.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(ForgotPasswordActionName)]
@@ -602,10 +602,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/ForgotPassword
+        /// POST /Account/ForgotPassword.
         /// </summary>
         /// <param name="model">Forgot password request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -636,9 +636,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/ForgotPasswordConfirmation
+        /// GET /Account/ForgotPasswordConfirmation.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(ForgotPasswordConfirmationActionName)]
@@ -648,10 +648,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/ResetPassword
+        /// GET /Account/ResetPassword.
         /// </summary>
         /// <param name="code">Code.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(ResetPasswordActionName)]
@@ -667,10 +667,10 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Account/ResetPassword
+        /// POST /Account/ResetPassword.
         /// </summary>
         /// <param name="model">Reset password request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -700,9 +700,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/ResetPasswordConfirmation
+        /// GET /Account/ResetPasswordConfirmation.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [AllowAnonymous]
         [ActionName(ResetPasswordConfirmationActionName)]
@@ -712,9 +712,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Account/AccessDenied
+        /// GET /Account/AccessDenied.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(AccessDeniedActionName)]
         public IActionResult AccessDenied()
@@ -723,9 +723,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

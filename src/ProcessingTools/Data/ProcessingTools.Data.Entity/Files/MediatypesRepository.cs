@@ -9,20 +9,31 @@
     using ProcessingTools.Data.Models.Entity.Files;
     using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
+    /// <summary>
+    /// Mediatypes repository.
+    /// </summary>
     public class MediatypesRepository : IMediatypesRepository, ISearchableMediatypesRepository, IDisposable
     {
         private readonly MediatypesDbContext db;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediatypesRepository"/> class.
+        /// </summary>
+        /// <param name="db">DBContext.</param>
         public MediatypesRepository(MediatypesDbContext db)
         {
             this.db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
+        /// <summary>
+        /// Finalizes an instance of the <see cref="MediatypesRepository"/> class.
+        /// </summary>
         ~MediatypesRepository()
         {
             this.Dispose(false);
         }
 
+        /// <inheritdoc/>
         public async Task<object> Add(IMediatypeBaseModel mediatype)
         {
             if (mediatype == null)
@@ -38,7 +49,7 @@
             {
                 mimetype = new Mimetype
                 {
-                    Name = mediatype.MimeType.ToLower()
+                    Name = mediatype.MimeType.ToLower(),
                 };
             }
 
@@ -50,7 +61,7 @@
             {
                 mimesubtype = new Mimesubtype
                 {
-                    Name = mediatype.MimeSubtype.ToLower()
+                    Name = mediatype.MimeSubtype.ToLower(),
                 };
             }
 
@@ -63,7 +74,7 @@
                 mimetypePair = new MimetypePair
                 {
                     Mimetype = mimetype,
-                    Mimesubtype = mimesubtype
+                    Mimesubtype = mimesubtype,
                 };
             }
 
@@ -75,7 +86,7 @@
             {
                 entity = new FileExtension
                 {
-                    Name = mediatype.Extension.ToLower()
+                    Name = mediatype.Extension.ToLower(),
                 };
             }
 
@@ -95,6 +106,7 @@
             return true;
         }
 
+        /// <inheritdoc/>
         public IEnumerable<IMediatypeBaseModel> GetByFileExtension(string fileExtension)
         {
             if (string.IsNullOrWhiteSpace(fileExtension))
@@ -109,13 +121,14 @@
                     Extension = e.Name,
                     Description = e.Description,
                     MimeType = p.Mimetype.Name,
-                    MimeSubtype = p.Mimesubtype.Name
+                    MimeSubtype = p.Mimesubtype.Name,
                 }))
                 .AsEnumerable<IMediatypeBaseModel>();
 
             return result;
         }
 
+        /// <inheritdoc/>
         public async Task<object> Remove(string fileExtension)
         {
             if (string.IsNullOrWhiteSpace(fileExtension))
@@ -148,8 +161,10 @@
             return true;
         }
 
+        /// <inheritdoc/>
         public async Task<long> SaveChanges() => await this.db.SaveChangesAsync().ConfigureAwait(false);
 
+        /// <inheritdoc/>
         public async Task<object> UpdateDescription(string fileExtension, string description)
         {
             if (string.IsNullOrWhiteSpace(fileExtension))
@@ -179,12 +194,20 @@
             return true;
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
+            // Dispose of unmanaged resources.
             this.Dispose(true);
+
+            // Suppress finalization.
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">Value that indicates whether the method call comes from a Dispose method (its value is true) or from a finalizer (its value is false).</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

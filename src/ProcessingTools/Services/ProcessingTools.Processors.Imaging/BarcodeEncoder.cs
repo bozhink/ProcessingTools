@@ -47,7 +47,7 @@ namespace ProcessingTools.Processors.Imaging
                 BackColor = Color.White,
                 ForeColor = Color.Black,
                 LabelPosition = BarcodeLib.LabelPositions.BOTTOMCENTER,
-                AlternateLabel = content
+                AlternateLabel = content,
             };
 
             Image image;
@@ -70,7 +70,7 @@ namespace ProcessingTools.Processors.Imaging
         /// <param name="format"><see cref="System.Drawing.Imaging.ImageFormat"/> of the image.</param>
         /// <returns>Base64 encoded string as image presentation.</returns>
         /// <remarks>
-        /// See http://stackoverflow.com/questions/7350679/convert-a-bitmap-into-a-byte-array
+        /// See [http://stackoverflow.com/questions/7350679/convert-a-bitmap-into-a-byte-array].
         /// </remarks>
         private string ImageToBase64String(Image image, System.Drawing.Imaging.ImageFormat format)
         {
@@ -88,7 +88,7 @@ namespace ProcessingTools.Processors.Imaging
         /// <param name="format"><see cref="System.Drawing.Imaging.ImageFormat"/> of the image.</param>
         /// <returns>Byte array of the image.</returns>
         /// <remarks>
-        /// See http://stackoverflow.com/questions/10889764/how-to-convert-bitmap-to-a-base64-string
+        /// See [http://stackoverflow.com/questions/10889764/how-to-convert-bitmap-to-a-base64-string].
         /// </remarks>
         private byte[] ImageToByteArray(Image image, System.Drawing.Imaging.ImageFormat format)
         {

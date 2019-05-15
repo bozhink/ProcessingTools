@@ -7,11 +7,19 @@
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// XQuery transformer.
+    /// </summary>
     public class XQueryTransformer : IXQueryTransformer
     {
         private readonly IXQueryTransformCache cache;
         private readonly string xqueryFileName;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XQueryTransformer"/> class.
+        /// </summary>
+        /// <param name="xqueryFileName">XQuery file name.</param>
+        /// <param name="cache">XQuery transform cache.</param>
         public XQueryTransformer(string xqueryFileName, IXQueryTransformCache cache)
         {
             if (string.IsNullOrWhiteSpace(xqueryFileName))
@@ -23,6 +31,7 @@
             this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
+        /// <inheritdoc/>
         public Task<string> TransformAsync(XmlNode node)
         {
             if (node == null)
@@ -36,6 +45,7 @@
             });
         }
 
+        /// <inheritdoc/>
         public Task<string> TransformAsync(string xml)
         {
             if (string.IsNullOrWhiteSpace(xml))
@@ -47,6 +57,7 @@
             return this.TransformAsync(document.DocumentElement);
         }
 
+        /// <inheritdoc/>
         public Task<string> TransformAsync(XmlReader reader, bool closeReader)
         {
             if (reader == null)
@@ -58,7 +69,7 @@
             {
                 var document = new XmlDocument
                 {
-                    PreserveWhitespace = true
+                    PreserveWhitespace = true,
                 };
 
                 document.Load(reader);
@@ -82,6 +93,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public Stream TransformToStream(XmlReader reader)
         {
             if (reader == null)
@@ -91,7 +103,7 @@
 
             var document = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             document.Load(reader);
@@ -99,6 +111,7 @@
             return this.TransformToStream(document.DocumentElement);
         }
 
+        /// <inheritdoc/>
         public Stream TransformToStream(XmlNode node)
         {
             if (node == null)
@@ -114,6 +127,7 @@
             return stream;
         }
 
+        /// <inheritdoc/>
         public Stream TransformToStream(string xml)
         {
             if (string.IsNullOrWhiteSpace(xml))

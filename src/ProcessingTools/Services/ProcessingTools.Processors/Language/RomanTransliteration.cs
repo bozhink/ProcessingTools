@@ -27,7 +27,7 @@ namespace ProcessingTools.Processors.Language
             { "IX", "9" },
             { "X", "10" },
             { "XI", "11" },
-            { "XII", "12" }
+            { "XII", "12" },
         };
 
         /// <inheritdoc/>

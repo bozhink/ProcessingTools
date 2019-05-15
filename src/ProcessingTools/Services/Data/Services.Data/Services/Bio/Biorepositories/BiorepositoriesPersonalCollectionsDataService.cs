@@ -45,7 +45,7 @@
                     {
                         Code = c.CollectionCode,
                         Name = c.CollectionName,
-                        Url = c.Url
+                        Url = c.Url,
                     })
                     .ToArray<ICollection>();
 

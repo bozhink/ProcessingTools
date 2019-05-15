@@ -37,7 +37,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// /Error
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [ActionName(IndexActionName)]
         public IActionResult Index()
@@ -49,7 +49,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// /Error/Code/{id}
         /// </summary>
         /// <param name="id">Status code.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [ActionName(CodeActionName)]
         public IActionResult Code(string id)
@@ -60,7 +60,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// /Error/HandleUnknownAction
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [ActionName(HandleUnknownActionActionName)]
         public IActionResult HandleUnknownAction()
@@ -71,7 +71,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

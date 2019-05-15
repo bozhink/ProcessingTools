@@ -172,7 +172,7 @@ namespace ProcessingTools.Extensions
         /// <param name="patterns">Replacement patterns in the following order: 1 - Replacement pattern to be applied in regex before the <see cref="XmlElement"/>; 2 - Replacement pattern to be applied in regex in the <see cref="XmlElement"/>; 3 - Replacement pattern to be applied in regex after the <see cref="XmlElement"/>.</param>
         /// <param name="replacementElementName">The name of the <see cref="XmlElement"/> which will be inserted in the node.</param>
         /// <param name="repmacementElementNamePrefix">Prefix for the replacement <see cref="XmlElement"/>.</param>
-        /// <param name="namespaceUri">Namespace uri for the replacement <see cref="XmlElement"/>.</param>
+        /// <param name="namespaceUri">Namespace URI for the replacement <see cref="XmlElement"/>.</param>
         public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, Tuple<string, string, string> patterns, string replacementElementName, string repmacementElementNamePrefix, string namespaceUri)
         {
             if (node == null)
@@ -297,7 +297,7 @@ namespace ProcessingTools.Extensions
         {
             XmlDocument result = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             result.LoadXml(document);
@@ -319,7 +319,7 @@ namespace ProcessingTools.Extensions
                 DtdProcessing = DtdProcessing.Ignore,
                 IgnoreComments = false,
                 IgnoreProcessingInstructions = false,
-                IgnoreWhitespace = false
+                IgnoreWhitespace = false,
             };
 
             XmlReader xmlReader = null;

@@ -67,12 +67,12 @@ namespace ProcessingTools.Processors.Models.Tests.Integration.Tests
                 Geometry = new GeoJsonGeometry
                 {
                     Type = GeoJsonType.Point.ToString(),
-                    Coordinates = new[] { 125.6, 10.1 }.Select(c => c as object).ToList()
+                    Coordinates = new[] { 125.6, 10.1 }.Select(c => c as object).ToList(),
                 },
                 Properties = new
                 {
-                    name = "Dinagat Islands"
-                }
+                    name = "Dinagat Islands",
+                },
             };
 
             var thisJToken = JObject.Parse(JsonConvert.SerializeObject(point));

@@ -68,43 +68,43 @@ namespace ProcessingTools.Clients.Bio.Aphia
                 ScientificName = record.scientificname,
                 Authority = record.authority,
                 CanonicalName = record.valid_name,
-                Classification = new HashSet<ITaxonRank>()
+                Classification = new HashSet<ITaxonRank>(),
             };
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Kingdom,
-                ScientificName = record.kingdom
+                ScientificName = record.kingdom,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Phylum,
-                ScientificName = record.phylum
+                ScientificName = record.phylum,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Class,
-                ScientificName = record.@class
+                ScientificName = record.@class,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Order,
-                ScientificName = record.order
+                ScientificName = record.order,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Family,
-                ScientificName = record.family
+                ScientificName = record.family,
             });
 
             result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Genus,
-                ScientificName = record.genus
+                ScientificName = record.genus,
             });
 
             return result;

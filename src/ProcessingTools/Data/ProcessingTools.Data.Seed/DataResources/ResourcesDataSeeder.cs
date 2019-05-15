@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Seed.DataResources
+﻿// <copyright file="ResourcesDataSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.DataResources
 {
     using System;
     using System.Collections.Concurrent;
@@ -28,6 +32,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
+        /// <inheritdoc/>
         public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -35,7 +40,7 @@
             var tasks = new[]
             {
                 this.SeedProductsAsync(AppSettings.ProductsSeedFileName),
-                this.SeedInstitutionsAsync(AppSettings.InstitutionsSeedFileName)
+                this.SeedInstitutionsAsync(AppSettings.InstitutionsSeedFileName),
             };
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
@@ -63,7 +68,7 @@
                     {
                         context.Products.AddRange(new Product
                         {
-                            Name = line
+                            Name = line,
                         });
                     })
                     .ConfigureAwait(false);
@@ -89,7 +94,7 @@
                     {
                         context.Institutions.AddRange(new Institution
                         {
-                            Name = line
+                            Name = line,
                         });
                     })
                     .ConfigureAwait(false);

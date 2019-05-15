@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Journals.Data.Entity.Abstractions
+﻿// <copyright file="AbstractEntityAddressableRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Journals.Data.Entity.Abstractions
 {
     using System;
     using System.Linq;
@@ -22,7 +26,7 @@
             Id = a.Id,
             AddressString = a.AddressString,
             CityId = a.CityId,
-            CountryId = a.CountryId
+            CountryId = a.CountryId,
         };
 
         public virtual async Task<object> AddAddress(object entityId, IAddress address)

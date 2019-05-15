@@ -60,7 +60,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 ScientificName = result.Name,
                 Rank = result.Rank.MapTaxonRankStringToTaxonRankType(),
                 Authority = result.Author,
-                CanonicalName = result.AcceptedName?.Name
+                CanonicalName = result.AcceptedName?.Name,
             };
 
             foreach (var rank in Enum.GetValues(typeof(TaxonRankType)).Cast<TaxonRankType>())
@@ -86,7 +86,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 return new TaxonRank
                 {
                     ScientificName = name,
-                    Rank = rank
+                    Rank = rank,
                 };
             }
             catch

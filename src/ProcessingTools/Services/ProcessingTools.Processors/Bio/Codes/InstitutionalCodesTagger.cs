@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Bio.Codes
+﻿// <copyright file="InstitutionalCodesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Codes
 {
     using System;
     using System.Linq;
@@ -32,6 +36,7 @@
             this.institutionsTagger = institutionsTagger ?? throw new ArgumentNullException(nameof(institutionsTagger));
         }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
@@ -55,13 +60,13 @@
             {
                 Description = i.Name,
                 Url = i.Url,
-                Value = i.Code
+                Value = i.Code,
             });
 
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = true,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.institutionalCodesTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings).ConfigureAwait(false);
@@ -72,13 +77,13 @@
             var institutions = data.Select(i => new BiorepositoriesInstitutionSerializableModel
             {
                 Url = i.Url,
-                Value = i.Name
+                Value = i.Name,
             });
 
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = true,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.institutionsTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, institutions, XPath, settings).ConfigureAwait(false);

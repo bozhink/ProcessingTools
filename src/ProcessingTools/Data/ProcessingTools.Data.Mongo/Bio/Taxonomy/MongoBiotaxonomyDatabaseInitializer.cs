@@ -51,14 +51,14 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             {
                 Background = false,
                 Unique = false,
-                Sparse = false
+                Sparse = false,
             };
 
             var result = await collection.Indexes
                 .CreateManyAsync(new[]
                 {
                     new CreateIndexModel<TaxonRankItem>(Builders<TaxonRankItem>.IndexKeys.Ascending(t => t.Name), indexOptions),
-                    new CreateIndexModel<TaxonRankItem>(Builders<TaxonRankItem>.IndexKeys.Text(t => t.Name), indexOptions)
+                    new CreateIndexModel<TaxonRankItem>(Builders<TaxonRankItem>.IndexKeys.Text(t => t.Name), indexOptions),
                 })
                 .ConfigureAwait(false);
 
@@ -75,7 +75,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             {
                 Background = false,
                 Unique = true,
-                Sparse = false
+                Sparse = false,
             };
 
             await collection.Indexes
@@ -103,14 +103,14 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             {
                 Background = false,
                 Unique = true,
-                Sparse = false
+                Sparse = false,
             };
 
             var result = await collection.Indexes
                 .CreateManyAsync(new[]
                 {
                     new CreateIndexModel<BlackListItem>(Builders<BlackListItem>.IndexKeys.Ascending(t => t.Content), indexOptions),
-                    new CreateIndexModel<BlackListItem>(Builders<BlackListItem>.IndexKeys.Text(t => t.Content), indexOptions)
+                    new CreateIndexModel<BlackListItem>(Builders<BlackListItem>.IndexKeys.Text(t => t.Content), indexOptions),
                 })
                 .ConfigureAwait(false);
 

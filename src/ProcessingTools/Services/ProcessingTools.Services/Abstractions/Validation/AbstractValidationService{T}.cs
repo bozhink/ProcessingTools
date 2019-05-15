@@ -46,7 +46,7 @@ namespace ProcessingTools.Services.Abstractions.Validation
         {
             ValidatedObject = item,
             ValidationException = null,
-            ValidationStatus = ValidationStatus.Undefined
+            ValidationStatus = ValidationStatus.Undefined,
         };
 
         private bool CacheServiceIsUsable { get; set; }
@@ -110,7 +110,7 @@ namespace ProcessingTools.Services.Abstractions.Validation
             {
                 var model = new ValidationCacheServiceModel
                 {
-                    Status = item.ValidationStatus
+                    Status = item.ValidationStatus,
                 };
 
                 await this.cacheService.AddAsync(permalink, model).ConfigureAwait(false);

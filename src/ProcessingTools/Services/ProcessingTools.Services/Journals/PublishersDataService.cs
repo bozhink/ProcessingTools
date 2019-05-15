@@ -57,9 +57,9 @@ namespace ProcessingTools.Services.Journals
                     AddressString = a.AddressString,
                     CityId = a.CityId,
                     CountryId = a.CountryId,
-                    Id = a.Id
+                    Id = a.Id,
                 })
-                .ToList<IAddress>()
+                .ToList<IAddress>(),
         };
 
         /// <inheritdoc/>
@@ -67,7 +67,7 @@ namespace ProcessingTools.Services.Journals
         {
             Id = dataModel.Id,
             AbbreviatedName = dataModel.AbbreviatedName,
-            Name = dataModel.Name
+            Name = dataModel.Name,
         };
 
         /// <inheritdoc/>
@@ -92,7 +92,7 @@ namespace ProcessingTools.Services.Journals
                 CreatedBy = user,
                 ModifiedBy = user,
                 CreatedOn = now,
-                ModifiedOn = now
+                ModifiedOn = now,
             };
 
             await this.Repository.AddAsync(dataModel).ConfigureAwait(false);

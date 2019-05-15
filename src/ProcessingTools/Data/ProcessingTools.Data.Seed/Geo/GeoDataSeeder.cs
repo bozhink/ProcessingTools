@@ -42,7 +42,7 @@
                 this.SeedGeoNamesAsync(AppSettings.GeoNamesSeedFileName),
                 this.SeedGeoEpithetsAsync(AppSettings.GeoEpithetsSeedFileName),
                 this.SeedContinentsAsync(AppSettings.ContinentCodesSeedFileName),
-                this.SeedCountryCodesAsync(AppSettings.CountryCodesSeedFileName)
+                this.SeedCountryCodesAsync(AppSettings.CountryCodesSeedFileName),
             };
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
@@ -74,7 +74,7 @@
                             CreatedBy = UserName,
                             CreatedOn = Now,
                             ModifiedBy = UserName,
-                            ModifiedOn = Now
+                            ModifiedOn = Now,
                         });
                     })
                     .ConfigureAwait(false);
@@ -104,7 +104,7 @@
                             CreatedBy = UserName,
                             CreatedOn = Now,
                             ModifiedBy = UserName,
-                            ModifiedOn = Now
+                            ModifiedOn = Now,
                         });
                     })
                     .ConfigureAwait(false);
@@ -137,7 +137,7 @@
                                 CreatedBy = UserName,
                                 CreatedOn = Now,
                                 ModifiedBy = UserName,
-                                ModifiedOn = Now
+                                ModifiedOn = Now,
                             });
                         }
                     })
@@ -175,7 +175,7 @@
                                 CreatedBy = UserName,
                                 CreatedOn = Now,
                                 ModifiedBy = UserName,
-                                ModifiedOn = Now
+                                ModifiedOn = Now,
                             });
                         }
                     })

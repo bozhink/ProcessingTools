@@ -54,7 +54,7 @@ namespace ProcessingTools.Data.Miners.ExternalLinks
                 { FtpPattern, ExternalLinkType.Ftp },
                 { DoiPattern, ExternalLinkType.Doi },
                 { PmidPattern, ExternalLinkType.Pmid },
-                { PmcidPattern, ExternalLinkType.Pmcid }
+                { PmcidPattern, ExternalLinkType.Pmcid },
             };
 
             var data = this.ExtractData(context, patterns).ToList();
@@ -101,7 +101,7 @@ namespace ProcessingTools.Data.Miners.ExternalLinks
                         {
                             Content = item,
                             Href = item.Replace("<", "%3C").Replace(">", "%3E").Replace("&", "%26"),
-                            Type = patterns[key]
+                            Type = patterns[key],
                         })
                         .ToList()
                         .ForEach(e =>

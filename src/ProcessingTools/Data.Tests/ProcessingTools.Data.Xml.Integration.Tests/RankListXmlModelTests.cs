@@ -83,14 +83,14 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
             {
                 Values = new[]
                 {
-                    ClassTaxonRank
-                }
+                    ClassTaxonRank,
+                },
             };
 
             var taxonPart = new TaxonPartXmlModel
             {
                 Value = TaxonName,
-                Ranks = ranks
+                Ranks = ranks,
             };
 
             var taxon = new TaxonXmlModel
@@ -98,16 +98,16 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
                 IsWhiteListed = true,
                 Parts = new[]
                 {
-                    taxonPart
-                }
+                    taxonPart,
+                },
             };
 
             var list = new RankListXmlModel
             {
                 Taxa = new[]
                 {
-                    taxon
-                }
+                    taxon,
+                },
             };
 
             Assert.IsNotNull(list, "List object should not be null.");
@@ -202,14 +202,14 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
                 Values = new[]
                 {
                     ClassTaxonRank1,
-                    ClassTaxonRank2
-                }
+                    ClassTaxonRank2,
+                },
             };
 
             var taxonPart = new TaxonPartXmlModel
             {
                 Value = Aves,
-                Ranks = ranks
+                Ranks = ranks,
             };
 
             var taxon = new TaxonXmlModel
@@ -217,16 +217,16 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
                 IsWhiteListed = true,
                 Parts = new[]
                 {
-                    taxonPart
-                }
+                    taxonPart,
+                },
             };
 
             var list = new RankListXmlModel
             {
                 Taxa = new[]
                 {
-                    taxon
-                }
+                    taxon,
+                },
             };
 
             Assert.IsNotNull(list, "List object should not be null.");
@@ -327,30 +327,30 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
             {
                 Values = new[]
                 {
-                    ClassTaxonRank
-                }
+                    ClassTaxonRank,
+                },
             };
 
             var taxonPart = new TaxonPartXmlModel
             {
                 Value = TaxonName,
-                Ranks = ranks
+                Ranks = ranks,
             };
 
             var taxon = new TaxonXmlModel
             {
                 Parts = new[]
                 {
-                    taxonPart
-                }
+                    taxonPart,
+                },
             };
 
             var list = new RankListXmlModel
             {
                 Taxa = new[]
                 {
-                    taxon
-                }
+                    taxon,
+                },
             };
 
             Assert.IsNotNull(list, "List object should not be null.");

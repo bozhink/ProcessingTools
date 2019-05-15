@@ -36,7 +36,7 @@ namespace ProcessingTools.Extensions
             var result = values.Select(v => new
             {
                 Value = v,
-                Text = Enum.Parse(enumType, v.ToString()).ToString()
+                Text = Enum.Parse(enumType, v.ToString()).ToString(),
             });
 
             return result.ToArray();
@@ -65,7 +65,7 @@ namespace ProcessingTools.Extensions
                 .Select(v => new
                 {
                     Value = v,
-                    Text = Enum.Parse(enumType, v.ToString()).ToString()
+                    Text = Enum.Parse(enumType, v.ToString()).ToString(),
                 })
                 .ToDictionary(x => x.Value, x => x.Text);
 

@@ -33,7 +33,7 @@ namespace ProcessingTools.Services.IO
                 IgnoreComments = false,
                 IgnoreProcessingInstructions = false,
                 IgnoreWhitespace = false,
-                ValidationType = ValidationType.None
+                ValidationType = ValidationType.None,
             };
         }
 
@@ -83,7 +83,7 @@ namespace ProcessingTools.Services.IO
                 byte[] bytes = this.Encoding.GetBytes(xml);
                 Stream stream = new MemoryStream(bytes)
                 {
-                    Position = 0
+                    Position = 0,
                 };
                 return XmlReader.Create(stream, this.ReaderSettings);
             }
@@ -106,7 +106,7 @@ namespace ProcessingTools.Services.IO
                 byte[] bytes = this.Encoding.GetBytes(xml);
                 Stream stream = new MemoryStream(bytes)
                 {
-                    Position = 0
+                    Position = 0,
                 };
 
                 return stream;
@@ -190,7 +190,7 @@ namespace ProcessingTools.Services.IO
             {
                 XmlDocument xmlDocument = new XmlDocument
                 {
-                    PreserveWhitespace = true
+                    PreserveWhitespace = true,
                 };
 
                 xmlDocument.Load(reader);

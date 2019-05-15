@@ -42,7 +42,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
                    .Select(i => new TaxonRankModel
                    {
                        ScientificName = i.Name,
-                       Rank = i.Rank.MapTaxonRankStringToTaxonRankType()
+                       Rank = i.Rank.MapTaxonRankStringToTaxonRankType(),
                    })
                    .ToArray();
 
@@ -70,7 +70,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
                     .Select(t => new TaxonRankResponseModel
                     {
                         Name = t.ScientificName,
-                        Rank = t.Rank.MapTaxonRankTypeToTaxonRankString()
+                        Rank = t.Rank.MapTaxonRankTypeToTaxonRankString(),
                     })
                     .ToArray();
 

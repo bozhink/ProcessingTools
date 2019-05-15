@@ -87,7 +87,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of articles per page.</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
         {
@@ -124,7 +124,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// GET /Documents/Articles/Create
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
         public async Task<IActionResult> Create(string returnUrl = null)
@@ -153,7 +153,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// POST /Documents/Articles/Create
         /// </summary>
         /// <param name="model"><see cref="ArticleCreateRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(CreateActionName)]
@@ -207,7 +207,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// GET /Documents/Articles/CreateFromFile
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateFromFileActionName)]
         public async Task<IActionResult> CreateFromFile(string returnUrl = null)
@@ -238,7 +238,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="file">File to upload.</param>
         /// <param name="journalId">Journal ID of the article.</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(CreateFromFileActionName)]
@@ -280,7 +280,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="id">ID of the article</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
         public async Task<IActionResult> Edit(string id, string returnUrl = null)
@@ -309,7 +309,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// POST /Documents/Articles/Edit
         /// </summary>
         /// <param name="model"><see cref="ArticleUpdateRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(EditActionName)]
@@ -364,7 +364,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="id">ID of the article</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
         public async Task<IActionResult> Delete(string id, string returnUrl = null)
@@ -393,7 +393,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// POST /Documents/Articles/Delete
         /// </summary>
         /// <param name="model"><see cref="ArticleDeleteRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(DeleteActionName)]
@@ -448,7 +448,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="id">ID of the article</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(FinalizeActionName)]
         public async Task<IActionResult> Finalize(string id, string returnUrl = null)
         {
@@ -482,7 +482,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="id">ID of the article</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
         {
@@ -511,7 +511,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="id">ID of the article</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DocumentsActionName)]
         public async Task<IActionResult> Documents(string id, string returnUrl = null)
         {
@@ -538,7 +538,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

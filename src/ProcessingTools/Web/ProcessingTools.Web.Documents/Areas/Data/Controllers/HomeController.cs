@@ -18,7 +18,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         /// <summary>
         /// Index
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Index)]
         public IActionResult Index()
         {
@@ -28,7 +28,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

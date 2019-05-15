@@ -43,7 +43,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
         /// <summary>
         /// Initializes a new instance of the <see cref="Coordinate2DParser"/> class.
         /// </summary>
-        /// <param name="utmCoordinatesTransformer">UTM coordinates </param>
+        /// <param name="utmCoordinatesTransformer">UTM coordinates.</param>
         public Coordinate2DParser(IUtmCoordinatesTransformer utmCoordinatesTransformer)
         {
             this.utmCoordinatesTransformer = utmCoordinatesTransformer ?? throw new ArgumentNullException(nameof(utmCoordinatesTransformer));
@@ -67,7 +67,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
                     @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\s*\Z",
 
                     // 55G 595500 5371700
-                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,6})\W+(?<northing>[0-9]{2,7})\s*\Z"
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,6})\W+(?<northing>[0-9]{2,7})\s*\Z",
                     };
 
                     var integerUtmCoordinatesMatches = integerUtmCoordinatesMatchPatterns.Select(p => Regex.Match(coordinateString, p));
@@ -161,7 +161,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
         }
 
         /// <summary>
-        /// Here is supposed that easting and northing are integers, e.g. 33T 4498003N; 674582E, but not 33T 4498003.123N; 674582.3542E
+        /// Here is supposed that easting and northing are integers, e.g. 33T 4498003N; 674582E, but not 33T 4498003.123N; 674582.3542E.
         /// </summary>
         /// <param name="utmCoordinatesMatch">Regex.Match object to match the coordinate parts. Should have named groups "zone", "easting", and "northing".</param>
         /// <param name="latitude">ICoordinatePart object for the latitude coordinate part.</param>
@@ -251,7 +251,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
             var coordinate = new Coordinate
             {
                 Latitude = latitudeString,
-                Longitude = longitudeString
+                Longitude = longitudeString,
             };
 
             this.ParseCoordinateObject(latitude, longitude, coordinate);

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityGeoNamesRepository.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System;
     using System.Linq;
@@ -23,20 +27,23 @@
             this.mapEntityToModel = this.MapEntityToModelExpression.Compile();
         }
 
+        /// <inheritdoc/>
         protected override Func<GeoName, IGeoName> MapEntityToModel => this.mapEntityToModel;
 
+        /// <inheritdoc/>
         protected override Func<IGeoName, GeoName> MapModelToEntity => m => new GeoName
         {
             Id = m.Id,
-            Name = m.Name
+            Name = m.Name,
         };
 
         private Expression<Func<GeoName, IGeoName>> MapEntityToModelExpression => m => new GeoNameModel
         {
             Id = m.Id,
-            Name = m.Name
+            Name = m.Name,
         };
 
+        /// <inheritdoc/>
         public override async Task<IGeoName[]> SelectAsync(ITextFilter filter)
         {
             var query = this.GetQuery(filter)
@@ -45,6 +52,7 @@
             return await query.ToArrayAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public override async Task<IGeoName[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
         {
             var query = this.GetQuery(filter)
@@ -56,6 +64,7 @@
             return await query.ToArrayAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public override async Task<object> UpdateAsync(IGeoName model)
         {
             if (model == null)
@@ -74,6 +83,7 @@
             return await this.UpdateEntityAsync(entity).ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         protected override IQueryable<GeoName> GetQuery(ITextFilter filter)
         {
             var query = this.Repository.Queryable();

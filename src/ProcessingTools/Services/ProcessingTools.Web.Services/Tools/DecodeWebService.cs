@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Services.Tools
             return new DecodeBase64ViewModel(userContext)
             {
                 Content = model?.Content,
-                Base64DecodedString = result
+                Base64DecodedString = result,
             };
         }
 
@@ -60,7 +60,7 @@ namespace ProcessingTools.Web.Services.Tools
             return new DecodeBase64UrlViewModel(userContext)
             {
                 Content = model?.Content,
-                Base64DecodedString = result
+                Base64DecodedString = result,
             };
         }
 
@@ -84,7 +84,7 @@ namespace ProcessingTools.Web.Services.Tools
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
             return new DecodeBase64ViewModel(userContext)
             {
-                Content = model?.Content
+                Content = model?.Content,
             };
         }
 
@@ -94,7 +94,7 @@ namespace ProcessingTools.Web.Services.Tools
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
             return new DecodeBase64UrlViewModel(userContext)
             {
-                Content = model.Content
+                Content = model.Content,
             };
         }
     }

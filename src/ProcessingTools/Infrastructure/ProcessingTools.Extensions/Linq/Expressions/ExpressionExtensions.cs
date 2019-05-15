@@ -18,10 +18,10 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Map property name to expression.
         /// </summary>
-        /// <typeparam name="T1">T1</typeparam>
-        /// <typeparam name="T2">T2</typeparam>
+        /// <typeparam name="T1">T1.</typeparam>
+        /// <typeparam name="T2">T2.</typeparam>
         /// <param name="propertyName">Property name.</param>
-        /// <returns>Expression</returns>
+        /// <returns>Expression.</returns>
         /// <remarks>
         /// See http://stackoverflow.com/questions/27669993/creating-a-property-selector-expression-from-a-string
         /// </remarks>
@@ -47,7 +47,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
                 .Select((f, i) => new
                 {
                     First = f,
-                    Second = expression2.Parameters[i]
+                    Second = expression2.Parameters[i],
                 })
                 .ToDictionary(p => p.Second, p => p.First);
 
@@ -90,7 +90,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <param name="expression2">Right expression to be concatenated.</param>
         /// <returns>Concatenated expressions with AndAlso operator.</returns>
         /// <remarks>
-        /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool
+        /// See [http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool].
         /// </remarks>
         public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> expression1, Expression<Func<T, bool>> expression2)
         {
@@ -112,7 +112,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <param name="expression">Input expression.</param>
         /// <returns>Not operator over expression.</returns>
         /// <remarks>
-        /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool
+        /// See [http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool].
         /// </remarks>
         public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> expression)
         {
@@ -123,12 +123,12 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Returns concatenated expressions with OrElse operator.
         /// </summary>
-        /// <typeparam name="T">Input type</typeparam>
+        /// <typeparam name="T">Input type.</typeparam>
         /// <param name="expression1">Left expression to be concatenated.</param>
         /// <param name="expression2">Right expression to be concatenated.</param>
         /// <returns>Concatenated expressions with OrElse operator.</returns>
         /// <remarks>
-        /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool
+        /// See [http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool].
         /// </remarks>
         public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> expression1, Expression<Func<T, bool>> expression2)
         {
@@ -157,7 +157,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
 
             var symbols = new Dictionary<string, object>
             {
-                { parameter.ToString(), parameter }
+                { parameter.ToString(), parameter },
             };
 
             var expression = lambda.Body.ToString();
@@ -169,9 +169,9 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Re-map expression to new expression.
         /// </summary>
-        /// <typeparam name="T1">T1</typeparam>
-        /// <typeparam name="T2">T2</typeparam>
-        /// <typeparam name="T3">T3</typeparam>
+        /// <typeparam name="T1">T1.</typeparam>
+        /// <typeparam name="T2">T2.</typeparam>
+        /// <typeparam name="T3">T3.</typeparam>
         /// <param name="expression">The expression to be re-mapped.</param>
         /// <returns>Re-mapped expression.</returns>
         public static Expression<Func<T2, T3>> ToExpression<T1, T2, T3>(this Expression<Func<T1, T3>> expression)
@@ -186,13 +186,13 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Convert expression to new expression.
         /// </summary>
-        /// <typeparam name="T1">T1</typeparam>
-        /// <typeparam name="T2">T2</typeparam>
-        /// <typeparam name="T3">T3</typeparam>
+        /// <typeparam name="T1">T1.</typeparam>
+        /// <typeparam name="T2">T2.</typeparam>
+        /// <typeparam name="T3">T3.</typeparam>
         /// <param name="expression">Expression to be converted.</param>
         /// <returns>Converted expression.</returns>
         /// <remarks>
-        /// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
+        /// See [http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models].
         /// </remarks>
         public static Expression<Func<T2, T3>> Convert<T1, T2, T3>(this Expression<Func<T1, T3>> expression)
         {

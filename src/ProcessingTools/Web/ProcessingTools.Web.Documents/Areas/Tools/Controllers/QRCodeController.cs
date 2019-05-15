@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using ProcessingTools.Web.Models.Tools.QRCode;
 
     /// <summary>
-    /// QRCode
+    /// QRCode.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Tools)]
@@ -46,26 +46,26 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Index
+        /// GET Index.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
         public IActionResult Index()
         {
             var viewModel = new QRCodeViewModel
             {
-                PixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule
+                PixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule,
             };
 
             return this.View(viewModel);
         }
 
         /// <summary>
-        /// POST Index
+        /// POST Index.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(IndexActionName)]
@@ -74,7 +74,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
             var viewModel = new QRCodeViewModel
             {
                 Content = model.Content,
-                PixelPerModule = model.PixelPerModule
+                PixelPerModule = model.PixelPerModule,
             };
 
             try
@@ -98,9 +98,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

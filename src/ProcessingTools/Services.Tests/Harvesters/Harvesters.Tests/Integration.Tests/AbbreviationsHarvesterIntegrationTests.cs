@@ -15,6 +15,9 @@
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Transformers;
 
+    /// <summary>
+    /// <see cref="AbbreviationsHarvester"/> integration tests.
+    /// </summary>
     [TestClass]
     public class AbbreviationsHarvesterIntegrationTests
     {
@@ -23,6 +26,9 @@
         /// </summary>
         public TestContext TestContext { get; set; }
 
+        /// <summary>
+        /// <see cref="AbbreviationsHarvester"/> harvest sample document should succeed.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
         public void AbbreviationsHarvester_HarvestSampleDocument_ShouldSucceed()
@@ -33,7 +39,7 @@
             var xmlFileName = Path.Combine("Samples", "article -with-abbrev.xml");
             XmlDocument document = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
 
             document.Load(xmlFileName);

@@ -74,9 +74,9 @@
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
-                                ParentId = m.Id
+                                ParentId = m.Id,
                             })
-                            .ToList<ICountySynonym>()
+                            .ToList<ICountySynonym>(),
                     });
 
                 c.CreateMap<CountySynonym, ICountySynonym>()
@@ -85,15 +85,17 @@
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.CountyId
+                        ParentId = s.CountyId,
                     });
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <inheritdoc/>
         protected override IMapper Mapper => this.mapper;
 
+        /// <inheritdoc/>
         protected override IQueryable<County> GetQuery(ICountiesFilter filter)
         {
             var query = this.Repository.Queryable();

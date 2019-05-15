@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Bio.Codes
+﻿// <copyright file="CollectionCodesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Codes
 {
     using System;
     using System.Linq;
@@ -32,6 +36,7 @@
             this.collectionsTagger = collectionsTagger ?? throw new ArgumentNullException(nameof(collectionsTagger));
         }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
@@ -54,13 +59,13 @@
             {
                 Url = c.Url,
                 Value = c.Code,
-                XLinkTitle = c.Name
+                XLinkTitle = c.Name,
             });
 
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = true,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.collectionCodesTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings).ConfigureAwait(false);
@@ -71,13 +76,13 @@
             var collections = data.Select(c => new BiorepositoriesCollectionSerializableModel
             {
                 Url = c.Url,
-                Value = c.Name
+                Value = c.Name,
             });
 
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = true,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.collectionsTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, collections, XPath, settings).ConfigureAwait(false);

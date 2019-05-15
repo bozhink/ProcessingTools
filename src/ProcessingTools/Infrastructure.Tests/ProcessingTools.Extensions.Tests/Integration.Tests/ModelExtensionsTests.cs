@@ -22,7 +22,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         {
             var entity = new Entity
             {
-                Id = 1
+                Id = 1,
             };
 
             var id = int.Parse(entity.GetIdValue().ToString());
@@ -38,7 +38,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
             var entity = new ModelWithIdProperty
             {
                 Id = "1",
-                Content = "Content"
+                Content = "Content",
             };
 
             var id = entity.GetIdValue().ToString();
@@ -53,7 +53,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         {
             var entity = new ModelWithComplexIdProperty
             {
-                ComplexId = 1
+                ComplexId = 1,
             };
 
             var id = int.Parse(entity.GetIdValue().ToString());
@@ -68,7 +68,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         {
             var entity = new ModelWithAttributeIdProperty
             {
-                IndexProperty = 1
+                IndexProperty = 1,
             };
 
             var id = entity.GetIdValue();
@@ -83,7 +83,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         {
             var entity = new ModelWithAttributeIdProperty
             {
-                IndexProperty = 1
+                IndexProperty = 1,
             };
 
             var id = int.Parse(entity.GetIdValue<CustomIdAttribute>().ToString());

@@ -122,7 +122,7 @@ namespace ProcessingTools.Tasks.Models.Schedules
                 { 9, this.September },
                 { 10, this.October },
                 { 11, this.November },
-                { 12, this.December }
+                { 12, this.December },
             };
 
             if (!monthValues.ContainsValue(true))

@@ -32,7 +32,7 @@ namespace ProcessingTools.Services.IO
                 NamespaceHandling = NamespaceHandling.OmitDuplicates,
                 OmitXmlDeclaration = false,
                 WriteEndDocumentOnClose = true,
-                CloseOutput = true
+                CloseOutput = true,
             };
         }
 

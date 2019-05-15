@@ -47,7 +47,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// GET Encode
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
         public IActionResult Index(string returnUrl)
@@ -63,7 +63,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// JSON-to-C#
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(JsonToCSharpActionName)]
         public IActionResult JsonToCSharp(string returnUrl)
         {

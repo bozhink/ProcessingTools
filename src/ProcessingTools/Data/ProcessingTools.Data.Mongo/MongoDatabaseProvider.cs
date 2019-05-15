@@ -42,7 +42,7 @@ namespace ProcessingTools.Data.Mongo
         {
             var conventionPack = new ConventionPack
             {
-                new CamelCaseElementNameConvention()
+                new CamelCaseElementNameConvention(),
             };
             ConventionRegistry.Register(ConfigurationConstants.CamelCaseConventionPackName, conventionPack, t => true);
 

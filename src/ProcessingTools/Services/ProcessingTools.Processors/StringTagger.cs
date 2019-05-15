@@ -60,7 +60,7 @@ namespace ProcessingTools.Processors
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = false,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.contentTagger.TagContentInDocumentAsync(itemsToTag, tagModel, xpath, document, settings).ConfigureAwait(false);

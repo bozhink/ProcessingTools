@@ -35,7 +35,7 @@ namespace ProcessingTools.Services.IO
                 DtdProcessing = DtdProcessing.Ignore,
                 IgnoreComments = false,
                 IgnoreProcessingInstructions = false,
-                IgnoreWhitespace = false
+                IgnoreWhitespace = false,
             };
 
             this.WriterSettings = new XmlWriterSettings
@@ -50,7 +50,7 @@ namespace ProcessingTools.Services.IO
                 NewLineOnAttributes = false,
                 NewLineHandling = NewLineHandling.Replace,
                 OmitXmlDeclaration = false,
-                WriteEndDocumentOnClose = true
+                WriteEndDocumentOnClose = true,
             };
         }
 

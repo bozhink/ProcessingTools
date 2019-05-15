@@ -27,7 +27,7 @@ namespace ProcessingTools.Common.Code.Tests.Unit.Tests
             var validator = new DocumentValidator();
             var document = new TaxPubDocument
             {
-                Xml = "<article><front></front></article>"
+                Xml = "<article><front></front></article>",
             };
 
             // Act

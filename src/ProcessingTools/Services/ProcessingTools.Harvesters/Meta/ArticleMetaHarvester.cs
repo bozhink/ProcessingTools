@@ -13,7 +13,7 @@ namespace ProcessingTools.Harvesters.Meta
     using ProcessingTools.Harvesters.Models.Meta;
 
     /// <summary>
-    /// Article Meta Harvester
+    /// Article meta harvester.
     /// </summary>
     public class ArticleMetaHarvester : IArticleMetaHarvester
     {
@@ -32,7 +32,7 @@ namespace ProcessingTools.Harvesters.Meta
                 Issue = context.SelectSingleNode(XPathStrings.ArticleMetaIssue)?.InnerText,
                 FirstPage = context.SelectSingleNode(XPathStrings.ArticleMetaFirstPage)?.InnerText,
                 LastPage = context.SelectSingleNode(XPathStrings.ArticleMetaLastPage)?.InnerText,
-                Id = context.SelectSingleNode(XPathStrings.ArticleMetaElocationId)?.InnerText
+                Id = context.SelectSingleNode(XPathStrings.ArticleMetaElocationId)?.InnerText,
             });
         }
     }

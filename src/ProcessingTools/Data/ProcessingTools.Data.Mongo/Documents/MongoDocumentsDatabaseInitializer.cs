@@ -38,7 +38,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 .CreateManyAsync(new CreateIndexModel<Article>[]
                 {
                     new CreateIndexModel<Article>(new IndexKeysDefinitionBuilder<Article>().Ascending(b => b.ObjectId)),
-                    new CreateIndexModel<Article>(new IndexKeysDefinitionBuilder<Article>().Ascending(b => b.JournalId))
+                    new CreateIndexModel<Article>(new IndexKeysDefinitionBuilder<Article>().Ascending(b => b.JournalId)),
                 })
                 .ConfigureAwait(false);
 
@@ -47,21 +47,21 @@ namespace ProcessingTools.Data.Mongo.Documents
                 {
                     new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ObjectId)),
                     new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ArticleId)),
-                    new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ArticleId).Ascending(b => b.IsFinal))
+                    new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ArticleId).Ascending(b => b.IsFinal)),
                 })
                 .ConfigureAwait(false);
 
             await this.GetCollection<DocumentContent>().Indexes
                 .CreateManyAsync(new CreateIndexModel<DocumentContent>[]
                 {
-                    new CreateIndexModel<DocumentContent>(new IndexKeysDefinitionBuilder<DocumentContent>().Ascending(b => b.DocumentId))
+                    new CreateIndexModel<DocumentContent>(new IndexKeysDefinitionBuilder<DocumentContent>().Ascending(b => b.DocumentId)),
                 })
                 .ConfigureAwait(false);
 
             await this.GetCollection<File>().Indexes
                 .CreateManyAsync(new CreateIndexModel<File>[]
                 {
-                    new CreateIndexModel<File>(new IndexKeysDefinitionBuilder<File>().Ascending(b => b.ObjectId))
+                    new CreateIndexModel<File>(new IndexKeysDefinitionBuilder<File>().Ascending(b => b.ObjectId)),
                 })
                 .ConfigureAwait(false);
 
@@ -77,7 +77,7 @@ namespace ProcessingTools.Data.Mongo.Documents
             await this.GetCollection<JournalMeta>().Indexes
                 .CreateManyAsync(new CreateIndexModel<JournalMeta>[]
                 {
-                    new CreateIndexModel<JournalMeta>(new IndexKeysDefinitionBuilder<JournalMeta>().Ascending(b => b.JournalTitle))
+                    new CreateIndexModel<JournalMeta>(new IndexKeysDefinitionBuilder<JournalMeta>().Ascending(b => b.JournalTitle)),
                 })
                 .ConfigureAwait(false);
 
@@ -85,7 +85,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 .CreateManyAsync(new CreateIndexModel<Publisher>[]
                 {
                     new CreateIndexModel<Publisher>(new IndexKeysDefinitionBuilder<Publisher>().Ascending(b => b.ObjectId)),
-                    new CreateIndexModel<Publisher>(new IndexKeysDefinitionBuilder<Publisher>().Ascending(b => b.ObjectId).Ascending(b => b.Name).Ascending(b => b.AbbreviatedName))
+                    new CreateIndexModel<Publisher>(new IndexKeysDefinitionBuilder<Publisher>().Ascending(b => b.ObjectId).Ascending(b => b.Name).Ascending(b => b.AbbreviatedName)),
                 })
                 .ConfigureAwait(false);
 

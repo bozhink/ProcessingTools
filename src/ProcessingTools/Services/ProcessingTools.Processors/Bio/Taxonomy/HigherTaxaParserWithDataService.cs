@@ -69,7 +69,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 .Select(t => new TaxonRankResponseModel
                 {
                     ScientificName = t.ScientificName,
-                    Rank = t.Rank.MapTaxonRankTypeToTaxonRankString()
+                    Rank = t.Rank.MapTaxonRankTypeToTaxonRankString(),
                 });
 
             long numberOfResolvedTaxa = resolvedTaxa.LongCount();

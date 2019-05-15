@@ -27,7 +27,7 @@ namespace ProcessingTools.Extensions
             typeof(bool),
             typeof(bool?),
             typeof(decimal),
-            typeof(decimal?)
+            typeof(decimal?),
         };
 
         /// <summary>

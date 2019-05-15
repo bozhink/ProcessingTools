@@ -69,7 +69,7 @@ namespace ProcessingTools.Data.Miners.Dates
                 @"(?i)" + DayRangeSubpattern + @"\W{0,4}(?:\bof\b\W{0,4})" + MonthSubpattern,
                 @"(?i)(?:(?:" + DaySubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"(?:" + RangeSubpattern + @")?){2,}",
                 @"(?i)(?:(?:" + DaySubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"\W{0,4}){1,2}" + YearSubpattern,
-                @"(?i)(?:(?:" + DayRangeSubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"\W{0,4}){1,2}" + YearSubpattern
+                @"(?i)(?:(?:" + DayRangeSubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"\W{0,4}){1,2}" + YearSubpattern,
             };
 
             var result = await this.GetMatches(context, patterns).ConfigureAwait(false);

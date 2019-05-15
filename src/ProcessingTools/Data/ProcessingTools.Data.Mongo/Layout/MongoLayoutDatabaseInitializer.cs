@@ -37,35 +37,35 @@ namespace ProcessingTools.Data.Mongo.Layout
             await this.GetCollection<FloatObjectTagStyle>().Indexes
                 .CreateManyAsync(new CreateIndexModel<FloatObjectTagStyle>[]
                 {
-                    new CreateIndexModel<FloatObjectTagStyle>(new IndexKeysDefinitionBuilder<FloatObjectTagStyle>().Ascending(b => b.ObjectId))
+                    new CreateIndexModel<FloatObjectTagStyle>(new IndexKeysDefinitionBuilder<FloatObjectTagStyle>().Ascending(b => b.ObjectId)),
                 })
                 .ConfigureAwait(false);
 
             await this.GetCollection<FloatObjectParseStyle>().Indexes
                 .CreateManyAsync(new CreateIndexModel<FloatObjectParseStyle>[]
                 {
-                    new CreateIndexModel<FloatObjectParseStyle>(new IndexKeysDefinitionBuilder<FloatObjectParseStyle>().Ascending(b => b.ObjectId))
+                    new CreateIndexModel<FloatObjectParseStyle>(new IndexKeysDefinitionBuilder<FloatObjectParseStyle>().Ascending(b => b.ObjectId)),
                 })
                 .ConfigureAwait(false);
 
             await this.GetCollection<ReferenceTagStyle>().Indexes
                 .CreateManyAsync(new CreateIndexModel<ReferenceTagStyle>[]
                 {
-                    new CreateIndexModel<ReferenceTagStyle>(new IndexKeysDefinitionBuilder<ReferenceTagStyle>().Ascending(b => b.ObjectId))
+                    new CreateIndexModel<ReferenceTagStyle>(new IndexKeysDefinitionBuilder<ReferenceTagStyle>().Ascending(b => b.ObjectId)),
                 })
                 .ConfigureAwait(false);
 
             await this.GetCollection<ReferenceParseStyle>().Indexes
                 .CreateManyAsync(new CreateIndexModel<ReferenceParseStyle>[]
                 {
-                    new CreateIndexModel<ReferenceParseStyle>(new IndexKeysDefinitionBuilder<ReferenceParseStyle>().Ascending(b => b.ObjectId))
+                    new CreateIndexModel<ReferenceParseStyle>(new IndexKeysDefinitionBuilder<ReferenceParseStyle>().Ascending(b => b.ObjectId)),
                 })
                 .ConfigureAwait(false);
 
             await this.GetCollection<JournalStyle>().Indexes
                 .CreateManyAsync(new CreateIndexModel<JournalStyle>[]
                 {
-                    new CreateIndexModel<JournalStyle>(new IndexKeysDefinitionBuilder<JournalStyle>().Ascending(b => b.ObjectId))
+                    new CreateIndexModel<JournalStyle>(new IndexKeysDefinitionBuilder<JournalStyle>().Ascending(b => b.ObjectId)),
                 })
                 .ConfigureAwait(false);
 

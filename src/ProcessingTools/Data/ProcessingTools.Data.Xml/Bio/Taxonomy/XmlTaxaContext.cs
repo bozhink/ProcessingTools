@@ -48,10 +48,10 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
                     Value = t.Name,
                     Ranks = new TaxonRankXmlModel
                     {
-                        Values = t.Ranks.Select(r => r.MapTaxonRankTypeToTaxonRankString()).ToArray()
-                    }
-                }
-            }
+                        Values = t.Ranks.Select(r => r.MapTaxonRankTypeToTaxonRankString()).ToArray(),
+                    },
+                },
+            },
         };
 
         /// <inheritdoc/>
@@ -70,7 +70,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
                 {
                     IsWhiteListed = entity.IsWhiteListed,
                     Name = entity.Name,
-                    Ranks = new HashSet<TaxonRankType>(ranks)
+                    Ranks = new HashSet<TaxonRankType>(ranks),
                 };
 
                 return result;
@@ -137,7 +137,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
 
             var rankList = new RankListXmlModel
             {
-                Taxa = taxa
+                Taxa = taxa,
             };
 
             using (var stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write))
@@ -165,7 +165,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
             {
                 Name = taxonName,
                 IsWhiteListed = !this.matchHigherTaxa.IsMatch(taxonName),
-                Ranks = new HashSet<TaxonRankType>(ranks)
+                Ranks = new HashSet<TaxonRankType>(ranks),
             };
         }
     }

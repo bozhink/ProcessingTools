@@ -42,6 +42,6 @@ namespace ProcessingTools.Processors.Models.Geo.GeoJson
         /// <summary>
         /// Geometry collection
         /// </summary>
-        GeometryCollection
+        GeometryCollection,
     }
 }

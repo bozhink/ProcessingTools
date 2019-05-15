@@ -7,11 +7,11 @@ namespace ProcessingTools.Geo
     using System;
 
     /// <summary>
-    /// Latitude-Longitude UTM Converter
+    /// Latitude-Longitude UTM Converter.
     /// </summary>
     /// <remarks>
-    /// <para>Adapted from https://github.com/owaremx/LatLngUTMConverter/blob/master/LatLngUTMConverter.cs </para>
-    /// <para>JavaScript source: https://github.com/shahid28/utm-latlng/blob/master/UTMLatLng.js </para>
+    /// <para>Adapted from [https://github.com/owaremx/LatLngUTMConverter/blob/master/LatLngUTMConverter.cs].</para>
+    /// <para>JavaScript source: [https://github.com/shahid28/utm-latlng/blob/master/UTMLatLng.js].</para>
     /// </remarks>
     public class LatitudeLongitudeUtmConverter
     {
@@ -128,7 +128,7 @@ namespace ProcessingTools.Geo
                 Easting = utmEasting,
                 Northing = utmNorthing,
                 ZoneNumber = zoneNumber,
-                ZoneLetter = utmZone
+                ZoneLetter = utmZone,
             };
         }
 
@@ -196,7 +196,7 @@ namespace ProcessingTools.Geo
             return new LatitudeLongitudePair
             {
                 Latitude = latitude,
-                Longitude = longitude
+                Longitude = longitude,
             };
         }
 
@@ -419,7 +419,7 @@ namespace ProcessingTools.Geo
         }
 
         /// <summary>
-        /// Latitude-Longitude pair
+        /// Latitude-Longitude pair.
         /// </summary>
         public class LatitudeLongitudePair
         {
@@ -435,7 +435,7 @@ namespace ProcessingTools.Geo
         }
 
         /// <summary>
-        /// UTM Result
+        /// UTM Result.
         /// </summary>
         public class UtmResult
         {

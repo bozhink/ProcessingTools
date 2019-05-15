@@ -48,7 +48,7 @@ namespace ProcessingTools.Services.Meta
                     IssnPPub = journalJsonObject.IssnPPub,
                     JournalId = journalJsonObject.JournalId,
                     JournalTitle = journalJsonObject.JournalTitle,
-                    PublisherName = journalJsonObject.PublisherName
+                    PublisherName = journalJsonObject.PublisherName,
                 };
             }
         }

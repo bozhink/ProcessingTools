@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Bio.EnvironmentTerms
+﻿// <copyright file="EnvironmentTermsTagger.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.EnvironmentTerms
 {
     using System;
     using System.Linq;
@@ -29,6 +33,7 @@
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
@@ -42,20 +47,20 @@
                 {
                     EntityId = t.EntityId,
                     EnvoId = t.EnvoId,
-                    Content = t.Content
+                    Content = t.Content,
                 })
                 .Select(t => new EnvoTermSerializableModel
                 {
                     Value = t.Content,
                     EnvoId = t.EnvoId,
                     Id = t.EntityId,
-                    VerbatimTerm = t.Content
+                    VerbatimTerm = t.Content,
                 });
 
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = false,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.contentTagger.TagAsync(context.XmlDocument.DocumentElement, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);

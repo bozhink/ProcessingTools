@@ -53,7 +53,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         /// /Admin/Databases/Index
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index(string returnUrl = null)
         {
@@ -69,7 +69,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         /// /Admin/Databases/InitializeAll
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(InitializeAllActionName)]
         public async Task<IActionResult> InitializeAll(string returnUrl = null)
         {
@@ -99,7 +99,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

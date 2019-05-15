@@ -48,7 +48,7 @@ namespace ProcessingTools.Data.Mongo.Documents
             {
                 AssignIdOnInsert = true,
                 GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
-                WriteConcern = new WriteConcern(WriteConcern.WMajority.W)
+                WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             };
         }
 
@@ -203,7 +203,7 @@ namespace ProcessingTools.Data.Mongo.Documents
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
-                IsUpsert = false
+                IsUpsert = false,
             };
 
             var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);

@@ -41,6 +41,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public async Task<IDocument[]> AllAsync(object userId, object articleId, int pageNumber, int itemsPerPage)
         {
             if (userId == null)
@@ -90,6 +91,7 @@
             return Array.Empty<IDocument>();
         }
 
+        /// <inheritdoc/>
         public async Task<long> CountAsync(object userId, object articleId)
         {
             if (userId == null)
@@ -115,6 +117,7 @@
             return -1L;
         }
 
+        /// <inheritdoc/>
         public async Task<object> CreateAsync(object userId, object articleId, IDocument document, Stream inputStream)
         {
             if (userId == null)
@@ -156,7 +159,7 @@
                 Comment = document.Comment,
 
                 CreatedBy = userId.ToString(),
-                ModifiedBy = userId.ToString()
+                ModifiedBy = userId.ToString(),
             };
 
             var repository = this.repositoryProvider.Create();
@@ -172,6 +175,7 @@
             return entity.ContentLength;
         }
 
+        /// <inheritdoc/>
         public async Task<object> DeleteAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
@@ -203,6 +207,7 @@
             return documentId;
         }
 
+        /// <inheritdoc/>
         public async Task<object> DeleteAllAsync(object userId, object articleId)
         {
             if (userId == null)
@@ -235,6 +240,7 @@
             return null;
         }
 
+        /// <inheritdoc/>
         public async Task<IDocument> GetAsync(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocumentAsync(userId, articleId, documentId).ConfigureAwait(false);
@@ -247,16 +253,18 @@
                 ContentType = entity.ContentType,
                 Comment = entity.Comment,
                 DateCreated = entity.CreatedOn,
-                DateModified = entity.ModifiedOn
+                DateModified = entity.ModifiedOn,
             };
         }
 
+        /// <inheritdoc/>
         public async Task<XmlReader> GetReaderAsync(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocumentAsync(userId, articleId, documentId).ConfigureAwait(false);
             return this.xmlFileReaderWriter.GetXmlReader(entity.FilePath, this.DataDirectory);
         }
 
+        /// <inheritdoc/>
         public async Task<Stream> GetStreamAsync(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocumentAsync(userId, articleId, documentId).ConfigureAwait(false);
@@ -301,6 +309,7 @@
             return entity.ContentLength;
         }
 
+        /// <inheritdoc/>
         public async Task<object> UpdateMetaAsync(object userId, object articleId, IDocument document)
         {
             if (userId == null)

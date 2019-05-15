@@ -38,7 +38,7 @@ namespace ProcessingTools.Web.Documents.Settings
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(environment.ContentRootPath, rootPath)),
-                RequestPath = requestPath
+                RequestPath = requestPath,
             });
 
             return app;

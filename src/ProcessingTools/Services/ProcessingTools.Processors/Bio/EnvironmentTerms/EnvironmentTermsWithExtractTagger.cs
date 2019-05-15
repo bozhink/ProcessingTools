@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Bio.EnvironmentTerms
+﻿// <copyright file="EnvironmentTermsWithExtractTagger.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.EnvironmentTerms
 {
     using System;
     using System.Linq;
@@ -29,6 +33,7 @@
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
@@ -42,13 +47,13 @@
                 {
                     Value = t.Content,
                     Type = string.Join("|", t.Types),
-                    Identifier = string.Join("|", t.Identifiers)
+                    Identifier = string.Join("|", t.Identifiers),
                 });
 
             var settings = new ContentTaggerSettings
             {
                 CaseSensitive = false,
-                MinimalTextSelect = true
+                MinimalTextSelect = true,
             };
 
             await this.contentTagger.TagAsync(context.XmlDocument, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);

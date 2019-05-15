@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Seed.Files
+﻿// <copyright file="MediatypesMongoDatabaseSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Files
 {
     using System;
     using System.Collections.Concurrent;
@@ -29,6 +33,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
+        /// <inheritdoc/>
         public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -62,7 +67,7 @@
                 Extension = m.Extension.ToLowerInvariant(),
                 Mimetype = m.Mimetype.ToLowerInvariant(),
                 Mimesubtype = m.Mimesubtype.ToLowerInvariant(),
-                Description = m.Description
+                Description = m.Description,
             })
             .ToArray();
         }
@@ -81,7 +86,7 @@
                         Extension = mediatype.Extension,
                         Description = mediatype.Description,
                         MimeType = mediatype.Mimetype,
-                        MimeSubtype = mediatype.Mimesubtype
+                        MimeSubtype = mediatype.Mimesubtype,
                     })
                     .ConfigureAwait(false);
                 }

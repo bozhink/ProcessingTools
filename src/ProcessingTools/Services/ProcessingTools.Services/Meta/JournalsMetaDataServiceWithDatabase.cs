@@ -41,7 +41,7 @@ namespace ProcessingTools.Services.Meta
                 IssnPPub = j.IssnPPub,
                 JournalId = j.JournalId,
                 JournalTitle = j.JournalTitle,
-                PublisherName = j.PublisherName
+                PublisherName = j.PublisherName,
             })
             .ToArray();
 

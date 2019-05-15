@@ -278,8 +278,8 @@ namespace ProcessingTools.Services.Documents
                     ContentLength = xmlDocument.OuterXml.Length,
                     ContentType = model.ContentType,
                     FileExtension = Path.GetExtension(model.FileName),
-                    FileName = Path.GetFileName(model.FileName)
-                }
+                    FileName = Path.GetFileName(model.FileName),
+                },
             };
 
             var documentId = await this.documentsDataService.InsertAsync(documentInsertModel).ConfigureAwait(false);

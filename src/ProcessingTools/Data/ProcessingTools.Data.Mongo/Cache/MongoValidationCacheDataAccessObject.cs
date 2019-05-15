@@ -47,7 +47,7 @@ namespace ProcessingTools.Data.Mongo.Cache
             UpdateOptions updateOptions = new UpdateOptions
             {
                 IsUpsert = true,
-                BypassDocumentValidation = false
+                BypassDocumentValidation = false,
             };
 
             return await this.collection.UpdateOneAsync(filter, update, updateOptions).ConfigureAwait(false);

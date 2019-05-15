@@ -19,7 +19,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
-    /// /Documents/Documents
+    /// /Documents/Documents.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Documents)]
@@ -110,11 +110,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Documents/Index
+        /// /Documents/Documents/Index.
         /// </summary>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index(string articleId, string returnUrl)
         {
@@ -132,11 +132,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Documents/Upload
+        /// GET /Documents/Documents/Upload.
         /// </summary>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(UploadActionName)]
         public async Task<IActionResult> Upload(string articleId, string returnUrl = null)
@@ -150,7 +150,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -167,17 +167,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// POST /Documents/Articles/Upload
+        /// POST /Documents/Articles/Upload.
         /// </summary>
         /// <param name="file">File to upload.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(UploadActionName)]
@@ -192,7 +192,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -220,16 +220,16 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             var viewModel = await this.service.GetDocumentUploadViewModelAsync(articleId).ConfigureAwait(false);
             viewModel.ReturnUrl = returnUrl;
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View(model: viewModel);
         }
 
         /// <summary>
-        /// /Documents/Documents/Download/id
+        /// /Documents/Documents/Download/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DownloadActionName)]
         public async Task<IActionResult> Download(string id, string articleId)
         {
@@ -241,7 +241,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 string modelError = "Invalid document";
                 this.logger.LogError(modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
 
@@ -249,7 +249,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
 
@@ -258,7 +258,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var model = await this.service.DownloadDocumentAsync(id, articleId).ConfigureAwait(false);
                 if (model == null || model.Stream == null)
                 {
-                    this.Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
+                    this.Response.StatusCode = (int)HttpStatusCode.NotFound;
                     return new EmptyResult();
                 }
 
@@ -269,16 +269,16 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return new EmptyResult();
         }
 
         /// <summary>
-        /// /Documents/Documents/SetAsFinal/id
+        /// /Documents/Documents/SetAsFinal/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(SetAsFinalActionName)]
         public async Task<IActionResult> SetAsFinal(string id, string articleId)
         {
@@ -290,7 +290,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 string modelError = "Invalid document";
                 this.logger.LogError(modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
 
@@ -298,7 +298,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
 
@@ -317,17 +317,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return new EmptyResult();
         }
 
         /// <summary>
-        /// GET /Documents/Documents/Edit/id
+        /// GET /Documents/Documents/Edit/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
         public async Task<IActionResult> Edit(string id, string articleId, string returnUrl = null)
@@ -341,7 +341,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -353,7 +353,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                     string modelError = "Document-article mismatch";
                     this.logger.LogError(modelError);
                     this.ModelState.AddModelError(string.Empty, modelError);
-                    this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                    this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return this.View();
                 }
 
@@ -367,15 +367,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// POST /Documents/Documents/Edit
+        /// POST /Documents/Documents/Edit.
         /// </summary>
-        /// <param name="model"><see cref="DocumentUpdateRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <param name="model"><see cref="DocumentUpdateRequestModel"/>.</param>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(EditActionName)]
@@ -390,7 +390,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -423,7 +423,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
                 viewModel.ReturnUrl = model.ReturnUrl;
 
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return this.View(viewModel);
             }
             catch (Exception ex)
@@ -432,17 +432,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// GET /Documents/Documents/Delete/id
+        /// GET /Documents/Documents/Delete/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
         public async Task<IActionResult> Delete(string id, string articleId, string returnUrl = null)
@@ -456,7 +456,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -468,7 +468,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                     string modelError = "Document-article mismatch";
                     this.logger.LogError(modelError);
                     this.ModelState.AddModelError(string.Empty, modelError);
-                    this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                    this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return this.View();
                 }
 
@@ -482,15 +482,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// POST /Documents/Documents/Delete
+        /// POST /Documents/Documents/Delete.
         /// </summary>
-        /// <param name="model"><see cref="DocumentDeleteRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <param name="model"><see cref="DocumentDeleteRequestModel"/>.</param>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(DeleteActionName)]
@@ -505,7 +505,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -538,7 +538,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
                 viewModel.ReturnUrl = model.ReturnUrl;
 
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return this.View(viewModel);
             }
             catch (Exception ex)
@@ -547,17 +547,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// GET /Documents/Documents/Details/id
+        /// GET /Documents/Documents/Details/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string articleId, string returnUrl = null)
         {
@@ -570,7 +570,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -582,7 +582,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                     string modelError = "Document-article mismatch";
                     this.logger.LogError(modelError);
                     this.ModelState.AddModelError(string.Empty, modelError);
-                    this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                    this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return this.View();
                 }
 
@@ -596,17 +596,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// GET /Documents/Documents/Html/id
+        /// GET /Documents/Documents/Html/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(HtmlActionName)]
         public async Task<IActionResult> Html(string id, string articleId, string returnUrl = null)
         {
@@ -619,7 +619,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -637,17 +637,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// GET /Documents/Documents/Xml/id
+        /// GET /Documents/Documents/Xml/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(XmlActionName)]
         public async Task<IActionResult> Xml(string id, string articleId, string returnUrl = null)
         {
@@ -660,7 +660,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 string modelError = "Invalid article";
                 this.logger.LogError(modelError);
                 this.ModelState.AddModelError(string.Empty, modelError);
-                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
 
@@ -678,16 +678,16 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return this.View();
         }
 
         /// <summary>
-        /// POST /Documents/Documents/GetXml/id
+        /// POST /Documents/Documents/GetXml/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(GetXmlActionName)]
         public async Task<IActionResult> GetXml(string id, string articleId)
@@ -701,7 +701,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.BadRequest
+                    StatusCode = (int)HttpStatusCode.BadRequest,
                 };
             }
 
@@ -712,7 +712,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetDocumentContentResponseModel(id, articleId, content))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.OK
+                    StatusCode = (int)HttpStatusCode.OK,
                 };
             }
             catch (Exception ex)
@@ -722,17 +722,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.InternalServerError
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
                 };
             }
         }
 
         /// <summary>
-        /// POST /Documents/Documents/GetHtml/id
+        /// POST /Documents/Documents/GetHtml/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(GetHtmlActionName)]
         public async Task<IActionResult> GetHtml(string id, string articleId)
@@ -746,7 +746,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.BadRequest
+                    StatusCode = (int)HttpStatusCode.BadRequest,
                 };
             }
 
@@ -757,7 +757,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetDocumentContentResponseModel(id, articleId, content))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.OK
+                    StatusCode = (int)HttpStatusCode.OK,
                 };
             }
             catch (Exception ex)
@@ -767,18 +767,18 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.InternalServerError
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
                 };
             }
         }
 
         /// <summary>
-        /// PUT /Documents/Documents/SetXml/id
+        /// PUT /Documents/Documents/SetXml/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="model">Content model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPut]
         [ActionName(SetXmlActionName)]
         public async Task<IActionResult> SetXml(string id, string articleId, [FromBody]DocumentContentRequestModel model)
@@ -792,7 +792,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.BadRequest
+                    StatusCode = (int)HttpStatusCode.BadRequest,
                 };
             }
 
@@ -803,7 +803,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetDocumentSavedResponseModel(result))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.OK
+                    StatusCode = (int)HttpStatusCode.OK,
                 };
             }
             catch (Exception ex)
@@ -813,18 +813,18 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.InternalServerError
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
                 };
             }
         }
 
         /// <summary>
-        /// PUT /Documents/Documents/SetHtml/id
+        /// PUT /Documents/Documents/SetHtml/id.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="model">Content model.</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPut]
         [ActionName(SetHtmlActionName)]
         public async Task<IActionResult> SetHtml(string id, string articleId, [FromBody]DocumentContentRequestModel model)
@@ -838,7 +838,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.BadRequest
+                    StatusCode = (int)HttpStatusCode.BadRequest,
                 };
             }
 
@@ -849,7 +849,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetDocumentSavedResponseModel(result))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.OK
+                    StatusCode = (int)HttpStatusCode.OK,
                 };
             }
             catch (Exception ex)
@@ -859,15 +859,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.InternalServerError
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
                 };
             }
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

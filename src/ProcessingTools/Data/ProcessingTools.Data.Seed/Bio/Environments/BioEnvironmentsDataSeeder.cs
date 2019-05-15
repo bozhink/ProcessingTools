@@ -23,6 +23,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
+        /// <inheritdoc/>
         public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -59,7 +60,7 @@
                             {
                                 Id = entity[0],
                                 Index = int.Parse(entity[1]),
-                                EnvoId = entity[2]
+                                EnvoId = entity[2],
                             };
                         }))
                         .ToArray();
@@ -95,7 +96,7 @@
                             {
                                 EnvoEntityId = name[0],
                                 EnvoEntity = entities.FirstOrDefault(e => e.Id == name[0]),
-                                Content = name[1]
+                                Content = name[1],
                             };
                         }))
                         .ToArray();
@@ -128,7 +129,7 @@
                             return new EnvoGroup
                             {
                                 EnvoEntityId = group[0],
-                                EnvoGroupId = group[1]
+                                EnvoGroupId = group[1],
                             };
                         }))
                         .ToArray();
@@ -161,7 +162,7 @@
                             return new EnvoGlobal
                             {
                                 Content = line[0],
-                                Status = line[1]
+                                Status = line[1],
                             };
                         }))
                         .ToArray();

@@ -23,20 +23,23 @@
             this.mapEntityToModel = this.MapEntityToModelExpression.Compile();
         }
 
+        /// <inheritdoc/>
         protected override Func<GeoEpithet, IGeoEpithet> MapEntityToModel => this.mapEntityToModel;
 
+        /// <inheritdoc/>
         protected override Func<IGeoEpithet, GeoEpithet> MapModelToEntity => m => new GeoEpithet
         {
             Id = m.Id,
-            Name = m.Name
+            Name = m.Name,
         };
 
         private Expression<Func<GeoEpithet, IGeoEpithet>> MapEntityToModelExpression => m => new GeoEpithetModel
         {
             Id = m.Id,
-            Name = m.Name
+            Name = m.Name,
         };
 
+        /// <inheritdoc/>
         public override async Task<IGeoEpithet[]> SelectAsync(ITextFilter filter)
         {
             var query = this.GetQuery(filter)
@@ -45,6 +48,7 @@
             return await query.ToArrayAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public override async Task<IGeoEpithet[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
         {
             var query = this.GetQuery(filter)
@@ -56,6 +60,7 @@
             return await query.ToArrayAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public override async Task<object> UpdateAsync(IGeoEpithet model)
         {
             if (model == null)
@@ -74,6 +79,7 @@
             return await this.UpdateEntityAsync(entity).ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         protected override IQueryable<GeoEpithet> GetQuery(ITextFilter filter)
         {
             var query = this.Repository.Queryable();

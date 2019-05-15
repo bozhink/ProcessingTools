@@ -476,8 +476,8 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                         {
                             Name = p.Name,
                             FullName = p.FullName,
-                            Rank = p.Rank
-                        })
+                            Rank = p.Rank,
+                        }),
                     })
                     .Distinct()
                     .ToArray();

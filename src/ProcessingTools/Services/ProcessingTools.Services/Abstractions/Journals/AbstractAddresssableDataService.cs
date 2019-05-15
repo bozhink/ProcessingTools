@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Abstractions.Journals
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractAddresssableDataService{TServiceModel, TDetailedServiceModel, TDataModel, TRepository}"/> class.
         /// </summary>
-        /// <param name="repository">The repository</param>
+        /// <param name="repository">The repository.</param>
         /// <param name="applicationContext">The application context.</param>
         protected AbstractAddresssableDataService(TRepository repository, IApplicationContext applicationContext)
         {
@@ -88,7 +88,7 @@ namespace ProcessingTools.Services.Abstractions.Journals
         public abstract Task<object> UpdateAsync(object userId, TServiceModel model);
 
         /// <summary>
-        /// Deletes model by ID;
+        /// Deletes model by ID.
         /// </summary>
         /// <param name="userId">User ID for validation.</param>
         /// <param name="id">ID of the model to be deleted.</param>
@@ -140,7 +140,7 @@ namespace ProcessingTools.Services.Abstractions.Journals
             {
                 AddressString = address.AddressString,
                 CityId = address.CityId,
-                CountryId = address.CountryId
+                CountryId = address.CountryId,
             };
 
             await this.repository.AddAddress(modelId, dataModel).ConfigureAwait(false);
@@ -190,7 +190,7 @@ namespace ProcessingTools.Services.Abstractions.Journals
                 Id = address.Id,
                 AddressString = address.AddressString,
                 CityId = address.CityId,
-                CountryId = address.CountryId
+                CountryId = address.CountryId,
             };
 
             await this.repository.UpdateAddress(modelId, dataModel).ConfigureAwait(false);

@@ -54,7 +54,7 @@ namespace ProcessingTools.Data.Miners.Bio.SpecimenCodes
                 { @"\bUSNMENT\d{8,8}", "USNMENT" },
                 { @"(?<=OSUC[^A-Za-z\r\n]*\D)\d{5,6}(?=\D)", "OSUC" },
                 { @"(?<=UCRC ENT[^A-Za-z\r\n]*\D)\d{5,6}(?=\D)", "UCRC ENT" },
-                { @"(?<=CASENT[^A-Za-z\r\n]*\D)\d{7,7}(?=\D)", "CASENT" }
+                { @"(?<=CASENT[^A-Za-z\r\n]*\D)\d{7,7}(?=\D)", "CASENT" },
             };
         }
 
@@ -71,7 +71,7 @@ namespace ProcessingTools.Data.Miners.Bio.SpecimenCodes
                     .Select(m => new SpecimenCodeResponseModel
                     {
                         Content = m,
-                        ContentType = p.Value
+                        ContentType = p.Value,
                     }))
                 .Distinct()
                 .ToArray<ISpecimenCode>();

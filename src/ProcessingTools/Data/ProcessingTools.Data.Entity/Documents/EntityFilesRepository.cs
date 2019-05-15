@@ -19,6 +19,7 @@
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
+        /// <inheritdoc/>
         public Task<object> AddAsync(IFile entity)
         {
             if (entity == null)
@@ -47,7 +48,7 @@
                     OriginalContentLength = entity.ContentLength,
                     OriginalContentType = entity.ContentType,
                     OriginalFileExtension = entity.FileExtension,
-                    OriginalFileName = entity.FileName
+                    OriginalFileName = entity.FileName,
                 };
 
                 var entry = this.GetEntry(dbentity);
@@ -63,6 +64,7 @@
             });
         }
 
+        /// <inheritdoc/>
         public Task<IFile> GetAsync(object id)
         {
             if (id == null)
@@ -77,11 +79,13 @@
             });
         }
 
+        /// <inheritdoc/>
         public Task<object> RemoveAsync(object id)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public Task<object> UpdateAsync(IFile entity)
         {
             throw new NotImplementedException();

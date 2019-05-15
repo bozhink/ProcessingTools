@@ -44,7 +44,7 @@ namespace ProcessingTools.Harvesters.Abstractions
                     this.propertyDictionary[property] = new PropertyData
                     {
                         Converter = TypeDescriptor.GetConverter(property.PropertyType),
-                        Attributes = attributes
+                        Attributes = attributes,
                     };
                 }
             }

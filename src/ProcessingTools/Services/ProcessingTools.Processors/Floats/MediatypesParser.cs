@@ -95,7 +95,7 @@ namespace ProcessingTools.Processors.Processors.Floats
         {
             IMediaType result = new MediatypeResponseModel
             {
-                FileExtension = this.GetFileExtension(fileName)
+                FileExtension = this.GetFileExtension(fileName),
             };
 
             if (!string.IsNullOrEmpty(result.FileExtension))
@@ -114,7 +114,7 @@ namespace ProcessingTools.Processors.Processors.Floats
         {
             var result = new MediatypeResponseModel
             {
-                FileExtension = extension
+                FileExtension = extension,
             };
 
             string fileName = $"sample.{extension}";

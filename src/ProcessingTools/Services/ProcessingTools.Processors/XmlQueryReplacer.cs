@@ -32,7 +32,7 @@ namespace ProcessingTools.Processors
 
                 var queryDocument = new XmlDocument
                 {
-                    PreserveWhitespace = true
+                    PreserveWhitespace = true,
                 };
 
                 if (Regex.IsMatch(query, @"<[^>]*>"))

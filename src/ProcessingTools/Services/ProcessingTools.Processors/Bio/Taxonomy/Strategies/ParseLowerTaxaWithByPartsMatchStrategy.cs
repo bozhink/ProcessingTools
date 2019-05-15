@@ -56,7 +56,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy.Strategies
                 .Select(g => new
                 {
                     Rank = g.Key,
-                    Pattern = @"\b((?i)" + string.Join("|", g.Select(p => Regex.Escape(p.Key)).ToArray()) + @")\b"
+                    Pattern = @"\b((?i)" + string.Join("|", g.Select(p => Regex.Escape(p.Key)).ToArray()) + @")\b",
                 });
 
             string replace = text;

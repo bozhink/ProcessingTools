@@ -37,7 +37,7 @@ namespace ProcessingTools.Data.Contracts.Files
         /// <summary>
         /// Save changed.
         /// </summary>
-        /// <returns>Task od result.</returns>
+        /// <returns>Task of result.</returns>
         Task<long> SaveChanges();
     }
 }

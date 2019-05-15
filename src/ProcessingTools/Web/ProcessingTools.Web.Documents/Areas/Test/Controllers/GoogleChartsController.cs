@@ -11,10 +11,10 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
-    /// /Test/GoogleCharts
+    /// /Test/GoogleCharts.
     /// </summary>
     /// <remarks>
-    /// See https://www.codeproject.com/Articles/1243682/Create-Cross-Platform-Charts-with-ASP-NET-Core-MVC
+    /// See [https://www.codeproject.com/Articles/1243682/Create-Cross-Platform-Charts-with-ASP-NET-Core-MVC].
     /// </remarks>
     [Authorize]
     [Area(AreaNames.Test)]
@@ -68,9 +68,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         private readonly Random random = new Random();
 
         /// <summary>
-        /// /Test/GoogleCharts
+        /// /Test/GoogleCharts.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index()
         {
@@ -78,9 +78,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         }
 
         /// <summary>
-        /// /Test/GoogleCharts/UseDataTable
+        /// /Test/GoogleCharts/UseDataTable.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(UseDataTableActionName)]
         public IActionResult UseDataTable()
         {
@@ -88,9 +88,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         }
 
         /// <summary>
-        /// /Test/GoogleCharts/UseDataArray
+        /// /Test/GoogleCharts/UseDataArray.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(UseDataArrayActionName)]
         public IActionResult UseDataArray()
         {
@@ -98,9 +98,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         }
 
         /// <summary>
-        /// /Test/GoogleCharts/UseJsonData
+        /// /Test/GoogleCharts/UseJsonData.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(UseJsonDataActionName)]
         public IActionResult UseJsonData()
         {
@@ -108,9 +108,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         }
 
         /// <summary>
-        /// /Test/GoogleCharts/UseDataFromServer
+        /// /Test/GoogleCharts/UseDataFromServer.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(UseDataFromServerActionName)]
         public IActionResult UseDataFromServer()
         {
@@ -118,9 +118,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         }
 
         /// <summary>
-        /// /Test/GoogleCharts/JsonData
+        /// /Test/GoogleCharts/JsonData.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(JsonDataActionName)]
         public IActionResult JsonData()
         {
@@ -129,9 +129,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         }
 
         /// <summary>
-        /// /Test/GoogleCharts/RealTimeChart
+        /// /Test/GoogleCharts/RealTimeChart.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(UseRealTimeDataActionName)]
         public IActionResult UseRealTimeData()
         {
@@ -139,16 +139,16 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         }
 
         /// <summary>
-        /// /Test/GoogleCharts/GetRealTimeData
+        /// /Test/GoogleCharts/GetRealTimeData.
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(GetRealTimeDataActionName)]
         public IActionResult GetRealTimeData()
         {
             RealTimeData data = new RealTimeData
             {
                 TimeStamp = DateTime.Now,
-                DataValue = this.random.Next(0, 11)
+                DataValue = this.random.Next(0, 11),
             };
 
             return this.Json(data);

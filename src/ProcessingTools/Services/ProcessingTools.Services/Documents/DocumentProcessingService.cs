@@ -162,8 +162,8 @@ namespace ProcessingTools.Services.Documents
                     FileName = originalDocument.File.FileName,
                     FileExtension = originalDocument.File.FileExtension,
                     ContentLength = document.Xml.Length,
-                    ContentType = ContentTypes.Xml
-                }
+                    ContentType = ContentTypes.Xml,
+                },
             };
 
             var id = await this.documentsDataService.InsertAsync(insertDocument).ConfigureAwait(false);

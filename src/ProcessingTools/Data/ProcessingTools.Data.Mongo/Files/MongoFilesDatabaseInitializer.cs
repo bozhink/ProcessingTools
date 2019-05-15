@@ -40,7 +40,7 @@ namespace ProcessingTools.Data.Mongo.Files
                     new CreateIndexModel<Mediatype>(new IndexKeysDefinitionBuilder<Mediatype>().Ascending(b => b.ObjectId)),
                     new CreateIndexModel<Mediatype>(new IndexKeysDefinitionBuilder<Mediatype>().Ascending(b => b.MimeType)),
                     new CreateIndexModel<Mediatype>(new IndexKeysDefinitionBuilder<Mediatype>().Ascending(b => b.MimeSubtype)),
-                    new CreateIndexModel<Mediatype>(new IndexKeysDefinitionBuilder<Mediatype>().Ascending(b => b.Extension).Ascending(b => b.MimeType).Ascending(b => b.MimeSubtype))
+                    new CreateIndexModel<Mediatype>(new IndexKeysDefinitionBuilder<Mediatype>().Ascending(b => b.Extension).Ascending(b => b.MimeType).Ascending(b => b.MimeSubtype)),
                 })
                 .ConfigureAwait(false);
 

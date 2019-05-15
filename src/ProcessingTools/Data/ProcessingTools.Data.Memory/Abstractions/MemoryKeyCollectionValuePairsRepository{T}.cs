@@ -47,7 +47,7 @@ namespace ProcessingTools.Data.Memory.Abstractions
                 {
                     var collection = new HashSet<T>
                     {
-                        value
+                        value,
                     };
                     return collection;
                 },

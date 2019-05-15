@@ -33,7 +33,7 @@
         /// <summary>
         /// Seeds databases with data.
         /// </summary>
-        /// <returns>Object to be awaited</returns>
+        /// <returns>Object to be awaited.</returns>
         public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -47,7 +47,7 @@
                 this.ImportCsvFileToMongo<InstitutionCsv, Institution>(),
                 this.ImportCsvFileToMongo<InstitutionLabelCsv, InstitutionLabel>(),
                 this.ImportCsvFileToMongo<StaffCsv, Staff>(),
-                this.ImportCsvFileToMongo<StaffLabelCsv, StaffLabel>()
+                this.ImportCsvFileToMongo<StaffLabelCsv, StaffLabel>(),
             };
             await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
 

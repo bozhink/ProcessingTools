@@ -34,14 +34,14 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
             var entities = Enum.GetValues(typeof(TaxonRankType)).Cast<TaxonRankType>()
                .Select(rank => new TaxonRankTypeItem
                {
-                   RankType = rank
+                   RankType = rank,
                })
                .ToList();
 
             var options = new InsertManyOptions
             {
                 IsOrdered = false,
-                BypassDocumentValidation = false
+                BypassDocumentValidation = false,
             };
 
             await this.collection.InsertManyAsync(entities, options).ConfigureAwait(false);

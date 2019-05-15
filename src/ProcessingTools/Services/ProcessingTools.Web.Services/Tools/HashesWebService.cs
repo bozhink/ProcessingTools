@@ -62,7 +62,7 @@ namespace ProcessingTools.Web.Services.Tools
                 SHA384String = await this.hashService.GetSHA384HashAsStringAsync(model.Content).ConfigureAwait(false),
                 SHA384Base64String = await this.hashService.GetSHA384HashAsBase64StringAsync(model.Content).ConfigureAwait(false),
                 SHA512String = await this.hashService.GetSHA512HashAsStringAsync(model.Content).ConfigureAwait(false),
-                SHA512Base64String = await this.hashService.GetSHA512HashAsBase64StringAsync(model.Content).ConfigureAwait(false)
+                SHA512Base64String = await this.hashService.GetSHA512HashAsBase64StringAsync(model.Content).ConfigureAwait(false),
             };
         }
 
@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Services.Tools
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
             return new HashesViewModel(userContext)
             {
-                Content = model?.Content
+                Content = model?.Content,
             };
         }
     }

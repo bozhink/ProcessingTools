@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Seed.Bio
+﻿// <copyright file="BioDataSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Bio
 {
     using System;
     using System.Collections.Concurrent;
@@ -8,12 +12,19 @@
     using ProcessingTools.Data.Entity.Bio;
     using ProcessingTools.Data.Models.Entity.Bio;
 
+    /// <summary>
+    /// Bio-data seeder.
+    /// </summary>
     public class BioDataSeeder : IBioDataSeeder
     {
         private readonly FileByLineDbContextSeeder<BioDbContext> seeder;
         private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BioDataSeeder"/> class.
+        /// </summary>
+        /// <param name="contextFactory">DbContext factory.</param>
         public BioDataSeeder(Func<BioDbContext> contextFactory)
         {
             if (contextFactory == null)
@@ -27,6 +38,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
+        /// <inheritdoc/>
         public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -34,7 +46,7 @@
             var tasks = new[]
             {
                 this.SeedMorphologicalEpithets(AppSettings.MorphologicalEpithetsFileName),
-                this.SeedTypeStatuses(AppSettings.TypeStatusesFileName)
+                this.SeedTypeStatuses(AppSettings.TypeStatusesFileName),
             };
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
@@ -62,7 +74,7 @@
                     {
                         context.MorphologicalEpithets.AddRange(new MorphologicalEpithet
                         {
-                            Name = line
+                            Name = line,
                         });
                     })
                     .ConfigureAwait(false);
@@ -88,7 +100,7 @@
                     {
                         context.TypesStatuses.AddRange(new TypeStatus
                         {
-                            Name = line
+                            Name = line,
                         });
                     })
                     .ConfigureAwait(false);

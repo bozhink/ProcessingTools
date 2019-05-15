@@ -185,7 +185,7 @@ namespace ProcessingTools.Web.Services.Documents
                 {
                     Id = id,
                     ArticleId = articleId,
-                    Content = content
+                    Content = content,
                 };
             }
 
@@ -205,7 +205,7 @@ namespace ProcessingTools.Web.Services.Documents
                 {
                     Id = id,
                     ArticleId = articleId,
-                    Content = content
+                    Content = content,
                 };
             }
 
@@ -221,7 +221,7 @@ namespace ProcessingTools.Web.Services.Documents
                 {
                     Success = false,
                     Status = MessageResponseStatus.Error,
-                    Message = "Bad Request: Document or article IDs are not provided"
+                    Message = "Bad Request: Document or article IDs are not provided",
                 };
             }
             else
@@ -230,7 +230,7 @@ namespace ProcessingTools.Web.Services.Documents
                 {
                     Success = false,
                     Status = MessageResponseStatus.Error,
-                    Message = "Bad Request"
+                    Message = "Bad Request",
                 };
             }
         }
@@ -242,7 +242,7 @@ namespace ProcessingTools.Web.Services.Documents
             {
                 Success = false,
                 Status = MessageResponseStatus.Error,
-                Message = $"Internal Server Error: {ex?.Message}"
+                Message = $"Internal Server Error: {ex?.Message}",
             };
         }
 
@@ -253,7 +253,7 @@ namespace ProcessingTools.Web.Services.Documents
             {
                 DocumentId = id,
                 ArticleId = articleId,
-                Content = content
+                Content = content,
             };
         }
 
@@ -264,7 +264,7 @@ namespace ProcessingTools.Web.Services.Documents
             {
                 Success = success,
                 Status = MessageResponseStatus.OK,
-                Message = "Document saved"
+                Message = "Document saved",
             };
         }
 

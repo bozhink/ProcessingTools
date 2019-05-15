@@ -221,7 +221,7 @@ namespace ProcessingTools.Services.Files
                 CreatedOn = fileInfo.CreationTimeUtc,
                 ModifiedOn = fileInfo.LastWriteTimeUtc,
                 CreatedBy = "NA",
-                ModifiedBy = "NA"
+                ModifiedBy = "NA",
             };
         }
     }

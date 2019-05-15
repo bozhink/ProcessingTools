@@ -31,7 +31,7 @@ namespace ProcessingTools.Common.Code.Serialization
 
             this.bufferXml = new XmlDocument
             {
-                PreserveWhitespace = true
+                PreserveWhitespace = true,
             };
         }
 

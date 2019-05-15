@@ -40,7 +40,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// Index
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index()
         {
@@ -50,7 +50,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// About
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(AboutActionName)]
         public IActionResult About()
         {
@@ -60,7 +60,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// Contact
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ContactActionName)]
         public IActionResult Contact()
         {
@@ -70,7 +70,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// Privacy
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(PrivacyActionName)]
         public IActionResult Privacy()
         {
@@ -80,7 +80,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

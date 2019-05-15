@@ -71,7 +71,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of styles per page.</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
         {
@@ -108,7 +108,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// GET /Layout/ReferenceParseStyles/Create
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
         public async Task<IActionResult> Create(string returnUrl = null)
@@ -137,7 +137,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// POST /Layout/ReferenceParseStyles/Create
         /// </summary>
         /// <param name="model"><see cref="ReferenceParseStyleCreateRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(CreateActionName)]
@@ -192,7 +192,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// </summary>
         /// <param name="id">ID of the style</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
         public async Task<IActionResult> Edit(string id, string returnUrl = null)
@@ -221,7 +221,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// POST /Layout/ReferenceParseStyles/Edit
         /// </summary>
         /// <param name="model"><see cref="ReferenceParseStyleUpdateRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(EditActionName)]
@@ -276,7 +276,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// </summary>
         /// <param name="id">ID of the style</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
         public async Task<IActionResult> Delete(string id, string returnUrl = null)
@@ -305,7 +305,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// POST /Layout/ReferenceParseStyles/Delete
         /// </summary>
         /// <param name="model"><see cref="ReferenceParseStyleDeleteRequestModel"/></param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(DeleteActionName)]
@@ -360,7 +360,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// </summary>
         /// <param name="id">ID of the style</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
         {
@@ -387,7 +387,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

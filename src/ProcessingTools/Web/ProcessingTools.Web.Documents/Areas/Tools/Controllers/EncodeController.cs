@@ -58,7 +58,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// GET Encode
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
         public IActionResult Index(string returnUrl)
@@ -74,7 +74,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// GET Encode/Base64
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64ActionName)]
         public async Task<IActionResult> Base64(string returnUrl)
@@ -97,7 +97,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         /// <param name="model">Request model.</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64ActionName)]
@@ -133,7 +133,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// GET Encode/Base64Url
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64UrlActionName)]
         public async Task<IActionResult> Base64Url(string returnUrl)
@@ -154,7 +154,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         /// <param name="model">Request model.</param>
         /// <param name="returnUrl">Return URL</param>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64UrlActionName)]
@@ -189,7 +189,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Help
         /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {

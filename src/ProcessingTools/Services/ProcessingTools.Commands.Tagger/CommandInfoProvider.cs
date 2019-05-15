@@ -46,7 +46,7 @@ namespace ProcessingTools.Commands.Tagger
                 {
                     CommandType = type,
                     Name = name,
-                    Description = type.GetDescriptionMessageForCommand()
+                    Description = type.GetDescriptionMessageForCommand(),
                 };
             })
             .ToList()

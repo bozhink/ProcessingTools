@@ -59,12 +59,12 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
             string[] items = new[]
             {
                 "Abdominal",
-                "Abbreviations"
+                "Abbreviations",
             };
 
             var list = new BlackListXmlModel
             {
-                Items = items
+                Items = items,
             };
 
             Assert.IsNotNull(list, "List object should not be null.");

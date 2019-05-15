@@ -49,7 +49,7 @@ namespace ProcessingTools.Services.History
             var settings = new JsonSerializerSettings
             {
                 Formatting = Formatting.None,
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             };
 
             var objectType = source.GetType();
@@ -63,7 +63,7 @@ namespace ProcessingTools.Services.History
                 AssemblyName = assemblyName.Name,
                 AssemblyVersion = assemblyName.Version.ToString(),
                 CreatedBy = this.applicationContext.UserContext?.UserId,
-                CreatedOn = this.applicationContext.DateTimeProvider.Invoke()
+                CreatedOn = this.applicationContext.DateTimeProvider.Invoke(),
             };
 
             var result = await this.dataAccessObject.AddAsync(model).ConfigureAwait(false);
@@ -187,7 +187,7 @@ namespace ProcessingTools.Services.History
             AssemblyName = h.AssemblyName,
             AssemblyVersion = h.AssemblyVersion,
             CreatedBy = h.CreatedBy,
-            CreatedOn = h.CreatedOn
+            CreatedOn = h.CreatedOn,
         };
 
         private Func<IObjectHistory, object> MapObjectHistoryToObject(Type objectType) => h => JsonConvert.DeserializeObject(h.Data, objectType);
