@@ -28,52 +28,38 @@ namespace ProcessingTools.Net
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HttpRequester"/> class.
-        /// </summary>
-        /// <param name="baseAddress">Base address for the requested API.</param>
-        public HttpRequester(string baseAddress)
-        {
-            if (string.IsNullOrWhiteSpace(baseAddress))
-            {
-                throw new ArgumentNullException(nameof(baseAddress));
-            }
-
-            this.BaseAddressUri = new Uri(baseAddress);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HttpRequester"/> class.
-        /// </summary>
-        /// <param name="baseAddress">Base address for the requested API.</param>
-        public HttpRequester(Uri baseAddress)
-        {
-            this.BaseAddressUri = baseAddress ?? throw new ArgumentNullException(nameof(baseAddress));
-        }
-
-        private Uri BaseAddressUri { get; }
-
         private HttpClient HttpClient => new HttpClient();
 
-        private Encoding Encoding => ProcessingTools.Common.Constants.Defaults.Encoding;
+        private Encoding Encoding => Defaults.Encoding;
 
         /// <inheritdoc/>
-        public Task<string> GetStringAsync(string url)
+        public Task<string> GetStringAsync(string requestUri)
         {
-            if (string.IsNullOrWhiteSpace(url))
+            if (string.IsNullOrWhiteSpace(requestUri))
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
-            return this.GetStringInternalAsync(url);
+            return this.GetStringInternalAsync(new Uri(requestUri));
         }
 
         /// <inheritdoc/>
-        public Task<string> GetStringAsync(string url, string acceptContentType)
+        public Task<string> GetStringAsync(Uri requestUri)
         {
-            if (string.IsNullOrWhiteSpace(url))
+            if (requestUri == null)
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            return this.GetStringInternalAsync(requestUri);
+        }
+
+        /// <inheritdoc/>
+        public Task<string> GetStringAsync(string requestUri, string acceptContentType)
+        {
+            if (string.IsNullOrWhiteSpace(requestUri))
+            {
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
             if (string.IsNullOrWhiteSpace(acceptContentType))
@@ -81,64 +67,129 @@ namespace ProcessingTools.Net
                 throw new ArgumentNullException(nameof(acceptContentType));
             }
 
-            return this.GetStringInternalAsync(url, acceptContentType);
+            return this.GetStringInternalAsync(new Uri(requestUri), acceptContentType);
         }
 
         /// <inheritdoc/>
-        public Task<string> GetJsonAsync(string url)
+        public Task<string> GetStringAsync(Uri requestUri, string acceptContentType)
         {
-            if (string.IsNullOrWhiteSpace(url))
+            if (requestUri == null)
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
-            return this.GetJsonInternalAsync(url);
+            if (string.IsNullOrWhiteSpace(acceptContentType))
+            {
+                throw new ArgumentNullException(nameof(acceptContentType));
+            }
+
+            return this.GetStringInternalAsync(requestUri, acceptContentType);
         }
 
         /// <inheritdoc/>
-        public Task<T> GetJsonToObjectAsync<T>(string url)
+        public Task<string> GetJsonAsync(string requestUri)
+        {
+            if (string.IsNullOrWhiteSpace(requestUri))
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            return this.GetJsonInternalAsync(new Uri(requestUri));
+        }
+
+        /// <inheritdoc/>
+        public Task<string> GetJsonAsync(Uri requestUri)
+        {
+            if (requestUri == null)
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            return this.GetJsonInternalAsync(requestUri);
+        }
+
+        /// <inheritdoc/>
+        public Task<T> GetJsonToObjectAsync<T>(string requestUri)
             where T : class
         {
-            if (string.IsNullOrWhiteSpace(url))
+            if (string.IsNullOrWhiteSpace(requestUri))
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
-            return this.GetJsonToObjectInternalAsync<T>(url);
+            return this.GetJsonToObjectInternalAsync<T>(new Uri(requestUri));
         }
 
         /// <inheritdoc/>
-        public Task<string> GetXmlAsync(string url)
-        {
-            if (string.IsNullOrWhiteSpace(url))
-            {
-                throw new ArgumentNullException(nameof(url));
-            }
-
-            return this.GetXmlInternalAsync(url);
-        }
-
-        /// <inheritdoc/>
-        public Task<T> GetXmlToObjectAsync<T>(string url)
+        public Task<T> GetJsonToObjectAsync<T>(Uri requestUri)
             where T : class
         {
-            if (string.IsNullOrWhiteSpace(url))
+            if (requestUri == null)
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
-            return this.GetXmlToObjectInternalAsync<T>(url);
+            return this.GetJsonToObjectInternalAsync<T>(requestUri);
         }
 
         /// <inheritdoc/>
-        public Task<string> PostAsync(string url, string content, string contentType) => this.PostAsync(url, content, contentType, this.Encoding);
+        public Task<string> GetXmlAsync(string requestUri)
+        {
+            if (string.IsNullOrWhiteSpace(requestUri))
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            return this.GetXmlInternalAsync(new Uri(requestUri));
+        }
 
         /// <inheritdoc/>
-        public Task<string> PostAsync(string url, string content, string contentType, Encoding encoding)
+        public Task<string> GetXmlAsync(Uri requestUri)
         {
-            if (string.IsNullOrWhiteSpace(url))
+            if (requestUri == null)
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            return this.GetXmlInternalAsync(requestUri);
+        }
+
+        /// <inheritdoc/>
+        public Task<T> GetXmlToObjectAsync<T>(string requestUri)
+            where T : class
+        {
+            if (string.IsNullOrWhiteSpace(requestUri))
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            return this.GetXmlToObjectInternalAsync<T>(new Uri(requestUri));
+        }
+
+        /// <inheritdoc/>
+        public Task<T> GetXmlToObjectAsync<T>(Uri requestUri)
+            where T : class
+        {
+            if (requestUri == null)
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            return this.GetXmlToObjectInternalAsync<T>(requestUri);
+        }
+
+        /// <inheritdoc/>
+        public Task<string> PostAsync(string requestUri, string content, string contentType) => this.PostAsync(requestUri, content, contentType, this.Encoding);
+
+        /// <inheritdoc/>
+        public Task<string> PostAsync(Uri requestUri, string content, string contentType) => this.PostAsync(requestUri, content, contentType, this.Encoding);
+
+        /// <inheritdoc/>
+        public Task<string> PostAsync(string requestUri, string content, string contentType, Encoding encoding)
+        {
+            if (string.IsNullOrWhiteSpace(requestUri))
+            {
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
             if (string.IsNullOrWhiteSpace(content))
@@ -146,26 +197,51 @@ namespace ProcessingTools.Net
                 throw new ArgumentNullException(nameof(content));
             }
 
-            Uri requestUri = this.GetRequestUri(this.BaseAddressUri, url);
-
-            HttpContent httpContent = new StringContent(content, encoding);
-            if (!string.IsNullOrWhiteSpace(contentType))
+            if (encoding == null)
             {
-                httpContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+                throw new ArgumentNullException(nameof(encoding));
             }
+
+            HttpContent httpContent = this.GetContent(content, contentType, encoding);
+
+            return this.PostInternalAsync(new Uri(requestUri), httpContent);
+        }
+
+        /// <inheritdoc/>
+        public Task<string> PostAsync(Uri requestUri, string content, string contentType, Encoding encoding)
+        {
+            if (requestUri == null)
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+
+            if (encoding == null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
+            HttpContent httpContent = this.GetContent(content, contentType, encoding);
 
             return this.PostInternalAsync(requestUri, httpContent);
         }
 
         /// <inheritdoc/>
-        public Task<string> PostToStringAsync(string url, IDictionary<string, string> values) => this.PostToStringAsync(url, values, this.Encoding);
+        public Task<string> PostToStringAsync(string requestUri, IDictionary<string, string> values) => this.PostToStringAsync(requestUri, values, this.Encoding);
 
         /// <inheritdoc/>
-        public Task<string> PostToStringAsync(string url, IDictionary<string, string> values, Encoding encoding)
+        public Task<string> PostToStringAsync(Uri requestUri, IDictionary<string, string> values) => this.PostToStringAsync(requestUri, values, this.Encoding);
+
+        /// <inheritdoc/>
+        public Task<string> PostToStringAsync(string requestUri, IDictionary<string, string> values, Encoding encoding)
         {
-            if (string.IsNullOrWhiteSpace(url))
+            if (string.IsNullOrWhiteSpace(requestUri))
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
             if (values == null)
@@ -173,27 +249,17 @@ namespace ProcessingTools.Net
                 throw new ArgumentNullException(nameof(values));
             }
 
-            Uri requestUri = this.GetRequestUri(this.BaseAddressUri, url);
+            HttpContent httpContent = this.GetContent(values, encoding);
 
-            HttpContent httpContent = new WeakFormUrlEncodedContent(values, encoding);
-
-            return this.PostInternalAsync(requestUri, httpContent);
+            return this.PostInternalAsync(new Uri(requestUri), httpContent);
         }
 
         /// <inheritdoc/>
-        public Task<T> PostToXmlToObjectAsync<T>(string url, IDictionary<string, string> values)
-            where T : class
+        public Task<string> PostToStringAsync(Uri requestUri, IDictionary<string, string> values, Encoding encoding)
         {
-            return this.PostToXmlToObjectAsync<T>(url, values, this.Encoding);
-        }
-
-        /// <inheritdoc/>
-        public Task<T> PostToXmlToObjectAsync<T>(string url, IDictionary<string, string> values, Encoding encoding)
-            where T : class
-        {
-            if (string.IsNullOrWhiteSpace(url))
+            if (requestUri == null)
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException(nameof(requestUri));
             }
 
             if (values == null)
@@ -201,59 +267,109 @@ namespace ProcessingTools.Net
                 throw new ArgumentNullException(nameof(values));
             }
 
-            Uri requestUri = this.GetRequestUri(this.BaseAddressUri, url);
+            HttpContent httpContent = this.GetContent(values, encoding);
 
-            HttpContent httpContent = new WeakFormUrlEncodedContent(values, encoding);
+            return this.PostInternalAsync(requestUri, httpContent);
+        }
+
+        /// <inheritdoc/>
+        public Task<T> PostToXmlToObjectAsync<T>(string requestUri, IDictionary<string, string> values)
+            where T : class
+        {
+            return this.PostToXmlToObjectAsync<T>(requestUri, values, this.Encoding);
+        }
+
+        /// <inheritdoc/>
+        public Task<T> PostToXmlToObjectAsync<T>(Uri requestUri, IDictionary<string, string> values)
+            where T : class
+        {
+            return this.PostToXmlToObjectAsync<T>(requestUri, values, this.Encoding);
+        }
+
+        /// <inheritdoc/>
+        public Task<T> PostToXmlToObjectAsync<T>(string requestUri, IDictionary<string, string> values, Encoding encoding)
+            where T : class
+        {
+            if (string.IsNullOrWhiteSpace(requestUri))
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            if (values == null)
+            {
+                throw new ArgumentNullException(nameof(values));
+            }
+
+            HttpContent httpContent = this.GetContent(values, encoding);
+
+            return this.PostXmlToObjectInternalAsync<T>(new Uri(requestUri), httpContent);
+        }
+
+        /// <inheritdoc/>
+        public Task<T> PostToXmlToObjectAsync<T>(Uri requestUri, IDictionary<string, string> values, Encoding encoding)
+            where T : class
+        {
+            if (requestUri == null)
+            {
+                throw new ArgumentNullException(nameof(requestUri));
+            }
+
+            if (values == null)
+            {
+                throw new ArgumentNullException(nameof(values));
+            }
+
+            HttpContent httpContent = this.GetContent(values, encoding);
 
             return this.PostXmlToObjectInternalAsync<T>(requestUri, httpContent);
         }
 
-        private async Task<string> GetStringInternalAsync(string url)
+        private async Task<string> GetStringInternalAsync(Uri requestUri)
         {
             var client = this.HttpClient.AddCorsHeader();
 
-            return await this.GetStringAsync(client, url).ConfigureAwait(false);
+            return await client.GetStringAsync(requestUri).ConfigureAwait(false);
         }
 
-        private async Task<string> GetStringInternalAsync(string url, string acceptContentType)
+        private async Task<string> GetStringInternalAsync(Uri requestUri, string acceptContentType)
         {
             var client = this.HttpClient.AddCorsHeader().AddAcceptContentTypeHeader(acceptContentType);
 
-            return await this.GetStringAsync(client, url).ConfigureAwait(false);
+            return await client.GetStringAsync(requestUri).ConfigureAwait(false);
         }
 
-        private async Task<string> GetJsonInternalAsync(string url)
+        private async Task<string> GetJsonInternalAsync(Uri requestUri)
         {
             var client = this.HttpClient.AddCorsHeader().AddAcceptJsonHeader();
 
-            return await this.GetStringAsync(client, url).ConfigureAwait(false);
+            return await client.GetStringAsync(requestUri).ConfigureAwait(false);
         }
 
-        private async Task<T> GetJsonToObjectInternalAsync<T>(string url)
+        private async Task<T> GetJsonToObjectInternalAsync<T>(Uri requestUri)
             where T : class
         {
             var client = this.HttpClient.AddCorsHeader().AddAcceptJsonHeader();
 
-            var stream = await this.GetStreamAsync(client, url).ConfigureAwait(false);
+            var stream = await client.GetStreamAsync(requestUri).ConfigureAwait(false);
 
             var serializer = new DataContractJsonSerializer(typeof(T));
 
             return (T)serializer.ReadObject(stream);
         }
 
-        private async Task<string> GetXmlInternalAsync(string url)
+        private async Task<string> GetXmlInternalAsync(Uri requestUri)
         {
             var client = this.HttpClient.AddCorsHeader().AddAcceptXmlHeader();
 
-            return await this.GetStringAsync(client, url).ConfigureAwait(false);
+            return await client.GetStringAsync(requestUri).ConfigureAwait(false);
         }
 
-        private async Task<T> GetXmlToObjectInternalAsync<T>(string url)
+        private async Task<T> GetXmlToObjectInternalAsync<T>(Uri requestUri)
             where T : class
         {
             var client = this.HttpClient.AddCorsHeader().AddAcceptXmlHeader();
 
-            var stream = await this.GetStreamAsync(client, url).ConfigureAwait(false);
+            var stream = await client.GetStreamAsync(requestUri).ConfigureAwait(false);
 
             var serializer = new XmlSerializer(typeof(T));
 
@@ -300,52 +416,20 @@ namespace ProcessingTools.Net
             return (T)serializer.Deserialize(stream);
         }
 
-        private Uri GetRequestUri(string uri) => new Uri(uri);
-
-        private Uri GetRequestUri(Uri uri) => uri;
-
-        private Uri GetRequestUri(string baseUri, string relaticeUri)
+        private HttpContent GetContent(string content, string contentType, Encoding encoding)
         {
-            if (string.IsNullOrWhiteSpace(baseUri))
+            HttpContent httpContent = new StringContent(content, encoding);
+            if (!string.IsNullOrWhiteSpace(contentType))
             {
-                return new Uri(relaticeUri);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
             }
-            else
-            {
-                return new Uri(new Uri(baseUri), relaticeUri);
-            }
+
+            return httpContent;
         }
 
-        private Uri GetRequestUri(Uri baseUri, string relaticeUri)
+        private HttpContent GetContent(IDictionary<string, string> values, Encoding encoding)
         {
-            if (baseUri == null)
-            {
-                return new Uri(relaticeUri);
-            }
-            else
-            {
-                return new Uri(baseUri, relaticeUri);
-            }
-        }
-
-        private Task<string> GetStringAsync(HttpClient client, string url)
-        {
-            if (this.BaseAddressUri != null)
-            {
-                client.BaseAddress = this.BaseAddressUri;
-            }
-
-            return client.GetStringAsync(url);
-        }
-
-        private Task<Stream> GetStreamAsync(HttpClient client, string url)
-        {
-            if (this.BaseAddressUri != null)
-            {
-                client.BaseAddress = this.BaseAddressUri;
-            }
-
-            return client.GetStreamAsync(url);
+            return new WeakFormUrlEncodedContent(values, encoding);
         }
     }
 }

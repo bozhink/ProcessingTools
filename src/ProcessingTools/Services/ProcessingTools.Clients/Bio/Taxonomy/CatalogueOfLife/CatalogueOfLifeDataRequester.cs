@@ -19,15 +19,16 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     public class CatalogueOfLifeDataRequester : ICatalogueOfLifeDataRequester
     {
         private const string CatalogueOfLifeBaseAddress = "http://www.catalogueoflife.org";
-        private readonly IHttpRequesterFactory connectorFactory;
+        private readonly Uri baseUri = new Uri(CatalogueOfLifeBaseAddress);
+        private readonly IHttpRequester httpRequester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogueOfLifeDataRequester"/> class.
         /// </summary>
-        /// <param name="connectorFactory">Net connector factory.</param>
-        public CatalogueOfLifeDataRequester(IHttpRequesterFactory connectorFactory)
+        /// <param name="httpRequester">HTTP requester.</param>
+        public CatalogueOfLifeDataRequester(IHttpRequester httpRequester)
         {
-            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
+            this.httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
         }
 
         /// <summary>
@@ -38,10 +39,12 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;response=full</example>
         public async Task<XmlDocument> RequestXmlFromCatalogueOfLife(string scientificName)
         {
-            string url = $"col/webservice?name={scientificName}&response=full";
+            string relativeUri = $"col/webservice?name={scientificName}&response=full";
 
-            var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            string response = await connector.GetStringAsync(url, ContentTypes.Xml).ConfigureAwait(false);
+            Uri requestUri = new Uri(this.baseUri, relativeUri);
+
+            string response = await this.httpRequester.GetStringAsync(requestUri, ContentTypes.Xml).ConfigureAwait(false);
+
             return response.ToXmlDocument();
         }
 
@@ -54,10 +57,11 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         public async Task<CatalogueOfLifeApiServiceResponseModel> RequestDataAsync(string content)
         {
             string requestName = content.UrlEncode();
-            string url = $"/col/webservice?name={requestName}&response=full";
+            string relativeUri = $"/col/webservice?name={requestName}&response=full";
 
-            var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            var result = await connector.GetXmlToObjectAsync<CatalogueOfLifeApiServiceResponseModel>(url).ConfigureAwait(false);
+            Uri requestUri = new Uri(this.baseUri, relativeUri);
+
+            var result = await this.httpRequester.GetXmlToObjectAsync<CatalogueOfLifeApiServiceResponseModel>(requestUri).ConfigureAwait(false);
             return result;
         }
     }

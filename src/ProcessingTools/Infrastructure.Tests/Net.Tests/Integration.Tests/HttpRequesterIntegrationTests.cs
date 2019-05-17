@@ -52,8 +52,14 @@
         [Timeout(1000)]
         public async Task HttpRequester_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
-            var connector = new HttpRequester(BaseAddress);
-            var content = await connector.GetStringAsync(url, "application/json").ConfigureAwait(false);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
+
+            // Act
+            var content = await requester.GetStringAsync(requestUri, "application/json").ConfigureAwait(false);
+
+            // Assert
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -72,8 +78,14 @@
         [Timeout(5000)]
         public async Task HttpRequester_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
-            var connector = new HttpRequester(BaseAddress);
-            var responseObject = await connector.GetJsonToObjectAsync<Product>(url).ConfigureAwait(false);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
+
+            // Act
+            var responseObject = await requester.GetJsonToObjectAsync<Product>(requestUri).ConfigureAwait(false);
+
+            // Assert
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -91,8 +103,14 @@
         [Timeout(1000)]
         public async Task HttpRequester_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
-            var connector = new HttpRequester(BaseAddress);
-            var responseObject = await connector.GetJsonToObjectAsync<Product[]>(url).ConfigureAwait(false);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
+
+            // Act
+            var responseObject = await requester.GetJsonToObjectAsync<Product[]>(requestUri).ConfigureAwait(false);
+
+            // Assert
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Length, "Number of items should match.");
 
@@ -116,8 +134,14 @@
         [Timeout(1000)]
         public async Task HttpRequester_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
-            var connector = new HttpRequester(BaseAddress);
-            var content = await connector.GetStringAsync(url, "application/xml").ConfigureAwait(false);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
+
+            // Act
+            var content = await requester.GetStringAsync(requestUri, "application/xml").ConfigureAwait(false);
+
+            // Assert
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -136,8 +160,14 @@
         [Timeout(1000)]
         public async Task HttpRequester_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
-            var connector = new HttpRequester(BaseAddress);
-            var responseObject = await connector.GetXmlToObjectAsync<Product>(url).ConfigureAwait(false);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
+
+            // Act
+            var responseObject = await requester.GetXmlToObjectAsync<Product>(requestUri).ConfigureAwait(false);
+
+            // Assert
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -155,9 +185,14 @@
         [Timeout(1000)]
         public async Task HttpRequester_GetDeserializedXmlArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
-            var connector = new HttpRequester(BaseAddress);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
 
-            var responseObject = await connector.GetXmlToObjectAsync<ArrayOfProduct>(url).ConfigureAwait(false);
+            // Act
+            var responseObject = await requester.GetXmlToObjectAsync<ArrayOfProduct>(requestUri).ConfigureAwait(false);
+
+            // Assert
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Products.Length, "Number of items should match.");
 
@@ -182,7 +217,9 @@
         [Timeout(1000)]
         public async Task HttpRequester_PostDictionary_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
-            var connector = new HttpRequester(BaseAddress);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
             var values = new Dictionary<string, string>
             {
                 { "name", name },
@@ -190,8 +227,10 @@
                 { "price", price.ToString() },
             };
 
-            var response = await connector.PostToStringAsync(url, values, Encoding.UTF8).ConfigureAwait(false);
+            // Act
+            var response = await requester.PostToStringAsync(requestUri, values, Encoding.UTF8).ConfigureAwait(false);
 
+            // Assert
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
             Assert.IsTrue(response.Contains(category), "Response should contain the category.");
@@ -212,6 +251,7 @@
         [Timeout(1000)]
         public async Task HttpRequester_PostString_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
+            // Arrange
             var product = new Product
             {
                 Name = name,
@@ -221,9 +261,13 @@
 
             string content = JsonConvert.SerializeObject(product);
 
-            var connector = new HttpRequester(BaseAddress);
-            var response = await connector.PostAsync(url, content, "application/json", Encoding.UTF8).ConfigureAwait(false);
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
 
+            // Act
+            var response = await requester.PostAsync(requestUri, content, "application/json", Encoding.UTF8).ConfigureAwait(false);
+
+            // Assert
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
             Assert.IsTrue(response.Contains(category), "Response should contain the category.");
@@ -247,7 +291,9 @@
         [Timeout(1000)]
         public async Task HttpRequester_PostAndDeserializeDictionaryAsXml_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
-            var connector = new HttpRequester(BaseAddress);
+            // Arrange
+            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requester = new HttpRequester();
             var values = new Dictionary<string, string>
             {
                 { "name", name },
@@ -255,8 +301,10 @@
                 { "price", price.ToString() },
             };
 
-            var responseObject = await connector.PostToXmlToObjectAsync<Product>(url, values, Encoding.UTF8).ConfigureAwait(false);
+            // Act
+            var responseObject = await requester.PostToXmlToObjectAsync<Product>(requestUri, values, Encoding.UTF8).ConfigureAwait(false);
 
+            // Assert
             Assert.IsNotNull(responseObject, "Response should not be null.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
             Assert.AreEqual(category, responseObject.Category, "Category should match.");

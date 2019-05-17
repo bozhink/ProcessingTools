@@ -16,24 +16,26 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
     public class GbifApiV09DataRequester : IGbifApiV09DataRequester
     {
         private const string BaseAddress = "http://api.gbif.org";
-
-        private readonly IHttpRequesterFactory connectorFactory;
+        private readonly Uri baseUri = new Uri(BaseAddress);
+        private readonly IHttpRequester httpRequester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GbifApiV09DataRequester"/> class.
         /// </summary>
-        /// <param name="connectorFactory">Net connector factory.</param>
-        public GbifApiV09DataRequester(IHttpRequesterFactory connectorFactory)
+        /// <param name="httpRequester">HTTP requester.</param>
+        public GbifApiV09DataRequester(IHttpRequester httpRequester)
         {
-            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
+            this.httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
         }
 
         /// <inheritdoc/>
         public async Task<GbifApiV09ResponseModel> RequestDataAsync(string content)
         {
-            string url = $"v0.9/species/match?verbose=true&name={content}";
-            var connector = this.connectorFactory.Create(BaseAddress);
-            var result = await connector.GetJsonToObjectAsync<GbifApiV09ResponseModel>(url).ConfigureAwait(false);
+            string relativeUri = $"v0.9/species/match?verbose=true&name={content}";
+
+            Uri requestUri = new Uri(this.baseUri, relativeUri);
+
+            var result = await this.httpRequester.GetJsonToObjectAsync<GbifApiV09ResponseModel>(requestUri).ConfigureAwait(false);
             return result;
         }
     }

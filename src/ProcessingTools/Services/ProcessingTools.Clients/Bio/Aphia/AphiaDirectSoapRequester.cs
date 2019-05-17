@@ -17,24 +17,24 @@ namespace ProcessingTools.Clients.Bio.Aphia
     public class AphiaDirectSoapRequester
     {
         private const string BaseAddress = "http://www.marinespecies.org";
-        private const string ApiUrl = "aphia.php?p=soap";
-
-        private readonly IHttpRequesterFactory connectorFactory;
+        private const string ApiUri = "aphia.php?p=soap";
+        private readonly Uri baseUri = new Uri(BaseAddress);
+        private readonly IHttpRequester httpRequester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AphiaDirectSoapRequester"/> class.
         /// </summary>
-        /// <param name="connectorFactory">Connection factory.</param>
-        public AphiaDirectSoapRequester(IHttpRequesterFactory connectorFactory)
+        /// <param name="httpRequester">HTTP requester.</param>
+        public AphiaDirectSoapRequester(IHttpRequester httpRequester)
         {
-            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
+            this.httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
         }
 
         /// <summary>
         /// Gets Aphia SOAP request XML with a specified scientific name.
         /// </summary>
         /// <param name="scientificName">Scientific name to be requested.</param>
-        /// <returns><see cref="XmlDocument"/></returns>
+        /// <returns><see cref="XmlDocument"/>.</returns>
         public XmlDocument GetAphiaSoapXml(string scientificName)
         {
             XmlDocument xml = new XmlDocument();
@@ -56,16 +56,14 @@ namespace ProcessingTools.Clients.Bio.Aphia
         /// Search scientific name in Aphia.
         /// </summary>
         /// <param name="scientificName">Scientific name to be requested.</param>
-        /// <returns>Task of <see cref="XmlDocument"/></returns>
+        /// <returns>Task of <see cref="XmlDocument"/>.</returns>
         public async Task<XmlDocument> SearchAphia(string scientificName)
         {
-            var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostAsync(
-                ApiUrl,
-                this.GetAphiaSoapXml(scientificName).OuterXml,
-                ContentTypes.Xml,
-                Defaults.Encoding)
-                .ConfigureAwait(false);
+            string content = this.GetAphiaSoapXml(scientificName).OuterXml;
+
+            Uri requestUri = new Uri(this.baseUri, ApiUri);
+
+            var response = await this.httpRequester.PostAsync(requestUri, content, ContentTypes.Xml).ConfigureAwait(false);
 
             return response.ToXmlDocument();
         }
