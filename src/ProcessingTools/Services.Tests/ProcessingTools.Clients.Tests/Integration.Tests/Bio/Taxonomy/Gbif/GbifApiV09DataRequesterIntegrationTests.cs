@@ -24,7 +24,7 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Gbif
         {
             const string ScientificName = "Coleoptera";
 
-            var requester = new GbifApiV09DataRequester(new NetConnectorFactory());
+            var requester = new GbifApiV09DataRequester(new HttpRequesterFactory());
             var result = requester.RequestDataAsync(ScientificName).Result;
 
             Assert.IsNotNull(result, "Result should not be null.");

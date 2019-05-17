@@ -20,13 +20,13 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
     {
         private const string BaseAddress = "http://tagger.jensenlab.org/";
         private const string GetEntitiesApiUrl = "GetEntities";
-        private readonly INetConnectorFactory connectorFactory;
+        private readonly IHttpRequesterFactory connectorFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtractHcmrDataRequester"/> class.
         /// </summary>
         /// <param name="connectorFactory">Factory for base clients.</param>
-        public ExtractHcmrDataRequester(INetConnectorFactory connectorFactory)
+        public ExtractHcmrDataRequester(IHttpRequesterFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
@@ -47,7 +47,7 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
             };
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var result = await connector.PostXmlObjectAsync<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.Encoding).ConfigureAwait(false);
+            var result = await connector.PostToXmlToObjectAsync<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.Encoding).ConfigureAwait(false);
             return result;
         }
     }

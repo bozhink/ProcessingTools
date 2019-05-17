@@ -13,7 +13,7 @@
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(CatalogueOfLifeTaxonClassificationResolver))]
         public void CatalogueOfLifeTaxonClassificationResolver_DefaultConstructor_ShouldWork()
         {
-            var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
+            var requester = new CatalogueOfLifeDataRequester(new HttpRequesterFactory());
             var service = new CatalogueOfLifeTaxonClassificationResolver(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
@@ -26,7 +26,7 @@
             const string ScientificName = "Coleoptera";
             const TaxonRankType Rank = TaxonRankType.Order;
 
-            var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
+            var requester = new CatalogueOfLifeDataRequester(new HttpRequesterFactory());
             var service = new CatalogueOfLifeTaxonClassificationResolver(requester);
             var response = service.ResolveAsync(new[] { ScientificName }).Result;
 

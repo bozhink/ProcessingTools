@@ -26,9 +26,7 @@ namespace ProcessingTools.Net
                 throw new ArgumentNullException(nameof(client));
             }
 
-            client.DefaultRequestHeaders.Add(
-                HttpConstants.CorsHeaderName,
-                HttpConstants.CorsHeaderDefaultValue);
+            client.DefaultRequestHeaders.Add(HttpConstants.CorsHeaderName, HttpConstants.CorsHeaderDefaultValue);
 
             return client;
         }
@@ -61,6 +59,11 @@ namespace ProcessingTools.Net
         /// <returns>Updated client.</returns>
         public static HttpClient AddAcceptXmlHeader(this HttpClient client)
         {
+            if (client == null)
+            {
+                throw new ArgumentNullException(nameof(client));
+            }
+
             client.AddAcceptContentTypeHeader(ContentTypes.Xml);
 
             return client;
@@ -73,6 +76,11 @@ namespace ProcessingTools.Net
         /// <returns>Updated client.</returns>
         public static HttpClient AddAcceptJsonHeader(this HttpClient client)
         {
+            if (client == null)
+            {
+                throw new ArgumentNullException(nameof(client));
+            }
+
             client.AddAcceptContentTypeHeader(ContentTypes.Json);
 
             return client;

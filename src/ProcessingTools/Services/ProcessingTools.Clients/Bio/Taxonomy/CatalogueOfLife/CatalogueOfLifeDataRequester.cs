@@ -19,13 +19,13 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     public class CatalogueOfLifeDataRequester : ICatalogueOfLifeDataRequester
     {
         private const string CatalogueOfLifeBaseAddress = "http://www.catalogueoflife.org";
-        private readonly INetConnectorFactory connectorFactory;
+        private readonly IHttpRequesterFactory connectorFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogueOfLifeDataRequester"/> class.
         /// </summary>
         /// <param name="connectorFactory">Net connector factory.</param>
-        public CatalogueOfLifeDataRequester(INetConnectorFactory connectorFactory)
+        public CatalogueOfLifeDataRequester(IHttpRequesterFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
@@ -41,7 +41,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
             string url = $"col/webservice?name={scientificName}&response=full";
 
             var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            string response = await connector.GetAsync(url, ContentTypes.Xml).ConfigureAwait(false);
+            string response = await connector.GetStringAsync(url, ContentTypes.Xml).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 
@@ -57,7 +57,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
             string url = $"/col/webservice?name={requestName}&response=full";
 
             var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            var result = await connector.GetXmlObjectAsync<CatalogueOfLifeApiServiceResponseModel>(url).ConfigureAwait(false);
+            var result = await connector.GetXmlToObjectAsync<CatalogueOfLifeApiServiceResponseModel>(url).ConfigureAwait(false);
             return result;
         }
     }

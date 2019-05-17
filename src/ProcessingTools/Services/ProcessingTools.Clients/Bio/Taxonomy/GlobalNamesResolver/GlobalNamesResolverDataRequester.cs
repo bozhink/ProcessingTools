@@ -23,13 +23,13 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
     {
         private const string BaseAddress = "http://resolver.globalnames.org";
         private const string ApiUrl = "name_resolvers.xml";
-        private readonly INetConnectorFactory connectorFactory;
+        private readonly IHttpRequesterFactory connectorFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GlobalNamesResolverDataRequester"/> class.
         /// </summary>
         /// <param name="connectorFactory">Net connector factory.</param>
-        public GlobalNamesResolverDataRequester(INetConnectorFactory connectorFactory)
+        public GlobalNamesResolverDataRequester(IHttpRequesterFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
@@ -41,7 +41,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
             string url = $"{ApiUrl}?{searchString}";
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            string response = await connector.GetAsync(url, ContentTypes.Xml).ConfigureAwait(false);
+            string response = await connector.GetStringAsync(url, ContentTypes.Xml).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 
@@ -70,7 +70,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
             }
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostAsync(ApiUrl, values, Defaults.Encoding).ConfigureAwait(false);
+            var response = await connector.PostToStringAsync(ApiUrl, values, Defaults.Encoding).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 

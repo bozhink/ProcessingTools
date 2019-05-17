@@ -19,13 +19,13 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.PaleobiologyDatabase
     public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
     {
         private const string PaleobiologyDatabaseBaseAddress = "https://paleobiodb.org";
-        private readonly INetConnectorFactory connectorFactory;
+        private readonly IHttpRequesterFactory connectorFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaleobiologyDatabaseDataRequester"/> class.
         /// </summary>
         /// <param name="connectorFactory">Net connector factory.</param>
-        public PaleobiologyDatabaseDataRequester(INetConnectorFactory connectorFactory)
+        public PaleobiologyDatabaseDataRequester(IHttpRequesterFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
@@ -45,7 +45,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.PaleobiologyDatabase
             string url = $"data1.1/taxa/single.txt?name={scientificName}";
 
             var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
-            string responseString = await connector.GetAsync(url, ContentTypes.Xml).ConfigureAwait(false);
+            string responseString = await connector.GetStringAsync(url, ContentTypes.Xml).ConfigureAwait(false);
 
             string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
             string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
@@ -80,7 +80,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.PaleobiologyDatabase
             string url = $"data1.1/taxa/list.json?name={content}&rel=all_parents";
 
             var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
-            var result = await connector.GetJsonObjectAsync<PbdbAllParents>(url).ConfigureAwait(false);
+            var result = await connector.GetJsonToObjectAsync<PbdbAllParents>(url).ConfigureAwait(false);
             return result;
         }
     }

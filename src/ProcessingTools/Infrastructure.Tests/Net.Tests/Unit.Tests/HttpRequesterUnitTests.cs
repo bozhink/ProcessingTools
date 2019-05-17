@@ -6,14 +6,14 @@
     using ProcessingTools.Net;
 
     [TestFixture]
-    public class NetConnectorUnitTests
+    public class HttpRequesterUnitTests
     {
         [Test]
-        public void NetConnector_ParameterlessConstructor_ShouldReturnValidObject()
+        public void HttpRequester_ParameterlessConstructor_ShouldReturnValidObject()
         {
-            var connector = new NetConnector();
+            var connector = new HttpRequester();
             Assert.IsNotNull(connector, "Connector should be a valid object.");
-            Assert.IsInstanceOf<INetConnector>(connector, "Connector should be a instance of {0}.", nameof(INetConnector));
+            Assert.IsInstanceOf<IHttpRequester>(connector, "Connector should be a instance of {0}.", nameof(IHttpRequester));
         }
 
         [TestCase("http://localhost")]
@@ -23,11 +23,11 @@
         [TestCase("file://x/Some/Directory")]
         [TestCase("urn:some-uri.org")]
         [TestCase("uri:some-uri.org")]
-        public void NetConnector_ConstructorWithValidBaseAddress_ShouldReturnValidObject(string baseAddress)
+        public void HttpRequester_ConstructorWithValidBaseAddress_ShouldReturnValidObject(string baseAddress)
         {
-            var connector = new NetConnector(baseAddress);
+            var connector = new HttpRequester(baseAddress);
             Assert.IsNotNull(connector, "Connector should be a valid object.");
-            Assert.IsInstanceOf<INetConnector>(connector, "Connector should be a instance of {0}.", nameof(INetConnector));
+            Assert.IsInstanceOf<IHttpRequester>(connector, "Connector should be a instance of {0}.", nameof(IHttpRequester));
         }
 
         [TestCase(null)]
@@ -37,12 +37,12 @@
         [TestCase(@"
 
      ")]
-        public void NetConnector_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullException(string baseAddress)
+        public void HttpRequester_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullException(string baseAddress)
         {
             Assert.Catch<ArgumentNullException>(
                 () =>
                 {
-                    new NetConnector(baseAddress);
+                    new HttpRequester(baseAddress);
                 },
                 "Constructor With Null BaseAddress should throw {0}",
                 nameof(ArgumentNullException));
@@ -55,11 +55,11 @@
         [TestCase(@"
 
      ")]
-        public void NetConnector_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullExceptionWithCorrectParamName(string baseAddress)
+        public void HttpRequester_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullExceptionWithCorrectParamName(string baseAddress)
         {
             try
             {
-                new NetConnector(baseAddress);
+                new HttpRequester(baseAddress);
             }
             catch (ArgumentNullException e)
             {
@@ -70,12 +70,12 @@
         [TestCase("localhost")]
         [TestCase("x:localhost")]
         [TestCase("x::localhost")]
-        public void NetConnector_ConstructorWithInvalidBaseAddress_ShouldThrowUriFormatException(string baseAddress)
+        public void HttpRequester_ConstructorWithInvalidBaseAddress_ShouldThrowUriFormatException(string baseAddress)
         {
             Assert.Catch<UriFormatException>(
                 () =>
                 {
-                    new NetConnector(baseAddress);
+                    new HttpRequester(baseAddress);
                 },
                 "Constructor should throw UriFormatException");
         }

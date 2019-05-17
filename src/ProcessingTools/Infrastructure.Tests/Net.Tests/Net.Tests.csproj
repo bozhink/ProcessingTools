@@ -136,12 +136,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integration.Tests\NetConnectorIntegrationTests.cs" />
+    <Compile Include="Integration.Tests\HttpRequesterIntegrationTests.cs" />
     <Compile Include="Models\ArrayOfProduct.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.Tests\NetConnectorFactoryUnitTests.cs" />
-    <Compile Include="Unit.Tests\NetConnectorUnitTests.cs" />
+    <Compile Include="Unit.Tests\HttpRequesterFactoryUnitTests.cs" />
+    <Compile Include="Unit.Tests\HttpRequesterUnitTests.cs" />
     <Compile Include="Unit.Tests\UrlExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>

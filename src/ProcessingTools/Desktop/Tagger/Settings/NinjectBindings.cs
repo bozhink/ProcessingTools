@@ -25,7 +25,7 @@
 
             this.Bind(b =>
             {
-                b.From(typeof(ProcessingTools.Net.NetConnector).Assembly)
+                b.From(typeof(ProcessingTools.Net.HttpRequester).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

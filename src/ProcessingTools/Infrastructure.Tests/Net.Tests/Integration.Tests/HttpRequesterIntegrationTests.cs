@@ -12,10 +12,10 @@
     using ProcessingTools.TestWebApiServer;
 
     /// <summary>
-    /// <see cref="NetConnector"/> integration tests.
+    /// <see cref="HttpRequester"/> integration tests.
     /// </summary>
     [TestFixture]
-    public class NetConnectorIntegrationTests
+    public class HttpRequesterIntegrationTests
     {
         private const string BaseAddress = "http://localhost:5324/";
 
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> get JSON as string with valid parameters should work.
+        /// <see cref="HttpRequester"/> get JSON as string with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="checkString">Expected resultant string.</param>
@@ -50,15 +50,15 @@
         [TestCase("/api/products/3", @"{""Id"":3,")]
         [TestCase("/api/products", @"[{""Id"":1,")]
         [Timeout(1000)]
-        public async Task NetConnector_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
+        public async Task HttpRequester_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
-            var connector = new NetConnector(BaseAddress);
-            var content = await connector.GetAsync(url, "application/json").ConfigureAwait(false);
+            var connector = new HttpRequester(BaseAddress);
+            var content = await connector.GetStringAsync(url, "application/json").ConfigureAwait(false);
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> get deserialized JSON with valid parameters should work.
+        /// <see cref="HttpRequester"/> get deserialized JSON with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="id">Expected value of the ID.</param>
@@ -70,10 +70,10 @@
         [TestCase("/api/products/2", 2, "Yo-yo", "Toys", 3.75)]
         [TestCase("/api/products/3", 3, "Hammer", "Hardware", 16.99)]
         [Timeout(5000)]
-        public async Task NetConnector_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
+        public async Task HttpRequester_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
-            var connector = new NetConnector(BaseAddress);
-            var responseObject = await connector.GetJsonObjectAsync<Product>(url).ConfigureAwait(false);
+            var connector = new HttpRequester(BaseAddress);
+            var responseObject = await connector.GetJsonToObjectAsync<Product>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -82,17 +82,17 @@
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> get deserialized JSON array with valid parameters should work.
+        /// <see cref="HttpRequester"/> get deserialized JSON array with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="numberOfItems">Expected number of items.</param>
         /// <returns>Task.</returns>
         [TestCase("/api/products", 3)]
         [Timeout(1000)]
-        public async Task NetConnector_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
+        public async Task HttpRequester_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
-            var connector = new NetConnector(BaseAddress);
-            var responseObject = await connector.GetJsonObjectAsync<Product[]>(url).ConfigureAwait(false);
+            var connector = new HttpRequester(BaseAddress);
+            var responseObject = await connector.GetJsonToObjectAsync<Product[]>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Length, "Number of items should match.");
 
@@ -104,7 +104,7 @@
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> get XML as string with valid parameters should work.
+        /// <see cref="HttpRequester"/> get XML as string with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="checkString">Expected value.</param>
@@ -114,15 +114,15 @@
         [TestCase("/api/products/3", @"<Id>3</Id>")]
         [TestCase("/api/products", @"</Product><Product")]
         [Timeout(1000)]
-        public async Task NetConnector_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
+        public async Task HttpRequester_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
-            var connector = new NetConnector(BaseAddress);
-            var content = await connector.GetAsync(url, "application/xml").ConfigureAwait(false);
+            var connector = new HttpRequester(BaseAddress);
+            var content = await connector.GetStringAsync(url, "application/xml").ConfigureAwait(false);
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> get deserialized XML with valid parameters should work.
+        /// <see cref="HttpRequester"/> get deserialized XML with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="id">Expected value of the ID.</param>
@@ -134,10 +134,10 @@
         [TestCase("/api/products/2", 2, "Yo-yo", "Toys", 3.75)]
         [TestCase("/api/products/3", 3, "Hammer", "Hardware", 16.99)]
         [Timeout(1000)]
-        public async Task NetConnector_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
+        public async Task HttpRequester_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
-            var connector = new NetConnector(BaseAddress);
-            var responseObject = await connector.GetXmlObjectAsync<Product>(url).ConfigureAwait(false);
+            var connector = new HttpRequester(BaseAddress);
+            var responseObject = await connector.GetXmlToObjectAsync<Product>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -146,18 +146,18 @@
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> get deserialized XML array with valid parameters should work.
+        /// <see cref="HttpRequester"/> get deserialized XML array with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="numberOfItems">Expected number of items.</param>
         /// <returns>Task.</returns>
         [TestCase("/api/products", 3)]
         [Timeout(1000)]
-        public async Task NetConnector_GetDeserializedXmlArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
+        public async Task HttpRequester_GetDeserializedXmlArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
-            var connector = new NetConnector(BaseAddress);
+            var connector = new HttpRequester(BaseAddress);
 
-            var responseObject = await connector.GetXmlObjectAsync<ArrayOfProduct>(url).ConfigureAwait(false);
+            var responseObject = await connector.GetXmlToObjectAsync<ArrayOfProduct>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Products.Length, "Number of items should match.");
 
@@ -169,7 +169,7 @@
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> post dictionary with valid parameters should work.
+        /// <see cref="HttpRequester"/> post dictionary with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="name">Expected value of the name.</param>
@@ -180,9 +180,9 @@
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
         [Timeout(1000)]
-        public async Task NetConnector_PostDictionary_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
+        public async Task HttpRequester_PostDictionary_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
-            var connector = new NetConnector(BaseAddress);
+            var connector = new HttpRequester(BaseAddress);
             var values = new Dictionary<string, string>
             {
                 { "name", name },
@@ -190,7 +190,7 @@
                 { "price", price.ToString() },
             };
 
-            var response = await connector.PostAsync(url, values, Encoding.UTF8).ConfigureAwait(false);
+            var response = await connector.PostToStringAsync(url, values, Encoding.UTF8).ConfigureAwait(false);
 
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
@@ -199,7 +199,7 @@
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> post string with valid parameters should work.
+        /// <see cref="HttpRequester"/> post string with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="name">Expected value of the name.</param>
@@ -210,7 +210,7 @@
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
         [Timeout(1000)]
-        public async Task NetConnector_PostString_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
+        public async Task HttpRequester_PostString_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
             var product = new Product
             {
@@ -221,7 +221,7 @@
 
             string content = JsonConvert.SerializeObject(product);
 
-            var connector = new NetConnector(BaseAddress);
+            var connector = new HttpRequester(BaseAddress);
             var response = await connector.PostAsync(url, content, "application/json", Encoding.UTF8).ConfigureAwait(false);
 
             Assert.IsNotNull(response, "Response should not be null.");
@@ -234,7 +234,7 @@
         }
 
         /// <summary>
-        /// <see cref="NetConnector"/> post and deserialize dictionary as XML with valid parameters should work.
+        /// <see cref="HttpRequester"/> post and deserialize dictionary as XML with valid parameters should work.
         /// </summary>
         /// <param name="url">Request URL.</param>
         /// <param name="name">Expected value of the name.</param>
@@ -245,9 +245,9 @@
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
         [Timeout(1000)]
-        public async Task NetConnector_PostAndDeserializeDictionaryAsXml_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
+        public async Task HttpRequester_PostAndDeserializeDictionaryAsXml_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
-            var connector = new NetConnector(BaseAddress);
+            var connector = new HttpRequester(BaseAddress);
             var values = new Dictionary<string, string>
             {
                 { "name", name },
@@ -255,7 +255,7 @@
                 { "price", price.ToString() },
             };
 
-            var responseObject = await connector.PostXmlObjectAsync<Product>(url, values, Encoding.UTF8).ConfigureAwait(false);
+            var responseObject = await connector.PostToXmlToObjectAsync<Product>(url, values, Encoding.UTF8).ConfigureAwait(false);
 
             Assert.IsNotNull(responseObject, "Response should not be null.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");

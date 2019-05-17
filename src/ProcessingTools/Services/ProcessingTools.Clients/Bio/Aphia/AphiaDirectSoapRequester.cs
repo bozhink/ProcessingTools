@@ -19,13 +19,13 @@ namespace ProcessingTools.Clients.Bio.Aphia
         private const string BaseAddress = "http://www.marinespecies.org";
         private const string ApiUrl = "aphia.php?p=soap";
 
-        private readonly INetConnectorFactory connectorFactory;
+        private readonly IHttpRequesterFactory connectorFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AphiaDirectSoapRequester"/> class.
         /// </summary>
         /// <param name="connectorFactory">Connection factory.</param>
-        public AphiaDirectSoapRequester(INetConnectorFactory connectorFactory)
+        public AphiaDirectSoapRequester(IHttpRequesterFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }

@@ -20,14 +20,14 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
         private const string BaseAddress = "http://plazi2.cs.umb.edu";
         private const string ParserUrl = "/GgWS/wss/invokeFunction";
 
-        private readonly INetConnectorFactory connectorFactory;
+        private readonly IHttpRequesterFactory connectorFactory;
         private readonly Encoding encoding;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MaterialCitationsParser"/> class.
         /// </summary>
         /// <param name="connectorFactory">Factory for base clients.</param>
-        public MaterialCitationsParser(INetConnectorFactory connectorFactory)
+        public MaterialCitationsParser(IHttpRequesterFactory connectorFactory)
             : this(connectorFactory, Defaults.Encoding)
         {
         }
@@ -37,7 +37,7 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
         /// </summary>
         /// <param name="connectorFactory">Factory for base clients.</param>
         /// <param name="encoding">Text encoding.</param>
-        public MaterialCitationsParser(INetConnectorFactory connectorFactory, Encoding encoding)
+        public MaterialCitationsParser(IHttpRequesterFactory connectorFactory, Encoding encoding)
         {
             this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
@@ -60,7 +60,7 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
             };
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostAsync(ParserUrl, values, this.encoding).ConfigureAwait(false);
+            var response = await connector.PostToStringAsync(ParserUrl, values, this.encoding).ConfigureAwait(false);
 
             return response;
         }

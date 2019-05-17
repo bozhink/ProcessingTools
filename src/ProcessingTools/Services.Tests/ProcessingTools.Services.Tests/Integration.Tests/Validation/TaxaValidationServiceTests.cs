@@ -27,7 +27,7 @@
                 .SetupGet(e => e.DateTimeProvider)
                 .Returns(() => DateTime.UtcNow);
             ////this.cacheService = new ValidationCacheService(repository, applicationContextMock.Object); // TODO: IValidationCacheService
-            this.requester = new GlobalNamesResolverDataRequester(new NetConnectorFactory());
+            this.requester = new GlobalNamesResolverDataRequester(new HttpRequesterFactory());
         }
 
         [TestMethod]
