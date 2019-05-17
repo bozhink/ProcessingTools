@@ -16,8 +16,8 @@ namespace ProcessingTools.Contracts.Serialization
         /// <summary>
         /// Asynchronously deserialize stream.
         /// </summary>
-        /// <param name="stream">Stream to be read</param>
-        /// <returns>Task of output type</returns>
+        /// <param name="stream">Stream to be read.</param>
+        /// <returns>Task of output type.</returns>
         Task<T> DeserializeAsync(Stream stream);
     }
 }
