@@ -18,7 +18,6 @@ namespace ProcessingTools.Clients.Bio.Aphia
     {
         private const string BaseAddress = "http://www.marinespecies.org";
         private const string ApiUri = "aphia.php?p=soap";
-        private readonly Uri baseUri = new Uri(BaseAddress);
         private readonly IHttpRequester httpRequester;
 
         /// <summary>
@@ -38,13 +37,13 @@ namespace ProcessingTools.Clients.Bio.Aphia
         public XmlDocument GetAphiaSoapXml(string scientificName)
         {
             XmlDocument xml = new XmlDocument();
-            xml.LoadXml(@"<?xml version=""1.0""?>
+            xml.LoadXml($@"<?xml version=""1.0""?>
 <soap:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
     xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
     xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
     <soap:Body>
         <getAphiaRecords xmlns=""http://tempuri.org/"">
-            <scientificname>" + scientificName + @"</scientificname>
+            <scientificname>{scientificName}</scientificname>
             <marine_only>false</marine_only>
         </getAphiaRecords>
     </soap:Body>
@@ -61,7 +60,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
         {
             string content = this.GetAphiaSoapXml(scientificName).OuterXml;
 
-            Uri requestUri = new Uri(this.baseUri, ApiUri);
+            Uri requestUri = UriExtensions.Append(BaseAddress, ApiUri);
 
             var response = await this.httpRequester.PostAsync(requestUri, content, ContentTypes.Xml).ConfigureAwait(false);
 

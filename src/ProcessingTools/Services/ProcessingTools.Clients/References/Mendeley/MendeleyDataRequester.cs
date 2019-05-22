@@ -22,10 +22,8 @@ namespace ProcessingTools.Clients.References.Mendeley
         /// Get information about a document by its DOI.
         /// </summary>
         /// <param name="doi">DOI to search.</param>
-        /// <returns>Catalog data</returns>
-        /// <remarks>
-        /// See http://dev.mendeley.com/methods/#catalog-document-views
-        /// </remarks>
+        /// <returns>Catalog data.</returns>
+        // See http://dev.mendeley.com/methods/#catalog-document-views
         public async Task<CatalogResponseModel[]> GetDocumentInformationByDoi(string doi)
         {
             using (HttpClient client = new HttpClient())

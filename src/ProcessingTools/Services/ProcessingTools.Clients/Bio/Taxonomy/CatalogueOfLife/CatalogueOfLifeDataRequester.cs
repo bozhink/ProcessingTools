@@ -19,7 +19,6 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     public class CatalogueOfLifeDataRequester : ICatalogueOfLifeDataRequester
     {
         private const string CatalogueOfLifeBaseAddress = "http://www.catalogueoflife.org";
-        private readonly Uri baseUri = new Uri(CatalogueOfLifeBaseAddress);
         private readonly IHttpRequester httpRequester;
 
         /// <summary>
@@ -36,12 +35,12 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         /// </summary>
         /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
         /// <returns>XmlDocument of the CoL API response.</returns>
-        /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;response=full</example>
+        // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;response=full
         public async Task<XmlDocument> RequestXmlFromCatalogueOfLife(string scientificName)
         {
             string relativeUri = $"col/webservice?name={scientificName}&response=full";
 
-            Uri requestUri = new Uri(this.baseUri, relativeUri);
+            Uri requestUri = UriExtensions.Append(CatalogueOfLifeBaseAddress, relativeUri);
 
             string response = await this.httpRequester.GetStringAsync(requestUri, ContentTypes.Xml).ConfigureAwait(false);
 
@@ -53,13 +52,13 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         /// </summary>
         /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>CatalogueOfLifeApiServiceResponse of the CoL API response.</returns>
-        /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;esponse=full</example>
+        // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;esponse=full
         public async Task<CatalogueOfLifeApiServiceResponseModel> RequestDataAsync(string content)
         {
             string requestName = content.UrlEncode();
             string relativeUri = $"/col/webservice?name={requestName}&response=full";
 
-            Uri requestUri = new Uri(this.baseUri, relativeUri);
+            Uri requestUri = UriExtensions.Append(CatalogueOfLifeBaseAddress, relativeUri);
 
             var result = await this.httpRequester.GetXmlToObjectAsync<CatalogueOfLifeApiServiceResponseModel>(requestUri).ConfigureAwait(false);
             return result;

@@ -7,6 +7,7 @@
     using Microsoft.Owin.Hosting;
     using Newtonsoft.Json;
     using NUnit.Framework;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Net;
     using ProcessingTools.Net.Tests.Models;
     using ProcessingTools.TestWebApiServer;
@@ -53,7 +54,7 @@
         public async Task HttpRequester_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
 
             // Act
@@ -79,7 +80,7 @@
         public async Task HttpRequester_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
 
             // Act
@@ -104,7 +105,7 @@
         public async Task HttpRequester_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
 
             // Act
@@ -135,7 +136,7 @@
         public async Task HttpRequester_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
 
             // Act
@@ -161,7 +162,7 @@
         public async Task HttpRequester_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
 
             // Act
@@ -186,7 +187,7 @@
         public async Task HttpRequester_GetDeserializedXmlArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
 
             // Act
@@ -218,7 +219,7 @@
         public async Task HttpRequester_PostDictionary_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
             var values = new Dictionary<string, string>
             {
@@ -261,7 +262,7 @@
 
             string content = JsonConvert.SerializeObject(product);
 
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
 
             // Act
@@ -292,7 +293,7 @@
         public async Task HttpRequester_PostAndDeserializeDictionaryAsXml_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
             // Arrange
-            var requestUri = new Uri(new Uri(BaseAddress), url);
+            var requestUri = UriExtensions.Append(BaseAddress, url);
             var requester = new HttpRequester();
             var values = new Dictionary<string, string>
             {

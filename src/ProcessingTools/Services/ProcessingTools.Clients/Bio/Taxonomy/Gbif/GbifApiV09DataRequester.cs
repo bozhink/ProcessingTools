@@ -9,6 +9,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
 
     /// <summary>
     /// GBIF API v0.9 data requester.
@@ -16,7 +17,6 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
     public class GbifApiV09DataRequester : IGbifApiV09DataRequester
     {
         private const string BaseAddress = "http://api.gbif.org";
-        private readonly Uri baseUri = new Uri(BaseAddress);
         private readonly IHttpRequester httpRequester;
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
         {
             string relativeUri = $"v0.9/species/match?verbose=true&name={content}";
 
-            Uri requestUri = new Uri(this.baseUri, relativeUri);
+            Uri requestUri = UriExtensions.Append(BaseAddress, relativeUri);
 
             var result = await this.httpRequester.GetJsonToObjectAsync<GbifApiV09ResponseModel>(requestUri).ConfigureAwait(false);
             return result;
