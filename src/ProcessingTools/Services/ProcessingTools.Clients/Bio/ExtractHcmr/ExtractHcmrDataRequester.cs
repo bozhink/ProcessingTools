@@ -11,24 +11,25 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
     using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Request data from EXTRACT.
-    /// See https://extract.hcmr.gr/
     /// </summary>
+    // See https://extract.hcmr.gr/
     public class ExtractHcmrDataRequester : IExtractHcmrDataRequester
     {
         private const string BaseAddress = "http://tagger.jensenlab.org/";
         private const string GetEntitiesApiUrl = "GetEntities";
-        private readonly IHttpRequesterFactory connectorFactory;
+        private readonly IHttpRequester httpRequester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtractHcmrDataRequester"/> class.
         /// </summary>
-        /// <param name="connectorFactory">Factory for base clients.</param>
-        public ExtractHcmrDataRequester(IHttpRequesterFactory connectorFactory)
+        /// <param name="httpRequester">HTTP requester.</param>
+        public ExtractHcmrDataRequester(IHttpRequester httpRequester)
         {
-            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
+            this.httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
         }
 
         /// <inheritdoc/>
@@ -46,8 +47,9 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
                 { "format", "xml" },
             };
 
-            var connector = this.connectorFactory.Create(BaseAddress);
-            var result = await connector.PostToXmlToObjectAsync<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.Encoding).ConfigureAwait(false);
+            Uri requestUri = UriExtensions.Append(BaseAddress, GetEntitiesApiUrl);
+
+            var result = await this.httpRequester.PostToXmlToObjectAsync<ExtractHcmrResponseModel>(requestUri, values, Defaults.Encoding).ConfigureAwait(false);
             return result;
         }
     }

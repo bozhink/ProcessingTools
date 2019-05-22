@@ -28,8 +28,8 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
         [Ignore(message: "Net dependent integration test")] // Net dependent integration test
         public void MaterialCitationsParser_WithValidZeroTestContent_ShouldReturnValidResponse()
         {
-            var connector = new HttpRequesterFactory();
-            var parser = new MaterialCitationsParser(connector, Encoding.UTF8);
+            var httpRequester = new HttpRequester();
+            var parser = new MaterialCitationsParser(httpRequester, Encoding.UTF8);
 
             const string ZeroTestContent = @"<paragraph pn=""1"">Test with <detail>detail</detail></paragraph>";
 
@@ -68,8 +68,8 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
         [Ignore(message: "Net dependent integration test")] // Net dependent integration test
         public void MaterialCitationsParser_WithValidRealTestContentWithCommentInIt_ShouldReturnValidResponse()
         {
-            var connector = new HttpRequesterFactory();
-            var parser = new MaterialCitationsParser(connector, Encoding.UTF8);
+            var httpRequester = new HttpRequester();
+            var parser = new MaterialCitationsParser(httpRequester, Encoding.UTF8);
 
             var requestXml = new XmlDocument
             {

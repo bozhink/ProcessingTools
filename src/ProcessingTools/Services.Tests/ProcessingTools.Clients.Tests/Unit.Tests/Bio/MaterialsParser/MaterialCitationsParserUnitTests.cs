@@ -24,8 +24,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         [TestMethod]
         public void MaterialCitationsParser_WithValidConnectorInDefaultConstructor_ShouldReturnValidObject()
         {
-            var connectorMock = new Mock<IHttpRequesterFactory>();
-            var parser = new MaterialCitationsParser(connectorMock.Object);
+            var httpRequesterMock = new Mock<IHttpRequester>();
+            var parser = new MaterialCitationsParser(httpRequesterMock.Object);
             Assert.IsNotNull(parser, "Parser should not be null object.");
         }
 
@@ -61,8 +61,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         [TestMethod]
         public void MaterialCitationsParser_WithValidConnectorAndValidEncodingInConstructor_ShouldReturnValidObject()
         {
-            var connectorMock = new Mock<IHttpRequesterFactory>();
-            var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF32);
+            var httpRequesterMock = new Mock<IHttpRequester>();
+            var parser = new MaterialCitationsParser(httpRequesterMock.Object, Encoding.UTF32);
             Assert.IsNotNull(parser, "Parser should not be null object.");
         }
 
@@ -99,8 +99,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         [ExpectedException(typeof(ArgumentNullException))]
         public void MaterialCitationsParser_WithValidConnectorAndNullEncodingInConstructor_ShouldThrowArgumentNullException()
         {
-            var connectorMock = new Mock<IHttpRequesterFactory>();
-            new MaterialCitationsParser(connectorMock.Object, null);
+            var httpRequesterMock = new Mock<IHttpRequester>();
+            new MaterialCitationsParser(httpRequesterMock.Object, null);
         }
 
         /// <summary>
@@ -111,8 +111,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         {
             try
             {
-                var connectorMock = new Mock<IHttpRequesterFactory>();
-                new MaterialCitationsParser(connectorMock.Object, null);
+                var httpRequesterMock = new Mock<IHttpRequester>();
+                new MaterialCitationsParser(httpRequesterMock.Object, null);
             }
             catch (ArgumentNullException e)
             {
@@ -128,8 +128,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         [Timeout(5000)]
         public void MaterialCitationsParser_WithNullContentInInvoke_ShouldThrowAggregateException()
         {
-            var connectorMock = new Mock<IHttpRequesterFactory>();
-            var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
+            var httpRequesterMock = new Mock<IHttpRequester>();
+            var parser = new MaterialCitationsParser(httpRequesterMock.Object, Encoding.UTF8);
 
             parser.ParseAsync(null).Wait();
         }
@@ -141,8 +141,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         [Timeout(5000)]
         public void MaterialCitationsParser_WithNullContentInInvoke_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var connectorMock = new Mock<IHttpRequesterFactory>();
-            var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
+            var httpRequesterMock = new Mock<IHttpRequester>();
+            var parser = new MaterialCitationsParser(httpRequesterMock.Object, Encoding.UTF8);
 
             try
             {
@@ -167,8 +167,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         [Timeout(5000)]
         public void MaterialCitationsParser_WithWhitespaceContentInInvoke_ShouldThrowAggregateException()
         {
-            var connectorMock = new Mock<IHttpRequesterFactory>();
-            var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
+            var httpRequesterMock = new Mock<IHttpRequester>();
+            var parser = new MaterialCitationsParser(httpRequesterMock.Object, Encoding.UTF8);
 
             parser.ParseAsync(@"
 
@@ -182,8 +182,8 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
         [Timeout(5000)]
         public void MaterialCitationsParser_WithWhitespaceContentInInvoke_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var connectorMock = new Mock<IHttpRequesterFactory>();
-            var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
+            var httpRequesterMock = new Mock<IHttpRequester>();
+            var parser = new MaterialCitationsParser(httpRequesterMock.Object, Encoding.UTF8);
 
             try
             {

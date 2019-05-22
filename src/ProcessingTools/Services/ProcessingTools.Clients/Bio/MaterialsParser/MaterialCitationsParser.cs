@@ -11,6 +11,7 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
     using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Material citations parser.
@@ -20,27 +21,27 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
         private const string BaseAddress = "http://plazi2.cs.umb.edu";
         private const string ParserUrl = "/GgWS/wss/invokeFunction";
 
-        private readonly IHttpRequesterFactory connectorFactory;
+        private readonly IHttpRequester httpRequester;
         private readonly Encoding encoding;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MaterialCitationsParser"/> class.
         /// </summary>
-        /// <param name="connectorFactory">Factory for base clients.</param>
-        public MaterialCitationsParser(IHttpRequesterFactory connectorFactory)
-            : this(connectorFactory, Defaults.Encoding)
+        /// <param name="httpRequester">HTTP requester.</param>
+        public MaterialCitationsParser(IHttpRequester httpRequester)
+            : this(httpRequester, Defaults.Encoding)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MaterialCitationsParser"/> class.
         /// </summary>
-        /// <param name="connectorFactory">Factory for base clients.</param>
+        /// <param name="httpRequester">HTTP requester.</param>
         /// <param name="encoding">Text encoding.</param>
-        public MaterialCitationsParser(IHttpRequesterFactory connectorFactory, Encoding encoding)
+        public MaterialCitationsParser(IHttpRequester httpRequester, Encoding encoding)
         {
             this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
-            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
+            this.httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
         }
 
         /// <inheritdoc/>
@@ -59,8 +60,9 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
                 { "INTERACTIVE", "no" },
             };
 
-            var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostToStringAsync(ParserUrl, values, this.encoding).ConfigureAwait(false);
+            Uri requestUri = UriExtensions.Append(BaseAddress, ParserUrl);
+
+            var response = await this.httpRequester.PostToStringAsync(requestUri, values, this.encoding).ConfigureAwait(false);
 
             return response;
         }

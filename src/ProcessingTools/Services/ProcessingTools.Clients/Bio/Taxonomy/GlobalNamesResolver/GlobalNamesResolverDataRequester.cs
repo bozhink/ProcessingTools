@@ -23,25 +23,24 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
     {
         private const string BaseAddress = "http://resolver.globalnames.org";
         private const string ApiUrl = "name_resolvers.xml";
-        private readonly IHttpRequesterFactory connectorFactory;
+        private readonly IHttpRequester httpRequester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GlobalNamesResolverDataRequester"/> class.
         /// </summary>
-        /// <param name="connectorFactory">Net connector factory.</param>
-        public GlobalNamesResolverDataRequester(IHttpRequesterFactory connectorFactory)
+        /// <param name="httpRequester">HTTP requester.</param>
+        public GlobalNamesResolverDataRequester(IHttpRequester httpRequester)
         {
-            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
+            this.httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
         }
 
         /// <inheritdoc/>
         public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId)
         {
             string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
-            string url = $"{ApiUrl}?{searchString}";
+            Uri requestUri = UriExtensions.Append(BaseAddress, $"{ApiUrl}?{searchString}");
 
-            var connector = this.connectorFactory.Create(BaseAddress);
-            string response = await connector.GetStringAsync(url, ContentTypes.Xml).ConfigureAwait(false);
+            string response = await this.httpRequester.GetStringAsync(requestUri, ContentTypes.Xml).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 
@@ -49,28 +48,29 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
         public async Task<XmlDocument> SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId)
         {
             string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
-            string contentType = "application/x-www-form-urlencoded";
 
-            var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostAsync(ApiUrl, postData, contentType, Defaults.Encoding).ConfigureAwait(false);
+            Uri requestUri = UriExtensions.Append(BaseAddress, ApiUrl);
+
+            var response = await this.httpRequester.PostAsync(requestUri, postData, ContentTypes.UrlEncoded).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 
         /// <inheritdoc/>
         public async Task<XmlDocument> SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId)
         {
-            Dictionary<string, string> values = new Dictionary<string, string>
-                {
-                    { "data", string.Join("\r\n", scientificNames) },
-                };
+            IDictionary<string, string> values = new Dictionary<string, string>
+            {
+                { "data", string.Join("\r\n", scientificNames) },
+            };
 
             if (sourceId != null)
             {
                 values.Add("data_source_ids", string.Join("|", sourceId));
             }
 
-            var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostToStringAsync(ApiUrl, values, Defaults.Encoding).ConfigureAwait(false);
+            Uri requestUri = UriExtensions.Append(BaseAddress, ApiUrl);
+
+            var response = await this.httpRequester.PostToStringAsync(requestUri, values, Defaults.Encoding).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 

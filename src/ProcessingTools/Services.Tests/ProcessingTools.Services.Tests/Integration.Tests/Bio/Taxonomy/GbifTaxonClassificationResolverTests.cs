@@ -13,8 +13,8 @@
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(GbifTaxonClassificationResolver))]
         public void GbifTaxonClassificationResolver_DefaultConstructor_ShouldWork()
         {
-            var connectorFactory = new HttpRequesterFactory();
-            var requester = new GbifApiV09DataRequester(connectorFactory);
+            var httpRequester = new HttpRequester();
+            var requester = new GbifApiV09DataRequester(httpRequester);
             var service = new GbifTaxonClassificationResolver(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
@@ -27,8 +27,8 @@
             const string CanonicalName = "Coleoptera";
             const TaxonRankType Rank = TaxonRankType.Order;
 
-            var connectorFactory = new HttpRequesterFactory();
-            var requester = new GbifApiV09DataRequester(connectorFactory);
+            var httpRequester = new HttpRequester();
+            var requester = new GbifApiV09DataRequester(httpRequester);
             var service = new GbifTaxonClassificationResolver(requester);
             var response = service.ResolveAsync(new[] { CanonicalName }).Result;
 
