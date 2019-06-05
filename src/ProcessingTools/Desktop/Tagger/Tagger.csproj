@@ -171,7 +171,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
     <Compile Include="Settings\NinjectDataBindings.cs" />
-    <Compile Include="Settings\NinjectMediatypesBindings.cs" />
     <Compile Include="Settings\NinjectServiceClientsBindings.cs" />
     <Compile Include="Core\FileProcessor.Helpers.cs" />
     <Compile Include="Settings\NinjectXmlBindings.cs" />
