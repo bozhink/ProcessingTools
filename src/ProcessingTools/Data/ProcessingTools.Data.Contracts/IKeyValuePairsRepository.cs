@@ -18,7 +18,7 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="key">The key-object to be created.</param>
         /// <param name="value">The value-object to be set as value to the key.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> AddAsync(TKey key, TValue value);
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ProcessingTools.Data.Contracts
         /// Removes the key-object with its underlying value-object.
         /// </summary>
         /// <param name="key">The key-object to be requested.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> RemoveAsync(TKey key);
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="key">The key-object which value will be updated.</param>
         /// <param name="value">The new value to be set to the key-object.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> UpdateAsync(TKey key, TValue value);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="key">The key-object which value will be created or updated.</param>
         /// <param name="value">The value to be set to the key-object.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> UpsertAsync(TKey key, TValue value);
     }
 }

@@ -22,21 +22,21 @@ namespace ProcessingTools.Data.Contracts
         /// Inserts item to the data store.
         /// </summary>
         /// <param name="model">Item to be inserted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Inserted model.</returns>
         Task<T> InsertAsync(TI model);
 
         /// <summary>
         /// Updates item in the data store.
         /// </summary>
         /// <param name="model">Item with updated fields.</param>
-        /// <returns>Task</returns>
+        /// <returns>Updated model.</returns>
         Task<T> UpdateAsync(TU model);
 
         /// <summary>
         /// Delete item from the data store.
         /// </summary>
         /// <param name="id">ID of the item to be deleted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> DeleteAsync(object id);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="skip">Number of items to skip.</param>
         /// <param name="take">Number of items to take.</param>
-        /// <returns>Task of items.</returns>
+        /// <returns>Selected items.</returns>
         Task<T[]> SelectAsync(int skip, int take);
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="skip">Number of items to skip.</param>
         /// <param name="take">Number of items to take.</param>
-        /// <returns>Task of items.</returns>
+        /// <returns>Selected items.</returns>
         Task<TD[]> SelectDetailsAsync(int skip, int take);
 
         /// <summary>

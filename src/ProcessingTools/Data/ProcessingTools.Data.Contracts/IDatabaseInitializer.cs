@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Contracts
         /// <summary>
         /// Initializes database.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> InitializeAsync();
     }
 }

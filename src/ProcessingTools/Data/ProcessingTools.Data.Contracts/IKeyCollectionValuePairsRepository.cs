@@ -19,7 +19,7 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="key">The key-object to be created.</param>
         /// <param name="value">The value-object to be set as value to the key.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> AddAsync(TKey key, TValue value);
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace ProcessingTools.Data.Contracts
         /// Removes the key-object and its underlying collection of values.
         /// </summary>
         /// <param name="key">The key object to be removed.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> RemoveAsync(TKey key);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="key">The key-object to be requested.</param>
         /// <param name="value">The value-object to be removed from the collection of values.</param>
-        /// <returns>Task</returns>
+        /// <returns>Result of operation.</returns>
         Task<object> RemoveAsync(TKey key, TValue value);
     }
 }
