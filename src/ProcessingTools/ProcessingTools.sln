@@ -217,13 +217,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.CheckHost",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.Data", "Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj", "{9DE7564E-BAA6-4C49-93C7-497AD75A4C26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Data", "Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj", "{9DE7564E-BAA6-4C49-93C7-497AD75A4C26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.DataAccess", "Contracts\ProcessingTools.Contracts.DataAccess\ProcessingTools.Contracts.DataAccess.csproj", "{BB649A4B-FF1F-482E-BF8B-A91D1B4A90B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.DataAccess", "Contracts\ProcessingTools.Contracts.DataAccess\ProcessingTools.Contracts.DataAccess.csproj", "{BB649A4B-FF1F-482E-BF8B-A91D1B4A90B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.DataAccess.Models", "Contracts\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj", "{01FB15FC-BCD3-45DD-8F27-49857EC86457}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.DataAccess.Models", "Contracts\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj", "{01FB15FC-BCD3-45DD-8F27-49857EC86457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.Data.Models", "Contracts\ProcessingTools.Contracts.Data.Models\ProcessingTools.Contracts.Data.Models.csproj", "{6D4FC381-397A-4CBA-BF3A-FA8654F6A871}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Data.Models", "Contracts\ProcessingTools.Contracts.Data.Models\ProcessingTools.Contracts.Data.Models.csproj", "{6D4FC381-397A-4CBA-BF3A-FA8654F6A871}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.Models", "Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj", "{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1017,6 +1019,14 @@ Global
 		{6D4FC381-397A-4CBA-BF3A-FA8654F6A871}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D4FC381-397A-4CBA-BF3A-FA8654F6A871}.Release|x64.ActiveCfg = Release|Any CPU
 		{6D4FC381-397A-4CBA-BF3A-FA8654F6A871}.Release|x64.Build.0 = Release|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Debug|x64.Build.0 = Debug|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Release|x64.ActiveCfg = Release|Any CPU
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1123,9 +1133,10 @@ Global
 		{BB649A4B-FF1F-482E-BF8B-A91D1B4A90B2} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{01FB15FC-BCD3-45DD-8F27-49857EC86457} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{6D4FC381-397A-4CBA-BF3A-FA8654F6A871} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
+		{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
