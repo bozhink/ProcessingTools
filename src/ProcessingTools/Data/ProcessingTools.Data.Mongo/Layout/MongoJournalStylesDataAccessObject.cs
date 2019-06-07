@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Mongo.Layout
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -129,7 +130,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalStyleDataModel[]> SelectAsync(int skip, int take)
+        public async Task<IList<IJournalStyleDataModel>> SelectAsync(int skip, int take)
         {
             var journalStyles = await this.Collection.Find(Builders<JournalStyle>.Filter.Empty)
                 .SortBy(s => s.Name)
@@ -147,7 +148,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsStyleDataModel[]> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IJournalDetailsStyleDataModel>> SelectDetailsAsync(int skip, int take)
         {
             var query = this.GetDetailsLookup(this.Collection.Aggregate())
                 .SortBy(s => s.Name)

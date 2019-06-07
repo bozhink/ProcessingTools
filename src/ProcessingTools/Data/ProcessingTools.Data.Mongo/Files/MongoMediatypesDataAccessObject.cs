@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Mongo.Files
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -206,7 +207,7 @@ namespace ProcessingTools.Data.Mongo.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeDataModel[]> SelectAsync(int skip, int take)
+        public async Task<IList<IMediatypeDataModel>> SelectAsync(int skip, int take)
         {
             var mediatypes = await this.Collection.Find(a => true)
                 .SortByDescending(a => a.CreatedOn)
@@ -224,7 +225,7 @@ namespace ProcessingTools.Data.Mongo.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IMediatypeDetailsDataModel>> SelectDetailsAsync(int skip, int take)
         {
             var mediatypes = await this.Collection.Find(a => true)
                .SortByDescending(a => a.CreatedOn)

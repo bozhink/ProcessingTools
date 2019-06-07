@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Mongo.Documents
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -138,7 +139,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentDataModel[]> SelectAsync(int skip, int take)
+        public async Task<IList<IDocumentDataModel>> SelectAsync(int skip, int take)
         {
             var documents = await this.Collection.Find(Builders<Document>.Filter.Empty)
                .SortByDescending(d => d.CreatedOn)
@@ -156,7 +157,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IDocumentDetailsDataModel>> SelectDetailsAsync(int skip, int take)
         {
             var documents = await this.Collection.Find(Builders<Document>.Filter.Empty)
                .SortByDescending(d => d.CreatedOn)

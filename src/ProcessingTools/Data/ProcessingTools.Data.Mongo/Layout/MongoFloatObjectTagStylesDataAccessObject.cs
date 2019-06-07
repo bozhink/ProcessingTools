@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Mongo.Layout
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -113,7 +114,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectTagStyleDataModel[]> SelectAsync(int skip, int take)
+        public async Task<IList<IFloatObjectTagStyleDataModel>> SelectAsync(int skip, int take)
         {
             var tagStyles = await this.Collection.Find(Builders<FloatObjectTagStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -131,7 +132,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectDetailsTagStyleDataModel[]> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IFloatObjectDetailsTagStyleDataModel>> SelectDetailsAsync(int skip, int take)
         {
             var tagStyles = await this.Collection.Find(Builders<FloatObjectTagStyle>.Filter.Empty)
                 .SortBy(p => p.Name)

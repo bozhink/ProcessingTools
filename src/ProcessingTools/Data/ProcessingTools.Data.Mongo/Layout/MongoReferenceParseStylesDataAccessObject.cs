@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Mongo.Layout
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -113,7 +114,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceParseStyleDataModel[]> SelectAsync(int skip, int take)
+        public async Task<IList<IReferenceParseStyleDataModel>> SelectAsync(int skip, int take)
         {
             var parseStyles = await this.Collection.Find(Builders<ReferenceParseStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -131,7 +132,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceDetailsParseStyleDataModel[]> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IReferenceDetailsParseStyleDataModel>> SelectDetailsAsync(int skip, int take)
         {
             var parseStyles = await this.Collection.Find(Builders<ReferenceParseStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
