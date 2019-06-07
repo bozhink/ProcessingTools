@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Contracts.Files
 {
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Contracts.Models.Files;
 
     /// <summary>
     /// Files data service.

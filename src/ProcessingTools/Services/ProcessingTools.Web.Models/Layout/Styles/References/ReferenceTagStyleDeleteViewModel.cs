@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference tag style delete view model.
     /// </summary>
-    public class ReferenceTagStyleDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceTagStyleDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceTagStyleDeleteViewModel"/> class.

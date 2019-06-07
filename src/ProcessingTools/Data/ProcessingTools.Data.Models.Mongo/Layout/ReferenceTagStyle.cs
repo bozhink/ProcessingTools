@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References;
 
     /// <summary>
     /// Reference tag style.

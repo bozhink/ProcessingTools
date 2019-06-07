@@ -11,8 +11,8 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;

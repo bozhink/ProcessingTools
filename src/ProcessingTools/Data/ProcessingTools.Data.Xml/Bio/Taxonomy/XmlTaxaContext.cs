@@ -14,9 +14,9 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
     using System.Xml.Serialization;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// XML taxa context.

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Rules
 {
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Rules;
 
     /// <summary>
     /// Rules processor with <see cref="IDocument"/> context.

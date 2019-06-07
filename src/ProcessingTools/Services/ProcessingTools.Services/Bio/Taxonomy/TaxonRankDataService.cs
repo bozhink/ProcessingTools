@@ -10,8 +10,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 

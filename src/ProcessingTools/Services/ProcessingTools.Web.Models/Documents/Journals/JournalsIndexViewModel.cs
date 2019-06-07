@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journals index view model.
     /// </summary>
-    public class JournalsIndexViewModel : GridViewModel<JournalIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
+    public class JournalsIndexViewModel : GridViewModel<JournalIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalsIndexViewModel"/> class.

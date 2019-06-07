@@ -4,11 +4,11 @@
 
 namespace ProcessingTools.Services.Models.Documents.Meta
 {
-    using ProcessingTools.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Models.Contracts.Documents.Documents;
-    using ProcessingTools.Models.Contracts.Documents.Journals;
-    using ProcessingTools.Models.Contracts.Documents.Meta;
-    using ProcessingTools.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Contracts.Models.Documents.Articles;
+    using ProcessingTools.Contracts.Models.Documents.Documents;
+    using ProcessingTools.Contracts.Models.Documents.Journals;
+    using ProcessingTools.Contracts.Models.Documents.Meta;
+    using ProcessingTools.Contracts.Models.Documents.Publishers;
 
     /// <summary>
     /// Document full model.

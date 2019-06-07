@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Rules
 {
     using System.Collections.Generic;
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Rules;
 
     /// <summary>
     /// XML replace rule set model.

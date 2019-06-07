@@ -7,10 +7,10 @@ namespace ProcessingTools.Services.Abstractions.Geo
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.Geo;
 

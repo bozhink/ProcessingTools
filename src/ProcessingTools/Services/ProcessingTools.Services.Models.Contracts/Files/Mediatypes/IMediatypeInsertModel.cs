@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Files.Mediatypes
     /// <summary>
     /// Mediatype insert model.
     /// </summary>
-    public interface IMediatypeInsertModel : ProcessingTools.Models.Contracts.Files.Mediatypes.IMediatypeInsertModel
+    public interface IMediatypeInsertModel : ProcessingTools.Contracts.Models.Files.Mediatypes.IMediatypeInsertModel
     {
     }
 }

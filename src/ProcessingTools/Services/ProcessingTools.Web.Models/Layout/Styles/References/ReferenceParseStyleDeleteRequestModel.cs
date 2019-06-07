@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference parse style delete request model.
     /// </summary>
-    public class ReferenceParseStyleDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceParseStyleDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.

@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Validation
     using System.Net.Http;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Models.Contracts.Validation;
+    using ProcessingTools.Contracts.Models.Validation;
     using ProcessingTools.Services.Abstractions.Validation;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Contracts.Validation;

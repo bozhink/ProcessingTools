@@ -9,10 +9,10 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
-    using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Models.Contracts.Layout.Styles.Journals;
-    using ProcessingTools.Models.Contracts.Layout.Styles.References;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Journals;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
     /// Journal style.

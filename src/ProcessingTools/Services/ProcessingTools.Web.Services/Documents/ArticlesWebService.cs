@@ -4,6 +4,9 @@
 
 namespace ProcessingTools.Web.Services.Documents
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
@@ -12,9 +15,6 @@ namespace ProcessingTools.Web.Services.Documents
     using ProcessingTools.Web.Models.Documents.Articles;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services.Contracts.Documents;
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Articles web service.

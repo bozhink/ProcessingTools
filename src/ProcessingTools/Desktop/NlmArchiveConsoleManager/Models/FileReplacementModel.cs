@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
 {
-    using Contracts.Models;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
 
     public class FileReplacementModel : IFileReplacementModel
     {

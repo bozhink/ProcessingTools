@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using Contracts;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Tagger.Contracts;
 
     public class ProgramSettings : IProgramSettings
     {

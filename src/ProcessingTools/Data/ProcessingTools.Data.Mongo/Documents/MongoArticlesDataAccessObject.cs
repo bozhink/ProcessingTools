@@ -12,12 +12,12 @@ namespace ProcessingTools.Data.Mongo.Documents
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Models.Contracts.Documents.Articles;
+    using ProcessingTools.Contracts.DataAccess.Documents;
+    using ProcessingTools.Contracts.DataAccess.Models.Documents.Articles;
+    using ProcessingTools.Contracts.Models.Documents.Articles;
     using ProcessingTools.Data.Models.Mongo.Documents;
     using ProcessingTools.Data.Mongo.Abstractions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Documents.Articles;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IArticlesDataAccessObject"/>.

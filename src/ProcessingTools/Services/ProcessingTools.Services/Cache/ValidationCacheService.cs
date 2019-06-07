@@ -8,8 +8,8 @@ namespace ProcessingTools.Services.Cache
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.Cache;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.DataAccess.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Models.Cache;
 

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Contracts.References
 {
-    using ProcessingTools.Models.Contracts.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
     /// References tagger.

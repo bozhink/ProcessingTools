@@ -8,9 +8,9 @@ namespace ProcessingTools.Data.Entity.Geo
     using AutoMapper;
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Data.Models.Entity.Geo;
-    using ProcessingTools.Models.Contracts.Geo;
 
     public class EntityDistrictsRepository : AbstractGeoSynonymisableRepository<District, IDistrict, IDistrictsFilter, DistrictSynonym, IDistrictSynonym, IDistrictSynonymsFilter>, IDistrictsRepository
     {

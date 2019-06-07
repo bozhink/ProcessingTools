@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object parse style delete request model.
     /// </summary>
-    public class FloatObjectParseStyleDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectParseStyleDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.

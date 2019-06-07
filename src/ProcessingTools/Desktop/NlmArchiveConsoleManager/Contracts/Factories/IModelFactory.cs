@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories
 {
-    using Models;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
 
     public interface IModelFactory
     {

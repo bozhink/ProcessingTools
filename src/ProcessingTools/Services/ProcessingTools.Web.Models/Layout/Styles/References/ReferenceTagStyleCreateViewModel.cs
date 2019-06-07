@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference tag style create view model.
     /// </summary>
-    public class ReferenceTagStyleCreateViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceTagStyleCreateViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceTagStyleCreateViewModel"/> class.

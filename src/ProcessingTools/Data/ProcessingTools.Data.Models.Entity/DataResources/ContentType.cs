@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.DataResources;
-    using ProcessingTools.Models.Contracts.Resources;
+    using ProcessingTools.Contracts.Models.Resources;
 
     public class ContentType : IContentType
     {

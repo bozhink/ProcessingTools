@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
 
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder
     {

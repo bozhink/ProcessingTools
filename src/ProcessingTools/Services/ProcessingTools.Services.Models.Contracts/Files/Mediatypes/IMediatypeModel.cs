@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Files.Mediatypes
     /// <summary>
     /// Mediatype model.
     /// </summary>
-    public interface IMediatypeModel : ProcessingTools.Models.Contracts.Files.Mediatypes.IMediatypeModel
+    public interface IMediatypeModel : ProcessingTools.Contracts.Models.Files.Mediatypes.IMediatypeModel
     {
     }
 }

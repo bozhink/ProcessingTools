@@ -2,9 +2,9 @@
 {
     using System;
     using System.Diagnostics;
-    using Contracts;
     using global::Ninject;
-    using Settings;
+    using ProcessingTools.Tagger.Contracts;
+    using ProcessingTools.Tagger.Settings;
 
     public static class Program
     {

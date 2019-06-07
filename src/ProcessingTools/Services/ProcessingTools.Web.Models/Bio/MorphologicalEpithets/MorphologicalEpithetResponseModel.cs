@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Bio.MorphologicalEpithets
 {
-    using ProcessingTools.Models.Contracts.Bio;
+    using ProcessingTools.Contracts.Models.Bio;
 
     /// <summary>
     /// Represents response model for the morphological epithets API.

@@ -2,8 +2,8 @@
 {
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Resources;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Resources;
     using ProcessingTools.Services.Contracts.Resources;
     using ProcessingTools.Web.Core.Api.Abstractions;
     using ProcessingTools.Web.Models.Resources.Institutions;

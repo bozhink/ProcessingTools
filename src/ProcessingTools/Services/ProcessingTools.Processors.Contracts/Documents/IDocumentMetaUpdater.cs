@@ -6,9 +6,9 @@ namespace ProcessingTools.Processors.Contracts.Documents
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Models.Contracts.Documents.Journals;
-    using ProcessingTools.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Contracts.Models.Documents.Articles;
+    using ProcessingTools.Contracts.Models.Documents.Journals;
+    using ProcessingTools.Contracts.Models.Documents.Publishers;
 
     /// <summary>
     /// Document meta-data updater.

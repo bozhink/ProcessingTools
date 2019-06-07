@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// MongoDB implementation of <see cref="ITaxonRankItem"/>.

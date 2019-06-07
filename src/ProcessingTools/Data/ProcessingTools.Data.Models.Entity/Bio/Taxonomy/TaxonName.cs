@@ -31,7 +31,7 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the condition if this TaxonName must appear
+        /// Gets or sets a value indicating whether this TaxonName must appear
         /// in the white list for taxon tagging.
         /// </summary>
         public bool WhiteListed { get; set; }

@@ -9,8 +9,8 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Data.Models.Contracts;
+    using ProcessingTools.Contracts.DataAccess;
+    using ProcessingTools.Contracts.DataAccess.Models;
 
     /// <summary>
     /// Generic MongoDB implementation of <see cref="IStringListDataAccessObject"/>.

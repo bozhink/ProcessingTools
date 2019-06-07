@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Models.Entity.Geo
 {
     using System.Collections.Generic;
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     public class CountryModel : ICountry
     {

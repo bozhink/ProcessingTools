@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher delete request model.
     /// </summary>
-    public class PublisherDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class PublisherDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.

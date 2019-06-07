@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Models.Data.Journals
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Models.Contracts.Services.Data.Journals;
+    using ProcessingTools.Contracts.Models.Services.Data.Journals;
 
     /// <summary>
     /// Institution details.

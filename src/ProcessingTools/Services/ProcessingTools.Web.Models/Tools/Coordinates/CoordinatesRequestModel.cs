@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Tools.Coordinates
     /// <summary>
     /// Coordinates request model.
     /// </summary>
-    public class CoordinatesRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class CoordinatesRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the coordinates text: each coordinate is supposed to be on separate row.

@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype delete request model.
     /// </summary>
-    public class MediatypeDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypeDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.

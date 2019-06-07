@@ -10,8 +10,8 @@ namespace ProcessingTools.Services.Files
     using AutoMapper;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Contracts.Files;
-    using ProcessingTools.Data.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.DataAccess.Files;
+    using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Contracts.Files.Mediatypes;
@@ -38,8 +38,8 @@ namespace ProcessingTools.Services.Files
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<ProcessingTools.Models.Contracts.Files.Mediatypes.IMediatypeMetaModel, MediatypeMetaModel>();
-                c.CreateMap<ProcessingTools.Models.Contracts.Files.Mediatypes.IMediatypeMetaModel, IMediatypeMetaModel>().As<MediatypeMetaModel>();
+                c.CreateMap<ProcessingTools.Contracts.Models.Files.Mediatypes.IMediatypeMetaModel, MediatypeMetaModel>();
+                c.CreateMap<ProcessingTools.Contracts.Models.Files.Mediatypes.IMediatypeMetaModel, IMediatypeMetaModel>().As<MediatypeMetaModel>();
 
                 c.CreateMap<IMediatypeDataModel, MediatypeModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));

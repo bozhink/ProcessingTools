@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article Create Request Model
     /// </summary>
-    public class ArticleCreateRequestModel : IArticleInsertModel, ProcessingTools.Models.Contracts.IWebModel
+    public class ArticleCreateRequestModel : IArticleInsertModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfId)]

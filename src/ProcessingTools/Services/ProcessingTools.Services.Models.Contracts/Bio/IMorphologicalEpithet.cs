@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Bio
     /// <summary>
     /// Morphological epithet service model.
     /// </summary>
-    public interface IMorphologicalEpithet : ProcessingTools.Models.Contracts.Bio.IMorphologicalEpithet
+    public interface IMorphologicalEpithet : ProcessingTools.Contracts.Models.Bio.IMorphologicalEpithet
     {
     }
 }

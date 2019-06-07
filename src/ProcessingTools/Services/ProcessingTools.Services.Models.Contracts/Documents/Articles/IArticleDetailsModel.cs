@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Documents.Articles
     /// <summary>
     /// Article details model.
     /// </summary>
-    public interface IArticleDetailsModel : IArticleModel, ProcessingTools.Models.Contracts.Documents.Articles.IArticleDetailsModel
+    public interface IArticleDetailsModel : IArticleModel, ProcessingTools.Contracts.Models.Documents.Articles.IArticleDetailsModel
     {
         /// <summary>
         /// Gets or sets the article journal.

@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object tag style edit view model.
     /// </summary>
-    public class FloatObjectTagStyleEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectTagStyleEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectTagStyleEditViewModel"/> class.

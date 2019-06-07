@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Tools.Hashes
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Hash content request model.

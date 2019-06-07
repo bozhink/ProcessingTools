@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     /// <summary>
     /// Style data model.
     /// </summary>
-    public class StyleDataModel : ProcessingTools.Data.Models.Contracts.Layout.Styles.IIdentifiedStyleDataModel
+    public class StyleDataModel : ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.IIdentifiedStyleDataModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

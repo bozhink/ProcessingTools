@@ -105,13 +105,13 @@
     <Compile Include="Unit.Tests\ExternalLinksHarvesterUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
+      <Project>{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}</Project>
+      <Name>ProcessingTools.Contracts.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
-      <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
-      <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
       <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>

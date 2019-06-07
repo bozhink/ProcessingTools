@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype details view model.
     /// </summary>
-    public class MediatypeDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypeDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypeDetailsViewModel"/> class.

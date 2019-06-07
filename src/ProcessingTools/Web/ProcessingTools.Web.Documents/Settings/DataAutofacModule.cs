@@ -11,10 +11,10 @@ namespace ProcessingTools.Web.Documents.Settings
     using Microsoft.Extensions.Configuration;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Data;
-    using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Contracts.Files;
-    using ProcessingTools.Data.Contracts.History;
-    using ProcessingTools.Data.Contracts.Layout.Styles;
+    using ProcessingTools.Contracts.DataAccess.Documents;
+    using ProcessingTools.Contracts.DataAccess.Files;
+    using ProcessingTools.Contracts.DataAccess.History;
+    using ProcessingTools.Contracts.DataAccess.Layout.Styles;
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Documents;
     using ProcessingTools.Data.Mongo.Files;
@@ -235,11 +235,11 @@ namespace ProcessingTools.Web.Documents.Settings
                 .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.TaxonRankItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName);
             builder
                 .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBlackListDataAccessObject>()
-                .As<ProcessingTools.Data.Contracts.Bio.Taxonomy.IBlackListDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Taxonomy.IBlackListDataAccessObject>()
                 .InstancePerLifetimeScope();
             builder
                 .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoTaxonRanksDataAccessObject>()
-                .As<ProcessingTools.Data.Contracts.Bio.Taxonomy.ITaxonRanksDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Taxonomy.ITaxonRanksDataAccessObject>()
                 .InstancePerLifetimeScope();
 
             // Biotaxonomy DB initializer

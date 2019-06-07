@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
     /// <summary>
     /// Document HTML view model.
     /// </summary>
-    public class DocumentHtmlViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentHtmlViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentHtmlViewModel"/> class.

@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
     /// <summary>
     /// Journal style delete request model.
     /// </summary>
-    public class JournalStyleDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class JournalStyleDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.

@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats
     /// <summary>
     /// Float object insert tag style model.
     /// </summary>
-    public interface IFloatObjectInsertTagStyleModel : ProcessingTools.Models.Contracts.Layout.Styles.Floats.IFloatObjectInsertTagStyleModel
+    public interface IFloatObjectInsertTagStyleModel : ProcessingTools.Contracts.Models.Layout.Styles.Floats.IFloatObjectInsertTagStyleModel
     {
     }
 }

@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object parse styles index view model.
     /// </summary>
-    public class FloatObjectParseStylesIndexViewModel : GridViewModel<FloatObjectParseStyleIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectParseStylesIndexViewModel : GridViewModel<FloatObjectParseStyleIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectParseStylesIndexViewModel"/> class.

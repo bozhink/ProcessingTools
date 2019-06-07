@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Documents.Files
     /// <summary>
     /// File insert model.
     /// </summary>
-    public interface IFileInsertModel : ProcessingTools.Models.Contracts.Documents.Files.IFileInsertModel
+    public interface IFileInsertModel : ProcessingTools.Contracts.Models.Documents.Files.IFileInsertModel
     {
     }
 }

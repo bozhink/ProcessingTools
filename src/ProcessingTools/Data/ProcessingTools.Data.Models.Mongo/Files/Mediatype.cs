@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Mongo.Files
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
 
     /// <summary>
     /// Mediatype

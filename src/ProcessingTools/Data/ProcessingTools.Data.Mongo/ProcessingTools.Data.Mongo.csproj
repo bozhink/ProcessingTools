@@ -47,10 +47,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data.Models\ProcessingTools.Contracts.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess\ProcessingTools.Contracts.DataAccess.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
   </ItemGroup>
 

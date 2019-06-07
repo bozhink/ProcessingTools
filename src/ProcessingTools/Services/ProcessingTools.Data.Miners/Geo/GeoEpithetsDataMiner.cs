@@ -4,10 +4,10 @@
 
 namespace ProcessingTools.Data.Miners.Geo
 {
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Data.Miners.Abstractions;
     using ProcessingTools.Data.Miners.Contracts.Geo;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts.Geo;
 
     /// <summary>

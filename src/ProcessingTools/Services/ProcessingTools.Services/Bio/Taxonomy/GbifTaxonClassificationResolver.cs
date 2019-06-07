@@ -11,8 +11,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 

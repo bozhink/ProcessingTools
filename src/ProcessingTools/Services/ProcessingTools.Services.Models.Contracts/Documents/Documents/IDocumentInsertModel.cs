@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Documents.Documents
     /// <summary>
     /// Document insert model.
     /// </summary>
-    public interface IDocumentInsertModel : ProcessingTools.Models.Contracts.Documents.Documents.IDocumentInsertModel
+    public interface IDocumentInsertModel : ProcessingTools.Contracts.Models.Documents.Documents.IDocumentInsertModel
     {
     }
 }

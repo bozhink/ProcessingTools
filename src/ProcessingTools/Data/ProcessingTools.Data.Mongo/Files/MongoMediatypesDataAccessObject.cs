@@ -12,12 +12,12 @@ namespace ProcessingTools.Data.Mongo.Files
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.Files;
-    using ProcessingTools.Data.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.DataAccess.Files;
+    using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Data.Models.Mongo.Files;
     using ProcessingTools.Data.Mongo.Abstractions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Files.Mediatypes;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IMediatypesDataAccessObject"/>.

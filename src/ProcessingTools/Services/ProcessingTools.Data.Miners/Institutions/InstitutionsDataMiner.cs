@@ -4,10 +4,10 @@
 
 namespace ProcessingTools.Data.Miners.Institutions
 {
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Resources;
     using ProcessingTools.Data.Miners.Abstractions;
     using ProcessingTools.Data.Miners.Contracts.Institutions;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Contracts.Resources;
 
     /// <summary>

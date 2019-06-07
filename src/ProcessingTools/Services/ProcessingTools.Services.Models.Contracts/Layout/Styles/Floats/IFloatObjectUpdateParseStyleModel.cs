@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats
     /// <summary>
     /// Float object update parse style model.
     /// </summary>
-    public interface IFloatObjectUpdateParseStyleModel : ProcessingTools.Models.Contracts.Layout.Styles.Floats.IFloatObjectUpdateParseStyleModel
+    public interface IFloatObjectUpdateParseStyleModel : ProcessingTools.Contracts.Models.Layout.Styles.Floats.IFloatObjectUpdateParseStyleModel
     {
     }
 }

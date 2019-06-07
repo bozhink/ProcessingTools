@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon rank data service.

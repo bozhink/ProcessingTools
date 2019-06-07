@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Documents.Documents
 {
-    using ProcessingTools.Models.Contracts.Documents.Documents;
+    using ProcessingTools.Contracts.Models.Documents.Documents;
 
     /// <summary>
     /// Document insert model.

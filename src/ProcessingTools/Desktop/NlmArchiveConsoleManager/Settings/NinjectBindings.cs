@@ -7,7 +7,7 @@
     using global::Ninject.Modules;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Contracts.DataAccess.Documents;
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Documents;
     using ProcessingTools.Ninject.Interceptors;

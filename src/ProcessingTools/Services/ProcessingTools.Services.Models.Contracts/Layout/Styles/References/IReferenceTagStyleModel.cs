@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Layout.Styles.References
     /// <summary>
     /// Reference tag style model.
     /// </summary>
-    public interface IReferenceTagStyleModel : IIdentifiedStyleModel, ProcessingTools.Models.Contracts.Layout.Styles.References.IReferenceTagStyleModel
+    public interface IReferenceTagStyleModel : IIdentifiedStyleModel, ProcessingTools.Contracts.Models.Layout.Styles.References.IReferenceTagStyleModel
     {
     }
 }

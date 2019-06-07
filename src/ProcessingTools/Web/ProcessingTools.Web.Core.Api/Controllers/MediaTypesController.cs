@@ -7,7 +7,7 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 

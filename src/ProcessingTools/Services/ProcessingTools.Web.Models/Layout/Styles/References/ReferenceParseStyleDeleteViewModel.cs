@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference parse style delete view model.
     /// </summary>
-    public class ReferenceParseStyleDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceParseStyleDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceParseStyleDeleteViewModel"/> class.

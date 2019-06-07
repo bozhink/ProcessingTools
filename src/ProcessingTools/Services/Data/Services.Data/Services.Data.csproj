@@ -64,6 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
+      <Project>{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}</Project>
+      <Name>ProcessingTools.Contracts.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Entity\ProcessingTools.Data.Entity.csproj">
       <Project>{151cbf78-b672-42b5-bbdd-04c6c7f45a25}</Project>
       <Name>ProcessingTools.Data.Entity</Name>
@@ -87,10 +91,6 @@
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
       <Project>{720d359f-49d1-4126-a79b-f63cce9780a0}</Project>
       <Name>ProcessingTools.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
-      <Project>{a620dfde-28c3-46c7-bed3-0afb99db9623}</Project>
-      <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>

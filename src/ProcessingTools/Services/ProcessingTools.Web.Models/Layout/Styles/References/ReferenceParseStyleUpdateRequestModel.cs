@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference parse style update request model.
     /// </summary>
-    public class ReferenceParseStyleUpdateRequestModel : IReferenceUpdateParseStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceParseStyleUpdateRequestModel : IReferenceUpdateParseStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

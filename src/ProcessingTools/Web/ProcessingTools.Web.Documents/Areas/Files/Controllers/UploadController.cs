@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Contracts.Models.Files;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Files.Metadata;

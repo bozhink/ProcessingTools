@@ -11,10 +11,10 @@ namespace ProcessingTools.Data.Mongo.Documents
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Contracts.DataAccess.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Models.Mongo.Documents;
     using ProcessingTools.Data.Mongo.Abstractions;
-    using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>
     /// MongoDB implementation of Journals meta data access object.

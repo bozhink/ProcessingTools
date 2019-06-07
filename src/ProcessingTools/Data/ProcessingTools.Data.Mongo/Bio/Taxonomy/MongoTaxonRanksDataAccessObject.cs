@@ -11,9 +11,9 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
     using System.Threading.Tasks;
     using MongoDB.Bson;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Mongo.Bio.Taxonomy;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// MongoDB implementation of <see cref="ITaxonRanksDataAccessObject"/>.

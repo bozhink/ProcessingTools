@@ -10,8 +10,8 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// XML blacklist context.

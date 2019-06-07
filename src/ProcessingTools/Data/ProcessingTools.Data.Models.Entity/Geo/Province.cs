@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Geo;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class Province : BaseModel, ISynonymisable<ProvinceSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {

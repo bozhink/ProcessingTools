@@ -10,8 +10,8 @@ namespace ProcessingTools.Services.Documents
     using AutoMapper;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Models.Contracts.Documents.Journals;
+    using ProcessingTools.Contracts.DataAccess.Documents;
+    using ProcessingTools.Contracts.DataAccess.Models.Documents.Journals;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Contracts.Documents.Journals;

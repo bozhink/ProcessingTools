@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Mongo.Abstractions
     using System;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Contracts.DataAccess;
 
     /// <summary>
     /// MongoDB base for data access object (DAO).

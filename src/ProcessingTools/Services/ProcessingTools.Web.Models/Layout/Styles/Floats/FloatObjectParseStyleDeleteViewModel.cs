@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object parse style delete view model.
     /// </summary>
-    public class FloatObjectParseStyleDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectParseStyleDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectParseStyleDeleteViewModel"/> class.

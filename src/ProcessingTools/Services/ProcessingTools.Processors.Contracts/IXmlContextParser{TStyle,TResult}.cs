@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts
 {
     using System.Xml;
-    using ProcessingTools.Models.Contracts.Layout.Styles;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
 
     /// <summary>
     /// Context parser for <see cref="XmlNode"/> context.

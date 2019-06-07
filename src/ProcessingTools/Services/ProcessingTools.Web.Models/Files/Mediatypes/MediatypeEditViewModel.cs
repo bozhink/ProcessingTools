@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype edit view model.
     /// </summary>
-    public class MediatypeEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypeEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypeEditViewModel"/> class.

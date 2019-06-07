@@ -2,9 +2,9 @@
 {
     using System;
     using System.Diagnostics;
-    using Contracts.Core;
     using global::Ninject;
-    using Settings;
+    using ProcessingTools.DbSeeder.Contracts.Core;
+    using ProcessingTools.DbSeeder.Settings;
 
     public static class Program
     {

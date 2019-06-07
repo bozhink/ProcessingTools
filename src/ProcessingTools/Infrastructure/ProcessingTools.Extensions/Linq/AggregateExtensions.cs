@@ -139,6 +139,7 @@ namespace ProcessingTools.Extensions.Linq
             {
                 var comparer = Comparer<TSource>.Default;
                 using (var en = source.GetEnumerator())
+                {
                     if (en.MoveNext())
                     {
                         var currentMin = en.Current;
@@ -153,6 +154,7 @@ namespace ProcessingTools.Extensions.Linq
 
                         return currentMin;
                     }
+                }
             }
 
             return defaultValue;

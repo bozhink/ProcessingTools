@@ -8,7 +8,6 @@ namespace ProcessingTools.Extensions.Entity.Linq
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using System.Data;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>

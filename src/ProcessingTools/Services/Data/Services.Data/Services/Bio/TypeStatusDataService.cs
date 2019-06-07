@@ -2,9 +2,9 @@
 {
     using System;
     using System.Linq.Expressions;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Entity.Bio;
     using ProcessingTools.Data.Models.Entity.Bio;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Abstractions;
     using ProcessingTools.Services.Contracts.Bio;
     using ProcessingTools.Services.Models.Contracts.Bio;

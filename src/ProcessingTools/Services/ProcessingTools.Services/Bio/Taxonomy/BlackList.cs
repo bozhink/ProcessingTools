@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Models.Entity.Geo
 {
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     public class ProvinceSynonymModel : SynonymModel, IProvinceSynonym
     {

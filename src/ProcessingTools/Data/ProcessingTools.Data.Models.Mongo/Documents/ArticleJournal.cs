@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Data.Models.Mongo.Documents
 {
-    using ProcessingTools.Data.Models.Contracts.Documents.Articles;
+    using ProcessingTools.Contracts.DataAccess.Models.Documents.Articles;
 
     /// <summary>
     /// Article journal

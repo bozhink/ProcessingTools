@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using System.Xml;
     using AutoMapper;
-    using ProcessingTools.Models.Contracts.IO;
+    using ProcessingTools.Contracts.Models.IO;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Models.Contracts.Documents.Documents;

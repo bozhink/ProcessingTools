@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Files
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 

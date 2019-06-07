@@ -1,4 +1,4 @@
-// <copyright file="CorsConfiguration.cs" company="ProcessingTools">
+// <copyright file="AuthorizationConfiguration.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 

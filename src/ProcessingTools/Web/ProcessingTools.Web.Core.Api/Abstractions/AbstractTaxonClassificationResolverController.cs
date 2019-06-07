@@ -7,7 +7,7 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Clients.Contracts.Bio.Taxonomy
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Aphia taxon classification requester.

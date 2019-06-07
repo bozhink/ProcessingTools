@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object tag style details view model.
     /// </summary>
-    public class FloatObjectTagStyleDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectTagStyleDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectTagStyleDetailsViewModel"/> class.

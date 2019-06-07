@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal edit view model.
     /// </summary>
-    public class JournalEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class JournalEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalEditViewModel"/> class.

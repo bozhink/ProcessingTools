@@ -6,7 +6,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia
 {
     using System.Collections.Generic;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon classification.

@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Rules
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Rules;
     using ProcessingTools.Services.Contracts.Rules;
     using ProcessingTools.Services.Models.Rules;
     using YamlDotNet.Serialization;

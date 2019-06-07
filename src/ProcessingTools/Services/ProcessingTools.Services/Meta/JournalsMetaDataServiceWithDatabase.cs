@@ -7,8 +7,8 @@ namespace ProcessingTools.Services.Meta
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.DataAccess.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Services.Models.Data.Meta;
 

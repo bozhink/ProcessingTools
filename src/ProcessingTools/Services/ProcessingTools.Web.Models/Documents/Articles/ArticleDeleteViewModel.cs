@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article delete view model.
     /// </summary>
-    public class ArticleDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ArticleDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticleDeleteViewModel"/> class.

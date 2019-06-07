@@ -9,8 +9,8 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Documents;
 
     /// <summary>
     /// Journal meta.

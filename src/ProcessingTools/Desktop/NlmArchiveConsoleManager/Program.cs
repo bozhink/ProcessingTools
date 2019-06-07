@@ -2,8 +2,8 @@
 {
     using System;
     using System.Diagnostics;
-    using Contracts.Core;
     using global::Ninject;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Settings;
 
     internal static class Program

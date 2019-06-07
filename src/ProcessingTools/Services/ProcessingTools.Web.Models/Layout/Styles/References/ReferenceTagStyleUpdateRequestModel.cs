@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference tag style update request model.
     /// </summary>
-    public class ReferenceTagStyleUpdateRequestModel : IReferenceUpdateTagStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceTagStyleUpdateRequestModel : IReferenceUpdateTagStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

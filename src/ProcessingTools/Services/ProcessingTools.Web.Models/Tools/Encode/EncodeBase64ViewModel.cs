@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Tools.Encode
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>

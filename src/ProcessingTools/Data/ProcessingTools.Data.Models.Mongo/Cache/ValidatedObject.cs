@@ -6,7 +6,7 @@ namespace ProcessingTools.Data.Models.Mongo.Cache
 {
     using System.Collections.Generic;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Validated object.

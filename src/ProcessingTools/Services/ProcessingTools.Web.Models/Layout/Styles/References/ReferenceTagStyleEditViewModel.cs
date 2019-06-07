@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference tag style edit view model.
     /// </summary>
-    public class ReferenceTagStyleEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceTagStyleEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceTagStyleEditViewModel"/> class.

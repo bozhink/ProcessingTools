@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.Services.Contracts.Meta;

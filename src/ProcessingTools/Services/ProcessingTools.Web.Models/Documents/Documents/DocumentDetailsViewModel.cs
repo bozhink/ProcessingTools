@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
     /// <summary>
     /// Document details view model.
     /// </summary>
-    public class DocumentDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentDetailsViewModel"/> class.

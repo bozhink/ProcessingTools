@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object tag style create request model.
     /// </summary>
-    public class FloatObjectTagStyleCreateRequestModel : IFloatObjectInsertTagStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectTagStyleCreateRequestModel : IFloatObjectInsertTagStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

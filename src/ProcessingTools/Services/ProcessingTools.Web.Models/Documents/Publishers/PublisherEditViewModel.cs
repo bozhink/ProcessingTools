@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher edit view model.
     /// </summary>
-    public class PublisherEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class PublisherEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublisherEditViewModel"/> class.

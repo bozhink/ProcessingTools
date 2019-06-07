@@ -10,7 +10,7 @@ namespace ProcessingTools.Processors.Rules
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Rules;
     using ProcessingTools.Processors.Contracts.Rules;
 
     /// <summary>

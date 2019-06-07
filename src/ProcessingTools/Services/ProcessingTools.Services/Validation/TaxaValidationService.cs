@@ -14,8 +14,8 @@ namespace ProcessingTools.Services.Validation
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Constants.Uri;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models.Validation;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Validation;
     using ProcessingTools.Services.Abstractions.Validation;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Contracts.Validation;

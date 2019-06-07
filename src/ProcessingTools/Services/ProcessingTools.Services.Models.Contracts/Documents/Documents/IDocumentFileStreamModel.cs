@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Contracts.Documents.Documents
 {
     using System.IO;
-    using ProcessingTools.Models.Contracts.IO;
+    using ProcessingTools.Contracts.Models.IO;
 
     /// <summary>
     /// Document file stream model.

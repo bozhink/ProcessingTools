@@ -2,10 +2,10 @@
 {
     using System;
     using System.Linq.Expressions;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Resources;
     using ProcessingTools.Data.Entity.DataResources;
     using ProcessingTools.Data.Models.Entity.DataResources;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Abstractions;
     using ProcessingTools.Services.Contracts.Resources;
 

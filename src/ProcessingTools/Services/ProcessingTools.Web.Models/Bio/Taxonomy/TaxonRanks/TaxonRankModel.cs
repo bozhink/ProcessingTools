@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Bio.Taxonomy.TaxonRanks
 {
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon-rank model.

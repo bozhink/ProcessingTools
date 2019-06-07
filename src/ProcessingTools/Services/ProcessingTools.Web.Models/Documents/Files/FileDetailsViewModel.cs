@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Documents.Files
     /// <summary>
     /// File Details View Model
     /// </summary>
-    public class FileDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class FileDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the User Context.

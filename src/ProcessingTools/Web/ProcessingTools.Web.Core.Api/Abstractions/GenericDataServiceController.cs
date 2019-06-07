@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Contracts;
 
     public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ControllerBase

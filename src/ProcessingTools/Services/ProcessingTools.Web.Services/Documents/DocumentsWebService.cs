@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Services.Documents
     using Microsoft.AspNetCore.Http;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.IO;
+    using ProcessingTools.Contracts.Models.IO;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Documents;
     using ProcessingTools.Web.Models.Documents.Documents;

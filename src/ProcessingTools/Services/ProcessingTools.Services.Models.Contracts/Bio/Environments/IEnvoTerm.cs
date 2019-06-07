@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Bio.Environments
     /// <summary>
     /// ENVO Term service model.
     /// </summary>
-    public interface IEnvoTerm : ProcessingTools.Models.Contracts.Bio.IEnvoTerm
+    public interface IEnvoTerm : ProcessingTools.Contracts.Models.Bio.IEnvoTerm
     {
     }
 }

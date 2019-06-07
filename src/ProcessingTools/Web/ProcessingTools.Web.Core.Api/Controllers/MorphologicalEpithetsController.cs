@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Contracts.Bio;
     using ProcessingTools.Services.Models.Contracts.Bio;
     using ProcessingTools.Web.Core.Api.Abstractions;

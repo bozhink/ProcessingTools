@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype create view model.
     /// </summary>
-    public class MediatypeCreateViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypeCreateViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypeCreateViewModel"/> class.

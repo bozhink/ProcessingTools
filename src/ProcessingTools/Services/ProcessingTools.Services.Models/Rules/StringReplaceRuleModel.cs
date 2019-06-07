@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Rules
 {
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Rules;
 
     /// <summary>
     /// String replace rule model.

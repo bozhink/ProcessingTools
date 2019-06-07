@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Mongo.History
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Models.Contracts.History;
+    using ProcessingTools.Contracts.Models.History;
 
     /// <summary>
     /// Object history entity for MongoDB.

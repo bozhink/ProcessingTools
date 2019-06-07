@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference parse styles index view model.
     /// </summary>
-    public class ReferenceParseStylesIndexViewModel : GridViewModel<ReferenceParseStyleIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceParseStylesIndexViewModel : GridViewModel<ReferenceParseStyleIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceParseStylesIndexViewModel"/> class.

@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publishers index view model.
     /// </summary>
-    public class PublishersIndexViewModel : GridViewModel<PublisherIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
+    public class PublishersIndexViewModel : GridViewModel<PublisherIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishersIndexViewModel"/> class.

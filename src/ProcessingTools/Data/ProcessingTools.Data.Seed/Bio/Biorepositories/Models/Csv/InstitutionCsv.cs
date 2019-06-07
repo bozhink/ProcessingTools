@@ -3,7 +3,7 @@
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Code.Serialization.Csv;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Models.Contracts.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
     [FileName("grbio_institutions.csv")]
     [CsvObject]

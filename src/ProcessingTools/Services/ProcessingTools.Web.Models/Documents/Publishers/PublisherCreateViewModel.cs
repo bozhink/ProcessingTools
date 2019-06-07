@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher create view model.
     /// </summary>
-    public class PublisherCreateViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class PublisherCreateViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublisherCreateViewModel"/> class.

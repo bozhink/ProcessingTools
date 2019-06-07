@@ -6,8 +6,8 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Journals
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Models.Contracts.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
     /// Journal details style model.

@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
     /// <summary>
     /// Document upload view model.
     /// </summary>
-    public class DocumentUploadViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentUploadViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentUploadViewModel"/> class.

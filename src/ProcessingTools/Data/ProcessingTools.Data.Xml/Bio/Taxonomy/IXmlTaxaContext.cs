@@ -4,8 +4,8 @@
 
 namespace ProcessingTools.Data.Xml.Bio.Taxonomy
 {
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Data.Xml.Abstractions;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// XML taxa context.

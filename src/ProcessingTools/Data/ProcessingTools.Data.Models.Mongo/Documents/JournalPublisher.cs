@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Data.Models.Mongo.Documents
 {
-    using ProcessingTools.Data.Models.Contracts.Documents.Journals;
+    using ProcessingTools.Contracts.DataAccess.Models.Documents.Journals;
 
     /// <summary>
     /// Journal publisher

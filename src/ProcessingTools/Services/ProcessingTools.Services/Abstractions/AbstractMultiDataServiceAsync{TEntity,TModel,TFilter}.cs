@@ -12,10 +12,10 @@ namespace ProcessingTools.Services.Abstractions
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Contracts;
 
     /// <summary>

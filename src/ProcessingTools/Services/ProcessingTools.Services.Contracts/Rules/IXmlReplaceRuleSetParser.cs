@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Contracts.Rules
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Rules;
 
     /// <summary>
     /// XML replace rule set parser.

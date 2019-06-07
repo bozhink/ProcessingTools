@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Data.Models.Mongo.Documents
 {
-    using ProcessingTools.Data.Models.Contracts.Documents.Documents;
+    using ProcessingTools.Contracts.DataAccess.Models.Documents.Documents;
 
     /// <summary>
     /// Document article data model.

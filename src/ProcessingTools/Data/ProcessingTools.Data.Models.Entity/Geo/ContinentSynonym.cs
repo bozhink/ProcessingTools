@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Models.Entity.Geo
 {
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class ContinentSynonym : Synonym, IDataModel
     {

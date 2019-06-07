@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Contracts.Cache
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
 
     /// <summary>
     /// Validation cache service.

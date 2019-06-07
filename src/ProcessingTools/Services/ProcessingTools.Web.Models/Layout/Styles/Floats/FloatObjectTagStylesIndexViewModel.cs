@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object tag styles index view model.
     /// </summary>
-    public class FloatObjectTagStylesIndexViewModel : GridViewModel<FloatObjectTagStyleIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectTagStylesIndexViewModel : GridViewModel<FloatObjectTagStyleIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectTagStylesIndexViewModel"/> class.

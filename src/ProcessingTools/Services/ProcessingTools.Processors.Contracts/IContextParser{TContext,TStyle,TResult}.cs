@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Contracts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Layout.Styles;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
 
     /// <summary>
     /// Generic context parser.

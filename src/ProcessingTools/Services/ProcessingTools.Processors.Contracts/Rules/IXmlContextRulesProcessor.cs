@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Rules
 {
     using System.Xml;
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Rules;
 
     /// <summary>
     /// Rules processor with <see cref="XmlNode"/> context.

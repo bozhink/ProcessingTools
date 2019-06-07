@@ -6,8 +6,8 @@ namespace ProcessingTools.Data.Models.Redis.Cache
 {
     using System;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Data.Models.Contracts.Cache;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.DataAccess.Models.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
 
     /// <summary>
     /// Validation cache entity.

@@ -10,10 +10,10 @@ namespace ProcessingTools.Data.Mongo.History
     using AutoMapper;
     using MongoDB.Driver;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.History;
+    using ProcessingTools.Contracts.DataAccess.History;
+    using ProcessingTools.Contracts.Models.History;
     using ProcessingTools.Data.Models.Mongo.History;
     using ProcessingTools.Data.Mongo.Abstractions;
-    using ProcessingTools.Models.Contracts.History;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IObjectHistoryDataAccessObject"/>.

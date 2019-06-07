@@ -174,7 +174,7 @@ namespace ProcessingTools.Processors.Special
                     "<tn>$1</tn>")
                 .RegexReplace(
                     "(([A-Z][a-z\\.-]+|<tn>.*?</tn>)\\s+([a-z\\.-]*\\s*" + InfraspecificPattern + ")?" + LowerPattern + ")",
-                "<tn>$1</tn>");
+                    "<tn>$1</tn>");
 
             document.Xml = xml;
         }

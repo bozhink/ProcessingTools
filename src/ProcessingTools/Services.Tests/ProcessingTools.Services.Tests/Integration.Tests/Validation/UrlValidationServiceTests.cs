@@ -6,7 +6,7 @@
     using Moq;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.Cache;
+    using ProcessingTools.Contracts.DataAccess.Cache;
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Validation;

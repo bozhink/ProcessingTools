@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Resources.Products
 {
-    using ProcessingTools.Models.Contracts.Resources;
+    using ProcessingTools.Contracts.Models.Resources;
 
     /// <summary>
     /// Represents response model for the products API.

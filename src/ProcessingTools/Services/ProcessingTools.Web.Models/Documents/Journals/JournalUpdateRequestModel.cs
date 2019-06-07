@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal edit request model.
     /// </summary>
-    public class JournalUpdateRequestModel : IJournalUpdateModel, ProcessingTools.Models.Contracts.IWebModel
+    public class JournalUpdateRequestModel : IJournalUpdateModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

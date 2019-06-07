@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
     /// <summary>
     /// Journal style details view model.
     /// </summary>
-    public class JournalStyleDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class JournalStyleDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalStyleDetailsViewModel"/> class.

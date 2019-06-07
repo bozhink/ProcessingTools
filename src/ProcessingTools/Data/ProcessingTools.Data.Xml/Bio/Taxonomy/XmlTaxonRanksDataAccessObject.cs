@@ -8,9 +8,9 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Data.Xml.Abstractions;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// XML implementation of <see cref="ITaxonRanksDataAccessObject"/>.

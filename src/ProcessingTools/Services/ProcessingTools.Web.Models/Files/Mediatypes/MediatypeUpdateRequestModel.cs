@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype update request model.
     /// </summary>
-    public class MediatypeUpdateRequestModel : IMediatypeUpdateModel, ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypeUpdateRequestModel : IMediatypeUpdateModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

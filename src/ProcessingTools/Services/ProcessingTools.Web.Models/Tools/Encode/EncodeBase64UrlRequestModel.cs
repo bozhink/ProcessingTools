@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Tools.Encode
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Encode Base64 URL request model.

@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatypes index view model.
     /// </summary>
-    public class MediatypesIndexViewModel : GridViewModel<MediatypeIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypesIndexViewModel : GridViewModel<MediatypeIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypesIndexViewModel"/> class.

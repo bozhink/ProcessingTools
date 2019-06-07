@@ -10,9 +10,9 @@ namespace ProcessingTools.Services.Layout.Styles
     using AutoMapper;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Contracts.Layout.Styles;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.DataAccess.Layout.Styles;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Floats;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;

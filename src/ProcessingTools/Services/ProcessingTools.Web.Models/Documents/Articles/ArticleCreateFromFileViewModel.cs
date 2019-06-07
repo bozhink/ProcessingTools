@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article create from file view model.
     /// </summary>
-    public class ArticleCreateFromFileViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ArticleCreateFromFileViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticleCreateFromFileViewModel"/> class.

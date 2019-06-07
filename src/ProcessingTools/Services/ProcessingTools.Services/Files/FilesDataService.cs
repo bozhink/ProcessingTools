@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Files
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Contracts.Models.Files;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Models.Data.Files;
 

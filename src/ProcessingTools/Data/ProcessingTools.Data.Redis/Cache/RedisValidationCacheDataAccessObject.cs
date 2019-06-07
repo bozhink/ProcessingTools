@@ -7,10 +7,10 @@ namespace ProcessingTools.Data.Redis.Cache
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Cache;
-    using ProcessingTools.Data.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.DataAccess.Cache;
+    using ProcessingTools.Contracts.DataAccess.Models.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
     using ProcessingTools.Data.Models.Redis.Cache;
-    using ProcessingTools.Models.Contracts.Cache;
     using ServiceStack.Redis;
     using ServiceStack.Text;
 

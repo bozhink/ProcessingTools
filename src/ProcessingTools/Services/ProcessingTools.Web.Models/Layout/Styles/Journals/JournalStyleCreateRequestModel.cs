@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
     /// <summary>
     /// Journal style create request model.
     /// </summary>
-    public class JournalStyleCreateRequestModel : IJournalInsertStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class JournalStyleCreateRequestModel : IJournalInsertStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

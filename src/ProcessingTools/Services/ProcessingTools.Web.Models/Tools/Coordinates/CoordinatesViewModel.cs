@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Tools.Coordinates
     /// <summary>
     /// Coordinates view model.
     /// </summary>
-    public class CoordinatesViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class CoordinatesViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinatesViewModel"/> class.

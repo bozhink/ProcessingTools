@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference parse style details view model.
     /// </summary>
-    public class ReferenceParseStyleDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceParseStyleDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceParseStyleDetailsViewModel"/> class.

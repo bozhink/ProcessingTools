@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Tools.Decode
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Decode Base64 request model.

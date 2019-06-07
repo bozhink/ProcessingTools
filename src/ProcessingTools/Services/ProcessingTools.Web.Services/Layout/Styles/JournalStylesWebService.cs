@@ -10,8 +10,8 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Models.Contracts.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;

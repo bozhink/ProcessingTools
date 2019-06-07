@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Meta
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Services.Contracts.Meta;
 
     /// <summary>

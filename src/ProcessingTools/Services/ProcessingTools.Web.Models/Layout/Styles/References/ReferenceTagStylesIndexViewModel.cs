@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference tag styles index view model.
     /// </summary>
-    public class ReferenceTagStylesIndexViewModel : GridViewModel<ReferenceTagStyleIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceTagStylesIndexViewModel : GridViewModel<ReferenceTagStyleIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceTagStylesIndexViewModel"/> class.

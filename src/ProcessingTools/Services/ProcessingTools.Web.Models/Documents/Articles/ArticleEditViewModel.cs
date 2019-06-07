@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article edit view model.
     /// </summary>
-    public class ArticleEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ArticleEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticleEditViewModel"/> class.

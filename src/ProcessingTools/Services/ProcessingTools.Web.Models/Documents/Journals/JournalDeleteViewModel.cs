@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal delete view model.
     /// </summary>
-    public class JournalDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class JournalDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalDeleteViewModel"/> class.

@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference tag style delete request model.
     /// </summary>
-    public class ReferenceTagStyleDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceTagStyleDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.

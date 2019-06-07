@@ -4,9 +4,9 @@
     using AutoMapper;
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Data.Models.Entity.Geo;
-    using ProcessingTools.Models.Contracts.Geo;
 
     public class EntityContinentsRepository : AbstractGeoSynonymisableRepository<Continent, IContinent, IContinentsFilter, ContinentSynonym, IContinentSynonym, IContinentSynonymsFilter>, IContinentsRepository
     {

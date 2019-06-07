@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Contracts.Geo
 {
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     /// <summary>
     /// Post codes data service.

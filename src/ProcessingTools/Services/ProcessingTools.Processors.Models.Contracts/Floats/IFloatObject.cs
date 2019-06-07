@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.Contracts.Floats
 {
-    using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
 
     /// <summary>
     /// Floating object.

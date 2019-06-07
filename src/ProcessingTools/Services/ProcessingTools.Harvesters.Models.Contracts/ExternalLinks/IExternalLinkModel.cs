@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Harvesters.Models.Contracts.ExternalLinks
 {
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// External link.

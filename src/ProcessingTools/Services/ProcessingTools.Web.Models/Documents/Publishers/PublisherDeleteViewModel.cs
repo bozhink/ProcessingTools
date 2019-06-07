@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher delete view model.
     /// </summary>
-    public class PublisherDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class PublisherDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublisherDeleteViewModel"/> class.

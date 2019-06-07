@@ -11,8 +11,8 @@ namespace ProcessingTools.Services.Files
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Contracts.Files;
-    using ProcessingTools.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.DataAccess.Files;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 

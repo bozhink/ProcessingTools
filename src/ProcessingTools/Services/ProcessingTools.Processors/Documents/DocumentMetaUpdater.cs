@@ -9,9 +9,9 @@ namespace ProcessingTools.Processors.Documents
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Models.Contracts.Documents.Journals;
-    using ProcessingTools.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Contracts.Models.Documents.Articles;
+    using ProcessingTools.Contracts.Models.Documents.Journals;
+    using ProcessingTools.Contracts.Models.Documents.Publishers;
     using ProcessingTools.Processors.Contracts.Documents;
 
     /// <summary>

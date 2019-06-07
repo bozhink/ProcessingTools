@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype delete view model.
     /// </summary>
-    public class MediatypeDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypeDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypeDeleteViewModel"/> class.

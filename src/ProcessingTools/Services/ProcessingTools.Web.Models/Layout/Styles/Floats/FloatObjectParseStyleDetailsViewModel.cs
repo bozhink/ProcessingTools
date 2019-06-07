@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object parse style details view model.
     /// </summary>
-    public class FloatObjectParseStyleDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectParseStyleDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectParseStyleDetailsViewModel"/> class.

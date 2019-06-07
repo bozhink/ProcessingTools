@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Bio
     /// <summary>
     /// Type status service model.
     /// </summary>
-    public interface ITypeStatus : ProcessingTools.Models.Contracts.Bio.ITypeStatus
+    public interface ITypeStatus : ProcessingTools.Contracts.Models.Bio.ITypeStatus
     {
     }
 }

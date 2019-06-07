@@ -4,8 +4,8 @@
 
 namespace ProcessingTools.Services.Contracts.Resources
 {
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Resources;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Resources;
 
     /// <summary>
     /// Products data service.

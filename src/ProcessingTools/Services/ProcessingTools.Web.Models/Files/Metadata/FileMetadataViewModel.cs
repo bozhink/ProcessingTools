@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Files.Metadata
 {
     using System;
-    using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Contracts.Models.Files;
 
     /// <summary>
     /// File meta-data view model.

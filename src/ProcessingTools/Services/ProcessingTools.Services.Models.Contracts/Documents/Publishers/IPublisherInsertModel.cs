@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Documents.Publishers
     /// <summary>
     /// Publisher insert model.
     /// </summary>
-    public interface IPublisherInsertModel : ProcessingTools.Models.Contracts.Documents.Publishers.IPublisherInsertModel
+    public interface IPublisherInsertModel : ProcessingTools.Contracts.Models.Documents.Publishers.IPublisherInsertModel
     {
     }
 }

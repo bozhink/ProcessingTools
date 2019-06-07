@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Models.Entity.Files
 {
-    using ProcessingTools.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
 
     public class Mediatype : IMediatypeBaseModel
     {

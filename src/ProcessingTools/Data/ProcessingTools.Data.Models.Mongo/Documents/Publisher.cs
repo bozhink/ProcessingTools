@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Contracts.DataAccess.Models.Documents.Publishers;
 
     /// <summary>
     /// Publisher

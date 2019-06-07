@@ -193,7 +193,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
             }
 
-            public IList<CommandSelectListItem> GetCommandsAsSelectList()
+            private IList<CommandSelectListItem> GetCommandsAsSelectList()
             {
                 return this.commandsInformation.Values.OrderBy(i => i.Description)
                     .Select(c => new CommandSelectListItem

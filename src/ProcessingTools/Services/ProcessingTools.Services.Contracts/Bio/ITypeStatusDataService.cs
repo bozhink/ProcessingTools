@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Contracts.Bio
 {
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Models.Contracts.Bio;
 
     /// <summary>

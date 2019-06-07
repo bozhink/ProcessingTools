@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher edit request model.
     /// </summary>
-    public class PublisherUpdateRequestModel : IPublisherUpdateModel, ProcessingTools.Models.Contracts.IWebModel
+    public class PublisherUpdateRequestModel : IPublisherUpdateModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Contracts.Validation
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Validation;
+    using ProcessingTools.Contracts.Models.Validation;
 
     /// <summary>
     /// Generic validation service.

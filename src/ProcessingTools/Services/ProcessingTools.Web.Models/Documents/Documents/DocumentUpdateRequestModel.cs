@@ -5,12 +5,12 @@
 namespace ProcessingTools.Web.Models.Documents.Documents
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Models.Contracts.Documents.Documents;
+    using ProcessingTools.Contracts.Models.Documents.Documents;
 
     /// <summary>
     /// Document update request model.
     /// </summary>
-    public class DocumentUpdateRequestModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentUpdateModel, ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentUpdateRequestModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentUpdateModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference parse style create request model.
     /// </summary>
-    public class ReferenceParseStyleCreateRequestModel : IReferenceInsertParseStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceParseStyleCreateRequestModel : IReferenceInsertParseStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

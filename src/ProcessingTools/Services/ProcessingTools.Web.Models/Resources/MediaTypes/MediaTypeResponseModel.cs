@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Resources.MediaTypes
 {
-    using ProcessingTools.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
 
     /// <summary>
     /// Represents response model for the media-types API.

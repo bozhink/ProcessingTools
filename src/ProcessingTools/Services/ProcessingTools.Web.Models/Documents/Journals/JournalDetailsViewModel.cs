@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal details view model.
     /// </summary>
-    public class JournalDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class JournalDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalDetailsViewModel"/> class.

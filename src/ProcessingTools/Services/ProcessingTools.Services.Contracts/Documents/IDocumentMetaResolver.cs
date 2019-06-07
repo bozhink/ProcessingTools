@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Contracts.Documents
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Documents.Meta;
+    using ProcessingTools.Contracts.Models.Documents.Meta;
 
     /// <summary>
     /// Resolver of document meta-data.

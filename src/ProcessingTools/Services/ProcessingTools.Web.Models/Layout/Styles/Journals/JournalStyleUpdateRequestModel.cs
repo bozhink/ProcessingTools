@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
     /// <summary>
     /// Journal style update request model.
     /// </summary>
-    public class JournalStyleUpdateRequestModel : IJournalUpdateStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class JournalStyleUpdateRequestModel : IJournalUpdateStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

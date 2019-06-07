@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Models.Contracts.Bio;
+    using ProcessingTools.Contracts.Models.Bio;
     using ProcessingTools.Services.Contracts.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.EnvoTerms;
 

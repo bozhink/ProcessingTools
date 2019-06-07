@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Contracts.Files
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
 
     /// <summary>
     /// Mediatypes resolver.

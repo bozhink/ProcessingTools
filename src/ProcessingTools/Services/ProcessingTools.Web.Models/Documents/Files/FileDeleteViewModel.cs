@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Documents.Files
     /// <summary>
     /// File Delete View Model
     /// </summary>
-    public class FileDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class FileDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the User Context.

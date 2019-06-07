@@ -33,4 +33,15 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Deployment\Bibliography\" />
+    <Folder Include="Deployment\Bio\" />
+    <Folder Include="Services\Data\Geo\" />
+    <Folder Include="Services\Data\Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
+  </ItemGroup>
+
 </Project>

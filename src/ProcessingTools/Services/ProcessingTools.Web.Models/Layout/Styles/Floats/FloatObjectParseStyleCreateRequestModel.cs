@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object parse style create request model.
     /// </summary>
-    public class FloatObjectParseStyleCreateRequestModel : IFloatObjectInsertParseStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class FloatObjectParseStyleCreateRequestModel : IFloatObjectInsertParseStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

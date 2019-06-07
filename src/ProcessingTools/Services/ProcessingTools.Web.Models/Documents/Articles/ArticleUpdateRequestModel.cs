@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article Edit Request Model
     /// </summary>
-    public class ArticleUpdateRequestModel : IArticleUpdateModel, ProcessingTools.Models.Contracts.IWebModel
+    public class ArticleUpdateRequestModel : IArticleUpdateModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

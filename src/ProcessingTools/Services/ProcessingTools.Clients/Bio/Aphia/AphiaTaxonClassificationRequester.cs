@@ -12,8 +12,8 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Aphia taxon classification requester.

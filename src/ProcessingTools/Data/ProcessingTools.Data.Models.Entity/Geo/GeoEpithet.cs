@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Geo;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class GeoEpithet : BaseModel, INameableIntegerIdentifiable, IDataModel
     {

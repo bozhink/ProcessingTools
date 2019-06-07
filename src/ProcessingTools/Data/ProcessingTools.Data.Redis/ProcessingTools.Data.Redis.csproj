@@ -33,9 +33,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess\ProcessingTools.Contracts.DataAccess.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Redis\ProcessingTools.Data.Models.Redis.csproj" />
   </ItemGroup>
 </Project>

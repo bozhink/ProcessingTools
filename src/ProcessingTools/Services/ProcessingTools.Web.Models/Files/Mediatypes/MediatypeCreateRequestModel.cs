@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype create request model.
     /// </summary>
-    public class MediatypeCreateRequestModel : IMediatypeInsertModel, ProcessingTools.Models.Contracts.IWebModel
+    public class MediatypeCreateRequestModel : IMediatypeInsertModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

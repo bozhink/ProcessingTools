@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.History;
-    using ProcessingTools.Models.Contracts.History;
+    using ProcessingTools.Contracts.Models.History;
 
     public class ObjectHistory : IObjectHistory
     {

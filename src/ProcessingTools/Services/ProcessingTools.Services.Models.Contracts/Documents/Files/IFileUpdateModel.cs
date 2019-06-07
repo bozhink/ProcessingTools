@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Documents.Files
     /// <summary>
     /// File update model.
     /// </summary>
-    public interface IFileUpdateModel : ProcessingTools.Models.Contracts.Documents.Files.IFileUpdateModel
+    public interface IFileUpdateModel : ProcessingTools.Contracts.Models.Documents.Files.IFileUpdateModel
     {
     }
 }

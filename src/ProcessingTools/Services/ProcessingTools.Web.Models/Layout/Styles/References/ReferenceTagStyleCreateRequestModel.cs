@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
     /// <summary>
     /// Reference tag style create request model.
     /// </summary>
-    public class ReferenceTagStyleCreateRequestModel : IReferenceInsertTagStyleModel, ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceTagStyleCreateRequestModel : IReferenceInsertTagStyleModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

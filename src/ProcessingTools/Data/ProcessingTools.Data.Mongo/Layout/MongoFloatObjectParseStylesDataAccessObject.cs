@@ -12,13 +12,13 @@ namespace ProcessingTools.Data.Mongo.Layout
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.Layout.Styles;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles;
-    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.DataAccess.Layout.Styles;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
     using ProcessingTools.Data.Models.Mongo.Layout;
     using ProcessingTools.Data.Mongo.Abstractions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IFloatObjectParseStylesDataAccessObject"/>.

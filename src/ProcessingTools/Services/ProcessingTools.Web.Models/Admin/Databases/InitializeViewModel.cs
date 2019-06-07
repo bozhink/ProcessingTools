@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Admin.Databases
     /// <summary>
     /// Initialize view model.
     /// </summary>
-    public class InitializeViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class InitializeViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InitializeViewModel"/> class.

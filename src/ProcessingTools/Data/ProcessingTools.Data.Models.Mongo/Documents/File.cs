@@ -8,8 +8,8 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Data.Models.Contracts.Documents.Files;
-    using ProcessingTools.Models.Contracts.Documents.Documents;
+    using ProcessingTools.Contracts.DataAccess.Models.Documents.Files;
+    using ProcessingTools.Contracts.Models.Documents.Documents;
 
     /// <summary>
     /// File

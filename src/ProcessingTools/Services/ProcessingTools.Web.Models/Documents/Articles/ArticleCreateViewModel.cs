@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article create view model.
     /// </summary>
-    public class ArticleCreateViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ArticleCreateViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticleCreateViewModel"/> class.

@@ -7,11 +7,11 @@
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Data.Models.Entity.Geo;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
 
     public class EntityGeoEpithetsRepository : AbstractGeoRepository<GeoEpithet, IGeoEpithet, ITextFilter>, IGeoEpithetsRepository
     {

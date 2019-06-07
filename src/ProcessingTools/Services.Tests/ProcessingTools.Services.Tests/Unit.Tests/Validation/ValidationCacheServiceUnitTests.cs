@@ -6,9 +6,9 @@
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Contracts.Cache;
-    using ProcessingTools.Data.Models.Contracts.Cache;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.DataAccess.Cache;
+    using ProcessingTools.Contracts.DataAccess.Models.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Tests.Common;
 

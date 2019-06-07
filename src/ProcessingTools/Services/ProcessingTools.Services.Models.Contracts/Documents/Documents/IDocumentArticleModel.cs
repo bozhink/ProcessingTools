@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Documents.Documents
     /// <summary>
     /// Document article.
     /// </summary>
-    public interface IDocumentArticleModel : ProcessingTools.Models.Contracts.Documents.Documents.IDocumentArticleModel
+    public interface IDocumentArticleModel : ProcessingTools.Contracts.Models.Documents.Documents.IDocumentArticleModel
     {
     }
 }

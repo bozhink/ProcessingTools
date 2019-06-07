@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using System.Xml;
     using HtmlAgilityPack;
-    using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Contracts.DataAccess.Documents;
     using ProcessingTools.Services.Contracts.Documents;
 
     /// <summary>

@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
     /// <summary>
     /// Document edit view model.
     /// </summary>
-    public class DocumentEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentEditViewModel"/> class.

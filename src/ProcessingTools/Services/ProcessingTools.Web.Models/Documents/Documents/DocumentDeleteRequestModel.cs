@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
     /// <summary>
     /// Document delete request model.
     /// </summary>
-    public class DocumentDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.

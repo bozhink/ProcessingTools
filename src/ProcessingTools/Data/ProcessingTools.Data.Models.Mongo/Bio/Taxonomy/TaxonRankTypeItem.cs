@@ -8,8 +8,8 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Taxon rank type item.

@@ -9,8 +9,8 @@ namespace ProcessingTools.Processors.References
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Models.Contracts.Layout.Styles.References;
-    using ProcessingTools.Models.Contracts.Rules;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Rules;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Contracts.Rules;
     using ProcessingTools.Services.Contracts.Rules;

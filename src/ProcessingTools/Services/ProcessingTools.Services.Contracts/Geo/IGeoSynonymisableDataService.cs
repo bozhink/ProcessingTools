@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Contracts.Geo
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     /// <summary>
     /// Geo-synonymisable data service.
