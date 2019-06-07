@@ -110,31 +110,6 @@
             return await this.UpdateAsync(dbmodel, this.DbSet).ConfigureAwait(false);
         }
 
-        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            if (updateExpression == null)
-            {
-                throw new ArgumentNullException(nameof(updateExpression));
-            }
-
-            var entity = await this.GetAsync(id, this.DbSet).ConfigureAwait(false);
-            if (entity == null)
-            {
-                return null;
-            }
-
-            // TODO : Updater
-            var updater = new Updater<TEntity>(updateExpression);
-            await updater.InvokeAsync(entity).ConfigureAwait(false);
-
-            return await this.UpdateAsync(entity).ConfigureAwait(false);
-        }
-
         protected Task<T> AddAsync<T>(T entity, DbSet<T> set)
             where T : class
         {

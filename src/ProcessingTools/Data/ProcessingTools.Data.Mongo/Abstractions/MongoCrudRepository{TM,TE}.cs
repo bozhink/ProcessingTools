@@ -92,24 +92,5 @@ namespace ProcessingTools.Data.Mongo.Abstractions
 
         /// <inheritdoc/>
         public abstract Task<object> UpdateAsync(TE entity);
-
-        /// <inheritdoc/>
-        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TE> updateExpression)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            if (updateExpression == null)
-            {
-                throw new ArgumentNullException(nameof(updateExpression));
-            }
-
-            var updateQuery = MongoUtilities.ConvertUpdateExpressionToMongoUpdateQuery<TM, TE>(updateExpression);
-            var filter = MongoUtilities.GetFilterById<TM>(id);
-            var result = await this.Collection.UpdateOneAsync(filter, updateQuery).ConfigureAwait(false);
-            return result;
-        }
     }
 }

@@ -5,7 +5,6 @@
 namespace ProcessingTools.Data.Contracts
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Expressions;
 
     /// <summary>
     /// Generic CRUD Repository
@@ -33,13 +32,5 @@ namespace ProcessingTools.Data.Contracts
         /// <param name="entity">Entity to be updated.</param>
         /// <returns>Task</returns>
         Task<object> UpdateAsync(T entity);
-
-        /// <summary>
-        /// Updated entity.
-        /// </summary>
-        /// <param name="id">ID of the entity to be updated.</param>
-        /// <param name="updateExpression">Update expression.</param>
-        /// <returns>Task</returns>
-        Task<object> UpdateAsync(object id, IUpdateExpression<T> updateExpression);
     }
 }

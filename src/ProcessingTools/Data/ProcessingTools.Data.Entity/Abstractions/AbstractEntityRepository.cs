@@ -115,32 +115,5 @@
 
             return Task.FromResult<object>(model);
         }
-
-        public virtual Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            if (updateExpression == null)
-            {
-                throw new ArgumentNullException(nameof(updateExpression));
-            }
-
-            var model = this.Repository.Get(id);
-            if (model == null)
-            {
-                return Task.FromResult<object>(null);
-            }
-
-            // TODO : Updater
-            var updater = new Updater<TEntity>(updateExpression);
-            updater.Invoke(model);
-
-            this.Repository.Update(model);
-
-            return Task.FromResult<object>(model);
-        }
     }
 }

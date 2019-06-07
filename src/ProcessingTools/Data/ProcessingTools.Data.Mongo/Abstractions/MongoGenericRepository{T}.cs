@@ -72,25 +72,6 @@ namespace ProcessingTools.Data.Mongo.Abstractions
         }
 
         /// <inheritdoc/>
-        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<T> updateExpression)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            if (updateExpression == null)
-            {
-                throw new ArgumentNullException(nameof(updateExpression));
-            }
-
-            var updateQuery = MongoUtilities.ConvertUpdateExpressionToMongoUpdateQuery<T, T>(updateExpression);
-            var filter = MongoUtilities.GetFilterById<T>(id);
-            var result = await this.Collection.UpdateOneAsync(filter, updateQuery).ConfigureAwait(false);
-            return result;
-        }
-
-        /// <inheritdoc/>
         public virtual async Task<T[]> FindAsync(Expression<Func<T, bool>> filter)
         {
             if (filter == null)
