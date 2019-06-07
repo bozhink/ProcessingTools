@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Mongo.Documents
     using System;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Contracts.Data;
     using ProcessingTools.Data.Models.Mongo.Documents;
 
     /// <summary>

@@ -50,6 +50,7 @@
     <PackageReference Include="YamlDotNet.NetStandard" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Security\ProcessingTools.Security.csproj" />

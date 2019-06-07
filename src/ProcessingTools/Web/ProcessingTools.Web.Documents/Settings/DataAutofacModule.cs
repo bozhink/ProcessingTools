@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac.Core;
     using Microsoft.Extensions.Configuration;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Contracts.Data;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Contracts.Files;
     using ProcessingTools.Data.Contracts.History;
@@ -77,7 +77,7 @@ namespace ProcessingTools.Web.Documents.Settings
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.LayoutMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
 
-            // Biotaxonomy DB provider
+            // Bio-taxonomy DB provider
             builder
                 .RegisterType<MongoDatabaseProvider>()
                 .As<IMongoDatabaseProvider>()

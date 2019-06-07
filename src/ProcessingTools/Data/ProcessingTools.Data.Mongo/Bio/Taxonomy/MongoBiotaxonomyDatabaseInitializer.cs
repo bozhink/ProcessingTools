@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
     using System;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Data;
     using ProcessingTools.Data.Models.Mongo.Bio.Taxonomy;
 
     /// <summary>

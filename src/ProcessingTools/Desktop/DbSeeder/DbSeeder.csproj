@@ -128,6 +128,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
+      <Project>{9DE7564E-BAA6-4C49-93C7-497AD75A4C26}</Project>
+      <Name>ProcessingTools.Contracts.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Entity\ProcessingTools.Data.Entity.csproj">
       <Project>{151cbf78-b672-42b5-bbdd-04c6c7f45a25}</Project>
       <Name>ProcessingTools.Data.Entity</Name>

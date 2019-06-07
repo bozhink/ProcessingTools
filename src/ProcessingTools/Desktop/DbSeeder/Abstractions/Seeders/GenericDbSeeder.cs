@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Data;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
 

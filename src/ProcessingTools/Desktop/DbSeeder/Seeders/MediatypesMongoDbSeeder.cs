@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Contracts.Data;
     using ProcessingTools.Data.Seed.Files;
     using ProcessingTools.DbSeeder.Abstractions.Seeders;
     using ProcessingTools.DbSeeder.Contracts.Seeders;

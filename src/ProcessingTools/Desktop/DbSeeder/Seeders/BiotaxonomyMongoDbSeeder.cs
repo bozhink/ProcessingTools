@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Data;
     using ProcessingTools.Data.Seed.Bio.Taxonomy;
     using ProcessingTools.DbSeeder.Abstractions.Seeders;
     using ProcessingTools.DbSeeder.Contracts.Seeders;

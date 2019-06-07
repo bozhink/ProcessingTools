@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Entity.Abstractions
 {
     using Microsoft.EntityFrameworkCore;
-    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Contracts.Data;
 
     /// <summary>
     /// Generic DbContext initializer.
