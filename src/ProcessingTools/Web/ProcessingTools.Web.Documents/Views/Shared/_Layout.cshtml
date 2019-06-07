@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@(ViewData[ContextKeys.Title]) - ProcessingTools.Web.Documents</title>
-    <partial name="_DefaultStylesPartial" />
+    <partial name="_ApplicationStylesPartial" />
     @(RenderSection("Styles", required: false))
 </head>
 <body>
-    <partial name="Navbars/Main/_MainPartial" />
+    <partial name="_ApplicationNavbarPartial" />
     <partial name="_CookieConsentPartial" />
 
     <main role="main" class="body-content">
@@ -16,10 +16,10 @@
     </main>
 
     <footer class="page-footer">
-        <partial name="_FooterPartial" />
+        <partial name="_ApplicationFooterPartial" />
     </footer>
     
-    <partial name="_DefaultScriptsPartial" />
+    <partial name="_ApplicationScriptsPartial" />
     @(RenderSection("Scripts", required: false))
 </body>
 </html>

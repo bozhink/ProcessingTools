@@ -18,16 +18,30 @@ namespace ProcessingTools.Web.Documents
     /// </summary>
     public class Startup
     {
-        private readonly IConfiguration configuration;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
-        /// <param name="configuration">Application configuration.</param>
-        public Startup(IConfiguration configuration)
+        /// <param name="environment">Hosting environment.</param>
+        public Startup(IHostingEnvironment environment)
         {
-            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            if (environment == null)
+            {
+                throw new ArgumentNullException(nameof(environment));
+            }
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            this.Configuration = builder.Build();
         }
+
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
@@ -39,9 +53,9 @@ namespace ProcessingTools.Web.Documents
             services
                 .AddMemoryCache()
                 .ConfigureSignalR()
-                .ConfigureDatabases(this.configuration)
+                .ConfigureDatabases(this.Configuration)
                 .ConfigureIdentity()
-                .ConfigureAuthentication(this.configuration)
+                .ConfigureAuthentication(this.Configuration)
                 .ConfigureAuthorization()
                 .ConfigureMvcCore()
                 .ConfigureMvc()
@@ -54,7 +68,7 @@ namespace ProcessingTools.Web.Documents
                 ////options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
             });
 
-            return services.BuildServiceProvider(this.configuration);
+            return services.BuildServiceProvider(this.Configuration);
         }
 
         /// <summary>

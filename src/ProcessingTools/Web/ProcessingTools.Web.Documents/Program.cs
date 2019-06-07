@@ -5,10 +5,8 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
-    using System.IO;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
 
@@ -37,24 +35,14 @@ namespace ProcessingTools.Web.Documents
             }
             finally
             {
-                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+                // Ensure to flush and stop internal timers/threads before application-exit (Avoid
+                // segmentation fault on Linux)
                 NLog.LogManager.Shutdown();
             }
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                ////.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                ////.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .AddCommandLine(args);
-
-            IConfiguration configuration = configurationBuilder.Build();
-
-            return WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(configuration)
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
                 .UseEnvironment("Development")
                 .UseStartup<Startup>()
                 .ConfigureLogging(logging =>
@@ -66,6 +54,5 @@ namespace ProcessingTools.Web.Documents
                 })
                 .UseNLog() // NLog: setup NLog for Dependency injection
                 ;
-        }
     }
 }
