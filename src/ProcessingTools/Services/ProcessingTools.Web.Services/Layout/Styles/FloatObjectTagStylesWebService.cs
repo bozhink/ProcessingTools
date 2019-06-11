@@ -28,8 +28,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// Initializes a new instance of the <see cref="FloatObjectTagStylesWebService"/> class.
         /// </summary>
         /// <param name="floatObjectTagStylesDataService">Instance of <see cref="IFloatObjectTagStylesDataService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public FloatObjectTagStylesWebService(IFloatObjectTagStylesDataService floatObjectTagStylesDataService, IUserContext userContext)
+        public FloatObjectTagStylesWebService(IFloatObjectTagStylesDataService floatObjectTagStylesDataService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -37,25 +38,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             }
 
             this.floatObjectTagStylesDataService = floatObjectTagStylesDataService ?? throw new ArgumentNullException(nameof(floatObjectTagStylesDataService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<FloatObjectTagStyleCreateRequestModel, FloatObjectTagStyleCreateViewModel>();
-                c.CreateMap<FloatObjectTagStyleUpdateRequestModel, FloatObjectTagStyleEditViewModel>();
-                c.CreateMap<FloatObjectTagStyleDeleteRequestModel, FloatObjectTagStyleDeleteViewModel>();
-
-                c.CreateMap<IFloatObjectTagStyleModel, FloatObjectTagStyleDeleteViewModel>();
-                c.CreateMap<IFloatObjectTagStyleModel, FloatObjectTagStyleDetailsViewModel>();
-                c.CreateMap<IFloatObjectTagStyleModel, FloatObjectTagStyleEditViewModel>();
-                c.CreateMap<IFloatObjectTagStyleModel, FloatObjectTagStyleIndexViewModel>();
-                c.CreateMap<IFloatObjectDetailsTagStyleModel, FloatObjectTagStyleDeleteViewModel>();
-                c.CreateMap<IFloatObjectDetailsTagStyleModel, FloatObjectTagStyleDetailsViewModel>();
-                c.CreateMap<IFloatObjectDetailsTagStyleModel, FloatObjectTagStyleEditViewModel>();
-                c.CreateMap<IFloatObjectDetailsTagStyleModel, FloatObjectTagStyleIndexViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

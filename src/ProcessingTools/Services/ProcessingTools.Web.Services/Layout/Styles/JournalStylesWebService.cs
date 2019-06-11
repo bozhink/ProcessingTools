@@ -5,13 +5,10 @@
 namespace ProcessingTools.Web.Services.Layout.Styles
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
-    using ProcessingTools.Contracts.Models.Layout.Styles.References;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;
@@ -32,8 +29,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// Initializes a new instance of the <see cref="JournalStylesWebService"/> class.
         /// </summary>
         /// <param name="journalStylesService">Instance of <see cref="IJournalStylesService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public JournalStylesWebService(IJournalStylesService journalStylesService, IUserContext userContext)
+        public JournalStylesWebService(IJournalStylesService journalStylesService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -41,39 +39,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             }
 
             this.journalStylesService = journalStylesService ?? throw new ArgumentNullException(nameof(journalStylesService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<JournalStyleCreateRequestModel, JournalStyleCreateViewModel>();
-                c.CreateMap<JournalStyleUpdateRequestModel, JournalStyleEditViewModel>();
-                c.CreateMap<JournalStyleDeleteRequestModel, JournalStyleDeleteViewModel>();
-
-                c.CreateMap<IIdentifiedStyleModel, StyleSelectViewModel>();
-                c.CreateMap<IFloatObjectDetailsParseStyleModel, StyleSelectViewModel>();
-                c.CreateMap<IFloatObjectDetailsTagStyleModel, StyleSelectViewModel>();
-                c.CreateMap<IReferenceDetailsParseStyleModel, StyleSelectViewModel>();
-                c.CreateMap<IReferenceDetailsTagStyleModel, StyleSelectViewModel>();
-                c.CreateMap<IList<IFloatObjectDetailsParseStyleModel>, IList<StyleSelectViewModel>>();
-                c.CreateMap<IList<IFloatObjectDetailsTagStyleModel>, IList<StyleSelectViewModel>>();
-                c.CreateMap<IList<IReferenceDetailsParseStyleModel>, IList<StyleSelectViewModel>>();
-                c.CreateMap<IList<IReferenceDetailsTagStyleModel>, IList<StyleSelectViewModel>>();
-
-                c.CreateMap<IJournalStyleModel, JournalStyleDeleteViewModel>();
-                c.CreateMap<IJournalStyleModel, JournalStyleDetailsViewModel>();
-                c.CreateMap<IJournalStyleModel, JournalStyleEditViewModel>();
-                c.CreateMap<IJournalStyleModel, JournalStyleIndexViewModel>();
-                c.CreateMap<IJournalDetailsStyleModel, JournalStyleDeleteViewModel>();
-                c.CreateMap<IJournalDetailsStyleModel, JournalStyleDetailsViewModel>()
-                    .ForMember(vm => vm.FloatObjectParseStyles, o => o.MapFrom(sm => sm.FloatObjectParseStyles))
-                    .ForMember(vm => vm.FloatObjectTagStyles, o => o.MapFrom(sm => sm.FloatObjectTagStyles))
-                    .ForMember(vm => vm.ReferenceParseStyles, o => o.MapFrom(sm => sm.ReferenceParseStyles))
-                    .ForMember(vm => vm.ReferenceTagStyles, o => o.MapFrom(sm => sm.ReferenceTagStyles));
-                c.CreateMap<IJournalDetailsStyleModel, JournalStyleEditViewModel>();
-                c.CreateMap<IJournalDetailsStyleModel, JournalStyleIndexViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

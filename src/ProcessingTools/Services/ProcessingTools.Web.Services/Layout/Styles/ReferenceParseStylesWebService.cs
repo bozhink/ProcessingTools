@@ -28,8 +28,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// Initializes a new instance of the <see cref="ReferenceParseStylesWebService"/> class.
         /// </summary>
         /// <param name="referenceParseStylesDataService">Instance of <see cref="IReferenceParseStylesDataService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public ReferenceParseStylesWebService(IReferenceParseStylesDataService referenceParseStylesDataService, IUserContext userContext)
+        public ReferenceParseStylesWebService(IReferenceParseStylesDataService referenceParseStylesDataService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -37,25 +38,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             }
 
             this.referenceParseStylesDataService = referenceParseStylesDataService ?? throw new ArgumentNullException(nameof(referenceParseStylesDataService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<ReferenceParseStyleCreateRequestModel, ReferenceParseStyleCreateViewModel>();
-                c.CreateMap<ReferenceParseStyleUpdateRequestModel, ReferenceParseStyleEditViewModel>();
-                c.CreateMap<ReferenceParseStyleDeleteRequestModel, ReferenceParseStyleDeleteViewModel>();
-
-                c.CreateMap<IReferenceParseStyleModel, ReferenceParseStyleDeleteViewModel>();
-                c.CreateMap<IReferenceParseStyleModel, ReferenceParseStyleDetailsViewModel>();
-                c.CreateMap<IReferenceParseStyleModel, ReferenceParseStyleEditViewModel>();
-                c.CreateMap<IReferenceParseStyleModel, ReferenceParseStyleIndexViewModel>();
-                c.CreateMap<IReferenceDetailsParseStyleModel, ReferenceParseStyleDeleteViewModel>();
-                c.CreateMap<IReferenceDetailsParseStyleModel, ReferenceParseStyleDetailsViewModel>();
-                c.CreateMap<IReferenceDetailsParseStyleModel, ReferenceParseStyleEditViewModel>();
-                c.CreateMap<IReferenceDetailsParseStyleModel, ReferenceParseStyleIndexViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

@@ -28,8 +28,9 @@ namespace ProcessingTools.Web.Services.Files
         /// Initializes a new instance of the <see cref="MediatypesWebService"/> class.
         /// </summary>
         /// <param name="mediatypesDataService">Instance of <see cref="IMediatypesDataService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public MediatypesWebService(IMediatypesDataService mediatypesDataService, IUserContext userContext)
+        public MediatypesWebService(IMediatypesDataService mediatypesDataService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -37,31 +38,9 @@ namespace ProcessingTools.Web.Services.Files
             }
 
             this.mediatypesDataService = mediatypesDataService ?? throw new ArgumentNullException(nameof(mediatypesDataService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<MediatypeCreateRequestModel, MediatypeCreateViewModel>();
-                c.CreateMap<MediatypeUpdateRequestModel, MediatypeEditViewModel>();
-                c.CreateMap<MediatypeDeleteRequestModel, MediatypeDeleteViewModel>();
-
-                c.CreateMap<IMediatypeModel, MediatypeDeleteViewModel>()
-                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
-                c.CreateMap<IMediatypeModel, MediatypeDetailsViewModel>()
-                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
-                c.CreateMap<IMediatypeModel, MediatypeEditViewModel>();
-                c.CreateMap<IMediatypeModel, MediatypeIndexViewModel>()
-                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
-                c.CreateMap<IMediatypeDetailsModel, MediatypeDeleteViewModel>()
-                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
-                c.CreateMap<IMediatypeDetailsModel, MediatypeDetailsViewModel>()
-                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
-                c.CreateMap<IMediatypeDetailsModel, MediatypeEditViewModel>();
-                c.CreateMap<IMediatypeDetailsModel, MediatypeIndexViewModel>()
-                    .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

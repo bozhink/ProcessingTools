@@ -26,16 +26,11 @@ namespace ProcessingTools.Web.Services.Geo
         /// Initializes a new instance of the <see cref="CountriesApiService"/> class.
         /// </summary>
         /// <param name="service">Instance of <see cref="ICountriesDataService"/></param>
-        public CountriesApiService(ICountriesDataService service)
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
+        public CountriesApiService(ICountriesDataService service, IMapper mapper)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<ICountry, CountryResponseModel>();
-            });
-
-            this.mapper = mapperConfiguration.CreateMapper();
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         /// <inheritdoc/>

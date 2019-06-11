@@ -28,8 +28,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// Initializes a new instance of the <see cref="FloatObjectParseStylesWebService"/> class.
         /// </summary>
         /// <param name="floatObjectParseStylesDataService">Instance of <see cref="IFloatObjectParseStylesDataService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public FloatObjectParseStylesWebService(IFloatObjectParseStylesDataService floatObjectParseStylesDataService, IUserContext userContext)
+        public FloatObjectParseStylesWebService(IFloatObjectParseStylesDataService floatObjectParseStylesDataService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -37,25 +38,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             }
 
             this.floatObjectParseStylesDataService = floatObjectParseStylesDataService ?? throw new ArgumentNullException(nameof(floatObjectParseStylesDataService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<FloatObjectParseStyleCreateRequestModel, FloatObjectParseStyleCreateViewModel>();
-                c.CreateMap<FloatObjectParseStyleUpdateRequestModel, FloatObjectParseStyleEditViewModel>();
-                c.CreateMap<FloatObjectParseStyleDeleteRequestModel, FloatObjectParseStyleDeleteViewModel>();
-
-                c.CreateMap<IFloatObjectParseStyleModel, FloatObjectParseStyleDeleteViewModel>();
-                c.CreateMap<IFloatObjectParseStyleModel, FloatObjectParseStyleDetailsViewModel>();
-                c.CreateMap<IFloatObjectParseStyleModel, FloatObjectParseStyleEditViewModel>();
-                c.CreateMap<IFloatObjectParseStyleModel, FloatObjectParseStyleIndexViewModel>();
-                c.CreateMap<IFloatObjectDetailsParseStyleModel, FloatObjectParseStyleDeleteViewModel>();
-                c.CreateMap<IFloatObjectDetailsParseStyleModel, FloatObjectParseStyleDetailsViewModel>();
-                c.CreateMap<IFloatObjectDetailsParseStyleModel, FloatObjectParseStyleEditViewModel>();
-                c.CreateMap<IFloatObjectDetailsParseStyleModel, FloatObjectParseStyleIndexViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

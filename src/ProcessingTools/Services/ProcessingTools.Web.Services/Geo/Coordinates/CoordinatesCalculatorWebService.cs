@@ -28,8 +28,9 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
         /// Initializes a new instance of the <see cref="CoordinatesCalculatorWebService"/> class.
         /// </summary>
         /// <param name="coordinatesParseService">Instance of <see cref="ICoordinatesParseService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public CoordinatesCalculatorWebService(ICoordinatesParseService coordinatesParseService, IUserContext userContext)
+        public CoordinatesCalculatorWebService(ICoordinatesParseService coordinatesParseService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -37,14 +38,9 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
             }
 
             this.coordinatesParseService = coordinatesParseService ?? throw new ArgumentNullException(nameof(coordinatesParseService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<ICoordinateStringModel, CoordinateViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

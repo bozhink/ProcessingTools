@@ -28,8 +28,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// Initializes a new instance of the <see cref="ReferenceTagStylesWebService"/> class.
         /// </summary>
         /// <param name="referenceTagStylesDataService">Instance of <see cref="IReferenceTagStylesDataService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public ReferenceTagStylesWebService(IReferenceTagStylesDataService referenceTagStylesDataService, IUserContext userContext)
+        public ReferenceTagStylesWebService(IReferenceTagStylesDataService referenceTagStylesDataService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -37,25 +38,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             }
 
             this.referenceTagStylesDataService = referenceTagStylesDataService ?? throw new ArgumentNullException(nameof(referenceTagStylesDataService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<ReferenceTagStyleCreateRequestModel, ReferenceTagStyleCreateViewModel>();
-                c.CreateMap<ReferenceTagStyleUpdateRequestModel, ReferenceTagStyleEditViewModel>();
-                c.CreateMap<ReferenceTagStyleDeleteRequestModel, ReferenceTagStyleDeleteViewModel>();
-
-                c.CreateMap<IReferenceTagStyleModel, ReferenceTagStyleDeleteViewModel>();
-                c.CreateMap<IReferenceTagStyleModel, ReferenceTagStyleDetailsViewModel>();
-                c.CreateMap<IReferenceTagStyleModel, ReferenceTagStyleEditViewModel>();
-                c.CreateMap<IReferenceTagStyleModel, ReferenceTagStyleIndexViewModel>();
-                c.CreateMap<IReferenceDetailsTagStyleModel, ReferenceTagStyleDeleteViewModel>();
-                c.CreateMap<IReferenceDetailsTagStyleModel, ReferenceTagStyleDetailsViewModel>();
-                c.CreateMap<IReferenceDetailsTagStyleModel, ReferenceTagStyleEditViewModel>();
-                c.CreateMap<IReferenceDetailsTagStyleModel, ReferenceTagStyleIndexViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>
