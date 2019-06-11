@@ -28,8 +28,9 @@ namespace ProcessingTools.Web.Services.Documents
         /// Initializes a new instance of the <see cref="PublishersWebService"/> class.
         /// </summary>
         /// <param name="publishersDataService">Instance of <see cref="IPublishersDataService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public PublishersWebService(IPublishersDataService publishersDataService, IUserContext userContext)
+        public PublishersWebService(IPublishersDataService publishersDataService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -37,25 +38,9 @@ namespace ProcessingTools.Web.Services.Documents
             }
 
             this.publishersDataService = publishersDataService ?? throw new ArgumentNullException(nameof(publishersDataService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<PublisherCreateRequestModel, PublisherCreateViewModel>();
-                c.CreateMap<PublisherUpdateRequestModel, PublisherEditViewModel>();
-                c.CreateMap<PublisherDeleteRequestModel, PublisherDeleteViewModel>();
-
-                c.CreateMap<IPublisherModel, PublisherDeleteViewModel>();
-                c.CreateMap<IPublisherModel, PublisherDetailsViewModel>();
-                c.CreateMap<IPublisherModel, PublisherEditViewModel>();
-                c.CreateMap<IPublisherModel, PublisherIndexViewModel>();
-                c.CreateMap<IPublisherDetailsModel, PublisherDeleteViewModel>();
-                c.CreateMap<IPublisherDetailsModel, PublisherDetailsViewModel>();
-                c.CreateMap<IPublisherDetailsModel, PublisherEditViewModel>();
-                c.CreateMap<IPublisherDetailsModel, PublisherIndexViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

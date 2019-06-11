@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
-    <Description>Configuration of common mappings for Automapper</Description>
+    <Description>Configuration of common mappings for AutoMapper</Description>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
     <PackageLicenseExpression>GPLv3.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
@@ -15,7 +15,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.14.0.8411">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,6 +33,27 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data.Models\ProcessingTools.Contracts.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Entity\ProcessingTools.Data.Models.Entity.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Redis\ProcessingTools.Data.Models.Redis.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Xml\ProcessingTools.Data.Models.Xml.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Data.Miners.Models.Contracts\ProcessingTools.Data.Miners.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Data.Miners.Models\ProcessingTools.Data.Miners.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Tasks.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj" />
   </ItemGroup>
 
 </Project>

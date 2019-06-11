@@ -29,8 +29,9 @@ namespace ProcessingTools.Web.Services.Documents
         /// Initializes a new instance of the <see cref="JournalsWebService"/> class.
         /// </summary>
         /// <param name="journalsService">Instance of <see cref="IJournalsDataService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public JournalsWebService(IJournalsService journalsService, IUserContext userContext)
+        public JournalsWebService(IJournalsService journalsService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -38,29 +39,9 @@ namespace ProcessingTools.Web.Services.Documents
             }
 
             this.journalsService = journalsService ?? throw new ArgumentNullException(nameof(journalsService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<JournalCreateRequestModel, JournalCreateViewModel>();
-                c.CreateMap<JournalUpdateRequestModel, JournalEditViewModel>();
-                c.CreateMap<JournalDeleteRequestModel, JournalDeleteViewModel>();
-
-                c.CreateMap<IJournalPublisherModel, JournalPublisherViewModel>();
-                c.CreateMap<IIdentifiedStyleModel, JournalStyleViewModel>();
-
-                c.CreateMap<IJournalModel, JournalDeleteViewModel>();
-                c.CreateMap<IJournalModel, JournalDetailsViewModel>();
-                c.CreateMap<IJournalModel, JournalEditViewModel>();
-                c.CreateMap<IJournalModel, JournalIndexViewModel>();
-                c.CreateMap<IJournalDetailsModel, JournalDeleteViewModel>();
-                c.CreateMap<IJournalDetailsModel, JournalDetailsViewModel>();
-                c.CreateMap<IJournalDetailsModel, JournalEditViewModel>();
-                c.CreateMap<IJournalDetailsModel, JournalIndexViewModel>()
-                    .ForMember(vm => vm.Publisher, o => o.MapFrom(m => m.Publisher));
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

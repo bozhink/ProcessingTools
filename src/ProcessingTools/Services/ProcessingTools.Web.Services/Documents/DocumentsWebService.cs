@@ -30,8 +30,9 @@ namespace ProcessingTools.Web.Services.Documents
         /// Initializes a new instance of the <see cref="DocumentsWebService"/> class.
         /// </summary>
         /// <param name="documentsService">Instance of <see cref="IDocumentsService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public DocumentsWebService(IDocumentsService documentsService, IUserContext userContext)
+        public DocumentsWebService(IDocumentsService documentsService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -39,28 +40,9 @@ namespace ProcessingTools.Web.Services.Documents
             }
 
             this.documentsService = documentsService ?? throw new ArgumentNullException(nameof(documentsService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<IDocumentModel, DocumentEditViewModel>();
-                c.CreateMap<IDocumentModel, DocumentDeleteViewModel>();
-                c.CreateMap<IDocumentModel, DocumentDetailsViewModel>();
-                c.CreateMap<IDocumentDetailsModel, DocumentEditViewModel>();
-                c.CreateMap<IDocumentDetailsModel, DocumentDeleteViewModel>();
-                c.CreateMap<IDocumentDetailsModel, DocumentDetailsViewModel>();
-
-                c.CreateMap<IDocumentArticleModel, DocumentArticleViewModel>();
-                c.CreateMap<IFileMetadata, DocumentFileViewModel>();
-
-                c.CreateMap<IDocumentFileStreamModel, DocumentDownloadResponseModel>();
-
-                c.CreateMap<IFormFile, DocumentFileRequestModel>()
-                    .ForMember(rm => rm.ContentLength, o => o.MapFrom(m => m.Length));
-                c.CreateMap<IFormFile, IDocumentFileModel>().As<DocumentFileRequestModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

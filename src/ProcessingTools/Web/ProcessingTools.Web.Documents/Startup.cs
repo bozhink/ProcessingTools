@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Razor;
@@ -67,6 +68,14 @@ namespace ProcessingTools.Web.Documents
                 ////options.AreaViewLocationFormats.Clear();
                 ////options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
             });
+
+            // Configure AutoMapper.
+            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.AddMaps(typeof(ProcessingTools.Configuration.AutoMapper.AssemblySetup).Assembly);
+            });
+
+            services.AddSingleton<IMapper>(mapperConfiguration.CreateMapper());
 
             return services.BuildServiceProvider(this.Configuration);
         }

@@ -221,11 +221,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Data.Models", "Contracts\ProcessingTools.Contracts.Data.Models\ProcessingTools.Contracts.Data.Models.csproj", "{6D4FC381-397A-4CBA-BF3A-FA8654F6A871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.Models", "Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj", "{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Models", "Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj", "{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Autofac", "Infrastructure\ProcessingTools.Configuration.Autofac\ProcessingTools.Configuration.Autofac.csproj", "{40987DF3-00EF-4CD4-891B-2AD85B7A266B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Autofac", "Infrastructure\ProcessingTools.Configuration.Autofac\ProcessingTools.Configuration.Autofac.csproj", "{40987DF3-00EF-4CD4-891B-2AD85B7A266B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Automapper", "Infrastructure\ProcessingTools.Configuration.Automapper\ProcessingTools.Configuration.Automapper.csproj", "{3BD8AB8C-6E33-4CEB-B718-27E5A9896FAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.AutoMapper", "Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.AutoMapper.csproj", "{3BD8AB8C-6E33-4CEB-B718-27E5A9896FAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1136,7 +1136,7 @@ Global
 		{3BD8AB8C-6E33-4CEB-B718-27E5A9896FAF} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal

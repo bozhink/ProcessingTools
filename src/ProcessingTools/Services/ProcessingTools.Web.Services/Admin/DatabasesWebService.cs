@@ -27,10 +27,12 @@ namespace ProcessingTools.Web.Services.Admin
         /// Initializes a new instance of the <see cref="DatabasesWebService"/> class.
         /// </summary>
         /// <param name="databasesService">Databases service.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public DatabasesWebService(IDatabasesService databasesService, IUserContext userContext)
+        public DatabasesWebService(IDatabasesService databasesService, IMapper mapper, IUserContext userContext)
         {
             this.databasesService = databasesService ?? throw new ArgumentNullException(nameof(databasesService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             if (userContext == null)
             {
@@ -38,13 +40,6 @@ namespace ProcessingTools.Web.Services.Admin
             }
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<IInitializeModel, InitializeResponseModel>();
-                c.CreateMap<InitializeResponseModel, InitializeViewModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>

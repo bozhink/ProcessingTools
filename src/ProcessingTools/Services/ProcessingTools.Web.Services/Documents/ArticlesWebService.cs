@@ -29,8 +29,9 @@ namespace ProcessingTools.Web.Services.Documents
         /// Initializes a new instance of the <see cref="ArticlesWebService"/> class.
         /// </summary>
         /// <param name="articlesService">Instance of <see cref="IArticlesService"/>.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         /// <param name="userContext">User context.</param>
-        public ArticlesWebService(IArticlesService articlesService, IUserContext userContext)
+        public ArticlesWebService(IArticlesService articlesService, IMapper mapper, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -38,34 +39,9 @@ namespace ProcessingTools.Web.Services.Documents
             }
 
             this.articlesService = articlesService ?? throw new ArgumentNullException(nameof(articlesService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<ArticleCreateRequestModel, ArticleCreateViewModel>();
-                c.CreateMap<ArticleUpdateRequestModel, ArticleEditViewModel>();
-                c.CreateMap<ArticleDeleteRequestModel, ArticleDeleteViewModel>();
-
-                c.CreateMap<IArticleJournalModel, ArticleJournalViewModel>();
-                c.CreateMap<IDocumentModel, ArticleDocumentViewModel>()
-                    .ForMember(vm => vm.DocumentId, o => o.MapFrom(sm => sm.Id))
-                    .ForMember(vm => vm.FileName, o => o.MapFrom(sm => sm.File != null ? sm.File.FileName : null));
-
-                c.CreateMap<IArticleModel, ArticleDeleteViewModel>();
-                c.CreateMap<IArticleModel, ArticleDetailsViewModel>();
-                c.CreateMap<IArticleModel, ArticleEditViewModel>();
-                c.CreateMap<IArticleModel, ArticleIndexViewModel>();
-                c.CreateMap<IArticleDetailsModel, ArticleDeleteViewModel>();
-                c.CreateMap<IArticleDetailsModel, ArticleDetailsViewModel>();
-                c.CreateMap<IArticleDetailsModel, ArticleEditViewModel>();
-                c.CreateMap<IArticleDetailsModel, ArticleIndexViewModel>()
-                    .ForMember(vm => vm.Journal, o => o.MapFrom(m => m.Journal));
-
-                c.CreateMap<Microsoft.AspNetCore.Http.IFormFile, ArticleFileRequestModel>();
-                c.CreateMap<Microsoft.AspNetCore.Http.IFormFile, IArticleFileModel>().As<ArticleFileRequestModel>();
-            });
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>
