@@ -11,8 +11,8 @@ namespace ProcessingTools.Contracts.DataAccess
     /// <summary>
     /// Generic data access object (DAO).
     /// </summary>
-    /// <typeparam name="TM">Type of the data model.</typeparam>
-    /// <typeparam name="TD">Type of the detailed data model.</typeparam>
+    /// <typeparam name="TM">Type of the data transfer object.</typeparam>
+    /// <typeparam name="TD">Type of the detailed data transfer object.</typeparam>
     /// <typeparam name="TI">Type of the insert data model.</typeparam>
     /// <typeparam name="TU">Type of the update data model.</typeparam>
     public interface IDataAccessObject<TM, TD, TI, TU> : IDataAccessObject
