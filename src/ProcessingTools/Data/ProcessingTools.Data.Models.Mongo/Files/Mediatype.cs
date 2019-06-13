@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Models.Mongo.Files
     /// Mediatype
     /// </summary>
     [CollectionName("mediatypes")]
-    public class Mediatype : IMediatypeDetailsDataModel
+    public class Mediatype : IMediatypeDetailsDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Mediatype"/> class.

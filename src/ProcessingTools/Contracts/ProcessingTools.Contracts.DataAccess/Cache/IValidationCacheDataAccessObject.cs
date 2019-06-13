@@ -47,13 +47,13 @@ namespace ProcessingTools.Contracts.DataAccess.Cache
         /// </summary>
         /// <param name="key">Cache key.</param>
         /// <returns>The last cache item registered for the specified key.</returns>
-        Task<IValidationCacheDataModel> GetLastForKeyAsync(string key);
+        Task<IValidationCacheDataTransferObject> GetLastForKeyAsync(string key);
 
         /// <summary>
         /// Gets all the cache items registered for specified key.
         /// </summary>
         /// <param name="key">Cache key.</param>
         /// <returns>All the cache items registered for specified key.</returns>
-        Task<IValidationCacheDataModel[]> GetAllForKeyAsync(string key);
+        Task<IValidationCacheDataTransferObject[]> GetAllForKeyAsync(string key);
     }
 }

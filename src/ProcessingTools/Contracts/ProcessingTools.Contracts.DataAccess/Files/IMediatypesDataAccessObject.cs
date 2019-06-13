@@ -11,7 +11,7 @@ namespace ProcessingTools.Contracts.DataAccess.Files
     /// <summary>
     /// Media-types data access object.
     /// </summary>
-    public interface IMediatypesDataAccessObject : IDataAccessObject<IMediatypeDataModel, IMediatypeDetailsDataModel, IMediatypeInsertModel, IMediatypeUpdateModel>
+    public interface IMediatypesDataAccessObject : IDataAccessObject<IMediatypeDataTransferObject, IMediatypeDetailsDataTransferObject, IMediatypeInsertModel, IMediatypeUpdateModel>
     {
         /// <summary>
         /// Gets all known MIME types.

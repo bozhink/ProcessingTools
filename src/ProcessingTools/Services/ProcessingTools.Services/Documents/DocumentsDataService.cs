@@ -38,11 +38,11 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IDocumentDataModel, DocumentModel>()
+                c.CreateMap<IDocumentDataTransferObject, DocumentModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IDocumentDetailsDataModel, DocumentDetailsModel>()
+                c.CreateMap<IDocumentDetailsDataTransferObject, DocumentDetailsModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IDocumentArticleDataModel, DocumentArticleModel>();
+                c.CreateMap<IDocumentArticleDataTransferObject, DocumentArticleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -118,7 +118,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IDocumentDataModel, DocumentModel>(document);
+            var model = this.mapper.Map<IDocumentDataTransferObject, DocumentModel>(document);
 
             return model;
         }
@@ -138,7 +138,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IDocumentDetailsDataModel, DocumentDetailsModel>(document);
+            var model = this.mapper.Map<IDocumentDetailsDataTransferObject, DocumentDetailsModel>(document);
 
             return model;
         }
@@ -158,7 +158,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IDocumentModel>();
             }
 
-            var model = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
+            var model = documents.Select(this.mapper.Map<IDocumentDataTransferObject, DocumentModel>).ToArray();
 
             return model;
         }
@@ -177,7 +177,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IDocumentArticleDataModel, DocumentArticleModel>(article);
+            var model = this.mapper.Map<IDocumentArticleDataTransferObject, DocumentArticleModel>(article);
 
             return model;
         }
@@ -215,7 +215,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IDocumentModel>();
             }
 
-            var items = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
+            var items = documents.Select(this.mapper.Map<IDocumentDataTransferObject, DocumentModel>).ToArray();
             return items;
         }
 
@@ -238,7 +238,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IDocumentDetailsModel>();
             }
 
-            var items = documents.Select(this.mapper.Map<IDocumentDetailsDataModel, DocumentDetailsModel>).ToArray();
+            var items = documents.Select(this.mapper.Map<IDocumentDetailsDataTransferObject, DocumentDetailsModel>).ToArray();
             return items;
         }
 

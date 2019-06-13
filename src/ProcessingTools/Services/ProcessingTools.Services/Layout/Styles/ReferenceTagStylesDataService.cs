@@ -41,13 +41,13 @@ namespace ProcessingTools.Services.Layout.Styles
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IReferenceTagStyleDataModel, ReferenceTagStyleModel>()
+                c.CreateMap<IReferenceTagStyleDataTransferObject, ReferenceTagStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IReferenceDetailsTagStyleDataModel, ReferenceDetailsTagStyleModel>()
+                c.CreateMap<IReferenceDetailsTagStyleDataTransferObject, ReferenceDetailsTagStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
+                c.CreateMap<IIdentifiedStyleDataTransferObject, StyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
+                c.CreateMap<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>().As<StyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -123,7 +123,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return null;
             }
 
-            var model = this.mapper.Map<IReferenceTagStyleDataModel, ReferenceTagStyleModel>(tagStyle);
+            var model = this.mapper.Map<IReferenceTagStyleDataTransferObject, ReferenceTagStyleModel>(tagStyle);
 
             return model;
         }
@@ -143,7 +143,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return null;
             }
 
-            var model = this.mapper.Map<IReferenceDetailsTagStyleDataModel, ReferenceDetailsTagStyleModel>(tagStyle);
+            var model = this.mapper.Map<IReferenceDetailsTagStyleDataTransferObject, ReferenceDetailsTagStyleModel>(tagStyle);
 
             return model;
         }
@@ -168,7 +168,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return Array.Empty<IReferenceTagStyleModel>();
             }
 
-            var items = tagStyles.Select(this.mapper.Map<IReferenceTagStyleDataModel, ReferenceTagStyleModel>).ToArray();
+            var items = tagStyles.Select(this.mapper.Map<IReferenceTagStyleDataTransferObject, ReferenceTagStyleModel>).ToArray();
             return items;
         }
 
@@ -192,7 +192,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return Array.Empty<IReferenceDetailsTagStyleModel>();
             }
 
-            var items = tagStyles.Select(this.mapper.Map<IReferenceDetailsTagStyleDataModel, ReferenceDetailsTagStyleModel>).ToArray();
+            var items = tagStyles.Select(this.mapper.Map<IReferenceDetailsTagStyleDataTransferObject, ReferenceDetailsTagStyleModel>).ToArray();
             return items;
         }
 
@@ -203,14 +203,14 @@ namespace ProcessingTools.Services.Layout.Styles
         public async Task<IIdentifiedStyleModel> GetStyleByIdAsync(object id)
         {
             var style = await this.dataAccessObject.GetStyleByIdAsync(id).ConfigureAwait(false);
-            return this.mapper.Map<IIdentifiedStyleDataModel, IIdentifiedStyleModel>(style);
+            return this.mapper.Map<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>(style);
         }
 
         /// <inheritdoc/>
         public async Task<IIdentifiedStyleModel[]> GetStylesForSelectAsync()
         {
             var styles = await this.dataAccessObject.GetStylesForSelectAsync().ConfigureAwait(false);
-            return styles.Select(this.mapper.Map<IIdentifiedStyleDataModel, IIdentifiedStyleModel>).ToArray();
+            return styles.Select(this.mapper.Map<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>).ToArray();
         }
     }
 }

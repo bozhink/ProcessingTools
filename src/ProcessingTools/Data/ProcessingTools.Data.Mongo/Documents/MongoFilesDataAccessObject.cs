@@ -74,10 +74,10 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IFileDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+        public async Task<IFileDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IFileDetailsDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IFileDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -92,7 +92,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IFileDataModel> InsertAsync(IFileInsertModel model)
+        public async Task<IFileDataTransferObject> InsertAsync(IFileInsertModel model)
         {
             if (model == null)
             {
@@ -113,7 +113,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IFileDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IFileDataTransferObject>> SelectAsync(int skip, int take)
         {
             var files = await this.Collection.Find(Builders<File>.Filter.Empty)
                 .SortBy(f => f.CreatedOn)
@@ -124,14 +124,14 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (files == null || !files.Any())
             {
-                return Array.Empty<IFileDataModel>();
+                return Array.Empty<IFileDataTransferObject>();
             }
 
-            return files.ToArray<IFileDataModel>();
+            return files.ToArray<IFileDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IFileDetailsDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IFileDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var files = await this.Collection.Find(Builders<File>.Filter.Empty)
                 .SortBy(f => f.CreatedOn)
@@ -142,10 +142,10 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (files == null || !files.Any())
             {
-                return Array.Empty<IFileDetailsDataModel>();
+                return Array.Empty<IFileDetailsDataTransferObject>();
             }
 
-            return files.ToArray<IFileDetailsDataModel>();
+            return files.ToArray<IFileDetailsDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -155,7 +155,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IFileDataModel> UpdateAsync(IFileUpdateModel model)
+        public async Task<IFileDataTransferObject> UpdateAsync(IFileUpdateModel model)
         {
             if (model == null)
             {

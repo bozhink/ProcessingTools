@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     /// Float object parse style.
     /// </summary>
     [CollectionName("floatObjectParseStyles")]
-    public class FloatObjectParseStyle : IFloatObjectDetailsParseStyleDataModel
+    public class FloatObjectParseStyle : IFloatObjectDetailsParseStyleDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectParseStyle"/> class.

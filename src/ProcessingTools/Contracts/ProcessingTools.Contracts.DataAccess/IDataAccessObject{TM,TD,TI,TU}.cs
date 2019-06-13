@@ -16,8 +16,8 @@ namespace ProcessingTools.Contracts.DataAccess
     /// <typeparam name="TI">Type of the insert data model.</typeparam>
     /// <typeparam name="TU">Type of the update data model.</typeparam>
     public interface IDataAccessObject<TM, TD, TI, TU> : IDataAccessObject
-        where TM : IDataModel
-        where TD : IDataModel
+        where TM : IDataTransferObject
+        where TD : IDataTransferObject
     {
         /// <summary>
         /// Inserts item to the data store.

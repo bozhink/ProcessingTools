@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// Article
     /// </summary>
     [CollectionName("articles")]
-    public class Article : IArticleDetailsDataModel
+    public class Article : IArticleDetailsDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Article"/> class.
@@ -54,7 +54,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
         /// Gets or sets the article's journal.
         /// </summary>
         [BsonIgnore]
-        public IArticleJournalDataModel Journal { get; set; }
+        public IArticleJournalDataTransferObject Journal { get; set; }
 
         /// <summary>
         /// Gets or sets the journal from the database.

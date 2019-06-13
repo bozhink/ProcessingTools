@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// Document
     /// </summary>
     [CollectionName("documents")]
-    public class Document : IDocumentDetailsDataModel
+    public class Document : IDocumentDetailsDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Document"/> class.

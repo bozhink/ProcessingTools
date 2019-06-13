@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
     /// <summary>
     /// Publishers data access object.
     /// </summary>
-    public interface IPublishersDataAccessObject : IDataAccessObject<IPublisherDataModel, IPublisherDetailsDataModel, IPublisherInsertModel, IPublisherUpdateModel>
+    public interface IPublishersDataAccessObject : IDataAccessObject<IPublisherDataTransferObject, IPublisherDetailsDataTransferObject, IPublisherInsertModel, IPublisherUpdateModel>
     {
     }
 }

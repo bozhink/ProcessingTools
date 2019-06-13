@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// <summary>
     /// Document article data model.
     /// </summary>
-    public class DocumentArticleDataModel : IDocumentArticleDataModel
+    public class DocumentArticleDataModel : IDocumentArticleDataTransferObject
     {
         /// <inheritdoc/>
         public string ArticleId { get; set; }

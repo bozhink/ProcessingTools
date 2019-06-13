@@ -41,9 +41,9 @@ namespace ProcessingTools.Services.Files
                 c.CreateMap<ProcessingTools.Contracts.Models.Files.Mediatypes.IMediatypeMetaModel, MediatypeMetaModel>();
                 c.CreateMap<ProcessingTools.Contracts.Models.Files.Mediatypes.IMediatypeMetaModel, IMediatypeMetaModel>().As<MediatypeMetaModel>();
 
-                c.CreateMap<IMediatypeDataModel, MediatypeModel>()
+                c.CreateMap<IMediatypeDataTransferObject, MediatypeModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IMediatypeDetailsDataModel, MediatypeDetailsModel>()
+                c.CreateMap<IMediatypeDetailsDataTransferObject, MediatypeDetailsModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
             });
             this.mapper = mapperConfiguration.CreateMapper();
@@ -120,7 +120,7 @@ namespace ProcessingTools.Services.Files
                 return null;
             }
 
-            var model = this.mapper.Map<IMediatypeDataModel, MediatypeModel>(mediatype);
+            var model = this.mapper.Map<IMediatypeDataTransferObject, MediatypeModel>(mediatype);
 
             return model;
         }
@@ -140,7 +140,7 @@ namespace ProcessingTools.Services.Files
                 return null;
             }
 
-            var model = this.mapper.Map<IMediatypeDetailsDataModel, MediatypeDetailsModel>(mediatype);
+            var model = this.mapper.Map<IMediatypeDetailsDataTransferObject, MediatypeDetailsModel>(mediatype);
 
             return model;
         }
@@ -165,7 +165,7 @@ namespace ProcessingTools.Services.Files
                 return Array.Empty<IMediatypeModel>();
             }
 
-            var items = mediatypes.Select(this.mapper.Map<IMediatypeDataModel, MediatypeModel>).ToArray();
+            var items = mediatypes.Select(this.mapper.Map<IMediatypeDataTransferObject, MediatypeModel>).ToArray();
             return items;
         }
 
@@ -188,7 +188,7 @@ namespace ProcessingTools.Services.Files
                 return Array.Empty<IMediatypeDetailsModel>();
             }
 
-            var items = mediatypes.Select(this.mapper.Map<IMediatypeDetailsDataModel, MediatypeDetailsModel>).ToArray();
+            var items = mediatypes.Select(this.mapper.Map<IMediatypeDetailsDataTransferObject, MediatypeDetailsModel>).ToArray();
             return items;
         }
 

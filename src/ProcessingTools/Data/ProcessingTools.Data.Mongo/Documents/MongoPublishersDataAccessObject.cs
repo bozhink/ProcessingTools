@@ -54,10 +54,10 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+        public async Task<IPublisherDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IPublisherDetailsDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IPublisherDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -105,7 +105,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDataModel> InsertAsync(IPublisherInsertModel model)
+        public async Task<IPublisherDataTransferObject> InsertAsync(IPublisherInsertModel model)
         {
             if (model == null)
             {
@@ -126,7 +126,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IPublisherDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IPublisherDataTransferObject>> SelectAsync(int skip, int take)
         {
             var publishers = await this.Collection.Find(Builders<Publisher>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -137,14 +137,14 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (publishers == null || !publishers.Any())
             {
-                return Array.Empty<IPublisherDataModel>();
+                return Array.Empty<IPublisherDataTransferObject>();
             }
 
-            return publishers.ToArray<IPublisherDataModel>();
+            return publishers.ToArray<IPublisherDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IPublisherDetailsDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IPublisherDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var publishers = await this.Collection.Find(Builders<Publisher>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -155,7 +155,7 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (publishers == null || !publishers.Any())
             {
-                return Array.Empty<IPublisherDetailsDataModel>();
+                return Array.Empty<IPublisherDetailsDataTransferObject>();
             }
 
             var journals = this.GetCollection<Journal>().AsQueryable()
@@ -171,7 +171,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 });
             }
 
-            return publishers.ToArray<IPublisherDetailsDataModel>();
+            return publishers.ToArray<IPublisherDetailsDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -181,7 +181,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDataModel> UpdateAsync(IPublisherUpdateModel model)
+        public async Task<IPublisherDataTransferObject> UpdateAsync(IPublisherUpdateModel model)
         {
             if (model == null)
             {

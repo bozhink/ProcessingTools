@@ -57,7 +57,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalStyleDataModel> GetByIdAsync(object id)
+        public async Task<IJournalStyleDataTransferObject> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -72,7 +72,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsStyleDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IJournalDetailsStyleDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -109,7 +109,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalStyleDataModel> InsertAsync(IJournalInsertStyleModel model)
+        public async Task<IJournalStyleDataTransferObject> InsertAsync(IJournalInsertStyleModel model)
         {
             if (model == null)
             {
@@ -130,7 +130,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IJournalStyleDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IJournalStyleDataTransferObject>> SelectAsync(int skip, int take)
         {
             var journalStyles = await this.Collection.Find(Builders<JournalStyle>.Filter.Empty)
                 .SortBy(s => s.Name)
@@ -141,14 +141,14 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return Array.Empty<IJournalStyleDataModel>();
+                return Array.Empty<IJournalStyleDataTransferObject>();
             }
 
-            return journalStyles.ToArray<IJournalStyleDataModel>();
+            return journalStyles.ToArray<IJournalStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IJournalDetailsStyleDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IJournalDetailsStyleDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var query = this.GetDetailsLookup(this.Collection.Aggregate())
                 .SortBy(s => s.Name)
@@ -159,10 +159,10 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return Array.Empty<IJournalDetailsStyleDataModel>();
+                return Array.Empty<IJournalDetailsStyleDataTransferObject>();
             }
 
-            return journalStyles.ToArray<IJournalDetailsStyleDataModel>();
+            return journalStyles.ToArray<IJournalDetailsStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -172,7 +172,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalStyleDataModel> UpdateAsync(IJournalUpdateStyleModel model)
+        public async Task<IJournalStyleDataTransferObject> UpdateAsync(IJournalUpdateStyleModel model)
         {
             if (model == null)
             {
@@ -212,7 +212,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel> GetStyleByIdAsync(object id)
+        public async Task<IIdentifiedStyleDataTransferObject> GetStyleByIdAsync(object id)
         {
             if (id == null)
             {
@@ -236,7 +236,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel[]> GetStylesForSelectAsync()
+        public async Task<IIdentifiedStyleDataTransferObject[]> GetStylesForSelectAsync()
         {
             var data = await this.Collection.Find(Builders<JournalStyle>.Filter.Empty)
                 .Project(s => new StyleDataModel
@@ -252,11 +252,11 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectParseStyleDataModel[]> GetFloatObjectParseStylesAsync(object id)
+        public async Task<IFloatObjectParseStyleDataTransferObject[]> GetFloatObjectParseStylesAsync(object id)
         {
             if (id == null)
             {
-                return Array.Empty<IFloatObjectParseStyleDataModel>();
+                return Array.Empty<IFloatObjectParseStyleDataTransferObject>();
             }
 
             Guid objectId = id.ToNewGuid();
@@ -270,15 +270,15 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
 
-            return journalStyle?.FloatObjectParseStyles?.ToArray<IFloatObjectParseStyleDataModel>() ?? Array.Empty<IFloatObjectParseStyleDataModel>();
+            return journalStyle?.FloatObjectParseStyles?.ToArray<IFloatObjectParseStyleDataTransferObject>() ?? Array.Empty<IFloatObjectParseStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectTagStyleDataModel[]> GetFloatObjectTagStylesAsync(object id)
+        public async Task<IFloatObjectTagStyleDataTransferObject[]> GetFloatObjectTagStylesAsync(object id)
         {
             if (id == null)
             {
-                return Array.Empty<IFloatObjectTagStyleDataModel>();
+                return Array.Empty<IFloatObjectTagStyleDataTransferObject>();
             }
 
             Guid objectId = id.ToNewGuid();
@@ -292,15 +292,15 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
 
-            return journalStyle?.FloatObjectTagStyles?.ToArray<IFloatObjectTagStyleDataModel>() ?? Array.Empty<IFloatObjectTagStyleDataModel>();
+            return journalStyle?.FloatObjectTagStyles?.ToArray<IFloatObjectTagStyleDataTransferObject>() ?? Array.Empty<IFloatObjectTagStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceParseStyleDataModel[]> GetReferenceParseStylesAsync(object id)
+        public async Task<IReferenceParseStyleDataTransferObject[]> GetReferenceParseStylesAsync(object id)
         {
             if (id == null)
             {
-                return Array.Empty<IReferenceParseStyleDataModel>();
+                return Array.Empty<IReferenceParseStyleDataTransferObject>();
             }
 
             Guid objectId = id.ToNewGuid();
@@ -314,15 +314,15 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
 
-            return journalStyle?.ReferenceParseStyles?.ToArray<IReferenceParseStyleDataModel>() ?? Array.Empty<IReferenceParseStyleDataModel>();
+            return journalStyle?.ReferenceParseStyles?.ToArray<IReferenceParseStyleDataTransferObject>() ?? Array.Empty<IReferenceParseStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceTagStyleDataModel[]> GetReferenceTagStylesAsync(object id)
+        public async Task<IReferenceTagStyleDataTransferObject[]> GetReferenceTagStylesAsync(object id)
         {
             if (id == null)
             {
-                return Array.Empty<IReferenceTagStyleDataModel>();
+                return Array.Empty<IReferenceTagStyleDataTransferObject>();
             }
 
             Guid objectId = id.ToNewGuid();
@@ -336,7 +336,7 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
 
-            return journalStyle?.ReferenceTagStyles?.ToArray<IReferenceTagStyleDataModel>() ?? Array.Empty<IReferenceTagStyleDataModel>();
+            return journalStyle?.ReferenceTagStyles?.ToArray<IReferenceTagStyleDataTransferObject>() ?? Array.Empty<IReferenceTagStyleDataTransferObject>();
         }
 
         private IAggregateFluent<JournalStyle> GetDetailsLookup(IAggregateFluent<JournalStyle> query)

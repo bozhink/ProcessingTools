@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     /// Reference parse style.
     /// </summary>
     [CollectionName("referenceParseStyles")]
-    public class ReferenceParseStyle : IReferenceDetailsParseStyleDataModel
+    public class ReferenceParseStyle : IReferenceDetailsParseStyleDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceParseStyle"/> class.

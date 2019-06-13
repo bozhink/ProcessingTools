@@ -55,10 +55,10 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectParseStyleDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+        public async Task<IFloatObjectParseStyleDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectDetailsParseStyleDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IFloatObjectDetailsParseStyleDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -93,7 +93,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectParseStyleDataModel> InsertAsync(IFloatObjectInsertParseStyleModel model)
+        public async Task<IFloatObjectParseStyleDataTransferObject> InsertAsync(IFloatObjectInsertParseStyleModel model)
         {
             if (model == null)
             {
@@ -114,7 +114,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IFloatObjectParseStyleDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IFloatObjectParseStyleDataTransferObject>> SelectAsync(int skip, int take)
         {
             var parseStyles = await this.Collection.Find(Builders<FloatObjectParseStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -125,14 +125,14 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return Array.Empty<IFloatObjectParseStyleDataModel>();
+                return Array.Empty<IFloatObjectParseStyleDataTransferObject>();
             }
 
-            return parseStyles.ToArray<IFloatObjectParseStyleDataModel>();
+            return parseStyles.ToArray<IFloatObjectParseStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IFloatObjectDetailsParseStyleDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IFloatObjectDetailsParseStyleDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var parseStyles = await this.Collection.Find(Builders<FloatObjectParseStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -143,10 +143,10 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return Array.Empty<IFloatObjectDetailsParseStyleDataModel>();
+                return Array.Empty<IFloatObjectDetailsParseStyleDataTransferObject>();
             }
 
-            return parseStyles.ToArray<IFloatObjectDetailsParseStyleDataModel>();
+            return parseStyles.ToArray<IFloatObjectDetailsParseStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -156,7 +156,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectParseStyleDataModel> UpdateAsync(IFloatObjectUpdateParseStyleModel model)
+        public async Task<IFloatObjectParseStyleDataTransferObject> UpdateAsync(IFloatObjectUpdateParseStyleModel model)
         {
             if (model == null)
             {
@@ -195,7 +195,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel> GetStyleByIdAsync(object id)
+        public async Task<IIdentifiedStyleDataTransferObject> GetStyleByIdAsync(object id)
         {
             if (id == null)
             {
@@ -219,7 +219,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel[]> GetStylesForSelectAsync()
+        public async Task<IIdentifiedStyleDataTransferObject[]> GetStylesForSelectAsync()
         {
             var data = await this.Collection.Find(Builders<FloatObjectParseStyle>.Filter.Empty)
                 .Project(s => new StyleDataModel

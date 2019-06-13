@@ -47,29 +47,29 @@ namespace ProcessingTools.Services.Layout.Styles
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IJournalStyleDataModel, JournalStyleModel>()
+                c.CreateMap<IJournalStyleDataTransferObject, JournalStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>()
+                c.CreateMap<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
+                c.CreateMap<IIdentifiedStyleDataTransferObject, StyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
+                c.CreateMap<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>().As<StyleModel>();
 
-                c.CreateMap<IFloatObjectParseStyleDataModel, FloatObjectParseStyleModel>()
+                c.CreateMap<IFloatObjectParseStyleDataTransferObject, FloatObjectParseStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IFloatObjectParseStyleDataModel, IFloatObjectParseStyleModel>().As<FloatObjectParseStyleModel>();
+                c.CreateMap<IFloatObjectParseStyleDataTransferObject, IFloatObjectParseStyleModel>().As<FloatObjectParseStyleModel>();
 
-                c.CreateMap<IFloatObjectTagStyleDataModel, FloatObjectTagStyleModel>()
+                c.CreateMap<IFloatObjectTagStyleDataTransferObject, FloatObjectTagStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IFloatObjectTagStyleDataModel, IFloatObjectTagStyleModel>().As<FloatObjectTagStyleModel>();
+                c.CreateMap<IFloatObjectTagStyleDataTransferObject, IFloatObjectTagStyleModel>().As<FloatObjectTagStyleModel>();
 
-                c.CreateMap<IReferenceParseStyleDataModel, ReferenceParseStyleModel>()
+                c.CreateMap<IReferenceParseStyleDataTransferObject, ReferenceParseStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IReferenceParseStyleDataModel, IReferenceParseStyleModel>().As<ReferenceParseStyleModel>();
+                c.CreateMap<IReferenceParseStyleDataTransferObject, IReferenceParseStyleModel>().As<ReferenceParseStyleModel>();
 
-                c.CreateMap<IReferenceTagStyleDataModel, ReferenceTagStyleModel>()
+                c.CreateMap<IReferenceTagStyleDataTransferObject, ReferenceTagStyleModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IReferenceTagStyleDataModel, IReferenceTagStyleModel>().As<ReferenceTagStyleModel>();
+                c.CreateMap<IReferenceTagStyleDataTransferObject, IReferenceTagStyleModel>().As<ReferenceTagStyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -145,7 +145,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return null;
             }
 
-            var model = this.mapper.Map<IJournalStyleDataModel, JournalStyleModel>(journalStyle);
+            var model = this.mapper.Map<IJournalStyleDataTransferObject, JournalStyleModel>(journalStyle);
 
             return model;
         }
@@ -165,7 +165,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return null;
             }
 
-            var model = this.mapper.Map<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>(journalStyle);
+            var model = this.mapper.Map<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>(journalStyle);
 
             return model;
         }
@@ -190,7 +190,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return Array.Empty<IJournalStyleModel>();
             }
 
-            var items = journalStyles.Select(this.mapper.Map<IJournalStyleDataModel, JournalStyleModel>).ToArray();
+            var items = journalStyles.Select(this.mapper.Map<IJournalStyleDataTransferObject, JournalStyleModel>).ToArray();
             return items;
         }
 
@@ -214,7 +214,7 @@ namespace ProcessingTools.Services.Layout.Styles
                 return Array.Empty<IJournalDetailsStyleModel>();
             }
 
-            var items = journalStyles.Select(this.mapper.Map<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>).ToArray();
+            var items = journalStyles.Select(this.mapper.Map<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>).ToArray();
             return items;
         }
 
@@ -225,14 +225,14 @@ namespace ProcessingTools.Services.Layout.Styles
         public async Task<IIdentifiedStyleModel> GetStyleByIdAsync(object id)
         {
             var style = await this.dataAccessObject.GetStyleByIdAsync(id).ConfigureAwait(false);
-            return this.mapper.Map<IIdentifiedStyleDataModel, IIdentifiedStyleModel>(style);
+            return this.mapper.Map<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>(style);
         }
 
         /// <inheritdoc/>
         public async Task<IIdentifiedStyleModel[]> GetStylesForSelectAsync()
         {
             var styles = await this.dataAccessObject.GetStylesForSelectAsync().ConfigureAwait(false);
-            return styles.Select(this.mapper.Map<IIdentifiedStyleDataModel, IIdentifiedStyleModel>).ToArray();
+            return styles.Select(this.mapper.Map<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>).ToArray();
         }
 
         /// <inheritdoc/>
@@ -244,7 +244,7 @@ namespace ProcessingTools.Services.Layout.Styles
             }
 
             var styles = await this.dataAccessObject.GetFloatObjectParseStylesAsync(id).ConfigureAwait(false);
-            return styles.Select(this.mapper.Map<IFloatObjectParseStyleDataModel, IFloatObjectParseStyleModel>).ToArray();
+            return styles.Select(this.mapper.Map<IFloatObjectParseStyleDataTransferObject, IFloatObjectParseStyleModel>).ToArray();
         }
 
         /// <inheritdoc/>
@@ -256,7 +256,7 @@ namespace ProcessingTools.Services.Layout.Styles
             }
 
             var styles = await this.dataAccessObject.GetFloatObjectTagStylesAsync(id).ConfigureAwait(false);
-            return styles.Select(this.mapper.Map<IFloatObjectTagStyleDataModel, IFloatObjectTagStyleModel>).ToArray();
+            return styles.Select(this.mapper.Map<IFloatObjectTagStyleDataTransferObject, IFloatObjectTagStyleModel>).ToArray();
         }
 
         /// <inheritdoc/>
@@ -268,7 +268,7 @@ namespace ProcessingTools.Services.Layout.Styles
             }
 
             var styles = await this.dataAccessObject.GetReferenceParseStylesAsync(id).ConfigureAwait(false);
-            return styles.Select(this.mapper.Map<IReferenceParseStyleDataModel, IReferenceParseStyleModel>).ToArray();
+            return styles.Select(this.mapper.Map<IReferenceParseStyleDataTransferObject, IReferenceParseStyleModel>).ToArray();
         }
 
         /// <inheritdoc/>
@@ -280,7 +280,7 @@ namespace ProcessingTools.Services.Layout.Styles
             }
 
             var styles = await this.dataAccessObject.GetReferenceTagStylesAsync(id).ConfigureAwait(false);
-            return styles.Select(this.mapper.Map<IReferenceTagStyleDataModel, IReferenceTagStyleModel>).ToArray();
+            return styles.Select(this.mapper.Map<IReferenceTagStyleDataTransferObject, IReferenceTagStyleModel>).ToArray();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// <summary>
     /// Journal publisher
     /// </summary>
-    public class JournalPublisher : IJournalPublisherDataModel
+    public class JournalPublisher : IJournalPublisherDataTransferObject
     {
         /// <inheritdoc/>
         public string Id { get; set; }

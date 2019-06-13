@@ -104,7 +104,7 @@ namespace ProcessingTools.Data.Redis.Cache
         }
 
         /// <inheritdoc/>
-        public Task<IValidationCacheDataModel[]> GetAllForKeyAsync(string key)
+        public Task<IValidationCacheDataTransferObject[]> GetAllForKeyAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -114,12 +114,12 @@ namespace ProcessingTools.Data.Redis.Cache
             return Task.Run(() =>
             {
                 var list = this.client.Lists[key];
-                return list.Select(this.Deserialize).ToArray<IValidationCacheDataModel>();
+                return list.Select(this.Deserialize).ToArray<IValidationCacheDataTransferObject>();
             });
         }
 
         /// <inheritdoc/>
-        public Task<IValidationCacheDataModel> GetLastForKeyAsync(string key)
+        public Task<IValidationCacheDataTransferObject> GetLastForKeyAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -129,7 +129,7 @@ namespace ProcessingTools.Data.Redis.Cache
             return Task.Run(() =>
             {
                 var list = this.client.Lists[key];
-                return list.Select(this.Deserialize).OrderByDescending(i => i.LastUpdate).FirstOrDefault<IValidationCacheDataModel>();
+                return list.Select(this.Deserialize).OrderByDescending(i => i.LastUpdate).FirstOrDefault<IValidationCacheDataTransferObject>();
             });
         }
     }

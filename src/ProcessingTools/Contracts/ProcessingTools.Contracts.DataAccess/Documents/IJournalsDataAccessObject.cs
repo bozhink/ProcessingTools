@@ -11,12 +11,12 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
     /// <summary>
     /// Journals data access object.
     /// </summary>
-    public interface IJournalsDataAccessObject : IDataAccessObject<IJournalDataModel, IJournalDetailsDataModel, IJournalInsertModel, IJournalUpdateModel>
+    public interface IJournalsDataAccessObject : IDataAccessObject<IJournalDataTransferObject, IJournalDetailsDataTransferObject, IJournalInsertModel, IJournalUpdateModel>
     {
         /// <summary>
         /// Gets journal publishers.
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
-        Task<IJournalPublisherDataModel[]> GetJournalPublishersAsync();
+        Task<IJournalPublisherDataTransferObject[]> GetJournalPublishersAsync();
     }
 }

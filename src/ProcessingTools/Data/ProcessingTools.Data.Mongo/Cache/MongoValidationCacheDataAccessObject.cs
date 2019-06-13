@@ -99,7 +99,7 @@ namespace ProcessingTools.Data.Mongo.Cache
         }
 
         /// <inheritdoc/>
-        public async Task<IValidationCacheDataModel[]> GetAllForKeyAsync(string key)
+        public async Task<IValidationCacheDataTransferObject[]> GetAllForKeyAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -118,11 +118,11 @@ namespace ProcessingTools.Data.Mongo.Cache
                 item.Key = key;
             }
 
-            return data.ToArray<IValidationCacheDataModel>();
+            return data.ToArray<IValidationCacheDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IValidationCacheDataModel> GetLastForKeyAsync(string key)
+        public async Task<IValidationCacheDataTransferObject> GetLastForKeyAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {

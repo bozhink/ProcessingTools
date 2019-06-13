@@ -55,10 +55,10 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceParseStyleDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+        public async Task<IReferenceParseStyleDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IReferenceDetailsParseStyleDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IReferenceDetailsParseStyleDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -93,7 +93,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceParseStyleDataModel> InsertAsync(IReferenceInsertParseStyleModel model)
+        public async Task<IReferenceParseStyleDataTransferObject> InsertAsync(IReferenceInsertParseStyleModel model)
         {
             if (model == null)
             {
@@ -114,7 +114,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IReferenceParseStyleDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IReferenceParseStyleDataTransferObject>> SelectAsync(int skip, int take)
         {
             var parseStyles = await this.Collection.Find(Builders<ReferenceParseStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -125,14 +125,14 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return Array.Empty<IReferenceParseStyleDataModel>();
+                return Array.Empty<IReferenceParseStyleDataTransferObject>();
             }
 
-            return parseStyles.ToArray<IReferenceParseStyleDataModel>();
+            return parseStyles.ToArray<IReferenceParseStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IReferenceDetailsParseStyleDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IReferenceDetailsParseStyleDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var parseStyles = await this.Collection.Find(Builders<ReferenceParseStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -143,10 +143,10 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return Array.Empty<IReferenceDetailsParseStyleDataModel>();
+                return Array.Empty<IReferenceDetailsParseStyleDataTransferObject>();
             }
 
-            return parseStyles.ToArray<IReferenceDetailsParseStyleDataModel>();
+            return parseStyles.ToArray<IReferenceDetailsParseStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -156,7 +156,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceParseStyleDataModel> UpdateAsync(IReferenceUpdateParseStyleModel model)
+        public async Task<IReferenceParseStyleDataTransferObject> UpdateAsync(IReferenceUpdateParseStyleModel model)
         {
             if (model == null)
             {
@@ -194,7 +194,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel> GetStyleByIdAsync(object id)
+        public async Task<IIdentifiedStyleDataTransferObject> GetStyleByIdAsync(object id)
         {
             if (id == null)
             {
@@ -218,7 +218,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel[]> GetStylesForSelectAsync()
+        public async Task<IIdentifiedStyleDataTransferObject[]> GetStylesForSelectAsync()
         {
             var data = await this.Collection.Find(Builders<ReferenceParseStyle>.Filter.Empty)
                 .Project(s => new StyleDataModel

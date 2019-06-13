@@ -11,13 +11,13 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
     /// <summary>
     /// Articles data access object.
     /// </summary>
-    public interface IArticlesDataAccessObject : IDataAccessObject<IArticleDataModel, IArticleDetailsDataModel, IArticleInsertModel, IArticleUpdateModel>
+    public interface IArticlesDataAccessObject : IDataAccessObject<IArticleDataTransferObject, IArticleDetailsDataTransferObject, IArticleInsertModel, IArticleUpdateModel>
     {
         /// <summary>
         /// Gets article journals.
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
-        Task<IArticleJournalDataModel[]> GetArticleJournalsAsync();
+        Task<IArticleJournalDataTransferObject[]> GetArticleJournalsAsync();
 
         /// <summary>
         /// Gets the object ID of the journal style for a specified article.
@@ -31,6 +31,6 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
         /// </summary>
         /// <param name="id">Object ID of the article.</param>
         /// <returns>Resultant object.</returns>
-        Task<IArticleDataModel> FinalizeAsync(object id);
+        Task<IArticleDataTransferObject> FinalizeAsync(object id);
     }
 }

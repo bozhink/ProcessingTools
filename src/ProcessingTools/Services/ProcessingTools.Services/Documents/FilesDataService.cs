@@ -38,9 +38,9 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IFileDataModel, FileModel>()
+                c.CreateMap<IFileDataTransferObject, FileModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IFileDetailsDataModel, FileDetailsModel>()
+                c.CreateMap<IFileDetailsDataTransferObject, FileDetailsModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
             });
             this.mapper = mapperConfiguration.CreateMapper();
@@ -117,7 +117,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IFileDataModel, FileModel>(file);
+            var model = this.mapper.Map<IFileDataTransferObject, FileModel>(file);
 
             return model;
         }
@@ -137,7 +137,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IFileDetailsDataModel, FileDetailsModel>(file);
+            var model = this.mapper.Map<IFileDetailsDataTransferObject, FileDetailsModel>(file);
 
             return model;
         }
@@ -162,7 +162,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IFileModel>();
             }
 
-            var items = files.Select(this.mapper.Map<IFileDataModel, FileModel>).ToArray();
+            var items = files.Select(this.mapper.Map<IFileDataTransferObject, FileModel>).ToArray();
             return items;
         }
 
@@ -185,7 +185,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IFileDetailsModel>();
             }
 
-            var items = files.Select(this.mapper.Map<IFileDetailsDataModel, FileDetailsModel>).ToArray();
+            var items = files.Select(this.mapper.Map<IFileDetailsDataTransferObject, FileDetailsModel>).ToArray();
             return items;
         }
 

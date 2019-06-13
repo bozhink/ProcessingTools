@@ -54,7 +54,7 @@ namespace ProcessingTools.Data.Mongo.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeDataModel> InsertAsync(IMediatypeInsertModel model)
+        public async Task<IMediatypeDataTransferObject> InsertAsync(IMediatypeInsertModel model)
         {
             if (model == null)
             {
@@ -75,7 +75,7 @@ namespace ProcessingTools.Data.Mongo.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeDataModel> UpdateAsync(IMediatypeUpdateModel model)
+        public async Task<IMediatypeDataTransferObject> UpdateAsync(IMediatypeUpdateModel model)
         {
             if (model == null)
             {
@@ -133,10 +133,10 @@ namespace ProcessingTools.Data.Mongo.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+        public async Task<IMediatypeDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IMediatypeDetailsDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IMediatypeDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -207,7 +207,7 @@ namespace ProcessingTools.Data.Mongo.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IMediatypeDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IMediatypeDataTransferObject>> SelectAsync(int skip, int take)
         {
             var mediatypes = await this.Collection.Find(a => true)
                 .SortByDescending(a => a.CreatedOn)
@@ -218,14 +218,14 @@ namespace ProcessingTools.Data.Mongo.Files
 
             if (mediatypes == null || !mediatypes.Any())
             {
-                return Array.Empty<IMediatypeDataModel>();
+                return Array.Empty<IMediatypeDataTransferObject>();
             }
 
-            return mediatypes.ToArray<IMediatypeDataModel>();
+            return mediatypes.ToArray<IMediatypeDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IMediatypeDetailsDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IMediatypeDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var mediatypes = await this.Collection.Find(a => true)
                .SortByDescending(a => a.CreatedOn)
@@ -236,10 +236,10 @@ namespace ProcessingTools.Data.Mongo.Files
 
             if (mediatypes == null || !mediatypes.Any())
             {
-                return Array.Empty<IMediatypeDetailsDataModel>();
+                return Array.Empty<IMediatypeDetailsDataTransferObject>();
             }
 
-            return mediatypes.ToArray<IMediatypeDetailsDataModel>();
+            return mediatypes.ToArray<IMediatypeDetailsDataTransferObject>();
         }
     }
 }

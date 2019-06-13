@@ -38,12 +38,12 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IJournalPublisherDataModel, JournalPublisherModel>();
-                c.CreateMap<IJournalPublisherDataModel, IJournalPublisherModel>().As<JournalPublisherModel>();
+                c.CreateMap<IJournalPublisherDataTransferObject, JournalPublisherModel>();
+                c.CreateMap<IJournalPublisherDataTransferObject, IJournalPublisherModel>().As<JournalPublisherModel>();
 
-                c.CreateMap<IJournalDataModel, JournalModel>()
+                c.CreateMap<IJournalDataTransferObject, JournalModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IJournalDetailsDataModel, JournalDetailsModel>()
+                c.CreateMap<IJournalDetailsDataTransferObject, JournalDetailsModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()))
                     .ForMember(sm => sm.Publisher, o => o.MapFrom(dm => dm.Publisher));
             });
@@ -121,7 +121,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IJournalDataModel, JournalModel>(journal);
+            var model = this.mapper.Map<IJournalDataTransferObject, JournalModel>(journal);
 
             return model;
         }
@@ -141,7 +141,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IJournalDetailsDataModel, JournalDetailsModel>(journal);
+            var model = this.mapper.Map<IJournalDetailsDataTransferObject, JournalDetailsModel>(journal);
 
             return model;
         }
@@ -166,7 +166,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IJournalModel>();
             }
 
-            var items = journals.Select(this.mapper.Map<IJournalDataModel, JournalModel>).ToArray();
+            var items = journals.Select(this.mapper.Map<IJournalDataTransferObject, JournalModel>).ToArray();
             return items;
         }
 
@@ -189,7 +189,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IJournalDetailsModel>();
             }
 
-            var items = journals.Select(this.mapper.Map<IJournalDetailsDataModel, JournalDetailsModel>).ToArray();
+            var items = journals.Select(this.mapper.Map<IJournalDetailsDataTransferObject, JournalDetailsModel>).ToArray();
             return items;
         }
 
@@ -205,7 +205,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IJournalPublisherModel>();
             }
 
-            return publishers.Select(this.mapper.Map<IJournalPublisherDataModel, JournalPublisherModel>).ToArray();
+            return publishers.Select(this.mapper.Map<IJournalPublisherDataTransferObject, JournalPublisherModel>).ToArray();
         }
     }
 }

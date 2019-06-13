@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// <summary>
     /// Article journal
     /// </summary>
-    public class ArticleJournal : IArticleJournalDataModel
+    public class ArticleJournal : IArticleJournalDataTransferObject
     {
         /// <inheritdoc/>
         public string Id { get; set; }

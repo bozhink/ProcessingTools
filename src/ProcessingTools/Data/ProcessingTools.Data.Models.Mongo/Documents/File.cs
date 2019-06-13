@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// File
     /// </summary>
     [CollectionName("files")]
-    public class File : IFileDetailsDataModel, IDocumentFileModel
+    public class File : IFileDetailsDataTransferObject, IDocumentFileModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="File"/> class.

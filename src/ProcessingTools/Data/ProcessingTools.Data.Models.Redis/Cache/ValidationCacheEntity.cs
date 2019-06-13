@@ -12,7 +12,7 @@ namespace ProcessingTools.Data.Models.Redis.Cache
     /// <summary>
     /// Validation cache entity.
     /// </summary>
-    public class ValidationCacheEntity : IValidationCacheDataModel
+    public class ValidationCacheEntity : IValidationCacheDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidationCacheEntity"/> class.

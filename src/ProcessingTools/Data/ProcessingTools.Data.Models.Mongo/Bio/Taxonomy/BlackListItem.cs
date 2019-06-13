@@ -10,10 +10,10 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
     using ProcessingTools.Contracts.DataAccess.Models.Bio.Taxonomy;
 
     /// <summary>
-    /// MongoDB implementation of <see cref="IBlackListItem"/>.
+    /// MongoDB implementation of <see cref="IBlackListItemDataTransferObject"/>.
     /// </summary>
     [CollectionName("blackList")]
-    public class BlackListItem : IBlackListItem
+    public class BlackListItem : IBlackListItemDataTransferObject
     {
         /// <summary>
         /// Gets or sets the _id.

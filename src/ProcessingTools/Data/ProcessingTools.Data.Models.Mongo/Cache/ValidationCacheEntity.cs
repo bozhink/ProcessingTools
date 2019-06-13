@@ -13,7 +13,7 @@ namespace ProcessingTools.Data.Models.Mongo.Cache
     /// <summary>
     /// Validation cache entity.
     /// </summary>
-    public class ValidationCacheEntity : IValidationCacheDataModel
+    public class ValidationCacheEntity : IValidationCacheDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidationCacheEntity"/> class.

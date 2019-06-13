@@ -11,7 +11,7 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
     /// <summary>
     /// Documents data access object.
     /// </summary>
-    public interface IDocumentsDataAccessObject : IDataAccessObject<IDocumentDataModel, IDocumentDetailsDataModel, IDocumentInsertModel, IDocumentUpdateModel>
+    public interface IDocumentsDataAccessObject : IDataAccessObject<IDocumentDataTransferObject, IDocumentDetailsDataTransferObject, IDocumentInsertModel, IDocumentUpdateModel>
     {
         /// <summary>
         /// Sets content of the specified document.
@@ -33,14 +33,14 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
         /// </summary>
         /// <param name="articleId">ID of the article.</param>
         /// <returns>Array of documents.</returns>
-        Task<IDocumentDataModel[]> GetArticleDocumentsAsync(string articleId);
+        Task<IDocumentDataTransferObject[]> GetArticleDocumentsAsync(string articleId);
 
         /// <summary>
         /// Gets document's article.
         /// </summary>
         /// <param name="articleId">ID of the article.</param>
         /// <returns>Document's article.</returns>
-        Task<IDocumentArticleDataModel> GetDocumentArticleAsync(string articleId);
+        Task<IDocumentArticleDataTransferObject> GetDocumentArticleAsync(string articleId);
 
         /// <summary>
         /// Sets specified document as final.

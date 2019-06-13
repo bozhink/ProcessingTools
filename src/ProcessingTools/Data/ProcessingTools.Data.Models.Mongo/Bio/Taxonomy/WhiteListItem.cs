@@ -10,10 +10,10 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
     using ProcessingTools.Contracts.DataAccess.Models.Bio.Taxonomy;
 
     /// <summary>
-    /// MongoDB implementation of <see cref="IWhiteListItem"/>.
+    /// MongoDB implementation of <see cref="IWhiteListItemDataTransferObject"/>.
     /// </summary>
     [CollectionName("whiteList")]
-    public class WhiteListItem : IWhiteListItem
+    public class WhiteListItem : IWhiteListItemDataTransferObject
     {
         /// <summary>
         /// Gets or sets the _id.

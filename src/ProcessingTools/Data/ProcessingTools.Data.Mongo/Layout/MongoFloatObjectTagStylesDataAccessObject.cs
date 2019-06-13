@@ -55,10 +55,10 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectTagStyleDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+        public async Task<IFloatObjectTagStyleDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectDetailsTagStyleDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IFloatObjectDetailsTagStyleDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -93,7 +93,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectTagStyleDataModel> InsertAsync(IFloatObjectInsertTagStyleModel model)
+        public async Task<IFloatObjectTagStyleDataTransferObject> InsertAsync(IFloatObjectInsertTagStyleModel model)
         {
             if (model == null)
             {
@@ -114,7 +114,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IFloatObjectTagStyleDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IFloatObjectTagStyleDataTransferObject>> SelectAsync(int skip, int take)
         {
             var tagStyles = await this.Collection.Find(Builders<FloatObjectTagStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -125,14 +125,14 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return Array.Empty<IFloatObjectTagStyleDataModel>();
+                return Array.Empty<IFloatObjectTagStyleDataTransferObject>();
             }
 
-            return tagStyles.ToArray<IFloatObjectTagStyleDataModel>();
+            return tagStyles.ToArray<IFloatObjectTagStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IFloatObjectDetailsTagStyleDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IFloatObjectDetailsTagStyleDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var tagStyles = await this.Collection.Find(Builders<FloatObjectTagStyle>.Filter.Empty)
                 .SortBy(p => p.Name)
@@ -143,10 +143,10 @@ namespace ProcessingTools.Data.Mongo.Layout
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return Array.Empty<IFloatObjectDetailsTagStyleDataModel>();
+                return Array.Empty<IFloatObjectDetailsTagStyleDataTransferObject>();
             }
 
-            return tagStyles.ToArray<IFloatObjectDetailsTagStyleDataModel>();
+            return tagStyles.ToArray<IFloatObjectDetailsTagStyleDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -156,7 +156,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectTagStyleDataModel> UpdateAsync(IFloatObjectUpdateTagStyleModel model)
+        public async Task<IFloatObjectTagStyleDataTransferObject> UpdateAsync(IFloatObjectUpdateTagStyleModel model)
         {
             if (model == null)
             {
@@ -199,7 +199,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel> GetStyleByIdAsync(object id)
+        public async Task<IIdentifiedStyleDataTransferObject> GetStyleByIdAsync(object id)
         {
             if (id == null)
             {
@@ -223,7 +223,7 @@ namespace ProcessingTools.Data.Mongo.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<IIdentifiedStyleDataModel[]> GetStylesForSelectAsync()
+        public async Task<IIdentifiedStyleDataTransferObject[]> GetStylesForSelectAsync()
         {
             var data = await this.Collection.Find(Builders<FloatObjectTagStyle>.Filter.Empty)
                 .Project(s => new StyleDataModel

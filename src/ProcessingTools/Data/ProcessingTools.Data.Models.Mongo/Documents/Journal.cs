@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// Journal
     /// </summary>
     [CollectionName("journals")]
-    public class Journal : IJournalDetailsDataModel
+    public class Journal : IJournalDetailsDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Journal"/> class.
@@ -71,7 +71,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
 
         /// <inheritdoc/>
         [BsonIgnore]
-        public IJournalPublisherDataModel Publisher { get; set; }
+        public IJournalPublisherDataTransferObject Publisher { get; set; }
 
         /// <summary>
         /// Gets or sets the publisher from the database.

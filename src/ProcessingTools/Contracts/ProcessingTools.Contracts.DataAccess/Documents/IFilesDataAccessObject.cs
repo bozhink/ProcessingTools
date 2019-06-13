@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
     /// <summary>
     /// Files data access object.
     /// </summary>
-    public interface IFilesDataAccessObject : IDataAccessObject<IFileDataModel, IFileDetailsDataModel, IFileInsertModel, IFileUpdateModel>
+    public interface IFilesDataAccessObject : IDataAccessObject<IFileDataTransferObject, IFileDetailsDataTransferObject, IFileInsertModel, IFileUpdateModel>
     {
     }
 }

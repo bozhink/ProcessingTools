@@ -80,7 +80,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDataModel> GetByIdAsync(object id)
+        public async Task<IJournalDataTransferObject> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -95,7 +95,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IJournalDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -119,15 +119,15 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalPublisherDataModel[]> GetJournalPublishersAsync()
+        public async Task<IJournalPublisherDataTransferObject[]> GetJournalPublishersAsync()
         {
             var publishers = await this.GetJournalPublishersQuery(p => true).ToListAsync().ConfigureAwait(false);
 
-            return publishers.ToArray<IJournalPublisherDataModel>();
+            return publishers.ToArray<IJournalPublisherDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDataModel> InsertAsync(IJournalInsertModel model)
+        public async Task<IJournalDataTransferObject> InsertAsync(IJournalInsertModel model)
         {
             if (model == null)
             {
@@ -148,7 +148,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IJournalDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IJournalDataTransferObject>> SelectAsync(int skip, int take)
         {
             var journals = await this.Collection.Find(j => true)
                 .SortBy(j => j.Name)
@@ -159,14 +159,14 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (journals == null || !journals.Any())
             {
-                return Array.Empty<IJournalDataModel>();
+                return Array.Empty<IJournalDataTransferObject>();
             }
 
-            return journals.ToArray<IJournalDataModel>();
+            return journals.ToArray<IJournalDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IJournalDetailsDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IJournalDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var journals = await this.Collection.Find(j => true)
                 .SortBy(j => j.Name)
@@ -177,7 +177,7 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (journals == null || !journals.Any())
             {
-                return Array.Empty<IJournalDetailsDataModel>();
+                return Array.Empty<IJournalDetailsDataTransferObject>();
             }
 
             var publishers = await this.GetJournalPublishersAsync().ConfigureAwait(false);
@@ -203,7 +203,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 });
             }
 
-            return journals.ToArray<IJournalDetailsDataModel>();
+            return journals.ToArray<IJournalDetailsDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -213,7 +213,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDataModel> UpdateAsync(IJournalUpdateModel model)
+        public async Task<IJournalDataTransferObject> UpdateAsync(IJournalUpdateModel model)
         {
             if (model == null)
             {

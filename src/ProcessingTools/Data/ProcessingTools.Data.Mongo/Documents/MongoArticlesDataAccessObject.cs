@@ -43,7 +43,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 c.CreateMap<IArticleUpdateModel, Article>();
                 c.CreateMap<Journal, ArticleJournal>()
                     .ForMember(aj => aj.Id, o => o.MapFrom(j => j.ObjectId.ToString()));
-                c.CreateMap<Journal, IArticleJournalDataModel>().As<ArticleJournal>();
+                c.CreateMap<Journal, IArticleJournalDataTransferObject>().As<ArticleJournal>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
@@ -83,7 +83,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IArticleDataModel> GetByIdAsync(object id)
+        public async Task<IArticleDataTransferObject> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -98,7 +98,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IArticleDetailsDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IArticleDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -115,7 +115,7 @@ namespace ProcessingTools.Data.Mongo.Documents
 
                 if (article.DbJournal != null)
                 {
-                    article.Journal = this.mapper.Map<Journal, IArticleJournalDataModel>(article.DbJournal);
+                    article.Journal = this.mapper.Map<Journal, IArticleJournalDataTransferObject>(article.DbJournal);
                 }
 
                 if (article.Journal == null)
@@ -128,15 +128,15 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IArticleJournalDataModel[]> GetArticleJournalsAsync()
+        public async Task<IArticleJournalDataTransferObject[]> GetArticleJournalsAsync()
         {
             var journals = await this.GetArticleJournalsQuery(j => true).ToListAsync().ConfigureAwait(false);
 
-            return journals.ToArray<IArticleJournalDataModel>();
+            return journals.ToArray<IArticleJournalDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IArticleDataModel> InsertAsync(IArticleInsertModel model)
+        public async Task<IArticleDataTransferObject> InsertAsync(IArticleInsertModel model)
         {
             if (model == null)
             {
@@ -159,7 +159,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IArticleDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IArticleDataTransferObject>> SelectAsync(int skip, int take)
         {
             var articles = await this.Collection.Find(a => true)
                 .SortByDescending(a => a.CreatedOn)
@@ -170,14 +170,14 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (articles == null || !articles.Any())
             {
-                return Array.Empty<IArticleDataModel>();
+                return Array.Empty<IArticleDataTransferObject>();
             }
 
-            return articles.ToArray<IArticleDataModel>();
+            return articles.ToArray<IArticleDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IArticleDetailsDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IArticleDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var articles = await this.Collection.Find(a => true)
                 .SortByDescending(a => a.CreatedOn)
@@ -188,7 +188,7 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (articles == null || !articles.Any())
             {
-                return Array.Empty<IArticleDetailsDataModel>();
+                return Array.Empty<IArticleDetailsDataTransferObject>();
             }
 
             var journals = await this.GetArticleJournalsAsync().ConfigureAwait(false);
@@ -199,7 +199,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 {
                     if (article.DbJournal != null)
                     {
-                        article.Journal = this.mapper.Map<Journal, IArticleJournalDataModel>(article.DbJournal);
+                        article.Journal = this.mapper.Map<Journal, IArticleJournalDataTransferObject>(article.DbJournal);
                     }
 
                     if (article.Journal == null)
@@ -209,7 +209,7 @@ namespace ProcessingTools.Data.Mongo.Documents
                 }
             }
 
-            return articles.ToArray<IArticleDetailsDataModel>();
+            return articles.ToArray<IArticleDetailsDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -219,7 +219,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IArticleDataModel> UpdateAsync(IArticleUpdateModel model)
+        public async Task<IArticleDataTransferObject> UpdateAsync(IArticleUpdateModel model)
         {
             if (model == null)
             {
@@ -299,7 +299,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IArticleDataModel> FinalizeAsync(object id)
+        public async Task<IArticleDataTransferObject> FinalizeAsync(object id)
         {
             if (id == null)
             {

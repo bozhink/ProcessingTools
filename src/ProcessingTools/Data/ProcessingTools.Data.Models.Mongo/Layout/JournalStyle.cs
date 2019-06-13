@@ -18,7 +18,7 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     /// Journal style.
     /// </summary>
     [CollectionName("journalStyles")]
-    public class JournalStyle : IJournalDetailsStyleDataModel
+    public class JournalStyle : IJournalDetailsStyleDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalStyle"/> class.

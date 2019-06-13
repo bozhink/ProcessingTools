@@ -17,8 +17,8 @@ namespace ProcessingTools.Contracts.DataAccess
     /// <typeparam name="TU">Type of the update data model.</typeparam>
     /// <typeparam name="TF">Type of the filter model.</typeparam>
     public interface IDataAccessObject<TM, TD, TI, TU, TF> : IDataAccessObject<TM, TD, TI, TU>
-        where TM : IDataModel
-        where TD : IDataModel
+        where TM : IDataTransferObject
+        where TD : IDataTransferObject
     {
         /// <summary>
         /// Select items.

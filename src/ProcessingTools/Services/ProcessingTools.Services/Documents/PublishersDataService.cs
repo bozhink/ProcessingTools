@@ -38,9 +38,9 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IPublisherDataModel, PublisherModel>()
+                c.CreateMap<IPublisherDataTransferObject, PublisherModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IPublisherDetailsDataModel, PublisherDetailsModel>()
+                c.CreateMap<IPublisherDetailsDataTransferObject, PublisherDetailsModel>()
                     .ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
             });
             this.mapper = mapperConfiguration.CreateMapper();
@@ -117,7 +117,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IPublisherDataModel, PublisherModel>(publisher);
+            var model = this.mapper.Map<IPublisherDataTransferObject, PublisherModel>(publisher);
 
             return model;
         }
@@ -137,7 +137,7 @@ namespace ProcessingTools.Services.Documents
                 return null;
             }
 
-            var model = this.mapper.Map<IPublisherDetailsDataModel, PublisherDetailsModel>(publisher);
+            var model = this.mapper.Map<IPublisherDetailsDataTransferObject, PublisherDetailsModel>(publisher);
 
             return model;
         }
@@ -162,7 +162,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IPublisherModel>();
             }
 
-            var items = publishers.Select(this.mapper.Map<IPublisherDataModel, PublisherModel>).ToArray();
+            var items = publishers.Select(this.mapper.Map<IPublisherDataTransferObject, PublisherModel>).ToArray();
             return items;
         }
 
@@ -186,7 +186,7 @@ namespace ProcessingTools.Services.Documents
                 return Array.Empty<IPublisherDetailsModel>();
             }
 
-            var items = publishers.Select(this.mapper.Map<IPublisherDetailsDataModel, PublisherDetailsModel>).ToArray();
+            var items = publishers.Select(this.mapper.Map<IPublisherDetailsDataTransferObject, PublisherDetailsModel>).ToArray();
             return items;
         }
 

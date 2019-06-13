@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// Publisher
     /// </summary>
     [CollectionName("publishers")]
-    public class Publisher : IPublisherDetailsDataModel
+    public class Publisher : IPublisherDetailsDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Publisher"/> class.

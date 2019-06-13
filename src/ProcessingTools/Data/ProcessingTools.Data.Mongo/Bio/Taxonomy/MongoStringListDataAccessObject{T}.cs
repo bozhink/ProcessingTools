@@ -17,7 +17,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
     /// </summary>
     /// <typeparam name="T">Type of the database model.</typeparam>
     public class MongoStringListDataAccessObject<T> : IStringListDataAccessObject
-        where T : IStringListItem, new()
+        where T : IStringItemDataTransferObject, new()
     {
         private readonly IMongoCollection<T> collection;
 

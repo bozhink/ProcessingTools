@@ -14,7 +14,7 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     /// Reference tag style.
     /// </summary>
     [CollectionName("referenceTagStyles")]
-    public class ReferenceTagStyle : IReferenceDetailsTagStyleDataModel
+    public class ReferenceTagStyle : IReferenceDetailsTagStyleDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceTagStyle"/> class.

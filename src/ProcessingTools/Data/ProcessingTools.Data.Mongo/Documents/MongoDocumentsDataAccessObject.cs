@@ -81,10 +81,10 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+        public async Task<IDocumentDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IDocumentDetailsDataModel> GetDetailsByIdAsync(object id)
+        public async Task<IDocumentDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -99,7 +99,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentDataModel> InsertAsync(IDocumentInsertModel model)
+        public async Task<IDocumentDataTransferObject> InsertAsync(IDocumentInsertModel model)
         {
             if (model == null)
             {
@@ -139,7 +139,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IDocumentDataModel>> SelectAsync(int skip, int take)
+        public async Task<IList<IDocumentDataTransferObject>> SelectAsync(int skip, int take)
         {
             var documents = await this.Collection.Find(Builders<Document>.Filter.Empty)
                .SortByDescending(d => d.CreatedOn)
@@ -150,14 +150,14 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (documents == null || !documents.Any())
             {
-                return Array.Empty<IDocumentDataModel>();
+                return Array.Empty<IDocumentDataTransferObject>();
             }
 
-            return documents.ToArray<IDocumentDataModel>();
+            return documents.ToArray<IDocumentDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IList<IDocumentDetailsDataModel>> SelectDetailsAsync(int skip, int take)
+        public async Task<IList<IDocumentDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
             var documents = await this.Collection.Find(Builders<Document>.Filter.Empty)
                .SortByDescending(d => d.CreatedOn)
@@ -168,10 +168,10 @@ namespace ProcessingTools.Data.Mongo.Documents
 
             if (documents == null || !documents.Any())
             {
-                return Array.Empty<IDocumentDetailsDataModel>();
+                return Array.Empty<IDocumentDetailsDataTransferObject>();
             }
 
-            return documents.ToArray<IDocumentDetailsDataModel>();
+            return documents.ToArray<IDocumentDetailsDataTransferObject>();
         }
 
         /// <inheritdoc/>
@@ -181,7 +181,7 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentDataModel> UpdateAsync(IDocumentUpdateModel model)
+        public async Task<IDocumentDataTransferObject> UpdateAsync(IDocumentUpdateModel model)
         {
             if (model == null)
             {
@@ -240,11 +240,11 @@ namespace ProcessingTools.Data.Mongo.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentDataModel[]> GetArticleDocumentsAsync(string articleId)
+        public async Task<IDocumentDataTransferObject[]> GetArticleDocumentsAsync(string articleId)
         {
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                return Array.Empty<IDocumentDataModel>();
+                return Array.Empty<IDocumentDataTransferObject>();
             }
 
             var result = await this.Collection
@@ -268,11 +268,11 @@ namespace ProcessingTools.Data.Mongo.Documents
                 })
                 .ToListAsync().ConfigureAwait(false);
 
-            return result.ToArray<IDocumentDataModel>();
+            return result.ToArray<IDocumentDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentArticleDataModel> GetDocumentArticleAsync(string articleId)
+        public async Task<IDocumentArticleDataTransferObject> GetDocumentArticleAsync(string articleId)
         {
             if (string.IsNullOrWhiteSpace(articleId))
             {

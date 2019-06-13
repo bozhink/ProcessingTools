@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.DataAccess.Layout.Styles
     /// <summary>
     /// Reference parse styles data access object.
     /// </summary>
-    public interface IReferenceParseStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IReferenceParseStyleDataModel, IReferenceDetailsParseStyleDataModel, IReferenceInsertParseStyleModel, IReferenceUpdateParseStyleModel>
+    public interface IReferenceParseStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IReferenceParseStyleDataTransferObject, IReferenceDetailsParseStyleDataTransferObject, IReferenceInsertParseStyleModel, IReferenceUpdateParseStyleModel>
     {
     }
 }

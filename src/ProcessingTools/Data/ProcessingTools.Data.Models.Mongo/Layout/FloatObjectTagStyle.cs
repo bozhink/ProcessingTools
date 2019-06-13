@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Mongo.Layout
     /// Float object tag style.
     /// </summary>
     [CollectionName("floatObjectTagStyles")]
-    public class FloatObjectTagStyle : IFloatObjectDetailsTagStyleDataModel
+    public class FloatObjectTagStyle : IFloatObjectDetailsTagStyleDataTransferObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectTagStyle"/> class.

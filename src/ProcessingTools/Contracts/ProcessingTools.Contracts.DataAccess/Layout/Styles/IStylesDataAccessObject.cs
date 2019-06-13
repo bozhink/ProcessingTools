@@ -17,12 +17,12 @@ namespace ProcessingTools.Contracts.DataAccess.Layout.Styles
         /// </summary>
         /// <param name="id">Object ID of the style.</param>
         /// <returns>Style data model.</returns>
-        Task<IIdentifiedStyleDataModel> GetStyleByIdAsync(object id);
+        Task<IIdentifiedStyleDataTransferObject> GetStyleByIdAsync(object id);
 
         /// <summary>
         /// Gets styles for select.
         /// </summary>
         /// <returns>Styles data models with object ID, name and description.</returns>
-        Task<IIdentifiedStyleDataModel[]> GetStylesForSelectAsync();
+        Task<IIdentifiedStyleDataTransferObject[]> GetStylesForSelectAsync();
     }
 }

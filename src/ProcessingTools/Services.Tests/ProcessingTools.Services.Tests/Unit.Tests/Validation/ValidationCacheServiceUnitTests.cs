@@ -121,7 +121,7 @@
             var daoMock = new Mock<IValidationCacheDataAccessObject>();
             daoMock
                 .Setup(r => r.GetLastForKeyAsync(key))
-                .Returns(value: Task.FromResult<IValidationCacheDataModel>(null));
+                .Returns(value: Task.FromResult<IValidationCacheDataTransferObject>(null));
 
             var applicationContextMock = new Mock<IApplicationContext>();
 
@@ -144,7 +144,7 @@
             // Arrange
             string key = "some key";
 
-            var valueMock = new Mock<IValidationCacheDataModel>();
+            var valueMock = new Mock<IValidationCacheDataTransferObject>();
 
             var daoMock = new Mock<IValidationCacheDataAccessObject>();
             daoMock
@@ -195,7 +195,7 @@
         {
             // Arrange
             string key = "some key";
-            var valueMock = new Mock<IValidationCacheDataModel>();
+            var valueMock = new Mock<IValidationCacheDataTransferObject>();
 
             var daoMock = new Mock<IValidationCacheDataAccessObject>();
             daoMock
