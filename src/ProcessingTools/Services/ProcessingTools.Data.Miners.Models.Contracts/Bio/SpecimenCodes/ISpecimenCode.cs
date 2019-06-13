@@ -9,7 +9,11 @@ namespace ProcessingTools.Data.Miners.Models.Contracts.Bio.SpecimenCodes
     /// <summary>
     /// Specimen code.
     /// </summary>
-    public interface ISpecimenCode : IContent, IContentTyped, IUrlLinkable
+    public interface ISpecimenCode : IContent, IContentTyped
     {
+        /// <summary>
+        /// Gets the URL.
+        /// </summary>
+        string Url { get; }
     }
 }

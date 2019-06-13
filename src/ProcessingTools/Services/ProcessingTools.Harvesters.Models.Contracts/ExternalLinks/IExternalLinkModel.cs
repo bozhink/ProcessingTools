@@ -4,12 +4,10 @@
 
 namespace ProcessingTools.Harvesters.Models.Contracts.ExternalLinks
 {
-    using ProcessingTools.Contracts.Models;
-
     /// <summary>
     /// External link.
     /// </summary>
-    public interface IExternalLinkModel : IValuable, IFullAddressable
+    public interface IExternalLinkModel
     {
         /// <summary>
         /// Gets the base address.
@@ -17,8 +15,18 @@ namespace ProcessingTools.Harvesters.Models.Contracts.ExternalLinks
         string BaseAddress { get; }
 
         /// <summary>
+        /// Gets the full address.
+        /// </summary>
+        string FullAddress { get; }
+
+        /// <summary>
         /// Gets the URI.
         /// </summary>
         string Uri { get; }
+
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        string Value { get; }
     }
 }
