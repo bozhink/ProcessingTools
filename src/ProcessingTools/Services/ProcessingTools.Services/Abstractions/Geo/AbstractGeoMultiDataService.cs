@@ -21,7 +21,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
     /// <typeparam name="TFilter">Type of filter.</typeparam>
     public abstract class AbstractGeoMultiDataService<TRepository, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>
-        where TModel : class, IIntegerIdentifiable
+        where TModel : class, IIntegerIdentified
         where TFilter : IFilter
     {
         private readonly TRepository repository;
@@ -107,7 +107,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
             await Task.WhenAll(tasks).ConfigureAwait(false);
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
-            return queue.Select(r => (r as INameableIntegerIdentifiable)?.Id).ToArray();
+            return queue.Select(r => (r as INamedIntegerIdentified)?.Id).ToArray();
         }
 
         /// <inheritdoc/>
@@ -140,7 +140,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
             await Task.WhenAll(tasks).ConfigureAwait(false);
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
-            return queue.Select(r => (r as INameableIntegerIdentifiable)?.Id).ToArray();
+            return queue.Select(r => (r as INamedIntegerIdentified)?.Id).ToArray();
         }
     }
 }

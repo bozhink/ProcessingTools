@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Layout.Styles
     /// <summary>
     /// Identified style model.
     /// </summary>
-    public interface IIdentifiedStyleModel : IStyleModel, IStringIdentifiable
+    public interface IIdentifiedStyleModel : IStyleModel, IStringIdentified
     {
     }
 }

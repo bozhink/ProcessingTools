@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Services.Data.Journals
     /// <summary>
     /// Address.
     /// </summary>
-    public interface IAddress : IStringIdentifiable, ProcessingTools.Contracts.Models.IAddressable, IServiceModel
+    public interface IAddress : IStringIdentified, ProcessingTools.Contracts.Models.IAddressed, IServiceModel
     {
         /// <summary>
         /// Gets City ID.

@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Post code.
     /// </summary>
-    public interface IPostCode : IIntegerIdentifiable
+    public interface IPostCode : IIntegerIdentified
     {
         /// <summary>
         /// Gets post code.

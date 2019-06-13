@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Geo.Cities
     /// <summary>
     /// City response model
     /// </summary>
-    public class CityResponseModel : INameableIntegerIdentifiable
+    public class CityResponseModel : INamedIntegerIdentified
     {
         /// <summary>
         /// Gets or sets the Identifier (ID) of the city object.

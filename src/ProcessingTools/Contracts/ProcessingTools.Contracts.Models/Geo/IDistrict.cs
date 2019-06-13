@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// District.
     /// </summary>
-    public interface IDistrict : IGeoSynonymisable<IDistrictSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
+    public interface IDistrict : IGeoSynonymisable<IDistrictSynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IServiceModel
     {
         /// <summary>
         /// Gets country ID.

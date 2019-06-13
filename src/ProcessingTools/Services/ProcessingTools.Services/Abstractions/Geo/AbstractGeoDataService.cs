@@ -19,7 +19,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
     /// <typeparam name="TFilter">Type of filter.</typeparam>
     public abstract class AbstractGeoDataService<TRepository, TModel, TFilter> : IDataServiceAsync<TModel, TFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>
-        where TModel : class, IIntegerIdentifiable
+        where TModel : class, IIntegerIdentified
         where TFilter : IFilter
     {
         private readonly TRepository repository;
@@ -72,7 +72,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model).ConfigureAwait(false) as INameableIntegerIdentifiable;
+            var result = await this.repository.InsertAsync(model).ConfigureAwait(false) as INamedIntegerIdentified;
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result?.Id;

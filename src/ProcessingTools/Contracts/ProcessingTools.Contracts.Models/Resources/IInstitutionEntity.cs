@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Resources
     /// <summary>
     /// Institution.
     /// </summary>
-    public interface IInstitutionEntity : INameableIntegerIdentifiable, IEntityWithSources
+    public interface IInstitutionEntity : INamedIntegerIdentified, IEntityWithSources
     {
     }
 }

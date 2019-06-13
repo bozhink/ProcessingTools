@@ -1,17 +1,17 @@
-﻿// <copyright file="IDefinable.cs" company="ProcessingTools">
+﻿// <copyright file="IAddressed.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Contracts.Models
 {
     /// <summary>
-    /// Model with definition.
+    /// Model with address string.
     /// </summary>
-    public interface IDefinable
+    public interface IAddressed
     {
         /// <summary>
-        /// Gets the definition.
+        /// Gets the address string.
         /// </summary>
-        string Definition { get; }
+        string AddressString { get; }
     }
 }

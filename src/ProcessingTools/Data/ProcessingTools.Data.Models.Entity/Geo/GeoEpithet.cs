@@ -4,7 +4,7 @@
     using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
-    public class GeoEpithet : BaseModel, INameableIntegerIdentifiable, IDataModel
+    public class GeoEpithet : BaseModel, INamedIntegerIdentified, IDataModel
     {
         [Key]
         public int Id { get; set; }

@@ -6,7 +6,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
-    public class Institution : IStringIdentifiable, IInstitution
+    public class Institution : IStringIdentified, IInstitution
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

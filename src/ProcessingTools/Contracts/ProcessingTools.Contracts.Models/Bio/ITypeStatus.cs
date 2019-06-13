@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Bio
     /// <summary>
     /// Type status.
     /// </summary>
-    public interface ITypeStatus : INameableIntegerIdentifiable
+    public interface ITypeStatus : INamedIntegerIdentified
     {
     }
 }

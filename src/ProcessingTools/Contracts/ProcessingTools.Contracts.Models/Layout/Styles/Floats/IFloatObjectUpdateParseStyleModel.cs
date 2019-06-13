@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object update parse style model.
     /// </summary>
-    public interface IFloatObjectUpdateParseStyleModel : IFloatObjectBaseParseStyleModel, IStringIdentifiable
+    public interface IFloatObjectUpdateParseStyleModel : IFloatObjectBaseParseStyleModel, IStringIdentified
     {
     }
 }

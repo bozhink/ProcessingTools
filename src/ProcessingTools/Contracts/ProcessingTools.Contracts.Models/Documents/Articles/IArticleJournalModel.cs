@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Documents.Articles
     /// <summary>
     /// Article journal model.
     /// </summary>
-    public interface IArticleJournalModel : IStringIdentifiable
+    public interface IArticleJournalModel : IStringIdentified
     {
         /// <summary>
         /// Gets or sets the journal's abbreviated name.

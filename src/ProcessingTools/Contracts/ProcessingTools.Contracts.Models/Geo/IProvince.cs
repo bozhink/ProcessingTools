@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Province.
     /// </summary>
-    public interface IProvince : IGeoSynonymisable<IProvinceSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
+    public interface IProvince : IGeoSynonymisable<IProvinceSynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IServiceModel
     {
         /// <summary>
         /// Gets country ID.

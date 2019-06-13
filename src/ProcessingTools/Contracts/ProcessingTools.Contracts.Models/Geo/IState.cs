@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// State.
     /// </summary>
-    public interface IState : IGeoSynonymisable<IStateSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
+    public interface IState : IGeoSynonymisable<IStateSynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IServiceModel
     {
         /// <summary>
         /// Gets country ID.

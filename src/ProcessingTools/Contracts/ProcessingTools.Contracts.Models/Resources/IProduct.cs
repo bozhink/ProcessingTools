@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Resources
     /// <summary>
     /// Product.
     /// </summary>
-    public interface IProduct : INameableIntegerIdentifiable
+    public interface IProduct : INamedIntegerIdentified
     {
     }
 }

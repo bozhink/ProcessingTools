@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     /// Document content.
     /// </summary>
     [CollectionName("documents.content")]
-    public class DocumentContent : IDocumentContentDataModel, IStringIdentifiable, IModified
+    public class DocumentContent : IDocumentContentDataModel, IStringIdentified, IModified
     {
         /// <inheritdoc/>
         [BsonId]

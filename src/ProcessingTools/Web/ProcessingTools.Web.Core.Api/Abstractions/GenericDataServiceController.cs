@@ -12,7 +12,7 @@
 
     public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ControllerBase
         where TFilter : class, IFilter
-        where TServiceModel : class, IIntegerIdentifiable
+        where TServiceModel : class, IIntegerIdentified
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
         where TRequestModel : class
         where TResponseModel : class
@@ -150,7 +150,7 @@
             {
                 var item = this.Mapper.Map<TServiceModel>(entity);
 
-                var property = item.GetType().GetProperty(nameof(IIntegerIdentifiable.Id));
+                var property = item.GetType().GetProperty(nameof(IIntegerIdentified.Id));
                 property.SetValue(item, id);
 
                 var result = await this.service.UpdateAsync(item).ConfigureAwait(false);

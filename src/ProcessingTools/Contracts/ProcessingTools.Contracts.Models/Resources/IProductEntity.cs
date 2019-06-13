@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Resources
     /// <summary>
     /// Produce.
     /// </summary>
-    public interface IProductEntity : INameableIntegerIdentifiable, IEntityWithSources
+    public interface IProductEntity : INamedIntegerIdentified, IEntityWithSources
     {
     }
 }

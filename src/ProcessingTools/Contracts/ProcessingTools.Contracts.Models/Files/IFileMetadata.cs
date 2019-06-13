@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Files
     /// <summary>
     /// File metadata.
     /// </summary>
-    public interface IFileMetadata : IIdentifiable, IDescribed, IContentTyped, ICreated, IModified
+    public interface IFileMetadata : IIdentified, IDescribed, IContentTyped, ICreated, IModified
     {
         /// <summary>
         /// Gets the file name.

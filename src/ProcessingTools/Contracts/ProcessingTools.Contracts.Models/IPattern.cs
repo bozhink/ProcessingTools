@@ -1,17 +1,17 @@
-﻿// <copyright file="ICommentable.cs" company="ProcessingTools">
+﻿// <copyright file="IPattern.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Contracts.Models
 {
     /// <summary>
-    /// Model with comment.
+    /// Model with pattern.
     /// </summary>
-    public interface ICommentable
+    public interface IPattern
     {
         /// <summary>
-        /// Gets the comment.
+        /// Gets the pattern.
         /// </summary>
-        string Comment { get; }
+        string Pattern { get; }
     }
 }

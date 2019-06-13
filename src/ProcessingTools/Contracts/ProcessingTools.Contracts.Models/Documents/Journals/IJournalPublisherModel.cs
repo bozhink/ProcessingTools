@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Documents.Journals
     /// <summary>
     /// Journal publisher model.
     /// </summary>
-    public interface IJournalPublisherModel : IStringIdentifiable
+    public interface IJournalPublisherModel : IStringIdentified
     {
         /// <summary>
         /// Gets the publisher's name.

@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Models.Mongo.Cache
     /// <summary>
     /// Validated object.
     /// </summary>
-    public class ValidatedObject : IStringIdentifiable
+    public class ValidatedObject : IStringIdentified
     {
         /// <summary>
         /// Gets or sets the _id field value.

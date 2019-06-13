@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.DataAccess.Models
     /// <summary>
     /// Identified data model.
     /// </summary>
-    public interface IIdentifiedDataModel : IStringIdentifiable
+    public interface IIdentifiedDataModel : IStringIdentified
     {
         /// <summary>
         /// Gets the object ID.

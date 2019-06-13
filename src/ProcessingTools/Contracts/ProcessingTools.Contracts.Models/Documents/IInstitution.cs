@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Documents
     /// <summary>
     /// Institution.
     /// </summary>
-    public interface IInstitution : IAddressable, IAbbreviatedNameableGuidIdentifiable, ICreated, IModified
+    public interface IInstitution : IAddressable, IAbbreviatedNamedGuidIdentified, ICreated, IModified
     {
     }
 }

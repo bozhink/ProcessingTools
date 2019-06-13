@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Documents.Journals
     /// <summary>
     /// Journal model.
     /// </summary>
-    public interface IJournalModel : IJournalBaseModel, IStringIdentifiable, ICreated, IModified
+    public interface IJournalModel : IJournalBaseModel, IStringIdentified, ICreated, IModified
     {
     }
 }

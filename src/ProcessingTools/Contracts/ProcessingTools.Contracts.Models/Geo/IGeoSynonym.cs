@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Base synonym model for geo-objects.
     /// </summary>
-    public interface IGeoSynonym : INameableIntegerIdentifiable
+    public interface IGeoSynonym : INamedIntegerIdentified
     {
         /// <summary>
         /// Gets parent ID.

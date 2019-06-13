@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Bio.SpecimenCodes
     /// <summary>
     /// Specimen code.
     /// </summary>
-    public interface ISpecimenCode : IDescribed, IUrlLinkable, IPatternHoldable
+    public interface ISpecimenCode : IDescribed, IUrlLinkable, IPattern
     {
     }
 }

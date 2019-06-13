@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Documents
     /// <summary>
     /// File.
     /// </summary>
-    public interface IFile : IGuidIdentifiable, ICreated, IModified, IDescribed
+    public interface IFile : IGuidIdentified, ICreated, IModified, IDescribed
     {
         /// <summary>
         /// Gets content length.

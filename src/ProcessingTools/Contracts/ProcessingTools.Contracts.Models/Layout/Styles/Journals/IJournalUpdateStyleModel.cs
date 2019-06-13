@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Layout.Styles.Journals
     /// <summary>
     /// Journal update style model.
     /// </summary>
-    public interface IJournalUpdateStyleModel : IJournalBaseStyleModel, IStringIdentifiable
+    public interface IJournalUpdateStyleModel : IJournalBaseStyleModel, IStringIdentified
     {
     }
 }

@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
-    public class CollectionLabel : IStringIdentifiable, ICollectionLabel
+    public class CollectionLabel : IStringIdentified, ICollectionLabel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Documents.Documents
     /// <summary>
     /// Document update model.
     /// </summary>
-    public interface IDocumentUpdateModel : IDocumentBaseModel, IStringIdentifiable
+    public interface IDocumentUpdateModel : IDocumentBaseModel, IStringIdentified
     {
     }
 }

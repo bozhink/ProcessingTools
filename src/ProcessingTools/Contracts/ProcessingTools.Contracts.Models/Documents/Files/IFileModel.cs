@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Documents.Files
     /// <summary>
     /// File model.
     /// </summary>
-    public interface IFileModel : IFileBaseModel, IStringIdentifiable, ICreated, IModified
+    public interface IFileModel : IFileBaseModel, IStringIdentified, ICreated, IModified
     {
     }
 }

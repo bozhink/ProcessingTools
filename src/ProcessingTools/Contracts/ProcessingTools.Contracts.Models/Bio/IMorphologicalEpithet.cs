@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Bio
     /// <summary>
     /// Morphological epithet.
     /// </summary>
-    public interface IMorphologicalEpithet : INameableIntegerIdentifiable
+    public interface IMorphologicalEpithet : INamedIntegerIdentified
     {
     }
 }

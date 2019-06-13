@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.History
     /// <summary>
     /// Object history model.
     /// </summary>
-    public interface IObjectHistory : IStringIdentifiable, ICreated
+    public interface IObjectHistory : IStringIdentified, ICreated
     {
         /// <summary>
         /// Gets serialized object data.

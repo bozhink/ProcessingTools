@@ -12,7 +12,7 @@
 
     public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IRepositoryAsync<TModel, TFilter>
         where TEntity : BaseModel, IDataModel
-        where TModel : class, IIntegerIdentifiable
+        where TModel : class, IIntegerIdentified
         where TFilter : IFilter
     {
         protected AbstractGeoRepository(IGeoRepository<TEntity> repository, IApplicationContext applicationContext)

@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Files.Mediatypes
     /// <summary>
     /// Mediatype update model.
     /// </summary>
-    public interface IMediatypeUpdateModel : IMediatypeBaseModel, IStringIdentifiable
+    public interface IMediatypeUpdateModel : IMediatypeBaseModel, IStringIdentified
     {
     }
 }

@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Resources
     /// <summary>
     /// Content type entity.
     /// </summary>
-    public interface IContentType : INameableIntegerIdentifiable
+    public interface IContentType : INamedIntegerIdentified
     {
     }
 }

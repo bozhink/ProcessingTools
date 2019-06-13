@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
-    public class StaffLabel : IStringIdentifiable, IStaffLabel
+    public class StaffLabel : IStringIdentified, IStaffLabel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

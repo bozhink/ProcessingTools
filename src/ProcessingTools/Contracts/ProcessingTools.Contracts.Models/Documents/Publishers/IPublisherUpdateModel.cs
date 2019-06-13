@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Documents.Publishers
     /// <summary>
     /// Publisher update model.
     /// </summary>
-    public interface IPublisherUpdateModel : IPublisherBaseModel, IStringIdentifiable
+    public interface IPublisherUpdateModel : IPublisherBaseModel, IStringIdentified
     {
     }
 }

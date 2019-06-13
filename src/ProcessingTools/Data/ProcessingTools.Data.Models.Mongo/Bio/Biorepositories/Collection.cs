@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
-    public class Collection : IStringIdentifiable, ICollection
+    public class Collection : IStringIdentified, ICollection
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

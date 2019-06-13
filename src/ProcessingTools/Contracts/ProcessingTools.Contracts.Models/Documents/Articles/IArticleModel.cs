@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Documents.Articles
     /// <summary>
     /// Article model.
     /// </summary>
-    public interface IArticleModel : IArticleBaseModel, IStringIdentifiable, ICreated, IModified
+    public interface IArticleModel : IArticleBaseModel, IStringIdentified, ICreated, IModified
     {
         /// <summary>
         /// Gets or sets a value indicating whether article is finalized.

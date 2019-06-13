@@ -1,17 +1,17 @@
-﻿// <copyright file="IAddressable.cs" company="ProcessingTools">
+﻿// <copyright file="IPermalink.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Contracts.Models
 {
     /// <summary>
-    /// Model with address string.
+    /// Model with permalink.
     /// </summary>
-    public interface IAddressable
+    public interface IPermalink
     {
         /// <summary>
-        /// Gets the address string.
+        /// Gets the permalink.
         /// </summary>
-        string AddressString { get; }
+        string Permalink { get; }
     }
 }

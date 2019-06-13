@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Post codes filter.
     /// </summary>
-    public interface IPostCodesFilter : IIdentifiable<int?>, IFilter
+    public interface IPostCodesFilter : IIdentified<int?>, IFilter
     {
         /// <summary>
         /// Gets country.

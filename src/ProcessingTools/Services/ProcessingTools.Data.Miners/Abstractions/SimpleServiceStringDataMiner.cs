@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Miners.Abstractions
     /// <typeparam name="TServiceModel">Type of the service model.</typeparam>
     /// <typeparam name="TFilter">Type of the filter.</typeparam>
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
-        where TServiceModel : class, INameableIntegerIdentifiable
+        where TServiceModel : class, INamedIntegerIdentified
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
         where TFilter : class, IFilter
     {
@@ -52,7 +52,7 @@ namespace ProcessingTools.Data.Miners.Abstractions
 
             for (int i = 0; ; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INameableIntegerIdentifiable.Name), SortOrder.Ascending).ConfigureAwait(false))
+                var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INamedIntegerIdentified.Name), SortOrder.Ascending).ConfigureAwait(false))
                     .Select(t => t.Name)
                     .Distinct()
                     .ToList();

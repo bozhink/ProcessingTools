@@ -24,7 +24,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
     /// <typeparam name="TSynonymFilter">Type of synonym filter.</typeparam>
     public abstract class AbstractGeoSynonymisableDataService<TRepository, TModel, TFilter, TSynonym, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonym, TSynonymFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableRepository<TModel, TSynonym, TSynonymFilter>
-        where TModel : class, IIntegerIdentifiable, IGeoSynonymisable<TSynonym>
+        where TModel : class, IIntegerIdentified, IGeoSynonymisable<TSynonym>
         where TFilter : IFilter
         where TSynonym : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
@@ -91,7 +91,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model: model).ConfigureAwait(false) as INameableIntegerIdentifiable;
+            var result = await this.repository.InsertAsync(model: model).ConfigureAwait(false) as INamedIntegerIdentified;
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result?.Id;
@@ -105,7 +105,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model, synonyms).ConfigureAwait(false) as INameableIntegerIdentifiable;
+            var result = await this.repository.InsertAsync(model, synonyms).ConfigureAwait(false) as INamedIntegerIdentified;
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result?.Id;

@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models
     /// <summary>
     /// Environment user.
     /// </summary>
-    public interface IEnvironmentUser : IStringIdentifiable
+    public interface IEnvironmentUser : IStringIdentified
     {
         /// <summary>
         /// Gets the user name.

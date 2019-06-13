@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
     /// Taxon rank type item.
     /// </summary>
     [CollectionName("taxonRankType")]
-    public class TaxonRankTypeItem : INameableStringIdentifiable
+    public class TaxonRankTypeItem : INamedStringIdentified
     {
         private TaxonRankType rankType;
 

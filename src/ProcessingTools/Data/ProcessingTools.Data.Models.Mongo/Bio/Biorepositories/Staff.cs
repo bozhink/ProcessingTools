@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
-    public class Staff : IStringIdentifiable, IStaff
+    public class Staff : IStringIdentified, IStaff
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

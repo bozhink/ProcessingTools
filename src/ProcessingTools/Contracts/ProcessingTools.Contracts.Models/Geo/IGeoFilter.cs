@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Base filter for geo-objects.
     /// </summary>
-    public interface IGeoFilter : INamed, IIdentifiable<int?>, IFilter
+    public interface IGeoFilter : INamed, IIdentified<int?>, IFilter
     {
     }
 }

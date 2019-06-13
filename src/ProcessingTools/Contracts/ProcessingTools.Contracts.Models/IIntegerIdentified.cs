@@ -1,13 +1,13 @@
-﻿// <copyright file="IIdentifiable.cs" company="ProcessingTools">
+﻿// <copyright file="IIntegerIdentified.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Contracts.Models
 {
     /// <summary>
-    /// Model with object ID.
+    /// Model with integer ID.
     /// </summary>
-    public interface IIdentifiable : IIdentifiable<object>
+    public interface IIntegerIdentified : IIdentified<int>
     {
     }
 }
