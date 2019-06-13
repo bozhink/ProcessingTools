@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.Data.Models.Entity.Geo
 {
-    using ProcessingTools.Contracts.Models;
-
-    public class ProvinceSynonym : Synonym, IDataModel
+    public class ProvinceSynonym : Synonym
     {
         public virtual int ProvinceId { get; set; }
 

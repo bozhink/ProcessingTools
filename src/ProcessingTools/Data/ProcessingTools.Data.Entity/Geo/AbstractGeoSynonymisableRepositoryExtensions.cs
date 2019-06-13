@@ -10,10 +10,10 @@
     using ProcessingTools.Extensions.Linq;
 
     public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableRepository<TModel, TSynonymModel, TSynonymFilter>
-        where TEntity : BaseModel, INamedIntegerIdentified, IDataModel, ISynonymisable<TSynonymEntity>
+        where TEntity : BaseModel, INamedIntegerIdentified, ISynonymisable<TSynonymEntity>
         where TModel : class, IIntegerIdentified, IGeoSynonymisable<TSynonymModel>
         where TFilter : IFilter
-        where TSynonymEntity : BaseModel, INamedIntegerIdentified, IDataModel, ISynonym
+        where TSynonymEntity : BaseModel, INamedIntegerIdentified, ISynonym
         where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {

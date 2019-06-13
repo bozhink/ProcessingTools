@@ -5,7 +5,7 @@
     using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
-    public class City : BaseModel, ISynonymisable<CitySynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IDataModel
+    public class City : BaseModel, ISynonymisable<CitySynonym>, INamedIntegerIdentified, IAbbreviatedNamed
     {
         private ICollection<PostCode> postCodes;
         private ICollection<CitySynonym> synonyms;

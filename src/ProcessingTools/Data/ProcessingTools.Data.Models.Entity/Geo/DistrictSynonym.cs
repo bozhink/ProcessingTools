@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public class DistrictSynonym : Synonym, IDataModel
+    public class DistrictSynonym : Synonym
     {
         public virtual int DistrictId { get; set; }
 

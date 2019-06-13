@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.Data.Models.Entity.Geo
 {
-    using ProcessingTools.Contracts.Models;
-
-    public class RegionSynonym : Synonym, IDataModel
+    public class RegionSynonym : Synonym
     {
         public virtual int RegionId { get; set; }
 

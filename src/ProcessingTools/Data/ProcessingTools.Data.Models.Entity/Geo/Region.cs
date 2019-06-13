@@ -5,7 +5,7 @@
     using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
-    public class Region : BaseModel, ISynonymisable<RegionSynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IDataModel
+    public class Region : BaseModel, ISynonymisable<RegionSynonym>, INamedIntegerIdentified, IAbbreviatedNamed
     {
         private ICollection<District> districts;
         private ICollection<Municipality> municipalities;

@@ -11,7 +11,7 @@
     using ProcessingTools.Extensions.Linq;
 
     public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IRepositoryAsync<TModel, TFilter>
-        where TEntity : BaseModel, IDataModel
+        where TEntity : BaseModel
         where TModel : class, IIntegerIdentified
         where TFilter : IFilter
     {

@@ -4,12 +4,13 @@
 
 namespace ProcessingTools.Contracts.Models.Resources
 {
+    using System;
     using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Abbreviation entity.
     /// </summary>
-    public interface IAbbreviation : INamedGuidIdentified, IDefined, IContentTyped, IEntityWithSources
+    public interface IAbbreviation : INamed, IIdentified<Guid>, IDefined, IContentTyped, IEntityWithSources
     {
     }
 }

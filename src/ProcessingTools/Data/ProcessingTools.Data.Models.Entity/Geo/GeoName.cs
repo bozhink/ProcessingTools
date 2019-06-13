@@ -4,7 +4,7 @@
     using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
-    public class GeoName : BaseModel, INamedIntegerIdentified, IDataModel
+    public class GeoName : BaseModel, INamedIntegerIdentified
     {
         [Key]
         public int Id { get; set; }

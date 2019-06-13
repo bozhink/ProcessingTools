@@ -2,9 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Geo;
-    using ProcessingTools.Contracts.Models;
 
-    public abstract class Synonym : BaseModel, ISynonym, IDataModel
+    public abstract class Synonym : BaseModel, ISynonym
     {
         [Key]
         public int Id { get; set; }

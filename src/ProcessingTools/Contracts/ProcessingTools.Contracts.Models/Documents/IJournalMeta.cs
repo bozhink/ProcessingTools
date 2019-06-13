@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Models.Documents
 {
     /// <summary>
-    /// Journal metadata.
+    /// Journal meta-data.
     /// </summary>
     public interface IJournalMeta : IPermalink, IStringIdentified
     {

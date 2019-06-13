@@ -15,6 +15,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\Data\Geo\**" />
+    <Compile Remove="Services\Data\Resources\**" />
+    <EmbeddedResource Remove="Services\Data\Geo\**" />
+    <EmbeddedResource Remove="Services\Data\Resources\**" />
+    <None Remove="Services\Data\Geo\**" />
+    <None Remove="Services\Data\Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="stylecop.json" />
   </ItemGroup>
 
@@ -36,8 +45,6 @@
   <ItemGroup>
     <Folder Include="Deployment\Bibliography\" />
     <Folder Include="Deployment\Bio\" />
-    <Folder Include="Services\Data\Geo\" />
-    <Folder Include="Services\Data\Resources\" />
   </ItemGroup>
 
   <ItemGroup>
