@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Geo epithet.
     /// </summary>
-    public interface IGeoEpithet : INamedIntegerIdentified, IServiceModel
+    public interface IGeoEpithet : INamedIntegerIdentified
     {
     }
 }

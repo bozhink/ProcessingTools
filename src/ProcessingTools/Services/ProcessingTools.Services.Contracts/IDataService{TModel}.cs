@@ -16,7 +16,6 @@ namespace ProcessingTools.Services.Contracts
     /// </summary>
     /// <typeparam name="TModel">Type of the service model.</typeparam>
     public interface IDataService<TModel>
-        where TModel : IServiceModel
     {
         /// <summary>
         /// Adds new model.
@@ -35,7 +34,7 @@ namespace ProcessingTools.Services.Contracts
         Task<object> UpdateAsync(object userId, TModel model);
 
         /// <summary>
-        /// Deletes model by ID;
+        /// Deletes model by ID.
         /// </summary>
         /// <param name="userId">User ID for validation.</param>
         /// <param name="id">ID of the model to be deleted.</param>

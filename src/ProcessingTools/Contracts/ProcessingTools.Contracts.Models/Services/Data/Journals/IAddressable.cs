@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Services.Data.Journals
     /// <summary>
     /// Addressable.
     /// </summary>
-    public interface IAddressable : IServiceModel
+    public interface IAddressable
     {
         /// <summary>
         /// Gets addresses.

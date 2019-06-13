@@ -9,7 +9,6 @@ namespace ProcessingTools.Services.Contracts
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Data service with details.
@@ -17,8 +16,7 @@ namespace ProcessingTools.Services.Contracts
     /// <typeparam name="TModel">Type of the service model.</typeparam>
     /// <typeparam name="TDetailedModel">Type of the detailed service model.</typeparam>
     public interface IDetailedGenericDataService<TModel, TDetailedModel> : IDataService<TModel>
-        where TModel : IServiceModel
-        where TDetailedModel : TModel, IDetailedModel
+        where TDetailedModel : TModel
     {
         /// <summary>
         /// Gets details of a specified model.

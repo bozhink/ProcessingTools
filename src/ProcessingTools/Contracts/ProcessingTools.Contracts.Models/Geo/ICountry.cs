@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Country.
     /// </summary>
-    public interface ICountry : IGeoSynonymisable<ICountrySynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IServiceModel
+    public interface ICountry : IGeoSynonymisable<ICountrySynonym>, INamedIntegerIdentified, IAbbreviatedNamed
     {
         /// <summary>
         /// Gets calling code.

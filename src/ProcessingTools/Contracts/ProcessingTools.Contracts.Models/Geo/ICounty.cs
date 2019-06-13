@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// County.
     /// </summary>
-    public interface ICounty : IGeoSynonymisable<ICountySynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IServiceModel
+    public interface ICounty : IGeoSynonymisable<ICountySynonym>, INamedIntegerIdentified, IAbbreviatedNamed
     {
         /// <summary>
         /// Gets country ID.

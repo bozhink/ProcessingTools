@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Municipality.
     /// </summary>
-    public interface IMunicipality : IGeoSynonymisable<IMunicipalitySynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IServiceModel
+    public interface IMunicipality : IGeoSynonymisable<IMunicipalitySynonym>, INamedIntegerIdentified, IAbbreviatedNamed
     {
         /// <summary>
         /// Gets country ID.

@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Models.Geo
     /// <summary>
     /// Continent.
     /// </summary>
-    public interface IContinent : IGeoSynonymisable<IContinentSynonym>, INamedIntegerIdentified, IAbbreviatedNamed, IServiceModel
+    public interface IContinent : IGeoSynonymisable<IContinentSynonym>, INamedIntegerIdentified, IAbbreviatedNamed
     {
         /// <summary>
         /// Gets collection of countries.
