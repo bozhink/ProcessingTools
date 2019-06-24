@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "codemirror": "^5.25.2",
-    "monaco-editor": "^0.16.0",
+    "monaco-editor": "^0.17.1",
     "requirejs": "^2.3.3"
   },
   "devDependencies": {
