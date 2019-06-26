@@ -5,61 +5,58 @@
 namespace ProcessingTools.Data.Mongo.Abstractions
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using MongoDB.Driver;
 
     /// <summary>
     /// Generic MongoDB repository.
     /// </summary>
-    /// <typeparam name="T">Type of model.</typeparam>
-    public abstract class MongoRepository<T> : IMongoRepository<T>
+    /// <typeparam name="T">Type of database model.</typeparam>
+    public class MongoRepository<T> : IMongoCrudRepository<T>
         where T : class
     {
-        private readonly IMongoDatabase db;
-        private string collectionName;
+        private readonly IMongoCollection<T> collection;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoRepository{T}"/> class.
         /// </summary>
         /// <param name="databaseProvider">Database provider.</param>
-        protected MongoRepository(IMongoDatabaseProvider databaseProvider)
+        public MongoRepository(IMongoDatabaseProvider databaseProvider)
         {
             if (databaseProvider == null)
             {
                 throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            this.db = databaseProvider.Create();
-            this.CollectionName = MongoCollectionNameFactory.Create<T>();
+            string collectionName = MongoCollectionNameFactory.Create<T>();
+            IMongoDatabase db = databaseProvider.Create();
+
+            this.collection = db.GetCollection<T>(collectionName);
         }
 
-        /// <summary>
-        /// Gets the collection.
-        /// </summary>
-        protected IMongoCollection<T> Collection => this.db.GetCollection<T>(this.CollectionName);
+        /// <inheritdoc/>
+        public virtual IQueryable<T> Query => this.collection.AsQueryable();
 
-        /// <summary>
-        /// Gets or sets the collection name.
-        /// </summary>
-        protected string CollectionName
+        /// <inheritdoc/>
+        public virtual Task<object> AddAsync(T entity)
         {
-            get
+            if (entity == null)
             {
-                return this.collectionName;
+                throw new ArgumentNullException(nameof(entity));
             }
 
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-
-                this.collectionName = value;
-            }
+            return this.AddInternalAsync(entity);
         }
 
         /// <inheritdoc/>
         public virtual Task<object> SaveChangesAsync() => Task.FromResult<object>(0);
+
+        private async Task<object> AddInternalAsync(T entity)
+        {
+            await this.collection.InsertOneAsync(entity).ConfigureAwait(false);
+
+            return entity;
+        }
     }
 }

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Mongo.Abstractions;
 
-    public interface IBiorepositoriesRepository<T> : IMongoGenericRepository<T>
+    public interface IBiorepositoriesRepository<T> : IMongoCrudRepository<T>
         where T : class
     {
     }

@@ -2,13 +2,10 @@
 {
     using System;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using ProcessingTools.Common.Code.Data.Expressions;
-    using ProcessingTools.Contracts.Data.Expressions;
 
-    public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IEntityCrudRepository<TEntity>
+    public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntityCrudRepository<TEntity>
         where TContext : DbContext
         where TEntity : class
         where TDbModel : class, TEntity
@@ -31,83 +28,6 @@
 
             var dbmodel = this.MapEntityToDbModel.Invoke(entity);
             return await this.AddAsync(dbmodel, this.DbSet).ConfigureAwait(false);
-        }
-
-        public virtual Task<long> CountAsync()
-        {
-            return this.DbSet.LongCountAsync();
-        }
-
-        public virtual Task<long> CountAsync(Expression<Func<TEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            return this.DbSet.Where(filter).LongCountAsync();
-        }
-
-        public virtual async Task<object> DeleteAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var entity = await this.GetAsync(id, this.DbSet).ConfigureAwait(false);
-            if (entity == null)
-            {
-                return null;
-            }
-
-            var entry = this.GetEntry(entity);
-            if (entry.State != EntityState.Deleted)
-            {
-                entry.State = EntityState.Deleted;
-                return entity;
-            }
-            else
-            {
-                this.DbSet.Attach(entity);
-                return this.DbSet.Remove(entity);
-            }
-        }
-
-        // TODO
-        public virtual async Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            var query = this.DbSet.Where(filter);
-            var data = await query.ToArrayAsync().ConfigureAwait(false);
-            return data;
-        }
-
-        public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            return this.DbSet.FirstOrDefaultAsync(filter);
-        }
-
-        public virtual async Task<TEntity> GetByIdAsync(object id) => await this.GetAsync(id, this.DbSet).ConfigureAwait(false);
-
-        public virtual async Task<object> UpdateAsync(TEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            var dbmodel = this.MapEntityToDbModel.Invoke(entity);
-            return await this.UpdateAsync(dbmodel, this.DbSet).ConfigureAwait(false);
         }
 
         protected Task<T> AddAsync<T>(T entity, DbSet<T> set)
