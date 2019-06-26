@@ -7,17 +7,16 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
     using ProcessingTools.Data.Mongo.Bio.Biorepositories;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Contracts.Bio.Biorepositories;
     using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
     public class BiorepositoriesInstitutionalCollectionsDataService : IBiorepositoriesInstitutionalCollectionsDataService
     {
-        private readonly IBiorepositoriesRepositoryProvider<Collection> repositoryProvider;
+        private readonly IBiorepositoriesRepository<Collection> repository;
 
-        public BiorepositoriesInstitutionalCollectionsDataService(IBiorepositoriesRepositoryProvider<Collection> repositoryProvider)
+        public BiorepositoriesInstitutionalCollectionsDataService(IBiorepositoriesRepository<Collection> repository)
         {
-            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public Task<ICollection[]> GetAsync(int skip, int take)
@@ -32,27 +31,23 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            return Task.Run(() =>
-            {
-                var repository = this.repositoryProvider.Create();
+            return Task.Run(() => this.GetData(skip, take));
+        }
 
-                var data = repository.Query
-                    .Where(c => c.CollectionCode.Length > 1 && c.CollectionName.Length > 1)
-                    .OrderBy(i => i.Id)
-                    .Skip(skip)
-                    .Take(take)
-                    .Select(c => new ProcessingTools.Services.Models.Data.Bio.Biorepositories.Collection
-                    {
-                        Code = c.CollectionCode,
-                        Name = c.CollectionName,
-                        Url = c.Url,
-                    })
-                    .ToArray<ICollection>();
-
-                repository.TryDispose();
-
-                return data;
-            });
+        private ICollection[] GetData(int skip, int take)
+        {
+            return this.repository.Query
+                .Where(c => c.CollectionCode.Length > 1 && c.CollectionName.Length > 1)
+                .OrderBy(i => i.Id)
+                .Skip(skip)
+                .Take(take)
+                .Select(c => new ProcessingTools.Services.Models.Data.Bio.Biorepositories.Collection
+                {
+                    Code = c.CollectionCode,
+                    Name = c.CollectionName,
+                    Url = c.Url,
+                })
+                .ToArray<ICollection>();
         }
     }
 }

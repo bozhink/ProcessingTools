@@ -10,6 +10,7 @@
     using ProcessingTools.Common.Code.Data.Seed;
     using ProcessingTools.Common.Code.Serialization.Csv;
     using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Bio.Biorepositories;
@@ -66,8 +67,7 @@
             try
             {
                 Type seedModelType = typeof(TSeedModel);
-                var fileNameAttribute = seedModelType.GetCustomAttributes(typeof(FileNameAttribute), false)?.FirstOrDefault() as FileNameAttribute;
-                if (fileNameAttribute == null)
+                if (!(seedModelType.GetCustomAttributes(typeof(FileNameAttribute), false)?.FirstOrDefault() is FileNameAttribute fileNameAttribute))
                 {
                     throw new ProcessingTools.Common.Exceptions.InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
                 }
@@ -87,8 +87,10 @@
                     throw new ProcessingTools.Common.Exceptions.InvalidDataException("De-serialized items are not valid.");
                 }
 
-                var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);
-                var seeder = new SimpleRepositorySeeder<TEntityModel>(repositoryProvider);
+                ICrudRepository<TEntityModel> RepositoryFactory() => new BiorepositoriesRepository<TEntityModel>(this.contextProvider);
+
+                var seeder = new SimpleRepositorySeeder<TEntityModel>(RepositoryFactory);
+
                 await seeder.SeedAsync(items).ConfigureAwait(false);
             }
             catch (Exception e)

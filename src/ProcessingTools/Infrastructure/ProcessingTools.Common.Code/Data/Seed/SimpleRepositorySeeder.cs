@@ -18,15 +18,15 @@ namespace ProcessingTools.Common.Code.Data.Seed
     {
         private const int NumberOfItemsToInsertBeforeRepositoryReset = 100;
 
-        private readonly ICrudRepositoryProvider<TEntity> repositoryProvider;
+        private readonly Func<ICrudRepository<TEntity>> repositoryFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleRepositorySeeder{TEntity}"/> class.
         /// </summary>
-        /// <param name="repositoryProvider">Repository provider.</param>
-        public SimpleRepositorySeeder(ICrudRepositoryProvider<TEntity> repositoryProvider)
+        /// <param name="repositoryFactory">Repository factory.</param>
+        public SimpleRepositorySeeder(Func<ICrudRepository<TEntity>> repositoryFactory)
         {
-            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
+            this.repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace ProcessingTools.Common.Code.Data.Seed
                 throw new ArgumentNullException(nameof(data));
             }
 
-            var repository = this.repositoryProvider.Create();
+            var repository = this.repositoryFactory.Invoke();
 
             int numberOfInsertedItems = 0;
             foreach (var entity in data)
@@ -53,7 +53,7 @@ namespace ProcessingTools.Common.Code.Data.Seed
                 {
                     await repository.SaveChangesAsync().ConfigureAwait(false);
                     repository.TryDispose();
-                    repository = this.repositoryProvider.Create();
+                    repository = this.repositoryFactory.Invoke();
 
                     numberOfInsertedItems = 0;
                 }
