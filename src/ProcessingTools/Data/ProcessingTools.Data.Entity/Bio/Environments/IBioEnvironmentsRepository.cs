@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Entity.Abstractions;
 
-    public interface IBioEnvironmentsRepository<T> : IEntityGenericRepository<T>
+    public interface IBioEnvironmentsRepository<T> : IEntityCrudRepository<T>
         where T : class
     {
     }

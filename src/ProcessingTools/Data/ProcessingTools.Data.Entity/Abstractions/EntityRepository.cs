@@ -6,7 +6,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-    public class EntityRepository<TContext, TEntity> : IEntityCrudRepository<TEntity>, IEntityRepository<TEntity>, IDisposable
+    public class EntityRepository<TContext, TEntity> : IEntityCrudRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
