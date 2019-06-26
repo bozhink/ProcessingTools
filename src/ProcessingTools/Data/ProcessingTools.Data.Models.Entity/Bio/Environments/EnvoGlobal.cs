@@ -1,18 +1,22 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Bio.Environments
-{
-    using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Common.Constants.Data.Bio.Environments;
+﻿// <copyright file="EnvoGlobal.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Data.Models.Entity.Bio.Environments
+{
+    /// <summary>
+    /// ENVO global.
+    /// </summary>
     public class EnvoGlobal
     {
-        [Key]
-        public int Id { get; set; }
+        /// <summary>
+        /// Gets or sets the value of the ENVO global.
+        /// </summary>
+        public string Value { get; set; }
 
-        [Required]
-        public string Content { get; set; }
-
-        [MinLength(ValidationConstants.MinimalLengthOfEnvoGlobalStatus)]
-        [MaxLength(ValidationConstants.MaximalLengthOfEnvoGlobalStatus)]
+        /// <summary>
+        /// Gets or sets the status of the ENVO global.
+        /// </summary>
         public string Status { get; set; }
     }
 }

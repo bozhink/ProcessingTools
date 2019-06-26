@@ -1,40 +1,44 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Bio.Environments
+﻿// <copyright file="EnvoEntity.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Models.Entity.Bio.Environments
 {
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Common.Constants.Data.Bio.Environments;
 
+    /// <summary>
+    /// ENVO entity.
+    /// </summary>
     public class EnvoEntity
     {
-        private ICollection<EnvoName> envoNames;
-
-        public EnvoEntity()
-        {
-            this.envoNames = new HashSet<EnvoName>();
-        }
-
-        [Key]
-        [MinLength(ValidationConstants.MinimalLengthOfEnvoEntityId)]
-        [MaxLength(ValidationConstants.MaximalLengthOfEnvoEntityId)]
+        /// <summary>
+        /// Gets or sets the ID of the ENVO entity.
+        /// </summary>
         public string Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the index of the ENVO entity.
+        /// </summary>
         public int Index { get; set; }
 
-        [MinLength(ValidationConstants.MinimalLengthOfEnvoId)]
-        [MaxLength(ValidationConstants.MaximalLengthOfEnvoId)]
+        /// <summary>
+        /// Gets or sets the ENVO ID.
+        /// </summary>
         public string EnvoId { get; set; }
 
-        public virtual ICollection<EnvoName> EnvoNames
-        {
-            get
-            {
-                return this.envoNames;
-            }
+        /// <summary>
+        /// Gets or sets the collection of related ENVO names.
+        /// </summary>
+        public virtual ICollection<EnvoName> Names { get; set; } = new HashSet<EnvoName>();
 
-            set
-            {
-                this.envoNames = value;
-            }
-        }
+        /// <summary>
+        /// Gets or sets the collection of first groups.
+        /// </summary>
+        public virtual ICollection<EnvoGroup> Groups1 { get; set; } = new HashSet<EnvoGroup>();
+
+        /// <summary>
+        /// Gets or sets the collection of second groups.
+        /// </summary>
+        public virtual ICollection<EnvoGroup> Groups2 { get; set; } = new HashSet<EnvoGroup>();
     }
 }

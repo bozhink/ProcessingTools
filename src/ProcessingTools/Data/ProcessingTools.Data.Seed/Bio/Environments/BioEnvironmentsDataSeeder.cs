@@ -94,9 +94,9 @@
                             var name = l.Split('\t');
                             return new EnvoName
                             {
-                                EnvoEntityId = name[0],
-                                EnvoEntity = entities.FirstOrDefault(e => e.Id == name[0]),
-                                Content = name[1],
+                                EntityId = name[0],
+                                Entity = entities.FirstOrDefault(e => e.Id == name[0]),
+                                Value = name[1],
                             };
                         }))
                         .ToArray();
@@ -128,8 +128,8 @@
                             var group = l.Split('\t');
                             return new EnvoGroup
                             {
-                                EnvoEntityId = group[0],
-                                EnvoGroupId = group[1],
+                                Entity1Id = group[0],
+                                Entity2Id = group[1],
                             };
                         }))
                         .ToArray();
@@ -161,7 +161,7 @@
                             var line = l.Split('\t');
                             return new EnvoGlobal
                             {
-                                Content = line[0],
+                                Value = line[0],
                                 Status = line[1],
                             };
                         }))

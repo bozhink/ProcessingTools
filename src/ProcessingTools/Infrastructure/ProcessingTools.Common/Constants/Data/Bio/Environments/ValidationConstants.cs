@@ -50,8 +50,13 @@ namespace ProcessingTools.Common.Constants.Data.Bio.Environments
         public const int MaximalLengthOfEnvoGlobalStatus = 1;
 
         /// <summary>
-        /// Maximal length of ENVO name content.
+        /// Maximal length of ENVO name value.
         /// </summary>
-        public const int MaximalLengthOfEnvoNameContent = 100;
+        public const int MaximalLengthOfEnvoNameValue = 250;
+
+        /// <summary>
+        /// Maximal length of ENVO global value.
+        /// </summary>
+        public const int MaximalLengthOfEnvoGlobalValue = 250;
     }
 }

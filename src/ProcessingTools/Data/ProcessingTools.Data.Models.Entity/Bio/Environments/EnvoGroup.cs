@@ -1,19 +1,32 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Bio.Environments
-{
-    using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Common.Constants.Data.Bio.Environments;
+﻿// <copyright file="EnvoGroup.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Data.Models.Entity.Bio.Environments
+{
+    /// <summary>
+    /// ENVO group.
+    /// </summary>
     public class EnvoGroup
     {
-        [Key]
-        public int Id { get; set; }
+        /// <summary>
+        /// Gets or sets the ID of the first ENVO entity in the relation.
+        /// </summary>
+        public virtual string Entity1Id { get; set; }
 
-        [MinLength(ValidationConstants.MinimalLengthOfEnvoEntityId)]
-        [MaxLength(ValidationConstants.MaximalLengthOfEnvoEntityId)]
-        public string EnvoEntityId { get; set; }
+        /// <summary>
+        /// Gets or sets the first ENVO entity in the relation.
+        /// </summary>
+        public virtual EnvoEntity Entity1 { get; set; }
 
-        [MinLength(ValidationConstants.MinimalLengthOfEnvoGroupId)]
-        [MaxLength(ValidationConstants.MaximalLengthOfEnvoGroupId)]
-        public string EnvoGroupId { get; set; }
+        /// <summary>
+        /// Gets or sets the ID of the second ENVO entity in the relation.
+        /// </summary>
+        public virtual string Entity2Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the second ENVO entity in the relation.
+        /// </summary>
+        public virtual EnvoEntity Entity2 { get; set; }
     }
 }

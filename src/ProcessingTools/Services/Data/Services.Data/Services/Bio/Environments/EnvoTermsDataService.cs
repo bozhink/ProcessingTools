@@ -33,13 +33,13 @@
             return Task.Run(() =>
             {
                 var data = this.repository.Query
-                    .Where(n => !n.Content.Contains("ENVO"))
-                    .OrderByDescending(n => n.Content.Length)
+                    .Where(n => !n.Value.Contains("ENVO"))
+                    .OrderByDescending(n => n.Value.Length)
                     .Select(n => new EnvoTerm
                     {
-                        EntityId = n.EnvoEntityId,
-                        Content = n.Content,
-                        EnvoId = n.EnvoEntity.EnvoId,
+                        EntityId = n.EntityId,
+                        Content = n.Value,
+                        EnvoId = n.Entity.EnvoId,
                     })
                     .ToArray<IEnvoTerm>();
 
@@ -63,15 +63,15 @@
             return Task.Run(() =>
             {
                 var data = this.repository.Query
-                    .Where(n => !n.Content.Contains("ENVO"))
-                    .OrderByDescending(n => n.Content.Length)
+                    .Where(n => !n.Value.Contains("ENVO"))
+                    .OrderByDescending(n => n.Value.Length)
                     .Skip(skip)
                     .Take(take)
                     .Select(n => new EnvoTerm
                     {
-                        EntityId = n.EnvoEntityId,
-                        Content = n.Content,
-                        EnvoId = n.EnvoEntity.EnvoId,
+                        EntityId = n.EntityId,
+                        Content = n.Value,
+                        EnvoId = n.Entity.EnvoId,
                     })
                     .ToArray<IEnvoTerm>();
 

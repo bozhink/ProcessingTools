@@ -1,19 +1,32 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Bio.Environments
-{
-    using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Common.Constants.Data.Bio.Environments;
+﻿// <copyright file="EnvoName.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Data.Models.Entity.Bio.Environments
+{
+    /// <summary>
+    /// ENVO name.
+    /// </summary>
     public class EnvoName
     {
-        [Key]
-        public int Id { get; set; }
+        /// <summary>
+        /// Gets or sets the ID of the ENVO name.
+        /// </summary>
+        public string Id { get; set; }
 
-        [Required]
-        [MaxLength(ValidationConstants.MaximalLengthOfEnvoNameContent)]
-        public string Content { get; set; }
+        /// <summary>
+        /// Gets or sets the value of the ENVO name.
+        /// </summary>
+        public string Value { get; set; }
 
-        public virtual string EnvoEntityId { get; set; }
+        /// <summary>
+        /// Gets or sets the ID of the related ENVO entity.
+        /// </summary>
+        public virtual string EntityId { get; set; }
 
-        public virtual EnvoEntity EnvoEntity { get; set; }
+        /// <summary>
+        /// Gets or sets the related ENVO entity.
+        /// </summary>
+        public virtual EnvoEntity Entity { get; set; }
     }
 }
