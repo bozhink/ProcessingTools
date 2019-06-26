@@ -20,7 +20,7 @@ namespace ProcessingTools.Geo.Tests.Integration.Tests
         /// <param name="utmEasting">>Expected value for the UTM Easting.</param>
         /// <param name="utmNorthing">Expected value for the UTM Northing.</param>
         /// <param name="latitude">Value for the latitude.</param>
-        /// <param name="longitude">Value for the longitude</param>
+        /// <param name="longitude">Value for the longitude.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(LatitudeLongitudeUtmConverter), Description = "LatitudeLongitudeUtmConverter.Convert to UTM should work.")]
         [TestCase(33, "T", 455000, 4683000, 42.297928, 14.454084)]
         [TestCase(33, "T", 674582, 4498003, 40.614422, 17.063799)]
@@ -50,7 +50,7 @@ namespace ProcessingTools.Geo.Tests.Integration.Tests
         /// <param name="utmEasting">>UTM Easting.</param>
         /// <param name="utmNorthing">UTM Northing.</param>
         /// <param name="latitude">Expected value for the latitude.</param>
-        /// <param name="longitude">Expected value for the longitude</param>
+        /// <param name="longitude">Expected value for the longitude.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(LatitudeLongitudeUtmConverter), Description = "LatitudeLongitudeUtmConverter.Convert to decimal should work.")]
         [TestCase(33, "T", 455000, 4683000, 42.297928, 14.454084)]
         [TestCase(33, "T", 674582, 4498003, 40.614422, 17.063799)]

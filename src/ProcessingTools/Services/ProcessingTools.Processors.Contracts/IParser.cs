@@ -14,7 +14,7 @@ namespace ProcessingTools.Processors.Contracts
         /// <summary>
         /// Asynchronously parse.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task ParseAsync();
     }
 }

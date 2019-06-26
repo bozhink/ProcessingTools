@@ -5,12 +5,13 @@
 namespace ProcessingTools.Extensions.Tests.Integration.Tests
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Extensions;
 
     /// <summary>
-    /// Regex Extensions Tests
+    /// Regex extensions tests.
     /// </summary>
     [TestClass]
     public class RegexExtensionsTests
@@ -29,7 +30,12 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
             const string Text = "The following example has a yield return statement that's inside a for loop. Each iteration of the foreach statement body in Process creates a call to the Power iterator function. Each call to the iterator function proceeds to the next execution of the yield return statement, which occurs during the next iteration of the for loop.";
 
             Regex matchWord = new Regex(@"[^\W\d]+");
-            foreach (var word in matchWord.Match(Text).AsEnumerable())
+
+            var words = matchWord.Match(Text).AsEnumerable().ToList();
+
+            Assert.IsTrue(words.Any());
+
+            foreach (var word in words)
             {
                 this.TestContext.WriteLine(word);
             }

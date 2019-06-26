@@ -14,8 +14,8 @@ namespace ProcessingTools.Processors.Contracts
         /// <summary>
         /// Run a command with specified name.
         /// </summary>
-        /// <param name="commandName">Name of the command to be run</param>
-        /// <returns>Task</returns>
+        /// <param name="commandName">Name of the command to be run.</param>
+        /// <returns>Task.</returns>
         Task<object> RunAsync(string commandName);
     }
 }

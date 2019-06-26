@@ -19,7 +19,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Web.Services.Tools;
 
     /// <summary>
-    /// Autofac bindings for ProcessingTools.Web.Services.*
+    /// Autofac bindings for ProcessingTools.Web.Services.*.
     /// </summary>
     public class ServicesWebAutofacModule : Module
     {

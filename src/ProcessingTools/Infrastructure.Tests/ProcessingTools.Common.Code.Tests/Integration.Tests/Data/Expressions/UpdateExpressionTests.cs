@@ -27,11 +27,11 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             var updateExpression = new UpdateExpression<ITweet>();
 
             // Assert
-            Assert.IsNotNull(updateExpression, "UpdateExpression<ITweet> should not be null.");
+            Assert.IsNotNull(updateExpression);
         }
 
         /// <summary>
-        /// UpdateExpression with default constructor should initialize updateCommands field
+        /// UpdateExpression with default constructor should initialize updateCommands field.
         /// </summary>
         [Test(Description = @"UpdateExpression with default constructor should initialize updateCommands field", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
         public void UpdateExpression_WithDefaultConstructor_ShouldInitializeUpdateCommandsField()
@@ -45,7 +45,7 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             var updateCommandsField = PrivateField.GetInstanceField<UpdateExpression<ITweet>>(updateExpression, UpdateCommandsFieldName);
 
             // Assert
-            Assert.IsNotNull(updateCommandsField, "UpdateCommands field should be correctly initialized.");
+            Assert.IsNotNull(updateCommandsField);
         }
 
         /// <summary>
@@ -58,11 +58,11 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             var updateExpression = new UpdateExpression<ITweet>();
 
             // Assert
-            Assert.IsNotNull(updateExpression.UpdateCommands, "UpdateCommands property should be correctly initialized.");
+            Assert.IsNotNull(updateExpression.UpdateCommands);
         }
 
         /// <summary>
-        /// UpdateExpression set null fieldName should throw ArgumentNullException with "fieldName" ParamName
+        /// UpdateExpression set null fieldName should throw ArgumentNullException with "fieldName" ParamName.
         /// </summary>
         /// <param name="fieldName">Field name.</param>
         [TestCase(null, Description = @"UpdateExpression set null fieldName should throw ArgumentNullException with ""fieldName"" ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
@@ -75,13 +75,13 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             var value = "Some value";
 
             // Act + Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => updateExpression.Set(fieldName, value), @"ArgumentNullException should be thrown.");
+            var exception = Assert.Throws<ArgumentNullException>(() => updateExpression.Set(fieldName, value));
 
-            Assert.AreEqual(nameof(fieldName), exception.ParamName, @"ParamName should be ""fieldName"".");
+            Assert.AreEqual(nameof(fieldName), exception.ParamName);
         }
 
         /// <summary>
-        /// UpdateExpression set valid string fieldName and null value object should register single Set command in UpdateCommands
+        /// UpdateExpression set valid string fieldName and null value object should register single Set command in UpdateCommands.
         /// </summary>
         /// <param name="fieldName">Field name.</param>
         /// <param name="value">Value of the field.</param>
@@ -98,14 +98,14 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             updateExpression.Set(fieldName, value);
 
             // Assert
-            Assert.AreEqual(1, updateExpression.UpdateCommands.Count(), "Number of UpdateCommands should be 1.");
+            Assert.AreEqual(1, updateExpression.UpdateCommands.Count());
 
             var command = updateExpression.UpdateCommands.Single();
-            Assert.IsNotNull(command, "IUpdateCommand object should not be null.");
+            Assert.IsNotNull(command);
 
-            Assert.AreEqual("Set", command.UpdateVerb, @"UpdateVerb of the IUpdateCommand should be ""Set"".");
-            Assert.AreEqual(fieldName, command.FieldName, @"FieldName of the IUpdateCommand should be """ + fieldName + @""".");
-            Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
+            Assert.AreEqual("Set", command.UpdateVerb);
+            Assert.AreEqual(fieldName, command.FieldName);
+            Assert.AreSame(value, command.Value);
         }
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             var value = "Some value";
 
             // Act + Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => updateExpression.Set<string>(null, value), @"ArgumentNullException should be thrown.");
+            var exception = Assert.Throws<ArgumentNullException>(() => updateExpression.Set<string>(null, value));
 
-            Assert.AreEqual("field", exception.ParamName, @"ParamName should be ""field"".");
+            Assert.AreEqual("field", exception.ParamName);
         }
 
         /// <summary>
@@ -138,14 +138,14 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             updateExpression.Set(t => t.Content, value);
 
             // Assert
-            Assert.AreEqual(1, updateExpression.UpdateCommands.Count(), "Number of UpdateCommands should be 1.");
+            Assert.AreEqual(1, updateExpression.UpdateCommands.Count());
 
             var command = updateExpression.UpdateCommands.Single();
-            Assert.IsNotNull(command, "IUpdateCommand object should not be null.");
+            Assert.IsNotNull(command);
 
-            Assert.AreEqual("Set", command.UpdateVerb, @"UpdateVerb of the IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("Content", command.FieldName, @"FieldName of the IUpdateCommand should be ""Content"".");
-            Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
+            Assert.AreEqual("Set", command.UpdateVerb);
+            Assert.AreEqual("Content", command.FieldName);
+            Assert.AreSame(value, command.Value);
         }
 
         /// <summary>
@@ -162,14 +162,14 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             updateExpression.Set(t => t.Content, value);
 
             // Assert
-            Assert.AreEqual(1, updateExpression.UpdateCommands.Count(), "Number of UpdateCommands should be 1.");
+            Assert.AreEqual(1, updateExpression.UpdateCommands.Count());
 
             var command = updateExpression.UpdateCommands.Single();
-            Assert.IsNotNull(command, "IUpdateCommand object should not be null.");
+            Assert.IsNotNull(command);
 
-            Assert.AreEqual("Set", command.UpdateVerb, @"UpdateVerb of the IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("Content", command.FieldName, @"FieldName of the IUpdateCommand should be ""Content"".");
-            Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
+            Assert.AreEqual("Set", command.UpdateVerb);
+            Assert.AreEqual("Content", command.FieldName);
+            Assert.AreSame(value, command.Value);
         }
 
         /// <summary>
@@ -186,14 +186,14 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             updateExpression.Set(t => t.DatePosted, value);
 
             // Assert
-            Assert.AreEqual(1, updateExpression.UpdateCommands.Count(), "Number of UpdateCommands should be 1.");
+            Assert.AreEqual(1, updateExpression.UpdateCommands.Count());
 
             var command = updateExpression.UpdateCommands.Single();
-            Assert.IsNotNull(command, "IUpdateCommand object should not be null.");
+            Assert.IsNotNull(command);
 
-            Assert.AreEqual("Set", command.UpdateVerb, @"UpdateVerb of the IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("DatePosted", command.FieldName, @"FieldName of the IUpdateCommand should be ""DatePosted"".");
-            Assert.AreEqual(value, command.Value, $@"Value of the IUpdateCommand should be ""{value}"".");
+            Assert.AreEqual("Set", command.UpdateVerb);
+            Assert.AreEqual("DatePosted", command.FieldName);
+            Assert.AreEqual(value, command.Value);
         }
 
         /// <summary>
@@ -210,14 +210,14 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             updateExpression.Set(t => t.Faves, value);
 
             // Assert
-            Assert.AreEqual(1, updateExpression.UpdateCommands.Count(), "Number of UpdateCommands should be 1.");
+            Assert.AreEqual(1, updateExpression.UpdateCommands.Count());
 
             var command = updateExpression.UpdateCommands.Single();
-            Assert.IsNotNull(command, "IUpdateCommand object should not be null.");
+            Assert.IsNotNull(command);
 
-            Assert.AreEqual("Set", command.UpdateVerb, @"UpdateVerb of the IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("Faves", command.FieldName, @"FieldName of the IUpdateCommand should be ""Faves"".");
-            Assert.AreEqual(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
+            Assert.AreEqual("Set", command.UpdateVerb);
+            Assert.AreEqual("Faves", command.FieldName);
+            Assert.AreEqual(value, command.Value);
         }
     }
 }

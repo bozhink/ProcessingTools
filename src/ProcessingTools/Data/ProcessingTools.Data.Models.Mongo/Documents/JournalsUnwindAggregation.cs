@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using MongoDB.Bson.Serialization.Attributes;
 
     /// <summary>
-    /// Journals unwind aggregation: { Journals: { ... } }
+    /// Journals unwind aggregation: { Journals: { ... } }.
     /// </summary>
     public class JournalsUnwindAggregation
     {

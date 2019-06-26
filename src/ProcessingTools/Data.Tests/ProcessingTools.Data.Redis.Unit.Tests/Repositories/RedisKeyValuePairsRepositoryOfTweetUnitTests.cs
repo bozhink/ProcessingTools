@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Add valid non-present key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Add valid non-present key and valid value should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_AddValidNonPresentKeyAndValidValue_ShouldWork()
@@ -220,7 +220,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Get valid yet-present key should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Get valid yet-present key should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_GetValidYetPresentKey_ShouldWork()
@@ -280,7 +280,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Remove valid non-present key should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Remove valid non-present key should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_RemoveValidNonPresentKey_ShouldWork()
@@ -307,7 +307,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Remove valid yet-present key should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Remove valid yet-present key should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_RemoveValidYetPresentKey_ShouldWork()
@@ -364,7 +364,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet SaveChanges should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet SaveChanges should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_SaveChanges_ShouldWork()
@@ -416,7 +416,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Update valid yet-present key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Update valid yet-present key and valid value should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_UpdateValidYetPresentKeyAndValidValue_ShouldWork()
@@ -533,7 +533,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Upsert valid non-present key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Upsert valid non-present key and valid value should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_UpsertValidNonPresentKeyAndValidValue_ShouldWork()
@@ -564,7 +564,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyValuePairsRepositoryOfTweet Upsert valid yet-present key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Upsert valid yet-present key and valid value should work.")]
         [MaxTime(1000)]
         public async Task RedisKeyValuePairsRepositoryOfTweet_UpsertValidYetPresentKeyAndValidValue_ShouldWork()

@@ -7,7 +7,7 @@ namespace ProcessingTools.Clients.Contracts.Bio
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Material citations parser,
+    /// Material citations parser.
     /// </summary>
     public interface IMaterialCitationsParser
     {

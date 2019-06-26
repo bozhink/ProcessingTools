@@ -21,7 +21,7 @@ namespace ProcessingTools.Processors.Contracts.Geo.Coordinates
         /// <summary>
         /// Transform UTM coordinates to decimal.
         /// </summary>
-        /// <param name="utmEasting">UTM easting</param>
+        /// <param name="utmEasting">UTM easting.</param>
         /// <param name="utmNorthing">UTM northing.</param>
         /// <param name="utmZone">UTM zone.</param>
         /// <returns>Decimal coordinates.</returns>

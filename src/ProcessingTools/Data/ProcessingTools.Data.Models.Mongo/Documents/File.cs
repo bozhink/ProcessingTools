@@ -12,7 +12,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using ProcessingTools.Contracts.Models.Documents.Documents;
 
     /// <summary>
-    /// File
+    /// File.
     /// </summary>
     [CollectionName("files")]
     public class File : IFileDetailsDataTransferObject, IDocumentFileModel

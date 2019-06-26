@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Shared
     using ProcessingTools.Contracts;
 
     /// <summary>
-    /// User Context
+    /// User context.
     /// </summary>
     public class UserContext : IUserContext
     {

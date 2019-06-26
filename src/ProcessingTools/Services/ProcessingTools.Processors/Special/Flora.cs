@@ -13,7 +13,7 @@ namespace ProcessingTools.Processors.Special
     using ProcessingTools.Processors.Contracts.Special;
 
     /// <summary>
-    /// Flora
+    /// Flora.
     /// </summary>
     public class Flora : IFlora
     {

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Documents.Files
 {
     /// <summary>
-    /// File Delete Request Model
+    /// File delete request model.
     /// </summary>
     public class FileDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {

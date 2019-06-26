@@ -47,16 +47,16 @@ namespace ProcessingTools.Contracts
         /// <summary>
         /// Evaluated an XPath expression using the namespace manager of the document.
         /// </summary>
-        /// <param name="xpath">XPath expression to be evaluated</param>
-        /// <returns><see cref="IEnumerable{T}"/> of nodes</returns>
+        /// <param name="xpath">XPath expression to be evaluated.</param>
+        /// <returns><see cref="IEnumerable{T}"/> of nodes.</returns>
         IEnumerable<XmlNode> SelectNodes(string xpath);
 
         /// <summary>
         /// Evaluated an XPath expression using the namespace manager of the document
         /// and returns the first node.
         /// </summary>
-        /// <param name="xpath">XPath expression to be evaluated</param>
-        /// <returns>First node</returns>
+        /// <param name="xpath">XPath expression to be evaluated.</param>
+        /// <returns>First node.</returns>
         XmlNode SelectSingleNode(string xpath);
     }
 }

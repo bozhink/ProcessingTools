@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Tools.QRCode
     using ValidationConstants = ProcessingTools.Common.Constants.ValidationConstants;
 
     /// <summary>
-    /// QR code request model
+    /// QR code request model.
     /// </summary>
     public class QRCodeRequestModel
     {

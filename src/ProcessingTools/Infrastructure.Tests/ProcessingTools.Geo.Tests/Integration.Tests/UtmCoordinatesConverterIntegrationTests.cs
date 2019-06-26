@@ -21,7 +21,7 @@ namespace ProcessingTools.Geo.Tests.Integration.Tests
         /// <param name="utmEasting">>UTM Easting.</param>
         /// <param name="utmNorthing">UTM Northing.</param>
         /// <param name="latitude">Expected value for latitude.</param>
-        /// <param name="longitude">Expected value for longitude</param>
+        /// <param name="longitude">Expected value for longitude.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(UtmCoordinatesConverter), Description = "UtmCoordinatesConverter.TransformUtm2Decimal should work.")]
         [TestCase("33T", 455000, 4683000, 42.297928, 14.454084)]
         [TestCase("33T", 674582, 4498003, 40.614422, 17.063799)]

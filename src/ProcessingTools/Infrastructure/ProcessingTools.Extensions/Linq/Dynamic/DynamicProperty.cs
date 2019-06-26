@@ -7,7 +7,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     using System;
 
     /// <summary>
-    /// Dynamic Property
+    /// Dynamic property.
     /// </summary>
     public class DynamicProperty
     {

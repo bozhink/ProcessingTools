@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Documents.Files
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// File Details View Model
+    /// File details view model.
     /// </summary>
     public class FileDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {

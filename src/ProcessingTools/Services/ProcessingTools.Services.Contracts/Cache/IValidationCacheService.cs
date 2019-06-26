@@ -17,7 +17,7 @@ namespace ProcessingTools.Services.Contracts.Cache
         /// </summary>
         /// <param name="key">Key string for the cache item.</param>
         /// <param name="value"><see cref="IValidationCacheModel"/> item to be cached.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> AddAsync(string key, IValidationCacheModel value);
 
         /// <summary>

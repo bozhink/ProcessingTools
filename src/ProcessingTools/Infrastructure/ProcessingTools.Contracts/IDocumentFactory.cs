@@ -12,8 +12,8 @@ namespace ProcessingTools.Contracts
         /// <summary>
         /// Creates instance of <see cref="IDocument"/> with specified content.
         /// </summary>
-        /// <param name="content">Content of the resultant document</param>
-        /// <returns><see cref="IDocument"/> object with specified content</returns>
+        /// <param name="content">Content of the resultant document.</param>
+        /// <returns><see cref="IDocument"/> object with specified content.</returns>
         IDocument Create(string content);
     }
 }

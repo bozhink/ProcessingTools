@@ -9,14 +9,14 @@ namespace ProcessingTools.Contracts
     /// <summary>
     /// Generic data requester.
     /// </summary>
-    /// <typeparam name="T">Type of returned object</typeparam>
+    /// <typeparam name="T">Type of returned object.</typeparam>
     public interface IDataRequester<T>
     {
         /// <summary>
         /// Requests related data to specified content.
         /// </summary>
-        /// <param name="content">Search phrase</param>
-        /// <returns>Task of output type</returns>
+        /// <param name="content">Search phrase.</param>
+        /// <returns>Task of output type.</returns>
         Task<T> RequestDataAsync(string content);
     }
 }

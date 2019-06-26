@@ -22,18 +22,18 @@ namespace ProcessingTools.Contracts.Data.Expressions
         /// <summary>
         /// Execute Set command.
         /// </summary>
-        /// <typeparam name="TField">Type of the field to be updated</typeparam>
-        /// <param name="field">Field selector</param>
-        /// <param name="value">Value to be set</param>
-        /// <returns>Update expression to be chained</returns>
+        /// <typeparam name="TField">Type of the field to be updated.</typeparam>
+        /// <param name="field">Field selector.</param>
+        /// <param name="value">Value to be set.</param>
+        /// <returns>Update expression to be chained.</returns>
         IUpdateExpression<T> Set<TField>(Expression<Func<T, TField>> field, TField value);
 
         /// <summary>
         /// Execute Set command.
         /// </summary>
-        /// <param name="fieldName">Name of the field for update</param>
-        /// <param name="value">Value to be set</param>
-        /// <returns>Update expression to be chained</returns>
+        /// <param name="fieldName">Name of the field for update.</param>
+        /// <param name="value">Value to be set.</param>
+        /// <returns>Update expression to be chained.</returns>
         IUpdateExpression<T> Set(string fieldName, object value);
     }
 }

@@ -10,16 +10,16 @@ namespace ProcessingTools.Processors.Contracts
     /// <summary>
     /// Generic validator.
     /// </summary>
-    /// <typeparam name="TContext">Type of context to be validated</typeparam>
-    /// <typeparam name="TResult">Type of output object</typeparam>
+    /// <typeparam name="TContext">Type of context to be validated.</typeparam>
+    /// <typeparam name="TResult">Type of output object.</typeparam>
     public interface IValidator<in TContext, TResult>
     {
         /// <summary>
         /// Asynchronously validate specified context.
         /// </summary>
-        /// <param name="context">Context to be validated</param>
-        /// <param name="reporter"><see cref="IReporter"/> object to build validation report</param>
-        /// <returns>Task of output object</returns>
+        /// <param name="context">Context to be validated.</param>
+        /// <param name="reporter"><see cref="IReporter"/> object to build validation report.</param>
+        /// <returns>Task of output object.</returns>
         Task<TResult> ValidateAsync(TContext context, IReporter reporter);
     }
 }

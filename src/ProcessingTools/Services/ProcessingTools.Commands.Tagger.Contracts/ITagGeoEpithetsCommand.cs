@@ -5,7 +5,7 @@
 namespace ProcessingTools.Commands.Tagger.Contracts
 {
     /// <summary>
-    /// Tag Geo Epithets Command
+    /// Tag geo epithets command.
     /// </summary>
     public interface ITagGeoEpithetsCommand : ITaggerCommand
     {

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Shared
 {
     /// <summary>
-    /// Route view model
+    /// Route view model.
     /// </summary>
     public class RouteViewModel
     {

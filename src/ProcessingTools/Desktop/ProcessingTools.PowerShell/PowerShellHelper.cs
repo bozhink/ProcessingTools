@@ -18,7 +18,7 @@ namespace ProcessingTools.PowerShell
         /// <summary>
         /// Initializes a new instance of the <see cref="PowerShellHelper"/> class.
         /// </summary>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public PowerShellHelper(ILogger<PowerShellHelper> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

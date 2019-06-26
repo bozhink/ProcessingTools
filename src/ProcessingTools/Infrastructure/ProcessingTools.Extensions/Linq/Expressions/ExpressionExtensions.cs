@@ -23,7 +23,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <param name="propertyName">Property name.</param>
         /// <returns>Expression.</returns>
         /// <remarks>
-        /// See http://stackoverflow.com/questions/27669993/creating-a-property-selector-expression-from-a-string
+        /// See http://stackoverflow.com/questions/27669993/creating-a-property-selector-expression-from-a-string.
         /// </remarks>
         public static Expression<Func<T1, T2>> ToExpressionFromPropertyName<T1, T2>(this string propertyName)
         {

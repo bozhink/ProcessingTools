@@ -7,32 +7,32 @@ namespace ProcessingTools.Processors.Contracts.Special
     using ProcessingTools.Contracts;
 
     /// <summary>
-    /// Test Features Provider
+    /// Test features provider.
     /// </summary>
     public interface ITestFeaturesProvider
     {
         /// <summary>
-        /// Extract System Checklist Authority
+        /// Extract system checklist authority.
         /// </summary>
-        /// <param name="document">Document context</param>
+        /// <param name="document">Document context.</param>
         void ExtractSystemChecklistAuthority(IDocument document);
 
         /// <summary>
-        /// Move Authority Taxon Name Part To Taxon Authority Tag In TaxPub TpNomenclaure
+        /// Move authority taxon name part to taxon authority tag in TaxPub tp:nomenclature.
         /// </summary>
-        /// <param name="document">Document context</param>
-        void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure(IDocument document);
+        /// <param name="document">Document context.</param>
+        void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclature(IDocument document);
 
         /// <summary>
-        /// Re-numerate Foot-Notes
+        /// Re-numerate foot-notes.
         /// </summary>
-        /// <param name="document">Document context</param>
+        /// <param name="document">Document context.</param>
         void RenumerateFootNotes(IDocument document);
 
         /// <summary>
-        /// Wrap Empty Superscripts In Footnote Xref Tag
+        /// Wrap empty superscripts in footnote xref tag.
         /// </summary>
-        /// <param name="document">Document context</param>
+        /// <param name="document">Document context.</param>
         void WrapEmptySuperscriptsInFootnoteXrefTag(IDocument document);
     }
 }

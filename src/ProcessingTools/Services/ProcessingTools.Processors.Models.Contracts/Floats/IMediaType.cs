@@ -20,7 +20,7 @@ namespace ProcessingTools.Processors.Models.Contracts.Floats
         string MimeSubtype { get; }
 
         /// <summary>
-        /// Gets mime-type;
+        /// Gets mime-type.
         /// </summary>
         string MimeType { get; }
     }

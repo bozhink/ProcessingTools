@@ -29,14 +29,14 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     [Area(AreaNames.Documents)]
     public class TaggerController : Controller
     {
-        private readonly IDocumentProcessingService service;
         private readonly ILogger logger;
+        private readonly IDocumentProcessingService service;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TaggerController"/> class.
         /// </summary>
-        /// <param name="service">Service</param>
-        /// <param name="logger">Logger</param>
+        /// <param name="service">Service.</param>
+        /// <param name="logger">Logger.</param>
         public TaggerController(IDocumentProcessingService service, ILogger<TaggerController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
@@ -101,6 +101,29 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
+        /// /Documents/Tagger/UpdateArticleDocumentsMeta.
+        /// </summary>
+        /// <param name="articleId">Article object ID.</param>
+        /// <returns><see cref="IActionResult"/>.</returns>
+        public async Task<IActionResult> UpdateArticleDocumentsMeta(string articleId)
+        {
+            try
+            {
+                var result = await this.service.UpdateArticleDocumentsMetaAsync(articleId).ConfigureAwait(false);
+                this.logger.LogInformation("{0}", result);
+                return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("Error", ex.ToString());
+                this.logger.LogError(ex, "TaggerController.UpdateArticleDocumentsMeta");
+            }
+
+            this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            return this.View();
+        }
+
+        /// <summary>
         /// /Documents/Tagger/UpdateDocumentMeta.
         /// </summary>
         /// <param name="documentId">Document object ID.</param>
@@ -125,28 +148,8 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Tagger/UpdateArticleDocumentsMeta.
+        /// Tagger core.
         /// </summary>
-        /// <param name="articleId">Article object ID.</param>
-        /// <returns><see cref="IActionResult"/>.</returns>
-        public async Task<IActionResult> UpdateArticleDocumentsMeta(string articleId)
-        {
-            try
-            {
-                var result = await this.service.UpdateArticleDocumentsMetaAsync(articleId).ConfigureAwait(false);
-                this.logger.LogInformation("{0}", result);
-                return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
-            }
-            catch (Exception ex)
-            {
-                this.ModelState.AddModelError("Error", ex.ToString());
-                this.logger.LogError(ex, "TaggerController.UpdateArticleDocumentsMeta");
-            }
-
-            this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
-            return this.View();
-        }
-
         public class TaggerCore
         {
             private readonly Func<Type, ITaggerCommand> commandFactory;
@@ -156,6 +159,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             private readonly IDocumentPreWriteNormalizer documentWriteNormalizer;
             private IDictionary<Type, ICommandInfo> commandsInformation;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="TaggerCore"/> class.
+            /// </summary>
+            /// <param name="commandInfoProvider">Instance of <see cref="ICommandInfoProvider"/>.</param>
+            /// <param name="documentFactory">Instance of <see cref="IDocumentFactory"/>.</param>
+            /// <param name="documentReadNormalizer">Instance of <see cref="IDocumentPostReadNormalizer"/>.</param>
+            /// <param name="documentWriteNormalizer">Instance of <see cref="IDocumentPreWriteNormalizer"/>.</param>
+            /// <param name="commandFactory">Command factory.</param>
+            /// <param name="commandSettingsFactory">Command settings factory.</param>
             public TaggerCore(
                 ICommandInfoProvider commandInfoProvider,
                 IDocumentFactory documentFactory,
@@ -178,32 +190,6 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.GetCommands(commandInfoProvider);
             }
 
-            private void GetCommands(ICommandInfoProvider commandInfoProvider)
-            {
-                commandInfoProvider.ProcessInformation();
-
-                var commandsInformation = commandInfoProvider.CommandsInformation
-                    .Where(p => p.Key.GetInterfaces()
-                    .Contains(typeof(ISimpleTaggerCommand)));
-
-                this.commandsInformation = new Dictionary<Type, ICommandInfo>();
-                foreach (var commandInformation in commandsInformation)
-                {
-                    this.commandsInformation.Add(commandInformation.Key, commandInformation.Value);
-                }
-            }
-
-            private IList<CommandSelectListItem> GetCommandsAsSelectList()
-            {
-                return this.commandsInformation.Values.OrderBy(i => i.Description)
-                    .Select(c => new CommandSelectListItem
-                    {
-                        CommandValue = c.Name,
-                        CommandText = c.Description,
-                    })
-                    .ToList();
-            }
-
             /// <summary>
             /// Executes command specified by ID.
             /// </summary>
@@ -211,6 +197,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             /// <param name="xmldocument"><see cref="XmlDocument"/> to be processed.</param>
             /// <returns>Processed <see cref="XmlDocument"/>.</returns>
             /// <example>
+            ///  ```
             ///  var xmldocument = new XmlDocument(); // Read document
             /// await this.RunCommand(model, xmldocument)
             ///    .ContinueWith(_ =>
@@ -220,6 +207,8 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             ///        return;
             ///    })
             ///    .ConfigureAwait(false);
+            /// ```
+            /// .
             /// </example>
             public async Task<XmlDocument> RunCommand(string commandId, XmlDocument xmldocument)
             {
@@ -258,20 +247,46 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return result;
             }
 
+            private void GetCommands(ICommandInfoProvider commandInfoProvider)
+            {
+                commandInfoProvider.ProcessInformation();
+
+                var commandsInformations = commandInfoProvider.CommandsInformation
+                    .Where(p => p.Key.GetInterfaces()
+                    .Contains(typeof(ISimpleTaggerCommand)));
+
+                this.commandsInformation = new Dictionary<Type, ICommandInfo>();
+                foreach (var commandInformation in commandsInformations)
+                {
+                    this.commandsInformation.Add(commandInformation.Key, commandInformation.Value);
+                }
+            }
+
+            private IList<CommandSelectListItem> GetCommandsAsSelectList()
+            {
+                return this.commandsInformation.Values.OrderBy(i => i.Description)
+                    .Select(c => new CommandSelectListItem
+                    {
+                        CommandValue = c.Name,
+                        CommandText = c.Description,
+                    })
+                    .ToList();
+            }
+
             /// <summary>
             /// Command select list item.
             /// </summary>
             public class CommandSelectListItem
             {
                 /// <summary>
+                /// Gets or sets the command description as the text field.
+                /// </summary>
+                public string CommandText { get; set; }
+
+                /// <summary>
                 /// Gets or sets the command ID as the value field.
                 /// </summary>
                 public string CommandValue { get; set; }
-
-                /// <summary>
-                /// Gets or sets the commad description as the text field.
-                /// </summary>
-                public string CommandText { get; set; }
             }
         }
     }

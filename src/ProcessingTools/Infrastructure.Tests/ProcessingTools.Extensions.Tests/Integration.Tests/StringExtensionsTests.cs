@@ -9,7 +9,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
     using ProcessingTools.Extensions;
 
     /// <summary>
-    /// String Extensions Tests
+    /// String extensions tests.
     /// </summary>
     [TestClass]
     public class StringExtensionsTests

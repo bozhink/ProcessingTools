@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
-    /// /Documents/Publishers
+    /// /Documents/Publishers.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Documents)]
@@ -66,11 +66,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Publishers/Index
+        /// /Documents/Publishers/Index.
         /// </summary>
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of publishers per page.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
@@ -105,9 +105,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Publishers/Create
+        /// GET /Documents/Publishers/Create.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
@@ -134,9 +134,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Documents/Publishers/Create
+        /// POST /Documents/Publishers/Create.
         /// </summary>
-        /// <param name="model"><see cref="PublisherCreateRequestModel"/></param>
+        /// <param name="model"><see cref="PublisherCreateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,10 +188,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Publishers/Edit/id
+        /// GET /Documents/Publishers/Edit/id.
         /// </summary>
-        /// <param name="id">ID of the publisher</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the publisher.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
@@ -218,9 +218,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Documents/Publishers/Edit
+        /// POST /Documents/Publishers/Edit.
         /// </summary>
-        /// <param name="model"><see cref="PublisherUpdateRequestModel"/></param>
+        /// <param name="model"><see cref="PublisherUpdateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -272,10 +272,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Publishers/Delete/id
+        /// GET /Documents/Publishers/Delete/id.
         /// </summary>
-        /// <param name="id">ID of the publisher</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the publisher.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
@@ -302,9 +302,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Documents/Publishers/Delete
+        /// POST /Documents/Publishers/Delete.
         /// </summary>
-        /// <param name="model"><see cref="PublisherDeleteRequestModel"/></param>
+        /// <param name="model"><see cref="PublisherDeleteRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -356,10 +356,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Publishers/Details/id
+        /// GET /Documents/Publishers/Details/id.
         /// </summary>
-        /// <param name="id">ID of the publisher</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the publisher.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
@@ -385,7 +385,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

@@ -8,7 +8,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     using System.Text;
 
     /// <summary>
-    /// Dynamic Class
+    /// Dynamic class.
     /// </summary>
     public abstract class DynamicClass
     {

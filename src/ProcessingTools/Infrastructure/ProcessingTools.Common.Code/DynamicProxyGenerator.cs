@@ -11,7 +11,7 @@ namespace ProcessingTools.Common.Code
 
     /// <summary>
     /// Dynamic proxy generator.
-    /// See http://geekswithblogs.net/abhijeetp/archive/2010/04/04/a-simple-dynamic-proxy.aspx
+    /// See http://geekswithblogs.net/abhijeetp/archive/2010/04/04/a-simple-dynamic-proxy.aspx.
     /// </summary>
     public static class DynamicProxyGenerator
     {

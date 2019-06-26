@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors.Tests.Integration.Tests
     using ProcessingTools.Processors.Models.Geo.Coordinates;
 
     /// <summary>
-    /// <see cref="Coordinate2DParser"/> Integration Tests
+    /// <see cref="Coordinate2DParser"/> integration tests.
     /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(Coordinate2DParser))]
     public class Coordinate2DParserIntegrationTests

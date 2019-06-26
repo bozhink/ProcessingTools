@@ -7,7 +7,7 @@ namespace ProcessingTools.Harvesters.Models.Meta
     using ProcessingTools.Harvesters.Models.Contracts.Meta;
 
     /// <summary>
-    /// Author
+    /// Author.
     /// </summary>
     internal class Author : IAuthor
     {

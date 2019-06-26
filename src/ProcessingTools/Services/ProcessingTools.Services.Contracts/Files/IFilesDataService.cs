@@ -77,15 +77,15 @@ namespace ProcessingTools.Services.Contracts.Files
         /// </summary>
         /// <param name="id">ID of the file.</param>
         /// <param name="stream"><see cref="Stream"/> of the file content.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> WriteAsync(object id, Stream stream);
 
         /// <summary>
         /// Writes content of a <see cref="StreamReader"/> to a file.
         /// </summary>
         /// <param name="id">ID of the file.</param>
-        /// <param name="streamReader"><see cref="StreamReader"/> for the file content</param>
-        /// <returns>Task</returns>
+        /// <param name="streamReader"><see cref="StreamReader"/> for the file content.</param>
+        /// <returns>Task.</returns>
         Task<object> WriteAsync(object id, StreamReader streamReader);
     }
 }

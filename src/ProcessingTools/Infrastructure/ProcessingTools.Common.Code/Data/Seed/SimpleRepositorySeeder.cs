@@ -33,7 +33,7 @@ namespace ProcessingTools.Common.Code.Data.Seed
         /// Seeds repository with data.
         /// </summary>
         /// <param name="data">Data to be used for seeding.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public async Task SeedAsync(params TEntity[] data)
         {
             if (data == null || data.Length < 1)

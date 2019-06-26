@@ -37,16 +37,16 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonToClassesController"/> class.
         /// </summary>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public JsonToClassesController(ILogger<JsonToClassesController> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
-        /// GET Encode
+        /// GET Encode.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
@@ -60,9 +60,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// JSON-to-C#
+        /// JSON-to-C#.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(JsonToCSharpActionName)]
         public IActionResult JsonToCSharp(string returnUrl)

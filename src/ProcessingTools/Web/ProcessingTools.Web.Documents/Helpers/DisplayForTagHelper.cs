@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Documents.Helpers
 
     /// <summary>
     /// DisplayFor tag helper.
-    /// See https://stackoverflow.com/questions/32671644/mvc6-alternative-to-html-displayfor
+    /// See https://stackoverflow.com/questions/32671644/mvc6-alternative-to-html-displayfor.
     /// </summary>
     [HtmlTargetElement("p", Attributes = DisplayForAttributeName)]
     [HtmlTargetElement("div", Attributes = DisplayForAttributeName)]

@@ -67,7 +67,7 @@ namespace ProcessingTools.Extensions.Linq
         /// </summary>
         /// <param name="source">Source collection.</param>
         /// <param name="action">The <see cref="Action{Object}"/> delegate to perform on each element of the <see cref="IEnumerable"/>.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public static Task ForEachAsync(this IEnumerable source, Action<object> action)
         {
             if (source == null)
@@ -95,7 +95,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="T">Type of source collection.</typeparam>
         /// <param name="source">Source collection.</param>
         /// <param name="action">The <see cref="Action{T}"/> delegate to perform on each element of the <see cref="IEnumerable{T}"/>.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public static Task ForEachAsync<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (source == null)
@@ -122,7 +122,7 @@ namespace ProcessingTools.Extensions.Linq
         /// </summary>
         /// <param name="source">Source collection.</param>
         /// <param name="action">The <see cref="Func{Object,Task}"/> delegate to perform on each element of the <see cref="IEnumerable"/>.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public static Task ForEachAsync(this IEnumerable source, Func<object, Task> action)
         {
             if (source == null)
@@ -150,7 +150,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="T">Type of source collection.</typeparam>
         /// <param name="source">Source collection.</param>
         /// <param name="action">The <see cref="Func{Object,Task}"/> delegate to perform on each element of the <see cref="IEnumerable{T}"/>.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public static Task ForEachAsync<T>(this IEnumerable<T> source, Func<object, Task> action)
         {
             if (source == null)
@@ -247,7 +247,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">Source collection to be evaluated.</param>
         /// <returns>Result of the logical OR operation.</returns>
         /// <remarks>
-        /// See https://www.codeproject.com/Tips/1264928/Throttling-Multiple-Tasks-to-Process-Requests-in-C
+        /// See https://www.codeproject.com/Tips/1264928/Throttling-Multiple-Tasks-to-Process-Requests-in-C.
         /// </remarks>
         public static bool LogicalOr(this IEnumerable<Func<bool>> source)
         {

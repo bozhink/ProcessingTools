@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
     using System.Collections.ObjectModel;
 
     /// <summary>
-    /// Enum type model description
+    /// Enum type model description.
     /// </summary>
     public class EnumTypeModelDescription : ModelDescription
     {

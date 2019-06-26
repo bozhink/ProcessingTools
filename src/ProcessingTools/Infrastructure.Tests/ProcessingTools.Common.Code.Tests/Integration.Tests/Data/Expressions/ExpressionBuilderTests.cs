@@ -29,14 +29,14 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
             var updateExpression = ExpressionBuilder<ITweet>.UpdateExpression.Set(t => t.Content, value);
 
             // Assert
-            Assert.AreEqual(1, updateExpression.UpdateCommands.Count(), "Number of UpdateCommands should be 1.");
+            Assert.AreEqual(1, updateExpression.UpdateCommands.Count());
 
             var command = updateExpression.UpdateCommands.Single();
-            Assert.IsNotNull(command, "IUpdateCommand object should not be null.");
+            Assert.IsNotNull(command);
 
-            Assert.AreEqual("Set", command.UpdateVerb, @"UpdateVerb of the IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("Content", command.FieldName, @"FieldName of the IUpdateCommand should be ""Content"".");
-            Assert.AreSame(value, command.Value, @"Value of the IUpdateCommand should be """ + value + @""".");
+            Assert.AreEqual("Set", command.UpdateVerb);
+            Assert.AreEqual("Content", command.FieldName);
+            Assert.AreSame(value, command.Value);
         }
 
         /// <summary>
@@ -56,21 +56,21 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
 
             // Assert
             var commands = updateExpression.UpdateCommands.ToArray();
-            Assert.IsNotNull(commands, "UpdateCommands object should not be null.");
+            Assert.IsNotNull(commands);
 
-            Assert.AreEqual(2, commands.Length, "Number of UpdateCommands should be 2.");
+            Assert.AreEqual(2, commands.Length);
 
-            Assert.AreEqual("Set", commands[0].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("Content", commands[0].FieldName, @"FieldName of the first IUpdateCommand should be ""Content"".");
-            Assert.AreSame(contentValue, commands[0].Value, @"Value of the first IUpdateCommand should be """ + contentValue + @""".");
+            Assert.AreEqual("Set", commands[0].UpdateVerb);
+            Assert.AreEqual("Content", commands[0].FieldName);
+            Assert.AreSame(contentValue, commands[0].Value);
 
-            Assert.AreEqual("Set", commands[1].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("DatePosted", commands[1].FieldName, @"FieldName of the first IUpdateCommand should be ""DatePosted"".");
-            Assert.AreEqual(datePostedValue, commands[1].Value, $@"Value of the first IUpdateCommand should be ""{datePostedValue}"".");
+            Assert.AreEqual("Set", commands[1].UpdateVerb);
+            Assert.AreEqual("DatePosted", commands[1].FieldName);
+            Assert.AreEqual(datePostedValue, commands[1].Value);
         }
 
         /// <summary>
-        /// ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands
+        /// ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands.
         /// </summary>
         [Test(Description = @"ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(ExpressionBuilder<ITweet>))]
         public void ExpressionBuilder_WithThreeDifferentValidSet_ShouldCreateThreeSetCommandInUpdateCommands()
@@ -88,21 +88,21 @@ namespace ProcessingTools.Data.Common.Tests.Expressions
 
             // Assert
             var commands = updateExpression.UpdateCommands.ToArray();
-            Assert.IsNotNull(commands, "UpdateCommands object should not be null.");
+            Assert.IsNotNull(commands);
 
-            Assert.AreEqual(3, commands.Length, "Number of UpdateCommands should be 3.");
+            Assert.AreEqual(3, commands.Length);
 
-            Assert.AreEqual("Set", commands[0].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("Content", commands[0].FieldName, @"FieldName of the first IUpdateCommand should be ""Content"".");
-            Assert.AreSame(contentValue, commands[0].Value, @"Value of the first IUpdateCommand should be """ + contentValue + @""".");
+            Assert.AreEqual("Set", commands[0].UpdateVerb);
+            Assert.AreEqual("Content", commands[0].FieldName);
+            Assert.AreSame(contentValue, commands[0].Value);
 
-            Assert.AreEqual("Set", commands[1].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("DatePosted", commands[1].FieldName, @"FieldName of the first IUpdateCommand should be ""DatePosted"".");
-            Assert.AreEqual(datePostedValue, commands[1].Value, $@"Value of the first IUpdateCommand should be ""{datePostedValue}"".");
+            Assert.AreEqual("Set", commands[1].UpdateVerb);
+            Assert.AreEqual("DatePosted", commands[1].FieldName);
+            Assert.AreEqual(datePostedValue, commands[1].Value);
 
-            Assert.AreEqual("Set", commands[2].UpdateVerb, @"UpdateVerb of the first IUpdateCommand should be ""Set"".");
-            Assert.AreEqual("Faves", commands[2].FieldName, @"FieldName of the first IUpdateCommand should be ""Faves"".");
-            Assert.AreEqual(favesValue, commands[2].Value, @"Value of the first IUpdateCommand should be """ + favesValue + @""".");
+            Assert.AreEqual("Set", commands[2].UpdateVerb);
+            Assert.AreEqual("Faves", commands[2].FieldName);
+            Assert.AreEqual(favesValue, commands[2].Value);
         }
     }
 }

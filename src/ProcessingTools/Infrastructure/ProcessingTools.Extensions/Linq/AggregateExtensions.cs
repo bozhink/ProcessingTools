@@ -13,7 +13,7 @@ namespace ProcessingTools.Extensions.Linq
     /// Aggregate extensions.
     /// </summary>
     /// <remarks>
-    /// See https://stackoverflow.com/questions/2165605/whats-the-neatest-way-to-achieve-minordefault-in-linq
+    /// See https://stackoverflow.com/questions/2165605/whats-the-neatest-way-to-achieve-minordefault-in-linq.
     /// </remarks>
     public static class AggregateExtensions
     {

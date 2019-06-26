@@ -26,7 +26,7 @@ namespace ProcessingTools.Processors
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentTagger"/> class.
         /// </summary>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public ContentTagger(ILogger<ContentTagger> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -182,7 +182,7 @@ namespace ProcessingTools.Processors
         /// <param name="xpath">XPath string.</param>
         /// <param name="document">IDocument object to be tagged.</param>
         /// <param name="settings">Tagging settings.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         private async Task TagContentInDocumentAsync(XmlElement item, string xpath, IDocument document, IContentTaggerSettings settings)
         {
             var nodeList = document.SelectNodes(xpath)

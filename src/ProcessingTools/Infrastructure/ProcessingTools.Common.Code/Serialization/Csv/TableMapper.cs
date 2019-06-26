@@ -23,7 +23,7 @@ namespace ProcessingTools.Common.Code.Serialization.Csv
         /// <typeparam name="T">Type of the mapped object.</typeparam>
         /// <param name="table">Table of string values.</param>
         /// <param name="propertiesMapping">Column-to-property mapping.</param>
-        /// <returns>List of mapped object.s</returns>
+        /// <returns>List of mapped object.</returns>
         public IEnumerable<T> MapTableToObjects<T>(IEnumerable<string[]> table, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
             if (table == null || table.Any())
@@ -48,7 +48,7 @@ namespace ProcessingTools.Common.Code.Serialization.Csv
         /// <param name="type">Type of the mapped object.</param>
         /// <param name="table">Table of string values.</param>
         /// <param name="propertiesMapping">Column-to-property mapping.</param>
-        /// <returns>List of mapped object.s</returns>
+        /// <returns>List of mapped object.</returns>
         public IEnumerable<object> MapTableToObjects(Type type, IEnumerable<string[]> table, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
             if (table == null || table.Any())

@@ -19,7 +19,7 @@ namespace ProcessingTools.Web.Documents.Services
         /// <param name="emailSender"><see cref="IEmailSender"/> instance.</param>
         /// <param name="email">E-mail address of the recipient.</param>
         /// <param name="link">Link to be send.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
             return emailSender.SendEmailAsync(

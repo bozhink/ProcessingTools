@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Files
     /// MIME mapping service.
     /// </summary>
     /// <remarks>
-    /// See https://dotnetcoretutorials.com/2018/08/14/getting-a-mime-type-from-a-file-name-in-net-core/
+    /// See https://dotnetcoretutorials.com/2018/08/14/getting-a-mime-type-from-a-file-name-in-net-core/.
     /// </remarks>
     public interface IMimeMappingService
     {

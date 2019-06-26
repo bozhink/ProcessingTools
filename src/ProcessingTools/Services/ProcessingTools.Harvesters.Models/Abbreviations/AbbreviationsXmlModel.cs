@@ -10,7 +10,7 @@ namespace ProcessingTools.Harvesters.Models.Abbreviations
     using ProcessingTools.Common.Constants.Schema;
 
     /// <summary>
-    /// Abbreviations Xml Model
+    /// Abbreviations XML model.
     /// </summary>
     [Serializable]
     [DesignerCategory("code")]

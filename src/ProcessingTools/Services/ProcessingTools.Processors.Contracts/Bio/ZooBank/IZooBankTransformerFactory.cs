@@ -14,7 +14,7 @@ namespace ProcessingTools.Processors.Contracts.Bio.ZooBank
         /// <summary>
         /// Get ZooBank registration transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetZooBankRegistrationTransformer();
     }
 }

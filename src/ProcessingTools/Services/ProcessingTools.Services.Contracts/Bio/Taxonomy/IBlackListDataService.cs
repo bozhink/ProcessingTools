@@ -16,14 +16,14 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
         /// Add blacklist items.
         /// </summary>
         /// <param name="items">Items to be added.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> InsertAsync(IEnumerable<string> items);
 
         /// <summary>
         /// Delete blacklist items.
         /// </summary>
         /// <param name="items">Items to be deleted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> DeleteAsync(IEnumerable<string> items);
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Models.Mongo.Files
     using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
 
     /// <summary>
-    /// Mediatype
+    /// Mediatype.
     /// </summary>
     [CollectionName("mediatypes")]
     public class Mediatype : IMediatypeDetailsDataTransferObject

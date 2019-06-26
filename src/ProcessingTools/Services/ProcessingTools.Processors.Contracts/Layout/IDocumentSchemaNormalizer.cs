@@ -13,17 +13,17 @@ namespace ProcessingTools.Processors.Contracts.Layout
     public interface IDocumentSchemaNormalizer
     {
         /// <summary>
-        /// Normalizes the IDocument object's xml to its current SchemaType.
+        /// Normalizes the IDocument object's XML to its current SchemaType.
         /// </summary>
         /// <param name="document">IDocument object to be normalized.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> NormalizeToDocumentSchemaAsync(IDocument document);
 
         /// <summary>
-        /// Normalizes the IDocument object's xml content to the system schema.
+        /// Normalizes the IDocument object's XML content to the system schema.
         /// </summary>
         /// <param name="document">IDocument object to be normalized.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> NormalizeToSystemAsync(IDocument document);
     }
 }

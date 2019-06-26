@@ -12,7 +12,7 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests.Linq.Dynamic
     using ProcessingTools.Extensions.Linq.Dynamic;
 
     /// <summary>
-    /// Dynamic Expressions Tests
+    /// Dynamic expressions tests.
     /// </summary>
     [TestClass]
     public class DynamicExpressionsTests
@@ -89,6 +89,8 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests.Linq.Dynamic
             {
                 tasks.Add(Task.Factory.StartNew(() => DynamicExpressionParser.CreateClass(properties)));
             }
+
+            Assert.IsTrue(tasks.Any());
 
             Task.WaitAll(tasks.ToArray());
         }

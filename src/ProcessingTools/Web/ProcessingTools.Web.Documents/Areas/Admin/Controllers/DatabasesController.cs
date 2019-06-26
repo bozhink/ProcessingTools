@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
     using ProcessingTools.Web.Services.Contracts.Admin;
 
     /// <summary>
-    /// /Admin/Databases
+    /// /Admin/Databases.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Admin)]
@@ -50,9 +50,9 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// /Admin/Databases/Index
+        /// /Admin/Databases/Index.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public IActionResult Index(string returnUrl = null)
@@ -66,9 +66,9 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// /Admin/Databases/InitializeAll
+        /// /Admin/Databases/InitializeAll.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(InitializeAllActionName)]
         public async Task<IActionResult> InitializeAll(string returnUrl = null)
@@ -97,7 +97,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

@@ -47,7 +47,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// Initializes a new instance of the <see cref="EncodeController"/> class.
         /// </summary>
         /// <param name="encodeWebService">Instance of <see cref="IEncodeWebService"/>.</param>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public EncodeController(IEncodeWebService encodeWebService, ILogger<EncodeController> logger)
         {
             this.encodeWebService = encodeWebService ?? throw new ArgumentNullException(nameof(encodeWebService));
@@ -55,9 +55,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Encode
+        /// GET Encode.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
@@ -71,9 +71,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Encode/Base64
+        /// GET Encode/Base64.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64ActionName)]
@@ -93,10 +93,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// POST Encode/Base64
+        /// POST Encode/Base64.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -130,9 +130,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Encode/Base64Url
+        /// GET Encode/Base64Url.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64UrlActionName)]
@@ -150,10 +150,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// POST Encode/Base64Url
+        /// POST Encode/Base64Url.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -187,7 +187,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

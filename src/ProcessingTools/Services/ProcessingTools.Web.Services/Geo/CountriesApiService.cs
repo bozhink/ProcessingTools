@@ -25,7 +25,7 @@ namespace ProcessingTools.Web.Services.Geo
         /// <summary>
         /// Initializes a new instance of the <see cref="CountriesApiService"/> class.
         /// </summary>
-        /// <param name="service">Instance of <see cref="ICountriesDataService"/></param>
+        /// <param name="service">Instance of <see cref="ICountriesDataService"/>.</param>
         /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         public CountriesApiService(ICountriesDataService service, IMapper mapper)
         {

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Special
 {
     /// <summary>
-    /// Gavin-Laurens Parser
+    /// Gavin-Laurens parser.
     /// </summary>
     public interface IGavinLaurensParser : IDocumentParser
     {

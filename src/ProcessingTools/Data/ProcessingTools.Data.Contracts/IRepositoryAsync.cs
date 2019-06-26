@@ -24,7 +24,7 @@ namespace ProcessingTools.Data.Contracts
         Task<object> DeleteAsync(TModel model);
 
         /// <summary>
-        /// Delete entity by id;
+        /// Delete entity by id.
         /// </summary>
         /// <param name="id">ID of the entity to be deleted.</param>
         /// <returns>Task of result.</returns>

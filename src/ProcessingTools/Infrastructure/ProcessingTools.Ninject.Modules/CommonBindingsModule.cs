@@ -9,7 +9,7 @@ namespace ProcessingTools.Ninject.Modules
     using ProcessingTools.Common.Constants;
 
     /// <summary>
-    /// Common Bindings Module
+    /// Common bindings module.
     /// </summary>
     public class CommonBindingsModule : NinjectModule
     {

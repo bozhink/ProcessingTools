@@ -45,7 +45,7 @@ namespace ProcessingTools.Services.Contracts.Documents
         Task<object> UpdateAsync(IArticleUpdateModel model);
 
         /// <summary>
-        /// Gets details of article by ID;
+        /// Gets details of article by ID.
         /// </summary>
         /// <param name="id">ID of the article.</param>
         /// <returns>Article details.</returns>

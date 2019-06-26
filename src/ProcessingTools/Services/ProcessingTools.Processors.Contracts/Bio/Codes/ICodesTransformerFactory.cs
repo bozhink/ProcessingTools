@@ -14,7 +14,7 @@ namespace ProcessingTools.Processors.Contracts.Bio.Codes
         /// <summary>
         /// Get codes remove non-code nodes transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetCodesRemoveNonCodeNodesTransformer();
     }
 }

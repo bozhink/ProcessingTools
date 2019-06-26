@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
     using System.Collections.ObjectModel;
 
     /// <summary>
-    /// Complex type model description
+    /// Complex type model description.
     /// </summary>
     public class ComplexTypeModelDescription : ModelDescription
     {

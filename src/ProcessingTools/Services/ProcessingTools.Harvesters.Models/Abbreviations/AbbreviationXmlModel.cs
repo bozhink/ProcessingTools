@@ -11,7 +11,7 @@ namespace ProcessingTools.Harvesters.Models.Abbreviations
     using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
 
     /// <summary>
-    /// Abbreviation Xml Model
+    /// Abbreviation XML model.
     /// </summary>
     [Serializable]
     [DesignerCategory("code")]

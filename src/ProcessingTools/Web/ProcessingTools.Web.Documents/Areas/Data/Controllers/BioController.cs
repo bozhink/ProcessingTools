@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         public const string IndexActionName = nameof(Index);
 
         /// <summary>
-        /// Index
+        /// Index.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
@@ -36,7 +36,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

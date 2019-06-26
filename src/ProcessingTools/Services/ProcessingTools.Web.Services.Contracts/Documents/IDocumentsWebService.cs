@@ -66,21 +66,21 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
-        /// <returns><see cref="MessageStatusResponseModel"/></returns>
+        /// <returns><see cref="MessageStatusResponseModel"/>.</returns>
         MessageStatusResponseModel GetBadRequestResponseModel(string id, string articleId);
 
         /// <summary>
         /// Gets InternalServerError response model.
         /// </summary>
         /// <param name="ex">Exception of the error.</param>
-        /// <returns><see cref="MessageStatusResponseModel"/></returns>
+        /// <returns><see cref="MessageStatusResponseModel"/>.</returns>
         MessageStatusResponseModel GetInternalServerErrorResponseModel(Exception ex);
 
         /// <summary>
         /// Gets document saved response model.
         /// </summary>
         /// <param name="success">Success value.</param>
-        /// <returns><see cref="MessageStatusResponseModel"/></returns>
+        /// <returns><see cref="MessageStatusResponseModel"/>.</returns>
         MessageStatusResponseModel GetDocumentSavedResponseModel(bool success);
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="content">Content of the document.</param>
-        /// <returns><see cref="DocumentContentResponseModel"/></returns>
+        /// <returns><see cref="DocumentContentResponseModel"/>.</returns>
         DocumentContentResponseModel GetDocumentContentResponseModel(string id, string articleId, string content);
 
         /// <summary>

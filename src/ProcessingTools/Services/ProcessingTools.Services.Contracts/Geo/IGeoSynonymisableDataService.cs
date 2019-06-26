@@ -23,7 +23,7 @@ namespace ProcessingTools.Services.Contracts.Geo
         /// </summary>
         /// <param name="model">Service model to be updated.</param>
         /// <param name="synonyms">Synonyms to be inserted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> InsertAsync(TModel model, params TSynonym[] synonyms);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ProcessingTools.Services.Contracts.Geo
         /// </summary>
         /// <param name="modelId">ID of the service model.</param>
         /// <param name="synonyms">Synonyms to be added.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> AddSynonymsAsync(int modelId, params TSynonym[] synonyms);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProcessingTools.Services.Contracts.Geo
         /// </summary>
         /// <param name="modelId">ID of the service model.</param>
         /// <param name="synonymIds">IDs of the synonyms to be removed.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds);
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ProcessingTools.Services.Contracts.Geo
         /// </summary>
         /// <param name="modelId">ID of the service model.</param>
         /// <param name="synonyms">Synonyms to be updated.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> UpdateSynonymsAsync(int modelId, params TSynonym[] synonyms);
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using ProcessingTools.Web.Services.Contracts.Tools;
 
     /// <summary>
-    /// Barcode
+    /// Barcode.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Tools)]
@@ -45,7 +45,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Index
+        /// GET Index.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
@@ -58,7 +58,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// POST Index
+        /// POST Index.
         /// </summary>
         /// <param name="model">Request model.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
@@ -89,7 +89,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

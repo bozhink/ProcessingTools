@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Models.Floats
     using ProcessingTools.Processors.Models.Contracts.Floats;
 
     /// <summary>
-    /// Picture
+    /// Picture.
     /// </summary>
     public class PictureFloatObject : IFloatObject
     {

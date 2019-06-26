@@ -58,7 +58,7 @@ namespace ProcessingTools.TaskServer
         }
 
         /// <summary>
-        /// Configure application
+        /// Configure application.
         /// </summary>
         /// <param name="app">Application builder.</param>
         /// <param name="env">Application environment.</param>

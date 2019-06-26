@@ -8,7 +8,7 @@ namespace ProcessingTools.Harvesters.Models.Meta
     using ProcessingTools.Harvesters.Models.Contracts.Meta;
 
     /// <summary>
-    /// Article
+    /// Article.
     /// </summary>
     public class Article : IArticle
     {

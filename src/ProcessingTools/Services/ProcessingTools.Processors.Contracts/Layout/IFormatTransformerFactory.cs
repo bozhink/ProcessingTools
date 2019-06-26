@@ -14,25 +14,25 @@ namespace ProcessingTools.Processors.Contracts.Layout
         /// <summary>
         /// Get format to NLM transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetFormatToNlmTransformer();
 
         /// <summary>
         /// Get format to System transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetFormatToSystemTransformer();
 
         /// <summary>
         /// Get NLM initial format transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetNlmInitialFormatTransformer();
 
         /// <summary>
         /// Get System initial format transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetSystemInitialFormatTransformer();
     }
 }

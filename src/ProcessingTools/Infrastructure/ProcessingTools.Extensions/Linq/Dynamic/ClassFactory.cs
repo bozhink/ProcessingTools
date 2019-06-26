@@ -11,7 +11,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     using System.Threading;
 
     /// <summary>
-    /// Class factory
+    /// Class factory.
     /// </summary>
     internal class ClassFactory
     {

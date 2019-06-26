@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Documents.Models;
 
     /// <summary>
-    /// Error
+    /// Error.
     /// </summary>
     public class ErrorController : Controller
     {
@@ -35,7 +35,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public const string HandleUnknownActionActionName = nameof(HandleUnknownAction);
 
         /// <summary>
-        /// /Error
+        /// /Error.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -46,7 +46,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// /Error/Code/{id}
+        /// /Error/Code/{id}.
         /// </summary>
         /// <param name="id">Status code.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
@@ -58,7 +58,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// /Error/HandleUnknownAction
+        /// /Error/HandleUnknownAction.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -69,7 +69,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

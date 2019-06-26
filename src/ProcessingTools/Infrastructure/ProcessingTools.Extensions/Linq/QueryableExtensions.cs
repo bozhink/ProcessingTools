@@ -96,7 +96,7 @@ namespace ProcessingTools.Extensions.Linq
         /// </summary>
         /// <typeparam name="T">Type of the source items.</typeparam>
         /// <param name="source">A sequence of values to order.</param>
-        /// <param name="sortExpression">Sort expression to be applied. It must be in the format "&lt;columnName&gt;[ DESCENDING]"</param>
+        /// <param name="sortExpression">Sort expression to be applied. It must be in the format "&lt;columnName&gt;[ DESCENDING]".</param>
         /// <param name="defaultSort">Default sort column name.</param>
         /// <returns>An <see cref="IOrderedQueryable{T}"/> whose elements are sorted according to the sort expression.</returns>
         public static IOrderedQueryable<T> OrderBySortExpression<T>(this IQueryable<T> source, string sortExpression, string defaultSort = "ID")

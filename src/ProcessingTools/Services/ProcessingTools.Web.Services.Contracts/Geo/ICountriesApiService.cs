@@ -16,7 +16,7 @@ namespace ProcessingTools.Web.Services.Contracts.Geo
         /// <summary>
         /// Gets all country objects.
         /// </summary>
-        /// <returns>Task of array of the response model</returns>
+        /// <returns>Task of array of the response model.</returns>
         Task<IList<CountryResponseModel>> GetAllAsync();
     }
 }

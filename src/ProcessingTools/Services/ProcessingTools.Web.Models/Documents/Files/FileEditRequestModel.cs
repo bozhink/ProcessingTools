@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Documents.Files
 {
     /// <summary>
-    /// File Edit Request Model
+    /// File edit request model.
     /// </summary>
     public class FileEditRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {

@@ -28,7 +28,7 @@ namespace ProcessingTools.Services.Contracts.IO
         /// </summary>
         /// <param name="fileName">Name of the output file. Should be full-path name or relative.</param>
         /// <param name="basePath">Path to directory in which fileName should be.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task DeleteAsync(string fileName, string basePath);
 
         /// <summary>

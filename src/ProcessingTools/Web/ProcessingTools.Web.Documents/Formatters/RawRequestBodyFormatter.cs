@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Documents.Formatters
 
     /// <summary>
     /// Raw request body formatter.
-    /// See https://weblog.west-wind.com/posts/2017/Sep/14/Accepting-Raw-Request-Body-Content-in-ASPNET-Core-API-Controllers
+    /// See https://weblog.west-wind.com/posts/2017/Sep/14/Accepting-Raw-Request-Body-Content-in-ASPNET-Core-API-Controllers.
     /// </summary>
     public class RawRequestBodyFormatter : InputFormatter
     {
@@ -27,8 +27,7 @@ namespace ProcessingTools.Web.Documents.Formatters
         }
 
         /// <summary>
-        /// Allow text/plain, application/octet-stream and no content type to
-        /// be processed
+        /// Allow text/plain, application/octet-stream and no content type to be processed.
         /// </summary>
         /// <param name="context">Input formatter context.</param>
         /// <returns>Is formatter applicable.</returns>
@@ -50,7 +49,7 @@ namespace ProcessingTools.Web.Documents.Formatters
 
         /// <summary>
         /// Handle text/plain or no content type for string results
-        /// Handle application/octet-stream for byte[] results
+        /// Handle application/octet-stream for byte[] results.
         /// </summary>
         /// <param name="context">Input formatter context.</param>
         /// <returns>Input formatter result.</returns>

@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
-    /// Home
+    /// Home.
     /// </summary>
     public class HomeController : Controller
     {
@@ -38,7 +38,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public const string PrivacyActionName = nameof(Privacy);
 
         /// <summary>
-        /// Index
+        /// Index.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// About
+        /// About.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(AboutActionName)]
@@ -58,7 +58,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// Contact
+        /// Contact.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ContactActionName)]
@@ -68,7 +68,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// Privacy
+        /// Privacy.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(PrivacyActionName)]
@@ -78,7 +78,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

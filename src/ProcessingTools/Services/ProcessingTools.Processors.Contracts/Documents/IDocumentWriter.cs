@@ -17,7 +17,7 @@ namespace ProcessingTools.Processors.Contracts.Documents
         /// </summary>
         /// <param name="fileName">File name of the output document.</param>
         /// <param name="document">Document to be written.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> WriteDocumentAsync(string fileName, IDocument document);
     }
 }

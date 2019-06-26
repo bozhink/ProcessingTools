@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests.Models
     using System;
 
     /// <summary>
-    /// Tweet
+    /// Tweet.
     /// </summary>
     public interface ITweet
     {

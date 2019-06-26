@@ -13,7 +13,7 @@ namespace ProcessingTools.Geo
     using ProjNet.CoordinateSystems.Transformations;
 
     /// <summary>
-    /// See http://blogs.u2u.be/diederik/post/2010/01/01/Converting-Spatial-Coordinates-with-ProjNET.aspx
+    /// See http://blogs.u2u.be/diederik/post/2010/01/01/Converting-Spatial-Coordinates-with-ProjNET.aspx.
     /// </summary>
     public class UtmCoordinatesConverter : IUtmCoordinatesConverter
     {

@@ -12,7 +12,7 @@ namespace ProcessingTools.Harvesters.Content
     using ProcessingTools.Harvesters.Contracts.Content;
 
     /// <summary>
-    /// Text Content Harvester
+    /// Text content harvester.
     /// </summary>
     public class TextContentHarvester : ITextContentHarvester
     {

@@ -17,14 +17,14 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
         /// Insert taxon ranks.
         /// </summary>
         /// <param name="taxonRanks">Taxon ranks to be added.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> InsertAsync(IEnumerable<ITaxonRank> taxonRanks);
 
         /// <summary>
         /// Delete taxon ranks.
         /// </summary>
         /// <param name="taxonRanks">Taxon ranks to be deleted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> DeleteAsync(IEnumerable<ITaxonRank> taxonRanks);
 
         /// <summary>

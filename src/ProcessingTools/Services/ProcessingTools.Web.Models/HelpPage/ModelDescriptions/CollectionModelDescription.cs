@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
 {
     /// <summary>
-    /// Collection model description
+    /// Collection model description.
     /// </summary>
     public class CollectionModelDescription : ModelDescription
     {

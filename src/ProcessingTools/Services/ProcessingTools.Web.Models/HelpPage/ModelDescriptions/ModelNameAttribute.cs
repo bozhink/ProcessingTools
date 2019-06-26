@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelNameAttribute"/> class.
         /// </summary>
-        /// <param name="name">The model name</param>
+        /// <param name="name">The model name.</param>
         public ModelNameAttribute(string name)
         {
             this.Name = name;

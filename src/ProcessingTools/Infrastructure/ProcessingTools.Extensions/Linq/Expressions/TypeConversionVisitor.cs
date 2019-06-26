@@ -12,7 +12,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
     /// Type conversion visitor.
     /// </summary>
     /// <remarks>
-    /// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
+    /// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models.
     /// </remarks>
     internal class TypeConversionVisitor : ExpressionVisitor
     {

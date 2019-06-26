@@ -15,7 +15,7 @@ namespace ProcessingTools.Services.Contracts
         /// <summary>
         /// Get items.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task of items.</returns>
         Task<IList<string>> GetItemsAsync();
     }
 }

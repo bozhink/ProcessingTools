@@ -14,13 +14,13 @@ namespace ProcessingTools.Processors.Contracts.Bio.Taxonomy
         /// <summary>
         /// Get remove taxon name parts transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetRemoveTaxonNamePartsTransformer();
 
         /// <summary>
         /// Get parse treatment meta with internal information transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetParseTreatmentMetaWithInternalInformationTransformer();
     }
 }

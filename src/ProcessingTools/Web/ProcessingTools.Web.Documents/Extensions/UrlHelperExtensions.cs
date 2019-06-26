@@ -14,7 +14,7 @@ namespace Microsoft.AspNetCore.Mvc
         /// <summary>
         /// Generates e-mail confirmation link.
         /// </summary>
-        /// <param name="urlHelper"><see cref="IUrlHelper"/></param>
+        /// <param name="urlHelper"><see cref="IUrlHelper"/>.</param>
         /// <param name="userId">User ID.</param>
         /// <param name="code">Code to be send.</param>
         /// <param name="scheme">Protocol scheme.</param>
@@ -31,7 +31,7 @@ namespace Microsoft.AspNetCore.Mvc
         /// <summary>
         /// Reset password callback link handler.
         /// </summary>
-        /// <param name="urlHelper"><see cref="IUrlHelper"/></param>
+        /// <param name="urlHelper"><see cref="IUrlHelper"/>.</param>
         /// <param name="userId">User ID.</param>
         /// <param name="code">Reset code.</param>
         /// <param name="scheme">Protocol scheme.</param>

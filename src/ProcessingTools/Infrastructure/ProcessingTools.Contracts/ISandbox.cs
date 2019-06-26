@@ -8,30 +8,30 @@ namespace ProcessingTools.Contracts
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Provides <see cref="Task"/> sand-boxing methods;
+    /// Provides <see cref="Task"/> sand-boxing methods.
     /// </summary>
     public interface ISandbox
     {
         /// <summary>
         /// Runs an action asynchronously.
         /// </summary>
-        /// <param name="action">Action to be executed</param>
-        /// <returns>Task</returns>
+        /// <param name="action">Action to be executed.</param>
+        /// <returns>Task.</returns>
         Task RunAsync(Action action);
 
         /// <summary>
         /// Runs an function asynchronously.
         /// </summary>
-        /// <param name="function">Function to be called</param>
-        /// <returns>Task</returns>
+        /// <param name="function">Function to be called.</param>
+        /// <returns>Task.</returns>
         Task RunAsync(Func<Task> function);
 
         /// <summary>
         /// Runs an function asynchronously.
         /// </summary>
-        /// <typeparam name="T">Type of the result</typeparam>
-        /// <param name="function">Function to be called</param>
-        /// <returns>Task of result</returns>
+        /// <typeparam name="T">Type of the result.</typeparam>
+        /// <param name="function">Function to be called.</param>
+        /// <returns>Task of result.</returns>
         Task<T> RunAsync<T>(Func<Task<T>> function);
     }
 }

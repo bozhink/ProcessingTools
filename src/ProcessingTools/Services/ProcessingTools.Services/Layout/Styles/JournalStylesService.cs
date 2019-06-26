@@ -17,7 +17,7 @@ namespace ProcessingTools.Services.Layout.Styles
     public class JournalStylesService : IJournalStylesService
     {
         /// <summary>
-        /// Gets or sets <see cref="IJournalStylesDataService"/>,
+        /// Gets or sets <see cref="IJournalStylesDataService"/>.
         /// </summary>
         public IJournalStylesDataService JournalStylesDataService { get; set; }
 

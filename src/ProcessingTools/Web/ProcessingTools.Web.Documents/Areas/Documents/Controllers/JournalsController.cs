@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
-    /// /Documents/Journals
+    /// /Documents/Journals.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Documents)]
@@ -66,11 +66,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// /Documents/Journals/Index
+        /// /Documents/Journals/Index.
         /// </summary>
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of journals per page.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
@@ -105,9 +105,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Journals/Create
+        /// GET /Documents/Journals/Create.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
@@ -134,9 +134,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Documents/Journals/Create
+        /// POST /Documents/Journals/Create.
         /// </summary>
-        /// <param name="model"><see cref="JournalCreateRequestModel"/></param>
+        /// <param name="model"><see cref="JournalCreateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,10 +188,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Journals/Edit/id
+        /// GET /Documents/Journals/Edit/id.
         /// </summary>
-        /// <param name="id">ID of the journal</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the journal.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
@@ -218,9 +218,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Documents/Journals/Edit
+        /// POST /Documents/Journals/Edit.
         /// </summary>
-        /// <param name="model"><see cref="JournalUpdateRequestModel"/></param>
+        /// <param name="model"><see cref="JournalUpdateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -272,10 +272,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Journals/Delete/id
+        /// GET /Documents/Journals/Delete/id.
         /// </summary>
-        /// <param name="id">ID of the journal</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the journal.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
@@ -302,9 +302,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Documents/Journals/Delete
+        /// POST /Documents/Journals/Delete.
         /// </summary>
-        /// <param name="model"><see cref="JournalDeleteRequestModel"/></param>
+        /// <param name="model"><see cref="JournalDeleteRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -356,10 +356,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Journals/Details/id
+        /// GET /Documents/Journals/Details/id.
         /// </summary>
-        /// <param name="id">ID of the journal</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the journal.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
@@ -385,7 +385,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

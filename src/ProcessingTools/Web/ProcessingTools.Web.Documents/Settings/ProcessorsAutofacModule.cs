@@ -24,7 +24,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Processors.Rules;
 
     /// <summary>
-    /// Autofac bindings for ProcessingTools.Processors.*
+    /// Autofac bindings for ProcessingTools.Processors.*.
     /// </summary>
     public class ProcessorsAutofacModule : Module
     {

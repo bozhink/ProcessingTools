@@ -18,7 +18,7 @@ namespace ProcessingTools.Services.Contracts.History
         /// </summary>
         /// <param name="objectId">ID of the object to be added to history.</param>
         /// <param name="source">Source object to be added to history.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> AddAsync(object objectId, object source);
 
         /// <summary>

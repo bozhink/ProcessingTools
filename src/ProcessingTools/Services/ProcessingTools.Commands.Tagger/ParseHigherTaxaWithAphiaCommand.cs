@@ -20,7 +20,7 @@ namespace ProcessingTools.Commands.Tagger
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseHigherTaxaWithAphiaCommand"/> class.
         /// </summary>
-        /// <param name="parser">Instance of <see cref="IHigherTaxaParserWithDataService{IAphiaTaxaRankResolver,ITaxonRank}"/></param>
+        /// <param name="parser">Instance of <see cref="IHigherTaxaParserWithDataService{IAphiaTaxaRankResolver,ITaxonRank}"/>.</param>
         /// <param name="reporter">Instance of <see cref="IReporter"/>.</param>
         public ParseHigherTaxaWithAphiaCommand(IHigherTaxaParserWithDataService<IAphiaTaxonRankResolver, ITaxonRank> parser, IReporter reporter)
             : base(parser, reporter)

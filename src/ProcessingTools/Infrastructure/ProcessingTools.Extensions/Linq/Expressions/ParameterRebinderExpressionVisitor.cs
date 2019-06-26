@@ -11,7 +11,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
     /// Parameter rebinder expression visitor.
     /// </summary>
     /// <remarks>
-    /// See https://blogs.msdn.microsoft.com/meek/2008/05/02/linq-to-entities-combining-predicates/
+    /// See https://blogs.msdn.microsoft.com/meek/2008/05/02/linq-to-entities-combining-predicates/.
     /// </remarks>
     public class ParameterRebinderExpressionVisitor : ExpressionVisitor
     {

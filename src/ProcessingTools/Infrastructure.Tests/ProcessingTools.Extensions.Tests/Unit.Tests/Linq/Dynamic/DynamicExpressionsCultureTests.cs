@@ -12,13 +12,13 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests.Linq.Dynamic
     using ProcessingTools.Extensions.Linq.Dynamic;
 
     /// <summary>
-    /// Dynamic Expressions Culture Tests
+    /// Dynamic expressions culture tests.
     /// </summary>
     [TestFixture]
     public class DynamicExpressionsCultureTests
     {
         /// <summary>
-        /// Test Initialize Method
+        /// Test initialize method.
         /// </summary>
         [SetUp]
         public void Initialize()

@@ -7,7 +7,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     using System.Linq.Expressions;
 
     /// <summary>
-    /// Dynamic Ordering
+    /// Dynamic ordering.
     /// </summary>
     internal class DynamicOrdering
     {

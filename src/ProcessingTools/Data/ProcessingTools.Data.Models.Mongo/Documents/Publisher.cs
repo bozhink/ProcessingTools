@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Publishers;
 
     /// <summary>
-    /// Publisher
+    /// Publisher.
     /// </summary>
     [CollectionName("publishers")]
     public class Publisher : IPublisherDetailsDataTransferObject

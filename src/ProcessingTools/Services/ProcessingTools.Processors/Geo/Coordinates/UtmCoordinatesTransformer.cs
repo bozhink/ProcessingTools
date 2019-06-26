@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
 
     /// <summary>
-    /// UTM Coordinates Transformer
+    /// UTM coordinates transformer.
     /// </summary>
     public class UtmCoordinatesTransformer : IUtmCoordinatesTransformer
     {

@@ -23,7 +23,7 @@ namespace ProcessingTools.Extensions
         /// <summary>
         /// A thread-safe way to hold default instances created at run-time.
         /// </summary>
-        private static ConcurrentDictionary<Type, object> typeDefaults = new ConcurrentDictionary<Type, object>();
+        private static readonly ConcurrentDictionary<Type, object> TypeDefaults = new ConcurrentDictionary<Type, object>();
 
         /// <summary>
         /// Returns the default value of a specified Type.
@@ -34,7 +34,7 @@ namespace ProcessingTools.Extensions
         {
             if (type.IsValueType)
             {
-                return typeDefaults.GetOrAdd(type, t => Activator.CreateInstance(t));
+                return TypeDefaults.GetOrAdd(type, t => Activator.CreateInstance(t));
             }
 
             return null;
@@ -57,15 +57,15 @@ namespace ProcessingTools.Extensions
                 return type.GenericTypeArguments[0].DefaultValue();
             }
 
-            return typeDefaults.GetOrAdd(type, t => Activator.CreateInstance(t));
+            return TypeDefaults.GetOrAdd(type, t => Activator.CreateInstance(t));
         }
 
         /// <summary>
         /// Determines if a method is async or not.
-        /// See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
+        /// See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy.
         /// </summary>
         /// <param name="method">MethodInfo object.</param>
-        /// <returns>MethodType</returns>
+        /// <returns>MethodType.</returns>
         public static MethodType GetDelegateType(this MethodInfo method)
         {
             if (method == null)

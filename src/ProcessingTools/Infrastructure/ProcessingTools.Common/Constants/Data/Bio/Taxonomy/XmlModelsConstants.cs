@@ -5,52 +5,52 @@
 namespace ProcessingTools.Common.Constants.Data.Bio.Taxonomy
 {
     /// <summary>
-    /// Xml models constants
+    /// XML models constants.
     /// </summary>
     public static class XmlModelsConstants
     {
         /// <summary>
-        /// RankListXmlRootNodeName
+        /// Rank list XML root node name.
         /// </summary>
         public const string RankListXmlRootNodeName = "taxa";
 
         /// <summary>
-        /// RankListTaxonXmlModelElementName
+        /// Rank list taxon XML model element name.
         /// </summary>
         public const string RankListTaxonXmlModelElementName = "taxon";
 
         /// <summary>
-        /// RankListIsWhiteListedXmlAttributeName
+        /// Rank list is white listed XML attribute name.
         /// </summary>
         public const string RankListIsWhiteListedXmlAttributeName = "white-listed";
 
         /// <summary>
-        /// RankListTaxonXmlPartElementName
+        /// Rank list taxon XML part element name.
         /// </summary>
         public const string RankListTaxonXmlPartElementName = "part";
 
         /// <summary>
-        /// RankListTaxonXmlPartValueElementName
+        /// Rank list taxon XML part value element name.
         /// </summary>
         public const string RankListTaxonXmlPartValueElementName = "value";
 
         /// <summary>
-        /// RankListTaxonXmlPartRankElementName
+        /// Rank list taxon XML part rank element name.
         /// </summary>
         public const string RankListTaxonXmlPartRankElementName = "rank";
 
         /// <summary>
-        /// RankListTaxonXmlPartRankValueElementName
+        /// Rank list taxon XML part rank value element name.
         /// </summary>
         public const string RankListTaxonXmlPartRankValueElementName = "value";
 
         /// <summary>
-        /// BlackListXmlRootNodeName
+        /// Black-list XML root node name.
         /// </summary>
         public const string BlackListXmlRootNodeName = "list";
 
         /// <summary>
-        /// BlackListXmlItemElementName
+        /// Black-list XML item element name.
         /// </summary>
         public const string BlackListXmlItemElementName = "item";
     }

@@ -32,7 +32,7 @@ namespace ProcessingTools.Services.Validation
         /// Initializes a new instance of the <see cref="TaxaValidationService"/> class.
         /// </summary>
         /// <param name="cacheService">Validation cache service.</param>
-        /// <param name="requester">Data requester</param>
+        /// <param name="requester">Data requester.</param>
         public TaxaValidationService(IValidationCacheService cacheService, IGlobalNamesResolverDataRequester requester)
             : base(cacheService)
         {

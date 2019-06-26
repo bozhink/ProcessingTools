@@ -5,22 +5,22 @@
 namespace ProcessingTools.Common.Constants.Data.Bio.Taxonomy
 {
     /// <summary>
-    /// Validation constants
+    /// Validation constants.
     /// </summary>
     public static class ValidationConstants
     {
         /// <summary>
-        /// MaximalLengthOfRankName
+        /// Maximal length of rank name.
         /// </summary>
         public const int MaximalLengthOfRankName = 15;
 
         /// <summary>
-        /// MaximalLengthOfTaxonName
+        /// Maximal length of taxon name.
         /// </summary>
         public const int MaximalLengthOfTaxonName = 60;
 
         /// <summary>
-        /// MaximalLengthOfBlackListedItemContent
+        /// Maximal length of black listed item content.
         /// </summary>
         public const int MaximalLengthOfBlackListedItemContent = 60;
     }

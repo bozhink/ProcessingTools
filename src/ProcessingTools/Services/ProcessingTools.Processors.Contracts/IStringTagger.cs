@@ -21,7 +21,7 @@ namespace ProcessingTools.Processors.Contracts
         /// <param name="items">Items to be tagged.</param>
         /// <param name="tagModel">Tag model.</param>
         /// <param name="xpath">XPath to select location for tagging.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> TagAsync(IDocument document, IEnumerable<string> items, XmlElement tagModel, string xpath);
     }
 }

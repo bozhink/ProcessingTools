@@ -55,7 +55,7 @@ namespace ProcessingTools.Data.Mongo.Abstractions
         /// Gets collection from the same database.
         /// </summary>
         /// <typeparam name="TModel">Type of model of the collection.</typeparam>
-        /// <returns><see cref="IMongoCollection{TModel}"/></returns>
+        /// <returns><see cref="IMongoCollection{TModel}"/>.</returns>
         protected IMongoCollection<TModel> GetCollection<TModel>()
         {
             string collectionName = MongoCollectionNameFactory.Create<TModel>();

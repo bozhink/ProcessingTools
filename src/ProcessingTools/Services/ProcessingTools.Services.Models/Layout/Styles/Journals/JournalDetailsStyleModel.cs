@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Journals
 
     /// <summary>
     /// Journal details style model.
-    /// /// </summary>
+    /// </summary>
     public class JournalDetailsStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals.IJournalDetailsStyleModel
     {
         /// <inheritdoc/>

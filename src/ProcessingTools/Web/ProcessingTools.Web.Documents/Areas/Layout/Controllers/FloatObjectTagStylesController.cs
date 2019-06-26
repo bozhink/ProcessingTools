@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
     using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
-    /// /Layout/FloatObjectTagStyles
+    /// /Layout/FloatObjectTagStyles.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Layout)]
@@ -66,11 +66,11 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// /Layout/FloatObjectTagStyles/Index
+        /// /Layout/FloatObjectTagStyles/Index.
         /// </summary>
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of styles per page.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
@@ -105,9 +105,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/FloatObjectTagStyles/Create
+        /// GET /Layout/FloatObjectTagStyles/Create.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
@@ -134,9 +134,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/FloatObjectTagStyles/Create
+        /// POST /Layout/FloatObjectTagStyles/Create.
         /// </summary>
-        /// <param name="model"><see cref="FloatObjectTagStyleCreateRequestModel"/></param>
+        /// <param name="model"><see cref="FloatObjectTagStyleCreateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,10 +188,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/FloatObjectTagStyles/Edit/id
+        /// GET /Layout/FloatObjectTagStyles/Edit/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
@@ -218,9 +218,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/FloatObjectTagStyles/Edit
+        /// POST /Layout/FloatObjectTagStyles/Edit.
         /// </summary>
-        /// <param name="model"><see cref="FloatObjectTagStyleUpdateRequestModel"/></param>
+        /// <param name="model"><see cref="FloatObjectTagStyleUpdateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -272,10 +272,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/FloatObjectTagStyles/Delete/id
+        /// GET /Layout/FloatObjectTagStyles/Delete/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
@@ -302,9 +302,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/FloatObjectTagStyles/Delete
+        /// POST /Layout/FloatObjectTagStyles/Delete.
         /// </summary>
-        /// <param name="model"><see cref="FloatObjectTagStyleDeleteRequestModel"/></param>
+        /// <param name="model"><see cref="FloatObjectTagStyleDeleteRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -356,10 +356,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/FloatObjectTagStyles/Details/id
+        /// GET /Layout/FloatObjectTagStyles/Details/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
@@ -385,7 +385,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
-    /// QRCodes Generator
+    /// QRCodes Generator.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Tools)]
@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         public const string IndexActionName = nameof(Index);
 
         /// <summary>
-        /// Index
+        /// Index.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
@@ -36,7 +36,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

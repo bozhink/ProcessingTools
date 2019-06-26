@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Documents.Files
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// File Delete View Model
+    /// File delete view model.
     /// </summary>
     public class FileDeleteViewModel : ProcessingTools.Contracts.Models.IWebModel
     {

@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Data.Migrations
     using Microsoft.EntityFrameworkCore.Infrastructure;
 
     /// <summary>
-    /// ApplicationDbContext Model Snapshot
+    /// ApplicationDbContext model snapshot.
     /// </summary>
     [DbContext(typeof(ApplicationDbContext))]
     public partial class ApplicationDbContextModelSnapshot : ModelSnapshot

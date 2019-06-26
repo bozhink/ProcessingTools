@@ -7,14 +7,14 @@ namespace ProcessingTools.Data.Contracts
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Base repository
+    /// Base repository.
     /// </summary>
     public interface IRepository
     {
         /// <summary>
         /// Commit staged changes and save.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> SaveChangesAsync();
     }
 }

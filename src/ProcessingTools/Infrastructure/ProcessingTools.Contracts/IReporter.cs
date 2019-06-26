@@ -20,7 +20,7 @@ namespace ProcessingTools.Contracts
         /// <summary>
         /// Generates the report.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task MakeReportAsync();
     }
 }

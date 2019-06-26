@@ -24,7 +24,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Add valid key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Add valid key and valid value should work.")]
         [MaxTime(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_AddValidNonPresentKeyAndValidValue_ShouldWork()
@@ -186,7 +186,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
             Assert.That(result.Count(), Is.EqualTo(0));
 
             var resultList = result.ToList();
-            Assert.IsNotNull(resultList, "List should not be null");
+            Assert.IsNotNull(resultList);
 
             listMock.Verify(l => l.Add(It.IsAny<string>()), Times.Never);
             listMock.Verify(l => l.Remove(It.IsAny<string>()), Times.Never);
@@ -264,7 +264,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid non-present key should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid non-present key should work.")]
         [MaxTime(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidNonPresentKey_ShouldWork()
@@ -298,7 +298,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid key and valid value should work.")]
         [MaxTime(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidKeyAndValidValue_ShouldWork()
@@ -331,7 +331,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid yet-present key should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid yet-present key should work.")]
         [MaxTime(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidYetPresentKey_ShouldWork()
@@ -474,7 +474,7 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
         /// <summary>
         /// RedisKeyCollectionValuePairsRepositoryOfTweet SaveChanges should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet SaveChanges should work.")]
         [MaxTime(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_SaveChanges_ShouldWork()

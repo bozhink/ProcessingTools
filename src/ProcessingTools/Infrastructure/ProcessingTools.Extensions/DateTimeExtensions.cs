@@ -40,7 +40,7 @@ namespace ProcessingTools.Extensions
         /// </summary>
         /// <returns>Now expressed as a Unix timestamp.</returns>
         /// <remarks>
-        /// See https://stackoverflow.com/questions/17632584/how-to-get-the-unix-timestamp-in-c-sharp
+        /// See https://stackoverflow.com/questions/17632584/how-to-get-the-unix-timestamp-in-c-sharp.
         /// </remarks>
         public static int GetUnixTimestamp()
         {
@@ -53,7 +53,7 @@ namespace ProcessingTools.Extensions
         /// <param name="instance">This instance.</param>
         /// <returns>The given <see cref="DateTime"/> in Unix timestamp format.</returns>
         /// <remarks>
-        /// See https://stackoverflow.com/questions/17632584/how-to-get-the-unix-timestamp-in-c-sharp
+        /// See https://stackoverflow.com/questions/17632584/how-to-get-the-unix-timestamp-in-c-sharp.
         /// </remarks>
         public static int ToUnixTimestamp(this DateTime instance)
         {
@@ -66,7 +66,7 @@ namespace ProcessingTools.Extensions
         /// <param name="timestamp"><see cref="int"/> as Unix timestamp.</param>
         /// <returns><see cref="DateTime"/> value of the given <see cref="int"/> as Unix timestamp.</returns>
         /// <remarks>
-        /// See https://www.unixtimeconverter.io/1924988400
+        /// See https://www.unixtimeconverter.io/1924988400.
         /// </remarks>
         public static DateTime ToUnixTimestamp(this int timestamp)
         {

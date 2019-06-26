@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Articles Index View Model
+    /// Articles index view model.
     /// </summary>
     public class ArticlesIndexViewModel : GridViewModel<ArticleIndexViewModel>, ProcessingTools.Contracts.Models.IWebModel
     {

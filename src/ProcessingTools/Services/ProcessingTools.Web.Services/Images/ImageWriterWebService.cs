@@ -53,7 +53,7 @@ namespace ProcessingTools.Web.Services.Images
         /// <summary>
         /// Writes file onto the disk.
         /// </summary>
-        /// <param name="file">File to be processed</param>
+        /// <param name="file">File to be processed.</param>
         /// <returns>Operation message.</returns>
         private async Task<string> WriteFileAsync(IFormFile file)
         {

@@ -42,7 +42,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// Initializes a new instance of the <see cref="HashesController"/> class.
         /// </summary>
         /// <param name="hashesWebService">Instance of <see cref="IHashesWebService"/>.</param>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public HashesController(IHashesWebService hashesWebService, ILogger<HashesController> logger)
         {
             this.hashesWebService = hashesWebService ?? throw new ArgumentNullException(nameof(hashesWebService));
@@ -50,9 +50,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Hash
+        /// GET Hash.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
@@ -66,9 +66,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Hash/All
+        /// GET Hash/All.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(AllActionName)]
@@ -86,10 +86,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// POST Hash/All
+        /// POST Hash/All.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// /// <param name="returnUrl">Return URL</param>
+        /// /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -123,7 +123,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

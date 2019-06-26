@@ -17,8 +17,8 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
         /// <summary>
         /// Gets the model name based on the <see cref="ModelNameAttribute"/>.
         /// </summary>
-        /// <param name="type">The type </param>
-        /// <returns>The model name</returns>
+        /// <param name="type">The type. </param>
+        /// <returns>The model name.</returns>
         public static string GetModelName(Type type)
         {
             ModelNameAttribute modelNameAttribute = type.GetCustomAttribute<ModelNameAttribute>();

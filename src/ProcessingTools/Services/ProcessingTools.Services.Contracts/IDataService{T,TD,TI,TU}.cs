@@ -19,21 +19,21 @@ namespace ProcessingTools.Services.Contracts
         /// Inserts item to the data store.
         /// </summary>
         /// <param name="model">Item to be inserted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> InsertAsync(TI model);
 
         /// <summary>
         /// Updates item in the data store.
         /// </summary>
         /// <param name="model">Item with updated fields.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> UpdateAsync(TU model);
 
         /// <summary>
         /// Delete item from the data store.
         /// </summary>
         /// <param name="id">ID of the item to be deleted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> DeleteAsync(object id);
 
         /// <summary>

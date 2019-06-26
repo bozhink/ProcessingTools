@@ -14,7 +14,7 @@ namespace ProcessingTools.Contracts
         /// <summary>
         /// Gets Help content.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task GetHelpAsync();
     }
 }

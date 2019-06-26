@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
     using System.Collections.ObjectModel;
 
     /// <summary>
-    /// Parameter description
+    /// Parameter description.
     /// </summary>
     public class ParameterDescription
     {

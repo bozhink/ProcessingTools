@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Contracts
     /// <summary>
     /// Context tagger for <see cref="XmlNode"/> context.
     /// </summary>
-    /// <typeparam name="TResult">Type of output result</typeparam>
+    /// <typeparam name="TResult">Type of output result.</typeparam>
     public interface IXmlContextTagger<TResult> : IContextTagger<XmlNode, TResult>
     {
     }

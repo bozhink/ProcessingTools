@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Geo.Cities
     using ProcessingTools.Contracts.Models;
 
     /// <summary>
-    /// Country response model
+    /// Country response model.
     /// </summary>
     public class CountryResponseModel : INamedIntegerIdentified
     {

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
+﻿// <copyright file="UploadController.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
 {
     using System;
     using System.IO;
@@ -13,7 +17,7 @@
     using ProcessingTools.Web.Models.Files.Metadata;
 
     /// <summary>
-    /// /Files/Upload
+    /// /Files/Upload.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Files)]
@@ -23,6 +27,12 @@
         private readonly IFileNameResolver fileNameResolver;
         private readonly IFileNameGenerator fileNameGenerator;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadController"/> class.
+        /// </summary>
+        /// <param name="filesDataService">Instance of <see cref="IFilesDataService"/>.</param>
+        /// <param name="fileNameResolver">Instance of <see cref="IFileNameResolver"/>.</param>
+        /// <param name="fileNameGenerator">Instance of <see cref="IFileNameGenerator"/>.</param>
         public UploadController(IFilesDataService filesDataService, IFileNameResolver fileNameResolver, IFileNameGenerator fileNameGenerator)
         {
             this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
@@ -30,25 +40,41 @@
             this.fileNameGenerator = fileNameGenerator ?? throw new ArgumentNullException(nameof(fileNameGenerator));
         }
 
-        // GET: Files/Upload
+        /// <summary>
+        /// GET: Files/Upload.
+        /// </summary>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return this.View();
         }
 
+        /// <summary>
+        /// GET: Files/UploadSingleFile.
+        /// </summary>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
-        public ActionResult UploadSingleFile()
+        public IActionResult UploadSingleFile()
         {
             return this.View();
         }
 
+        /// <summary>
+        /// GET: Files/UploadMultipleFiles.
+        /// </summary>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
-        public ActionResult UploadMultipleFiles()
+        public IActionResult UploadMultipleFiles()
         {
             return this.View();
         }
 
+        /// <summary>
+        /// POST: Files/UploadSingleFile.
+        /// </summary>
+        /// <param name="file">File data.</param>
+        /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> UploadSingleFile(IFormFile file)

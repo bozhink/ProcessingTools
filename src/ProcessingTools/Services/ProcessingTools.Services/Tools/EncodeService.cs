@@ -19,7 +19,7 @@ namespace ProcessingTools.Services.Tools
         /// <summary>
         /// Initializes a new instance of the <see cref="EncodeService"/> class.
         /// </summary>
-        /// <param name="encoding">Character encoding</param>
+        /// <param name="encoding">Character encoding.</param>
         public EncodeService(Encoding encoding)
         {
             this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));

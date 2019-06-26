@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Services.Files
     /// MIME mapping service.
     /// </summary>
     /// <remarks>
-    /// See https://dotnetcoretutorials.com/2018/08/14/getting-a-mime-type-from-a-file-name-in-net-core/
+    /// See https://dotnetcoretutorials.com/2018/08/14/getting-a-mime-type-from-a-file-name-in-net-core/.
     /// </remarks>
     public class MimeMappingService : IMimeMappingService
     {

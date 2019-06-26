@@ -15,8 +15,8 @@ namespace ProcessingTools.Processors.Contracts
         /// <summary>
         /// Normalizes document content.
         /// </summary>
-        /// <param name="document"><see cref="IDocument"/> object to be normalized</param>
-        /// <returns>Task</returns>
+        /// <param name="document"><see cref="IDocument"/> object to be normalized.</param>
+        /// <returns>Task.</returns>
         Task<object> NormalizeAsync(IDocument document);
     }
 }

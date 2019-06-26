@@ -10,7 +10,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
     using ProcessingTools.Extensions;
 
     /// <summary>
-    /// List Intersections Extensions Tests
+    /// List intersections extensions tests.
     /// </summary>
     [TestClass]
     public class ListIntersectionsExtensionsTests

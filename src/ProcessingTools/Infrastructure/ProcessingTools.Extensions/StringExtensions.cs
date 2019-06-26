@@ -167,7 +167,7 @@ namespace ProcessingTools.Extensions
         /// Parse string to <see cref="Guid"/> or generates new <see cref="Guid"/> if parse is invalid.
         /// </summary>
         /// <param name="source">Source string to be parsed.</param>
-        /// <returns>Parsed or new <see cref="Guid"/></returns>
+        /// <returns>Parsed or new <see cref="Guid"/>.</returns>
         public static Guid ToNewGuid(this string source)
         {
             if (!string.IsNullOrWhiteSpace(source) && Guid.TryParse(source, out Guid result))
@@ -182,7 +182,7 @@ namespace ProcessingTools.Extensions
         /// Parse object to <see cref="Guid"/> or generates new <see cref="Guid"/> if parse is invalid.
         /// </summary>
         /// <param name="source">Source object to be parsed.</param>
-        /// <returns>Parsed or new <see cref="Guid"/></returns>
+        /// <returns>Parsed or new <see cref="Guid"/>.</returns>
         public static Guid ToNewGuid(this object source)
         {
             return (source?.ToString()).ToNewGuid();
@@ -192,7 +192,7 @@ namespace ProcessingTools.Extensions
         /// Parse string to <see cref="Guid"/> or returns empty <see cref="Guid"/> if parse is invalid.
         /// </summary>
         /// <param name="source">Source string to be parsed.</param>
-        /// <returns>Parsed or empty <see cref="Guid"/></returns>
+        /// <returns>Parsed or empty <see cref="Guid"/>.</returns>
         public static Guid ToEmptyGuid(this string source)
         {
             if (!string.IsNullOrWhiteSpace(source) && Guid.TryParse(source, out Guid result))
@@ -207,7 +207,7 @@ namespace ProcessingTools.Extensions
         /// Parse object to <see cref="Guid"/> or returns empty <see cref="Guid"/> if parse is invalid.
         /// </summary>
         /// <param name="source">Source object to be parsed.</param>
-        /// <returns>Parsed or empty <see cref="Guid"/></returns>
+        /// <returns>Parsed or empty <see cref="Guid"/>.</returns>
         public static Guid ToEmptyGuid(this object source)
         {
             return (source?.ToString()).ToEmptyGuid();
@@ -222,7 +222,7 @@ namespace ProcessingTools.Extensions
         /// <param name="caseSensitive">Determines whether the search for delimiters is case sensitive.</param>
         /// <param name="allowMissingEndingDelimiter">Determines whether is allowed the ending delimiter to be missing.</param>
         /// <param name="returnDelimiters">Determines whether delimiters have to be present in the result.</param>
-        /// <returns>Extracted string or ""</returns>
+        /// <returns>Extracted string or "".</returns>
         public static string ExtractString(this string source, string beginingDelimiter, string endingDelimiter, bool caseSensitive = false, bool allowMissingEndingDelimiter = false, bool returnDelimiters = false)
         {
             if (string.IsNullOrEmpty(source))
@@ -299,14 +299,14 @@ namespace ProcessingTools.Extensions
         }
 
         /// <summary>
-        /// Parses a string into an array of lines broken by \r\n or \n
+        /// Parses a string into an array of lines broken by \r\n or \n.
         /// </summary>
         /// <param name="source">String to check for lines.</param>
         /// <returns>Array of strings.</returns>
         public static string[] GetLines(this string source) => GetLines(source, 0);
 
         /// <summary>
-        /// Parses a string into an array of lines broken by \r\n or \n
+        /// Parses a string into an array of lines broken by \r\n or \n.
         /// </summary>
         /// <param name="source">String to check for lines.</param>
         /// <param name="maxLines">Optional - max number of lines to return.</param>
@@ -428,7 +428,7 @@ namespace ProcessingTools.Extensions
         /// <param name="source">Source string to be encoded.</param>
         /// <returns>Encoded string as ASCII.</returns>
         /// <remarks>
-        /// See https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string
+        /// See https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string.
         /// </remarks>
         public static string EncodeNonAsciiCharacters(this string source)
         {
@@ -456,7 +456,7 @@ namespace ProcessingTools.Extensions
         /// <param name="source">Source string to be decoded.</param>
         /// <returns>Decoded string as Unicode.</returns>
         /// <remarks>
-        /// See https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string
+        /// See https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string.
         /// </remarks>
         public static string DecodeEncodedNonAsciiCharacters(this string source)
         {

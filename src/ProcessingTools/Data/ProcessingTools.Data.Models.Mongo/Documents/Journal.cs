@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Journals;
 
     /// <summary>
-    /// Journal
+    /// Journal.
     /// </summary>
     [CollectionName("journals")]
     public class Journal : IJournalDetailsDataTransferObject

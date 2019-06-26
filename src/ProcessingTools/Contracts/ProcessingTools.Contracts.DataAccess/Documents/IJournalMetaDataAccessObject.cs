@@ -30,7 +30,7 @@ namespace ProcessingTools.Contracts.DataAccess.Documents
         /// Deletes journal meta item from data store.
         /// </summary>
         /// <param name="id">ID of the journal meta item to be deleted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> DeleteAsync(object id);
 
         /// <summary>

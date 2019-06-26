@@ -42,14 +42,14 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="TextEditorController"/> class.
         /// </summary>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public TextEditorController(ILogger<TextEditorController> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
-        /// Tools/TextEditor
+        /// Tools/TextEditor.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
@@ -63,7 +63,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Tools/TextEditor/MonacoEditor
+        /// Tools/TextEditor/MonacoEditor.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(MonacoEditorActionName)]
@@ -77,7 +77,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Tools/TextEditor/CodeMirror
+        /// Tools/TextEditor/CodeMirror.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(CodeMirrorActionName)]

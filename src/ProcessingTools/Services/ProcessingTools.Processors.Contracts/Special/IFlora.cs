@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Contracts.Special
     using ProcessingTools.Contracts;
 
     /// <summary>
-    /// Flora
+    /// Flora.
     /// </summary>
     public interface IFlora
     {

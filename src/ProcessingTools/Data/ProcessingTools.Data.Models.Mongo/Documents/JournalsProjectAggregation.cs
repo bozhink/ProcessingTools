@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using MongoDB.Bson.Serialization.Attributes;
 
     /// <summary>
-    /// Journals project aggregation: { Journals: [ ... ] }
+    /// Journals project aggregation: { Journals: [ ... ] }.
     /// </summary>
     public class JournalsProjectAggregation
     {

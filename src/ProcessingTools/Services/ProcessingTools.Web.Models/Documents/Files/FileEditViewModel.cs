@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Documents.Files
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Files Edit View Model
+    /// Files edit view model.
     /// </summary>
     public class FileEditViewModel : ProcessingTools.Contracts.Models.IWebModel
     {

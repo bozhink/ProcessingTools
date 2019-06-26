@@ -19,28 +19,28 @@ namespace ProcessingTools.Services.Contracts
         /// Deleted model.
         /// </summary>
         /// <param name="model">Model to be deleted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> DeleteAsync(TModel model);
 
         /// <summary>
         /// Deletes model by ID.
         /// </summary>
         /// <param name="id">ID of the model to be deleted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> DeleteByIdAsync(object id);
 
         /// <summary>
         /// Inserts model.
         /// </summary>
         /// <param name="model">Model to be inserted.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> InsertAsync(TModel model);
 
         /// <summary>
         /// Updates model.
         /// </summary>
         /// <param name="model">Model to be updated.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> UpdateAsync(TModel model);
     }
 }

@@ -24,7 +24,7 @@ namespace ProcessingTools.Services.Maps
         /// Reference URL: https://msdn.microsoft.com/en-us/library/ff701711.aspx.
         /// </summary>
         /// <param name="address">Address to get longitude and latitude.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public async Task<string[]> GetLongitudeAndLatitudeByAddressAsync(string address)
         {
             var result = new List<string>(2);

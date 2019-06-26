@@ -16,14 +16,14 @@ namespace ProcessingTools.Web.Services.Contracts.Geo
         /// <summary>
         /// Gets all city objects.
         /// </summary>
-        /// <returns>Task of array of the response model</returns>
+        /// <returns>Task of array of the response model.</returns>
         Task<IList<CityResponseModel>> GetAllAsync();
 
         /// <summary>
         /// Gets single city object by its ID.
         /// </summary>
-        /// <param name="id">ID of the requested object</param>
-        /// <returns>Task of the response model</returns>
+        /// <param name="id">ID of the requested object.</param>
+        /// <returns>Task of the response model.</returns>
         Task<CityResponseModel> GetById(int id);
     }
 }

@@ -16,14 +16,14 @@ namespace ProcessingTools.Processors.Contracts.Bio.Codes
         /// Tag known specimen codes.
         /// </summary>
         /// <param name="document"><see cref="IDocument"/> context for tagging.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task TagKnownSpecimenCodesAsync(IDocument document);
 
         /// <summary>
         /// Tag specimen codes.
         /// </summary>
         /// <param name="document"><see cref="IDocument"/> context for tagging.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task TagSpecimenCodesAsync(IDocument document);
     }
 }

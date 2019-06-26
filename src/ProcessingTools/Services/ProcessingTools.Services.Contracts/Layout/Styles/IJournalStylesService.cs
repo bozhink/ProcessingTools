@@ -42,7 +42,7 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
         Task<IJournalStyleModel> GetByIdAsync(object id);
 
         /// <summary>
-        /// Gets journal style details specified by ID;
+        /// Gets journal style details specified by ID.
         /// </summary>
         /// <param name="id">Object ID of the journal style.</param>
         /// <returns>Journal style details.</returns>

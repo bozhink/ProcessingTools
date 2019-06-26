@@ -22,7 +22,7 @@ namespace ProcessingTools.Services.Contracts.IO
         /// </summary>
         /// <param name="fileName">Full name of the output file.</param>
         /// <param name="reader"><see cref="XmlReader"/> object to be read.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> WriteAsync(string fileName, XmlReader reader);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ProcessingTools.Services.Contracts.IO
         /// <param name="fileName">Full name of the output file.</param>
         /// <param name="reader"><see cref="XmlReader"/> object to be read.</param>
         /// <param name="documentType">DOCTYPE for the output file.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> WriteAsync(string fileName, XmlReader reader, XmlDocumentType documentType);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProcessingTools.Services.Contracts.IO
         /// </summary>
         /// <param name="fileName">Full name of the output file.</param>
         /// <param name="document"><see cref="XmlDocument"/> object to written.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> WriteAsync(string fileName, XmlDocument document);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace ProcessingTools.Services.Contracts.IO
         /// <param name="fileName">Full name of the output file.</param>
         /// <param name="document"><see cref="XmlDocument"/> object to written.</param>
         /// <param name="documentType">DOCTYPE for the output file.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> WriteAsync(string fileName, XmlDocument document, XmlDocumentType documentType);
     }
 }

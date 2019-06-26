@@ -20,7 +20,7 @@ namespace ProcessingTools.PowerShell
         /// <summary>
         /// Initializes a new instance of the <see cref="PowerShellScriptInvoker"/> class.
         /// </summary>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public PowerShellScriptInvoker(ILogger<PowerShellScriptInvoker> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -95,7 +95,7 @@ namespace ProcessingTools.PowerShell
         }
 
         /// <summary>
-        /// Sample execution scenario 2: Asynchronous
+        /// Sample execution scenario 2: Asynchronous.
         /// </summary>
         /// <param name="script">Script command to be invoked.</param>
         /// <param name="parameters">Parameters for the command.</param>

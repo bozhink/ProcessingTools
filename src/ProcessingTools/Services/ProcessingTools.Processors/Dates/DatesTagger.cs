@@ -16,7 +16,7 @@ namespace ProcessingTools.Processors.Dates
     public class DatesTagger : StringDataMinerTagger<IDatesDataMiner, IDateTagModelProvider>, IDatesTagger
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DatesTagger"/> class.s
+        /// Initializes a new instance of the <see cref="DatesTagger"/> class.
         /// </summary>
         /// <param name="evaluator">Generic string data miner evaluator.</param>
         /// <param name="tagger">String tagger.</param>

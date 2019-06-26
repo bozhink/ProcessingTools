@@ -17,7 +17,7 @@ namespace ProcessingTools.Web.Services.Contracts
         /// <param name="email">E-mail address of the recipient.</param>
         /// <param name="subject">Subject of the message.</param>
         /// <param name="message">Text content of the message.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task SendEmailAsync(string email, string subject, string message);
     }
 }

@@ -16,13 +16,13 @@ namespace ProcessingTools.Contracts
         /// <summary>
         /// Gets types.
         /// </summary>
-        /// <returns>Found types</returns>
+        /// <returns>Found types.</returns>
         IEnumerable<Type> GetTypes();
 
         /// <summary>
         /// Gets types.
         /// </summary>
-        /// <returns>Found types</returns>
+        /// <returns>Found types.</returns>
         Task<IEnumerable<Type>> GetTypesAsync();
     }
 }

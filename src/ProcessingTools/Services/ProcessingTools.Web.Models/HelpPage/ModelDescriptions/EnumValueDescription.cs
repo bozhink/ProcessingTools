@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
 {
     /// <summary>
-    /// Enum value description
+    /// Enum value description.
     /// </summary>
     public class EnumValueDescription
     {

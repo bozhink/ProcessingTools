@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         /// <summary>
         /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add valid key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Add valid key and valid value should work.")]
         [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_AddValidNonPresentKeyAndValidValue_ShouldWork()
@@ -83,7 +83,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         }
 
         /// <summary>
-        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add with invalid key and valid value should throw <see cref="ArgumentNullException"/> with correct ParamName
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add with invalid key and valid value should throw <see cref="ArgumentNullException"/> with correct ParamName.
         /// </summary>
         /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Add with invalid key and valid value should throw ArgumentNullException with correct ParamName.")]
@@ -114,7 +114,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         }
 
         /// <summary>
-        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add with valid key and null value should throw <see cref="ArgumentNullException"/> with correct ParamName
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Add with valid key and null value should throw <see cref="ArgumentNullException"/> with correct ParamName.
         /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Add with valid key and null value should throw ArgumentNullException with correct ParamName.")]
         [MaxTime(100000)]
@@ -170,7 +170,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         }
 
         /// <summary>
-        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> GetAll with invalid key should throw <see cref="ArgumentNullException"/> with correct ParamName
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> GetAll with invalid key should throw <see cref="ArgumentNullException"/> with correct ParamName.
         /// </summary>
         /// <param name="key">Invalid value of the key.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet GetAll with invalid key should throw ArgumentNullException with correct ParamName.")]
@@ -223,9 +223,9 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         }
 
         /// <summary>
-        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove valid key and valid value should work
+        /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove valid key and valid value should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove valid key and valid value should work.")]
         [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveValidKeyAndValidValue_ShouldWork()
@@ -256,7 +256,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         /// <summary>
         /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove valid non-present key should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove valid non-present key should work.")]
         [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveValidNonPresentKey_ShouldWork()
@@ -284,7 +284,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         /// <summary>
         /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> Remove valid yet-present key should work.
         /// </summary>
-        /// <returns>task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet Remove valid yet-present key should work.")]
         [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_RemoveValidYetPresentKey_ShouldWork()
@@ -419,7 +419,7 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
         /// <summary>
         /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> SaveChanges should work.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(MemoryKeyCollectionValuePairsRepository<ITweet>), Description = "MemoryKeyCollectionValuePairsRepositoryOfTweet SaveChanges should work.")]
         [MaxTime(100000)]
         public async Task MemoryKeyCollectionValuePairsRepositoryOfTweet_SaveChanges_ShouldWork()

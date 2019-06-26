@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
     using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
-    /// /Layout/ReferenceTagStyles
+    /// /Layout/ReferenceTagStyles.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Layout)]
@@ -66,11 +66,11 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// /Layout/ReferenceTagStyles/Index
+        /// /Layout/ReferenceTagStyles/Index.
         /// </summary>
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of styles per page.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
@@ -105,9 +105,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/ReferenceTagStyles/Create
+        /// GET /Layout/ReferenceTagStyles/Create.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
@@ -134,9 +134,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/ReferenceTagStyles/Create
+        /// POST /Layout/ReferenceTagStyles/Create.
         /// </summary>
-        /// <param name="model"><see cref="ReferenceTagStyleCreateRequestModel"/></param>
+        /// <param name="model"><see cref="ReferenceTagStyleCreateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,10 +188,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/ReferenceTagStyles/Edit/id
+        /// GET /Layout/ReferenceTagStyles/Edit/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
@@ -218,9 +218,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/ReferenceTagStyles/Edit
+        /// POST /Layout/ReferenceTagStyles/Edit.
         /// </summary>
-        /// <param name="model"><see cref="ReferenceTagStyleUpdateRequestModel"/></param>
+        /// <param name="model"><see cref="ReferenceTagStyleUpdateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -272,10 +272,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/ReferenceTagStyles/Delete/id
+        /// GET /Layout/ReferenceTagStyles/Delete/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
@@ -302,9 +302,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/ReferenceTagStyles/Delete
+        /// POST /Layout/ReferenceTagStyles/Delete.
         /// </summary>
-        /// <param name="model"><see cref="ReferenceTagStyleDeleteRequestModel"/></param>
+        /// <param name="model"><see cref="ReferenceTagStyleDeleteRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -356,10 +356,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/ReferenceTagStyles/Details/id
+        /// GET /Layout/ReferenceTagStyles/Details/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
@@ -385,7 +385,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

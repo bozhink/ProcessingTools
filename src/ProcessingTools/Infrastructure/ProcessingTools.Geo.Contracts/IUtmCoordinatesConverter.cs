@@ -5,7 +5,7 @@
 namespace ProcessingTools.Geo.Contracts
 {
     /// <summary>
-    /// UTM Coordinates Converter
+    /// UTM coordinates converter.
     /// </summary>
     public interface IUtmCoordinatesConverter
     {

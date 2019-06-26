@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Geo
     using ProcessingTools.Services.Contracts.Geo;
 
     /// <summary>
-    /// Geo epithetsDataService
+    /// Geo epithets data service.
     /// </summary>
     public class GeoEpithetsDataService : AbstractGeoMultiDataService<IGeoEpithetsRepository, IGeoEpithet, ITextFilter>, IGeoEpithetsDataService
     {

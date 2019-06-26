@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
     using System;
 
     /// <summary>
-    /// Parameter annotation
+    /// Parameter annotation.
     /// </summary>
     public class ParameterAnnotation
     {

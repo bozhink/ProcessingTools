@@ -30,7 +30,7 @@ namespace ProcessingTools.Web.Documents.Middleware
         /// </summary>
         /// <param name="context"><see cref="HttpContext"/> of execution.</param>
         /// <param name="factory"><see cref="ApplicationContextFactory"/> instance.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         public Task Invoke(HttpContext context, ApplicationContextFactory factory)
         {
             if (factory != null)

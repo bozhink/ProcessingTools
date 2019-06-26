@@ -19,7 +19,7 @@ namespace ProcessingTools.Common.Code.Images
         /// <param name="bytes">Image as byte array.</param>
         /// <returns>Image format of the image.</returns>
         /// <remarks>
-        /// See https://www.codeproject.com/Articles/1256591/Upload-Image-to-NET-Core-2-1-API
+        /// See https://www.codeproject.com/Articles/1256591/Upload-Image-to-NET-Core-2-1-API.
         /// </remarks>
         public static ImageFormat GetImageFormat(byte[] bytes)
         {

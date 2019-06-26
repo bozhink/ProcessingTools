@@ -10,7 +10,7 @@ namespace ProcessingTools.Harvesters.Models.ExternalLinks
     using ProcessingTools.Common.Constants.Schema;
 
     /// <summary>
-    /// External Links Model
+    /// External links model.
     /// </summary>
     [Serializable]
     [DesignerCategory("code")]

@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Article Details View Model
+    /// Article details view model.
     /// </summary>
     public class ArticleDetailsViewModel : ProcessingTools.Contracts.Models.IWebModel
     {

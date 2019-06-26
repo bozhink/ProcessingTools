@@ -41,7 +41,7 @@ namespace ProcessingTools.Processors.Processors.Floats
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatsTagger"/> class.
         /// </summary>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public FloatsTagger(ILogger<FloatsTagger> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

@@ -20,7 +20,7 @@ namespace ProcessingTools.Processors.Layout
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlContextNormalizer"/> class.
         /// </summary>
-        /// <param name="transformer"><see cref="IXmlTransformer"/></param>
+        /// <param name="transformer"><see cref="IXmlTransformer"/>.</param>
         public XmlContextNormalizer(IXmlTransformer transformer)
         {
             this.transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));

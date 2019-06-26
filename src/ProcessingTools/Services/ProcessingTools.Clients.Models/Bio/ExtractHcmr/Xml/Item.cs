@@ -7,7 +7,7 @@ namespace ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml
     using System.Xml.Serialization;
 
     /// <summary>
-    /// Item
+    /// Item.
     /// </summary>
     [XmlType(AnonymousType = true, Namespace = "Reflect")]
     [XmlRoot(ElementName = "item", Namespace = "Reflect", IsNullable = false)]

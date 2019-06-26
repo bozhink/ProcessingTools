@@ -33,7 +33,7 @@ namespace ProcessingTools.Processors.Special
         }
 
         /// <inheritdoc/>
-        public void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure(IDocument document)
+        public void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclature(IDocument document)
         {
             if (document == null)
             {

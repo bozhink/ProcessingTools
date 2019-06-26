@@ -40,6 +40,11 @@ namespace ProcessingTools.Security
         /// <returns>Converted byte array.</returns>
         public static byte[] FromBase64Url(string base64ForUrlInput)
         {
+            if (string.IsNullOrEmpty(base64ForUrlInput))
+            {
+                return Array.Empty<byte>();
+            }
+
             int padChars = (base64ForUrlInput.Length % 4) == 0 ? 0 : (4 - (base64ForUrlInput.Length % 4));
             StringBuilder result = new StringBuilder(base64ForUrlInput, base64ForUrlInput.Length + padChars);
             result.Append(string.Empty.PadRight(padChars, '='));
@@ -54,7 +59,7 @@ namespace ProcessingTools.Security
         /// <param name="source">Source byte array to be encoded.</param>
         /// <returns>Base 64 URL encoded string.</returns>
         /// <remarks>
-        /// See https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-08#appendix-C
+        /// See https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-08#appendix-C.
         /// </remarks>
         public static string Base64UrlEncode(byte[] source)
         {
@@ -71,13 +76,19 @@ namespace ProcessingTools.Security
         /// <param name="source">Source string to be decoded.</param>
         /// <returns>Decoded byte array.</returns>
         /// <remarks>
-        /// See https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-08#appendix-C
+        /// See https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-08#appendix-C.
         /// </remarks>
         public static byte[] Base64UrlDecode(string source)
         {
-            string s = source;
-            s = s.Replace('-', '+'); // 62nd char of encoding
-            s = s.Replace('_', '/'); // 63rd char of encoding
+            if (string.IsNullOrEmpty(source))
+            {
+                return Array.Empty<byte>();
+            }
+
+            string s = source
+                .Replace('-', '+') // 62nd char of encoding
+                .Replace('_', '/') // 63rd char of encoding
+                ;
 
             // Pad with trailing '='s
             switch (s.Length % 4)
@@ -98,6 +109,11 @@ namespace ProcessingTools.Security
         /// <returns>Instance of <see cref="HashAlgorithm" />.</returns>
         public static HashAlgorithm GetRsaHashAlgorithm(string algorithm)
         {
+            if (string.IsNullOrWhiteSpace(algorithm))
+            {
+                throw new ArgumentNullException(nameof(algorithm));
+            }
+
             if (algorithm.Length < 3 || algorithm.Substring(0, 2) != "RS")
             {
                 throw new InvalidOperationException($"Hash algorithm `{algorithm}` must be valid RSA algorithm.");
@@ -126,6 +142,11 @@ namespace ProcessingTools.Security
         /// <returns>Instance of <see cref="HashAlgorithm" />.</returns>
         public static HashAlgorithm GetRsaCryptoServiceProvider(string algorithm)
         {
+            if (string.IsNullOrWhiteSpace(algorithm))
+            {
+                throw new ArgumentNullException(nameof(algorithm));
+            }
+
             if (algorithm.Length < 3 || algorithm.Substring(0, 2) != "RS")
             {
                 throw new InvalidOperationException($"Hash algorithm `{algorithm}` must be valid RSA algorithm.");
@@ -204,7 +225,7 @@ namespace ProcessingTools.Security
         /// Gets the object identifier (OID) of the algorithm corresponding to the specified simple name.
         /// </summary>
         /// <param name="hashAlgorithm">Hash algorithm for which to get the OID.</param>
-        /// <returns>The OID of the specified algorithm</returns>
+        /// <returns>The OID of the specified algorithm.</returns>
         public static string MapNameToOID(HashAlgorithm hashAlgorithm)
         {
             if (hashAlgorithm is SHA256)
@@ -565,7 +586,7 @@ namespace ProcessingTools.Security
         /// <param name="bytes">Byte array with the certificate data.</param>
         /// <returns>Instance of <see cref="X509Certificate2"/>.</returns>
         /// <remarks>
-        /// See http://paulstovell.com/blog/x509certificate2
+        /// See http://paulstovell.com/blog/x509certificate2.
         /// </remarks>
         public static X509Certificate2 LoadCertificateFromByteArray(byte[] bytes)
         {
@@ -591,7 +612,7 @@ namespace ProcessingTools.Security
         /// <param name="certificate">Certificate to be exported.</param>
         /// <param name="password">Password for the certificate.</param>
         /// <remarks>
-        /// See http://paulstovell.com/blog/x509certificate2
+        /// See http://paulstovell.com/blog/x509certificate2.
         /// </remarks>
         public static void ExportCerFile(string fileName, X509Certificate2 certificate, string password)
         {
@@ -615,7 +636,7 @@ namespace ProcessingTools.Security
         /// <param name="certificate">Certificate to be exported.</param>
         /// <param name="password">Password for the certificate.</param>
         /// <remarks>
-        /// See http://paulstovell.com/blog/x509certificate2
+        /// See http://paulstovell.com/blog/x509certificate2.
         /// </remarks>
         public static void ExportPfxFile(string fileName, X509Certificate2 certificate, string password)
         {
@@ -639,7 +660,7 @@ namespace ProcessingTools.Security
         /// <param name="secret">Secret to be used for hashing.</param>
         /// <returns>Computed hash.</returns>
         /// <remarks>
-        /// See https://stackoverflow.com/questions/12804231/c-sharp-equivalent-to-hash-hmac-in-php
+        /// See https://stackoverflow.com/questions/12804231/c-sharp-equivalent-to-hash-hmac-in-php.
         /// </remarks>
         public static string HashHmac(string message, string secret)
         {

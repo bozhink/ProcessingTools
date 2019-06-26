@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Articles;
 
     /// <summary>
-    /// Article
+    /// Article.
     /// </summary>
     [CollectionName("articles")]
     public class Article : IArticleDetailsDataTransferObject

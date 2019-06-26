@@ -9,7 +9,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     using System.Linq.Expressions;
 
     /// <summary>
-    /// Dynamic Expression
+    /// Dynamic expression.
     /// </summary>
     public static class DynamicExpressionParser
     {

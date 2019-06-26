@@ -13,17 +13,17 @@ namespace ProcessingTools.Web.Services.Contracts.HelpPage
     public interface IModelDocumentationProvider
     {
         /// <summary>
-        /// Gets the documentation based on <see cref="MemberInfo"/>
+        /// Gets the documentation based on <see cref="MemberInfo"/>.
         /// </summary>
-        /// <param name="member">The member</param>
-        /// <returns>Documentation as string</returns>
+        /// <param name="member">The member.</param>
+        /// <returns>Documentation as string.</returns>
         string GetDocumentation(MemberInfo member);
 
         /// <summary>
-        /// Gets the documentation based on <see cref="Type"/>
+        /// Gets the documentation based on <see cref="Type"/>.
         /// </summary>
-        /// <param name="type">The type</param>
-        /// <returns>Documentation as string</returns>
+        /// <param name="type">The type.</param>
+        /// <returns>Documentation as string.</returns>
         string GetDocumentation(Type type);
     }
 }

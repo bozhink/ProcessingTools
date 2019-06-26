@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using ProcessingTools.Web.Services.Contracts.Geo.Coordinates;
 
     /// <summary>
-    /// CoordinatesCalculator
+    /// CoordinatesCalculator.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Tools)]
@@ -45,9 +45,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET CoordinatesCalculator
+        /// GET CoordinatesCalculator.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
@@ -64,10 +64,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// POST CoordinatesCalculator
+        /// POST CoordinatesCalculator.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -103,7 +103,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

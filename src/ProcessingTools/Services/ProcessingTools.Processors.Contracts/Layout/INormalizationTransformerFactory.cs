@@ -16,7 +16,7 @@ namespace ProcessingTools.Processors.Contracts.Layout
         /// Get normalization transformer factory.
         /// </summary>
         /// <param name="schemaType">Schema of the output document.</param>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer Create(SchemaType schemaType);
     }
 }

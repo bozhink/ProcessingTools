@@ -15,9 +15,9 @@ namespace ProcessingTools.TaskServer.Controllers
     public class ValuesController : ControllerBase
     {
         /// <summary>
-        /// GET api/values
+        /// GET api/values.
         /// </summary>
-        /// <returns>Values</returns>
+        /// <returns>Values.</returns>
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {

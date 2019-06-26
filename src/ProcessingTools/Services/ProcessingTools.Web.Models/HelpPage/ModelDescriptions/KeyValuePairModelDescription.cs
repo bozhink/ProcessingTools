@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
 {
     /// <summary>
-    /// KeyValuePair model description
+    /// KeyValuePair model description.
     /// </summary>
     public class KeyValuePairModelDescription : ModelDescription
     {

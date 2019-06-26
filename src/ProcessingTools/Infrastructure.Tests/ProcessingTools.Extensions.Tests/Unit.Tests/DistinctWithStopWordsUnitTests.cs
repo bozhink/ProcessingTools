@@ -33,7 +33,7 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests
         }
 
         /// <summary>
-        /// DistinctWithStopWords with null stopWords should return the original words
+        /// DistinctWithStopWords with null stopWords should return the original words.
         /// </summary>
         [Test(Author = "Bozhin Karaivanov", Description = "DistinctWithStopWords with null stopWords should return the original words")]
         public void DistinctWithStopWords_WithNullStopWords_ShouldReturnTheOriginalWords()

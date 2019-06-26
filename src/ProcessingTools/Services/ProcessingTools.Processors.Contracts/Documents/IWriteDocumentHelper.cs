@@ -18,7 +18,7 @@ namespace ProcessingTools.Processors.Contracts.Documents
         /// <param name="outputFileName">Output file name.</param>
         /// <param name="document">Document to be written.</param>
         /// <param name="splitDocument">Whether to split document before write.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task<object> WriteAsync(string outputFileName, IDocument document, bool splitDocument);
     }
 }

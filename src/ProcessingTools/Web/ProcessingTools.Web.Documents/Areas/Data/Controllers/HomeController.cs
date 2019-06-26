@@ -16,7 +16,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// Index
+        /// Index.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Index)]
@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

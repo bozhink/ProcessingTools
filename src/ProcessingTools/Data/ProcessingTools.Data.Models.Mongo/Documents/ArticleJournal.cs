@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Models.Mongo.Documents
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Articles;
 
     /// <summary>
-    /// Article journal
+    /// Article journal.
     /// </summary>
     public class ArticleJournal : IArticleJournalDataTransferObject
     {

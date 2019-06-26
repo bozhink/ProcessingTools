@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Documents.Constants
 {
     /// <summary>
-    /// View names
+    /// View names.
     /// </summary>
     public static class ViewNames
     {

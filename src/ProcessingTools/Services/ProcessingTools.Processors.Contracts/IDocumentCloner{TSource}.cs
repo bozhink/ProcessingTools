@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Contracts
     /// <summary>
     /// Generic document cloner.
     /// </summary>
-    /// <typeparam name="TSource">Type of source of data to be cloned to the <see cref="IDocument"/> context</typeparam>
+    /// <typeparam name="TSource">Type of source of data to be cloned to the <see cref="IDocument"/> context.</typeparam>
     public interface IDocumentCloner<in TSource> : ICloner<IDocument, TSource, object>
     {
     }

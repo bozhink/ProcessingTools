@@ -7,14 +7,14 @@ namespace ProcessingTools.Processors.Contracts.Special
     using ProcessingTools.Contracts.Xml;
 
     /// <summary>
-    /// Special Transformers Factory
+    /// Special transformers factory.
     /// </summary>
     public interface ISpecialTransformerFactory
     {
         /// <summary>
         /// Returns Gavin Laurens Transformer.
         /// </summary>
-        /// <returns>Gavin-Laurens XmlTransformer</returns>
+        /// <returns>Gavin-Laurens XmlTransformer.</returns>
         IXmlTransformer GetGavinLaurensTransformer();
     }
 }

@@ -227,7 +227,7 @@ namespace ProcessingTools.Processors.Bio.Codes
         /// <summary>
         /// Gets all matches of Janzen specimen codes in the text of the XmlDocument.
         /// </summary>
-        /// <param name="document">Context document</param>
+        /// <param name="document">Context document.</param>
         /// <returns>ICollection of found different Janzen specimen codes.</returns>
         /// <example>
         /// Janzen codes:

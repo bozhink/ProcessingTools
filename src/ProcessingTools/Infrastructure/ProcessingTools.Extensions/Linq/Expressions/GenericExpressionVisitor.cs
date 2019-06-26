@@ -13,10 +13,10 @@ namespace ProcessingTools.Extensions.Linq.Expressions
     /// <summary>
     /// Generic expression visitor.
     /// </summary>
-    /// <typeparam name="T1">T1</typeparam>
-    /// <typeparam name="T2">T2</typeparam>
+    /// <typeparam name="T1">T1.</typeparam>
+    /// <typeparam name="T2">T2.</typeparam>
     /// <remarks>
-    /// See http://stackoverflow.com/questions/11248585/how-to-map-two-expressions-of-differing-types
+    /// See http://stackoverflow.com/questions/11248585/how-to-map-two-expressions-of-differing-types.
     /// </remarks>
     internal class GenericExpressionVisitor<T1, T2> : ExpressionVisitor
     {

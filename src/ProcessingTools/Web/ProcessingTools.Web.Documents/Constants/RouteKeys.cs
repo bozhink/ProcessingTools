@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Documents.Constants
         /// Area.
         /// </summary>
         /// <example>
-        /// ViewContext.RouteData.Values["area"]
+        /// ViewContext.RouteData.Values["area"].
         /// </example>
         public const string Area = "area";
 
@@ -21,7 +21,7 @@ namespace ProcessingTools.Web.Documents.Constants
         /// Controller.
         /// </summary>
         /// <example>
-        /// ViewContext.RouteData.Values["controller"]
+        /// ViewContext.RouteData.Values["controller"].
         /// </example>
         public const string Controller = "controller";
 
@@ -29,7 +29,7 @@ namespace ProcessingTools.Web.Documents.Constants
         /// Action.
         /// </summary>
         /// <example>
-        /// ViewContext.RouteData.Values["action"]
+        /// ViewContext.RouteData.Values["action"].
         /// </example>
         public const string Action = "action";
     }

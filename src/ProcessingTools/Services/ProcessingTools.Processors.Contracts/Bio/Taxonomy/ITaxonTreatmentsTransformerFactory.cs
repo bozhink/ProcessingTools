@@ -14,13 +14,13 @@ namespace ProcessingTools.Processors.Contracts.Bio.Taxonomy
         /// <summary>
         /// Get taxon treatment format transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetTaxonTreatmentFormatTransformer();
 
         /// <summary>
         /// Get taxon treatment extract materials transformer.
         /// </summary>
-        /// <returns><see cref="IXmlTransformer"/></returns>
+        /// <returns><see cref="IXmlTransformer"/>.</returns>
         IXmlTransformer GetTaxonTreatmentExtractMaterialsTransformer();
     }
 }

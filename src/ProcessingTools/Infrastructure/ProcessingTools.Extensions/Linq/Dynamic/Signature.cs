@@ -9,7 +9,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     using System.Linq;
 
     /// <summary>
-    /// Signature
+    /// Signature.
     /// </summary>
     internal class Signature : IEquatable<Signature>
     {

@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
-    /// Chat
+    /// Chat.
     /// </summary>
     [Authorize]
     public class ChatController : Controller
@@ -24,7 +24,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public const string IndexActionName = nameof(Index);
 
         /// <summary>
-        /// /Chat
+        /// /Chat.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]

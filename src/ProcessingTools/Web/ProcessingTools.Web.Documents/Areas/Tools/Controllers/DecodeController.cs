@@ -46,8 +46,8 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="DecodeController"/> class.
         /// </summary>
-        /// <param name="decodeWebService">Decoding service</param>
-        /// <param name="logger">Logger</param>
+        /// <param name="decodeWebService">Decoding service.</param>
+        /// <param name="logger">Logger.</param>
         public DecodeController(IDecodeWebService decodeWebService, ILogger<DecodeController> logger)
         {
             this.decodeWebService = decodeWebService ?? throw new ArgumentNullException(nameof(decodeWebService));
@@ -55,9 +55,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Decode
+        /// GET Decode.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
@@ -71,9 +71,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Decode/Base64
+        /// GET Decode/Base64.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64ActionName)]
@@ -91,10 +91,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// POST Decode/Base64
+        /// POST Decode/Base64.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -128,9 +128,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// GET Decode/Base64Url
+        /// GET Decode/Base64Url.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64UrlActionName)]
@@ -148,10 +148,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// POST Decode/Base64Url
+        /// POST Decode/Base64Url.
         /// </summary>
         /// <param name="model">Request model.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -185,7 +185,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

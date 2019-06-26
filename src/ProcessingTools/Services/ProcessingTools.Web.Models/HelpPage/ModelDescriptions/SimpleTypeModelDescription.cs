@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
 {
     /// <summary>
-    /// Simple type model description
+    /// Simple type model description.
     /// </summary>
     public class SimpleTypeModelDescription : ModelDescription
     {

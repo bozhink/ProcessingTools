@@ -10,7 +10,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
     /// Replace expression visitor.
     /// </summary>
     /// <remarks>
-    /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool
+    /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool.
     /// </remarks>
     internal class ReplaceExpressionVisitor : ExpressionVisitor
     {

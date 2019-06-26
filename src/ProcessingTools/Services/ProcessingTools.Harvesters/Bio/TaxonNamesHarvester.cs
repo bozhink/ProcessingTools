@@ -16,7 +16,7 @@ namespace ProcessingTools.Harvesters.Bio
     using ProcessingTools.Harvesters.Contracts.Bio;
 
     /// <summary>
-    /// Taxon Names Harvester
+    /// Taxon names harvester.
     /// </summary>
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {

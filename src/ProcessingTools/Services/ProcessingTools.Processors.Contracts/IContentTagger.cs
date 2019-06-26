@@ -23,7 +23,7 @@ namespace ProcessingTools.Processors.Contracts
         /// <param name="xpath">XPath to select location for tagging.</param>
         /// <param name="document">Document to be tagged.</param>
         /// <param name="settings">Settings of tagging.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task TagContentInDocumentAsync(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace ProcessingTools.Processors.Contracts
         /// <param name="xpath">XPath to select location for tagging.</param>
         /// <param name="document">Document to be tagged.</param>
         /// <param name="settings">Settings of tagging.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task TagContentInDocumentAsync(IEnumerable<string> textToTagList, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings);
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace ProcessingTools.Processors.Contracts
         /// <param name="nodeList">Node list to perform tagging.</param>
         /// <param name="settings">Settings of tagging.</param>
         /// <param name="items">Items to be tagged.</param>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task TagContentInDocumentAsync(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items);
     }
 }

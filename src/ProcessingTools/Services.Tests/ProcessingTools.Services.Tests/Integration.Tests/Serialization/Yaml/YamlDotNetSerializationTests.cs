@@ -28,8 +28,8 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
         /// De-serialization of simple list of objects should work.
         /// </summary>
         /// <remarks>
-        /// See https://dotnetfiddle.net/UICBLd
-        /// See https://stackoverflow.com/questions/25650113/how-to-parse-a-yaml-string
+        /// See https://dotnetfiddle.net/UICBLd.
+        /// See https://stackoverflow.com/questions/25650113/how-to-parse-a-yaml-string.
         /// </remarks>
         [TestMethod]
         public void Yaml_DeserializationOfSimpleListOfObjects_ShouldWork()
@@ -50,6 +50,8 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 
             var deserializer = new Deserializer();
             var result = deserializer.Deserialize<List<Hashtable>>(new StringReader(yaml));
+
+            Assert.IsNotNull(result);
 
             foreach (var item in result)
             {
@@ -83,6 +85,8 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 
             var deserializer = new Deserializer();
             var result = deserializer.Deserialize<IEnumerable<LayerModel>>(new StringReader(yaml));
+
+            Assert.IsNotNull(result);
 
             foreach (var item in result)
             {
@@ -118,6 +122,8 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
             var result = deserializer.Deserialize<IEnumerable<LayerModel>>(new StringReader(yaml));
+
+            Assert.IsNotNull(result);
 
             foreach (var item in result)
             {

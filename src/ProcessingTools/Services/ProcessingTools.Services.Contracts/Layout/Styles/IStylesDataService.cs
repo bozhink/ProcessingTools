@@ -13,7 +13,7 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
     public interface IStylesDataService
     {
         /// <summary>
-        /// Gets style specified by ID;
+        /// Gets style specified by ID.
         /// </summary>
         /// <param name="id">Object ID of the style.</param>
         /// <returns>Style.</returns>

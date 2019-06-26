@@ -9,7 +9,7 @@ namespace ProcessingTools.Common.Code.Strings
     using ProcessingTools.Common.Enumerations;
 
     /// <summary>
-    /// Contains approximate string matching
+    /// Contains approximate string matching.
     /// </summary>
     public static class LevenshteinDistance
     {
@@ -21,9 +21,9 @@ namespace ProcessingTools.Common.Code.Strings
         /// <summary>
         /// Compute the distance between two strings.
         /// </summary>
-        /// <param name="string1">Left string to compare</param>
-        /// <param name="string2">Right string to compare</param>
-        /// <returns>Levenstein distance</returns>
+        /// <param name="string1">Left string to compare.</param>
+        /// <param name="string2">Right string to compare.</param>
+        /// <returns>Levenstein distance.</returns>
         public static int Compute(string string1, string string2)
         {
             int string1Length = string1.Length;

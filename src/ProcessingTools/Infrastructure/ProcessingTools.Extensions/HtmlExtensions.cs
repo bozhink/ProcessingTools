@@ -65,7 +65,7 @@ namespace ProcessingTools.Extensions
 
         /// <summary>
         /// Method that handles display of text by breaking text.
-        /// Unlike the non-encoded version it encodes any embedded HTML text
+        /// Unlike the non-encoded version it encodes any embedded HTML text.
         /// </summary>
         /// <param name="text">Input string.</param>
         /// <returns>Fixed up string.</returns>
@@ -152,7 +152,7 @@ namespace ProcessingTools.Extensions
         }
 
         /// <summary>
-        /// Create an Href HTML link.
+        /// Create an href HTML link.
         /// </summary>
         /// <param name="text">Display text of the HTML link.</param>
         /// <param name="url">URL of the HTML link.</param>
@@ -168,7 +168,7 @@ namespace ProcessingTools.Extensions
         }
 
         /// <summary>
-        /// Create an Href HTML link.
+        /// Create an href HTML link.
         /// </summary>
         /// <param name="url">URL of the HTML link.</param>
         /// /// <returns>HTML link as string.</returns>
@@ -196,16 +196,16 @@ namespace ProcessingTools.Extensions
         }
 
         /// <summary>
-        /// Sanitizes HTML to some of the most of
+        /// Sanitizes HTML to some of the most of.
         /// </summary>
         /// <remarks>
         /// This provides rudimentary HTML sanitation catching the most obvious
         /// XSS script attack vectors. For more complete HTML Sanitation please look into
         /// a dedicated HTML Sanitizer.
         /// </remarks>
-        /// <param name="html">input html</param>
+        /// <param name="html">Input HTML.</param>
         /// <param name="htmlTagBlacklist">A list of HTML tags that are stripped.</param>
-        /// <returns>Sanitized HTML</returns>
+        /// <returns>Sanitized HTML.</returns>
         public static string SanitizeHtml(string html, string htmlTagBlacklist = "script|iframe|object|embed|form")
         {
             const string HtmlSanitizeTagBlackList = "script|iframe|object|embed|form";

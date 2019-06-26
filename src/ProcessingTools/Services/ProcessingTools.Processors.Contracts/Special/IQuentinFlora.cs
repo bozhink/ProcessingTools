@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Special
 {
     /// <summary>
-    /// Quentin Flora
+    /// Quentin flora.
     /// </summary>
     public interface IQuentinFlora : IDocumentFormatter
     {

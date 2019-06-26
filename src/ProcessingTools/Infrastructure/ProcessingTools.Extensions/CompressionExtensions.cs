@@ -270,7 +270,7 @@ namespace ProcessingTools.Extensions
         /// Decompresses string to string.
         /// </summary>
         /// <param name="source">Source string to be decompressed.</param>
-        /// <param name="encoding">Text encoding</param>
+        /// <param name="encoding">Text encoding.</param>
         /// <returns>Decompressed string.</returns>
         public static string DecompressString(this string source, Encoding encoding)
         {
@@ -315,7 +315,7 @@ namespace ProcessingTools.Extensions
         /// Decompresses string to string.
         /// </summary>
         /// <param name="source">Source string to be decompressed.</param>
-        /// <param name="encoding">Text encoding</param>
+        /// <param name="encoding">Text encoding.</param>
         /// <returns>Decompressed string.</returns>
         public static async Task<string> DecompressStringAsync(this string source, Encoding encoding)
         {

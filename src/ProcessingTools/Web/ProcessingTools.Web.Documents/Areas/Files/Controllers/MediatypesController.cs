@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
     using ProcessingTools.Web.Services.Contracts.Files;
 
     /// <summary>
-    /// /Files/Mediatypes
+    /// /Files/Mediatypes.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Files)]
@@ -66,11 +66,11 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// /Files/Mediatypes/Index
+        /// /Files/Mediatypes/Index.
         /// </summary>
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of styles per page.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
@@ -105,9 +105,9 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// GET /Files/Mediatypes/Create
+        /// GET /Files/Mediatypes/Create.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
@@ -134,9 +134,9 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// POST /Files/Mediatypes/Create
+        /// POST /Files/Mediatypes/Create.
         /// </summary>
-        /// <param name="model"><see cref="MediatypeCreateRequestModel"/></param>
+        /// <param name="model"><see cref="MediatypeCreateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,10 +188,10 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// GET /Files/Mediatypes/Edit/id
+        /// GET /Files/Mediatypes/Edit/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
@@ -218,9 +218,9 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// POST /Files/Mediatypes/Edit
+        /// POST /Files/Mediatypes/Edit.
         /// </summary>
-        /// <param name="model"><see cref="MediatypeUpdateRequestModel"/></param>
+        /// <param name="model"><see cref="MediatypeUpdateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -272,10 +272,10 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// GET /Files/Mediatypes/Delete/id
+        /// GET /Files/Mediatypes/Delete/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
@@ -302,9 +302,9 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// POST /Files/Mediatypes/Delete
+        /// POST /Files/Mediatypes/Delete.
         /// </summary>
-        /// <param name="model"><see cref="MediatypeDeleteRequestModel"/></param>
+        /// <param name="model"><see cref="MediatypeDeleteRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -356,10 +356,10 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// GET /Files/Mediatypes/Details/id
+        /// GET /Files/Mediatypes/Details/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
@@ -385,7 +385,7 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

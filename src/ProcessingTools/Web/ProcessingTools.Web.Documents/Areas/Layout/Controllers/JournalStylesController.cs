@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
     using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
-    /// /Layout/JournalStyles
+    /// /Layout/JournalStyles.
     /// </summary>
     [Authorize]
     [Area(AreaNames.Layout)]
@@ -66,11 +66,11 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// /Layout/JournalStyles/Index
+        /// /Layout/JournalStyles/Index.
         /// </summary>
         /// <param name="p">Current page number. Zero-based.</param>
         /// <param name="n">Number of styles per page.</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
@@ -105,9 +105,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/JournalStyles/Create
+        /// GET /Layout/JournalStyles/Create.
         /// </summary>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
@@ -134,9 +134,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/JournalStyles/Create
+        /// POST /Layout/JournalStyles/Create.
         /// </summary>
-        /// <param name="model"><see cref="JournalStyleCreateRequestModel"/></param>
+        /// <param name="model"><see cref="JournalStyleCreateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,10 +188,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/JournalStyles/Edit/id
+        /// GET /Layout/JournalStyles/Edit/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
@@ -218,9 +218,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/JournalStyles/Edit
+        /// POST /Layout/JournalStyles/Edit.
         /// </summary>
-        /// <param name="model"><see cref="JournalStyleUpdateRequestModel"/></param>
+        /// <param name="model"><see cref="JournalStyleUpdateRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -272,10 +272,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/JournalStyles/Delete/id
+        /// GET /Layout/JournalStyles/Delete/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
@@ -302,9 +302,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// POST /Layout/JournalStyles/Delete
+        /// POST /Layout/JournalStyles/Delete.
         /// </summary>
-        /// <param name="model"><see cref="JournalStyleDeleteRequestModel"/></param>
+        /// <param name="model"><see cref="JournalStyleDeleteRequestModel"/>.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -356,10 +356,10 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// GET /Layout/JournalStyles/Details/id
+        /// GET /Layout/JournalStyles/Details/id.
         /// </summary>
-        /// <param name="id">ID of the style</param>
-        /// <param name="returnUrl">Return URL</param>
+        /// <param name="id">ID of the style.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
         public async Task<IActionResult> Details(string id, string returnUrl = null)
@@ -385,7 +385,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         }
 
         /// <summary>
-        /// Help
+        /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(ActionNames.Help)]

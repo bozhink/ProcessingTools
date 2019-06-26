@@ -33,7 +33,7 @@ namespace ProcessingTools.Processors.Abbreviations
         /// </summary>
         /// <param name="harvester">Abbreviations harvester.</param>
         /// <param name="contextWrapper">Context wrapper.</param>
-        /// <param name="logger">Logger</param>
+        /// <param name="logger">Logger.</param>
         public AbbreviationsTagger(IAbbreviationsHarvester harvester, IXmlContextWrapper contextWrapper, ILogger<AbbreviationsTagger> logger)
         {
             this.harvester = harvester ?? throw new ArgumentNullException(nameof(harvester));

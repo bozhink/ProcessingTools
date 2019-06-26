@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// Article Delete Request Model
+    /// Article delete request model.
     /// </summary>
     public class ArticleDeleteRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {

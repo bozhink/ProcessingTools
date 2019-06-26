@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Serialization
     /// <summary>
     /// Generic deserializer.
     /// </summary>
-    /// <typeparam name="T">Type of output object</typeparam>
+    /// <typeparam name="T">Type of output object.</typeparam>
     public interface IDeserializer<T>
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     using System.Reflection;
 
     /// <summary>
-    /// Expression Parser
+    /// Expression parser.
     /// </summary>
     internal class ExpressionParser
     {

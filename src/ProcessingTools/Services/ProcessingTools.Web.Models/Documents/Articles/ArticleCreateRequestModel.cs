@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
 
     /// <summary>
-    /// Article Create Request Model
+    /// Article create request model.
     /// </summary>
     public class ArticleCreateRequestModel : IArticleInsertModel, ProcessingTools.Contracts.Models.IWebModel
     {

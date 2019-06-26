@@ -14,7 +14,7 @@ namespace ProcessingTools.Processors.Models.Geo.GeoJson
     /// <para>GeoJSON always consists of a single object.</para>
     /// <para>This object represents a geometry, feature, or collection of features.</para>
     /// </summary>
-    /// <typeparam name="TEnum">Type of the enumeration</typeparam>
+    /// <typeparam name="TEnum">Type of the enumeration.</typeparam>
     [JsonObject]
     public abstract class GeoJsonObject<TEnum>
         where TEnum : struct, IComparable, IConvertible, IFormattable
