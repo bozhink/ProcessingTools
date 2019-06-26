@@ -24,7 +24,7 @@ namespace ProcessingTools.Data.Miners.Abstractions
     /// <typeparam name="TFilter">Type of the filter.</typeparam>
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
         where TServiceModel : class, INamedIntegerIdentified
-        where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
+        where TService : class, ISelectableDataServiceAsync<TServiceModel, TFilter>
         where TFilter : class, IFilter
     {
         private const int NumberOfItemsToTake = PaginationConstants.MaximalItemsPerPageAllowed;

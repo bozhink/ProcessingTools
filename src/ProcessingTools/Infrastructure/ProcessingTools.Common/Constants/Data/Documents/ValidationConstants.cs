@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Constants.Data.Documents
 {
     /// <summary>
-    /// Validation constants
+    /// Validation constants.
     /// </summary>
     public static class ValidationConstants
     {
@@ -30,7 +30,7 @@ namespace ProcessingTools.Common.Constants.Data.Documents
         public const int MaximalLengthOfAbbreviatedJournalName = 40;
 
         /// <summary>
-        /// Minimal length of abbreviated journal name
+        /// Minimal length of abbreviated journal name.
         /// </summary>
         public const int MinimalLengthOfAbbreviatedJournalName = 1;
 
@@ -50,7 +50,7 @@ namespace ProcessingTools.Common.Constants.Data.Documents
         public const int MaximalLengthOfAddressString = 100;
 
         /// <summary>
-        /// Minimal length of address string
+        /// Minimal length of address string.
         /// </summary>
         public const int MinimalLengthOfAddressString = 0;
 
@@ -200,7 +200,7 @@ namespace ProcessingTools.Common.Constants.Data.Documents
         public const int MaximalLengthOfAuthorSurname = 50;
 
         /// <summary>
-        /// Minimal length of author surname
+        /// Minimal length of author surname.
         /// </summary>
         public const int MinimalLengthOfAuthorSurname = 1;
 

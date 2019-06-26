@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Geo
     /// <summary>
     /// Geo names data service.
     /// </summary>
-    public interface IGeoNamesDataService : IMultiDataServiceAsync<IGeoName, ITextFilter>
+    public interface IGeoNamesDataService : ISelectableDataServiceAsync<IGeoName, ITextFilter>
     {
     }
 }

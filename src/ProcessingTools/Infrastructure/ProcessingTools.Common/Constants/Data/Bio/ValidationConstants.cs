@@ -5,17 +5,17 @@
 namespace ProcessingTools.Common.Constants.Data.Bio
 {
     /// <summary>
-    /// Validation constants
+    /// Validation constants.
     /// </summary>
     public static class ValidationConstants
     {
         /// <summary>
-        /// MaximalLengthOfMorphologicalEpithetName
+        /// Maximal length of morphological epithet name.
         /// </summary>
         public const int MaximalLengthOfMorphologicalEpithetName = 100;
 
         /// <summary>
-        /// MaximalLengthOfTypeStatusName
+        /// Maximal length of type status name.
         /// </summary>
         public const int MaximalLengthOfTypeStatusName = 15;
     }

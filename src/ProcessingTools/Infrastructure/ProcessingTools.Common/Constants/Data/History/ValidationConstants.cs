@@ -5,7 +5,7 @@
 namespace ProcessingTools.Common.Constants.Data.History
 {
     /// <summary>
-    /// Validation constants
+    /// Validation constants.
     /// </summary>
     public static class ValidationConstants
     {

@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Bio
     /// <summary>
     /// Morphological epithets data service.
     /// </summary>
-    public interface IMorphologicalEpithetsDataService : IMultiDataServiceAsync<IMorphologicalEpithet, IFilter>
+    public interface IMorphologicalEpithetsDataService : ISelectableDataServiceAsync<IMorphologicalEpithet, IFilter>
     {
     }
 }

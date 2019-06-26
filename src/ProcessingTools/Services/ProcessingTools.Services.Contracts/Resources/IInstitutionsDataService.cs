@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Resources
     /// <summary>
     /// Institutions data service.
     /// </summary>
-    public interface IInstitutionsDataService : IMultiDataServiceAsync<IInstitution, IFilter>
+    public interface IInstitutionsDataService : ISelectableDataServiceAsync<IInstitution, IFilter>
     {
     }
 }

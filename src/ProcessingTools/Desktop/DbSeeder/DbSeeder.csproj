@@ -113,7 +113,6 @@
     <Compile Include="Seeders\BioEnvironmentsDbSeeder.cs" />
     <Compile Include="Seeders\BiorepositoriesDbSeeder.cs" />
     <Compile Include="Seeders\BiotaxonomyMongoDbSeeder.cs" />
-    <Compile Include="Seeders\DataResourcesDbSeeder.cs" />
     <Compile Include="Seeders\GeoDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IGeoDbSeeder.cs" />
     <Compile Include="Seeders\MediatypesDbSeeder.cs" />

@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Bio
     /// <summary>
     /// Types statuses data service.
     /// </summary>
-    public interface ITypeStatusDataService : IMultiDataServiceAsync<ITypeStatus, IFilter>
+    public interface ITypeStatusDataService : ISelectableDataServiceAsync<ITypeStatus, IFilter>
     {
     }
 }

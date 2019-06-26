@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Resources
     /// <summary>
     /// Products data service.
     /// </summary>
-    public interface IProductsDataService : IMultiDataServiceAsync<IProduct, IFilter>
+    public interface IProductsDataService : ISelectableDataServiceAsync<IProduct, IFilter>
     {
     }
 }

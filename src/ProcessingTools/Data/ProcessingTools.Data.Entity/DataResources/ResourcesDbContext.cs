@@ -14,18 +14,12 @@
 
         public DbSet<ContentType> ContentTypes { get; set; }
 
-        public DbSet<Institution> Institutions { get; set; }
-
-        public DbSet<Product> Products { get; set; }
-
         public DbSet<SourceId> Sources { get; set; }
 
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ContentType>().HasIndex(m => m.Name).IsUnique();
-            modelBuilder.Entity<Institution>().HasIndex(m => m.Name).IsUnique();
-            modelBuilder.Entity<Product>().HasIndex(m => m.Name).IsUnique();
 
             base.OnModelCreating(modelBuilder);
         }

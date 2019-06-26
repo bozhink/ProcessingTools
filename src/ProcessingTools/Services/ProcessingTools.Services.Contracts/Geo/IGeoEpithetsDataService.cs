@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Geo
     /// <summary>
     /// Geo epithets data service.
     /// </summary>
-    public interface IGeoEpithetsDataService : IMultiDataServiceAsync<IGeoEpithet, ITextFilter>
+    public interface IGeoEpithetsDataService : ISelectableDataServiceAsync<IGeoEpithet, ITextFilter>
     {
     }
 }

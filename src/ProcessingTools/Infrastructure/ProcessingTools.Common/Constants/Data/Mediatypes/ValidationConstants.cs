@@ -5,27 +5,27 @@
 namespace ProcessingTools.Common.Constants.Data.Mediatypes
 {
     /// <summary>
-    /// Validation constants
+    /// Validation constants.
     /// </summary>
     public static class ValidationConstants
     {
         /// <summary>
-        /// MaximalLengthOfMimeTypeName
+        /// Maximal length of mime-type name.
         /// </summary>
         public const int MaximalLengthOfMimeTypeName = 30;
 
         /// <summary>
-        /// MaximalLengthOfMimeSubtypeName
+        /// Maximal length of mime-subtype name.
         /// </summary>
         public const int MaximalLengthOfMimeSubtypeName = 150;
 
         /// <summary>
-        /// MaximalLengthOfFileExtensionName
+        /// Maximal length of file extension name.
         /// </summary>
         public const int MaximalLengthOfFileExtensionName = 30;
 
         /// <summary>
-        /// MaximalLengthOfFileExtensionDescription
+        /// Maximal length of file extension description.
         /// </summary>
         public const int MaximalLengthOfFileExtensionDescription = 100;
     }

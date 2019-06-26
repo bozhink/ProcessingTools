@@ -5,132 +5,132 @@
 namespace ProcessingTools.Common.Constants.Data.Geo
 {
     /// <summary>
-    /// Validation constants
+    /// Validation constants.
     /// </summary>
     public static class ValidationConstants
     {
         /// <summary>
-        /// ContinentNameRegexPattern
+        /// Continent name regex pattern.
         /// </summary>
         public const string ContinentNameRegexPattern = @"^[^<>;:]+$";
 
         /// <summary>
-        /// CountryNameRegexPattern
+        /// Country name regex pattern.
         /// </summary>
         public const string CountryNameRegexPattern = ContinentNameRegexPattern;
 
         /// <summary>
-        /// MaximalLengthOfAbbreviatedName
+        /// Maximal length of abbreviated name.
         /// </summary>
         public const int MaximalLengthOfAbbreviatedName = 5;
 
         /// <summary>
-        /// MaximalLengthOfCallingCode
+        /// Maximal length of calling code.
         /// </summary>
         public const int MaximalLengthOfCallingCode = 20;
 
         /// <summary>
-        /// MaximalLengthOfCityName
+        /// Maximal length of city name.
         /// </summary>
         public const int MaximalLengthOfCityName = 150;
 
         /// <summary>
-        /// MaximalLengthOfContinentName
+        /// Maximal length of continent name.
         /// </summary>
         public const int MaximalLengthOfContinentName = 30;
 
         /// <summary>
-        /// MaximalLengthOfCountryName
+        /// Maximal length of country name.
         /// </summary>
         public const int MaximalLengthOfCountryName = 60;
 
         /// <summary>
-        /// MaximalLengthOfGeoEpithetName
+        /// Maximal length of geo epithet name.
         /// </summary>
         public const int MaximalLengthOfGeoEpithetName = 100;
 
         /// <summary>
-        /// MaximalLengthOfGeoName
+        /// Maximal length of geo name.
         /// </summary>
         public const int MaximalLengthOfGeoName = 300;
 
         /// <summary>
-        /// MaximalLengthOfIso639xCode
+        /// Maximal length of ISO639x code.
         /// </summary>
         public const int MaximalLengthOfIso639xCode = 3;
 
         /// <summary>
-        /// MaximalLengthOfLanguageCode
+        /// Maximal length of language code.
         /// </summary>
         public const int MaximalLengthOfLanguageCode = 10;
 
         /// <summary>
-        /// MaximalLengthOfPostCode
+        /// Maximal length of post code.
         /// </summary>
         public const int MaximalLengthOfPostCode = 5;
 
         /// <summary>
-        /// MaximalLengthOfStateName
+        /// Maximal length of state name.
         /// </summary>
         public const int MaximalLengthOfStateName = 60;
 
         /// <summary>
-        /// MaximalLengthOfSynonymName
+        /// Maximal length of synonym name.
         /// </summary>
         public const int MaximalLengthOfSynonymName = 150;
 
         /// <summary>
-        /// MaximalLengthOfUserIdentifier
+        /// Maximal length of user identifier.
         /// </summary>
         public const int MaximalLengthOfUserIdentifier = 128;
 
         /// <summary>
-        /// MinimalLengthOfCityName
+        /// Minimal length of city name.
         /// </summary>
         public const int MinimalLengthOfCityName = 1;
 
         /// <summary>
-        /// MinimalLengthOfContinentName
+        /// Minimal length of continent name.
         /// </summary>
         public const int MinimalLengthOfContinentName = 2;
 
         /// <summary>
-        /// MinimalLengthOfCountryName
+        /// Minimal length of country name.
         /// </summary>
         public const int MinimalLengthOfCountryName = 2;
 
         /// <summary>
-        /// MinimalLengthOfGeoEpithetName
+        /// Minimal length of geo epithet name.
         /// </summary>
         public const int MinimalLengthOfGeoEpithetName = 1;
 
         /// <summary>
-        /// MinimalLengthOfGeoName
+        /// Minimal length of geo name.
         /// </summary>
         public const int MinimalLengthOfGeoName = 1;
 
         /// <summary>
-        /// MinimalLengthOfLanguageCode
+        /// Minimal length of language code.
         /// </summary>
         public const int MinimalLengthOfLanguageCode = 1;
 
         /// <summary>
-        /// MinimalLengthOfPostCode
+        /// Minimal length of post code.
         /// </summary>
         public const int MinimalLengthOfPostCode = 1;
 
         /// <summary>
-        /// MinimalLengthOfStateName
+        /// Minimal length of state name.
         /// </summary>
         public const int MinimalLengthOfStateName = 1;
 
         /// <summary>
-        /// MinimalLengthOfSynonymName
+        /// Minimal length of synonym name.
         /// </summary>
         public const int MinimalLengthOfSynonymName = 150;
 
         /// <summary>
-        /// MinimalLengthOfUserIdentifier
+        /// Minimal length of user identifier.
         /// </summary>
         public const int MinimalLengthOfUserIdentifier = 1;
     }

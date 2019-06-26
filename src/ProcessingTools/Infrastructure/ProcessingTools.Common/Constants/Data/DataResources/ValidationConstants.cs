@@ -5,37 +5,27 @@
 namespace ProcessingTools.Common.Constants.Data.DataResources
 {
     /// <summary>
-    /// Validation constants
+    /// Validation constants.
     /// </summary>
     public static class ValidationConstants
     {
         /// <summary>
-        /// ContentTypeNameMaximalLength
+        /// Content type name maximal length.
         /// </summary>
         public const int ContentTypeNameMaximalLength = 20;
 
         /// <summary>
-        /// SourceIdMaximalLength
+        /// SourceId maximal length.
         /// </summary>
         public const int SourceIdMaximalLength = 20;
 
         /// <summary>
-        /// ProductNameMaximalLength
-        /// </summary>
-        public const int ProductNameMaximalLength = 300;
-
-        /// <summary>
-        /// InstitutionNameMaximalLength
-        /// </summary>
-        public const int InstitutionNameMaximalLength = 500;
-
-        /// <summary>
-        /// AbbreviationNameMaximalLength
+        /// Abbreviation name maximal length.
         /// </summary>
         public const int AbbreviationNameMaximalLength = 30;
 
         /// <summary>
-        /// AbbreviationDefinitionMaximalLength
+        /// Abbreviation definition maximal length.
         /// </summary>
         public const int AbbreviationDefinitionMaximalLength = 500;
     }
