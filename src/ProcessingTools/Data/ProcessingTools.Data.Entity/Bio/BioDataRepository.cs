@@ -2,11 +2,11 @@
 {
     using ProcessingTools.Data.Entity.Abstractions;
 
-    public class BioDataRepository<T> : EntityGenericRepository<BioDbContext, T>, IBioDataRepository<T>
+    public class BioDataRepository<T> : EntityRepository<BioDbContext, T>, IBioDataRepository<T>
         where T : class
     {
-        public BioDataRepository(IDbContextProvider<BioDbContext> contextProvider)
-            : base(contextProvider)
+        public BioDataRepository(BioDbContext context)
+            : base(context)
         {
         }
     }

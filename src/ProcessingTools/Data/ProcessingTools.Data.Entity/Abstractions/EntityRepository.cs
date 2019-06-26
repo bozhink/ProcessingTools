@@ -1,22 +1,18 @@
 ﻿namespace ProcessingTools.Data.Entity.Abstractions
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-    public abstract class EntityRepository<TContext, TEntity> : IEntityRepository<TEntity>, IDisposable
+    public class EntityRepository<TContext, TEntity> : IEntityCrudRepository<TEntity>, IEntityRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
-        protected EntityRepository(IDbContextProvider<TContext> contextProvider)
+        public EntityRepository(TContext context)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.Context = contextProvider.Create();
+            this.Context = context ?? throw new ArgumentNullException(nameof(context));
             this.DbSet = this.GetDbSet<TEntity>();
         }
 
@@ -25,19 +21,29 @@
             this.Dispose(false);
         }
 
-        protected DbSet<TEntity> DbSet { get; private set; }
+        public virtual IQueryable<TEntity> Query => this.DbSet.AsQueryable();
 
-        private TContext Context { get; set; }
+        private TContext Context { get; }
 
-        public virtual object SaveChanges() => this.Context.SaveChanges();
+        private DbSet<TEntity> DbSet { get; }
 
-        public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync().ConfigureAwait(false);
+        public virtual async Task<object> AddAsync(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            return await this.AddAsync(entity, this.DbSet).ConfigureAwait(false);
+        }
 
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync().ConfigureAwait(false);
 
         protected virtual void Dispose(bool disposing)
         {
@@ -47,13 +53,39 @@
             }
         }
 
-        protected DbSet<T> GetDbSet<T>()
+        private Task<T> AddAsync<T>(T entity, DbSet<T> set)
+                    where T : class
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            if (set == null)
+            {
+                throw new ArgumentNullException(nameof(set));
+            }
+
+            var entry = this.GetEntry(entity);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+                return Task.FromResult(entity);
+            }
+            else
+            {
+                set.Add(entity);
+                return Task.FromResult(entity);
+            }
+        }
+
+        private DbSet<T> GetDbSet<T>()
             where T : class
         {
             return this.Context.Set<T>();
         }
 
-        protected EntityEntry<T> GetEntry<T>(T entity)
+        private EntityEntry<T> GetEntry<T>(T entity)
             where T : class => this.Context.Entry(entity);
     }
 }

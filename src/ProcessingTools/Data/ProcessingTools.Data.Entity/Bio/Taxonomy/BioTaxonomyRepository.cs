@@ -2,10 +2,10 @@
 {
     using ProcessingTools.Data.Entity.Abstractions;
 
-    public class BioTaxonomyRepository<T> : EntityGenericRepository<BioTaxonomyDbContext, T>, IBioTaxonomyDataRepository<T>
+    public class BioTaxonomyRepository<T> : EntityRepository<BioTaxonomyDbContext, T>, IBioTaxonomyDataRepository<T>
         where T : class
     {
-        public BioTaxonomyRepository(IDbContextProvider<BioTaxonomyDbContext> context)
+        public BioTaxonomyRepository(BioTaxonomyDbContext context)
             : base(context)
         {
         }

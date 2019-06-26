@@ -2,11 +2,11 @@
 {
     using ProcessingTools.Data.Entity.Abstractions;
 
-    public class GeoDataRepository<T> : EntityGenericRepository<GeoDbContext, T>, IGeoDataRepository<T>
+    public class GeoDataRepository<T> : EntityRepository<GeoDbContext, T>, IGeoDataRepository<T>
         where T : class
     {
-        public GeoDataRepository(IDbContextProvider<GeoDbContext> contextProvider)
-            : base(contextProvider)
+        public GeoDataRepository(GeoDbContext context)
+            : base(context)
         {
         }
     }

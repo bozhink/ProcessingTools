@@ -2,11 +2,11 @@
 {
     using ProcessingTools.Data.Entity.Abstractions;
 
-    public class BioEnvironmentsRepository<T> : EntityGenericRepository<BioEnvironmentsDbContext, T>, IBioEnvironmentsRepository<T>
+    public class BioEnvironmentsRepository<T> : EntityRepository<BioEnvironmentsDbContext, T>, IBioEnvironmentsRepository<T>
         where T : class
     {
-        public BioEnvironmentsRepository(IDbContextProvider<BioEnvironmentsDbContext> contextProvider)
-            : base(contextProvider)
+        public BioEnvironmentsRepository(BioEnvironmentsDbContext context)
+            : base(context)
         {
         }
     }

@@ -2,11 +2,11 @@
 {
     using ProcessingTools.Data.Entity.Abstractions;
 
-    public class ResourcesRepository<T> : EntityGenericRepository<ResourcesDbContext, T>, IResourcesRepository<T>
+    public class ResourcesRepository<T> : EntityRepository<ResourcesDbContext, T>, IResourcesRepository<T>
         where T : class
     {
-        public ResourcesRepository(IDbContextProvider<ResourcesDbContext> contextProvider)
-            : base(contextProvider)
+        public ResourcesRepository(ResourcesDbContext context)
+            : base(context)
         {
         }
     }
