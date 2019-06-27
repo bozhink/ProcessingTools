@@ -1,26 +1,25 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
-    <Description>Common modules with bindings for Autofac</Description>
+    <Description>Configuration models.</Description>
     <PackageLicenseExpression>GPLv3.0</PackageLicenseExpression>
-    <Copyright>Copyright © 2019 ProcessingTools</Copyright>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>configration, Autofac</PackageTags>
+    <PackageTags>configuration</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Configuration.Autofac.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Configuration.Models.xml</DocumentationFile>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Configuration.Autofac.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Configuration.Models.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,9 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.2" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
-    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.15.0.8572">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

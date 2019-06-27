@@ -17,6 +17,7 @@ namespace ProcessingTools.TaskServer
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
+    using ProcessingTools.TaskServer.Extensions;
 
     /// <summary>
     /// Entry point of the application.
@@ -73,8 +74,8 @@ namespace ProcessingTools.TaskServer
         {
             IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+                ////.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                ////.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .AddCommandLine(args);
 
@@ -82,9 +83,10 @@ namespace ProcessingTools.TaskServer
 
             return WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(configuration)
-                .UseEnvironment("Development")
+                ////.UseEnvironment("Development")
                 .UseStartup<Startup>()
                 .UseShutdownTimeout(TimeSpan.FromSeconds(10))
+                .UseKestrel(options => options.ConfigureEndpoints())
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
