@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TaskServer.Services
+namespace ProcessingTools.TasksServer.Services
 {
     using System;
     using Microsoft.Extensions.Logging;

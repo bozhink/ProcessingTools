@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TaskServer.Controllers
+namespace ProcessingTools.TasksServer.Controllers
 {
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;

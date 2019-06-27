@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TaskServer.Extensions
+namespace ProcessingTools.TasksServer.Extensions
 {
     using System;
     using System.Collections.Generic;

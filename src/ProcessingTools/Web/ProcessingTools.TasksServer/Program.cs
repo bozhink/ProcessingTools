@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TaskServer
+namespace ProcessingTools.TasksServer
 {
     using System;
     using System.Diagnostics;
@@ -17,7 +17,7 @@ namespace ProcessingTools.TaskServer
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
-    using ProcessingTools.TaskServer.Extensions;
+    using ProcessingTools.TasksServer.Extensions;
 
     /// <summary>
     /// Entry point of the application.

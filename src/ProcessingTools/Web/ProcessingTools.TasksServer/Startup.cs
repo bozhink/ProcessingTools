@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TaskServer
+namespace ProcessingTools.TasksServer
 {
     using System;
     using Autofac;
@@ -12,7 +12,7 @@ namespace ProcessingTools.TaskServer
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using ProcessingTools.TaskServer.Services;
+    using ProcessingTools.TasksServer.Services;
 
     /// <summary>
     /// Start-up application.

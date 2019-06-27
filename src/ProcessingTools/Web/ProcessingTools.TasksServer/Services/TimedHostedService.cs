@@ -3,7 +3,7 @@
 // </copyright>
 
 // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2
-namespace ProcessingTools.TaskServer.Services
+namespace ProcessingTools.TasksServer.Services
 {
     using System;
     using System.Threading;

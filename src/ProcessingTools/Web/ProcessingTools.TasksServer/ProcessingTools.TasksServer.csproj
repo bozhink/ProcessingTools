@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>
@@ -15,15 +15,17 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
     <PackageTags>tasks, server</PackageTags>
+    <Product>ProcessingTools.TasksServer</Product>
+    <RootNamespace>ProcessingTools.TasksServer</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>bin\docs\ProcessingTools.TaskServer.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.TasksServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.TaskServer.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.TasksServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
