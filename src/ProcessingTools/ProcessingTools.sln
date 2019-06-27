@@ -225,7 +225,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Autofac", "Infrastructure\ProcessingTools.Configuration.Autofac\ProcessingTools.Configuration.Autofac.csproj", "{40987DF3-00EF-4CD4-891B-2AD85B7A266B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Automapper", "Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.Automapper.csproj", "{DBB1D6A9-9B32-43DE-8C87-C4D5FAFB3AE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.AutoMapper", "Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.AutoMapper.csproj", "{DBB1D6A9-9B32-43DE-8C87-C4D5FAFB3AE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1136,7 +1136,7 @@ Global
 		{DBB1D6A9-9B32-43DE-8C87-C4D5FAFB3AE8} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
