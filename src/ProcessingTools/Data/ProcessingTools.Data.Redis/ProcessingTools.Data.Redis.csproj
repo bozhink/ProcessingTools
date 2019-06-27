@@ -4,16 +4,15 @@
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
-    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <Description>Redis implementation for data objects.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Data.Redis.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;S1075;S4456;S4457</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

@@ -17,22 +17,20 @@
     <Company>ProcessingTools</Company>
     <Description>Documents application</Description>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
-    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageTags>web, documents</PackageTags>
   </PropertyGroup>
 
   <!-- https://stackoverflow.com/questions/50778521/how-to-disable-precompiled-views-in-net-core-2-1-for-debugging -->
   <PropertyGroup>
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>true</RazorCompileOnPublish>
-    <PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
-    <PackageTags>web, documents</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DocumentationFile>bin\docs\ProcessingTools.Web.Documents.xml</DocumentationFile>
   </PropertyGroup>
 

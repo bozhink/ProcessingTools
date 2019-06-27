@@ -6,7 +6,7 @@
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
     <Description>Configuration models.</Description>
-    <PackageLicenseExpression>GPLv3.0</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -15,7 +15,6 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Configuration.Models.xml</DocumentationFile>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

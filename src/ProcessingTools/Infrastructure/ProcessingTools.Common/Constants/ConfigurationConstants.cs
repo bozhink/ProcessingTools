@@ -213,5 +213,40 @@ namespace ProcessingTools.Common.Constants
         /// Users database MSSQL connection string name.
         /// </summary>
         public const string UsersDatabaseMSSQLConnectionStringName = "UsersDatabaseMSSQL";
+
+        /// <summary>
+        /// Message queue host name.
+        /// </summary>
+        public const string MessageQueueHostName = "MessageQueue:HostName";
+
+        /// <summary>
+        /// Message queue port.
+        /// </summary>
+        public const string MessageQueuePort = "MessageQueue:Port";
+
+        /// <summary>
+        /// Message queue virtual host.
+        /// </summary>
+        public const string MessageQueueVirtualHost = "MessageQueue:VirtualHost";
+
+        /// <summary>
+        /// Message queue user name.
+        /// </summary>
+        public const string MessageQueueUserName = "MessageQueue:UserName";
+
+        /// <summary>
+        /// Message queue password.
+        /// </summary>
+        public const string MessageQueuePassword = "MessageQueue:Password";
+
+        /// <summary>
+        /// Message queue name.
+        /// </summary>
+        public const string MessageQueueQueueName = "MessageQueue:QueueName";
+
+        /// <summary>
+        /// Message queue exchange name.
+        /// </summary>
+        public const string MessageQueueExchangeName = "MessageQueue:ExchangeName";
     }
 }

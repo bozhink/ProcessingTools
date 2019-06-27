@@ -7,7 +7,7 @@
     <Company>ProcessingTools</Company>
     <Description>Contracts for the data models.</Description>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
-    <PackageLicenseExpression>GPLv3.0</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

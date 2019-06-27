@@ -14,8 +14,14 @@ namespace ProcessingTools.CommandsServer
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using ProcessingTools.CommandsServer.Services;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Configuration.Models;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Contracts.MQ;
     using ProcessingTools.Services.MQ;
+    using RabbitMQ.Client;
 
     /// <summary>
     /// Start-up application.
@@ -51,6 +57,35 @@ namespace ProcessingTools.CommandsServer
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
+
+            builder.RegisterType<MessageCacheService>().As<IMessageCacheService>().SingleInstance();
+
+            // Rabbit MQ
+            builder
+                .Register(c => new ConnectionFactory
+                {
+                    HostName = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueHostName),
+                    Port = this.Configuration.GetValue<int>(ConfigurationConstants.MessageQueuePort),
+                    VirtualHost = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueVirtualHost),
+                    UserName = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueUserName),
+                    Password = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueuePassword),
+                    AutomaticRecoveryEnabled = true,
+                    Ssl = new SslOption
+                    {
+                        AcceptablePolicyErrors = System.Net.Security.SslPolicyErrors.None,
+                    },
+                })
+                .As<IConnectionFactory>()
+                .SingleInstance();
+
+            builder
+                .RegisterInstance(new QueueConfiguration
+                {
+                    QueueName = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueQueueName),
+                    ExchangeName = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueExchangeName),
+                })
+                .As<IQueueConfiguration>()
+                .SingleInstance();
 
             var container = builder.Build();
 

@@ -8,7 +8,6 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\SentimentAnalysis.xml</DocumentationFile>
-    <NoWarn>1701;1702;SA1008</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

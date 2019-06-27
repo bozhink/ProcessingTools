@@ -6,10 +6,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <Description>XSL treansformer.</Description>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>

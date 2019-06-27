@@ -5,7 +5,8 @@
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
-    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Description>Contracts</Description>
@@ -15,14 +16,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.Contracts.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;S4456;S4457</NoWarn>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="IO\**" />
-    <EmbeddedResource Remove="IO\**" />
-    <None Remove="IO\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
