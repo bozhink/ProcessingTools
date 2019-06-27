@@ -164,7 +164,6 @@ AppPackages/
 # Others
 sql/
 ClientBin/
-[Ss]tyle[Cc]op.*
 ~$*
 *~
 *.dbmdl
@@ -188,6 +187,9 @@ UpgradeLog*.htm
 # SQL Server files
 *.mdf
 *.ldf
+
+# SQLite files
+*.db
 
 # Business Intelligence projects
 *.rdl.data
