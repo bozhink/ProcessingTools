@@ -5,9 +5,15 @@
 namespace ProcessingTools.TaskServer
 {
     using System;
+    using System.Diagnostics;
     using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using System.Text;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Hosting.WindowsServices;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
@@ -27,8 +33,29 @@ namespace ProcessingTools.TaskServer
             var logger = NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
             try
             {
-                logger.Debug("Start application");
-                CreateWebHostBuilder(args).Build().Run();
+                logger.Debug("Start application {0}", Assembly.GetExecutingAssembly().Location);
+
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+                var isService = !(Debugger.IsAttached || args.Contains("--console"));
+
+                if (isService)
+                {
+                    var pathToExe = Assembly.GetExecutingAssembly().Location;
+                    var pathToContentRoot = Path.GetDirectoryName(pathToExe);
+                    Directory.SetCurrentDirectory(pathToContentRoot);
+                }
+
+                IWebHost host = CreateWebHostBuilder(args).Build();
+
+                if (isService && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    host.RunAsService();
+                }
+                else
+                {
+                    host.Run();
+                }
             }
             catch (Exception ex)
             {
@@ -45,7 +72,7 @@ namespace ProcessingTools.TaskServer
         private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
