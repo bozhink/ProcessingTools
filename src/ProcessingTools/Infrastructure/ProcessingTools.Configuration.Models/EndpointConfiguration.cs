@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Configuration.Models
 {
+    using ProcessingTools.Contracts.Models;
+
     /// <summary>
     /// Server endpoint configuration.
     /// </summary>
-    public class EndpointConfiguration
+    public class EndpointConfiguration : IEndpointConfiguration
     {
         /// <summary>
         /// Gets or sets the host of the endpoint.
