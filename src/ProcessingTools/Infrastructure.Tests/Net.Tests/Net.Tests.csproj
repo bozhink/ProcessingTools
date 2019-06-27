@@ -26,6 +26,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>Net.Tests.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>CA1707</NoWarn>
+    <DocumentationFile>bin\docs\ProcessingTools.Net.Tests.xml</DocumentationFile>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

@@ -12,10 +12,18 @@
     <Description>Tests for processors.</Description>
     <IsPackable>false</IsPackable>
     <DebugType>Full</DebugType>
-    <LangVersion>Latest</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Processors.Tests.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1707</NoWarn>
+    <DefineConstants />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CA1707</NoWarn>
+    <DefineConstants />
     <DocumentationFile>bin\docs\ProcessingTools.Processors.Tests.xml</DocumentationFile>
   </PropertyGroup>
 

@@ -12,11 +12,17 @@
     <RepositoryType>git</RepositoryType>
     <Description>Common code tests.</Description>
     <DebugType>Full</DebugType>
-    <LangVersion>Latest</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Common.Code.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Common.Code.Tests\ProcessingTools.Common.Code.Tests.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1707</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CA1707</NoWarn>
+    <DocumentationFile>bin\docs\ProcessingTools.Common.Code.Tests\ProcessingTools.Common.Code.Tests.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

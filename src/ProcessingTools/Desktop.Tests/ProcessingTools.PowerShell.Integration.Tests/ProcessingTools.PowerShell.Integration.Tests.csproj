@@ -12,15 +12,17 @@
     <RepositoryType>git</RepositoryType>
     <Description>ProcessingTools.PowerShell integration tests.</Description>
     <DebugType>Full</DebugType>
-    <LangVersion>Latest</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.PowerShell.Integration.Tests.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\docs\ProcessingTools.PowerShell.Integration.Tests.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
