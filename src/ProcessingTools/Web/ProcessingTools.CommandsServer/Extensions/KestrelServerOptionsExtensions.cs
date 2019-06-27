@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TasksServer.Extensions
+namespace ProcessingTools.CommandsServer.Extensions
 {
     using System;
     using System.Collections.Generic;

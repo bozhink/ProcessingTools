@@ -225,9 +225,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configurati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.AutoMapper", "Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.AutoMapper.csproj", "{DBB1D6A9-9B32-43DE-8C87-C4D5FAFB3AE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Models", "Infrastructure\ProcessingTools.Configuration.Models\ProcessingTools.Configuration.Models.csproj", "{9AD50AA9-1693-4852-9AEE-17C94FE36130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Models", "Infrastructure\ProcessingTools.Configuration.Models\ProcessingTools.Configuration.Models.csproj", "{9AD50AA9-1693-4852-9AEE-17C94FE36130}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.TasksServer", "Web\ProcessingTools.TasksServer\ProcessingTools.TasksServer.csproj", "{333688F4-4E3E-476A-8D54-EDE70505F7A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.CommandsServer", "Web\ProcessingTools.CommandsServer\ProcessingTools.CommandsServer.csproj", "{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1037,6 +1039,14 @@ Global
 		{333688F4-4E3E-476A-8D54-EDE70505F7A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{333688F4-4E3E-476A-8D54-EDE70505F7A8}.Release|x64.ActiveCfg = Release|Any CPU
 		{333688F4-4E3E-476A-8D54-EDE70505F7A8}.Release|x64.Build.0 = Release|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1145,9 +1155,10 @@ Global
 		{DBB1D6A9-9B32-43DE-8C87-C4D5FAFB3AE8} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{9AD50AA9-1693-4852-9AEE-17C94FE36130} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{333688F4-4E3E-476A-8D54-EDE70505F7A8} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
+		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal

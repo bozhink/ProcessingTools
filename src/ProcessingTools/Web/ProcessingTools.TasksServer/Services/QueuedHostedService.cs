@@ -1,5 +1,5 @@
-﻿// <copyright file="QueuedHostedService.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="QueuedHostedService.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.TasksServer.Services

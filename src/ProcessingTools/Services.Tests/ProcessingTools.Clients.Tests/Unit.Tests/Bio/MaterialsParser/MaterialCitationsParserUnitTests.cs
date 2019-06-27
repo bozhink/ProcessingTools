@@ -1,5 +1,5 @@
-﻿// <copyright file="MaterialCitationsParserUnitTests.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="MaterialCitationsParserUnitTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser

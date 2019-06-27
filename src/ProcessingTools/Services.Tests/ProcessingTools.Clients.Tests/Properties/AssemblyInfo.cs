@@ -1,5 +1,5 @@
-// <copyright file="AssemblyInfo.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="AssemblyInfo.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 using System.Reflection;

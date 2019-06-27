@@ -2,17 +2,20 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TasksServer
+namespace ProcessingTools.CommandsServer
 {
     using System;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using ProcessingTools.TasksServer.Services;
+    using ProcessingTools.CommandsServer.Services;
+    using ProcessingTools.Services.Contracts.MQ;
+    using ProcessingTools.Services.MQ;
 
     /// <summary>
     /// Start-up application.
@@ -40,12 +43,9 @@ namespace ProcessingTools.TasksServer
         /// <returns>Configured service provider.</returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
-            services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
-
-            services.AddHostedService<ConsumeScopedServiceHostedService>();
-            services.AddHostedService<QueuedHostedService>();
-            services.AddHostedService<TimedHostedService>();
+            services.AddScoped<IQueueListener, QueueListener>();
+            services.AddScoped<IQueueListenerScopedProcessingService, QueueListenerScopedProcessingService>();
+            services.AddHostedService<ConsumeScopedServiceHostedService<IQueueListenerScopedProcessingService>>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -76,6 +76,11 @@ namespace ProcessingTools.TasksServer
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
         }
     }
 }

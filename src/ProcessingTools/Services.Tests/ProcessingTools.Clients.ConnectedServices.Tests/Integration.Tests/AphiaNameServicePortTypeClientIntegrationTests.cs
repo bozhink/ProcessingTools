@@ -1,5 +1,5 @@
-// <copyright file="AphiaNameServicePortTypeClientIntegrationTests.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="AphiaNameServicePortTypeClientIntegrationTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Clients.ConnectedServices.Tests.Integration.Tests

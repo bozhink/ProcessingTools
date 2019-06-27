@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TasksServer
+namespace ProcessingTools.CommandsServer
 {
     using System;
     using System.Diagnostics;
@@ -17,7 +17,7 @@ namespace ProcessingTools.TasksServer
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
-    using ProcessingTools.TasksServer.Extensions;
+    using ProcessingTools.CommandsServer.Extensions;
 
     /// <summary>
     /// Entry point of the application.

@@ -1,5 +1,5 @@
-﻿// <copyright file="TimedHostedService.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="TimedHostedService.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2
