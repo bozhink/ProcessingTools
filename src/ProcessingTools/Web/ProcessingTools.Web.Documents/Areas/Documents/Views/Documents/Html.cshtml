@@ -24,8 +24,8 @@
 else
 {
     @section Styles {
-        <link rel="stylesheet" href="~/node_modules/leaflet/dist/leaflet.css" />
-        <link rel="stylesheet" href="~/node_modules/toastr/build/toastr.min.css" />
+        <link rel="stylesheet" href="~/build/dist/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" href="~/build/dist/lib/toastr/build/toastr.min.css" />
         <link rel="stylesheet" href="~/build/dist/css/document-preview.min.css" />
     }
 
@@ -48,7 +48,7 @@ else
                             <a class="nav-link" asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" title="Download XML">Download</a>
                         </li>
                         <li class="nav-item ml-2">
-                            <a class="nav-link" asp-action="@DocumentsController.XmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" asp-route-returnUrl="@Model.ReturnUrl" target="_blank"  title="Open document's XML for edit">Edit XML</a>
+                            <a class="nav-link" asp-action="@DocumentsController.XmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId" asp-route-returnUrl="@Model.ReturnUrl" target="_blank" title="Open document's XML for edit">Edit XML</a>
                         </li>
                         <li class="nav-item ml-2">
                             <a class="nav-link" asp-action="@DocumentsController.IndexActionName" asp-route-articleId="@Model.ArticleId" title="Leave document and return to article">Close</a>
@@ -108,12 +108,12 @@ else
     </aside>
 
     @section Scripts {
-        <script src="~/node_modules/crypto-js/crypto-js.js"></script>
-        <script src="~/node_modules/crypto-js/sha1.js"></script>
-        <script src="~/node_modules/handlebars/dist/handlebars.js"></script>
-        <script src="~/node_modules/interactjs/dist/interact.js"></script>
-        <script src="~/node_modules/toastr/build/toastr.min.js"></script>
-        <script src="~/build/dist/js/apps/document-preview.min.js"></script>
+        <script src="~/build/dist/lib/crypto-js/crypto-js.js"></script>
+        <script src="~/build/dist/lib/crypto-js/sha1.js"></script>
+        <script src="~/build/dist/lib/handlebars/dist/handlebars.js"></script>
+        <script src="~/build/dist/lib/interactjs/dist/interact.js"></script>
+        <script src="~/build/dist/lib/toastr/build/toastr.min.js"></script>
+        <script src="~/build/dist/js/apps/document-preview.bundle.js"></script>
     }
 
     <menu type="context" id="supermenu">
