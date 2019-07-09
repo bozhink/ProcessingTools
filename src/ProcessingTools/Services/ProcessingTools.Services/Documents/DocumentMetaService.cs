@@ -9,10 +9,10 @@ namespace ProcessingTools.Services.Documents
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Documents.Meta;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
 
     /// <summary>

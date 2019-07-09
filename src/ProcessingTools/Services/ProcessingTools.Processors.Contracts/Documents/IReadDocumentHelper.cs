@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Documents
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Read document helper.

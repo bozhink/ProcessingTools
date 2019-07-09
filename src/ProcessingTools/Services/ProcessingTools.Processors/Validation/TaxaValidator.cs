@@ -9,6 +9,7 @@ namespace ProcessingTools.Processors.Validation
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Harvesters.Contracts.Bio;
     using ProcessingTools.Processors.Contracts.Validation;
     using ProcessingTools.Services.Contracts.Validation;

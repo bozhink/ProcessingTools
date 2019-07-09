@@ -7,7 +7,6 @@ namespace ProcessingTools.Web.Documents.Settings
     using System;
     using Autofac;
     using ProcessingTools.Common.Code;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Geo;
     using ProcessingTools.Geo.Contracts;
     using ProcessingTools.Processors.Contracts.Documents;
@@ -22,6 +21,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Processors.Layout;
     using ProcessingTools.Processors.References;
     using ProcessingTools.Processors.Rules;
+    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Processors.*.

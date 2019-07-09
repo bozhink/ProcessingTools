@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Document normalizer.

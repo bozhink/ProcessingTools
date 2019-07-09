@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Contracts
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Document generator.

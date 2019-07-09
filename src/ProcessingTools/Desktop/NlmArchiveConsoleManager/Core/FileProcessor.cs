@@ -10,13 +10,14 @@
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Meta;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
+    using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.IO;
 
     public class FileProcessor : IFileProcessor
@@ -105,7 +106,7 @@
             }
         }
 
-        private async Task<string> ComposeFileNameReplacementPrefixAsync(ProcessingTools.Contracts.IDocument document)
+        private async Task<string> ComposeFileNameReplacementPrefixAsync(ProcessingTools.Contracts.Models.IDocument document)
         {
             var articleMeta = await this.articleMetaHarvester.HarvestAsync(document);
 
@@ -182,7 +183,7 @@
             }
         }
 
-        private void ProcessReferencedFiles(ProcessingTools.Contracts.IDocument document, string originalPrefix, string fileNameReplacementPrefix)
+        private void ProcessReferencedFiles(ProcessingTools.Contracts.Models.IDocument document, string originalPrefix, string fileNameReplacementPrefix)
         {
             // Get file references.
             var referencedFileNames = new HashSet<string>(document.SelectNodes(XPathStrings.XLinkHref).Select(h => h.InnerText));
@@ -204,7 +205,7 @@
             this.UpdateContentInDocument(document, referencesNamesReplacements);
         }
 
-        private async Task<ProcessingTools.Contracts.IDocument> ReadDocumentAsync()
+        private async Task<ProcessingTools.Contracts.Models.IDocument> ReadDocumentAsync()
         {
             var xml = await this.fileManager.ReadXmlFile(this.FileName).ConfigureAwait(false);
             var document = this.documentFactory.Create(xml.DocumentElement.OuterXml);
@@ -212,7 +213,7 @@
         }
 
         // Replace references in the XML document.
-        private void UpdateContentInDocument(ProcessingTools.Contracts.IDocument document, IEnumerable<IFileReplacementModel> replacements)
+        private void UpdateContentInDocument(ProcessingTools.Contracts.Models.IDocument document, IEnumerable<IFileReplacementModel> replacements)
         {
             foreach (var hrefAttribute in document.SelectNodes(XPathStrings.XLinkHref))
             {
@@ -222,7 +223,7 @@
             }
         }
 
-        private void UpdateJournalMetaInDocument(ProcessingTools.Contracts.IDocument document)
+        private void UpdateJournalMetaInDocument(ProcessingTools.Contracts.Models.IDocument document)
         {
             this.UpdateMetaNodeContent(
                 document,
@@ -250,7 +251,7 @@
                 this.journalMeta.PublisherName);
         }
 
-        private void UpdateMetaNodeContent(ProcessingTools.Contracts.IDocument document, string xpath, string content)
+        private void UpdateMetaNodeContent(ProcessingTools.Contracts.Models.IDocument document, string xpath, string content)
         {
             var node = document.SelectSingleNode(xpath);
             if (node != null)
@@ -259,7 +260,7 @@
             }
         }
 
-        private async Task<object> WriteDocumentAsync(ProcessingTools.Contracts.IDocument document, string outputFileName)
+        private async Task<object> WriteDocumentAsync(ProcessingTools.Contracts.Models.IDocument document, string outputFileName)
         {
             var taxpubDtd = document.XmlDocument.CreateDocumentType(
                 DocTypeConstants.TaxPubName,

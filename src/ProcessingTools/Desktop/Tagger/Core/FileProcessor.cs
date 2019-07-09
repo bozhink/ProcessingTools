@@ -11,6 +11,7 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts.Documents;
     using ProcessingTools.Services.Contracts.Files;

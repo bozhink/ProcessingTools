@@ -8,7 +8,7 @@
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Layout;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(InitialFormatCommand))]

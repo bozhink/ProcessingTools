@@ -11,7 +11,7 @@ namespace ProcessingTools.Common.Code.Tests.Unit.Tests
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Code;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// <see cref="TaxPubDocument"/> Tests.

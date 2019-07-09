@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts;
 

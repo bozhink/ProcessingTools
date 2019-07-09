@@ -7,8 +7,9 @@ namespace ProcessingTools.Services.Documents
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.References;
+    using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Documents.Documents;

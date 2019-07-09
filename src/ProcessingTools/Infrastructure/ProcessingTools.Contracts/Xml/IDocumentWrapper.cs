@@ -6,7 +6,7 @@ namespace ProcessingTools.Contracts.Xml
 {
     using System.Xml;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Document wrapper.

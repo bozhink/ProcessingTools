@@ -7,7 +7,8 @@ namespace ProcessingTools.Common.Code
     using System;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// TaxPub Document Factory.

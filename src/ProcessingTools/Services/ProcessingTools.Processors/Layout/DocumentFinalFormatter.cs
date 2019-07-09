@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Layout
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Layout;
 

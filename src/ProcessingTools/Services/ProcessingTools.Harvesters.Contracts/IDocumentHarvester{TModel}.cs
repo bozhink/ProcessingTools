@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Harvesters.Contracts
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Generic harvester with <see cref="IDocument"/> context.

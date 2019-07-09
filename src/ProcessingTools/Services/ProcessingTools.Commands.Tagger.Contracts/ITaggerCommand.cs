@@ -6,7 +6,7 @@ namespace ProcessingTools.Commands.Tagger.Contracts
 {
     using System.Threading.Tasks;
     using ProcessingTools.Commands.Models.Contracts;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Tagger Command.

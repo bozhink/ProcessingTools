@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Special
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Special;
 
     /// <summary>

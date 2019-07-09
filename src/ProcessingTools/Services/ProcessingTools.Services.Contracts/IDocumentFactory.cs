@@ -2,8 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
+namespace ProcessingTools.Services.Contracts
 {
+    using ProcessingTools.Contracts.Models;
+
     /// <summary>
     /// Factory of <see cref="IDocument"/>.
     /// </summary>

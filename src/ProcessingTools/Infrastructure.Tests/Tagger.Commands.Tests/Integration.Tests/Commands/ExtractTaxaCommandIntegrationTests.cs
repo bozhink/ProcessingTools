@@ -7,6 +7,7 @@
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Harvesters.Contracts.Bio;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(ExtractTaxaCommand))]

@@ -10,6 +10,7 @@
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Harvesters.Contracts.Bio;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ExtractTaxaCommand))]

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Documents
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Document splitter.

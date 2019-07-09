@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Models.Contracts;

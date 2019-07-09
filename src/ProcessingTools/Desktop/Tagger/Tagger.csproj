@@ -203,6 +203,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
+      <Project>{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}</Project>
+      <Name>ProcessingTools.Contracts.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj">
       <Project>{a84a59ae-a52a-4f51-b2a8-ad8306ed395a}</Project>
       <Name>ProcessingTools.Data.Models.Mongo</Name>

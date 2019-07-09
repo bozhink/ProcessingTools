@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Special
 {
     using System.Xml;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Flora.

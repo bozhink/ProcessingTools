@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Contracts.Rules
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Rules;
 
     /// <summary>

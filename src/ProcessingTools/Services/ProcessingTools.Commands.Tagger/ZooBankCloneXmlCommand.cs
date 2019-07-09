@@ -8,8 +8,9 @@ namespace ProcessingTools.Commands.Tagger
     using System.Threading.Tasks;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+    using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
@@ -36,7 +37,7 @@ namespace ProcessingTools.Commands.Tagger
         }
 
         /// <inheritdoc/>
-        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -48,6 +49,11 @@ namespace ProcessingTools.Commands.Tagger
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            return this.RunInternalAsync(document, settings);
+        }
+
+        private async Task<object> RunInternalAsync(IDocument document, ICommandSettings settings)
+        {
             int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 2)
             {

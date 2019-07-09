@@ -8,6 +8,7 @@
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
 
     public partial class FileProcessor

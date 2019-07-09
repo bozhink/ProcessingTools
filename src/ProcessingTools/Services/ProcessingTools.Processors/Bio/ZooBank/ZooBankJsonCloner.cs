@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Constants.Uri;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     /// <summary>

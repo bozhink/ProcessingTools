@@ -8,6 +8,7 @@ namespace ProcessingTools.Processors.Abstractions
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Processors.Contracts;
 
@@ -38,13 +39,18 @@ namespace ProcessingTools.Processors.Abstractions
         }
 
         /// <inheritdoc/>
-        public async Task<object> TagAsync(IDocument context)
+        public Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.TagInternalAsync(context);
+        }
+
+        private async Task<object> TagInternalAsync(IDocument context)
+        {
             var tagModel = this.tagModelProvider.TagModel(context.XmlDocument);
 
             var data = await this.evaluator.EvaluateAsync(context).ConfigureAwait(false);

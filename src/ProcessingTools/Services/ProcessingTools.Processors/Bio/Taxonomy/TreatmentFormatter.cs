@@ -10,7 +10,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 

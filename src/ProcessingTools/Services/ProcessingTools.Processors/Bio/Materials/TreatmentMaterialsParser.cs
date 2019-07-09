@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Bio.Materials
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Clients.Contracts.Bio;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Bio.Materials;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 

@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     /// <summary>

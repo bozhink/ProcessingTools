@@ -13,6 +13,7 @@ namespace ProcessingTools.Common.Code
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts;
 
     /// <summary>

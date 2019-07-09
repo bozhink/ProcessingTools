@@ -11,7 +11,7 @@ namespace ProcessingTools.Common.Code
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// TaxPub document.

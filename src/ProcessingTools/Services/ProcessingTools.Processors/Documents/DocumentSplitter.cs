@@ -8,8 +8,9 @@ namespace ProcessingTools.Processors.Documents
     using System.Collections.Generic;
     using System.Linq;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Document splitter.

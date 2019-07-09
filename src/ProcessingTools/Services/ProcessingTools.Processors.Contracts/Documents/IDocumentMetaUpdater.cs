@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Documents
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Documents.Articles;
     using ProcessingTools.Contracts.Models.Documents.Journals;
     using ProcessingTools.Contracts.Models.Documents.Publishers;

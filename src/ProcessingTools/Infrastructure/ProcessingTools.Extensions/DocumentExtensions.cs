@@ -6,7 +6,7 @@ namespace ProcessingTools.Extensions
 {
     using System;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Document extensions.

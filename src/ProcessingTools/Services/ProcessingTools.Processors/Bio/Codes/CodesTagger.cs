@@ -18,7 +18,7 @@ namespace ProcessingTools.Processors.Bio.Codes
     using System.Xml;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Processors.Contracts;

@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Documents
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Documents.Articles;
     using ProcessingTools.Contracts.Models.Documents.Journals;
     using ProcessingTools.Contracts.Models.Documents.Publishers;

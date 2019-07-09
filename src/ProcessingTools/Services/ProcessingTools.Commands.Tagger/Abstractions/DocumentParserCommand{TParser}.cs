@@ -9,6 +9,7 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts;
 
     /// <summary>

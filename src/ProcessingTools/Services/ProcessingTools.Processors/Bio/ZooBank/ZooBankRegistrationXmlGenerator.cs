@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     /// <summary>

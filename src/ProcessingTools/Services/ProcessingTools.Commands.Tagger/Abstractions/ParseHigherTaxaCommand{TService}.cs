@@ -11,6 +11,7 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
@@ -38,7 +39,7 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
         }
 
         /// <inheritdoc/>
-        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -50,6 +51,11 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            return this.RunInternalAsync(document);
+        }
+
+        private async Task<object> RunInternalAsync(IDocument document)
+        {
             var result = await this.parser.ParseAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
             await this.PrintNonParsedTaxa(document.XmlDocument).ConfigureAwait(false);

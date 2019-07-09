@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Contracts
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Models.Contracts;
 
     /// <summary>

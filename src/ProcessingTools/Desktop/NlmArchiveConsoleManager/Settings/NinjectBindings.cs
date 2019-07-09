@@ -31,7 +31,7 @@
                 .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+            this.Bind<ProcessingTools.Services.Contracts.IDocumentFactory>()
                 .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
                 .InSingletonScope();
 

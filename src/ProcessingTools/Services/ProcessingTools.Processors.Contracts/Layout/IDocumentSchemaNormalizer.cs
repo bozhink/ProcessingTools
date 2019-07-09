@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Contracts.Layout
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Provides normalization for IDocument objects.

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Contracts.Special
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Test features provider.

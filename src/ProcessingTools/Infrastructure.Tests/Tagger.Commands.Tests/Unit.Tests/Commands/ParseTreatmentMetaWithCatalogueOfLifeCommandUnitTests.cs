@@ -8,7 +8,7 @@
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 

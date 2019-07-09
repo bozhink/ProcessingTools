@@ -113,6 +113,10 @@
     <None Include="Tagger.Commands.Tests.ruleset" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
+      <Project>{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}</Project>
+      <Name>ProcessingTools.Contracts.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj">
       <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
       <Name>ProcessingTools.Common.Code</Name>

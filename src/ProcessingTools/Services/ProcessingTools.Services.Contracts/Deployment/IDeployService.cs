@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Contracts.Deployment
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Deploy service.

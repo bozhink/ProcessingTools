@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Documents
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Documents;
     using ProcessingTools.Processors.Contracts.Layout;

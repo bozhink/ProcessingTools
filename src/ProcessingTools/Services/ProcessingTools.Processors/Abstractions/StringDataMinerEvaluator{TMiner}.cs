@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Abstractions
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
@@ -33,13 +33,18 @@ namespace ProcessingTools.Processors.Abstractions
         }
 
         /// <inheritdoc/>
-        public async Task<string[]> EvaluateAsync(IDocument document)
+        public Task<string[]> EvaluateAsync(IDocument document)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
+            return this.EvaluateInternalAsync(document);
+        }
+
+        private async Task<string[]> EvaluateInternalAsync(IDocument document)
+        {
             var textContent = await this.contentHarvester.HarvestAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
             var data = await this.miner.MineAsync(textContent).ConfigureAwait(false);
 

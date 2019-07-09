@@ -8,8 +8,9 @@ namespace ProcessingTools.Processors.Documents
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>

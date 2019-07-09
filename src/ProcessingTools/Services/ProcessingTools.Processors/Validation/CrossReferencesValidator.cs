@@ -10,6 +10,7 @@ namespace ProcessingTools.Processors.Validation
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts.Validation;
 
     /// <summary>

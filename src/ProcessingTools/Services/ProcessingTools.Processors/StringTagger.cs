@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Models;
 
