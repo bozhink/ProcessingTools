@@ -32,7 +32,7 @@
             });
 
             this.Bind<ProcessingTools.Services.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Services.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()

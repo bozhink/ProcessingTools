@@ -6,7 +6,6 @@ namespace ProcessingTools.Web.Documents.Settings
 {
     using System;
     using Autofac;
-    using ProcessingTools.Common.Code;
     using ProcessingTools.Geo;
     using ProcessingTools.Geo.Contracts;
     using ProcessingTools.Processors.Contracts.Documents;
@@ -21,6 +20,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Processors.Layout;
     using ProcessingTools.Processors.References;
     using ProcessingTools.Processors.Rules;
+    using ProcessingTools.Services;
     using ProcessingTools.Services.Contracts;
 
     /// <summary>

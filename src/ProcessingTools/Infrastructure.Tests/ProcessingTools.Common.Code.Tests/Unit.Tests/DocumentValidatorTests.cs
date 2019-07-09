@@ -8,6 +8,7 @@ namespace ProcessingTools.Common.Code.Tests.Unit.Tests
     using Moq;
     using ProcessingTools.Common.Code;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Services.Models;
 
     /// <summary>
     /// <see cref="DocumentValidator"/> Tests.

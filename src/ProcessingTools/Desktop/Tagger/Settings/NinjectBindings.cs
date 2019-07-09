@@ -32,7 +32,7 @@
 
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Services.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.Common.Code.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Services.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ITaggerCommand>>()

@@ -10,8 +10,8 @@ namespace ProcessingTools.Common.Code.Tests.Unit.Tests
     using System.Text.RegularExpressions;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Code;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Services.Models;
 
     /// <summary>
     /// <see cref="TaxPubDocument"/> Tests.
