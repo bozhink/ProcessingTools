@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Layout.Styles.Floats
     using ProcessingTools.Common.Enumerations.Nlm;
 
     /// <summary>
-    /// Float object style model
+    /// Float object style model.
     /// </summary>
     public interface IFloatObjectStyleModel : IStyleModel
     {
