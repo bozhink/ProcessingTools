@@ -35,7 +35,7 @@ namespace ProcessingTools.Services.Documents
         /// </summary>
         /// <param name="articlesDataService">Articles data service.</param>
         /// <param name="documentsDataService">Documents data service.</param>
-        /// <param name="xmlReadService">Xml read service.</param>
+        /// <param name="xmlReadService">XML read service.</param>
         /// <param name="articleMetaHarvester">Article meta harvester.</param>
         public ArticlesService(IArticlesDataService articlesDataService, IDocumentsDataService documentsDataService, IXmlReadService xmlReadService, IJatsArticleMetaHarvester articleMetaHarvester)
         {
