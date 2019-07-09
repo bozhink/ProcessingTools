@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Services.Documents
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Publishers;
     using ProcessingTools.Web.Models.Documents.Publishers;

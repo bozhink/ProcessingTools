@@ -11,10 +11,10 @@ namespace ProcessingTools.Data.Mongo.Layout
     using AutoMapper;
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.DataAccess.Layout.Styles;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
     using ProcessingTools.Data.Models.Mongo.Layout;
     using ProcessingTools.Data.Mongo.Abstractions;

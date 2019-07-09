@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Services.Documents
     using AutoMapper;
     using Microsoft.AspNetCore.Http;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.IO;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Documents;

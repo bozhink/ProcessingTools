@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Services.Tools
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Contracts.Tools;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Models.Tools.Encode;

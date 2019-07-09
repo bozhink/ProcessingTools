@@ -8,8 +8,8 @@ namespace ProcessingTools.Services.History
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.DataAccess.History;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.History;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Data.History;

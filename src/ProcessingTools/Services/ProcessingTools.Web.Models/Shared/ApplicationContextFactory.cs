@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Shared
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Application context factory.

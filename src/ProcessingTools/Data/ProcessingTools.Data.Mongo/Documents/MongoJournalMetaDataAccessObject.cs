@@ -10,8 +10,8 @@ namespace ProcessingTools.Data.Mongo.Documents
     using AutoMapper;
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.DataAccess.Documents;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Models.Mongo.Documents;
     using ProcessingTools.Data.Mongo.Abstractions;

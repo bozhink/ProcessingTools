@@ -5,8 +5,8 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.DataAccess.Cache;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Validation;

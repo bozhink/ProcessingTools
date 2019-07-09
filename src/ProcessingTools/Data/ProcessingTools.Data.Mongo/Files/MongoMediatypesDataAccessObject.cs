@@ -11,9 +11,9 @@ namespace ProcessingTools.Data.Mongo.Files
     using AutoMapper;
     using MongoDB.Driver;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.DataAccess.Files;
     using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Data.Models.Mongo.Files;
     using ProcessingTools.Data.Mongo.Abstractions;

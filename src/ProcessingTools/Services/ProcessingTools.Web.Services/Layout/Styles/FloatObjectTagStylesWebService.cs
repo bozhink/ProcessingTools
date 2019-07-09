@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Layout.Styles.Floats;

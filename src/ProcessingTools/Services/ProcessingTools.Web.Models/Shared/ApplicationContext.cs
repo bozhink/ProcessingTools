@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Shared
 {
     using System;
     using System.Security.Claims;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Application context.

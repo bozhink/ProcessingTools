@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Services.Admin
     using System;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Services.Contracts.Admin;
     using ProcessingTools.Services.Models.Contracts.Admin.Databases;
     using ProcessingTools.Web.Models.Admin.Databases;

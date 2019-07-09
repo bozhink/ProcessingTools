@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services;
     using ProcessingTools.Web.Services.Contracts;
