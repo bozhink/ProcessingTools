@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Bio.Codes
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Miners.Contracts.Bio;
-    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Services.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
     using ProcessingTools.Processors.Models;

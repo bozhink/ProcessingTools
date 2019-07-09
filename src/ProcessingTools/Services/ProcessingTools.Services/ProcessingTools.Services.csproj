@@ -59,8 +59,6 @@
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Harvesters.Models.Contracts\ProcessingTools.Harvesters.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />

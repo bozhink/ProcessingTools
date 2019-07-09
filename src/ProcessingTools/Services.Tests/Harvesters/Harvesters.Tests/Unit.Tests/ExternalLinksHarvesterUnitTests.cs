@@ -1,14 +1,14 @@
-﻿namespace ProcessingTools.Harvesters.Tests.Unit.Tests
+﻿namespace ProcessingTools.Services.Tests.Unit.Tests
 {
     using System;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Harvesters.Contracts;
-    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
-    using ProcessingTools.Harvesters.ExternalLinks;
-    using ProcessingTools.Harvesters.Models.Contracts.ExternalLinks;
+    using ProcessingTools.Services.Contracts;
+    using ProcessingTools.Services.Contracts.ExternalLinks;
+    using ProcessingTools.Services.ExternalLinks;
+    using ProcessingTools.Services.Models.Contracts.ExternalLinks;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]
     public class ExternalLinksHarvesterUnitTests

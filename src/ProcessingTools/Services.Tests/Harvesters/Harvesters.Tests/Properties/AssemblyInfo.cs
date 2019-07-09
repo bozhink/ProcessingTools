@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("ProcessingTools.Harvesters.Tests")]
+[assembly: AssemblyTitle("ProcessingTools.Services.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProcessingTools.Harvesters.Tests")]
+[assembly: AssemblyProduct("ProcessingTools.Services.Tests")]
 [assembly: AssemblyCopyright("Copyright © 2017 ProcessingTools")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

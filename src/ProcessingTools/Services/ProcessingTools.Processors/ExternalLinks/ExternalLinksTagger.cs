@@ -10,7 +10,7 @@ namespace ProcessingTools.Processors.ExternalLinks
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Miners.Contracts.ExternalLinks;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Services.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.ExternalLinks;
     using ProcessingTools.Processors.Models;

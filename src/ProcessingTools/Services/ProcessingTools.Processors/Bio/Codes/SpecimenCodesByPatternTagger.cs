@@ -10,7 +10,7 @@ namespace ProcessingTools.Processors.Bio.Codes
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Miners.Contracts.Bio.SpecimenCodes;
-    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Services.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
     using ProcessingTools.Processors.Models;

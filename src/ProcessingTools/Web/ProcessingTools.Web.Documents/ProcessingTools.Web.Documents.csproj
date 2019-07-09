@@ -98,10 +98,6 @@
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Commands.Tagger.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger\ProcessingTools.Commands.Tagger.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models.Contracts\ProcessingTools.Harvesters.Models.Contracts.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models\ProcessingTools.Harvesters.Models.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters\ProcessingTools.Harvesters.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Imaging.Contracts\ProcessingTools.Processors.Imaging.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Imaging\ProcessingTools.Processors.Imaging.csproj" />

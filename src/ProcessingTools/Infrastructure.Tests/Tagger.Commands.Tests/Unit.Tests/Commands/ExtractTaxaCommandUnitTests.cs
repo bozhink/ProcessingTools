@@ -11,7 +11,7 @@
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Harvesters.Contracts.Bio;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandUnitTests

@@ -13,8 +13,8 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Miners.Contracts.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Harvesters.Contracts.Content;
-    using ProcessingTools.Harvesters.Contracts.Meta;
+    using ProcessingTools.Services.Contracts.Content;
+    using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;

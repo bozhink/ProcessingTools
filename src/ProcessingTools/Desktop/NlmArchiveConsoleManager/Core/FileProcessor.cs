@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Harvesters.Contracts.Meta;
+    using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;

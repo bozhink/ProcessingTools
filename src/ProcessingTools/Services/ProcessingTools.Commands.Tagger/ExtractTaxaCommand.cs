@@ -12,7 +12,7 @@ namespace ProcessingTools.Commands.Tagger
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Harvesters.Contracts.Bio;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Extract taxa command.

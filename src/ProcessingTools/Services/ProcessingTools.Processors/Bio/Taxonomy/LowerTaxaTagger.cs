@@ -16,7 +16,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Harvesters.Contracts.Meta;
+    using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Models;

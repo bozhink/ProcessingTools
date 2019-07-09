@@ -12,7 +12,7 @@ namespace ProcessingTools.Processors.Abbreviations
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Harvesters.Contracts.Abbreviations;
+    using ProcessingTools.Services.Contracts.Abbreviations;
     using ProcessingTools.Processors.Contracts.Abbreviations;
     using ProcessingTools.Processors.Models.Abbreviations;
     using ProcessingTools.Processors.Models.Contracts.Abbreviations;

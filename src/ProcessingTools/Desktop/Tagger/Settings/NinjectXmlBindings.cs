@@ -4,9 +4,9 @@
     using global::Ninject.Modules;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Harvesters.Contracts.Abbreviations;
-    using ProcessingTools.Harvesters.Contracts.Content;
-    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
+    using ProcessingTools.Services.Contracts.Abbreviations;
+    using ProcessingTools.Services.Contracts.Content;
+    using ProcessingTools.Services.Contracts.ExternalLinks;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;

@@ -13,7 +13,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Harvesters.Contracts.Meta;
+    using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 

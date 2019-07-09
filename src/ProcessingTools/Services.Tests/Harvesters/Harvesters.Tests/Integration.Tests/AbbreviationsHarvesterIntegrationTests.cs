@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests
 {
     using System.IO;
     using System.Linq;
@@ -7,10 +7,10 @@
     using Moq;
     using ProcessingTools.Common.Code.Serialization;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Harvesters;
-    using ProcessingTools.Harvesters.Abbreviations;
-    using ProcessingTools.Harvesters.Contracts.Abbreviations;
-    using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
+    using ProcessingTools.Services.Abbreviations;
+    using ProcessingTools.Services.Abstractions;
+    using ProcessingTools.Services.Contracts.Abbreviations;
+    using ProcessingTools.Services.Models.Contracts.Abbreviations;
     using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Transformers;

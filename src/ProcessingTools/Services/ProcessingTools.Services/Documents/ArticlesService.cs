@@ -9,8 +9,8 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using System.Xml;
     using AutoMapper;
-    using ProcessingTools.Harvesters.Contracts.Meta;
-    using ProcessingTools.Harvesters.Models.Contracts.Meta;
+    using ProcessingTools.Services.Contracts.Meta;
+    using ProcessingTools.Services.Models.Contracts.Meta;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;

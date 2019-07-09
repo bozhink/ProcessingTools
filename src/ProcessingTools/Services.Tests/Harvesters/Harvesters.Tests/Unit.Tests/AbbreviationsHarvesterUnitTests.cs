@@ -1,14 +1,14 @@
-﻿namespace ProcessingTools.Harvesters.Tests.Unit.Tests
+﻿namespace ProcessingTools.Services.Tests.Unit.Tests
 {
     using System;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Harvesters.Abbreviations;
-    using ProcessingTools.Harvesters.Contracts;
-    using ProcessingTools.Harvesters.Contracts.Abbreviations;
-    using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
+    using ProcessingTools.Services.Abbreviations;
+    using ProcessingTools.Services.Contracts;
+    using ProcessingTools.Services.Contracts.Abbreviations;
+    using ProcessingTools.Services.Models.Contracts.Abbreviations;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(AbbreviationsHarvester))]
     public class AbbreviationsHarvesterUnitTests
