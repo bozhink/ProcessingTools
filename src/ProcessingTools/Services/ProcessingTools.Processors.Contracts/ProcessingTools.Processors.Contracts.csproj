@@ -35,7 +35,6 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Data.Miners.Contracts\ProcessingTools.Data.Miners.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
   </ItemGroup>

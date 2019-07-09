@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Data.Miners.Tests.Integration.Tests.Miners.Dates
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Miners.Dates
 {
     using System.Linq;
     using System.Threading.Tasks;
     using NUnit.Framework;
-    using ProcessingTools.Data.Miners.Dates;
+    using ProcessingTools.Services.Dates;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(DatesDataMiner))]
     public class DatesDataMinerIntegrationTests

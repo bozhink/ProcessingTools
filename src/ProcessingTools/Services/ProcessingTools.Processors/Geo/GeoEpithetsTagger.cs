@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Geo
 {
-    using ProcessingTools.Data.Miners.Contracts.Geo;
+    using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Geo;

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Dates
 {
-    using ProcessingTools.Data.Miners.Contracts.Dates;
+    using ProcessingTools.Services.Contracts.Dates;
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Dates;

@@ -1,0 +1,15 @@
+﻿// <copyright file="IBiorepositoriesCollectionsDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Contracts.Bio
+{
+    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
+
+    /// <summary>
+    /// Biorepositories collections data miner.
+    /// </summary>
+    public interface IBiorepositoriesCollectionsDataMiner : IDataMiner<string, ICollection>
+    {
+    }
+}

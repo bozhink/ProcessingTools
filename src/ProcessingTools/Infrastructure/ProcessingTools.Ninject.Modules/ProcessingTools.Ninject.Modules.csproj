@@ -35,7 +35,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Data.Miners.Models\ProcessingTools.Data.Miners.Models.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Data.Miners\ProcessingTools.Data.Miners.csproj" />
   </ItemGroup>
 </Project>

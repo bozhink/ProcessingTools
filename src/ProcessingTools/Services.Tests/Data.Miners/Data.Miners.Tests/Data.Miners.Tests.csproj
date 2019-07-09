@@ -107,9 +107,9 @@
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Services\ProcessingTools.Data.Miners\ProcessingTools.Data.Miners.csproj">
-      <Project>{4359C3A4-CAF0-4D0F-BBEC-4438729E36E2}</Project>
-      <Name>ProcessingTools.Data.Miners</Name>
+    <ProjectReference Include="..\..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
+      <Project>{11C19011-F547-4EC0-8392-685827D3AD4B}</Project>
+      <Name>ProcessingTools.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

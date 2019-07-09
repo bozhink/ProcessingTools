@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Quantities
 {
-    using ProcessingTools.Data.Miners.Contracts.Quantities;
+    using ProcessingTools.Services.Contracts.Quantities;
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Quantities;

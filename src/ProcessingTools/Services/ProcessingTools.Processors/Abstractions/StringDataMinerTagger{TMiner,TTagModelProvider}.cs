@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Abstractions
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Services.Contracts;
     using ProcessingTools.Processors.Contracts;
 
     /// <summary>

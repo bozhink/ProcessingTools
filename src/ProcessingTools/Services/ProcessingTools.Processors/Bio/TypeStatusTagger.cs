@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Bio
 {
-    using ProcessingTools.Data.Miners.Contracts.Bio;
+    using ProcessingTools.Services.Contracts.Bio;
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio;

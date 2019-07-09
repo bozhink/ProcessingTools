@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Contracts
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Generic string data miner evaluator.

@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Bio.Codes
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Data.Miners.Contracts.Bio;
+    using ProcessingTools.Services.Contracts.Bio;
     using ProcessingTools.Services.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
