@@ -31,21 +31,11 @@
     <CodeAnalysisRuleSet>Services.Data.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=8.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AutoMapper.8.1.1\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -75,7 +65,7 @@
       <Name>ProcessingTools.Data.Models.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj">
-      <Project>{85cc9358-e237-4c2f-9138-85db4fb33307}</Project>
+      <Project>{85CC9358-E237-4C2F-9138-85DB4FB33307}</Project>
       <Name>ProcessingTools.Data.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
@@ -94,22 +84,6 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
-      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
-      <Name>Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
-      <Project>{4FA9E8DE-3062-41C5-AB25-A44776A4C116}</Project>
-      <Name>ProcessingTools.Clients.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
-      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
-      <Name>ProcessingTools.Clients.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
-      <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>
-      <Name>ProcessingTools.Clients</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
@@ -121,10 +95,6 @@
     <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
       <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
       <Name>ProcessingTools.Services.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Services\ProcessingTools.Services.csproj">
-      <Project>{11C19011-F547-4EC0-8392-685827D3AD4B}</Project>
-      <Name>ProcessingTools.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
