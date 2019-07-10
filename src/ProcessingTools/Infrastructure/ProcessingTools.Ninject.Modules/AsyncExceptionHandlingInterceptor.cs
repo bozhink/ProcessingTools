@@ -3,6 +3,9 @@
 // </copyright>
 
 // See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
+
+using ProcessingTools.Contracts.Services;
+
 namespace ProcessingTools.Ninject.Interceptors
 {
     using System;

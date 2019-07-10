@@ -2,6 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Files;
+using ProcessingTools.Contracts.Services.History;
+using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
+
 namespace ProcessingTools.Services.Files
 {
     using System;
@@ -12,9 +16,6 @@ namespace ProcessingTools.Services.Files
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.DataAccess.Files;
     using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
-    using ProcessingTools.Services.Contracts.Files;
-    using ProcessingTools.Services.Contracts.History;
-    using ProcessingTools.Services.Models.Contracts.Files.Mediatypes;
     using ProcessingTools.Services.Models.Files.Mediatypes;
 
     /// <summary>

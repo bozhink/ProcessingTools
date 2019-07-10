@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Tagger.Commands.Tests.Integration.Tests.Commands
+﻿using ProcessingTools.Services.Contracts;
+
+namespace ProcessingTools.Tagger.Commands.Tests.Integration.Tests.Commands
 {
     using System.Threading.Tasks;
     using System.Xml;

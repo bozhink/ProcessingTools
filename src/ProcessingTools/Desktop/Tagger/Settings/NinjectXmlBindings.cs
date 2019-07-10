@@ -1,19 +1,20 @@
-﻿namespace ProcessingTools.Tagger.Settings
+﻿using ProcessingTools.Contracts.Services.Abbreviations;
+using ProcessingTools.Contracts.Services.Bio.Codes;
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+using ProcessingTools.Contracts.Services.Bio.ZooBank;
+using ProcessingTools.Contracts.Services.Content;
+using ProcessingTools.Contracts.Services.ExternalLinks;
+using ProcessingTools.Contracts.Services.Layout;
+using ProcessingTools.Contracts.Services.Special;
+using ProcessingTools.Contracts.Services.Xml;
+using ProcessingTools.Xml;
+
+namespace ProcessingTools.Tagger.Settings
 {
     using global::Ninject.Extensions.Factory;
     using global::Ninject.Modules;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Services.Contracts.Abbreviations;
-    using ProcessingTools.Services.Contracts.Content;
-    using ProcessingTools.Services.Contracts.ExternalLinks;
-    using ProcessingTools.Services.Contracts.Bio.Codes;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Contracts.Bio.ZooBank;
-    using ProcessingTools.Services.Contracts.Layout;
-    using ProcessingTools.Services.Contracts.Special;
     using ProcessingTools.Services.Xml;
-    using ProcessingTools.Xml.Transformers;
 
     public class NinjectXmlBindings : NinjectModule
     {

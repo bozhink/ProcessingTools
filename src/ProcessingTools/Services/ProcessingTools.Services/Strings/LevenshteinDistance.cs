@@ -3,11 +3,12 @@
 // </copyright>
 
 // See https://www.datacamp.com/community/tutorials/fuzzy-string-python
-namespace ProcessingTools.Common.Code.Strings
-{
-    using System;
-    using ProcessingTools.Common.Enumerations;
 
+using System;
+using ProcessingTools.Common.Enumerations;
+
+namespace ProcessingTools.Services.Strings
+{
     /// <summary>
     /// Contains approximate string matching.
     /// </summary>

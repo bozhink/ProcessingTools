@@ -2,11 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Admin.Databases;
+
 namespace ProcessingTools.Services.Models.Admin.Databases
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Services.Models.Contracts.Admin.Databases;
 
     /// <summary>
     /// Initialize model.

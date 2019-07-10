@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon classification resolver with Aphia.

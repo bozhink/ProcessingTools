@@ -2,14 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Commands.Tagger;
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Commands.Tagger
 {
     using ProcessingTools.Commands.Tagger.Abstractions;
-    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Parse higher taxa with Catalogue of Life command.

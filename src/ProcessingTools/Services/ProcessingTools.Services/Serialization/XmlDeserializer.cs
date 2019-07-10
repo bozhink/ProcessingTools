@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Serialization
-{
-    using System.IO;
-    using System.Threading.Tasks;
-    using System.Xml.Serialization;
-    using ProcessingTools.Contracts.Serialization;
+using System.IO;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+using ProcessingTools.Contracts.Services.Serialization;
 
+namespace ProcessingTools.Services.Serialization
+{
     /// <summary>
     /// XML deserializer.
     /// </summary>

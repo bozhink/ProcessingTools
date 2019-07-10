@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Bio.Biorepositories
+namespace ProcessingTools.Contracts.Services.Models.Bio.Biorepositories
 {
     /// <summary>
     /// Biorepositories collection service model.

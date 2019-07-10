@@ -2,22 +2,22 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Processors.Floats
-{
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Contracts.Floats;
-    using ProcessingTools.Services.Models.Contracts.Floats;
-    using ProcessingTools.Services.Models.Floats;
-    using ProcessingTools.Services.Contracts.Files;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Common.Constants.Schema;
+using ProcessingTools.Contracts.Services.Files;
+using ProcessingTools.Contracts.Services.Floats;
+using ProcessingTools.Contracts.Services.Models.Floats;
+using ProcessingTools.Extensions;
+using ProcessingTools.Services.Models.Floats;
 
+namespace ProcessingTools.Services.Floats
+{
     /// <summary>
     /// Mediatypes parser.
     /// </summary>

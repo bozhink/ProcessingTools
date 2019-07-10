@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Maps;
+
 namespace ProcessingTools.Services.Maps
 {
     using System.Collections.Generic;
@@ -10,7 +12,6 @@ namespace ProcessingTools.Services.Maps
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Services.Contracts.Maps;
 
     /// <summary>
     /// Bing Maps service.

@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.DbSeeder.Providers
+﻿using ProcessingTools.Contracts.Services;
+
+namespace ProcessingTools.DbSeeder.Providers
 {
     using System;
     using System.Linq;

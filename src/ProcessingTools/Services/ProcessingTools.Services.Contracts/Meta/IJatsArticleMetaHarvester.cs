@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Meta
-{
-    using ProcessingTools.Services.Models.Contracts.Meta;
+using ProcessingTools.Contracts.Services.Models.Meta;
 
+namespace ProcessingTools.Contracts.Services.Meta
+{
     /// <summary>
     /// JATS Article meta harvester.
     /// </summary>

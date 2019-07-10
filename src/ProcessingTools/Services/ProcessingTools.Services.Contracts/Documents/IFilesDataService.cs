@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Documents
-{
-    using ProcessingTools.Services.Models.Contracts.Documents.Files;
+using ProcessingTools.Contracts.Services.Models.Documents.Files;
 
+namespace ProcessingTools.Contracts.Services.Documents
+{
     /// <summary>
     /// Files data service.
     /// </summary>

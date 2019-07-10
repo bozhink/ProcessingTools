@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.History
-{
-    using System;
-    using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.History;
+using System;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Models.History;
 
+namespace ProcessingTools.Contracts.Services.History
+{
     /// <summary>
     /// Object histories data service.
     /// </summary>

@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Serialization.Csv
-{
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
+namespace ProcessingTools.Services.Serialization.Csv
+{
     /// <summary>
     /// This general class handles mapping columns to object’s properties.
     /// </summary>

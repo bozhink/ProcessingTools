@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Shared;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Shared;
 
+namespace ProcessingTools.Contracts.Web.Services
+{
     /// <summary>
     /// Presenter.
     /// </summary>

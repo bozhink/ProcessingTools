@@ -5,6 +5,9 @@
 // See http://benfoster.io/blog/asp-net-identity-role-claims
 // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
 // See https://stackoverflow.com/questions/39577906/add-claims-when-creating-a-new-user
+
+using ProcessingTools.Contracts.Web.Services;
+
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
@@ -20,7 +23,6 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.AccountViewModels;
     using ProcessingTools.Web.Documents.Services;
-    using ProcessingTools.Web.Services.Contracts;
 
     /// <summary>
     /// Account.

@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Services.Tests
-{
-    using System.Linq;
-    using NUnit.Framework;
-    using ProcessingTools.Services.Geo;
+﻿using System.Linq;
+using NUnit.Framework;
+using ProcessingTools.Services.Geo;
 
+namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
+{
     [TestFixture]
     public class CoordinatesDataMinerTests
     {

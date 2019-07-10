@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Xml
-{
-    using System.Xml.Xsl;
+using System.Xml.Xsl;
 
+namespace ProcessingTools.Contracts.Services.Xml
+{
     /// <summary>
     /// XSL transform cache.
     /// </summary>

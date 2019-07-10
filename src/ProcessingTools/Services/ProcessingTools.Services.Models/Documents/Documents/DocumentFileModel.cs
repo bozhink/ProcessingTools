@@ -2,12 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Documents.Documents;
+
 namespace ProcessingTools.Services.Models.Documents.Documents
 {
     /// <summary>
     /// Document file model.
     /// </summary>
-    public class DocumentFileModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentFileModel
+    public class DocumentFileModel : IDocumentFileModel
     {
         /// <inheritdoc/>
         public string ContentType { get; set; }

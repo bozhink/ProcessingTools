@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.History;
+
 namespace ProcessingTools.Services.History
 {
     using System;
@@ -11,7 +13,6 @@ namespace ProcessingTools.Services.History
     using ProcessingTools.Contracts.DataAccess.History;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.History;
-    using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Data.History;
 
     /// <summary>

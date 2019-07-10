@@ -1,15 +1,16 @@
-﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
+﻿using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+using ProcessingTools.Contracts.Services.Cache;
+using ProcessingTools.Services.Net;
+
+namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
 {
     using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Net;
-    using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Validation;
 
     [TestClass]

@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Institutions;
+using ProcessingTools.Contracts.Services.Resources;
+
 namespace ProcessingTools.Services.Institutions
 {
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Resources;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Contracts.Institutions;
-    using ProcessingTools.Services.Contracts.Resources;
 
     /// <summary>
     /// Institutions data miner.

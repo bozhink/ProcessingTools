@@ -2,6 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Documents;
+using ProcessingTools.Contracts.Services.Models.Documents.Articles;
+using ProcessingTools.Contracts.Services.Models.Documents.Documents;
+using ProcessingTools.Contracts.Web.Services.Documents;
+
 namespace ProcessingTools.Web.Services.Documents
 {
     using System;
@@ -9,12 +14,8 @@ namespace ProcessingTools.Web.Services.Documents
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Documents;
-    using ProcessingTools.Services.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
     using ProcessingTools.Web.Models.Documents.Articles;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
     /// Articles web service.

@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+
 namespace ProcessingTools.Services.Models.Layout.Styles
 {
     using System;
@@ -9,7 +11,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles
     /// <summary>
     /// Style model.
     /// </summary>
-    public class StyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.IIdentifiedStyleModel
+    public class StyleModel : IIdentifiedStyleModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

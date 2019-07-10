@@ -33,6 +33,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.15.0.8572">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -51,12 +52,12 @@
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Redis\ProcessingTools.Data.Models.Redis.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Xml\ProcessingTools.Data.Models.Xml.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Contracts.Commands.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Tasks.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Contracts.Tasks.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj" />
   </ItemGroup>
 

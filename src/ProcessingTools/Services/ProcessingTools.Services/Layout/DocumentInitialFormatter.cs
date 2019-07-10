@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Layout;
+
 namespace ProcessingTools.Services.Layout
 {
     using System;
@@ -10,7 +12,6 @@ namespace ProcessingTools.Services.Layout
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Contracts.Layout;
 
     /// <summary>
     /// Document initial formatter.

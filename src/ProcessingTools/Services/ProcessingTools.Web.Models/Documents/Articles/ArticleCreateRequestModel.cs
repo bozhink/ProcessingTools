@@ -2,12 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Documents.Articles;
+
 namespace ProcessingTools.Web.Models.Documents.Articles
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Documents;
-    using ProcessingTools.Services.Models.Contracts.Documents.Articles;
 
     /// <summary>
     /// Article create request model.

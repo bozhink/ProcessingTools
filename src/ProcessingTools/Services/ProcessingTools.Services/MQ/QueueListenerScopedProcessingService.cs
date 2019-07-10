@@ -2,11 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.MQ;
+
 namespace ProcessingTools.Services.MQ
 {
     using System;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Services.Contracts.MQ;
 
     /// <summary>
     /// Queue listener scoped processing service.

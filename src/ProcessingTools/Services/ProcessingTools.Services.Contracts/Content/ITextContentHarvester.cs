@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Content
+namespace ProcessingTools.Contracts.Services.Content
 {
     /// <summary>
     /// Text content harvester.

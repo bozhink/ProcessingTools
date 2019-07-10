@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Tools
-{
-    using System.Threading.Tasks;
+using System.Threading.Tasks;
 
+namespace ProcessingTools.Contracts.Services.Tools
+{
     /// <summary>
     /// Decode service.
     /// </summary>

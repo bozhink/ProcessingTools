@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Net.Tests.Integration.Tests
+﻿using ProcessingTools.Services.Net;
+
+namespace ProcessingTools.Net.Tests.Integration.Tests
 {
     using System;
     using System.Collections.Generic;

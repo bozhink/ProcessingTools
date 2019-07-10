@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Geo.Coordinates
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Tools.Coordinates;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Tools.Coordinates;
 
+namespace ProcessingTools.Contracts.Web.Services.Geo.Coordinates
+{
     /// <summary>
     /// Coordinates calculator web presenter.
     /// </summary>

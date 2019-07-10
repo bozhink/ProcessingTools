@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Admin
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Admin.Databases;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Admin.Databases;
 
+namespace ProcessingTools.Contracts.Web.Services.Admin
+{
     /// <summary>
     /// Databases web service.
     /// </summary>

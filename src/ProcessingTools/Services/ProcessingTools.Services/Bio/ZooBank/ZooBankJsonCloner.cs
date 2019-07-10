@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio.ZooBank;
+
 namespace ProcessingTools.Services.Bio.ZooBank
 {
     using System;
@@ -12,7 +14,6 @@ namespace ProcessingTools.Services.Bio.ZooBank
     using ProcessingTools.Common.Constants.Uri;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Bio.ZooBank;
 
     /// <summary>
     /// ZooBank JSON cloner.

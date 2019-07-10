@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Deployment.Geo
+namespace ProcessingTools.Contracts.Services.Deployment.Geo
 {
     /// <summary>
     /// Geo coordinates deploy service.

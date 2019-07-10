@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+
 namespace ProcessingTools.Services.Abstractions.Geo
 {
     using System;
@@ -9,7 +11,6 @@ namespace ProcessingTools.Services.Abstractions.Geo
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Abstract geo data service.

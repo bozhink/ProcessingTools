@@ -2,6 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.References;
+using ProcessingTools.Contracts.Services.Rules;
+
 namespace ProcessingTools.Services.References
 {
     using System;
@@ -11,9 +14,6 @@ namespace ProcessingTools.Services.References
     using System.Xml;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
     using ProcessingTools.Contracts.Models.Rules;
-    using ProcessingTools.Services.Contracts.References;
-    using ProcessingTools.Services.Contracts.Rules;
-    using ProcessingTools.Services.Contracts.Rules;
 
     /// <summary>
     /// References parser.

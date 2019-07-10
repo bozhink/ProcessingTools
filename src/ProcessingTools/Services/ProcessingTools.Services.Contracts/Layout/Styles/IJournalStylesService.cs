@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Layout.Styles
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
 
+namespace ProcessingTools.Contracts.Services.Layout.Styles
+{
     /// <summary>
     /// Journal styles service.
     /// </summary>

@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Cache
+namespace ProcessingTools.Contracts.Services.Cache
 {
     /// <summary>
     /// Message cache service.

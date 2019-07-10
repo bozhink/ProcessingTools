@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
+
 namespace ProcessingTools.Services.Models.Layout.Styles.Journals
 {
     using System;
@@ -12,7 +14,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Journals
     /// <summary>
     /// Journal details style model.
     /// </summary>
-    public class JournalDetailsStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals.IJournalDetailsStyleModel
+    public class JournalDetailsStyleModel : IJournalDetailsStyleModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

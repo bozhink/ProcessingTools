@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Documents
-{
-    using System;
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Documents.Documents;
-    using ProcessingTools.Web.Models.Shared;
+using System;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Documents.Documents;
+using ProcessingTools.Web.Models.Shared;
 
+namespace ProcessingTools.Contracts.Web.Services.Documents
+{
     /// <summary>
     /// Documents web service.
     /// </summary>

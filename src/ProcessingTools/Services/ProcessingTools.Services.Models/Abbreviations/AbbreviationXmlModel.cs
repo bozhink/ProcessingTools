@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Abbreviations;
+
 namespace ProcessingTools.Services.Models.Abbreviations
 {
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Services.Models.Contracts.Abbreviations;
 
     /// <summary>
     /// Abbreviation XML model.

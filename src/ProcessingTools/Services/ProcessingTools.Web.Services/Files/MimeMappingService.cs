@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Files;
+
 namespace ProcessingTools.Web.Services.Files
 {
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.StaticFiles;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Services.Contracts.Files;
 
     /// <summary>
     /// MIME mapping service.

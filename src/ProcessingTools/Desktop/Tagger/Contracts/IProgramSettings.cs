@@ -1,8 +1,9 @@
-﻿namespace ProcessingTools.Tagger.Contracts
+﻿using ProcessingTools.Contracts.Commands.Models;
+
+namespace ProcessingTools.Tagger.Contracts
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Common.Enumerations;
 
     public interface IProgramSettings : ICommandSettings

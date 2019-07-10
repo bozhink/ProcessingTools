@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Layout.Styles;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Models.Layout.Styles;
 
+namespace ProcessingTools.Contracts.Services
+{
     /// <summary>
     /// Generic context tagger.
     /// </summary>

@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
     using System;
@@ -11,7 +13,6 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Models.Bio.Taxonomy.TaxonRanks;
-    using ProcessingTools.Web.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Bio-taxonomy taxon-ranks data controller.

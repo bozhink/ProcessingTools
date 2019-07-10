@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Geo
-{
-    using System;
+using System;
 
+namespace ProcessingTools.Services.Geo.Coordinates
+{
     /// <summary>
     /// Latitude-Longitude UTM Converter.
     /// </summary>

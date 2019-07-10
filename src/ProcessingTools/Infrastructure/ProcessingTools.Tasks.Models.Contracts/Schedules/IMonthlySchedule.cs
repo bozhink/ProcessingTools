@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Tasks.Models.Contracts.Schedules
-{
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
+namespace ProcessingTools.Contracts.Tasks.Models.Schedules
+{
     /// <summary>
     /// Schedule with monthly execution.
     /// </summary>

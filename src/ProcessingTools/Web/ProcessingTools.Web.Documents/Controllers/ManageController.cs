@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Web.Services;
+
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
@@ -19,7 +21,6 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.ManageViewModels;
     using ProcessingTools.Web.Documents.Services;
-    using ProcessingTools.Web.Services.Contracts;
 
     /// <summary>
     /// Manage.

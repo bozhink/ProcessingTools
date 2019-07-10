@@ -2,17 +2,18 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Content;
+using ProcessingTools.Contracts.Services.ExternalLinks;
+using ProcessingTools.Services.Models.Content;
+
 namespace ProcessingTools.Services.ExternalLinks
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.ExternalLinks;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Contracts.Content;
-    using ProcessingTools.Services.Contracts;
-    using ProcessingTools.Services.Contracts.ExternalLinks;
     using ProcessingTools.Services.Models;
     using ProcessingTools.Services.Models.ExternalLinks;
 

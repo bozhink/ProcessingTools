@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Clients.Contracts.Bio.Taxonomy
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
+namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
+{
     /// <summary>
     /// Aphia taxon classification requester.
     /// </summary>

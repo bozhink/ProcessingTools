@@ -2,19 +2,21 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Bio;
+using ProcessingTools.Contracts.Services.Bio.Codes;
+using ProcessingTools.Contracts.Services.Content;
+using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+using ProcessingTools.Services.Models.Content;
+
 namespace ProcessingTools.Services.Bio.Codes
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Bio;
-    using ProcessingTools.Services.Contracts.Content;
-    using ProcessingTools.Services.Contracts;
-    using ProcessingTools.Services.Contracts.Bio.Codes;
     using ProcessingTools.Services.Models;
     using ProcessingTools.Services.Models.Bio.Codes;
-    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
     public class CollectionCodesTagger : ICollectionCodesTagger
     {

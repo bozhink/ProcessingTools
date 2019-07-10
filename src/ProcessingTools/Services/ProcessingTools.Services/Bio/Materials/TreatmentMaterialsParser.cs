@@ -2,16 +2,17 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio;
+using ProcessingTools.Contracts.Services.Bio.Materials;
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Services.Bio.Materials
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Bio.Materials;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {

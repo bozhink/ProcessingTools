@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Models.Quantities;
+using ProcessingTools.Contracts.Services.Quantities;
+
 namespace ProcessingTools.Services.Quantities
 {
-    using ProcessingTools.Services.Contracts.Quantities;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Contracts;
-    using ProcessingTools.Services.Contracts.Quantities;
-    using ProcessingTools.Services.Models.Contracts;
 
     /// <summary>
     /// Quantities tagger.

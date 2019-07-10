@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Documents.Documents
-{
-    using System.IO;
-    using ProcessingTools.Contracts.Models.IO;
+using System.IO;
+using ProcessingTools.Contracts.Models.IO;
 
+namespace ProcessingTools.Contracts.Services.Models.Documents.Documents
+{
     /// <summary>
     /// Document file stream model.
     /// </summary>

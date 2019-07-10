@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Dates;
+
 namespace ProcessingTools.Services.Dates
 {
     using System.Collections.Concurrent;
@@ -9,7 +11,6 @@ namespace ProcessingTools.Services.Dates
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Dates;
     using ProcessingTools.Extensions;
 
     /// <summary>

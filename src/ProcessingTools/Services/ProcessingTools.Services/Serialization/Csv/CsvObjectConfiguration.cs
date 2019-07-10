@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Serialization.Csv
+namespace ProcessingTools.Services.Serialization.Csv
 {
     /// <summary>
     /// Provides configuration parameters for serialization of CSV.

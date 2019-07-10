@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Services.Net;
+
 namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 {
     using System.Configuration;
@@ -10,7 +12,6 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Clients.Bio.MaterialsParser;
-    using ProcessingTools.Net;
 
     /// <summary>
     /// <see cref="MaterialCitationsParser"/> integration tests.

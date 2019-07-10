@@ -1,4 +1,10 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
+﻿using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.IO;
+using ProcessingTools.Contracts.Services.Meta;
+using ProcessingTools.Contracts.Services.Serialization;
+using ProcessingTools.Services.Serialization;
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
     using global::Ninject.Extensions.Conventions;
@@ -31,22 +37,22 @@
                 .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Services.Contracts.IDocumentFactory>()
+            this.Bind<IDocumentFactory>()
                 .To<ProcessingTools.Services.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
+            this.Bind<IXmlReadService>()
                 .To<ProcessingTools.Services.IO.XmlReadService>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlWriteService>()
+            this.Bind<IXmlWriteService>()
                 .To<ProcessingTools.Services.IO.XmlWriteService>()
                 .WhenInjectedInto<XmlFileContentDataService>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.Serialization.IDeserializer>()
-                .To<ProcessingTools.Common.Code.Serialization.DataContractJsonDeserializer>()
+            this.Bind<IDeserializer>()
+                .To<DataContractJsonDeserializer>()
                 .InSingletonScope();
 
             this.Bind<IProcessorFactory>()
@@ -57,7 +63,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalMetaDataService>()
+            this.Bind<IJournalMetaDataService>()
                 .To<ProcessingTools.Services.Meta.JournalMetaDataServiceWithFiles>();
 
 #if UseFileDirectory
@@ -77,11 +83,11 @@
                     ParameterNames.JournalMetaFilesDirectoryName,
                     journalMetaFilesDirectory);
 #else
-            this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalsMetaDataService>()
+            this.Bind<IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<Engine>();
 
-            this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalsMetaDataService>()
+            this.Bind<IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<HelpProvider>();
 

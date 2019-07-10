@@ -2,12 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+
 namespace ProcessingTools.Services.Models.Layout.Styles.References
 {
     /// <summary>
     /// Reference insert parse style model.
     /// </summary>
-    public class ReferenceInsertParseStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.References.IReferenceInsertParseStyleModel
+    public class ReferenceInsertParseStyleModel : IReferenceInsertParseStyleModel
     {
         /// <inheritdoc/>
         public string Name { get; set; }

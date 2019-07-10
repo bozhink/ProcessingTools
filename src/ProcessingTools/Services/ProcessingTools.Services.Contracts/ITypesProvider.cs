@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
+namespace ProcessingTools.Contracts.Services
+{
     /// <summary>
     /// Provider of <see cref="Type"/> objects.
     /// </summary>

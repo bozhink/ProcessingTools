@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Tests.Integration.Tests
-{
-    using System.Xml;
-    using NUnit.Framework;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Services.Models.Bio.Taxonomy;
+using System.Xml;
+using NUnit.Framework;
+using ProcessingTools.Common.Enumerations;
+using ProcessingTools.Services.Models.Bio.Taxonomy;
 
+namespace ProcessingTools.Services.Tests.Integration.Tests
+{
     /// <summary>
     /// <see cref="TaxonNamePart"/> tests.
     /// </summary>

@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+
 namespace ProcessingTools.Services
 {
     using System;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// XML query replacer.

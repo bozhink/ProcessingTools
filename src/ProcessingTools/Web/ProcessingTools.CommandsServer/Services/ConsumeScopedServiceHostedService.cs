@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+
 namespace ProcessingTools.CommandsServer.Services
 {
     using System;
@@ -10,7 +12,6 @@ namespace ProcessingTools.CommandsServer.Services
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Consume scoped service hosted service.

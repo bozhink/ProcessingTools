@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.Net
-{
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
-    using ProcessingTools.Common.Constants;
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using ProcessingTools.Common.Constants;
 
+namespace ProcessingTools.Services.Net
+{
     public static class Utilities
     {
         public static HttpRequestMessage GetPostJsonHttpRequestMessage(Uri requestUri, object model)

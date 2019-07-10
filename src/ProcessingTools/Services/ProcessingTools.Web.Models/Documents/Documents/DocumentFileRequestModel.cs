@@ -2,10 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Documents.Documents;
+
 namespace ProcessingTools.Web.Models.Documents.Documents
 {
     using System.IO;
-    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// Document file request model.

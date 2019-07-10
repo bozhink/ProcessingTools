@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Images
-{
-    using System.Linq;
-    using System.Text;
-    using ProcessingTools.Common.Enumerations;
+using System.Linq;
+using System.Text;
+using ProcessingTools.Common.Enumerations;
 
+namespace ProcessingTools.Services.Imaging
+{
     /// <summary>
     /// Images helper.
     /// </summary>

@@ -8,6 +8,12 @@ specimen_code -> @institutionalCode
 <institutional_code description="Australian National Insect Collection, CSIRO, Canberra City, Australia" attribute1="http://grbio.org/institution/queensland-museum">ANIC</institutional_code>
 */
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Bio.Codes;
+using ProcessingTools.Contracts.Services.Content;
+using ProcessingTools.Contracts.Services.Models.Bio.Codes;
+using ProcessingTools.Services.Models.Content;
+
 namespace ProcessingTools.Services.Bio.Codes
 {
     using System;
@@ -20,12 +26,8 @@ namespace ProcessingTools.Services.Bio.Codes
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Contracts.Content;
-    using ProcessingTools.Services.Contracts;
-    using ProcessingTools.Services.Contracts.Bio.Codes;
     using ProcessingTools.Services.Models;
     using ProcessingTools.Services.Models.Bio.Codes;
-    using ProcessingTools.Services.Models.Contracts.Bio.Codes;
 
     /// <summary>
     /// Codes tagger.

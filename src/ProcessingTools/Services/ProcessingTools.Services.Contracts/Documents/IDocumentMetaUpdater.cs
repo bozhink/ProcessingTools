@@ -2,14 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Documents
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Documents.Articles;
-    using ProcessingTools.Contracts.Models.Documents.Journals;
-    using ProcessingTools.Contracts.Models.Documents.Publishers;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Models;
+using ProcessingTools.Contracts.Models.Documents.Articles;
+using ProcessingTools.Contracts.Models.Documents.Journals;
+using ProcessingTools.Contracts.Models.Documents.Publishers;
 
+namespace ProcessingTools.Contracts.Services.Documents
+{
     /// <summary>
     /// Document meta-data updater.
     /// </summary>

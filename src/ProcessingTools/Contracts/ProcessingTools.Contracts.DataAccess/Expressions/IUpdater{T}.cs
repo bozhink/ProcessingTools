@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Expressions
-{
-    using System.Threading.Tasks;
+using System.Threading.Tasks;
 
+namespace ProcessingTools.Contracts.DataAccess.Expressions
+{
     /// <summary>
     /// Generic updater.
     /// </summary>

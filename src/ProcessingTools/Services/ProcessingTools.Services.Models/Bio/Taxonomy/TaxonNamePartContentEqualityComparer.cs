@@ -2,10 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Bio.Taxonomy;
+
 namespace ProcessingTools.Services.Models.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using ProcessingTools.Services.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// <see cref="ITaxonNamePart"/> content equality comparer.

@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Bio
-{
-    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
+using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
 
+namespace ProcessingTools.Contracts.Services.Bio
+{
     /// <summary>
     /// Biorepositories collections data miner.
     /// </summary>

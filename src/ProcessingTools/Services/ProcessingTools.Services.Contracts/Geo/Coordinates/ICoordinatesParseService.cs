@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Geo.Coordinates
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using ProcessingTools.Services.Models.Contracts.Geo.Coordinates;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
 
+namespace ProcessingTools.Contracts.Services.Geo.Coordinates
+{
     /// <summary>
     /// Coordinates parse service.
     /// </summary>

@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.DataAccess.Expressions;
+
 namespace ProcessingTools.Common.Code.Data.Expressions
 {
-    using ProcessingTools.Contracts.Data.Expressions;
-
     /// <summary>
     /// Generic expression builder.
     /// </summary>

@@ -2,6 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Cache;
+using ProcessingTools.Contracts.Services.MQ;
+
 namespace ProcessingTools.CommandsServer.Services
 {
     using System;
@@ -9,8 +12,6 @@ namespace ProcessingTools.CommandsServer.Services
     using ProcessingTools.CommandsServer.Extensions;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Cache;
-    using ProcessingTools.Services.Contracts.MQ;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Events;
 

@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Documents.Files
+namespace ProcessingTools.Contracts.Services.Models.Documents.Files
 {
     /// <summary>
     /// File update model.

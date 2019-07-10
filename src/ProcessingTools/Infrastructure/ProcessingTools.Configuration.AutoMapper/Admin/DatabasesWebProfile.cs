@@ -2,10 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Admin.Databases;
+
 namespace ProcessingTools.Configuration.AutoMapper.Admin
 {
     using global::AutoMapper;
-    using ProcessingTools.Services.Models.Contracts.Admin.Databases;
     using ProcessingTools.Web.Models.Admin.Databases;
 
     /// <summary>

@@ -2,6 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.IO;
+using ProcessingTools.Contracts.Services.Meta;
+using ProcessingTools.Contracts.Web.Services;
+
 namespace ProcessingTools.Web.Documents.Settings
 {
     using System;
@@ -12,7 +16,6 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services;
-    using ProcessingTools.Web.Services.Contracts;
 
     /// <summary>
     /// Service provider configuration.
@@ -36,8 +39,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
             builder.Register(c => c.Resolve<IApplicationContext>().UserContext).As<IUserContext>().InstancePerDependency();
 
-            builder.RegisterType<ProcessingTools.Services.Meta.JatsArticleMetaHarvester>().As<ProcessingTools.Services.Contracts.Meta.IJatsArticleMetaHarvester>().InstancePerDependency();
-            builder.RegisterType<ProcessingTools.Services.IO.XmlReadService>().As<ProcessingTools.Services.Contracts.IO.IXmlReadService>().InstancePerDependency();
+            builder.RegisterType<ProcessingTools.Services.Meta.JatsArticleMetaHarvester>().As<IJatsArticleMetaHarvester>().InstancePerDependency();
+            builder.RegisterType<ProcessingTools.Services.IO.XmlReadService>().As<IXmlReadService>().InstancePerDependency();
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
 

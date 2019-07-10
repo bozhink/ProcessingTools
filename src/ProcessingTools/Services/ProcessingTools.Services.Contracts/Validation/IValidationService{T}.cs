@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Validation
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Validation;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Models.Validation;
 
+namespace ProcessingTools.Contracts.Services.Validation
+{
     /// <summary>
     /// Generic validation service.
     /// </summary>

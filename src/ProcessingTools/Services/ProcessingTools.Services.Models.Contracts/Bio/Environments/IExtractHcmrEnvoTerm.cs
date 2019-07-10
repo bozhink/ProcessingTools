@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Bio.Environments
+namespace ProcessingTools.Contracts.Services.Models.Bio.Environments
 {
     /// <summary>
     /// EXTRACT HCMR ENVO term.

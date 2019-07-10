@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Dates;
+using ProcessingTools.Contracts.Services.Models.Dates;
+
 namespace ProcessingTools.Services.Dates
 {
-    using ProcessingTools.Services.Contracts.Dates;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Contracts;
-    using ProcessingTools.Services.Contracts.Dates;
-    using ProcessingTools.Services.Models.Contracts;
 
     /// <summary>
     /// Dates tagger.

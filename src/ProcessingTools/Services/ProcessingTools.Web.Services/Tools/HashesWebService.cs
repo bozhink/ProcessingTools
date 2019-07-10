@@ -2,15 +2,16 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Tools;
+using ProcessingTools.Contracts.Web.Services.Tools;
+
 namespace ProcessingTools.Web.Services.Tools
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Tools;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Models.Tools.Hashes;
-    using ProcessingTools.Web.Services.Contracts.Tools;
 
     /// <summary>
     /// Hashes web service.

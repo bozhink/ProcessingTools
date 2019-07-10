@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Models.Documents.Documents
     /// <summary>
     /// Document insert model.
     /// </summary>
-    public class DocumentInsertModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentInsertModel
+    public class DocumentInsertModel : Contracts.Services.Models.Documents.Documents.IDocumentInsertModel
     {
         /// <inheritdoc/>
         public string ArticleId { get; set; }

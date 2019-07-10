@@ -94,8 +94,8 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
   </ItemGroup>
 </Project>

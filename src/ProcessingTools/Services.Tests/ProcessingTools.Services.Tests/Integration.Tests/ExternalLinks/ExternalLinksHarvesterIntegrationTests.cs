@@ -1,19 +1,19 @@
-﻿namespace ProcessingTools.Services.Tests.Integration.Tests
-{
-    using System.IO;
-    using System.Linq;
-    using System.Xml;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Moq;
-    using ProcessingTools.Common.Code.Serialization;
-    using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Contracts.ExternalLinks;
-    using ProcessingTools.Services.ExternalLinks;
-    using ProcessingTools.Services.IO;
-    using ProcessingTools.Services.Models.Contracts.ExternalLinks;
-    using ProcessingTools.Services.Xml;
+﻿using System.IO;
+using System.Linq;
+using System.Xml;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using ProcessingTools.Common.Constants.Configuration;
+using ProcessingTools.Contracts.Services.ExternalLinks;
+using ProcessingTools.Contracts.Services.Models.ExternalLinks;
+using ProcessingTools.Services.Abstractions;
+using ProcessingTools.Services.ExternalLinks;
+using ProcessingTools.Services.IO;
+using ProcessingTools.Services.Serialization;
+using ProcessingTools.Services.Xml;
 
+namespace ProcessingTools.Services.Tests.Integration.Tests.ExternalLinks
+{
     /// <summary>
     /// External links harvester integration tests.
     /// </summary>

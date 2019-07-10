@@ -2,14 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Common.Tests.Expressions
-{
-    using System;
-    using System.Linq;
-    using NUnit.Framework;
-    using ProcessingTools.Common.Code.Data.Expressions;
-    using ProcessingTools.Common.Code.Tests.Models;
+using System;
+using System.Linq;
+using NUnit.Framework;
+using ProcessingTools.Common.Code.Data.Expressions;
+using ProcessingTools.Common.Code.Tests.Models;
 
+namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
+{
     /// <summary>
     /// Expression builder tests.
     /// </summary>

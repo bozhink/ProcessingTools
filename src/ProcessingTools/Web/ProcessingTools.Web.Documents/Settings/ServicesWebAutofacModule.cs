@@ -2,16 +2,18 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Web.Services.Admin;
+using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
+using ProcessingTools.Contracts.Web.Services.Documents;
+using ProcessingTools.Contracts.Web.Services.Files;
+using ProcessingTools.Contracts.Web.Services.Geo.Coordinates;
+using ProcessingTools.Contracts.Web.Services.Layout.Styles;
+using ProcessingTools.Contracts.Web.Services.Tools;
+
 namespace ProcessingTools.Web.Documents.Settings
 {
     using Autofac;
     using ProcessingTools.Web.Services.Admin;
-    using ProcessingTools.Web.Services.Contracts.Admin;
-    using ProcessingTools.Web.Services.Contracts.Documents;
-    using ProcessingTools.Web.Services.Contracts.Files;
-    using ProcessingTools.Web.Services.Contracts.Geo.Coordinates;
-    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
-    using ProcessingTools.Web.Services.Contracts.Tools;
     using ProcessingTools.Web.Services.Documents;
     using ProcessingTools.Web.Services.Files;
     using ProcessingTools.Web.Services.Geo.Coordinates;
@@ -49,11 +51,11 @@ namespace ProcessingTools.Web.Documents.Settings
 
             builder
                 .RegisterType<ProcessingTools.Web.Services.Bio.Taxonomy.BlackListWebService>()
-                .As<ProcessingTools.Web.Services.Contracts.Bio.Taxonomy.IBlackListWebService>()
+                .As<IBlackListWebService>()
                 .InstancePerDependency();
             builder
                 .RegisterType<ProcessingTools.Web.Services.Bio.Taxonomy.TaxonRanksWebService>()
-                .As<ProcessingTools.Web.Services.Contracts.Bio.Taxonomy.ITaxonRanksWebService>()
+                .As<ITaxonRanksWebService>()
                 .InstancePerDependency();
         }
     }

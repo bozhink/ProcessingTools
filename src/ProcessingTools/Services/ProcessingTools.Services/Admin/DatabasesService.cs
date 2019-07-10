@@ -2,6 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio.Biorepositories.Admin;
+using ProcessingTools.Contracts.Services.Models.Admin.Databases;
+
 namespace ProcessingTools.Services.Admin
 {
     using System;
@@ -10,9 +13,7 @@ namespace ProcessingTools.Services.Admin
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data;
-    using ProcessingTools.Services.Contracts.Admin;
     using ProcessingTools.Services.Models.Admin.Databases;
-    using ProcessingTools.Services.Models.Contracts.Admin.Databases;
 
     /// <summary>
     /// Databases service.

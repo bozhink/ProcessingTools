@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Services.Serialization.Csv;
+
 namespace ProcessingTools.Data.Seed.Integration.Tests.Bio.Biorepositories
 {
     using System;
@@ -9,7 +11,6 @@ namespace ProcessingTools.Data.Seed.Integration.Tests.Bio.Biorepositories
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Common.Code.Serialization.Csv;
     using ProcessingTools.Data.Seed.Bio.Biorepositories;
 
     /// <summary>

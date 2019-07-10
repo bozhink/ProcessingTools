@@ -2,14 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Serialization.Csv
-{
-    using System;
-    using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Code.Serialization.Csv;
-    using ProcessingTools.Common.Code.Tests.Models;
+using System;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProcessingTools.Services.Serialization.Csv;
+using ProcessingTools.Services.Tests.Models;
 
+namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Csv
+{
     /// <summary>
     /// <see cref="CsvSerializer"/> Tests.
     /// </summary>

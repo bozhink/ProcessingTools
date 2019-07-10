@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Web.Services.Images;
+
 namespace ProcessingTools.Web.Core.Api
 {
     using System;
@@ -13,7 +15,6 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json.Serialization;
-    using ProcessingTools.Web.Services.Contracts.Images;
     using ProcessingTools.Web.Services.Images;
 
     /// <summary>

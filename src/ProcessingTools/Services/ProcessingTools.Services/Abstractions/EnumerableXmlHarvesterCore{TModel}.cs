@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Xml;
+
 namespace ProcessingTools.Services.Abstractions
 {
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Default implementation of <see cref="IEnumerableXmlHarvesterCore{TModel}"/>.

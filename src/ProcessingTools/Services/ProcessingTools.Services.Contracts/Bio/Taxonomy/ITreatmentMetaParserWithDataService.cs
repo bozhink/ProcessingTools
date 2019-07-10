@@ -2,10 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
+namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
-
     /// <summary>
     /// Treatment meta parser with data service.
     /// </summary>

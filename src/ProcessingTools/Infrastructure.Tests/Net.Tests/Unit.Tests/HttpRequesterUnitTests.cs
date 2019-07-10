@@ -1,7 +1,9 @@
-﻿namespace ProcessingTools.Net.Tests.Unit.Tests
+﻿using ProcessingTools.Services.Contracts;
+using ProcessingTools.Services.Net;
+
+namespace ProcessingTools.Net.Tests.Unit.Tests
 {
     using NUnit.Framework;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Net;
 
     [TestFixture]

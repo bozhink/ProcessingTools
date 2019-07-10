@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.DbSeeder.Core
+﻿using ProcessingTools.Contracts.Services;
+
+namespace ProcessingTools.DbSeeder.Core
 {
     using System;
     using System.Linq;
@@ -7,7 +9,6 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
-    using ProcessingTools.Services.Contracts;
 
     internal class SeedCommandRunner : ICommandRunner
     {

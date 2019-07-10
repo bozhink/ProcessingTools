@@ -2,15 +2,16 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio;
+using ProcessingTools.Contracts.Services.Bio.Environments;
+using ProcessingTools.Contracts.Services.Models.Bio.Environments;
+
 namespace ProcessingTools.Services.Bio.Environments
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.Bio;
-    using ProcessingTools.Services.Contracts.Bio.Environments;
     using ProcessingTools.Services.Models.Bio.Environments;
-    using ProcessingTools.Services.Models.Contracts.Bio.Environments;
 
     /// <summary>
     /// EXTRACT HCMR data miner.

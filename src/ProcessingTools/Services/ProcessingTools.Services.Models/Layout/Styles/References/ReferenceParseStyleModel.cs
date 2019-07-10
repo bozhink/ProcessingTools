@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+
 namespace ProcessingTools.Services.Models.Layout.Styles.References
 {
     using System;
@@ -9,7 +11,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles.References
     /// <summary>
     /// Reference parse style model.
     /// </summary>
-    public class ReferenceParseStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.References.IReferenceParseStyleModel
+    public class ReferenceParseStyleModel : IReferenceParseStyleModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

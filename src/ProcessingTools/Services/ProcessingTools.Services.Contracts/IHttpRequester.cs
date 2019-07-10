@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace ProcessingTools.Contracts.Services
+{
     /// <summary>
     /// HTTP requester - object to request information via HTTP protocol.
     /// </summary>

@@ -8,21 +8,17 @@
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Ninject modules.</Description>
+    <Description>Contracts for services.</Description>
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Ninject.Modules.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Services.Contracts.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Ninject.Extensions.Conventions" Version="3.3.0" />
-    <PackageReference Include="Ninject.Extensions.Factory" Version="3.3.2" />
-    <PackageReference Include="Ninject.Extensions.Interception" Version="3.3.3" />
-    <PackageReference Include="Ninject.Extensions.Interception.DynamicProxy" Version="3.3.3" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.15.0.8572">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -31,9 +27,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Ninject" Version="3.3.4" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+    <PackageReference Include="System.Xml.ReaderWriter" Version="4.3.1" />
+    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Common\ProcessingTools.Common.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj" />
   </ItemGroup>
 </Project>

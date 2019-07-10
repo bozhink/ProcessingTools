@@ -2,12 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Meta;
+
 namespace ProcessingTools.Services.Models.Meta
 {
     using System;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Services.Models.Contracts.Meta;
 
     /// <summary>
     /// JATS Article meta model.

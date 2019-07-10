@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Bio.Codes
-{
-    using ProcessingTools.Contracts.Xml;
+using ProcessingTools.Contracts.Services.Xml;
 
+namespace ProcessingTools.Contracts.Services.Bio.Codes
+{
     /// <summary>
     /// Codes transformer factory.
     /// </summary>

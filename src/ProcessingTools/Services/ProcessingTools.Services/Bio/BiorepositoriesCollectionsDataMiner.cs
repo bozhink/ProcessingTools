@@ -2,6 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio;
+using ProcessingTools.Contracts.Services.Bio.Biorepositories;
+using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+
 namespace ProcessingTools.Services.Bio
 {
     using System;
@@ -10,9 +14,6 @@ namespace ProcessingTools.Services.Bio
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Contracts.Bio;
-    using ProcessingTools.Services.Contracts.Bio.Biorepositories;
-    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
     /// <summary>
     /// Biorepositories collections data miner.

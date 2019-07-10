@@ -2,10 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Cache;
+
 namespace ProcessingTools.Services.Cache
 {
     using System.Collections.Concurrent;
-    using ProcessingTools.Services.Contracts.Cache;
 
     /// <summary>
     /// Message cache service.

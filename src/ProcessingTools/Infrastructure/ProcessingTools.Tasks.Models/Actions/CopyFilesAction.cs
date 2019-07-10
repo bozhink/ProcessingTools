@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Tasks.Models.Actions;
+using ProcessingTools.Contracts.Tasks.Models.Tasks;
+
 namespace ProcessingTools.Tasks.Models.Actions
 {
     using Newtonsoft.Json;
     using ProcessingTools.Common.Attributes.Tasks;
     using ProcessingTools.Common.Enumerations.Tasks;
-    using ProcessingTools.Tasks.Models.Contracts.Actions;
-    using ProcessingTools.Tasks.Models.Contracts.Tasks;
 
     /// <summary>
     /// Copy files action.

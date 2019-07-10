@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Documents
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Services.Models.Contracts.Documents.Journals;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Services.Models.Documents.Journals;
 
+namespace ProcessingTools.Contracts.Services.Documents
+{
     /// <summary>
     /// Journals data service.
     /// </summary>

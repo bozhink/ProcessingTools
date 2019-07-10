@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Clients.Bio.Aphia
 {
     using System;
@@ -9,7 +11,6 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Clients.ConnectedServices.Bio.Aphia;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;

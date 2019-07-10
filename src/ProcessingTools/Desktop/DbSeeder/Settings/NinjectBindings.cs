@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.DbSeeder.Settings
+﻿using ProcessingTools.Contracts.Services;
+
+namespace ProcessingTools.DbSeeder.Settings
 {
     using System;
     using System.Reflection;
@@ -12,7 +14,6 @@
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Ninject.Interceptors;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.

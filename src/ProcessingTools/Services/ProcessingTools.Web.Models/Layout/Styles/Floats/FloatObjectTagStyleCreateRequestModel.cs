@@ -2,11 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
+
 namespace ProcessingTools.Web.Models.Layout.Styles.Floats
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Enumerations.Nlm;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats;
 
     /// <summary>
     /// Float object tag style create request model.

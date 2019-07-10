@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.IO
-{
-    using System.Threading.Tasks;
-    using System.Xml;
+using System.Threading.Tasks;
+using System.Xml;
 
+namespace ProcessingTools.Contracts.Services.IO
+{
     /// <summary>
     /// Manipulates content of XML files.
     /// </summary>

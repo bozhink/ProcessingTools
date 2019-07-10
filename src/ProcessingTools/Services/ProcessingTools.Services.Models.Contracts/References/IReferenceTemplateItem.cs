@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.References
+namespace ProcessingTools.Contracts.Services.Models.References
 {
     /// <summary>
     /// Reference template item.

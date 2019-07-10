@@ -2,10 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts
+namespace ProcessingTools.Contracts.Services.Models.Institutions
 {
-    using ProcessingTools.Contracts;
-
     /// <summary>
     /// Institution tag model provider.
     /// </summary>

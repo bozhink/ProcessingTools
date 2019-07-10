@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
+﻿using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.IO;
+using ProcessingTools.Contracts.Services.Meta;
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.Collections.Generic;
@@ -13,12 +17,9 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
-    using ProcessingTools.Services.Contracts;
-    using ProcessingTools.Services.Contracts.IO;
 
     public class FileProcessor : IFileProcessor
     {

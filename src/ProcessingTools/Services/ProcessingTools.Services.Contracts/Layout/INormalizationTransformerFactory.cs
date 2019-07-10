@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Layout
-{
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Xml;
+using ProcessingTools.Common.Enumerations;
+using ProcessingTools.Contracts.Services.Xml;
 
+namespace ProcessingTools.Contracts.Services.Layout
+{
     /// <summary>
     /// Normalization transformer factory.
     /// </summary>

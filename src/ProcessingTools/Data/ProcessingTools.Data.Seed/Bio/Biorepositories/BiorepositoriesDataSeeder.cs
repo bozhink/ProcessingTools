@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Data.Seed.Bio.Biorepositories
+﻿using ProcessingTools.Services.Serialization.Csv;
+
+namespace ProcessingTools.Data.Seed.Bio.Biorepositories
 {
     using System;
     using System.Collections.Concurrent;
@@ -8,7 +10,6 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Code.Data.Seed;
-    using ProcessingTools.Common.Code.Serialization.Csv;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;

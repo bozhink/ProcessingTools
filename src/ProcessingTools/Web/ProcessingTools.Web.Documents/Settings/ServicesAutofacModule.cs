@@ -2,20 +2,24 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio.Biorepositories.Admin;
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+using ProcessingTools.Contracts.Services.Documents;
+using ProcessingTools.Contracts.Services.Files;
+using ProcessingTools.Contracts.Services.Geo.Coordinates;
+using ProcessingTools.Contracts.Services.History;
+using ProcessingTools.Contracts.Services.IO;
+using ProcessingTools.Contracts.Services.Layout.Styles;
+using ProcessingTools.Contracts.Services.Rules;
+using ProcessingTools.Contracts.Services.Tools;
+using IFilesDataService = ProcessingTools.Contracts.Services.Documents.IFilesDataService;
+
 namespace ProcessingTools.Web.Documents.Settings
 {
     using Autofac;
     using Microsoft.Extensions.Configuration;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Services.Admin;
-    using ProcessingTools.Services.Contracts.Admin;
-    using ProcessingTools.Services.Contracts.Documents;
-    using ProcessingTools.Services.Contracts.Geo.Coordinates;
-    using ProcessingTools.Services.Contracts.History;
-    using ProcessingTools.Services.Contracts.IO;
-    using ProcessingTools.Services.Contracts.Layout.Styles;
-    using ProcessingTools.Services.Contracts.Rules;
-    using ProcessingTools.Services.Contracts.Tools;
     using ProcessingTools.Services.Documents;
     using ProcessingTools.Services.Geo.Coordinates;
     using ProcessingTools.Services.History;
@@ -76,11 +80,11 @@ namespace ProcessingTools.Web.Documents.Settings
 
             builder
                 .RegisterType<ProcessingTools.Services.Bio.Taxonomy.BlackListDataService>()
-                .As<ProcessingTools.Services.Contracts.Bio.Taxonomy.IBlackListDataService>()
+                .As<IBlackListDataService>()
                 .InstancePerDependency();
             builder
                 .RegisterType<ProcessingTools.Services.Bio.Taxonomy.TaxonRankDataService>()
-                .As<ProcessingTools.Services.Contracts.Bio.Taxonomy.ITaxonRankDataService>()
+                .As<ITaxonRankDataService>()
                 .InstancePerDependency();
 
             builder
@@ -89,19 +93,19 @@ namespace ProcessingTools.Web.Documents.Settings
                 SingleInstance();
             builder
                 .RegisterType<ProcessingTools.Web.Services.Files.MimeMappingService>()
-                .As<ProcessingTools.Services.Contracts.Files.IMimeMappingService>()
+                .As<IMimeMappingService>()
                 .InstancePerLifetimeScope();
             builder
                 .RegisterType<ProcessingTools.Services.Files.MediatypesDataService>()
-                .As<ProcessingTools.Services.Contracts.Files.IMediatypesDataService>()
+                .As<IMediatypesDataService>()
                 .InstancePerLifetimeScope();
             builder
                 .RegisterType<ProcessingTools.Services.Files.FilesDataService>()
-                .As<ProcessingTools.Services.Contracts.Files.IFilesDataService>()
+                .As<Contracts.Services.Files.IFilesDataService>()
                 .InstancePerDependency();
             builder
                 .RegisterType<ProcessingTools.Services.Files.FileNameGeneratorWithUniqueNaming>()
-                .As<ProcessingTools.Services.Contracts.Files.IFileNameGenerator>()
+                .As<IFileNameGenerator>()
                 .InstancePerLifetimeScope();
             builder
                 .Register(c =>
@@ -111,7 +115,7 @@ namespace ProcessingTools.Web.Documents.Settings
                         BaseDirectoryName = this.Configuration[ConfigurationConstants.FilesRootDirectory],
                     };
                 })
-                .As<ProcessingTools.Services.Contracts.Files.IFileNameResolver>()
+                .As<IFileNameResolver>()
                 .InstancePerLifetimeScope();
         }
     }

@@ -2,12 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Tools;
+using ProcessingTools.Services.Security;
+
 namespace ProcessingTools.Services.Tools
 {
     using System;
     using System.Text;
     using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Tools;
 
     /// <summary>
     /// Decode service.
@@ -46,7 +48,7 @@ namespace ProcessingTools.Services.Tools
 
             if (!string.IsNullOrEmpty(source))
             {
-                byte[] bytes = ProcessingTools.Security.SecurityUtilities.FromBase64Url(source.Trim(new[] { ' ', '\t', '\r', '\n' }));
+                byte[] bytes = SecurityUtilities.FromBase64Url(source.Trim(new[] { ' ', '\t', '\r', '\n' }));
                 result = this.encoding.GetString(bytes);
             }
 

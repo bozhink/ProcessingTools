@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+
 namespace ProcessingTools.Services.Abstractions
 {
     using System;
@@ -15,7 +17,6 @@ namespace ProcessingTools.Services.Abstractions
     using System.Xml;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Generic XPath harvester.

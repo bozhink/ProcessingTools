@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Tools
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Tools.Hashes;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Tools.Hashes;
 
+namespace ProcessingTools.Contracts.Web.Services.Tools
+{
     /// <summary>
     /// Hashes web service.
     /// </summary>

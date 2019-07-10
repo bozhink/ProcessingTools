@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Tools
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Tools.Encode;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Tools.Encode;
 
+namespace ProcessingTools.Contracts.Web.Services.Tools
+{
     /// <summary>
     /// Encode web service.
     /// </summary>

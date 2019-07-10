@@ -2,11 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Language;
+
 namespace ProcessingTools.Services.Language
 {
     using System.Collections.Generic;
     using System.Text;
-    using ProcessingTools.Contracts.Processors.Language;
 
     /// <summary>
     /// Bulgarian-to-English transliteration.

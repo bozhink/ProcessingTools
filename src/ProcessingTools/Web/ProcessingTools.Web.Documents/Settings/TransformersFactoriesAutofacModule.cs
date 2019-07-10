@@ -2,14 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Documents;
+using ProcessingTools.Contracts.Services.Layout;
+using ProcessingTools.Contracts.Services.Xml;
+
 namespace ProcessingTools.Web.Documents.Settings
 {
     using System;
     using Autofac;
     using Autofac.Extras.DynamicProxy;
-    using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Services.Contracts.Layout;
-    using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Xml;
     using ProcessingTools.Web.Documents.Interceptors;
 

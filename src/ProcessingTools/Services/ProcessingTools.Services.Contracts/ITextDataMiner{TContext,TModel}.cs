@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
+namespace ProcessingTools.Contracts.Services
+{
     /// <summary>
     /// Text data miner.
     /// </summary>

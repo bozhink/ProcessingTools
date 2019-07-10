@@ -1,18 +1,8 @@
-﻿namespace ProcessingTools.Services.Tests.Integration.Tests
-{
-    using System.IO;
-    using System.Linq;
-    using System.Xml;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Moq;
-    using ProcessingTools.Common.Code.Serialization;
-    using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Services.Abbreviations;
-    using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Contracts.Abbreviations;
-    using ProcessingTools.Services.Models.Contracts.Abbreviations;
-    using ProcessingTools.Services.Xml;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProcessingTools.Services.Abbreviations;
 
+namespace ProcessingTools.Services.Tests.Integration.Tests.Abbreviations
+{
     /// <summary>
     /// <see cref="AbbreviationsHarvester"/> integration tests.
     /// </summary>

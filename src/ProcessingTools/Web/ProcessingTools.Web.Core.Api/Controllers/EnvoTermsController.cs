@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Web.Api.Controllers
+﻿using ProcessingTools.Contracts.Services.Bio.Environments;
+
+namespace ProcessingTools.Web.Api.Controllers
 {
     using System;
     using System.Linq;
@@ -9,7 +11,6 @@
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Models.Bio;
-    using ProcessingTools.Services.Contracts.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.EnvoTerms;
 
     [Route("api/[controller]")]

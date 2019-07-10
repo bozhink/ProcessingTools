@@ -34,10 +34,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Contracts.Commands.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Commands.Tagger.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Contracts.Commands.Tagger.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj" />
   </ItemGroup>
 </Project>

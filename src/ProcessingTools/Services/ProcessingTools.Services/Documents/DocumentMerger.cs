@@ -2,6 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Documents;
+using ProcessingTools.Contracts.Services.Xml;
+
 namespace ProcessingTools.Services.Documents
 {
     using System;
@@ -9,8 +12,6 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Services.Contracts.Documents;
 
     /// <summary>
     /// Document merger.

@@ -2,6 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Bio.SpecimenCodes;
+using ProcessingTools.Contracts.Services.Models.Bio.SpecimenCodes;
+
 namespace ProcessingTools.Services.Bio.SpecimenCodes
 {
     using System;
@@ -9,9 +12,7 @@ namespace ProcessingTools.Services.Bio.SpecimenCodes
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Bio.SpecimenCodes;
     using ProcessingTools.Services.Models.Bio.SpecimenCodes;
-    using ProcessingTools.Services.Models.Contracts.Bio.SpecimenCodes;
     using ProcessingTools.Extensions;
 
     /// <summary>

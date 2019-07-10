@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
-{
-    using ProcessingTools.Contracts.Xml;
+using ProcessingTools.Contracts.Services.Xml;
 
+namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
+{
     /// <summary>
     /// Bio taxonomy transformer factory.
     /// </summary>

@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.References;
+
 namespace ProcessingTools.Clients.References.Mendeley
 {
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.References;
     using ProcessingTools.Clients.Models.References.Mendeley;
 
     /// <summary>

@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Files;
+
 namespace ProcessingTools.Services.Files
 {
     using System;
@@ -9,7 +11,6 @@ namespace ProcessingTools.Services.Files
     using System.Threading.Tasks;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Models.Files.Mediatypes;
-    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     /// <summary>

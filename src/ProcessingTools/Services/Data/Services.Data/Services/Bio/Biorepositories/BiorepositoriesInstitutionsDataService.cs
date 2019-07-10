@@ -1,15 +1,15 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Services
-{
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
-    using ProcessingTools.Data.Mongo.Bio.Biorepositories;
-    using ProcessingTools.Services.Contracts.Bio.Biorepositories;
-    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using ProcessingTools.Common.Constants;
+using ProcessingTools.Common.Exceptions;
+using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
+using ProcessingTools.Data.Mongo.Bio.Biorepositories;
+using ProcessingTools.Services.Contracts.Bio.Biorepositories;
+using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
+namespace ProcessingTools.Services.Data.Services.Bio.Biorepositories
+{
     public class BiorepositoriesInstitutionsDataService : IBiorepositoriesInstitutionsDataService
     {
         private readonly IBiorepositoriesRepository<Institution> repository;

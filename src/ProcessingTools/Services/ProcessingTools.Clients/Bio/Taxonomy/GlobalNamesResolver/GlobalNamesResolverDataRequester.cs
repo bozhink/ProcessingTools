@@ -2,6 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
 {
     using System;
@@ -11,7 +14,6 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;

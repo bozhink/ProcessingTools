@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Documents
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Documents.Articles;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Documents.Articles;
 
+namespace ProcessingTools.Contracts.Web.Services.Documents
+{
     /// <summary>
     /// Articles web service.
     /// </summary>

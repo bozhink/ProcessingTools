@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Models.Documents.Documents
     /// <summary>
     /// Document model.
     /// </summary>
-    public class DocumentModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentModel
+    public class DocumentModel : Contracts.Services.Models.Documents.Documents.IDocumentModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

@@ -2,12 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Cache;
+
 namespace ProcessingTools.CommandsServer.Extensions
 {
     using System;
     using System.Linq;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Services.Contracts.Cache;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Exceptions;
 

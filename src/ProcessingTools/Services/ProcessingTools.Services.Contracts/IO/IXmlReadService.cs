@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.IO
-{
-    using System.IO;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Xml;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
 
+namespace ProcessingTools.Contracts.Services.IO
+{
     /// <summary>
     /// XML read service.
     /// </summary>

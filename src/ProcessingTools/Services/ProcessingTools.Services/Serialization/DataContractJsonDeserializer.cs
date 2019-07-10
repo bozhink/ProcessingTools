@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Serialization
-{
-    using System.IO;
-    using System.Runtime.Serialization.Json;
-    using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Services.Serialization;
 
+namespace ProcessingTools.Services.Serialization
+{
     /// <summary>
     /// Data contract JSON deserializer.
     /// </summary>

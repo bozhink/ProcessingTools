@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Rules
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Rules;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Models.Rules;
 
+namespace ProcessingTools.Contracts.Services.Rules
+{
     /// <summary>
     /// XML replace rule set parser.
     /// </summary>

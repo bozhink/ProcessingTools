@@ -1,8 +1,9 @@
-﻿namespace ProcessingTools.Web.Api.Controllers
+﻿using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
+namespace ProcessingTools.Web.Api.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Core.Api.Abstractions;
 
     [Route("api/[controller]")]

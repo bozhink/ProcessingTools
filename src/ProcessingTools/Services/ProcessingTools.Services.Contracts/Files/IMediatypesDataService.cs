@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Files
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Services.Models.Contracts.Files.Mediatypes;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
 
+namespace ProcessingTools.Contracts.Services.Files
+{
     /// <summary>
     /// Mediatypes data service.
     /// </summary>

@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Layout.Styles
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Layout.Styles.Floats;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Layout.Styles.Floats;
 
+namespace ProcessingTools.Contracts.Web.Services.Layout.Styles
+{
     /// <summary>
     /// Float object tag styles web service.
     /// </summary>

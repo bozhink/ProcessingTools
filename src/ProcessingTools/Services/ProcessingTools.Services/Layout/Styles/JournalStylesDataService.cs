@@ -2,6 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.History;
+using ProcessingTools.Contracts.Services.Layout.Styles;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+
 namespace ProcessingTools.Services.Layout.Styles
 {
     using System;
@@ -15,12 +22,6 @@ namespace ProcessingTools.Services.Layout.Styles
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Journals;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References;
-    using ProcessingTools.Services.Contracts.History;
-    using ProcessingTools.Services.Contracts.Layout.Styles;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Services.Models.Layout.Styles;
     using ProcessingTools.Services.Models.Layout.Styles.Floats;
     using ProcessingTools.Services.Models.Layout.Styles.Journals;

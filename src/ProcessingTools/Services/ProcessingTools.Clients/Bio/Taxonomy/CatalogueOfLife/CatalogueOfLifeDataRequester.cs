@@ -2,12 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
 {
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;

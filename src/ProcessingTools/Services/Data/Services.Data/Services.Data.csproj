@@ -80,13 +80,13 @@
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+    <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
-      <Name>ProcessingTools.Services.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj">
       <Project>{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D}</Project>
-      <Name>ProcessingTools.Services.Models.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Services.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
       <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>

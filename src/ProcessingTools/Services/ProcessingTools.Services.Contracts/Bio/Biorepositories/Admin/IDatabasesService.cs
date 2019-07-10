@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Admin
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Services.Models.Contracts.Admin.Databases;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Services.Models.Admin.Databases;
 
+namespace ProcessingTools.Contracts.Services.Bio.Biorepositories.Admin
+{
     /// <summary>
     /// Databases service.
     /// </summary>

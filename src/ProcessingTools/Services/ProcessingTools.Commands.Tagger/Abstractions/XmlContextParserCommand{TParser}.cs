@@ -2,14 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Commands.Models;
+using ProcessingTools.Contracts.Commands.Tagger;
+using ProcessingTools.Contracts.Services;
+
 namespace ProcessingTools.Commands.Tagger.Abstractions
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Commands.Models.Contracts;
-    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// XML context parser command.

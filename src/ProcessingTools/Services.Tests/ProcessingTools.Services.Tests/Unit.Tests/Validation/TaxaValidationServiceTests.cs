@@ -1,11 +1,12 @@
-﻿namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
+﻿using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+using ProcessingTools.Contracts.Services.Cache;
+
+namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Validation;
 
     [TestClass]

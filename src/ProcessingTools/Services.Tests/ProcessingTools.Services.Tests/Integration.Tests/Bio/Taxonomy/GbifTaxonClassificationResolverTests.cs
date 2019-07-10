@@ -1,10 +1,11 @@
-﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
+﻿using ProcessingTools.Services.Net;
+
+namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
 {
     using System.Linq;
     using NUnit.Framework;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Net;
     using ProcessingTools.Services.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(GbifTaxonClassificationResolver))]

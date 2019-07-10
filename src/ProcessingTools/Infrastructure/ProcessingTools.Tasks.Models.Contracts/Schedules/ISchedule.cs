@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Tasks.Models.Contracts.Schedules
-{
-    using System;
-    using ProcessingTools.Tasks.Models.Contracts.Tasks;
+using System;
+using ProcessingTools.Contracts.Tasks.Models.Tasks;
 
+namespace ProcessingTools.Contracts.Tasks.Models.Schedules
+{
     /// <summary>
     /// Schedule.
     /// </summary>

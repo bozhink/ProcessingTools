@@ -2,12 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+
 namespace ProcessingTools.Services.Models.Layout.Styles.References
 {
     /// <summary>
     /// Reference insert tag style model.
     /// </summary>
-    public class ReferenceInsertTagStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.References.IReferenceInsertTagStyleModel
+    public class ReferenceInsertTagStyleModel : IReferenceInsertTagStyleModel
     {
         /// <inheritdoc/>
         public string Name { get; set; }

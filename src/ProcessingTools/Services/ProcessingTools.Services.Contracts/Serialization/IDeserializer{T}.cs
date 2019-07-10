@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Serialization
-{
-    using System.IO;
-    using System.Threading.Tasks;
+using System.IO;
+using System.Threading.Tasks;
 
+namespace ProcessingTools.Contracts.Services.Serialization
+{
     /// <summary>
     /// Generic deserializer.
     /// </summary>

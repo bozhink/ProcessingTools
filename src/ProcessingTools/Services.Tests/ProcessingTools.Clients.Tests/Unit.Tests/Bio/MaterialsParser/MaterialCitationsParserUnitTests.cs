@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Services.Contracts;
+
 namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
 {
     using System;
@@ -10,7 +12,6 @@ namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Clients.Bio.MaterialsParser;
-    using ProcessingTools.Contracts;
 
     /// <summary>
     /// <see cref="MaterialCitationsParser"/> unit tests.

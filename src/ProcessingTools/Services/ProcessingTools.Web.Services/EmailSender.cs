@@ -2,10 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Web.Services;
+
 namespace ProcessingTools.Web.Services
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Web.Services.Contracts;
 
     /// <summary>
     /// Default e-mail sender.

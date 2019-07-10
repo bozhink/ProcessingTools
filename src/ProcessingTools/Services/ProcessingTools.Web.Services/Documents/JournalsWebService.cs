@@ -2,6 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Documents;
+using ProcessingTools.Contracts.Services.Models.Documents.Journals;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+using ProcessingTools.Contracts.Web.Services.Documents;
+
 namespace ProcessingTools.Web.Services.Documents
 {
     using System;
@@ -9,12 +14,8 @@ namespace ProcessingTools.Web.Services.Documents
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Documents;
-    using ProcessingTools.Services.Models.Contracts.Documents.Journals;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles;
     using ProcessingTools.Web.Models.Documents.Journals;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
     /// Journals web service.

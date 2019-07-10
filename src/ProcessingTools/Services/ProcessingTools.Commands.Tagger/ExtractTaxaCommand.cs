@@ -2,17 +2,19 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Commands.Models;
+using ProcessingTools.Contracts.Commands.Tagger;
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+
 namespace ProcessingTools.Commands.Tagger
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Commands.Models.Contracts;
-    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Extract taxa command.

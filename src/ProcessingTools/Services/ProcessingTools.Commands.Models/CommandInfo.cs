@@ -2,10 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Commands.Models;
+
 namespace ProcessingTools.Commands.Models
 {
     using System;
-    using ProcessingTools.Commands.Models.Contracts;
 
     /// <summary>
     /// Command info.

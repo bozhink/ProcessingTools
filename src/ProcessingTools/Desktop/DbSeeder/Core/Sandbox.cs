@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.DbSeeder.Core
+﻿using ProcessingTools.Contracts.Services;
+
+namespace ProcessingTools.DbSeeder.Core
 {
     using System;
     using System.Threading.Tasks;

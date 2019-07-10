@@ -22,13 +22,14 @@
  * 2.2–2.6 mm
  */
 
+using ProcessingTools.Contracts.Services.Quantities;
+
 namespace ProcessingTools.Services.Quantities
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Quantities;
     using ProcessingTools.Extensions;
 
     /// <summary>

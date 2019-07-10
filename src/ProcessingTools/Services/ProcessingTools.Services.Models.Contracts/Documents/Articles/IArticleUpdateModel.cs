@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Documents.Articles
+namespace ProcessingTools.Contracts.Services.Models.Documents.Articles
 {
     /// <summary>
     /// Article update model.

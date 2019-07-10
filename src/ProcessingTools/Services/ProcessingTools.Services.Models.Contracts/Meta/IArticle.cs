@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Meta
-{
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
+namespace ProcessingTools.Contracts.Services.Models.Meta
+{
     /// <summary>
     /// Article.
     /// </summary>

@@ -1,11 +1,9 @@
-﻿namespace ProcessingTools.Xml.Cache
-{
-    using System.Collections.Concurrent;
-    using System.IO;
-    using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Xml.Abstractions;
-    using ProcessingTools.Xml.Transform;
+﻿using System.Collections.Concurrent;
+using System.IO;
+using ProcessingTools.Services.Contracts.Xml;
 
+namespace ProcessingTools.Xml
+{
     public class XQueryTransformCache : AbstractGenericTransformCache<IXQueryTransform>, IXQueryTransformCache
     {
         private static readonly ConcurrentDictionary<string, IXQueryTransform> XQueryTransformObjects = new ConcurrentDictionary<string, IXQueryTransform>();

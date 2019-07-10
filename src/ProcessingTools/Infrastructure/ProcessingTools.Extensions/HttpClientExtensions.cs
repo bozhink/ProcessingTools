@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Net
-{
-    using System;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using ProcessingTools.Common.Constants;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using ProcessingTools.Common.Constants;
 
+namespace ProcessingTools.Extensions
+{
     /// <summary>
     /// Extensions for <see cref="HttpClient"/>.
     /// </summary>

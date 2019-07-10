@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Tasks.Models.Contracts.Tasks
-{
-    using ProcessingTools.Common.Enumerations.Tasks;
+using ProcessingTools.Common.Enumerations.Tasks;
 
+namespace ProcessingTools.Contracts.Tasks.Models.Tasks
+{
     /// <summary>
     /// Task action.
     /// </summary>

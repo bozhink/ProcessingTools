@@ -1,10 +1,12 @@
-﻿namespace ProcessingTools.Services.Tools
+﻿using ProcessingTools.Contracts.Services.Tools;
+using ProcessingTools.Services.Security;
+
+namespace ProcessingTools.Services.Tools
 {
     using System;
     using System.Text;
     using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Tools;
-    using SecurityUtilities = ProcessingTools.Security.SecurityUtilities;
+    using SecurityUtilities = SecurityUtilities;
 
     /// <summary>
     /// Hash service.

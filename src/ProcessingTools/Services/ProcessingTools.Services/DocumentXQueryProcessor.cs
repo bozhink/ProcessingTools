@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Xml;
+
 namespace ProcessingTools.Services
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Document XQuery processor.

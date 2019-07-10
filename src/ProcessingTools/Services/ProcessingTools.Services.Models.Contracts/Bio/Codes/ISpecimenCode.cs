@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Bio.Codes
+namespace ProcessingTools.Contracts.Services.Models.Bio.Codes
 {
     /// <summary>
     /// Specimen code.

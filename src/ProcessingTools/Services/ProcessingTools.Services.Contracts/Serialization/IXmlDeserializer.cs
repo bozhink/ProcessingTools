@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Serialization
+namespace ProcessingTools.Contracts.Services.Serialization
 {
     /// <summary>
     /// XML deserializer.

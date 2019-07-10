@@ -2,6 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Layout.Styles;
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+using ProcessingTools.Contracts.Web.Services.Layout.Styles;
+
 namespace ProcessingTools.Web.Services.Layout.Styles
 {
     using System;
@@ -9,11 +13,8 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Layout.Styles;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Web.Models.Layout.Styles.References;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
     /// Reference parse styles web service.

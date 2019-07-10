@@ -2,12 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Geo.Tests.Integration.Tests
-{
-    using System;
-    using NUnit.Framework;
-    using ProcessingTools.Geo;
+using NUnit.Framework;
+using ProcessingTools.Services.Geo.Coordinates;
 
+namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
+{
     /// <summary>
     /// <see cref="UtmCoordinatesConverter "/> Integration Tests.
     /// </summary>

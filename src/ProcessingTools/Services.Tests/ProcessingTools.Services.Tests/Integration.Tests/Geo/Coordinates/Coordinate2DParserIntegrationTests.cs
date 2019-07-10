@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Tests.Integration.Tests
-{
-    using System;
-    using NUnit.Framework;
-    using ProcessingTools.Geo;
-    using ProcessingTools.Services.Geo.Coordinates;
-    using ProcessingTools.Services.Models.Geo.Coordinates;
+using System;
+using NUnit.Framework;
+using ProcessingTools.Services.Geo.Coordinates;
+using ProcessingTools.Services.Models.Geo.Coordinates;
 
+namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
+{
     /// <summary>
     /// <see cref="Coordinate2DParser"/> integration tests.
     /// </summary>

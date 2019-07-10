@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Bio.Taxonomy
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Bio.Taxonomy.TaxonRanks;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Bio.Taxonomy.TaxonRanks;
 
+namespace ProcessingTools.Contracts.Web.Services.Bio.Taxonomy
+{
     /// <summary>
     /// Taxon ranks web service.
     /// </summary>

@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Images
-{
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
+namespace ProcessingTools.Contracts.Web.Services.Images
+{
     /// <summary>
     /// Image writer web service.
     /// </summary>

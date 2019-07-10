@@ -2,16 +2,16 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Net
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Text;
-    using ProcessingTools.Common.Constants;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using ProcessingTools.Common.Constants;
 
+namespace ProcessingTools.Services.Models.Net
+{
     /// <summary>
     /// Form URL encoded content.
     /// </summary>

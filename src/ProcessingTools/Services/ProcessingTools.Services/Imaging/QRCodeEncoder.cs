@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Imaging;
+
 namespace ProcessingTools.Services.Imaging
 {
     using System;
     using System.Drawing;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Services.Imaging.Contracts;
     using QRCoder;
 
     /// <summary>

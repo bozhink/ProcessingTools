@@ -129,17 +129,17 @@
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Contracts.Commands.Models.csproj">
       <Project>{D7A7689B-5972-4357-B2A2-54FF6ADEACDC}</Project>
-      <Name>ProcessingTools.Commands.Models.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Commands.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger\ProcessingTools.Commands.Tagger.csproj">
       <Project>{50171E07-3148-4F27-AE06-BF8EE2912322}</Project>
       <Name>ProcessingTools.Commands.Tagger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
-      <Name>ProcessingTools.Services.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

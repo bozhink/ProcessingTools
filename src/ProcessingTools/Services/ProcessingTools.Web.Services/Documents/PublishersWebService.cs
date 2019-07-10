@@ -2,6 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Documents;
+using ProcessingTools.Contracts.Services.Models.Documents.Publishers;
+using ProcessingTools.Contracts.Web.Services.Documents;
+
 namespace ProcessingTools.Web.Services.Documents
 {
     using System;
@@ -9,11 +13,8 @@ namespace ProcessingTools.Web.Services.Documents
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Documents;
-    using ProcessingTools.Services.Models.Contracts.Documents.Publishers;
     using ProcessingTools.Web.Models.Documents.Publishers;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
     /// Publishers web service.

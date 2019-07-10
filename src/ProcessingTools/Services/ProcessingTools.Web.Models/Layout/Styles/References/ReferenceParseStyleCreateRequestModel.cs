@@ -2,10 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+
 namespace ProcessingTools.Web.Models.Layout.Styles.References
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Services.Models.Contracts.Layout.Styles.References;
 
     /// <summary>
     /// Reference parse style create request model.

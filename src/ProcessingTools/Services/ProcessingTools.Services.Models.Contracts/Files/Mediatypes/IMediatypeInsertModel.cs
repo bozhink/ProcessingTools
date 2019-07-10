@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Contracts.Files.Mediatypes
+namespace ProcessingTools.Contracts.Services.Models.Files.Mediatypes
 {
     /// <summary>
     /// Mediatype insert model.

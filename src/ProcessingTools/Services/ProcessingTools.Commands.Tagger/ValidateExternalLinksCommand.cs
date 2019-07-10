@@ -2,12 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Commands.Tagger;
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Validation;
+
 namespace ProcessingTools.Commands.Tagger
 {
     using ProcessingTools.Commands.Tagger.Abstractions;
-    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Services.Contracts.Validation;
 
     /// <summary>
     /// Validate external links command.

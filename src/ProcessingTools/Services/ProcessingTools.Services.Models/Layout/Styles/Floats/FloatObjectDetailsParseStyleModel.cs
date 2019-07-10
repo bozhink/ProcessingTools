@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
+
 namespace ProcessingTools.Services.Models.Layout.Styles.Floats
 {
     using System;
@@ -10,7 +12,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Floats
     /// <summary>
     /// Float object details parse style model.
     /// </summary>
-    public class FloatObjectDetailsParseStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats.IFloatObjectDetailsParseStyleModel
+    public class FloatObjectDetailsParseStyleModel : IFloatObjectDetailsParseStyleModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }

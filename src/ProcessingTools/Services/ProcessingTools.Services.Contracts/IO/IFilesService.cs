@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.IO
-{
-    using System.IO;
+using System.IO;
 
+namespace ProcessingTools.Contracts.Services.IO
+{
     /// <summary>
     /// Files Service.
     /// </summary>

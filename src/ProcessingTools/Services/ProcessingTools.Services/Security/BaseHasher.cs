@@ -2,14 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Security
-{
-    using System;
-    using System.Globalization;
-    using System.Security.Cryptography;
-    using System.Text;
-    using ProcessingTools.Contracts;
+using System;
+using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
+using ProcessingTools.Contracts.Services;
 
+namespace ProcessingTools.Services.Security
+{
     /// <summary>
     /// Hasher base class.
     /// </summary>

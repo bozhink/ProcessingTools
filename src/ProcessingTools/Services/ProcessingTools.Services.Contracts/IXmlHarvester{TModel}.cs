@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts
-{
-    using System.Xml;
+using System.Xml;
 
+namespace ProcessingTools.Contracts.Services
+{
     /// <summary>
     /// Harvester with <see cref="XmlNode"/> context.
     /// </summary>

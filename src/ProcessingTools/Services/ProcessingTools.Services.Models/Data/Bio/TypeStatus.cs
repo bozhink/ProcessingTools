@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Bio;
+
 namespace ProcessingTools.Services.Models.Data.Bio
 {
-    using ProcessingTools.Services.Models.Contracts.Bio;
-
     /// <summary>
     /// Type status service model.
     /// </summary>

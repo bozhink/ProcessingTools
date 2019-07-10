@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Tests.Models
-{
-    using System.Xml.Schema;
-    using System.Xml.Serialization;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
+namespace ProcessingTools.Services.Tests.Models
+{
     /// <summary>
     /// External Link Serializable Model.
     /// </summary>

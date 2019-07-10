@@ -1,4 +1,7 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
+﻿using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Meta;
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.IO;
@@ -9,7 +12,6 @@
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
-    using ProcessingTools.Services.Contracts.Meta;
 
     public class Engine : IEngine
     {

@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Imaging;
+
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
@@ -10,7 +12,6 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Services.Imaging.Contracts;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.QRCode;
 

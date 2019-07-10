@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
+
 namespace ProcessingTools.Services.Models.Layout.Styles.Journals
 {
     using System.Collections.Generic;
@@ -9,7 +11,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Journals
     /// <summary>
     /// Journal insert style model.
     /// </summary>
-    public class JournalInsertStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals.IJournalInsertStyleModel
+    public class JournalInsertStyleModel : IJournalInsertStyleModel
     {
         /// <inheritdoc/>
         public string Name { get; set; }

@@ -2,6 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Geo;
+using ProcessingTools.Contracts.Web.Services.Geo;
+
 namespace ProcessingTools.Web.Services.Geo
 {
     using System;
@@ -10,9 +13,7 @@ namespace ProcessingTools.Web.Services.Geo
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Web.Models.Geo.Countries;
-    using ProcessingTools.Web.Services.Contracts.Geo;
 
     /// <summary>
     /// Default implementation of <see cref="ICountriesApiService"/>.

@@ -2,12 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Tools;
+using ProcessingTools.Services.Security;
+
 namespace ProcessingTools.Services.Tools
 {
     using System;
     using System.Text;
     using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Tools;
 
     /// <summary>
     /// Encode service.
@@ -47,7 +49,7 @@ namespace ProcessingTools.Services.Tools
             if (!string.IsNullOrEmpty(source))
             {
                 byte[] bytes = this.encoding.GetBytes(source);
-                result = ProcessingTools.Security.SecurityUtilities.ToBase64Url(bytes);
+                result = SecurityUtilities.ToBase64Url(bytes);
             }
 
             return Task.FromResult(result);

@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.ExternalLinks;
+
 namespace ProcessingTools.Services.Models.ExternalLinks
 {
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Services.Models.Contracts.ExternalLinks;
 
     /// <summary>
     /// External Link Model.

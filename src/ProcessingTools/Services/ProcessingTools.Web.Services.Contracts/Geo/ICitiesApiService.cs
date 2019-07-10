@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.Geo
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using ProcessingTools.Web.Models.Geo.Cities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ProcessingTools.Web.Models.Geo.Cities;
 
+namespace ProcessingTools.Contracts.Web.Services.Geo
+{
     /// <summary>
     /// Web API service for management of city objects.
     /// </summary>

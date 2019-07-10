@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+
 namespace ProcessingTools.Services.Models.Data.Bio.Biorepositories
 {
-    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
-
     /// <summary>
     /// Biorepositories institution service model.
     /// </summary>

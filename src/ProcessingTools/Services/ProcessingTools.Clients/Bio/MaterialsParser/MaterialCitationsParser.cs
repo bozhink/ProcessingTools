@@ -2,13 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Bio;
+
 namespace ProcessingTools.Clients.Bio.MaterialsParser
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;

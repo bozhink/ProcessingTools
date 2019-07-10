@@ -2,6 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Files;
+using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
+using ProcessingTools.Contracts.Web.Services.Files;
+
 namespace ProcessingTools.Web.Services.Files
 {
     using System;
@@ -9,11 +13,8 @@ namespace ProcessingTools.Web.Services.Files
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Files;
-    using ProcessingTools.Services.Models.Contracts.Files.Mediatypes;
     using ProcessingTools.Web.Models.Files.Mediatypes;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Files;
 
     /// <summary>
     /// Mediatypes web service.

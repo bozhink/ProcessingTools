@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Clients.Tests", "Services.Tests\ProcessingTools.Clients.Tests\ProcessingTools.Clients.Tests.csproj", "{1BDC50D1-BE9B-46E1-853C-ED94B58FC357}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Ninject.Modules", "Infrastructure\ProcessingTools.Ninject.Modules\ProcessingTools.Ninject.Modules.csproj", "{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Ninject", "Infrastructure\ProcessingTools.Ninject.Modules\ProcessingTools.Configuration.Ninject.csproj", "{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Entity", "Infrastructure\ProcessingTools.Extensions.Entity\ProcessingTools.Extensions.Entity.csproj", "{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}"
 EndProject
@@ -59,15 +59,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{BA04B013-D4BC-40F9-AAC3-364006541F81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Services.Contracts", "Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj", "{D1A8546A-AF73-470F-9836-F78314211F59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Web.Services", "Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Contracts.Web.Services.csproj", "{D1A8546A-AF73-470F-9836-F78314211F59}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Services", "Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj", "{62C040D1-DD91-40F8-9C89-9271C34B364A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Models", "Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj", "{9582C59E-2F00-4C2A-B96C-DC306306EF64}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Contracts", "Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj", "{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Services", "Services\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj", "{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Models.Contracts", "Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj", "{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Services.Models", "Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj", "{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Contracts", "Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj", "{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}"
 EndProject
@@ -81,19 +81,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Models", "Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj", "{35E931D4-265B-413C-B837-09E530321F57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Models.Contracts", "Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj", "{D7A7689B-5972-4357-B2A2-54FF6ADEACDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Commands.Models", "Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Contracts.Commands.Models.csproj", "{D7A7689B-5972-4357-B2A2-54FF6ADEACDC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Tagger", "Services\ProcessingTools.Commands.Tagger\ProcessingTools.Commands.Tagger.csproj", "{50171E07-3148-4F27-AE06-BF8EE2912322}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Tagger.Contracts", "Services\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Commands.Tagger.Contracts.csproj", "{A88D9D6F-8842-48B5-A847-5AD192E0814D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Commands.Tagger", "Services\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Contracts.Commands.Tagger.csproj", "{A88D9D6F-8842-48B5-A847-5AD192E0814D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks", "Infrastructure\ProcessingTools.Tasks\ProcessingTools.Tasks.csproj", "{DA89759D-D334-40A2-BDEC-45C554D0C083}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Contracts", "Infrastructure\ProcessingTools.Tasks.Contracts\ProcessingTools.Tasks.Contracts.csproj", "{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Tasks", "Infrastructure\ProcessingTools.Tasks.Contracts\ProcessingTools.Contracts.Tasks.csproj", "{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Models", "Infrastructure\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj", "{5024521E-CA0B-417E-92A1-446F1124579B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Models.Contracts", "Infrastructure\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Tasks.Models.Contracts.csproj", "{E9589748-749C-4C72-ADD5-F074F49BCFF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Tasks.Models", "Infrastructure\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Contracts.Tasks.Models.csproj", "{E9589748-749C-4C72-ADD5-F074F49BCFF4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Code", "Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj", "{EBD6C134-433A-4D4D-864A-50745CE94BCA}"
 EndProject
@@ -102,8 +102,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common", "Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj", "{89A08F07-815A-4168-941F-C80FA07020F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Tests", "Infrastructure.Tests\ProcessingTools.Common.Tests\ProcessingTools.Common.Tests.csproj", "{3FA3B3CD-3BBD-4C59-819A-80780AD73900}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Ninject.Interceptors", "Infrastructure\ProcessingTools.Ninject.Interceptors\ProcessingTools.Ninject.Interceptors.csproj", "{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.Mongo", "Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj", "{A84A59AE-A52A-4F51-B2A8-AD8306ED395A}"
 EndProject
@@ -501,14 +499,6 @@ Global
 		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Release|x64.ActiveCfg = Release|Any CPU
 		{3FA3B3CD-3BBD-4C59-819A-80780AD73900}.Release|x64.Build.0 = Release|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Debug|x64.Build.0 = Debug|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Release|x64.ActiveCfg = Release|Any CPU
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}.Release|x64.Build.0 = Release|Any CPU
 		{A84A59AE-A52A-4F51-B2A8-AD8306ED395A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A84A59AE-A52A-4F51-B2A8-AD8306ED395A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A84A59AE-A52A-4F51-B2A8-AD8306ED395A}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -797,29 +787,28 @@ Global
 		{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{A566E717-E60E-413D-BADA-DA1BC99DC4D5} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
-		{D1A8546A-AF73-470F-9836-F78314211F59} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{D1A8546A-AF73-470F-9836-F78314211F59} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{62C040D1-DD91-40F8-9C89-9271C34B364A} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{9582C59E-2F00-4C2A-B96C-DC306306EF64} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
-		{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
-		{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
+		{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{30E121DD-97E2-4998-993E-F64B8E6A7EBA} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{F2BFFCBD-D8C1-4217-8EF6-3A7861C37051} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
 		{B1D6B5B8-219D-4F0F-9CE6-A7A61FC55EBD} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{B346E2EC-3B16-4CD4-B1C7-499755F8613B} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
 		{35E931D4-265B-413C-B837-09E530321F57} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
-		{D7A7689B-5972-4357-B2A2-54FF6ADEACDC} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{D7A7689B-5972-4357-B2A2-54FF6ADEACDC} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{50171E07-3148-4F27-AE06-BF8EE2912322} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
-		{A88D9D6F-8842-48B5-A847-5AD192E0814D} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{A88D9D6F-8842-48B5-A847-5AD192E0814D} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{DA89759D-D334-40A2-BDEC-45C554D0C083} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
-		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{5024521E-CA0B-417E-92A1-446F1124579B} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
-		{E9589748-749C-4C72-ADD5-F074F49BCFF4} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{EBD6C134-433A-4D4D-864A-50745CE94BCA} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{26EB94FE-D40B-439B-AB19-3E65B504B49C} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{89A08F07-815A-4168-941F-C80FA07020F1} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{3FA3B3CD-3BBD-4C59-819A-80780AD73900} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
-		{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{A84A59AE-A52A-4F51-B2A8-AD8306ED395A} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{85CC9358-E237-4C2F-9138-85DB4FB33307} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{2C57696D-2F5B-45A8-ABF8-42FCDC573D55} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
@@ -855,7 +844,7 @@ Global
 		{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal

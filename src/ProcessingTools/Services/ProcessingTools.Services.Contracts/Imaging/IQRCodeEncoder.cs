@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Imaging.Contracts
-{
-    using System.Threading.Tasks;
+using System.Threading.Tasks;
 
+namespace ProcessingTools.Contracts.Services.Imaging
+{
     /// <summary>
     /// QR-code encoder.
     /// </summary>

@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
     /// <summary>
     /// Document update request model.
     /// </summary>
-    public class DocumentUpdateRequestModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentUpdateModel, ProcessingTools.Contracts.Models.IWebModel
+    public class DocumentUpdateRequestModel : Contracts.Services.Models.Documents.Documents.IDocumentUpdateModel, ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

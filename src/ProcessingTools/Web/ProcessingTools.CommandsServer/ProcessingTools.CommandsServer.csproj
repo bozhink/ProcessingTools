@@ -57,7 +57,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Models\ProcessingTools.Configuration.Models.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
   </ItemGroup>
 

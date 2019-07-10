@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Deployment.Documents
+namespace ProcessingTools.Contracts.Services.Deployment.Content
 {
     /// <summary>
     /// Abbreviations deploy service.

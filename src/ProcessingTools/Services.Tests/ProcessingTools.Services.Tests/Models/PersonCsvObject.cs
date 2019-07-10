@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Code.Tests.Models
-{
-    using ProcessingTools.Common.Code.Serialization.Csv;
+using ProcessingTools.Services.Serialization.Csv;
 
+namespace ProcessingTools.Services.Tests.Models
+{
     /// <summary>
     /// Person CSV Object.
     /// </summary>

@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Geo
-{
-    using ProcessingTools.Contracts.Models.Geo;
+using ProcessingTools.Contracts.Models.Geo;
 
+namespace ProcessingTools.Contracts.Services.Geo
+{
     /// <summary>
     /// Continents data service.
     /// </summary>

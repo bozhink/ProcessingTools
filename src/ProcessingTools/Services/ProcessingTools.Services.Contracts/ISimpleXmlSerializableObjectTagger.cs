@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using ProcessingTools.Services.Models.Contracts;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Contracts.Services.Models.Content;
 
+namespace ProcessingTools.Contracts.Services
+{
     /// <summary>
     /// Simple XML serializable object tagger.
     /// </summary>

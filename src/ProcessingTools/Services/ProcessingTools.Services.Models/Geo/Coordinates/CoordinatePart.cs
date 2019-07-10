@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+
 namespace ProcessingTools.Services.Models.Geo.Coordinates
 {
     using System;
@@ -10,7 +12,6 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Models.Contracts.Geo.Coordinates;
 
     /// <summary>
     /// Coordinate part.

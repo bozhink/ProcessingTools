@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Imaging.Contracts
-{
-    using System.Threading.Tasks;
-    using ProcessingTools.Common.Enumerations;
+using System.Threading.Tasks;
+using ProcessingTools.Common.Enumerations;
 
+namespace ProcessingTools.Contracts.Services.Imaging
+{
     /// <summary>
     /// Barcode encoder.
     /// </summary>

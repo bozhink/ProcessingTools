@@ -2,13 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services;
+using ProcessingTools.Contracts.Services.Geo;
+using ProcessingTools.Contracts.Services.Geo.Coordinates;
+using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+
 namespace ProcessingTools.Services.Geo.Coordinates
 {
-    using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Contracts;
-    using ProcessingTools.Services.Contracts.Geo.Coordinates;
-    using ProcessingTools.Services.Models.Contracts;
 
     /// <summary>
     /// Coordinates tagger.

@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Commands.Models.Contracts
-{
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
+namespace ProcessingTools.Contracts.Commands.Models
+{
     /// <summary>
     /// Command settings.
     /// </summary>

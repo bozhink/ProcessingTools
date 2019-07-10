@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Xml.Transform
-{
-    using System.IO;
-    using System.Xml;
-    using ProcessingTools.Contracts.Xml;
-    using Saxon.Api;
+﻿using System.IO;
+using System.Xml;
+using ProcessingTools.Services.Contracts.Xml;
+using Saxon.Api;
 
+namespace ProcessingTools.Xml
+{
     public class XQueryTransform : IXQueryTransform
     {
         private readonly Processor processor;

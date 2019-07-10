@@ -2,6 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+using ProcessingTools.Contracts.Services.Models.References;
+using ProcessingTools.Contracts.Services.References;
+using ProcessingTools.Contracts.Services.Xml;
+
 namespace ProcessingTools.Services.References
 {
     using System;
@@ -12,9 +16,6 @@ namespace ProcessingTools.Services.References
     using System.Xml;
     using System.Xml.Linq;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
-    using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Services.Contracts.References;
-    using ProcessingTools.Services.Models.Contracts.References;
     using ProcessingTools.Services.Models.References;
 
     /// <summary>

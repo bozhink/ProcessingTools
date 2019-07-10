@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Contracts.HelpPage
-{
-    using System;
-    using System.Reflection;
+using System;
+using System.Reflection;
 
+namespace ProcessingTools.Contracts.Web.Services.HelpPage
+{
     /// <summary>
     /// Provides model descriptions for given types.
     /// </summary>
