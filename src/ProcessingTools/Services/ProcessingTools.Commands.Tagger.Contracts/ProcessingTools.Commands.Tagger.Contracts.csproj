@@ -30,7 +30,7 @@
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj" />
   </ItemGroup>
 </Project>

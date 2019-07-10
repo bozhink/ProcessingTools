@@ -34,6 +34,6 @@
     <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Common\ProcessingTools.Common.csproj" />
   </ItemGroup>
 </Project>

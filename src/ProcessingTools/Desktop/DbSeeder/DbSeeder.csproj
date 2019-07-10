@@ -149,10 +149,6 @@
       <Project>{e692786f-aabf-4fe3-9a75-912dd48462f7}</Project>
       <Name>ProcessingTools.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
-      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
-      <Name>ProcessingTools.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
       <Name>ProcessingTools.Data.Contracts</Name>
@@ -168,6 +164,10 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Ninject.Interceptors\ProcessingTools.Ninject.Interceptors.csproj">
       <Project>{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}</Project>
       <Name>ProcessingTools.Ninject.Interceptors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -75,7 +75,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
   </ItemGroup>
 
 </Project>

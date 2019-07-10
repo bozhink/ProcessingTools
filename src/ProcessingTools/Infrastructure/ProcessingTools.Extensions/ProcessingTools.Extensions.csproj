@@ -55,7 +55,7 @@
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
   </ItemGroup>
 </Project>

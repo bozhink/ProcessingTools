@@ -119,14 +119,6 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
-      <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
-      <Name>ProcessingTools.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
-      <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
-      <Name>ProcessingTools.Net</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5eb84ce6-3248-4237-979c-71d7a34a4c2b}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
@@ -134,6 +126,14 @@
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
       <Project>{a45e61b1-8c2a-4dbc-bd97-6c88e295c93b}</Project>
       <Name>ProcessingTools.Clients</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
+      <Project>{11C19011-F547-4EC0-8392-685827D3AD4B}</Project>
+      <Name>ProcessingTools.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

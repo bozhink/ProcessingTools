@@ -90,7 +90,6 @@
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Autofac\ProcessingTools.Configuration.Autofac.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.AutoMapper.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Security\ProcessingTools.Security.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Xml\ProcessingTools.Xml.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj" />

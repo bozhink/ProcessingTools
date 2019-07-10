@@ -121,10 +121,6 @@
       <Project>{EBD6C134-433A-4D4D-864A-50745CE94BCA}</Project>
       <Name>ProcessingTools.Common.Code</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
-      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
-      <Name>ProcessingTools.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>

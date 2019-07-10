@@ -11,8 +11,15 @@
     <Description>Services</Description>
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
+    <PackageTags>Services</PackageTags>
+    <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Services.xml</DocumentationFile>
+    <DefineConstants />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants />
     <DocumentationFile>bin\docs\ProcessingTools.Services.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
@@ -53,6 +60,7 @@
     <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
     <PackageReference Include="System.Runtime" Version="4.3.1" />
@@ -60,7 +68,17 @@
     <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
+    <PackageReference Include="System.Security.AccessControl" Version="4.5.0" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+    <PackageReference Include="System.Security.Cryptography.Cng" Version="4.5.0" />
+    <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Hashing.Algorithms.Analyzers" Version="1.1.0" />
+    <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="4.5.1" />
+    <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
+    <PackageReference Include="System.Security.Permissions" Version="4.5.0" />
     <PackageReference Include="System.Security.Principal" Version="4.3.0" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="4.5.1" />
     <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageReference Include="System.Threading" Version="4.3.0" />
@@ -73,12 +91,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess\ProcessingTools.Contracts.DataAccess.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Security\ProcessingTools.Security.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />

@@ -39,6 +39,5 @@
     <ProjectReference Include="..\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Commands.Tagger.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
   </ItemGroup>
 </Project>
