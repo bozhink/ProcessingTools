@@ -9,7 +9,7 @@
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Bio.Materials;
+    using ProcessingTools.Contracts.Services.Bio.Materials;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseTreatmentMaterialsCommand))]
     public class ParseTreatmentMaterialsCommandUnitTests

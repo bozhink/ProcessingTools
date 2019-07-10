@@ -48,16 +48,16 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data.Models\ProcessingTools.Contracts.Data.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Tasks.Models\ProcessingTools.Contracts.Tasks.Models.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Entity\ProcessingTools.Data.Models.Entity.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Redis\ProcessingTools.Data.Models.Redis.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Xml\ProcessingTools.Data.Models.Xml.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Contracts.Commands.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Models\ProcessingTools.Contracts.Commands.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Contracts.Tasks.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj" />
   </ItemGroup>
 

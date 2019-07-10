@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Extensions;
-using ProcessingTools.Services.Contracts.Xml;
-
-namespace ProcessingTools.Xml
+﻿namespace ProcessingTools.Xml
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Contracts.Services.Xml;
+    using ProcessingTools.Extensions;
+
     /// <summary>
     /// XQuery transformer.
     /// </summary>

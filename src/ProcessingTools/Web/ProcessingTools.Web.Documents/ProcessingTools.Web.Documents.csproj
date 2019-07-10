@@ -92,11 +92,11 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.AutoMapper.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Xml\ProcessingTools.Xml.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Contracts.Commands.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Models\ProcessingTools.Contracts.Commands.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Contracts.Commands.Tagger.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Tagger\ProcessingTools.Contracts.Commands.Tagger.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger\ProcessingTools.Commands.Tagger.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Contracts.Web.Services.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Web.Services\ProcessingTools.Contracts.Web.Services.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />

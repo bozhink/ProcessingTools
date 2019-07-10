@@ -30,8 +30,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Tasks.Contracts\ProcessingTools.Contracts.Tasks.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Contracts.Tasks.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Tasks.Models\ProcessingTools.Contracts.Tasks.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Tasks\ProcessingTools.Contracts.Tasks.csproj" />
     <ProjectReference Include="..\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj" />
   </ItemGroup>
 </Project>

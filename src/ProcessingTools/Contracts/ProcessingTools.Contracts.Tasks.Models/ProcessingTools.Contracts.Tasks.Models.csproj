@@ -29,6 +29,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Common\ProcessingTools.Common.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
   </ItemGroup>
 </Project>

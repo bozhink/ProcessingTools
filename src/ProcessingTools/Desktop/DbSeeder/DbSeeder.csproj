@@ -165,7 +165,7 @@
       <Project>{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}</Project>
       <Name>ProcessingTools.Configuration.Ninject</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj">
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>

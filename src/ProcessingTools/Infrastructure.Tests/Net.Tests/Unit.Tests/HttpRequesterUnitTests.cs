@@ -1,4 +1,4 @@
-﻿using ProcessingTools.Services.Contracts;
+﻿using ProcessingTools.Contracts.Services;
 using ProcessingTools.Services.Net;
 
 namespace ProcessingTools.Net.Tests.Unit.Tests

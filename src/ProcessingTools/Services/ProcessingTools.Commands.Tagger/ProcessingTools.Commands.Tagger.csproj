@@ -33,11 +33,11 @@
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Models\ProcessingTools.Contracts.Commands.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Tagger\ProcessingTools.Contracts.Commands.Tagger.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Contracts.Commands.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Contracts.Commands.Tagger.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj" />
   </ItemGroup>
 </Project>

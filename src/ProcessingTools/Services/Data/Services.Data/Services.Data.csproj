@@ -49,8 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
-      <Project>{A9E0EB3F-88D9-42DB-AE88-1753A3F411D1}</Project>
+      <Project>{a9e0eb3f-88d9-42db-ae88-1753a3f411d1}</Project>
       <Name>ProcessingTools.Contracts.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj">
+      <Project>{a1c5ad6e-32a0-43aa-8191-3fb503ac4f8d}</Project>
+      <Name>ProcessingTools.Contracts.Services.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
+      <Project>{8b6a9c0e-8de0-447f-a1e7-5067c8494e72}</Project>
+      <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Entity\ProcessingTools.Data.Entity.csproj">
       <Project>{151cbf78-b672-42b5-bbdd-04c6c7f45a25}</Project>
@@ -79,14 +87,6 @@
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj">
       <Project>{89a08f07-815a-4168-941f-c80fa07020f1}</Project>
       <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj">
-      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
-      <Name>ProcessingTools.Contracts.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj">
-      <Project>{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D}</Project>
-      <Name>ProcessingTools.Contracts.Services.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
       <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>

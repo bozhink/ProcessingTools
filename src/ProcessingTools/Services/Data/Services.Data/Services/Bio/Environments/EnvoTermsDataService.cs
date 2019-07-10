@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Common.Constants;
-using ProcessingTools.Common.Exceptions;
-using ProcessingTools.Data.Entity.Bio.Environments;
-using ProcessingTools.Data.Models.Entity.Bio.Environments;
-using ProcessingTools.Services.Contracts.Bio.Environments;
-using ProcessingTools.Services.Models.Contracts.Bio.Environments;
-using ProcessingTools.Services.Models.Data.Bio.Environments;
-
-namespace ProcessingTools.Services.Data.Services.Bio.Environments
+﻿namespace ProcessingTools.Services.Data.Services.Bio.Environments
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Services.Bio.Environments;
+    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
+    using ProcessingTools.Data.Entity.Bio.Environments;
+    using ProcessingTools.Data.Models.Entity.Bio.Environments;
+    using ProcessingTools.Services.Models.Data.Bio.Environments;
+
     /// <summary>
     /// ENVO terms data service.
     /// </summary>

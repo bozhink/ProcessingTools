@@ -1,15 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Common.Constants;
-using ProcessingTools.Common.Exceptions;
-using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
-using ProcessingTools.Data.Mongo.Bio.Biorepositories;
-using ProcessingTools.Services.Contracts.Bio.Biorepositories;
-using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
-
-namespace ProcessingTools.Services.Data.Services.Bio.Biorepositories
+﻿namespace ProcessingTools.Services.Data.Services.Bio.Biorepositories
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Services.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+    using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
+    using ProcessingTools.Data.Mongo.Bio.Biorepositories;
+
     public class BiorepositoriesPersonalCollectionsDataService : IBiorepositoriesPersonalCollectionsDataService
     {
         private readonly IBiorepositoriesRepository<CollectionPer> repository;

@@ -31,6 +31,6 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
   </ItemGroup>
 </Project>

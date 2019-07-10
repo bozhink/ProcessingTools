@@ -29,6 +29,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Contracts.Tasks.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Contracts.Tasks.Models\ProcessingTools.Contracts.Tasks.Models.csproj" />
   </ItemGroup>
 </Project>

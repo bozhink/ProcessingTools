@@ -9,7 +9,7 @@
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Layout;
+    using ProcessingTools.Contracts.Services.Layout;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(InitialFormatCommand))]
     public class InitialFormatCommandUnitTests

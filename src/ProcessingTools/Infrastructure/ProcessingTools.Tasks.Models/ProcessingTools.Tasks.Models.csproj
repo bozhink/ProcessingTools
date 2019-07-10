@@ -31,7 +31,7 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Tasks.Models\ProcessingTools.Contracts.Tasks.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Common\ProcessingTools.Common.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Contracts.Tasks.Models.csproj" />
   </ItemGroup>
 </Project>

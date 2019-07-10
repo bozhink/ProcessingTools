@@ -1,8 +1,7 @@
-﻿using ProcessingTools.Services.Net;
-
-namespace ProcessingTools.Net.Tests.Integration.Tests
+﻿namespace ProcessingTools.Net.Tests.Integration.Tests
 {
     using System;
+    using ProcessingTools.Services.Net;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;

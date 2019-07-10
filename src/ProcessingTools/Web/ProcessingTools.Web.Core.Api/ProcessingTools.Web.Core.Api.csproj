@@ -70,7 +70,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Contracts.Web.Services.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Web.Services\ProcessingTools.Contracts.Web.Services.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
   </ItemGroup>
 

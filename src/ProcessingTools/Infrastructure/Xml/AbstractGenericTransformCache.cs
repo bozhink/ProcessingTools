@@ -1,8 +1,8 @@
-﻿using System.Collections.Concurrent;
-using ProcessingTools.Services.Contracts.Xml;
-
-namespace ProcessingTools.Xml
+﻿namespace ProcessingTools.Xml
 {
+    using System.Collections.Concurrent;
+    using ProcessingTools.Contracts.Services.Xml;
+
     public abstract class AbstractGenericTransformCache<T> : ITransformCache<T>
     {
         protected abstract ConcurrentDictionary<string, T> TransformObjects { get; }

@@ -155,11 +155,11 @@
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj">
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Contracts.Services.Models.csproj">
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj">
       <Project>{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D}</Project>
       <Name>ProcessingTools.Contracts.Services.Models</Name>
     </ProjectReference>

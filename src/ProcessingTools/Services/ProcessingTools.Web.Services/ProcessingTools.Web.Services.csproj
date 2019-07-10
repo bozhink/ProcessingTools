@@ -38,11 +38,11 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Web.Services\ProcessingTools.Contracts.Web.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Contracts.Services.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services\ProcessingTools.Services.csproj" />
     <ProjectReference Include="..\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Web.Services.Contracts\ProcessingTools.Contracts.Web.Services.csproj" />
   </ItemGroup>
 </Project>

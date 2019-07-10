@@ -1,4 +1,4 @@
-﻿using ProcessingTools.Services.Contracts;
+﻿using ProcessingTools.Contracts.Services;
 
 namespace ProcessingTools.Tagger.Commands.Tests.Unit.Tests.Commands
 {
@@ -13,7 +13,7 @@ namespace ProcessingTools.Tagger.Commands.Tests.Unit.Tests.Commands
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandUnitTests

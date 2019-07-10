@@ -1,8 +1,7 @@
-﻿using ProcessingTools.Services.Contracts;
-
-namespace ProcessingTools.Tagger.Commands.Tests.Integration.Tests.Commands
+﻿namespace ProcessingTools.Tagger.Commands.Tests.Integration.Tests.Commands
 {
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services;
     using System.Xml;
     using Moq;
     using NUnit.Framework;
@@ -10,7 +9,7 @@ namespace ProcessingTools.Tagger.Commands.Tests.Integration.Tests.Commands
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandIntegrationTests
