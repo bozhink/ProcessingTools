@@ -217,6 +217,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.15.0.8572">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Update="XQuery\harvesters\abbrev.xq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
