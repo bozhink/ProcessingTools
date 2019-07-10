@@ -1,19 +1,18 @@
-﻿using ProcessingTools.Contracts.Commands.Tagger;
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Files;
-using ProcessingTools.Contracts.Services.IO;
-using ProcessingTools.Contracts.Services.Strategies.Bio.Taxonomy;
-using ProcessingTools.Services.Net;
-
-namespace ProcessingTools.Tagger.Settings
+﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
     using global::Ninject;
     using global::Ninject.Extensions.Conventions;
     using global::Ninject.Extensions.Interception.Infrastructure.Language;
     using global::Ninject.Modules;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Strategies.Bio.Taxonomy;
     using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.Services.IO;
+    using ProcessingTools.Services.Net;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.

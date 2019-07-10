@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.IO;
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Services.Models.Documents.Articles;
-using ProcessingTools.Contracts.Services.Models.Documents.Documents;
-
 namespace ProcessingTools.Contracts.Services.Documents
 {
+    using System.IO;
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Models.Documents.Articles;
+    using ProcessingTools.Contracts.Services.Models.Documents.Documents;
+
     /// <summary>
     /// Articles service.
     /// </summary>

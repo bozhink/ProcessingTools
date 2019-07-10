@@ -1,11 +1,9 @@
-﻿using ProcessingTools.Contracts.Services;
-
-namespace ProcessingTools.DbSeeder.Providers
+﻿namespace ProcessingTools.DbSeeder.Providers
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Contracts.Providers;
 
     internal class HelpProvider : IHelpProvider

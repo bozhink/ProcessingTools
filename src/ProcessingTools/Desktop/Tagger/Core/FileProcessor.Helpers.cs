@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Contracts.Commands.Tagger;
-
-namespace ProcessingTools.Tagger.Core
+﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Diagnostics;
@@ -8,7 +6,7 @@ namespace ProcessingTools.Tagger.Core
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
 

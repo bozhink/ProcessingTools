@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
-
 namespace ProcessingTools.Web.Services.Bio.Taxonomy
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy.BlackList;
 
     /// <summary>

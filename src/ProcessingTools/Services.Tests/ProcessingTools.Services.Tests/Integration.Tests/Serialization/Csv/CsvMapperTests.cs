@@ -2,14 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProcessingTools.Services.Serialization.Csv;
-using ProcessingTools.Services.Tests.Models;
-
 namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Csv
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Services.Serialization.Csv;
+    using ProcessingTools.Services.Tests.Models;
+
     /// <summary>
     /// CSV Mapper Tests.
     /// </summary>

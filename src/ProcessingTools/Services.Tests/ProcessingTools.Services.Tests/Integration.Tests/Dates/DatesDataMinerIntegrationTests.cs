@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using ProcessingTools.Services.Dates;
-
-namespace ProcessingTools.Services.Tests.Integration.Tests.Dates
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Dates
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using NUnit.Framework;
+    using ProcessingTools.Services.Dates;
+
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(DatesDataMiner))]
     public class DatesDataMinerIntegrationTests
     {

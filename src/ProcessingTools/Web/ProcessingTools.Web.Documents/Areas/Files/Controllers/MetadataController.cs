@@ -1,11 +1,10 @@
-﻿using ProcessingTools.Contracts.Services.Files;
-
-namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
 {
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using ProcessingTools.Contracts.Services.Files;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Files.Metadata;
 

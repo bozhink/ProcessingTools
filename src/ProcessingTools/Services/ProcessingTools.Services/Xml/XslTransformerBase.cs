@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.IO;
-using ProcessingTools.Contracts.Services.Xml;
-
 namespace ProcessingTools.Services.Xml
 {
     using System;
@@ -12,6 +9,8 @@ namespace ProcessingTools.Services.Xml
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Xsl;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Xml;
 
     /// <summary>
     /// XSL transformer base class.

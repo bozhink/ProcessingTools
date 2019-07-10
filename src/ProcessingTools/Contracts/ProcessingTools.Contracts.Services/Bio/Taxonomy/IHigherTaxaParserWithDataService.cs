@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+
     /// <summary>
     /// Higher taxa parser with data service.
     /// </summary>

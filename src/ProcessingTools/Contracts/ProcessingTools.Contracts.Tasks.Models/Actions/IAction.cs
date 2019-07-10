@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Tasks.Models.Tasks;
-
 namespace ProcessingTools.Contracts.Tasks.Models.Actions
 {
+    using ProcessingTools.Contracts.Tasks.Models.Tasks;
+
     /// <summary>
     /// Action.
     /// </summary>

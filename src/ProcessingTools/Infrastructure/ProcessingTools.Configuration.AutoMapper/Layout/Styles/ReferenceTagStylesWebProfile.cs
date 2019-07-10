@@ -2,11 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
-
 namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
 {
     using global::AutoMapper;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
     using ProcessingTools.Web.Models.Layout.Styles.References;
 
     /// <summary>

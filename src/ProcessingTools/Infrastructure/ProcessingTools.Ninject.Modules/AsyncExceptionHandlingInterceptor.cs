@@ -4,8 +4,6 @@
 
 // See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
 
-using ProcessingTools.Contracts.Services;
-
 namespace ProcessingTools.Ninject.Interceptors
 {
     using System;
@@ -13,7 +11,7 @@ namespace ProcessingTools.Ninject.Interceptors
     using System.Threading.Tasks;
     using global::Ninject.Extensions.Interception;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Extensions;
 
     /// <summary>

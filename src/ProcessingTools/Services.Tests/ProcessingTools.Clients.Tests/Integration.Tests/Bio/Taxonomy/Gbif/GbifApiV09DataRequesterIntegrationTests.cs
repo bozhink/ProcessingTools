@@ -2,12 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Services.Net;
-
 namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Gbif
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
+    using ProcessingTools.Services.Net;
 
     /// <summary>
     /// <see cref="GbifApiV09DataRequester"/> integration tests.

@@ -2,15 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
-
 namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
 {
     using System.Collections.Generic;
     using global::AutoMapper;
     using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
     using ProcessingTools.Web.Models.Layout.Styles.Journals;
 
     /// <summary>

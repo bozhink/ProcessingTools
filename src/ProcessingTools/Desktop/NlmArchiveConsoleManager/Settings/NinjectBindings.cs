@@ -1,10 +1,4 @@
-﻿using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.IO;
-using ProcessingTools.Contracts.Services.Meta;
-using ProcessingTools.Contracts.Services.Serialization;
-using ProcessingTools.Services.Serialization;
-
-namespace ProcessingTools.NlmArchiveConsoleManager.Settings
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
     using global::Ninject.Extensions.Conventions;
@@ -14,12 +8,17 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Settings
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.DataAccess.Documents;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Meta;
+    using ProcessingTools.Contracts.Services.Serialization;
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Documents;
     using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
     using ProcessingTools.Services.IO;
+    using ProcessingTools.Services.Serialization;
 
     public class NinjectBindings : NinjectModule
     {

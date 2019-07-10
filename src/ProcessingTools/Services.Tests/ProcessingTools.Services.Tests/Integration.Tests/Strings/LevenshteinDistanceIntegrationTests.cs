@@ -4,11 +4,11 @@
 
 // See https://www.datacamp.com/community/tutorials/fuzzy-string-python
 
-using NUnit.Framework;
-using ProcessingTools.Services.Strings;
-
 namespace ProcessingTools.Services.Tests.Integration.Tests.Strings
 {
+    using NUnit.Framework;
+    using ProcessingTools.Services.Strings;
+
     /// <summary>
     /// Levenshtein distance integration tests.
     /// </summary>

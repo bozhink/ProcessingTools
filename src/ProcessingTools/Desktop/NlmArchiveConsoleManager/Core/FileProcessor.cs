@@ -1,8 +1,4 @@
-﻿using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.IO;
-using ProcessingTools.Contracts.Services.Meta;
-
-namespace ProcessingTools.NlmArchiveConsoleManager.Core
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.Collections.Generic;
@@ -14,8 +10,10 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Core
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.Extensions;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;

@@ -1,12 +1,10 @@
-﻿using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Meta;
-
-namespace ProcessingTools.NlmArchiveConsoleManager.Core
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Meta;
 
     public class HelpProvider : IHelpProvider
     {

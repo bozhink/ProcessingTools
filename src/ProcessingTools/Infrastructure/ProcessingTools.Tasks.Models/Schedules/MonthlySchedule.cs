@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Tasks.Models.Schedules;
-using ProcessingTools.Contracts.Tasks.Models.Tasks;
-
 namespace ProcessingTools.Tasks.Models.Schedules
 {
     using System;
@@ -13,6 +10,8 @@ namespace ProcessingTools.Tasks.Models.Schedules
     using Newtonsoft.Json;
     using ProcessingTools.Common.Attributes.Tasks;
     using ProcessingTools.Common.Enumerations.Tasks;
+    using ProcessingTools.Contracts.Tasks.Models.Schedules;
+    using ProcessingTools.Contracts.Tasks.Models.Tasks;
 
     /// <summary>
     /// Schedule with weekly execution.

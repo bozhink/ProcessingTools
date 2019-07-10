@@ -2,17 +2,16 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Web.Services.Admin;
-using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
-using ProcessingTools.Contracts.Web.Services.Documents;
-using ProcessingTools.Contracts.Web.Services.Files;
-using ProcessingTools.Contracts.Web.Services.Geo.Coordinates;
-using ProcessingTools.Contracts.Web.Services.Layout.Styles;
-using ProcessingTools.Contracts.Web.Services.Tools;
-
 namespace ProcessingTools.Web.Documents.Settings
 {
     using Autofac;
+    using ProcessingTools.Contracts.Web.Services.Admin;
+    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Web.Services.Documents;
+    using ProcessingTools.Contracts.Web.Services.Files;
+    using ProcessingTools.Contracts.Web.Services.Geo.Coordinates;
+    using ProcessingTools.Contracts.Web.Services.Layout.Styles;
+    using ProcessingTools.Contracts.Web.Services.Tools;
     using ProcessingTools.Web.Services.Admin;
     using ProcessingTools.Web.Services.Documents;
     using ProcessingTools.Web.Services.Files;

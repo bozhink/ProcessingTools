@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Web.Services.Layout.Styles;
-
 namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Contracts.Web.Services.Layout.Styles;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
 

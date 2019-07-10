@@ -2,19 +2,19 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Schema;
-using ProcessingTools.Common.Constants;
-using ProcessingTools.Common.Constants.Schema;
-using ProcessingTools.Contracts.Models;
-using ProcessingTools.Contracts.Services;
-
 namespace ProcessingTools.Services.Validation
 {
+    using System;
+    using System.IO;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using System.Xml.Schema;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
+
     /// <summary>
     /// Document Validator.
     /// </summary>

@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Web.Services;
-
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
@@ -17,6 +15,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Web.Services;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.ManageViewModels;

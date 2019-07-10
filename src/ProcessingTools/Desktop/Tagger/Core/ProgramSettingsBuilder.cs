@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Contracts.Commands.Tagger;
-
-namespace ProcessingTools.Tagger.Core
+﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +7,7 @@ namespace ProcessingTools.Tagger.Core
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Commands.Tagger;
 
     public class ProgramSettingsBuilder
     {

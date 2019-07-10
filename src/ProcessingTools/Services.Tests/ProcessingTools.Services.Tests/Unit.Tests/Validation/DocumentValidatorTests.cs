@@ -2,14 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Services.Models;
-using ProcessingTools.Services.Validation;
-
 namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Services.Models;
+    using ProcessingTools.Services.Validation;
+
     /// <summary>
     /// <see cref="DocumentValidator"/> Tests.
     /// </summary>

@@ -1,15 +1,15 @@
-﻿using System;
-using Moq;
-using NUnit.Framework;
-using ProcessingTools.Common.Code.Tests;
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Abbreviations;
-using ProcessingTools.Contracts.Services.Models.Abbreviations;
-using ProcessingTools.Contracts.Services.Xml;
-using ProcessingTools.Services.Abbreviations;
-
-namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
+﻿namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
 {
+    using System;
+    using Moq;
+    using NUnit.Framework;
+    using ProcessingTools.Common.Code.Tests;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Abbreviations;
+    using ProcessingTools.Contracts.Services.Models.Abbreviations;
+    using ProcessingTools.Contracts.Services.Xml;
+    using ProcessingTools.Services.Abbreviations;
+
     [TestFixture(Category = "Unit Tests", TestOf = typeof(AbbreviationsHarvester))]
     public class AbbreviationsHarvesterUnitTests
     {

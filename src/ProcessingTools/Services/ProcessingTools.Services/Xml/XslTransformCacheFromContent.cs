@@ -2,13 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Xml;
-
 namespace ProcessingTools.Services.Xml
 {
     using System.Collections.Concurrent;
     using System.Xml;
     using System.Xml.Xsl;
+    using ProcessingTools.Contracts.Services.Xml;
 
     /// <summary>
     /// XSL transform cache for XSL style-sheets specified by content.

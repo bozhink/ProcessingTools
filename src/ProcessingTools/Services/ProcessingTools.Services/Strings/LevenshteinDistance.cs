@@ -4,11 +4,11 @@
 
 // See https://www.datacamp.com/community/tutorials/fuzzy-string-python
 
-using System;
-using ProcessingTools.Common.Enumerations;
-
 namespace ProcessingTools.Services.Strings
 {
+    using System;
+    using ProcessingTools.Common.Enumerations;
+
     /// <summary>
     /// Contains approximate string matching.
     /// </summary>

@@ -2,15 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProcessingTools.Services.Tests.Models;
-
 namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization
 {
+    using System.IO;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Serialization;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Services.Tests.Models;
+
     /// <summary>
     /// Serialization Tests.
     /// </summary>

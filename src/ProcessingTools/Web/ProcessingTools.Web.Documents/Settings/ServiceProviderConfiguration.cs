@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.IO;
-using ProcessingTools.Contracts.Services.Meta;
-using ProcessingTools.Contracts.Web.Services;
-
 namespace ProcessingTools.Web.Documents.Settings
 {
     using System;
@@ -14,6 +10,9 @@ namespace ProcessingTools.Web.Documents.Settings
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Meta;
+    using ProcessingTools.Contracts.Web.Services;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services;
 

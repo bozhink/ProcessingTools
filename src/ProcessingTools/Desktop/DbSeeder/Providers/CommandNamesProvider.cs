@@ -1,12 +1,10 @@
-﻿using ProcessingTools.Contracts.Services;
-
-namespace ProcessingTools.DbSeeder.Providers
+﻿namespace ProcessingTools.DbSeeder.Providers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Contracts.Providers;
 
     internal class CommandNamesProvider : ICommandNamesProvider

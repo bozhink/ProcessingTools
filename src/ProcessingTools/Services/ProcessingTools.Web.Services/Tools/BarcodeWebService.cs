@@ -2,15 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Imaging;
-using ProcessingTools.Contracts.Web.Services.Tools;
-
 namespace ProcessingTools.Web.Services.Tools
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Services.Imaging;
+    using ProcessingTools.Contracts.Web.Services.Tools;
     using ProcessingTools.Web.Models.Tools.Barcode;
 
     /// <summary>

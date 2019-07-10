@@ -1,18 +1,16 @@
-﻿using ProcessingTools.Contracts.Services;
-
-namespace ProcessingTools.Tagger.Commands.Tests.Unit.Tests.Commands
+﻿namespace ProcessingTools.Tagger.Commands.Tests.Unit.Tests.Commands
 {
     using System;
     using System.Threading.Tasks;
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ExtractTaxaCommand))]

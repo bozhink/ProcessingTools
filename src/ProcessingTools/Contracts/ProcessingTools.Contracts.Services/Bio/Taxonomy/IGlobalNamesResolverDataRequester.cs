@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-using System.Xml;
-
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using System.Threading.Tasks;
+    using System.Xml;
+
     /// <summary>
     /// Global Names Resolver data requester.
     /// </summary>

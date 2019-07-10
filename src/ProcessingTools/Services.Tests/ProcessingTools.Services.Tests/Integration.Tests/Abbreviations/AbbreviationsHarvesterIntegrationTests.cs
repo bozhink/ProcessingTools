@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProcessingTools.Services.Abbreviations;
-
-namespace ProcessingTools.Services.Tests.Integration.Tests.Abbreviations
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Abbreviations
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Services.Abbreviations;
+
     /// <summary>
     /// <see cref="AbbreviationsHarvester"/> integration tests.
     /// </summary>

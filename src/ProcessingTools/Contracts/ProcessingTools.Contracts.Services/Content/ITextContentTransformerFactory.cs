@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Xml;
-
 namespace ProcessingTools.Contracts.Services.Content
 {
+    using ProcessingTools.Contracts.Services.Xml;
+
     /// <summary>
     /// Text content transformers factory.
     /// </summary>

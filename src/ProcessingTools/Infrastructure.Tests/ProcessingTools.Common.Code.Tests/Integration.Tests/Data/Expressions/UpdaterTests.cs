@@ -2,16 +2,16 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Linq;
-using Moq;
-using NUnit.Framework;
-using ProcessingTools.Common.Code.Data.Expressions;
-using ProcessingTools.Common.Code.Tests.Models;
-using ProcessingTools.Contracts.DataAccess.Expressions;
-
 namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
 {
+    using System;
+    using System.Linq;
+    using Moq;
+    using NUnit.Framework;
+    using ProcessingTools.Common.Code.Data.Expressions;
+    using ProcessingTools.Common.Code.Tests.Models;
+    using ProcessingTools.Contracts.DataAccess.Expressions;
+
     /// <summary>
     /// Updater tests.
     /// </summary>

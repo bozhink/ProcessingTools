@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-
 namespace ProcessingTools.Contracts.DataAccess.Expressions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+
     /// <summary>
     /// Generic update expression.
     /// </summary>

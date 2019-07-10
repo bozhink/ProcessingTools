@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Web.Services.HelpPage;
-
 namespace ProcessingTools.Web.Services.HelpPage
 {
     using System;
@@ -17,6 +15,7 @@ namespace ProcessingTools.Web.Services.HelpPage
     using System.Xml.Serialization;
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
+    using ProcessingTools.Contracts.Web.Services.HelpPage;
     using ProcessingTools.Web.Models.HelpPage.ModelDescriptions;
 
     /// <summary>

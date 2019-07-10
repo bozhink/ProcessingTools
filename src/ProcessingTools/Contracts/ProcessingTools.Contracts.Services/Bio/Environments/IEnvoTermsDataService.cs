@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Services.Models.Bio.Environments;
-
 namespace ProcessingTools.Contracts.Services.Bio.Environments
 {
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
+
     /// <summary>
     /// ENVO Terms data service.
     /// </summary>

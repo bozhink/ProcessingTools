@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
-
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
+
     /// <summary>
     /// GBIF API v0.9 data requester.
     /// </summary>

@@ -1,15 +1,15 @@
-﻿using System;
-using Moq;
-using NUnit.Framework;
-using ProcessingTools.Common.Code.Tests;
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.ExternalLinks;
-using ProcessingTools.Contracts.Services.Models.ExternalLinks;
-using ProcessingTools.Contracts.Services.Xml;
-using ProcessingTools.Services.ExternalLinks;
-
-namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
+﻿namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
 {
+    using System;
+    using Moq;
+    using NUnit.Framework;
+    using ProcessingTools.Common.Code.Tests;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.ExternalLinks;
+    using ProcessingTools.Contracts.Services.Models.ExternalLinks;
+    using ProcessingTools.Contracts.Services.Xml;
+    using ProcessingTools.Services.ExternalLinks;
+
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]
     public class ExternalLinksHarvesterUnitTests
     {

@@ -1,13 +1,11 @@
-﻿using ProcessingTools.Contracts.Services;
-
-namespace ProcessingTools.DbSeeder.Providers
+﻿namespace ProcessingTools.DbSeeder.Providers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     internal class SeederTypesProvider : ITypesProvider

@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-
-namespace ProcessingTools.Web.Core.Api.Abstractions
+﻿namespace ProcessingTools.Web.Core.Api.Abstractions
 {
     using System;
     using System.Linq;
@@ -10,6 +8,7 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 
     public abstract class AbstractTaxonClassificationResolverController : ControllerBase

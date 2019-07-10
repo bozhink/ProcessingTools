@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-
 namespace ProcessingTools.Contracts.Services.Bio
 {
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Material citations parser.
     /// </summary>

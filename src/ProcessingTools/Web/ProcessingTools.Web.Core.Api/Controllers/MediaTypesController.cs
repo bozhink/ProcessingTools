@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Contracts.Services.Files;
-
-namespace ProcessingTools.Web.Api.Controllers
+﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using System;
     using System.Linq;
@@ -10,6 +8,7 @@ namespace ProcessingTools.Web.Api.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Services.Files;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 
     [Route("api/[controller]")]

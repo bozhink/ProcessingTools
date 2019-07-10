@@ -2,16 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Biorepositories.Admin;
-using ProcessingTools.Contracts.Services.Models.Admin.Databases;
-using ProcessingTools.Contracts.Web.Services.Admin;
-
 namespace ProcessingTools.Web.Services.Admin
 {
     using System;
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Bio.Biorepositories.Admin;
+    using ProcessingTools.Contracts.Services.Models.Admin.Databases;
+    using ProcessingTools.Contracts.Web.Services.Admin;
     using ProcessingTools.Web.Models.Admin.Databases;
     using ProcessingTools.Web.Models.Shared;
 

@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Commands.Models;
-using ProcessingTools.Contracts.Commands.Tagger;
-using ProcessingTools.Contracts.Services.Bio.ZooBank;
-
 namespace ProcessingTools.Commands.Tagger
 {
     using System;
@@ -15,7 +11,10 @@ namespace ProcessingTools.Commands.Tagger
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
+    using ProcessingTools.Contracts.Commands.Models;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Bio.ZooBank;
 
     /// <summary>
     /// ZooBank clone JSON command.

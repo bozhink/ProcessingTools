@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Linq.Expressions;
-
 namespace ProcessingTools.Contracts.Services.Models.Bio.Taxonomy
 {
+    using System;
+    using System.Linq.Expressions;
+
     /// <summary>
     /// Taxon name part.
     /// </summary>

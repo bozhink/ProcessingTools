@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Taxonomic blacklist data service.
     /// </summary>

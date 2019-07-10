@@ -113,6 +113,7 @@
     <None Include="DataFiles\References\Mendeley\10.1016--j.molcel.2009.09.013.json" />
     <None Include="DataFiles\References\Mendeley\10.1371--journal.pone.0092567.json" />
     <None Include="packages.config" />
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.15.0.8572\analyzers\Google.Protobuf.dll" />

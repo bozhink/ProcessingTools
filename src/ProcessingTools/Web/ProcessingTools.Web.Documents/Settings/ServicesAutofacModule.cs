@@ -2,23 +2,21 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Biorepositories.Admin;
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.Files;
-using ProcessingTools.Contracts.Services.Geo.Coordinates;
-using ProcessingTools.Contracts.Services.History;
-using ProcessingTools.Contracts.Services.IO;
-using ProcessingTools.Contracts.Services.Layout.Styles;
-using ProcessingTools.Contracts.Services.Rules;
-using ProcessingTools.Contracts.Services.Tools;
-using IFilesDataService = ProcessingTools.Contracts.Services.Documents.IFilesDataService;
-
 namespace ProcessingTools.Web.Documents.Settings
 {
     using Autofac;
     using Microsoft.Extensions.Configuration;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Contracts.Services.Bio.Biorepositories.Admin;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Contracts.Services.Geo.Coordinates;
+    using ProcessingTools.Contracts.Services.History;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Layout.Styles;
+    using ProcessingTools.Contracts.Services.Rules;
+    using ProcessingTools.Contracts.Services.Tools;
     using ProcessingTools.Services.Admin;
     using ProcessingTools.Services.Documents;
     using ProcessingTools.Services.Geo.Coordinates;
@@ -27,6 +25,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Layout.Styles;
     using ProcessingTools.Services.Rules;
     using ProcessingTools.Services.Tools;
+    using IFilesDataService = ProcessingTools.Contracts.Services.Documents.IFilesDataService;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Services.*.

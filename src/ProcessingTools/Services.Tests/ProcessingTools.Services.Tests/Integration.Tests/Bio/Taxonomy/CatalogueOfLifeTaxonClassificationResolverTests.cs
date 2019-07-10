@@ -1,12 +1,11 @@
-﻿using ProcessingTools.Services.Net;
-
-namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
 {
     using System.Linq;
     using NUnit.Framework;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Services.Bio.Taxonomy;
+    using ProcessingTools.Services.Net;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(CatalogueOfLifeTaxonClassificationResolver))]
     public class CatalogueOfLifeTaxonClassificationResolverTests

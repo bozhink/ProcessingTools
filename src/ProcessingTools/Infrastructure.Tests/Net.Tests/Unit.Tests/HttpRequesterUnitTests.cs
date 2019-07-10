@@ -1,10 +1,8 @@
-﻿using ProcessingTools.Contracts.Services;
-using ProcessingTools.Services.Net;
-
-namespace ProcessingTools.Net.Tests.Unit.Tests
+﻿namespace ProcessingTools.Net.Tests.Unit.Tests
 {
     using NUnit.Framework;
-    using ProcessingTools.Net;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Services.Net;
 
     [TestFixture]
     public class HttpRequesterUnitTests

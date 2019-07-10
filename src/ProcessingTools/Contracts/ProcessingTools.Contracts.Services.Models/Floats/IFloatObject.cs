@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
-
 namespace ProcessingTools.Contracts.Services.Models.Floats
 {
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
+
     /// <summary>
     /// Floating object.
     /// </summary>

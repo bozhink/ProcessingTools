@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-using ProcessingTools.Web.Models.Bio.Taxonomy.BlackList;
-
 namespace ProcessingTools.Contracts.Web.Services.Bio.Taxonomy
 {
+    using System.Threading.Tasks;
+    using ProcessingTools.Web.Models.Bio.Taxonomy.BlackList;
+
     /// <summary>
     /// Blacklist web service.
     /// </summary>

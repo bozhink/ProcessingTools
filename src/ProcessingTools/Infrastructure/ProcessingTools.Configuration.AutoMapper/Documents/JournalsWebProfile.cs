@@ -2,12 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Documents.Journals;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-
 namespace ProcessingTools.Configuration.AutoMapper.Documents
 {
     using global::AutoMapper;
+    using ProcessingTools.Contracts.Services.Models.Documents.Journals;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
     using ProcessingTools.Web.Models.Documents.Journals;
 
     /// <summary>

@@ -6,8 +6,6 @@
 // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
 // See https://stackoverflow.com/questions/39577906/add-claims-when-creating-a-new-user
 
-using ProcessingTools.Contracts.Web.Services;
-
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
@@ -19,6 +17,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Web.Services;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.AccountViewModels;

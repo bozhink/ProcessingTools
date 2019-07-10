@@ -1,10 +1,9 @@
-﻿using ProcessingTools.Contracts.Commands.Models;
-
-namespace ProcessingTools.Tagger.Contracts
+﻿namespace ProcessingTools.Tagger.Contracts
 {
     using System;
     using System.Collections.Generic;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Commands.Models;
 
     public interface IProgramSettings : ICommandSettings
     {

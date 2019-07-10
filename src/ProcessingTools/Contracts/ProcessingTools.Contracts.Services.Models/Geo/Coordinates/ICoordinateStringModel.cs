@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace ProcessingTools.Contracts.Services.Models.Geo.Coordinates
 {
+    using System;
+
     /// <summary>
     /// Coordinate string model.
     /// </summary>

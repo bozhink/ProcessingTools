@@ -1,9 +1,4 @@
-﻿using ProcessingTools.Contracts.Commands.Tagger;
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.Files;
-using ProcessingTools.Contracts.Services.Xml;
-
-namespace ProcessingTools.Tagger.Core
+﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Collections.Concurrent;
@@ -14,8 +9,11 @@ namespace ProcessingTools.Tagger.Core
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Tagger.Contracts;
 
     public partial class FileProcessor : IFileProcessor

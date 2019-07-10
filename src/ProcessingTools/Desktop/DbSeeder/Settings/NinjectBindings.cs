@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Contracts.Services;
-
-namespace ProcessingTools.DbSeeder.Settings
+﻿namespace ProcessingTools.DbSeeder.Settings
 {
     using System;
     using System.Reflection;
@@ -8,7 +6,7 @@ namespace ProcessingTools.DbSeeder.Settings
     using global::Ninject.Extensions.Conventions;
     using global::Ninject.Extensions.Interception.Infrastructure.Language;
     using global::Ninject.Modules;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.DbSeeder.Core;

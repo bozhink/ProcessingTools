@@ -1,12 +1,10 @@
-﻿using ProcessingTools.Contracts.Services;
-
-namespace ProcessingTools.DbSeeder.Core
+﻿namespace ProcessingTools.DbSeeder.Core
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
 

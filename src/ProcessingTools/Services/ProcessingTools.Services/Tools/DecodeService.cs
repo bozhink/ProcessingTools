@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Tools;
-using ProcessingTools.Services.Security;
-
 namespace ProcessingTools.Services.Tools
 {
     using System;
     using System.Text;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Tools;
+    using ProcessingTools.Services.Security;
 
     /// <summary>
     /// Decode service.

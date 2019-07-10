@@ -2,16 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Abbreviations;
-using ProcessingTools.Contracts.Services.Models.Abbreviations;
-using ProcessingTools.Contracts.Services.Xml;
-
 namespace ProcessingTools.Services.Abbreviations
 {
     using System;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Abbreviations;
+    using ProcessingTools.Contracts.Services.Models.Abbreviations;
+    using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Services.Models.Abbreviations;
 
     /// <summary>

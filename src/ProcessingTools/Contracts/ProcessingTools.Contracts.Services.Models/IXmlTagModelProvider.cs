@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Xml;
-
 namespace ProcessingTools.Contracts.Services.Models
 {
+    using System;
+    using System.Xml;
+
     /// <summary>
     /// XML tag model provider.
     /// </summary>

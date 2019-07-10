@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Models.Cache;
-
 namespace ProcessingTools.Contracts.Services.Cache
 {
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Cache;
+
     /// <summary>
     /// Validation cache service.
     /// </summary>

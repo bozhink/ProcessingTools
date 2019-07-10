@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Tasks.Models.Schedules;
-using ProcessingTools.Contracts.Tasks.Models.Tasks;
-
 namespace ProcessingTools.Tasks.Models.Schedules
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;
+    using ProcessingTools.Contracts.Tasks.Models.Schedules;
+    using ProcessingTools.Contracts.Tasks.Models.Tasks;
 
     /// <summary>
     /// Base schedule.

@@ -1,11 +1,9 @@
-﻿using ProcessingTools.Contracts.Services;
-
-namespace ProcessingTools.DbSeeder.Core
+﻿namespace ProcessingTools.DbSeeder.Core
 {
     using System;
     using System.Collections.Concurrent;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Contracts.Core;
 
     public class Engine : IEngine

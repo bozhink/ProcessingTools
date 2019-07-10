@@ -2,12 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Commands.Tagger;
-using ProcessingTools.Contracts.Services.Dates;
-
 namespace ProcessingTools.Commands.Tagger
 {
     using ProcessingTools.Commands.Tagger.Abstractions;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Contracts.Services.Dates;
 
     /// <summary>
     /// Tag dates command.

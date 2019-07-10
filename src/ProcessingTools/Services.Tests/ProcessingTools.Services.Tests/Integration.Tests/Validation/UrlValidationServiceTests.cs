@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Contracts.Services.Cache;
-
-namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
+﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
 {
     using System;
     using System.Linq;
@@ -9,6 +7,7 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.DataAccess.Cache;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Validation;
 

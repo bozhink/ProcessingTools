@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProcessingTools.Services.Serialization.Csv;
-
 namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Csv
 {
+    using System;
+    using System.Globalization;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Services.Serialization.Csv;
+
     /// <summary>
     /// <see cref="CsvTableReader"/> Tests.
     /// </summary>

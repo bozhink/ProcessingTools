@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Services.Serialization.Csv;
-
-namespace ProcessingTools.Data.Seed.Bio.Biorepositories
+﻿namespace ProcessingTools.Data.Seed.Bio.Biorepositories
 {
     using System;
     using System.Collections.Concurrent;
@@ -17,6 +15,7 @@ namespace ProcessingTools.Data.Seed.Bio.Biorepositories
     using ProcessingTools.Data.Mongo.Bio.Biorepositories;
     using ProcessingTools.Data.Seed.Bio.Biorepositories.Models.Csv;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Serialization.Csv;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {

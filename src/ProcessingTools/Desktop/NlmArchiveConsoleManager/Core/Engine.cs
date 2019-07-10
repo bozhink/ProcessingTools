@@ -1,15 +1,13 @@
-﻿using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Meta;
-
-namespace ProcessingTools.NlmArchiveConsoleManager.Core
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
 

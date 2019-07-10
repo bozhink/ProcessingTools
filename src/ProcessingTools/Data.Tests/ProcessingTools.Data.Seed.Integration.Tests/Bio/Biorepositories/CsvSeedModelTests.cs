@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Services.Serialization.Csv;
-
 namespace ProcessingTools.Data.Seed.Integration.Tests.Bio.Biorepositories
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Data.Seed.Integration.Tests.Bio.Biorepositories
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Data.Seed.Bio.Biorepositories;
+    using ProcessingTools.Services.Serialization.Csv;
 
     /// <summary>
     /// CSV seed model tests.

@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Common.Enumerations;
-
 namespace ProcessingTools.Contracts.Services.Models.Geo.Coordinates
 {
+    using ProcessingTools.Common.Enumerations;
+
     /// <summary>
     /// Coordinate part.
     /// </summary>
