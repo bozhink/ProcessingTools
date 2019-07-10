@@ -10,7 +10,7 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Document parser command.

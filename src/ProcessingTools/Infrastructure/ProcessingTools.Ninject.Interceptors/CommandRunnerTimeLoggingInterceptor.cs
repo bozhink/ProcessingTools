@@ -10,7 +10,7 @@ namespace ProcessingTools.Ninject.Interceptors
     using System.Threading.Tasks;
     using global::Ninject.Extensions.Interception;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// Command runner time logging interceptor.

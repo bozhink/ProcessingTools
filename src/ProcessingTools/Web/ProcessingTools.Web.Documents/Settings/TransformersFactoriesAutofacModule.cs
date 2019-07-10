@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac;
     using Autofac.Extras.DynamicProxy;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Services.Contracts.Layout;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Xml;
     using ProcessingTools.Web.Documents.Interceptors;

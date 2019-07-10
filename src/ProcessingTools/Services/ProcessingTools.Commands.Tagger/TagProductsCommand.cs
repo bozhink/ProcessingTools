@@ -6,7 +6,7 @@ namespace ProcessingTools.Commands.Tagger
 {
     using ProcessingTools.Commands.Tagger.Abstractions;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Processors.Contracts.Products;
+    using ProcessingTools.Services.Contracts.Products;
 
     /// <summary>
     /// Tag products command.

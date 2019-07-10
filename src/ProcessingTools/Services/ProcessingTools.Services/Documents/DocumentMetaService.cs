@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Documents.Meta;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
 

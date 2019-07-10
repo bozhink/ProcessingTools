@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     internal class SeedCommandRunner : ICommandRunner
     {

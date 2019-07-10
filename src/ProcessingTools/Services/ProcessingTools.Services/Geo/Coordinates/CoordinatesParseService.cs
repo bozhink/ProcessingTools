@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using ProcessingTools.Services.Contracts.Geo.Coordinates;
     using ProcessingTools.Services.Contracts.Geo.Coordinates;
     using ProcessingTools.Services.Models.Contracts.Geo.Coordinates;
     using ProcessingTools.Services.Models.Geo.Coordinates;

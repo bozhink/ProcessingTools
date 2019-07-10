@@ -9,7 +9,7 @@ namespace ProcessingTools.Commands.Tagger
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Processors.Contracts.References;
+    using ProcessingTools.Services.Contracts.References;
 
     /// <summary>
     /// Tag references command.

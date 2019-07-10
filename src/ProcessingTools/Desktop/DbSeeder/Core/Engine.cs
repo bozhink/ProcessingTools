@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Core;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     public class Engine : IEngine
     {

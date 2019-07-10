@@ -10,7 +10,7 @@
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using ProcessingTools.Services.Contracts.Geo.Coordinates;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseCoordinatesCommand))]
     public class ParseCoordinatesCommandUnitTests

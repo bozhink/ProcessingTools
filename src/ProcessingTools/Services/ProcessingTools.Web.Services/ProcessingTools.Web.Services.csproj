@@ -40,8 +40,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Processors.Imaging.Contracts\ProcessingTools.Processors.Imaging.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Services\ProcessingTools.Services.csproj" />
     <ProjectReference Include="..\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj" />
   </ItemGroup>

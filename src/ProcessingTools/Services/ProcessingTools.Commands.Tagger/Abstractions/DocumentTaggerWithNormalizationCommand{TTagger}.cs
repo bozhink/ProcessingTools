@@ -9,8 +9,8 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Services.Contracts;
+    using ProcessingTools.Services.Contracts.Layout;
 
     /// <summary>
     /// Document tagger with normalization command.

@@ -169,10 +169,6 @@
       <Project>{76DC4C06-5F63-4C2A-8F93-7C7AC17ED06C}</Project>
       <Name>ProcessingTools.Ninject.Interceptors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
-      <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>
-      <Name>ProcessingTools.Processors.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.15.0.8572\analyzers\Google.Protobuf.dll" />

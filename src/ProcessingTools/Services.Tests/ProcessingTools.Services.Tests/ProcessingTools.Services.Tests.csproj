@@ -26,7 +26,15 @@
     <DocumentationFile>bin\docs\ProcessingTools.Services.Tests.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Files\Coordinates\get-coordinates-out.txt" />
+    <None Remove="Files\Coordinates\sample-coordinates.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Files\Coordinates\get-coordinates-out.txt" />
+    <Content Include="Files\Coordinates\sample-coordinates.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />

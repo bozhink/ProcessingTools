@@ -10,7 +10,7 @@ namespace ProcessingTools.Commands.Tagger
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Processors.Contracts.Special;
+    using ProcessingTools.Services.Contracts.Special;
 
     /// <summary>
     /// Test command.

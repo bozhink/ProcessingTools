@@ -10,7 +10,7 @@
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseLowerTaxaCommand))]
     public class ParseLowerTaxaCommandUnitTests

@@ -7,11 +7,11 @@
     using ProcessingTools.Services.Contracts.Abbreviations;
     using ProcessingTools.Services.Contracts.Content;
     using ProcessingTools.Services.Contracts.ExternalLinks;
-    using ProcessingTools.Processors.Contracts.Bio.Codes;
-    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
-    using ProcessingTools.Processors.Contracts.Layout;
-    using ProcessingTools.Processors.Contracts.Special;
+    using ProcessingTools.Services.Contracts.Bio.Codes;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.ZooBank;
+    using ProcessingTools.Services.Contracts.Layout;
+    using ProcessingTools.Services.Contracts.Special;
     using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Transformers;
 

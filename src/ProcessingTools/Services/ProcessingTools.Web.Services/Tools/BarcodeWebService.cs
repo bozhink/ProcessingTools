@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Services.Tools
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Processors.Imaging.Contracts;
+    using ProcessingTools.Services.Imaging.Contracts;
     using ProcessingTools.Web.Models.Tools.Barcode;
     using ProcessingTools.Web.Services.Contracts.Tools;
 

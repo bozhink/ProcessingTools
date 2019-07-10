@@ -12,7 +12,7 @@
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Ninject.Interceptors;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.

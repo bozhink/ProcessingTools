@@ -9,7 +9,7 @@ namespace ProcessingTools.Commands.Tagger
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+    using ProcessingTools.Services.Contracts.Bio.ZooBank;
     using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.IO;
 

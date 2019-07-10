@@ -18,7 +18,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Services.Contracts.Layout;
     using ProcessingTools.Services.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Web.Documents.Constants;

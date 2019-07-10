@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Tagger.Contracts;
