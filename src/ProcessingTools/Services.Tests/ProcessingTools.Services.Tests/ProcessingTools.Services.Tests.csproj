@@ -90,4 +90,15 @@
     <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="DataFiles\GeoJson\cartodb.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\GeoJson\feature-collection.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\GeoJson\geometry-point.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
