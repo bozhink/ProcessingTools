@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Models;
-
 namespace ProcessingTools.Contracts.Services.Special
 {
+    using ProcessingTools.Contracts.Models;
+
     /// <summary>
     /// Test features provider.
     /// </summary>

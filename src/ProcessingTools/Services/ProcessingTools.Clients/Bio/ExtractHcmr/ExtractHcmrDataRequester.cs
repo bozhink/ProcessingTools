@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Bio;
-
 namespace ProcessingTools.Clients.Bio.ExtractHcmr
 {
     using System;
@@ -12,7 +9,8 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Bio;
     using ProcessingTools.Extensions;
 
     /// <summary>

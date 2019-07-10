@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Xml;
-using ProcessingTools.Contracts.Models;
-
 namespace ProcessingTools.Contracts.Services.Special
 {
+    using System.Xml;
+    using ProcessingTools.Contracts.Models;
+
     /// <summary>
     /// Flora.
     /// </summary>

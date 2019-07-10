@@ -2,15 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Commands.Models;
-using ProcessingTools.Contracts.Commands.Tagger;
-using ProcessingTools.Contracts.Services.Bio.ZooBank;
-
 namespace ProcessingTools.Commands.Tagger
 {
     using System;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Commands.Models;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Bio.ZooBank;
 
     /// <summary>
     /// ZooBank generate registration XML command.

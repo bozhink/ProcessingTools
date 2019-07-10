@@ -2,20 +2,18 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Commands.Models;
-using ProcessingTools.Contracts.Commands.Tagger;
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-
 namespace ProcessingTools.Commands.Tagger.Abstractions
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Models;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
     /// <summary>

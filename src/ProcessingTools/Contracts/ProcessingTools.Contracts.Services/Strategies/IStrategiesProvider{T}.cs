@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-
 namespace ProcessingTools.Contracts.Services.Strategies
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Represents provider of strategies.
     /// </summary>

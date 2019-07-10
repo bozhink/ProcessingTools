@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-
 namespace ProcessingTools.Ninject.Interceptors
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Ninject.Interceptors
     using System.Threading.Tasks;
     using global::Ninject.Extensions.Interception;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Contracts.Services;
 
     /// <summary>
     /// Command runner time logging interceptor.

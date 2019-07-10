@@ -2,15 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-
 namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
     /// <summary>
