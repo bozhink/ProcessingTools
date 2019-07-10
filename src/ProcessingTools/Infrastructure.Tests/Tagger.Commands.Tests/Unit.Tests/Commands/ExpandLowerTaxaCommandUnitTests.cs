@@ -5,10 +5,10 @@
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 

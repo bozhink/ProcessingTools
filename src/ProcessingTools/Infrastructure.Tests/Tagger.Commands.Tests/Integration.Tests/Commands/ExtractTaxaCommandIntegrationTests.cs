@@ -5,7 +5,7 @@
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
