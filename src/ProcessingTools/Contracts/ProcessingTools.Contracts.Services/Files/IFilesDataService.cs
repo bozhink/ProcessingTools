@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.IO;
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Models.Files;
-
 namespace ProcessingTools.Contracts.Services.Files
 {
+    using System.IO;
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Files;
+
     /// <summary>
     /// Files data service.
     /// </summary>

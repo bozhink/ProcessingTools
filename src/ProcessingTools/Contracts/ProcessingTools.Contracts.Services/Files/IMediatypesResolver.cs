@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Models.Files.Mediatypes;
-
 namespace ProcessingTools.Contracts.Services.Files
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
+
     /// <summary>
     /// Mediatypes resolver.
     /// </summary>
