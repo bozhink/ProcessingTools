@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.References;
-using ProcessingTools.Contracts.Services.References;
-using ProcessingTools.Contracts.Services.Xml;
-
 namespace ProcessingTools.Services.References
 {
     using System;
@@ -16,6 +12,9 @@ namespace ProcessingTools.Services.References
     using System.Xml;
     using System.Xml.Linq;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Services.Models.References;
+    using ProcessingTools.Contracts.Services.References;
+    using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Services.Models.References;
 
     /// <summary>
@@ -37,7 +36,7 @@ namespace ProcessingTools.Services.References
         }
 
         /// <inheritdoc/>
-        public async Task<object> TagAsync(XmlNode context, IEnumerable<IReferenceTagStyleModel> styles)
+        public Task<object> TagAsync(XmlNode context, IEnumerable<IReferenceTagStyleModel> styles)
         {
             if (context == null)
             {
@@ -46,9 +45,14 @@ namespace ProcessingTools.Services.References
 
             if (styles == null || !styles.Any())
             {
-                return false;
+                return Task.FromResult<object>(false);
             }
 
+            return this.TagInternalAsync(context, styles);
+        }
+
+        private async Task<object> TagInternalAsync(XmlNode context, IEnumerable<IReferenceTagStyleModel> styles)
+        {
             foreach (var style in styles)
             {
                 var templates = await this.GetReferencesTemplatesAsync(context, style.Script).ConfigureAwait(false);
@@ -188,7 +192,7 @@ namespace ProcessingTools.Services.References
                 ////    $"$1<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$6</xref>");
             }
 
-            //// TODO: Call here the two loops above
+            //// Question: Call here the two loops above?
             return xml;
         }
 

@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Security.Cryptography;
-using ProcessingTools.Common.Constants;
-
 #pragma warning disable S101 // Types should be named in PascalCase
 
 namespace ProcessingTools.Services.Security
 {
+    using System.Security.Cryptography;
+    using ProcessingTools.Common.Constants;
+
     /// <summary>
     /// SHA256 hasher.
     /// </summary>

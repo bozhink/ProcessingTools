@@ -20,15 +20,9 @@ namespace ProcessingTools.Services.Models.Bio.Codes
         [XmlAttribute(AttributeNames.ContentType)]
         public string ContentType
         {
-            get
-            {
-                return AttributeValues.SpecimenCode;
-            }
+            get => AttributeValues.SpecimenCode;
 
-            set
-            {
-                // Read only
-            }
+            set => _ = value;
         }
 
         /// <summary>

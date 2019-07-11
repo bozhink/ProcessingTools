@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Rules;
-
 namespace ProcessingTools.Services.Rules
 {
     using System;
@@ -13,6 +11,7 @@ namespace ProcessingTools.Services.Rules
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Rules;
+    using ProcessingTools.Contracts.Services.Rules;
 
     /// <summary>
     /// Rules processor with <see cref="IDocument"/> context.
@@ -20,7 +19,7 @@ namespace ProcessingTools.Services.Rules
     public class DocumentRulesProcessor : IDocumentRulesProcessor
     {
         /// <inheritdoc/>
-        public async Task<object> ProcessAsync(IDocument context, IEnumerable<IXmlReplaceRuleSetModel> ruleSets)
+        public Task<object> ProcessAsync(IDocument context, IEnumerable<IXmlReplaceRuleSetModel> ruleSets)
         {
             if (context == null)
             {
@@ -29,10 +28,10 @@ namespace ProcessingTools.Services.Rules
 
             if (ruleSets == null || !ruleSets.Any())
             {
-                return false;
+                return Task.FromResult<object>(false);
             }
 
-            return await Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 foreach (var ruleSet in ruleSets)
                 {
@@ -47,7 +46,7 @@ namespace ProcessingTools.Services.Rules
                 }
 
                 return true;
-            }).ConfigureAwait(false);
+            });
         }
     }
 }

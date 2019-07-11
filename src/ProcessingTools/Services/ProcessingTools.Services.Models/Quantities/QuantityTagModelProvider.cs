@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Xml;
-using ProcessingTools.Common.Constants.Schema;
-using ProcessingTools.Contracts.Services.Models.Quantities;
-
 namespace ProcessingTools.Services.Models.Quantities
 {
+    using System;
+    using System.Xml;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Contracts.Services.Models.Quantities;
+
     /// <summary>
     /// Quantity tag model provider.
     /// </summary>

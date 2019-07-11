@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Text;
-using ProcessingTools.Contracts.Services;
-
 namespace ProcessingTools.Services
 {
+    using System;
+    using System.Text;
+    using ProcessingTools.Contracts.Services;
+
     /// <summary>
     /// Random data provider.
     /// </summary>

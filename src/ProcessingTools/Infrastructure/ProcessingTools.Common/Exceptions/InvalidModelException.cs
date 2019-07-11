@@ -21,7 +21,7 @@ namespace ProcessingTools.Common.Exceptions
         /// error message.
         /// </summary>
         public InvalidModelException()
-            : base(message: DefaultMessage)
+            : base(message: $"{DefaultMessage}")
         {
         }
 
