@@ -1,14 +1,27 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using ProcessingTools.Common.Constants;
+﻿// <copyright file="Utilities.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
 
 namespace ProcessingTools.Services.Net
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using ProcessingTools.Common.Constants;
+
+    /// <summary>
+    /// Net utilities.
+    /// </summary>
     public static class Utilities
     {
+        /// <summary>
+        /// Get POST as JSON HTTP request message.
+        /// </summary>
+        /// <param name="requestUri">Request URI.</param>
+        /// <param name="model">Data model to be serialized to JSON.</param>
+        /// <returns>Request-response model.</returns>
         public static HttpRequestMessage GetPostJsonHttpRequestMessage(Uri requestUri, object model)
         {
             if (requestUri == null)
@@ -30,6 +43,12 @@ namespace ProcessingTools.Services.Net
             return requestMessage;
         }
 
+        /// <summary>
+        /// Do HTTP POST as JSON request.
+        /// </summary>
+        /// <param name="requestUri">The request URL.</param>
+        /// <param name="model">Data model to be serialized to JSON.</param>
+        /// <returns>Request-response model.</returns>
         public static async Task<HttpRequestResponseModel> DoHttpPostJsonRequestAsync(Uri requestUri, object model)
         {
             HttpRequestResponseModel httpRequestResponse = new HttpRequestResponseModel();
@@ -62,8 +81,14 @@ namespace ProcessingTools.Services.Net
             return httpRequestResponse;
         }
 
+        /// <summary>
+        /// HTTP request and response model.
+        /// </summary>
         public class HttpRequestResponseModel
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="HttpRequestResponseModel"/> class.
+            /// </summary>
             public HttpRequestResponseModel()
             {
                 this.RequestMessage = null;
@@ -74,6 +99,10 @@ namespace ProcessingTools.Services.Net
                 this.ResponseOut = DateTime.UtcNow;
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="HttpRequestResponseModel"/> class.
+            /// </summary>
+            /// <param name="model">Initialization values.</param>
             public HttpRequestResponseModel(HttpRequestResponseModel model)
             {
                 this.RequestMessage = model.RequestMessage;
@@ -84,16 +113,34 @@ namespace ProcessingTools.Services.Net
                 this.ResponseOut = model.ResponseOut;
             }
 
+            /// <summary>
+            /// Gets or sets the request message.
+            /// </summary>
             public HttpRequestMessage RequestMessage { get; set; }
 
+            /// <summary>
+            /// Gets or sets the response message.
+            /// </summary>
             public HttpResponseMessage ResponseMessage { get; set; }
 
+            /// <summary>
+            /// Gets or sets the request content.
+            /// </summary>
             public string RequestContent { get; set; }
 
+            /// <summary>
+            /// Gets or sets the response content.
+            /// </summary>
             public string ResponseContent { get; set; }
 
+            /// <summary>
+            /// Gets or sets the date and time for the entering of the request.
+            /// </summary>
             public DateTime RequestIn { get; set; }
 
+            /// <summary>
+            /// Gets or sets the date and time of the exiting of the response.
+            /// </summary>
             public DateTime ResponseOut { get; set; }
         }
     }

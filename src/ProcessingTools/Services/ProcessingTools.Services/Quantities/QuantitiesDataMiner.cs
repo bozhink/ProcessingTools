@@ -22,14 +22,13 @@
  * 2.2–2.6 mm
  */
 
-using ProcessingTools.Contracts.Services.Quantities;
-
 namespace ProcessingTools.Services.Quantities
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Quantities;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -38,13 +37,18 @@ namespace ProcessingTools.Services.Quantities
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
         /// <inheritdoc/>
-        public async Task<string[]> MineAsync(string context)
+        public Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.MineInternalAsync(context);
+        }
+
+        private async Task<string[]> MineInternalAsync(string context)
+        {
             const string Pattern = @"(?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b";
 
             var data = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);

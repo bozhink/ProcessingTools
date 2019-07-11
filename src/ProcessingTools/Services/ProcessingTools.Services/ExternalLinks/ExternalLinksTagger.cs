@@ -2,19 +2,17 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Content;
-using ProcessingTools.Contracts.Services.ExternalLinks;
-using ProcessingTools.Services.Models.Content;
-
 namespace ProcessingTools.Services.ExternalLinks
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Content;
+    using ProcessingTools.Contracts.Services.ExternalLinks;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Models;
+    using ProcessingTools.Services.Models.Content;
     using ProcessingTools.Services.Models.ExternalLinks;
 
     /// <summary>
@@ -24,9 +22,9 @@ namespace ProcessingTools.Services.ExternalLinks
     {
         private const string XPath = "./*";
 
-        private readonly IExternalLinksDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
         private readonly ISimpleXmlSerializableObjectTagger<ExternalLinkXmlModel> contentTagger;
+        private readonly IExternalLinksDataMiner miner;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalLinksTagger"/> class.
@@ -42,13 +40,18 @@ namespace ProcessingTools.Services.ExternalLinks
         }
 
         /// <inheritdoc/>
-        public async Task<object> TagAsync(IDocument context)
+        public Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.TagInternalAsync(context);
+        }
+
+        private async Task<object> TagInternalAsync(IDocument context)
+        {
             var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement);
             var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
                 .Select(i => new ExternalLinkXmlModel

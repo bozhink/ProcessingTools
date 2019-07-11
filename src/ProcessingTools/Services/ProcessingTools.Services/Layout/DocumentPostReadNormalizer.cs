@@ -2,13 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Layout;
-
 namespace ProcessingTools.Services.Layout
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Layout;
 
     /// <summary>
     /// Document post-read normalizer.
@@ -27,16 +26,19 @@ namespace ProcessingTools.Services.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<object> NormalizeAsync(IDocument document)
+        public Task<object> NormalizeAsync(IDocument document)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var result = await this.documentNormalizer.NormalizeToSystemAsync(document).ConfigureAwait(false);
+            return this.NormalizeInternalAsync(document);
+        }
 
-            return result;
+        private async Task<object> NormalizeInternalAsync(IDocument document)
+        {
+            return await this.documentNormalizer.NormalizeToSystemAsync(document).ConfigureAwait(false);
         }
     }
 }

@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Files;
-
 namespace ProcessingTools.Services.Files
 {
     using System;
@@ -11,6 +9,7 @@ namespace ProcessingTools.Services.Files
     using System.Threading.Tasks;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Models.Files;
+    using ProcessingTools.Contracts.Services.Files;
     using ProcessingTools.Services.Models.Data.Files;
 
     /// <summary>
@@ -54,6 +53,17 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
+        public Task<IFileMetadata> GetMetadataAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetMetadataInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
         public StreamReader GetReader(object id)
         {
             if (id == null)
@@ -90,23 +100,6 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IFileMetadata> GetMetadataAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            string fileName = id.ToString();
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                throw new FileNameIsNullOrWhitespaceException();
-            }
-
-            return await this.GetSystemFileMetadataAsync(fileName).ConfigureAwait(false);
-        }
-
-        /// <inheritdoc/>
         public Task<IFileMetadata> UpdateAsync(IFileMetadata metadata)
         {
             if (metadata == null)
@@ -134,7 +127,7 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IFileMetadata> UpdateAsync(object id, Stream stream)
+        public Task<IFileMetadata> UpdateAsync(object id, Stream stream)
         {
             if (id == null)
             {
@@ -146,11 +139,7 @@ namespace ProcessingTools.Services.Files
                 throw new ArgumentNullException(nameof(stream));
             }
 
-            var fullName = id.ToString();
-
-            await this.WriteAsync(fullName, stream).ConfigureAwait(false);
-
-            return await this.GetSystemFileMetadataAsync(fullName).ConfigureAwait(false);
+            return this.UpdateInternalAsync(id, stream);
         }
 
         /// <inheritdoc/>
@@ -170,7 +159,7 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
-        public async Task<object> WriteAsync(object id, Stream stream)
+        public Task<object> WriteAsync(object id, Stream stream)
         {
             if (id == null)
             {
@@ -187,22 +176,18 @@ namespace ProcessingTools.Services.Files
                 throw new StreamCannotBeReadException();
             }
 
+            return this.WriteInternalAsync(id, stream);
+        }
+
+        private async Task<IFileMetadata> GetMetadataInternalAsync(object id)
+        {
             string fileName = id.ToString();
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new FileNameIsNullOrWhitespaceException();
             }
 
-            long writtenStreamLength = 0L;
-            using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
-            {
-                await stream.CopyToAsync(fileStream).ConfigureAwait(false);
-                await fileStream.FlushAsync().ConfigureAwait(false);
-                writtenStreamLength = fileStream.Length;
-                fileStream.Close();
-            }
-
-            return writtenStreamLength;
+            return await this.GetSystemFileMetadataAsync(fileName).ConfigureAwait(false);
         }
 
         private async Task<IFileMetadata> GetSystemFileMetadataAsync(string fullName)
@@ -224,6 +209,35 @@ namespace ProcessingTools.Services.Files
                 CreatedBy = "NA",
                 ModifiedBy = "NA",
             };
+        }
+
+        private async Task<IFileMetadata> UpdateInternalAsync(object id, Stream stream)
+        {
+            var fullName = id.ToString();
+
+            await this.WriteAsync(fullName, stream).ConfigureAwait(false);
+
+            return await this.GetSystemFileMetadataAsync(fullName).ConfigureAwait(false);
+        }
+
+        private async Task<object> WriteInternalAsync(object id, Stream stream)
+        {
+            string fileName = id.ToString();
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new FileNameIsNullOrWhitespaceException();
+            }
+
+            long writtenStreamLength = 0L;
+            using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+            {
+                await stream.CopyToAsync(fileStream).ConfigureAwait(false);
+                await fileStream.FlushAsync().ConfigureAwait(false);
+                writtenStreamLength = fileStream.Length;
+                fileStream.Close();
+            }
+
+            return writtenStreamLength;
         }
     }
 }

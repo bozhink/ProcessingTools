@@ -2,12 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Models.Products;
-using ProcessingTools.Contracts.Services.Products;
-
 namespace ProcessingTools.Services.Products
 {
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Models.Products;
+    using ProcessingTools.Contracts.Services.Products;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>

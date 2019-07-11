@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Meta;
-using ProcessingTools.Contracts.Services.Models.Meta;
-
 namespace ProcessingTools.Services.Meta
 {
     using System;
@@ -12,6 +9,8 @@ namespace ProcessingTools.Services.Meta
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Contracts.Services.Meta;
+    using ProcessingTools.Contracts.Services.Models.Meta;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Services.Models.Meta;
 

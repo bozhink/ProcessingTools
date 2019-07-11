@@ -2,16 +2,16 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Xml;
-using Microsoft.Extensions.Logging;
-using ProcessingTools.Common.Constants.Schema;
-using ProcessingTools.Contracts.Services.Floats;
-
 namespace ProcessingTools.Services.Floats
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Contracts.Services.Floats;
+
     /// <summary>
     /// Table footnotes tagger.
     /// </summary>

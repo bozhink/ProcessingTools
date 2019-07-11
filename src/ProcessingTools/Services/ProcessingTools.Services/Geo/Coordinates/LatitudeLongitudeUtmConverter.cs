@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace ProcessingTools.Services.Geo.Coordinates
 {
+    using System;
+
     /// <summary>
     /// Latitude-Longitude UTM Converter.
     /// </summary>
@@ -109,7 +109,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
             var m = this.axd * (((1 - (this.eccSquared / 4) - (3 * this.eccSquared * this.eccSquared / 64) - (5 * this.eccSquared * this.eccSquared * this.eccSquared / 256)) * latRad)
                     - (((3 * this.eccSquared / 8) + (3 * this.eccSquared * this.eccSquared / 32) + (45 * this.eccSquared * this.eccSquared * this.eccSquared / 1024)) * Math.Sin(2 * latRad))
                     + (((15 * this.eccSquared * this.eccSquared / 256) + (45 * this.eccSquared * this.eccSquared * this.eccSquared / 1024)) * Math.Sin(4 * latRad))
-                    - ((35 * this.eccSquared * this.eccSquared * this.eccSquared / 3072) * Math.Sin(6 * latRad)));
+                    - (35 * this.eccSquared * this.eccSquared * this.eccSquared / 3072 * Math.Sin(6 * latRad)));
 
             var utmEasting = (0.9996 * n * (a + ((1 - t + c) * a * a * a / 6)
                     + ((5 - (18 * t) + (t * t) + (72 * c) - (58 * eccPrimeSquared)) * a * a * a * a * a / 120)))
@@ -176,7 +176,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
 
             var phi1Rad = mu + (((3 * e1 / 2) - (27 * e1 * e1 * e1 / 32)) * Math.Sin(2 * mu))
                     + (((21 * e1 * e1 / 16) - (55 * e1 * e1 * e1 * e1 / 32)) * Math.Sin(4 * mu))
-                    + ((151 * e1 * e1 * e1 / 96) * Math.Sin(6 * mu));
+                    + (151 * e1 * e1 * e1 / 96 * Math.Sin(6 * mu));
             ////var phi1 = this.ToDegrees(phi1Rad);
 
             var n1 = this.axd / Math.Sqrt(1 - (this.eccSquared * Math.Sin(phi1Rad) * Math.Sin(phi1Rad)));
@@ -185,7 +185,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
             var r1 = this.axd * (1 - this.eccSquared) / Math.Pow(1 - (this.eccSquared * Math.Sin(phi1Rad) * Math.Sin(phi1Rad)), 1.5);
             var d = x / (n1 * 0.9996);
 
-            var latitude = phi1Rad - ((n1 * Math.Tan(phi1Rad) / r1) * ((d * d / 2) - ((5 + (3 * t1) + (10 * c1) - (4 * c1 * c1) - (9 * eccPrimeSquared)) * d * d * d * d / 24)
+            var latitude = phi1Rad - (n1 * Math.Tan(phi1Rad) / r1 * ((d * d / 2) - ((5 + (3 * t1) + (10 * c1) - (4 * c1 * c1) - (9 * eccPrimeSquared)) * d * d * d * d / 24)
                     + ((61 + (90 * t1) + (298 * c1) + (45 * t1 * t1) - (252 * eccPrimeSquared) - (3 * c1 * c1)) * d * d * d * d * d * d / 720)));
             latitude = this.ToDegrees(latitude);
 

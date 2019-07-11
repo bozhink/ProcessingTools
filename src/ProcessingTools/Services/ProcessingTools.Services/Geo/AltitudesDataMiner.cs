@@ -8,8 +8,6 @@
  * Elevation: 2900
  */
 
-using ProcessingTools.Contracts.Services.Geo;
-
 namespace ProcessingTools.Services.Geo
 {
     using System;
@@ -18,6 +16,7 @@ namespace ProcessingTools.Services.Geo
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Geo;
     using ProcessingTools.Extensions;
 
     /// <summary>

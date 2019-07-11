@@ -34,7 +34,7 @@ namespace ProcessingTools.Services
         }
 
         /// <inheritdoc/>
-        public async Task<object> TagAsync(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> items, string xpath, IContentTaggerSettings settings)
+        public Task<object> TagAsync(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> items, string xpath, IContentTaggerSettings settings)
         {
             if (context == null)
             {
@@ -61,6 +61,11 @@ namespace ProcessingTools.Services
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            return this.TagInternalAsync(context, namespaceManager, items, xpath, settings);
+        }
+
+        private async Task<object> TagInternalAsync(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> items, string xpath, IContentTaggerSettings settings)
+        {
             this.serializer.SetNamespaces(namespaceManager);
 
             var nodeList = context.SelectNodes(xpath, namespaceManager).Cast<XmlNode>().ToList();

@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.IO;
-
 namespace ProcessingTools.Services.IO
 {
     using System;
@@ -13,9 +11,10 @@ namespace ProcessingTools.Services.IO
     using System.Xml;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Services.IO;
 
     /// <summary>
-    /// Xml file reader-writer.
+    /// XML file reader-writer.
     /// </summary>
     public class XmlFileReaderWriter : IXmlFileReaderWriter
     {
@@ -58,29 +57,17 @@ namespace ProcessingTools.Services.IO
         /// <inheritdoc/>
         public XmlReaderSettings ReaderSettings
         {
-            get
-            {
-                return this.readerSettings;
-            }
+            get => this.readerSettings;
 
-            set
-            {
-                this.readerSettings = value ?? throw new ArgumentNullException(nameof(value));
-            }
+            set => this.readerSettings = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         /// <inheritdoc/>
         public XmlWriterSettings WriterSettings
         {
-            get
-            {
-                return this.writerSettings;
-            }
+            get => this.writerSettings;
 
-            set
-            {
-                this.writerSettings = value ?? throw new ArgumentNullException(nameof(value));
-            }
+            set => this.writerSettings = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         /// <inheritdoc/>
@@ -108,34 +95,20 @@ namespace ProcessingTools.Services.IO
         }
 
         /// <inheritdoc/>
-        public async Task<long> WriteAsync(Stream stream, string fileName, string basePath)
+        public Task<long> WriteAsync(Stream stream, string fileName, string basePath)
         {
             if (stream == null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
 
-            string path = this.CombineFileName(fileName, basePath);
-            using (var writer = XmlWriter.Create(path, this.WriterSettings))
-            {
-                using (var reader = XmlReader.Create(stream, this.ReaderSettings))
-                {
-                    await writer.WriteNodeAsync(reader, true).ConfigureAwait(false);
-                    reader.Close();
-                }
-
-                await writer.FlushAsync().ConfigureAwait(false);
-                writer.Close();
-            }
-
-            var contentLength = new FileInfo(path).Length;
-            return contentLength;
+            return this.WriteInternalAsync(stream, fileName, basePath);
         }
 
         /// <inheritdoc/>
-        public async Task<string> GetNewFilePathAsync(string fileName, string basePath, int length)
+        public Task<string> GetNewFilePathAsync(string fileName, string basePath, int length)
         {
-            return await Task.Run(() =>
+            return Task.Run(() =>
             {
                 string path = this.CombineFileName(this.GenerateFileName(fileName, length), basePath);
                 int pathLength = path.Length;
@@ -154,8 +127,26 @@ namespace ProcessingTools.Services.IO
                 }
 
                 return result;
-            })
-            .ConfigureAwait(false);
+            });
+        }
+
+        private async Task<long> WriteInternalAsync(Stream stream, string fileName, string basePath)
+        {
+            string path = this.CombineFileName(fileName, basePath);
+            using (var writer = XmlWriter.Create(path, this.WriterSettings))
+            {
+                using (var reader = XmlReader.Create(stream, this.ReaderSettings))
+                {
+                    await writer.WriteNodeAsync(reader, true).ConfigureAwait(false);
+                    reader.Close();
+                }
+
+                await writer.FlushAsync().ConfigureAwait(false);
+                writer.Close();
+            }
+
+            var contentLength = new FileInfo(path).Length;
+            return contentLength;
         }
 
         private string GenerateFileName(string prefix, int length)
@@ -183,7 +174,8 @@ namespace ProcessingTools.Services.IO
 
             Regex matchDriveLetter = new Regex(@"\A\W+:/");
 
-            string path = null;
+            string path;
+
             if (string.IsNullOrWhiteSpace(basePath))
             {
                 path = fileName;

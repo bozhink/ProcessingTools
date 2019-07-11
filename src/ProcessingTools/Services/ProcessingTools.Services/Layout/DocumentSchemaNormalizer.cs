@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Layout;
-
 namespace ProcessingTools.Services.Layout
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Layout;
 
     /// <summary>
     /// Document schema normalizer.
@@ -33,13 +32,18 @@ namespace ProcessingTools.Services.Layout
         /// <inheritdoc/>
         public Task<object> NormalizeToSystemAsync(IDocument document) => this.NormalizeAsync(document, SchemaType.System);
 
-        private async Task<object> NormalizeAsync(IDocument document, SchemaType schemaType)
+        private Task<object> NormalizeAsync(IDocument document, SchemaType schemaType)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
+            return this.NormalizeInternalAsync(document, schemaType);
+        }
+
+        private async Task<object> NormalizeInternalAsync(IDocument document, SchemaType schemaType)
+        {
             var transformer = this.transformerFactory.Create(schemaType);
 
             document.Xml = await transformer.TransformAsync(document.Xml).ConfigureAwait(false);

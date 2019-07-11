@@ -2,22 +2,22 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using ProcessingTools.Common.Constants;
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Extensions;
-using ProcessingTools.Services.Models.Net;
-
 namespace ProcessingTools.Services.Net
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Runtime.Serialization.Json;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Xml.Serialization;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Models.Net;
+
     /// <summary>
     /// Default implementation of <see cref="IHttpRequester"/>.
     /// </summary>

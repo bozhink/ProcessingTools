@@ -2,16 +2,16 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Linq;
-using GeoAPI.CoordinateSystems;
-using GeoAPI.CoordinateSystems.Transformations;
-using ProcessingTools.Contracts.Services.Geo.Coordinates;
-using ProjNet.CoordinateSystems;
-using ProjNet.CoordinateSystems.Transformations;
-
 namespace ProcessingTools.Services.Geo.Coordinates
 {
+    using System;
+    using System.Linq;
+    using GeoAPI.CoordinateSystems;
+    using GeoAPI.CoordinateSystems.Transformations;
+    using ProcessingTools.Contracts.Services.Geo.Coordinates;
+    using ProjNet.CoordinateSystems;
+    using ProjNet.CoordinateSystems.Transformations;
+
     /// <summary>
     /// See http://blogs.u2u.be/diederik/post/2010/01/01/Converting-Spatial-Coordinates-with-ProjNET.aspx.
     /// </summary>

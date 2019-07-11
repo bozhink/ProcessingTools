@@ -2,13 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.IO;
-
 namespace ProcessingTools.Services.IO
 {
     using System;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Services.IO;
 
     /// <summary>
     /// XML file content data service.
@@ -47,7 +46,7 @@ namespace ProcessingTools.Services.IO
         }
 
         /// <inheritdoc/>
-        public async Task<object> WriteXmlFile(string fullName, XmlDocument document, XmlDocumentType documentType = null)
+        public Task<object> WriteXmlFile(string fullName, XmlDocument document, XmlDocumentType documentType = null)
         {
             if (string.IsNullOrWhiteSpace(fullName))
             {
@@ -59,7 +58,7 @@ namespace ProcessingTools.Services.IO
                 throw new ArgumentNullException(nameof(document));
             }
 
-            return await this.writer.WriteAsync(fileName: fullName, document: document, documentType: documentType).ConfigureAwait(false);
+            return this.writer.WriteAsync(fileName: fullName, document: document, documentType: documentType);
         }
     }
 }

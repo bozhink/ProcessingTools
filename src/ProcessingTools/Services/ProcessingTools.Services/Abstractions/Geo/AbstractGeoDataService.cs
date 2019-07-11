@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-
 namespace ProcessingTools.Services.Abstractions.Geo
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Data.Contracts;
 
     /// <summary>
@@ -35,48 +34,39 @@ namespace ProcessingTools.Services.Abstractions.Geo
         }
 
         /// <inheritdoc/>
-        public virtual async Task<object> DeleteAsync(TModel model)
+        public virtual Task<object> DeleteAsync(TModel model)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.DeleteAsync(model: model).ConfigureAwait(false);
-            await this.repository.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
+            return this.DeleteInternalAsync(model);
         }
 
         /// <inheritdoc/>
-        public virtual async Task<object> DeleteByIdAsync(object id)
+        public virtual Task<object> DeleteByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.repository.DeleteAsync(id: id).ConfigureAwait(false);
-            await this.repository.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
+            return this.DeleteByIdInternalAsync(id);
         }
 
         /// <inheritdoc/>
         public virtual Task<TModel> GetByIdAsync(object id) => this.repository.GetByIdAsync(id: id);
 
         /// <inheritdoc/>
-        public virtual async Task<object> InsertAsync(TModel model)
+        public virtual Task<object> InsertAsync(TModel model)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model).ConfigureAwait(false) as INamedIntegerIdentified;
-            await this.repository.SaveChangesAsync().ConfigureAwait(false);
-
-            return result?.Id;
+            return this.InsertInternalAsync(model);
         }
 
         /// <inheritdoc/>
@@ -89,13 +79,42 @@ namespace ProcessingTools.Services.Abstractions.Geo
         public virtual Task<long> SelectCountAsync(TFilter filter) => this.repository.SelectCountAsync(filter);
 
         /// <inheritdoc/>
-        public virtual async Task<object> UpdateAsync(TModel model)
+        public virtual Task<object> UpdateAsync(TModel model)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
+            return this.UpdateInternalAsync(model);
+        }
+
+        private async Task<object> DeleteByIdInternalAsync(object id)
+        {
+            var result = await this.repository.DeleteAsync(id: id).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<object> DeleteInternalAsync(TModel model)
+        {
+            var result = await this.repository.DeleteAsync(model: model).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<object> InsertInternalAsync(TModel model)
+        {
+            var result = await this.repository.InsertAsync(model).ConfigureAwait(false) as INamedIntegerIdentified;
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
+
+            return result?.Id;
+        }
+
+        private async Task<object> UpdateInternalAsync(TModel model)
+        {
             var result = await this.repository.UpdateAsync(model: model).ConfigureAwait(false);
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
 

@@ -2,12 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Institutions;
-using ProcessingTools.Contracts.Services.Models.Institutions;
-
 namespace ProcessingTools.Services.Institutions
 {
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Institutions;
+    using ProcessingTools.Contracts.Services.Models.Institutions;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>

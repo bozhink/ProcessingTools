@@ -2,11 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.History;
-using ProcessingTools.Contracts.Services.Layout.Styles;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
-
 namespace ProcessingTools.Services.Layout.Styles
 {
     using System;
@@ -18,6 +13,10 @@ namespace ProcessingTools.Services.Layout.Styles
     using ProcessingTools.Contracts.DataAccess.Layout.Styles;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Services.History;
+    using ProcessingTools.Contracts.Services.Layout.Styles;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
     using ProcessingTools.Services.Models.Layout.Styles;
     using ProcessingTools.Services.Models.Layout.Styles.References;
 
@@ -27,8 +26,8 @@ namespace ProcessingTools.Services.Layout.Styles
     public class ReferenceParseStylesDataService : IReferenceParseStylesDataService
     {
         private readonly IReferenceParseStylesDataAccessObject dataAccessObject;
-        private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
+        private readonly IObjectHistoryDataService objectHistoryDataService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceParseStylesDataService"/> class.
@@ -54,151 +53,37 @@ namespace ProcessingTools.Services.Layout.Styles
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(IReferenceInsertParseStyleModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var parseStyle = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (parseStyle == null)
-            {
-                throw new InsertUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(parseStyle.ObjectId, parseStyle).ConfigureAwait(false);
-
-            return parseStyle.ObjectId;
-        }
-
-        /// <inheritdoc/>
-        public async Task<object> UpdateAsync(IReferenceUpdateParseStyleModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var parseStyle = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (parseStyle == null)
-            {
-                throw new UpdateUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(parseStyle.ObjectId, parseStyle).ConfigureAwait(false);
-
-            return parseStyle.ObjectId;
-        }
-
-        /// <inheritdoc/>
-        public async Task<object> DeleteAsync(object id)
+        public Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
+            return this.DeleteInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceParseStyleModel> GetByIdAsync(object id)
+        public Task<IReferenceParseStyleModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var parseStyle = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
-
-            if (parseStyle == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IReferenceParseStyleDataTransferObject, ReferenceParseStyleModel>(parseStyle);
-
-            return model;
+            return this.GetByIdInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IReferenceDetailsParseStyleModel> GetDetailsByIdAsync(object id)
+        public Task<IReferenceDetailsParseStyleModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var parseStyle = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
-
-            if (parseStyle == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IReferenceDetailsParseStyleDataTransferObject, ReferenceDetailsParseStyleModel>(parseStyle);
-
-            return model;
+            return this.GetDetailsByIdInternalAsync(id);
         }
-
-        /// <inheritdoc/>
-        public async Task<IReferenceParseStyleModel[]> SelectAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var parseStyles = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
-
-            if (parseStyles == null || !parseStyles.Any())
-            {
-                return Array.Empty<IReferenceParseStyleModel>();
-            }
-
-            var items = parseStyles.Select(this.mapper.Map<IReferenceParseStyleDataTransferObject, ReferenceParseStyleModel>).ToArray();
-            return items;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IReferenceDetailsParseStyleModel[]> SelectDetailsAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var parseStyles = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-
-            if (parseStyles == null || !parseStyles.Any())
-            {
-                return Array.Empty<IReferenceDetailsParseStyleModel>();
-            }
-
-            var items = parseStyles.Select(this.mapper.Map<IReferenceDetailsParseStyleDataTransferObject, ReferenceDetailsParseStyleModel>).ToArray();
-            return items;
-        }
-
-        /// <inheritdoc/>
-        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
 
         /// <inheritdoc/>
         public async Task<IIdentifiedStyleModel> GetStyleByIdAsync(object id)
@@ -212,6 +97,155 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             var styles = await this.dataAccessObject.GetStylesForSelectAsync().ConfigureAwait(false);
             return styles.Select(this.mapper.Map<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public Task<object> InsertAsync(IReferenceInsertParseStyleModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.InsertInternalAsync(model);
+        }
+
+        /// <inheritdoc/>
+        public Task<IReferenceParseStyleModel[]> SelectAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+
+        /// <inheritdoc/>
+        public Task<IReferenceDetailsParseStyleModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectDetailsInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> UpdateAsync(IReferenceUpdateParseStyleModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.UpdateInternalAsync(model);
+        }
+
+        private async Task<object> DeleteInternalAsync(object id)
+        {
+            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<IReferenceParseStyleModel> GetByIdInternalAsync(object id)
+        {
+            var parseStyle = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
+
+            if (parseStyle == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IReferenceParseStyleDataTransferObject, ReferenceParseStyleModel>(parseStyle);
+
+            return model;
+        }
+
+        private async Task<IReferenceDetailsParseStyleModel> GetDetailsByIdInternalAsync(object id)
+        {
+            var parseStyle = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
+
+            if (parseStyle == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IReferenceDetailsParseStyleDataTransferObject, ReferenceDetailsParseStyleModel>(parseStyle);
+
+            return model;
+        }
+
+        private async Task<object> InsertInternalAsync(IReferenceInsertParseStyleModel model)
+        {
+            var parseStyle = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (parseStyle == null)
+            {
+                throw new InsertUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(parseStyle.ObjectId, parseStyle).ConfigureAwait(false);
+
+            return parseStyle.ObjectId;
+        }
+
+        private async Task<IReferenceDetailsParseStyleModel[]> SelectDetailsInternalAsync(int skip, int take)
+        {
+            var parseStyles = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+
+            if (parseStyles == null || !parseStyles.Any())
+            {
+                return Array.Empty<IReferenceDetailsParseStyleModel>();
+            }
+
+            var items = parseStyles.Select(this.mapper.Map<IReferenceDetailsParseStyleDataTransferObject, ReferenceDetailsParseStyleModel>).ToArray();
+            return items;
+        }
+
+        private async Task<IReferenceParseStyleModel[]> SelectInternalAsync(int skip, int take)
+        {
+            var parseStyles = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
+
+            if (parseStyles == null || !parseStyles.Any())
+            {
+                return Array.Empty<IReferenceParseStyleModel>();
+            }
+
+            var items = parseStyles.Select(this.mapper.Map<IReferenceParseStyleDataTransferObject, ReferenceParseStyleModel>).ToArray();
+            return items;
+        }
+
+        private async Task<object> UpdateInternalAsync(IReferenceUpdateParseStyleModel model)
+        {
+            var parseStyle = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (parseStyle == null)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(parseStyle.ObjectId, parseStyle).ConfigureAwait(false);
+
+            return parseStyle.ObjectId;
         }
     }
 }

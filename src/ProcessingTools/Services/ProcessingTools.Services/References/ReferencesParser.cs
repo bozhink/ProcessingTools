@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.References;
-using ProcessingTools.Contracts.Services.Rules;
-
 namespace ProcessingTools.Services.References
 {
     using System;
@@ -14,6 +11,8 @@ namespace ProcessingTools.Services.References
     using System.Xml;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
     using ProcessingTools.Contracts.Models.Rules;
+    using ProcessingTools.Contracts.Services.References;
+    using ProcessingTools.Contracts.Services.Rules;
 
     /// <summary>
     /// References parser.
@@ -35,7 +34,7 @@ namespace ProcessingTools.Services.References
         }
 
         /// <inheritdoc/>
-        public async Task<object> ParseAsync(XmlNode context, IEnumerable<IReferenceParseStyleModel> styles)
+        public Task<object> ParseAsync(XmlNode context, IEnumerable<IReferenceParseStyleModel> styles)
         {
             if (context == null)
             {
@@ -44,9 +43,14 @@ namespace ProcessingTools.Services.References
 
             if (styles == null || !styles.Any())
             {
-                return false;
+                return Task.FromResult<object>(false);
             }
 
+            return this.ParseInternalAsync(context, styles);
+        }
+
+        private async Task<object> ParseInternalAsync(XmlNode context, IEnumerable<IReferenceParseStyleModel> styles)
+        {
             var scripts = styles.Select(s => s.Script);
 
             var ruleSets = new List<IXmlReplaceRuleSetModel>();

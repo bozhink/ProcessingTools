@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Imaging;
-
 namespace ProcessingTools.Services.Imaging
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Services.Imaging
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Services.Imaging;
 
     /// <summary>
     /// Default <see cref="IBarcodeEncoder"/> implementation.

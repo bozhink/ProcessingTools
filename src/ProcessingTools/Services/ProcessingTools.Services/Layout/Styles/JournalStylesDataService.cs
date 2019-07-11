@@ -2,13 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.History;
-using ProcessingTools.Contracts.Services.Layout.Styles;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
-
 namespace ProcessingTools.Services.Layout.Styles
 {
     using System;
@@ -22,6 +15,12 @@ namespace ProcessingTools.Services.Layout.Styles
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Journals;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Services.History;
+    using ProcessingTools.Contracts.Services.Layout.Styles;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
     using ProcessingTools.Services.Models.Layout.Styles;
     using ProcessingTools.Services.Models.Layout.Styles.Floats;
     using ProcessingTools.Services.Models.Layout.Styles.Journals;
@@ -33,8 +32,8 @@ namespace ProcessingTools.Services.Layout.Styles
     public class JournalStylesDataService : IJournalStylesDataService
     {
         private readonly IJournalStylesDataAccessObject dataAccessObject;
-        private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
+        private readonly IObjectHistoryDataService objectHistoryDataService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalStylesDataService"/> class.
@@ -76,151 +75,81 @@ namespace ProcessingTools.Services.Layout.Styles
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(IJournalInsertStyleModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var journalStyle = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (journalStyle == null)
-            {
-                throw new InsertUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(journalStyle.ObjectId, journalStyle).ConfigureAwait(false);
-
-            return journalStyle.ObjectId;
-        }
-
-        /// <inheritdoc/>
-        public async Task<object> UpdateAsync(IJournalUpdateStyleModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var journalStyle = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (journalStyle == null)
-            {
-                throw new UpdateUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(journalStyle.ObjectId, journalStyle).ConfigureAwait(false);
-
-            return journalStyle.ObjectId;
-        }
-
-        /// <inheritdoc/>
-        public async Task<object> DeleteAsync(object id)
+        public Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
+            return this.DeleteInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalStyleModel> GetByIdAsync(object id)
+        public Task<IJournalStyleModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var journalStyle = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
-
-            if (journalStyle == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IJournalStyleDataTransferObject, JournalStyleModel>(journalStyle);
-
-            return model;
+            return this.GetByIdInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsStyleModel> GetDetailsByIdAsync(object id)
+        public Task<IJournalDetailsStyleModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var journalStyle = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
-
-            if (journalStyle == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>(journalStyle);
-
-            return model;
+            return this.GetDetailsByIdInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalStyleModel[]> SelectAsync(int skip, int take)
+        public Task<IFloatObjectParseStyleModel[]> GetFloatObjectParseStylesAsync(object id)
         {
-            if (skip < PaginationConstants.MinimalPageNumber)
+            if (id == null)
             {
-                throw new InvalidPageNumberException();
+                throw new ArgumentNullException(nameof(id));
             }
 
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var journalStyles = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
-
-            if (journalStyles == null || !journalStyles.Any())
-            {
-                return Array.Empty<IJournalStyleModel>();
-            }
-
-            var items = journalStyles.Select(this.mapper.Map<IJournalStyleDataTransferObject, JournalStyleModel>).ToArray();
-            return items;
+            return this.GetFloatObjectParseStylesInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsStyleModel[]> SelectDetailsAsync(int skip, int take)
+        public Task<IFloatObjectTagStyleModel[]> GetFloatObjectTagStylesAsync(object id)
         {
-            if (skip < PaginationConstants.MinimalPageNumber)
+            if (id == null)
             {
-                throw new InvalidPageNumberException();
+                throw new ArgumentNullException(nameof(id));
             }
 
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var journalStyles = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-
-            if (journalStyles == null || !journalStyles.Any())
-            {
-                return Array.Empty<IJournalDetailsStyleModel>();
-            }
-
-            var items = journalStyles.Select(this.mapper.Map<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>).ToArray();
-            return items;
+            return this.GetFloatObjectTagStylesInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+        public Task<IReferenceParseStyleModel[]> GetReferenceParseStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetReferenceParseStylesInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IReferenceTagStyleModel[]> GetReferenceTagStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetReferenceTagStylesInternalAsync(id);
+        }
 
         /// <inheritdoc/>
         public async Task<IIdentifiedStyleModel> GetStyleByIdAsync(object id)
@@ -237,51 +166,176 @@ namespace ProcessingTools.Services.Layout.Styles
         }
 
         /// <inheritdoc/>
-        public async Task<IFloatObjectParseStyleModel[]> GetFloatObjectParseStylesAsync(object id)
+        public Task<object> InsertAsync(IJournalInsertStyleModel model)
         {
-            if (id == null)
+            if (model == null)
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new ArgumentNullException(nameof(model));
             }
 
+            return this.InsertInternalAsync(model);
+        }
+
+        /// <inheritdoc/>
+        public Task<IJournalStyleModel[]> SelectAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+
+        /// <inheritdoc/>
+        public Task<IJournalDetailsStyleModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectDetailsInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> UpdateAsync(IJournalUpdateStyleModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.UpdateInternalAsync(model);
+        }
+
+        private async Task<object> DeleteInternalAsync(object id)
+        {
+            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<IJournalStyleModel> GetByIdInternalAsync(object id)
+        {
+            var journalStyle = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
+
+            if (journalStyle == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IJournalStyleDataTransferObject, JournalStyleModel>(journalStyle);
+
+            return model;
+        }
+
+        private async Task<IJournalDetailsStyleModel> GetDetailsByIdInternalAsync(object id)
+        {
+            var journalStyle = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
+
+            if (journalStyle == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>(journalStyle);
+
+            return model;
+        }
+
+        private async Task<IFloatObjectParseStyleModel[]> GetFloatObjectParseStylesInternalAsync(object id)
+        {
             var styles = await this.dataAccessObject.GetFloatObjectParseStylesAsync(id).ConfigureAwait(false);
             return styles.Select(this.mapper.Map<IFloatObjectParseStyleDataTransferObject, IFloatObjectParseStyleModel>).ToArray();
         }
 
-        /// <inheritdoc/>
-        public async Task<IFloatObjectTagStyleModel[]> GetFloatObjectTagStylesAsync(object id)
+        private async Task<IFloatObjectTagStyleModel[]> GetFloatObjectTagStylesInternalAsync(object id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
             var styles = await this.dataAccessObject.GetFloatObjectTagStylesAsync(id).ConfigureAwait(false);
             return styles.Select(this.mapper.Map<IFloatObjectTagStyleDataTransferObject, IFloatObjectTagStyleModel>).ToArray();
         }
 
-        /// <inheritdoc/>
-        public async Task<IReferenceParseStyleModel[]> GetReferenceParseStylesAsync(object id)
+        private async Task<IReferenceParseStyleModel[]> GetReferenceParseStylesInternalAsync(object id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
             var styles = await this.dataAccessObject.GetReferenceParseStylesAsync(id).ConfigureAwait(false);
             return styles.Select(this.mapper.Map<IReferenceParseStyleDataTransferObject, IReferenceParseStyleModel>).ToArray();
         }
 
-        /// <inheritdoc/>
-        public async Task<IReferenceTagStyleModel[]> GetReferenceTagStylesAsync(object id)
+        private async Task<IReferenceTagStyleModel[]> GetReferenceTagStylesInternalAsync(object id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
             var styles = await this.dataAccessObject.GetReferenceTagStylesAsync(id).ConfigureAwait(false);
             return styles.Select(this.mapper.Map<IReferenceTagStyleDataTransferObject, IReferenceTagStyleModel>).ToArray();
+        }
+
+        private async Task<object> InsertInternalAsync(IJournalInsertStyleModel model)
+        {
+            var journalStyle = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (journalStyle == null)
+            {
+                throw new InsertUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(journalStyle.ObjectId, journalStyle).ConfigureAwait(false);
+
+            return journalStyle.ObjectId;
+        }
+
+        private async Task<IJournalDetailsStyleModel[]> SelectDetailsInternalAsync(int skip, int take)
+        {
+            var journalStyles = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+
+            if (journalStyles == null || !journalStyles.Any())
+            {
+                return Array.Empty<IJournalDetailsStyleModel>();
+            }
+
+            var items = journalStyles.Select(this.mapper.Map<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>).ToArray();
+            return items;
+        }
+
+        private async Task<IJournalStyleModel[]> SelectInternalAsync(int skip, int take)
+        {
+            var journalStyles = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
+
+            if (journalStyles == null || !journalStyles.Any())
+            {
+                return Array.Empty<IJournalStyleModel>();
+            }
+
+            var items = journalStyles.Select(this.mapper.Map<IJournalStyleDataTransferObject, JournalStyleModel>).ToArray();
+            return items;
+        }
+
+        private async Task<object> UpdateInternalAsync(IJournalUpdateStyleModel model)
+        {
+            var journalStyle = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (journalStyle == null)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(journalStyle.ObjectId, journalStyle).ConfigureAwait(false);
+
+            return journalStyle.ObjectId;
         }
     }
 }

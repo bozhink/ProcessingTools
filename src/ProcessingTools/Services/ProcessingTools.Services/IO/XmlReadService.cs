@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.IO;
-
 namespace ProcessingTools.Services.IO
 {
     using System;
@@ -13,9 +11,10 @@ namespace ProcessingTools.Services.IO
     using System.Xml;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Services.IO;
 
     /// <summary>
-    /// Xml read service.
+    /// XML read service.
     /// </summary>
     public class XmlReadService : IXmlReadService
     {
@@ -43,6 +42,30 @@ namespace ProcessingTools.Services.IO
 
         /// <inheritdoc/>
         public XmlReaderSettings ReaderSettings { get; set; }
+
+        /// <inheritdoc/>
+        public Stream GetStreamForXmlString(string xml)
+        {
+            if (string.IsNullOrWhiteSpace(xml))
+            {
+                throw new ArgumentNullException(nameof(xml));
+            }
+
+            try
+            {
+                byte[] bytes = this.Encoding.GetBytes(xml);
+                Stream stream = new MemoryStream(bytes)
+                {
+                    Position = 0,
+                };
+
+                return stream;
+            }
+            catch (EncoderFallbackException e)
+            {
+                throw new EncoderFallbackException($"Input document string should be {Defaults.Encoding.EncodingName} encoded.", e);
+            }
+        }
 
         /// <inheritdoc/>
         public XmlReader GetXmlReaderForFile(string fileName)
@@ -95,59 +118,18 @@ namespace ProcessingTools.Services.IO
         }
 
         /// <inheritdoc/>
-        public Stream GetStreamForXmlString(string xml)
-        {
-            if (string.IsNullOrWhiteSpace(xml))
-            {
-                throw new ArgumentNullException(nameof(xml));
-            }
-
-            try
-            {
-                byte[] bytes = this.Encoding.GetBytes(xml);
-                Stream stream = new MemoryStream(bytes)
-                {
-                    Position = 0,
-                };
-
-                return stream;
-            }
-            catch (EncoderFallbackException e)
-            {
-                throw new EncoderFallbackException($"Input document string should be {Defaults.Encoding.EncodingName} encoded.", e);
-            }
-        }
-
-        /// <inheritdoc/>
-        public async Task<XmlDocument> ReadFileToXmlDocumentAsync(string fileName)
+        public Task<XmlDocument> ReadFileToXmlDocumentAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            var reader = this.GetXmlReaderForFile(fileName);
-
-            try
-            {
-                return await this.ReadXmlReaderToXmlDocumentAsync(reader).ConfigureAwait(false);
-            }
-            finally
-            {
-                try
-                {
-                    reader.Close();
-                    reader.Dispose();
-                }
-                catch
-                {
-                    // Skip
-                }
-            }
+            return this.ReadFileToXmlDocumentInternalAsync(fileName);
         }
 
         /// <inheritdoc/>
-        public async Task<XmlDocument> ReadStreamToXmlDocumentAsync(Stream stream)
+        public Task<XmlDocument> ReadStreamToXmlDocumentAsync(Stream stream)
         {
             if (stream == null)
             {
@@ -159,24 +141,7 @@ namespace ProcessingTools.Services.IO
                 throw new StreamCannotBeReadException();
             }
 
-            var reader = this.GetXmlReaderForStream(stream);
-
-            try
-            {
-                return await this.ReadXmlReaderToXmlDocumentAsync(reader).ConfigureAwait(false);
-            }
-            finally
-            {
-                try
-                {
-                    reader.Close();
-                    reader.Dispose();
-                }
-                catch
-                {
-                    // Skip
-                }
-            }
+            return this.ReadStreamToXmlDocumentInternalAsync(stream);
         }
 
         /// <inheritdoc/>
@@ -201,13 +166,62 @@ namespace ProcessingTools.Services.IO
         }
 
         /// <inheritdoc/>
-        public async Task<XmlDocument> ReadXmlStringToXmlDocumentAsync(string xml)
+        public Task<XmlDocument> ReadXmlStringToXmlDocumentAsync(string xml)
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
                 throw new ArgumentNullException(nameof(xml));
             }
 
+            return this.ReadXmlStringToXmlDocumentInternalAsync(xml);
+        }
+
+        private async Task<XmlDocument> ReadFileToXmlDocumentInternalAsync(string fileName)
+        {
+            var reader = this.GetXmlReaderForFile(fileName);
+
+            try
+            {
+                return await this.ReadXmlReaderToXmlDocumentAsync(reader).ConfigureAwait(false);
+            }
+            finally
+            {
+                try
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                catch
+                {
+                    // Skip
+                }
+            }
+        }
+
+        private async Task<XmlDocument> ReadStreamToXmlDocumentInternalAsync(Stream stream)
+        {
+            var reader = this.GetXmlReaderForStream(stream);
+
+            try
+            {
+                return await this.ReadXmlReaderToXmlDocumentAsync(reader).ConfigureAwait(false);
+            }
+            finally
+            {
+                try
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                catch
+                {
+                    // Skip
+                }
+            }
+        }
+
+        private async Task<XmlDocument> ReadXmlStringToXmlDocumentInternalAsync(string xml)
+        {
             var reader = this.GetXmlReaderForXmlString(xml);
 
             try

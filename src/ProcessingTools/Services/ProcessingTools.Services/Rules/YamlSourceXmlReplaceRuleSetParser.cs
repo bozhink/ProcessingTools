@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Rules;
-
 namespace ProcessingTools.Services.Rules
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Rules;
+    using ProcessingTools.Contracts.Services.Rules;
     using ProcessingTools.Services.Models.Rules;
     using YamlDotNet.Serialization;
     using YamlDotNet.Serialization.NamingConventions;

@@ -8,14 +8,13 @@
  * 24 km W
  */
 
-using ProcessingTools.Contracts.Services.Geo;
-
 namespace ProcessingTools.Services.Geo
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Geo;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -26,13 +25,18 @@ namespace ProcessingTools.Services.Geo
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
         /// <inheritdoc/>
-        public async Task<string[]> MineAsync(string context)
+        public Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.MineInternalAsync(context);
+        }
+
+        private async Task<string[]> MineInternalAsync(string context)
+        {
             const string Pattern = DistancePattern + @"\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|north)+)";
 
             var data = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);

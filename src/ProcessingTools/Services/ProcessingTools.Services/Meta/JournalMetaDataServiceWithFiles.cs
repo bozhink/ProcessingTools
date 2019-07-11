@@ -2,15 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Meta;
-using ProcessingTools.Contracts.Services.Serialization;
-
 namespace ProcessingTools.Services.Meta
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Contracts.Services.Meta;
+    using ProcessingTools.Contracts.Services.Serialization;
     using ProcessingTools.Services.Models.Data.Meta;
 
     /// <summary>
@@ -30,13 +29,18 @@ namespace ProcessingTools.Services.Meta
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalMeta> GetJournalMetaAsync(string journalJsonFileName)
+        public Task<IJournalMeta> GetJournalMetaAsync(string journalJsonFileName)
         {
             if (string.IsNullOrWhiteSpace(journalJsonFileName))
             {
                 throw new ArgumentNullException(nameof(journalJsonFileName));
             }
 
+            return this.GetJournalMetaInternalAsync(journalJsonFileName);
+        }
+
+        private async Task<IJournalMeta> GetJournalMetaInternalAsync(string journalJsonFileName)
+        {
             using (var stream = new FileStream(journalJsonFileName, FileMode.Open))
             {
                 var journalJsonObject = await this.deserializer.DeserializeAsync<JournalMetaDataContract>(stream).ConfigureAwait(false);

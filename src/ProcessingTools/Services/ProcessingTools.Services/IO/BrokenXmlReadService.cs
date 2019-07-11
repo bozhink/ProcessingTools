@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.IO;
-
 namespace ProcessingTools.Services.IO
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Services.IO
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Contracts.Services.IO;
 
     /// <summary>
     /// Broken XML read service.
@@ -36,6 +35,9 @@ namespace ProcessingTools.Services.IO
         public XmlReaderSettings ReaderSettings { get => this.xmlReadService.ReaderSettings; set => this.xmlReadService.ReaderSettings = value; }
 
         /// <inheritdoc/>
+        public Stream GetStreamForXmlString(string xml) => this.xmlReadService.GetStreamForXmlString(xml);
+
+        /// <inheritdoc/>
         public XmlReader GetXmlReaderForFile(string fileName) => this.xmlReadService.GetXmlReaderForFile(fileName);
 
         /// <inheritdoc/>
@@ -45,16 +47,35 @@ namespace ProcessingTools.Services.IO
         public XmlReader GetXmlReaderForXmlString(string xml) => this.xmlReadService.GetXmlReaderForXmlString(xml);
 
         /// <inheritdoc/>
-        public Stream GetStreamForXmlString(string xml) => this.xmlReadService.GetStreamForXmlString(xml);
-
-        /// <inheritdoc/>
-        public async Task<XmlDocument> ReadFileToXmlDocumentAsync(string fileName)
+        public Task<XmlDocument> ReadFileToXmlDocumentAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
+            return this.ReadFileToXmlDocumentInternalAsync(fileName);
+        }
+
+        /// <inheritdoc/>
+        public Task<XmlDocument> ReadStreamToXmlDocumentAsync(Stream stream)
+        {
+            if (stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            return this.ReadStreamToXmlDocumentInternalAsync(stream);
+        }
+
+        /// <inheritdoc/>
+        public Task<XmlDocument> ReadXmlReaderToXmlDocumentAsync(XmlReader reader) => this.xmlReadService.ReadXmlReaderToXmlDocumentAsync(reader);
+
+        /// <inheritdoc/>
+        public Task<XmlDocument> ReadXmlStringToXmlDocumentAsync(string xml) => this.xmlReadService.ReadXmlStringToXmlDocumentAsync(xml);
+
+        private async Task<XmlDocument> ReadFileToXmlDocumentInternalAsync(string fileName)
+        {
             XmlDocument document;
             try
             {
@@ -79,14 +100,8 @@ namespace ProcessingTools.Services.IO
             return document;
         }
 
-        /// <inheritdoc/>
-        public async Task<XmlDocument> ReadStreamToXmlDocumentAsync(Stream stream)
+        private async Task<XmlDocument> ReadStreamToXmlDocumentInternalAsync(Stream stream)
         {
-            if (stream == null)
-            {
-                throw new ArgumentNullException(nameof(stream));
-            }
-
             XmlDocument document;
             try
             {
@@ -110,12 +125,6 @@ namespace ProcessingTools.Services.IO
 
             return document;
         }
-
-        /// <inheritdoc/>
-        public Task<XmlDocument> ReadXmlReaderToXmlDocumentAsync(XmlReader reader) => this.xmlReadService.ReadXmlReaderToXmlDocumentAsync(reader);
-
-        /// <inheritdoc/>
-        public Task<XmlDocument> ReadXmlStringToXmlDocumentAsync(string xml) => this.xmlReadService.ReadXmlStringToXmlDocumentAsync(xml);
 
         private XmlDocument RestoreXmlDocument(string fileName)
         {
