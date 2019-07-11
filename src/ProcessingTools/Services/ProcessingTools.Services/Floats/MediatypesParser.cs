@@ -35,13 +35,18 @@ namespace ProcessingTools.Services.Floats
         }
 
         /// <inheritdoc/>
-        public async Task<object> ParseAsync(XmlNode context)
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.ParseInternalAsync(context);
+        }
+
+        private async Task<object> ParseInternalAsync(XmlNode context)
+        {
             var mediaElementList = context.SelectNodes(XPathStrings.MediaElement);
             if (mediaElementList.Count < 1)
             {

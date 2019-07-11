@@ -2,16 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Geo;
-
 namespace ProcessingTools.Services.Geo
 {
-    using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Geo;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -20,66 +17,36 @@ namespace ProcessingTools.Services.Geo
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {
         /// <inheritdoc/>
-        public async Task<string[]> MineAsync(string context)
+        public Task<string[]> MineAsync(string context)
         {
-            var internalMiner = new InternalMiner(Regex.Replace(context, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°"));
-
-            var result = new ConcurrentQueue<string>();
-            var methods = typeof(InternalMiner).GetMethods()
-                .Where(m => !m.IsConstructor && m.IsPublic && m.ReturnType == typeof(Task<IEnumerable<string>>))
-                .ToList();
-            foreach (var method in methods)
+            string[] patterns = new[]
             {
-                var task = (Task<IEnumerable<string>>)method.Invoke(internalMiner, null);
-                var items = await task.ConfigureAwait(false);
-                items.AsParallel()
-                    .ForAll(item => result.Enqueue(item.Trim(' ', ';', ',', ':')));
-            }
+                // direction number coordinates
+                @"((?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2})\s*?\W{0,3}?\s*(?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2}))",
 
-            return new HashSet<string>(result).ToArray();
-        }
+                // decimal number direction coordinates
+                @"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO]))",
 
-        private class InternalMiner
-        {
-            private readonly string content;
+                // decimal number deg direction coordinates
+                @"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO]))",
 
-            public InternalMiner(string content)
+                // decimal number coordinates
+                @"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b)\s*[;,\s]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b))",
+            };
+
+            return Task.Run(() =>
             {
-                if (string.IsNullOrWhiteSpace(content))
+                string content = Regex.Replace(context, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°");
+
+                var result = new HashSet<string>();
+                foreach (var pattern in patterns)
                 {
-                    throw new ArgumentNullException(nameof(content));
+                    var items = content.GetMatches(new Regex(pattern));
+                    items.AsParallel().ForAll(item => result.Add(item.Trim(' ', ';', ',', ':')));
                 }
 
-                this.content = content;
-            }
-
-            public async Task<IEnumerable<string>> GetDirectionNumberCoordinates()
-            {
-                const string Pattern = @"((?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2})\s*?\W{0,3}?\s*(?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2}))";
-
-                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
-            }
-
-            public async Task<IEnumerable<string>> GetDecimalNumberDirectionCoordinates()
-            {
-                const string Pattern = @"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO]))";
-
-                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
-            }
-
-            public async Task<IEnumerable<string>> GetDecimalNumberDegDirectionCoordinates()
-            {
-                const string Pattern = @"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO]))";
-
-                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
-            }
-
-            public async Task<IEnumerable<string>> GetDecimalNumberCoordinates()
-            {
-                const string Pattern = @"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b)\s*[;,\s]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b))";
-
-                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
-            }
+                return result.ToArray();
+            });
         }
     }
 }

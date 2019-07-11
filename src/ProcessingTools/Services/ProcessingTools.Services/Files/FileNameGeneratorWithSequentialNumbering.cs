@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Files;
-
 namespace ProcessingTools.Services.Files
 {
     using System;
@@ -11,6 +9,7 @@ namespace ProcessingTools.Services.Files
     using System.Text.RegularExpressions;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Services.Files;
 
     /// <summary>
     /// File name generator with sequential numbering.
@@ -44,7 +43,9 @@ namespace ProcessingTools.Services.Files
         private string GetNewFileName(string directoryName, string fileName)
         {
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-            string outputFileNameFormat = null;
+
+            string outputFileNameFormat;
+
             if (Regex.IsMatch(fileNameWithoutExtension, @"\-out(?:\-\d+)?\Z"))
             {
                 fileNameWithoutExtension = Regex.Replace(fileNameWithoutExtension, @"\-\d+(?=\Z)", string.Empty);

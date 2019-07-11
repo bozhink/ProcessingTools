@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Files;
-using ProcessingTools.Contracts.Services.History;
-using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
-
 namespace ProcessingTools.Services.Files
 {
     using System;
@@ -16,6 +12,9 @@ namespace ProcessingTools.Services.Files
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.DataAccess.Files;
     using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Contracts.Services.History;
+    using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
     using ProcessingTools.Services.Models.Files.Mediatypes;
 
     /// <summary>
@@ -24,8 +23,8 @@ namespace ProcessingTools.Services.Files
     public class MediatypesDataService : IMediatypesDataService
     {
         private readonly IMediatypesDataAccessObject dataAccessObject;
-        private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
+        private readonly IObjectHistoryDataService objectHistoryDataService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypesDataService"/> class.
@@ -51,161 +50,36 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(IMediatypeInsertModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var mediatype = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (mediatype == null)
-            {
-                throw new InsertUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(mediatype.ObjectId, mediatype).ConfigureAwait(false);
-
-            return mediatype.ObjectId;
-        }
-
-        /// <inheritdoc/>
-        public async Task<object> UpdateAsync(IMediatypeUpdateModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var mediatype = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (mediatype == null)
-            {
-                throw new UpdateUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(mediatype.ObjectId, mediatype).ConfigureAwait(false);
-
-            return mediatype.ObjectId;
-        }
-
-        /// <inheritdoc/>
-        public async Task<object> DeleteAsync(object id)
+        public Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
+            return this.DeleteInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeModel> GetByIdAsync(object id)
+        public Task<IMediatypeModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var mediatype = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
-
-            if (mediatype == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IMediatypeDataTransferObject, MediatypeModel>(mediatype);
-
-            return model;
+            return this.GetByIdInternalAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeDetailsModel> GetDetailsByIdAsync(object id)
+        public Task<IMediatypeDetailsModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var mediatype = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
-
-            if (mediatype == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IMediatypeDetailsDataTransferObject, MediatypeDetailsModel>(mediatype);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IMediatypeModel[]> SelectAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var mediatypes = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
-
-            if (mediatypes == null || !mediatypes.Any())
-            {
-                return Array.Empty<IMediatypeModel>();
-            }
-
-            var items = mediatypes.Select(this.mapper.Map<IMediatypeDataTransferObject, MediatypeModel>).ToArray();
-            return items;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IMediatypeDetailsModel[]> SelectDetailsAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var mediatypes = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-            if (mediatypes == null || !mediatypes.Any())
-            {
-                return Array.Empty<IMediatypeDetailsModel>();
-            }
-
-            var items = mediatypes.Select(this.mapper.Map<IMediatypeDetailsDataTransferObject, MediatypeDetailsModel>).ToArray();
-            return items;
-        }
-
-        /// <inheritdoc/>
-        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
-
-        /// <inheritdoc/>
-        public async Task<string[]> GetMimeTypesAsync()
-        {
-            return await this.dataAccessObject.GetMimeTypesAsync().ConfigureAwait(false);
-        }
-
-        /// <inheritdoc/>
-        public async Task<string[]> GetMimeSubtypesAsync()
-        {
-            return await this.dataAccessObject.GetMimeSubtypesAsync().ConfigureAwait(false);
+            return this.GetDetailsByIdInternalAsync(id);
         }
 
         /// <inheritdoc/>
@@ -242,6 +116,166 @@ namespace ProcessingTools.Services.Files
             }
 
             return mediatypes.Select(this.mapper.Map<IMediatypeMetaModel>).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task<string[]> GetMimeSubtypesAsync()
+        {
+            return await this.dataAccessObject.GetMimeSubtypesAsync().ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public async Task<string[]> GetMimeTypesAsync()
+        {
+            return await this.dataAccessObject.GetMimeTypesAsync().ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> InsertAsync(IMediatypeInsertModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.InsertInternalAsync(model);
+        }
+
+        /// <inheritdoc/>
+        public Task<IMediatypeModel[]> SelectAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+
+        /// <inheritdoc/>
+        public Task<IMediatypeDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectDetailsInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> UpdateAsync(IMediatypeUpdateModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.UpdateInternalAsync(model);
+        }
+
+        private async Task<object> DeleteInternalAsync(object id)
+        {
+            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<IMediatypeModel> GetByIdInternalAsync(object id)
+        {
+            var mediatype = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
+
+            if (mediatype == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IMediatypeDataTransferObject, MediatypeModel>(mediatype);
+
+            return model;
+        }
+
+        private async Task<IMediatypeDetailsModel> GetDetailsByIdInternalAsync(object id)
+        {
+            var mediatype = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
+
+            if (mediatype == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IMediatypeDetailsDataTransferObject, MediatypeDetailsModel>(mediatype);
+
+            return model;
+        }
+
+        private async Task<object> InsertInternalAsync(IMediatypeInsertModel model)
+        {
+            var mediatype = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (mediatype == null)
+            {
+                throw new InsertUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(mediatype.ObjectId, mediatype).ConfigureAwait(false);
+
+            return mediatype.ObjectId;
+        }
+
+        private async Task<IMediatypeDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
+        {
+            var mediatypes = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+            if (mediatypes == null || !mediatypes.Any())
+            {
+                return Array.Empty<IMediatypeDetailsModel>();
+            }
+
+            var items = mediatypes.Select(this.mapper.Map<IMediatypeDetailsDataTransferObject, MediatypeDetailsModel>).ToArray();
+            return items;
+        }
+
+        private async Task<IMediatypeModel[]> SelectInternalAsync(int skip, int take)
+        {
+            var mediatypes = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
+
+            if (mediatypes == null || !mediatypes.Any())
+            {
+                return Array.Empty<IMediatypeModel>();
+            }
+
+            var items = mediatypes.Select(this.mapper.Map<IMediatypeDataTransferObject, MediatypeModel>).ToArray();
+            return items;
+        }
+
+        private async Task<object> UpdateInternalAsync(IMediatypeUpdateModel model)
+        {
+            var mediatype = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (mediatype == null)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(mediatype.ObjectId, mediatype).ConfigureAwait(false);
+
+            return mediatype.ObjectId;
         }
     }
 }

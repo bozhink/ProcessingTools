@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.ExternalLinks;
-using ProcessingTools.Contracts.Services.Models.ExternalLinks;
-
 namespace ProcessingTools.Services.ExternalLinks
 {
     using System;
@@ -14,8 +11,10 @@ namespace ProcessingTools.Services.ExternalLinks
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations.Nlm;
-    using ProcessingTools.Services.Models.ExternalLinks;
+    using ProcessingTools.Contracts.Services.ExternalLinks;
+    using ProcessingTools.Contracts.Services.Models.ExternalLinks;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Models.ExternalLinks;
 
     /// <summary>
     /// External links data miner.
