@@ -2,15 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using Newtonsoft.Json;
-using ProcessingTools.Common.Constants.Security;
-
 namespace ProcessingTools.Services.Security
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Security.Cryptography.X509Certificates;
+    using System.Text;
+    using Newtonsoft.Json;
+    using ProcessingTools.Common.Constants.Security;
+
     /// <summary>
     /// JWS helper.
     /// </summary>

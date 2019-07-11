@@ -1,12 +1,14 @@
-﻿using ProcessingTools.Contracts.Services.Tools;
-using ProcessingTools.Services.Security;
+﻿// <copyright file="HashService.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
 
 namespace ProcessingTools.Services.Tools
 {
     using System;
     using System.Text;
     using System.Threading.Tasks;
-    using SecurityUtilities = SecurityUtilities;
+    using ProcessingTools.Contracts.Services.Tools;
+    using SecurityUtilities = ProcessingTools.Services.Security.SecurityUtilities;
 
     /// <summary>
     /// Hash service.

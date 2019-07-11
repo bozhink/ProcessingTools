@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Models;
-
 namespace ProcessingTools.Contracts.Services.Layout
 {
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models;
+
     /// <summary>
     /// Provides normalization for IDocument objects.
     /// </summary>

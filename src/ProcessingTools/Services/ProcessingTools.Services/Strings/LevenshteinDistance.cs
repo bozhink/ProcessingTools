@@ -3,7 +3,6 @@
 // </copyright>
 
 // See https://www.datacamp.com/community/tutorials/fuzzy-string-python
-
 namespace ProcessingTools.Services.Strings
 {
     using System;

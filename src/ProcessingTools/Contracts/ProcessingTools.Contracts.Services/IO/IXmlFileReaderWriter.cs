@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.IO;
-using System.Threading.Tasks;
-using System.Xml;
-
 namespace ProcessingTools.Contracts.Services.IO
 {
+    using System.IO;
+    using System.Threading.Tasks;
+    using System.Xml;
+
     /// <summary>
     /// Reader and writer for XML files.
     /// </summary>

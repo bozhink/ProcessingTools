@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.IO;
-using System.Threading.Tasks;
-
 namespace ProcessingTools.Contracts.Services.Imaging
 {
+    using System.IO;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Image processor.
     /// </summary>

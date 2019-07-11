@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-using ProcessingTools.Clients.Models.References.Mendeley;
-
 namespace ProcessingTools.Contracts.Services.References
 {
+    using System.Threading.Tasks;
+    using ProcessingTools.Clients.Models.References.Mendeley;
+
     /// <summary>
     /// Mendeley data requester.
     /// </summary>

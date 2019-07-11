@@ -27,7 +27,7 @@ namespace ProcessingTools.Services.Xml
         }
 
         /// <inheritdoc/>
-        public async Task<T> DeserializeAsync<T>(IXmlTransformer transformer, string xml)
+        public Task<T> DeserializeAsync<T>(IXmlTransformer transformer, string xml)
         {
             if (transformer == null)
             {
@@ -39,18 +39,11 @@ namespace ProcessingTools.Services.Xml
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            var stream = transformer.TransformToStream(xml);
-
-            var result = await this.serializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
-
-            stream.Close();
-            stream.Dispose();
-
-            return result;
+            return this.DeserializeInternalAsync<T>(transformer, xml);
         }
 
         /// <inheritdoc/>
-        public async Task<T> DeserializeAsync<T>(IXmlTransformer transformer, XmlNode node)
+        public Task<T> DeserializeAsync<T>(IXmlTransformer transformer, XmlNode node)
         {
             if (transformer == null)
             {
@@ -62,6 +55,23 @@ namespace ProcessingTools.Services.Xml
                 throw new ArgumentNullException(nameof(node));
             }
 
+            return this.DeserializeInternalAsync<T>(transformer, node);
+        }
+
+        private async Task<T> DeserializeInternalAsync<T>(IXmlTransformer transformer, string xml)
+        {
+            var stream = transformer.TransformToStream(xml);
+
+            var result = await this.serializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
+
+            stream.Close();
+            stream.Dispose();
+
+            return result;
+        }
+
+        private async Task<T> DeserializeInternalAsync<T>(IXmlTransformer transformer, XmlNode node)
+        {
             var stream = transformer.TransformToStream(node);
 
             var result = await this.serializer.DeserializeAsync<T>(stream).ConfigureAwait(false);

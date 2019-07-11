@@ -67,26 +67,36 @@ namespace ProcessingTools.Services.Validation
         }
 
         /// <inheritdoc/>
-        public async Task<object> ValidateAsync(IDocument context, IReporter reporter)
+        public Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            if (reporter == null)
+            {
+                throw new ArgumentNullException(nameof(reporter));
+            }
+
+            return this.ValidateInternalAsync(context, reporter);
+        }
+
+        private async Task<object> ValidateInternalAsync(IDocument context, IReporter reporter)
+        {
             string fileName = Path.GetTempFileName() + "." + FileConstants.XmlFileExtension;
 
             reporter.AppendContent($"File name = {fileName}");
 
-            await this.WriteXmlFileWithDoctype(context, fileName).ConfigureAwait(false);
+            await this.WriteXmlFileWithDoctypeAsync(context, fileName).ConfigureAwait(false);
 
-            await this.ReadXmlFileWithDtdValidation(fileName).ConfigureAwait(false);
+            await this.ReadXmlFileWithDtdValidationAsync(fileName).ConfigureAwait(false);
 
             reporter.AppendContent(this.reportBuilder.ToString());
             return true;
         }
 
-        private async Task ReadXmlFileWithDtdValidation(string fileName)
+        private async Task ReadXmlFileWithDtdValidationAsync(string fileName)
         {
             using (var reader = XmlReader.Create(fileName, this.readerSettings))
             {
@@ -99,7 +109,7 @@ namespace ProcessingTools.Services.Validation
             }
         }
 
-        private async Task WriteXmlFileWithDoctype(IDocument document, string fileName)
+        private async Task WriteXmlFileWithDoctypeAsync(IDocument document, string fileName)
         {
             using (var writer = XmlWriter.Create(fileName, this.writerSettings))
             {
@@ -118,9 +128,6 @@ namespace ProcessingTools.Services.Validation
             }
         }
 
-        private void ValidationCallBack(object sender, ValidationEventArgs e)
-        {
-            this.reportBuilder.Append($"Validation Error: {e.Message}");
-        }
+        private void ValidationCallBack(object sender, ValidationEventArgs e) => this.reportBuilder.Append($"Validation Error: {e.Message}");
     }
 }

@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-
 namespace ProcessingTools.Services.Strings
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
     /// <summary>
     /// Words statistics calculator.
     /// </summary>

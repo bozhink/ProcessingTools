@@ -33,7 +33,7 @@ namespace ProcessingTools.Services.Validation
         }
 
         /// <inheritdoc/>
-        public async Task<object> ValidateAsync(IDocument context, IReporter reporter)
+        public Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)
             {
@@ -45,10 +45,15 @@ namespace ProcessingTools.Services.Validation
                 throw new ArgumentNullException(nameof(reporter));
             }
 
+            return this.ValidateInternalAsync(context, reporter);
+        }
+
+        private async Task<object> ValidateInternalAsync(IDocument context, IReporter reporter)
+        {
             var data = await this.harvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var externalLinks = data?.Select(e => e.FullAddress)
-                .Distinct()
-                .ToArray();
+
+            var externalLinks = data?.Select(e => e.FullAddress).Distinct().ToArray();
+
             if (externalLinks == null || externalLinks.Length < 1)
             {
                 reporter.AppendContent("Warning: No external links found.");

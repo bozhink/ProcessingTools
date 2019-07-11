@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using ProcessingTools.Common.Exceptions;
-using ProcessingTools.Extensions;
-
 namespace ProcessingTools.Services.Serialization.Csv
 {
+    using System;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Extensions;
+
     /// <summary>
     /// Mapping extensions.
     /// </summary>

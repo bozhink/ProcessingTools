@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Xml;
-
 namespace ProcessingTools.Contracts.Services
 {
+    using System.Xml;
+
     /// <summary>
     /// Generic normalizer over <see cref="XmlNode"/> context.
     /// </summary>

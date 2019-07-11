@@ -34,42 +34,14 @@ namespace ProcessingTools.Services.Xml
         protected abstract XslCompiledTransform XslCompiledTransform { get; }
 
         /// <inheritdoc/>
-        public async Task<string> TransformAsync(XmlReader reader, bool closeReader)
+        public Task<string> TransformAsync(XmlReader reader, bool closeReader)
         {
             if (reader == null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }
 
-            string result = string.Empty;
-
-            try
-            {
-                using (var stream = this.TransformToStream(reader))
-                {
-                    stream.Position = 0;
-                    var streamReader = new StreamReader(stream);
-                    result = await streamReader.ReadToEndAsync().ConfigureAwait(false);
-                    stream.Close();
-                }
-            }
-            finally
-            {
-                if (closeReader && reader?.ReadState != ReadState.Closed)
-                {
-                    try
-                    {
-                        reader.Close();
-                        reader.Dispose();
-                    }
-                    catch
-                    {
-                        // Skip
-                    }
-                }
-            }
-
-            return result;
+            return this.TransformInternalAsync(reader, closeReader);
         }
 
         /// <inheritdoc/>
@@ -131,6 +103,39 @@ namespace ProcessingTools.Services.Xml
 
             var reader = this.xmlReadService.GetXmlReaderForXmlString(xml);
             return this.TransformToStream(reader);
+        }
+
+        private async Task<string> TransformInternalAsync(XmlReader reader, bool closeReader)
+        {
+            string result = string.Empty;
+
+            try
+            {
+                using (var stream = this.TransformToStream(reader))
+                {
+                    stream.Position = 0;
+                    var streamReader = new StreamReader(stream);
+                    result = await streamReader.ReadToEndAsync().ConfigureAwait(false);
+                    stream.Close();
+                }
+            }
+            finally
+            {
+                if (closeReader && reader != null && reader.ReadState != ReadState.Closed)
+                {
+                    try
+                    {
+                        reader.Close();
+                        reader.Dispose();
+                    }
+                    catch
+                    {
+                        // Skip
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

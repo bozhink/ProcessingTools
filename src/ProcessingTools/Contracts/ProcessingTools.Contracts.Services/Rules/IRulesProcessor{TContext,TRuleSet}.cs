@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Models.Rules;
-
 namespace ProcessingTools.Contracts.Services.Rules
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Rules;
+
     /// <summary>
     /// Rules processor.
     /// </summary>

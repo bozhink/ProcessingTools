@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-
 namespace ProcessingTools.Services
 {
     using System;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Services;
 
     /// <summary>
     /// XML query replacer.
@@ -24,13 +23,13 @@ namespace ProcessingTools.Services
                 throw new ArgumentNullException(nameof(query));
             }
 
+            if (string.IsNullOrEmpty(content))
+            {
+                return Task.FromResult(content);
+            }
+
             return Task.Run(() =>
             {
-                if (string.IsNullOrEmpty(content))
-                {
-                    return content;
-                }
-
                 var queryDocument = new XmlDocument
                 {
                     PreserveWhitespace = true,

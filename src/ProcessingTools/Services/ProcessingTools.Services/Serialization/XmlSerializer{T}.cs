@@ -2,15 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Serialization;
-using ProcessingTools.Contracts.Services.Serialization;
-
 namespace ProcessingTools.Services.Serialization
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using System.Xml.Serialization;
+    using ProcessingTools.Contracts.Services.Serialization;
+
     /// <summary>
     /// Generic XML serializer.
     /// </summary>

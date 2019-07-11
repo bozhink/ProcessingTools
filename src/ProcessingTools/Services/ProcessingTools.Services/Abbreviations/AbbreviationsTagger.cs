@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Abbreviations;
-using ProcessingTools.Contracts.Services.Models.Abbreviations;
-using ProcessingTools.Contracts.Services.Xml;
-
 namespace ProcessingTools.Services.Abbreviations
 {
     using System;
@@ -14,7 +10,11 @@ namespace ProcessingTools.Services.Abbreviations
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Contracts.Services.Abbreviations;
+    using ProcessingTools.Contracts.Services.Models.Abbreviations;
+    using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Services.Models.Abbreviations;
 
     /// <summary>
@@ -73,126 +73,107 @@ namespace ProcessingTools.Services.Abbreviations
             return true;
         }
 
-        private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(XmlNode context, string selectContextToTagXPath)
+        private Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(XmlNode context, string selectContextToTagXPath)
         {
-            if (context == null)
+            if (context != null && !string.IsNullOrWhiteSpace(selectContextToTagXPath))
             {
-                throw new ArgumentNullException(nameof(context));
+                var tasks = context.SelectNodes(selectContextToTagXPath)
+                    .Cast<XmlNode>()
+                    .Select(this.TagAbbreviationsWithHarvestWholeContextAsync)
+                    .ToArray();
+
+                return Task.WhenAll(tasks);
             }
 
-            if (string.IsNullOrWhiteSpace(selectContextToTagXPath))
-            {
-                throw new ArgumentNullException(nameof(selectContextToTagXPath));
-            }
-
-            var tasks = context.SelectNodes(selectContextToTagXPath)
-                .Cast<XmlNode>()
-                .Select(n => this.TagAbbreviationsWithHarvestWholeContextAsync(n))
-                .ToArray();
-
-            await Task.WhenAll(tasks).ConfigureAwait(false);
+            return Task.CompletedTask;
         }
 
-        private async Task<object> TagAbbreviationsWithHarvestWholeContextAsync(XmlNode context)
+        private async Task TagAbbreviationsWithHarvestWholeContextAsync(XmlNode context)
         {
-            if (context == null)
+            if (context != null)
             {
-                throw new ArgumentNullException(nameof(context));
+                var abbreviationDefinitions = await this.GetAbbreviationsAsync(context).ConfigureAwait(false);
+                this.TagAbbreviations(context, abbreviationDefinitions);
             }
-
-            var abbreviationDefinitions = await this.GetAbbreviationCollectionAsync(context).ConfigureAwait(false);
-            var result = await this.TagAbbreviationsAsync(context, abbreviationDefinitions).ConfigureAwait(false);
-            return result;
         }
 
         private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestContextAsync(XmlNode context, string selectContextToTagXPath)
         {
-            if (context == null)
+            if (context != null && !string.IsNullOrWhiteSpace(selectContextToTagXPath))
             {
-                throw new ArgumentNullException(nameof(context));
+                var abbreviationDefinitions = await this.GetAbbreviationsAsync(context).ConfigureAwait(false);
+
+                context.SelectNodes(selectContextToTagXPath).Cast<XmlNode>().ForEach(n => this.TagAbbreviations(n, abbreviationDefinitions));
             }
-
-            if (string.IsNullOrWhiteSpace(selectContextToTagXPath))
-            {
-                throw new ArgumentNullException(nameof(selectContextToTagXPath));
-            }
-
-            var abbreviationDefinitions = await this.GetAbbreviationCollectionAsync(context).ConfigureAwait(false);
-
-            var tasks = context.SelectNodes(selectContextToTagXPath)
-                 .Cast<XmlNode>()
-                 .Select(n => this.TagAbbreviationsAsync(n, abbreviationDefinitions))
-                 .ToArray();
-
-            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
 
-        private async Task<object> TagAbbreviationsAsync(XmlNode context, IEnumerable<IAbbreviation> abbreviationDefinitions)
+        /// <summary>
+        /// Get the list of abbreviation definitions in a specified <see cref="XmlNode"/> context.
+        /// </summary>
+        /// <param name="context"><see cref="XmlNode"/> context to be harvested.</param>
+        /// <returns>List of abbreviation definitions.</returns>
+        private async Task<IList<IAbbreviation>> GetAbbreviationsAsync(XmlNode context)
         {
-            if (context == null)
+            if (context != null)
             {
-                throw new ArgumentNullException(nameof(context));
+                var abbreviations = await this.harvester.HarvestAsync(context).ConfigureAwait(false);
+                if (abbreviations != null && abbreviations.Any())
+                {
+                    var result = abbreviations
+                        .Where(a => !string.IsNullOrWhiteSpace(a.Value) && !string.IsNullOrWhiteSpace(a.Definition) && a.Value.Length > 1)
+                        .Select(a => new Abbreviation(a.Value, a.ContentType, a.Definition))
+                        .ToList<IAbbreviation>();
+
+                    return result;
+                }
             }
 
-            if (abbreviationDefinitions == null || !abbreviationDefinitions.Any())
-            {
-                return 0;
-            }
+            return Array.Empty<IAbbreviation>();
+        }
 
-            return await Task.Run(() =>
+        /// <summary>
+        /// Tag abbreviation definitions in a specified <see cref="XmlNode"/> context.
+        /// </summary>
+        /// <param name="context"><see cref="XmlNode"/> context to be updated.</param>
+        /// <param name="abbreviations">List of abbreviation definitions to be tagged in the context.</param>
+        private void TagAbbreviations(XmlNode context, IList<IAbbreviation> abbreviations)
+        {
+            if (context != null && abbreviations != null && abbreviations.Any())
             {
                 var document = this.contextWrapper.Create(context);
 
-                var abbreviationSet = new HashSet<IAbbreviation>(abbreviationDefinitions);
-                abbreviationSet.OrderByDescending(a => a.Content.Length)
-                    .ToList()
-                    .ForEach(abbreviation =>
-                    {
-                        string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
-                        foreach (XmlNode node in document.SelectNodes(xpath))
-                        {
-                            bool canPerformReplace = node.CheckIfIsPossibleToPerformReplaceInXmlNode();
-                            if (canPerformReplace)
-                            {
-                                try
-                                {
-                                    node.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
-                                }
-                                catch (XmlException ex)
-                                {
-                                    this.logger.LogError(ex, "Exception in abbreviation {0}", abbreviation.Content);
-                                }
-                            }
-                        }
-                    });
+                abbreviations.OrderByDescending(a => a.Content.Length).ForEach(abbreviation => this.TagAbbreviation(document, abbreviation));
 
                 context.InnerXml = document.DocumentElement.InnerXml;
-
-                return abbreviationSet.Count;
-            });
+            }
         }
 
-        private async Task<IEnumerable<IAbbreviation>> GetAbbreviationCollectionAsync(XmlNode contextToHarvest)
+        /// <summary>
+        /// Tag single abbreviation definition in a specified <see cref="XmlNode"/> context.
+        /// </summary>
+        /// <param name="context"><see cref="XmlNode"/> context to be updated.</param>
+        /// <param name="abbreviation">Abbreviation definition to be tagged in the context.</param>
+        private void TagAbbreviation(XmlNode context, IAbbreviation abbreviation)
         {
-            if (contextToHarvest == null)
+            if (context != null && abbreviation != null)
             {
-                throw new ArgumentNullException(nameof(contextToHarvest));
+                string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
+                foreach (XmlNode node in context.SelectNodes(xpath))
+                {
+                    bool canPerformReplace = node.CheckIfIsPossibleToPerformReplaceInXmlNode();
+                    if (canPerformReplace)
+                    {
+                        try
+                        {
+                            node.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
+                        }
+                        catch (XmlException ex)
+                        {
+                            this.logger.LogError(ex, "Exception in abbreviation {0}", abbreviation.Content);
+                        }
+                    }
+                }
             }
-
-            var abbreviations = await this.harvester.HarvestAsync(contextToHarvest).ConfigureAwait(false);
-            if (abbreviations != null)
-            {
-                var result = abbreviations
-                    .Where(a => !string.IsNullOrWhiteSpace(a.Value))
-                    .Where(a => !string.IsNullOrWhiteSpace(a.Definition))
-                    .Where(a => a.Value.Length > 1)
-                    .Select(a => new Abbreviation(a.Value, a.ContentType, a.Definition))
-                    .ToList();
-
-                return result;
-            }
-
-            return null;
         }
     }
 }

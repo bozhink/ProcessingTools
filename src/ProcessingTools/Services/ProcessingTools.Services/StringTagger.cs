@@ -30,7 +30,7 @@ namespace ProcessingTools.Services
         }
 
         /// <inheritdoc/>
-        public async Task<object> TagAsync(IDocument document, IEnumerable<string> items, XmlElement tagModel, string xpath)
+        public Task<object> TagAsync(IDocument document, IEnumerable<string> items, XmlElement tagModel, string xpath)
         {
             if (document == null)
             {
@@ -52,6 +52,11 @@ namespace ProcessingTools.Services
                 throw new ArgumentNullException(nameof(xpath));
             }
 
+            return this.TagInternalAsync(document, items, tagModel, xpath);
+        }
+
+        private async Task<object> TagInternalAsync(IDocument document, IEnumerable<string> items, XmlElement tagModel, string xpath)
+        {
             var dataList = items.ToList();
             var itemsToTag = dataList.Select(d => this.XmlEncode(document, d))
                 .OrderByDescending(i => i.Length)

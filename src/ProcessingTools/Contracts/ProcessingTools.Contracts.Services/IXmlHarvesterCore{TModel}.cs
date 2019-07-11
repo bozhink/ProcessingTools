@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Threading.Tasks;
-using System.Xml;
-
 namespace ProcessingTools.Contracts.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Xml;
+
     /// <summary>
     /// Core XML Harvester.
     /// </summary>

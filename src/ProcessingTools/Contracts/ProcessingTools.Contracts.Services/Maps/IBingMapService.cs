@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-
 namespace ProcessingTools.Contracts.Services.Maps
 {
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Bing Maps service.
     /// </summary>

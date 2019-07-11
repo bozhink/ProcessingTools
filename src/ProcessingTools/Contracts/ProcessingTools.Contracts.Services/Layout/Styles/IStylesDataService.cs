@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Threading.Tasks;
-using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-
 namespace ProcessingTools.Contracts.Services.Layout.Styles
 {
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+
     /// <summary>
     /// Styles data service.
     /// </summary>

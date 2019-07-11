@@ -33,7 +33,7 @@ namespace ProcessingTools.Services.Validation
         }
 
         /// <inheritdoc/>
-        public async Task<object> ValidateAsync(IDocument context, IReporter reporter)
+        public Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)
             {
@@ -45,7 +45,13 @@ namespace ProcessingTools.Services.Validation
                 throw new ArgumentNullException(nameof(reporter));
             }
 
+            return this.ValidateInternalAsync(context, reporter);
+        }
+
+        private async Task<object> ValidateInternalAsync(IDocument context, IReporter reporter)
+        {
             var data = await this.harvester.HarvestAsync(context.XmlDocument).ConfigureAwait(false);
+
             var scientificNames = data?.Distinct().ToArray();
 
             if (scientificNames == null || scientificNames.Length < 1)

@@ -26,13 +26,18 @@ namespace ProcessingTools.Services.Special
         }
 
         /// <inheritdoc/>
-        public async Task<object> ParseAsync(IDocument context)
+        public Task<object> ParseAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.ParseInternalAsync(context);
+        }
+
+        private async Task<object> ParseInternalAsync(IDocument context)
+        {
             var transformer = this.transformerFactory.GetGavinLaurensTransformer();
             context.Xml = await transformer.TransformAsync(context.Xml).ConfigureAwait(false);
 

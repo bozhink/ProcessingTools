@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Xml;
-using ProcessingTools.Contracts.Models.Layout.Styles;
-
 namespace ProcessingTools.Contracts.Services
 {
+    using System.Xml;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
+
     /// <summary>
     /// Context parser for <see cref="XmlNode"/> context.
     /// </summary>

@@ -63,32 +63,14 @@ namespace ProcessingTools.Extensions
         /// <param name="source">Source string to be compressed.</param>
         /// <param name="encoding">Text encoding.</param>
         /// <returns>Byte array.</returns>
-        public static async Task<byte[]> CompressAsync(this string source, Encoding encoding)
+        public static Task<byte[]> CompressAsync(this string source, Encoding encoding)
         {
             if (encoding == null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
 
-            if (source == null)
-            {
-                return Array.Empty<byte>();
-            }
-
-            var bytes = encoding.GetBytes(source);
-
-            using (var inputStream = new MemoryStream(bytes))
-            {
-                using (var outputStream = new MemoryStream())
-                {
-                    using (var gzipStream = new GZipStream(outputStream, CompressionMode.Compress))
-                    {
-                        await inputStream.CopyToAsync(gzipStream).ConfigureAwait(false);
-                    }
-
-                    return outputStream.ToArray();
-                }
-            }
+            return CompressInternalAsync(source, encoding);
         }
 
         /// <summary>
@@ -233,30 +215,14 @@ namespace ProcessingTools.Extensions
         /// <param name="source">Source byte array to be decompressed.</param>
         /// <param name="encoding">Text encoding.</param>
         /// <returns>Decompressed string.</returns>
-        public static async Task<string> DecompressAsync(this byte[] source, Encoding encoding)
+        public static Task<string> DecompressAsync(this byte[] source, Encoding encoding)
         {
             if (encoding == null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
 
-            if (source == null)
-            {
-                return null;
-            }
-
-            using (var inputStream = new MemoryStream(source))
-            {
-                using (var outputStream = new MemoryStream())
-                {
-                    using (var gzipStream = new GZipStream(inputStream, CompressionMode.Decompress))
-                    {
-                        await gzipStream.CopyToAsync(outputStream).ConfigureAwait(false);
-                    }
-
-                    return encoding.GetString(outputStream.ToArray());
-                }
-            }
+            return DecompressInternalAsync(source, encoding);
         }
 
         /// <summary>
@@ -354,6 +320,50 @@ namespace ProcessingTools.Extensions
             }
 
             return await buffer.DecompressAsync().ConfigureAwait(false);
+        }
+
+        private static async Task<byte[]> CompressInternalAsync(string source, Encoding encoding)
+        {
+            if (source == null)
+            {
+                return Array.Empty<byte>();
+            }
+
+            var bytes = encoding.GetBytes(source);
+
+            using (var inputStream = new MemoryStream(bytes))
+            {
+                using (var outputStream = new MemoryStream())
+                {
+                    using (var gzipStream = new GZipStream(outputStream, CompressionMode.Compress))
+                    {
+                        await inputStream.CopyToAsync(gzipStream).ConfigureAwait(false);
+                    }
+
+                    return outputStream.ToArray();
+                }
+            }
+        }
+
+        private static async Task<string> DecompressInternalAsync(byte[] source, Encoding encoding)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            using (var inputStream = new MemoryStream(source))
+            {
+                using (var outputStream = new MemoryStream())
+                {
+                    using (var gzipStream = new GZipStream(inputStream, CompressionMode.Decompress))
+                    {
+                        await gzipStream.CopyToAsync(outputStream).ConfigureAwait(false);
+                    }
+
+                    return encoding.GetString(outputStream.ToArray());
+                }
+            }
         }
     }
 }

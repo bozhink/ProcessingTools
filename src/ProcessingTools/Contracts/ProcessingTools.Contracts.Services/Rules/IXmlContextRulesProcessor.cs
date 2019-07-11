@@ -2,11 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Xml;
-using ProcessingTools.Contracts.Models.Rules;
-
 namespace ProcessingTools.Contracts.Services.Rules
 {
+    using System.Xml;
+    using ProcessingTools.Contracts.Models.Rules;
+
     /// <summary>
     /// Rules processor with <see cref="XmlNode"/> context.
     /// </summary>
