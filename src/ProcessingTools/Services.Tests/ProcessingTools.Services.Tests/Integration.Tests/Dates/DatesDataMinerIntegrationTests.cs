@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Dates
+﻿// <copyright file="DatesDataMinerIntegrationTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tests.Integration.Tests.Dates
 {
     using System.Linq;
     using System.Threading.Tasks;

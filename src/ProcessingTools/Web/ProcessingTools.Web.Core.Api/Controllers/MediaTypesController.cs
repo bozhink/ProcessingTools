@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Web.Api.Controllers
+﻿// <copyright file="MediaTypesController.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Api.Controllers
 {
     using System;
     using System.Linq;

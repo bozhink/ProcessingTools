@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Tests.Common
+﻿// <copyright file="Constants.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tests.Common
 {
     internal static class Constants
     {

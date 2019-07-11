@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Web.Core.Api.Abstractions
+﻿// <copyright file="AbstractTaxonClassificationResolverController.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Core.Api.Abstractions
 {
     using System;
     using System.Linq;

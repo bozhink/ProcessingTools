@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
+﻿// <copyright file="AbbreviationsHarvesterUnitTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
 {
     using System;
     using Moq;

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
+﻿// <copyright file="GbifTaxonClassificationResolverTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
 {
     using System.Linq;
     using NUnit.Framework;

@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
@@ -15,6 +13,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Bio.Taxonomy;
 

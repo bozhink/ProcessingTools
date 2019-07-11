@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
+﻿// <copyright file="CoordinatesDataMinerTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
 {
     using System.Linq;
     using NUnit.Framework;

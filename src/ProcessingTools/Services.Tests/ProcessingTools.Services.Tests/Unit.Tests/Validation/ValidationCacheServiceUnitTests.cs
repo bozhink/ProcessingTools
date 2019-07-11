@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
+﻿// <copyright file="ValidationCacheServiceUnitTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
 {
     using System;
     using System.Threading.Tasks;

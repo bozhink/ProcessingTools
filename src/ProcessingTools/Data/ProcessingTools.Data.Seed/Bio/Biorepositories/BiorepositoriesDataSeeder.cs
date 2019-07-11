@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Seed.Bio.Biorepositories
+﻿// <copyright file="BiorepositoriesDataSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Bio.Biorepositories
 {
     using System;
     using System.Collections.Concurrent;

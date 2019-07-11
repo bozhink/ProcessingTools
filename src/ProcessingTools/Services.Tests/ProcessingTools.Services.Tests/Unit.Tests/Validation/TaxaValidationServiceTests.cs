@@ -1,12 +1,16 @@
-﻿namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
+﻿// <copyright file="TaxaValidationServiceTests.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
 {
+    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Services.Validation;
-    using System.Linq;
 
     [TestClass]
     public class TaxaValidationServiceTests

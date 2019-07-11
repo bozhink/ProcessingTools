@@ -13,7 +13,12 @@
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Commands.Models.Contracts.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Contracts.Commands.Models.xml</DocumentationFile>
+    <DefineConstants />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Contracts.Commands.Models.xml</DocumentationFile>
+    <DefineConstants />
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

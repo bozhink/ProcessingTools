@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Seed.Bio.Biorepositories.Models.Csv
+﻿// <copyright file="CollectionCsv.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Bio.Biorepositories.Models.Csv
 {
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Contracts.Models.Bio.Biorepositories;
