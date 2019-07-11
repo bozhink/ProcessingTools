@@ -20,15 +20,9 @@ namespace ProcessingTools.Services.Models.Bio.Codes
         [XmlAttribute(AttributeNames.ContentType)]
         public override string ContentType
         {
-            get
-            {
-                return AttributeValues.BiorepositoriesInstitutionContentType;
-            }
+            get => AttributeValues.BiorepositoriesInstitutionContentType;
 
-            set
-            {
-                // Skip
-            }
+            set => _ = value;
         }
     }
 }
