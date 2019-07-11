@@ -2,22 +2,23 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Bio;
-using ProcessingTools.Contracts.Services.Bio.Codes;
-using ProcessingTools.Contracts.Services.Content;
-using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
-using ProcessingTools.Services.Models.Content;
-
 namespace ProcessingTools.Services.Bio.Codes
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Models;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Bio;
+    using ProcessingTools.Contracts.Services.Bio.Codes;
+    using ProcessingTools.Contracts.Services.Content;
+    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
     using ProcessingTools.Services.Models.Bio.Codes;
+    using ProcessingTools.Services.Models.Content;
 
+    /// <summary>
+    /// Collection codes tagger.
+    /// </summary>
     public class CollectionCodesTagger : ICollectionCodesTagger
     {
         private const string XPath = "./*";
@@ -26,11 +27,14 @@ namespace ProcessingTools.Services.Bio.Codes
         private readonly ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel> collectionCodesTagger;
         private readonly ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel> collectionsTagger;
 
-        public CollectionCodesTagger(
-            ITextContentHarvester contentHarvester,
-            IBiorepositoriesCollectionsDataMiner miner,
-            ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel> collectionCodesTagger,
-            ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel> collectionsTagger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CollectionCodesTagger"/> class.
+        /// </summary>
+        /// <param name="contentHarvester">Instance of <see cref="ITextContentHarvester"/>.</param>
+        /// <param name="miner">Instance of <see cref="IBiorepositoriesCollectionsDataMiner"/>.</param>
+        /// <param name="collectionCodesTagger">Instance of <see cref="ISimpleXmlSerializableObjectTagger{BiorepositoriesCollectionCodeSerializableModel}"/>.</param>
+        /// <param name="collectionsTagger">Instance of <see cref="ISimpleXmlSerializableObjectTagger{BiorepositoriesCollectionSerializableModel}"/>.</param>
+        public CollectionCodesTagger(ITextContentHarvester contentHarvester, IBiorepositoriesCollectionsDataMiner miner, ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel> collectionCodesTagger, ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel> collectionsTagger)
         {
             this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
             this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
@@ -39,13 +43,18 @@ namespace ProcessingTools.Services.Bio.Codes
         }
 
         /// <inheritdoc/>
-        public async Task<object> TagAsync(IDocument context)
+        public Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.TagInternalAsync(context);
+        }
+
+        private async Task<object> TagInternalAsync(IDocument context)
+        {
             var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
             var data = await this.miner.MineAsync(textContent).ConfigureAwait(false);
 

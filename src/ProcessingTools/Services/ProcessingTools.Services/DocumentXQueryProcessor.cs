@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Xml;
-
 namespace ProcessingTools.Services
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Xml;
 
     /// <summary>
     /// Document XQuery processor.
@@ -31,13 +30,18 @@ namespace ProcessingTools.Services
         public string XQueryFileName { get; set; }
 
         /// <inheritdoc/>
-        public async Task ProcessAsync(IDocument context)
+        public Task ProcessAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.ProcessInternalAsync(context);
+        }
+
+        private async Task ProcessInternalAsync(IDocument context)
+        {
             var content = await this.factory
                 .CreateTransformer(xqueryFileName: this.XQueryFileName)
                 .TransformAsync(context.Xml)

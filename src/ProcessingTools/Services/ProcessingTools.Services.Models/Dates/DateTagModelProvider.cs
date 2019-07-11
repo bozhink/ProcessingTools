@@ -2,13 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Xml;
-using ProcessingTools.Common.Constants.Schema;
-using ProcessingTools.Contracts.Services.Models.Dates;
-
 namespace ProcessingTools.Services.Models.Dates
 {
+    using System;
+    using System.Xml;
+    using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Contracts.Services.Models.Dates;
+
     /// <summary>
     /// Date tag model provider.
     /// </summary>

@@ -2,11 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Documents.Files;
-
 namespace ProcessingTools.Services.Models.Documents.Files
 {
     using System.IO;
+    using ProcessingTools.Contracts.Services.Models.Documents.Files;
 
     /// <summary>
     /// File insert model.

@@ -2,11 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Bio.Taxonomy;
-
 namespace ProcessingTools.Services.Models.Bio.Taxonomy
 {
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Services.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Minimal taxon name part.

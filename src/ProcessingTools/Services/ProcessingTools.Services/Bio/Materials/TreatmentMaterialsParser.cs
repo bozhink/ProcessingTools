@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio;
-using ProcessingTools.Contracts.Services.Bio.Materials;
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-
 namespace ProcessingTools.Services.Bio.Materials
 {
     using System;
@@ -13,12 +9,23 @@ namespace ProcessingTools.Services.Bio.Materials
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Bio;
+    using ProcessingTools.Contracts.Services.Bio.Materials;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
+    /// <summary>
+    /// Treatment materials parser.
+    /// </summary>
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
         private readonly IMaterialCitationsParser materialCitationsParser;
         private readonly ITaxonTreatmentsTransformerFactory transformerFactory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TreatmentMaterialsParser"/> class.
+        /// </summary>
+        /// <param name="materialCitationsParser">Instance of <see cref="IMaterialCitationsParser"/>.</param>
+        /// <param name="transformerFactory">Instance <see cref="ITaxonTreatmentsTransformerFactory"/>.</param>
         public TreatmentMaterialsParser(IMaterialCitationsParser materialCitationsParser, ITaxonTreatmentsTransformerFactory transformerFactory)
         {
             this.materialCitationsParser = materialCitationsParser ?? throw new ArgumentNullException(nameof(materialCitationsParser));
@@ -26,13 +33,18 @@ namespace ProcessingTools.Services.Bio.Materials
         }
 
         /// <inheritdoc/>
-        public async Task<object> ParseAsync(IDocument context)
+        public Task<object> ParseAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.ParseInternalAsync(context);
+        }
+
+        private async Task<object> ParseInternalAsync(IDocument context)
+        {
             await this.FormatTaxonTreatments(context.XmlDocument).ConfigureAwait(false);
 
             var queryDocument = await this.GenerateQueryDocument(context.XmlDocument).ConfigureAwait(false);

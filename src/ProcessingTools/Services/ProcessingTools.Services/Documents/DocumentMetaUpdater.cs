@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Documents;
-
 namespace ProcessingTools.Services.Documents
 {
     using System;
@@ -14,6 +12,7 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Contracts.Models.Documents.Articles;
     using ProcessingTools.Contracts.Models.Documents.Journals;
     using ProcessingTools.Contracts.Models.Documents.Publishers;
+    using ProcessingTools.Contracts.Services.Documents;
 
     /// <summary>
     /// Document meta-data updater.

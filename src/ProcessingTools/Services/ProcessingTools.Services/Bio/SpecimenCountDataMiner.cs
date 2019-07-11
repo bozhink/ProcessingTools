@@ -16,14 +16,13 @@
  * 0m, 7f, 3i
  */
 
-using ProcessingTools.Contracts.Services.Bio;
-
 namespace ProcessingTools.Services.Bio
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Bio;
     using ProcessingTools.Extensions;
 
     /// <summary>

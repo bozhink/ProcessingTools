@@ -2,20 +2,20 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using Microsoft.Extensions.Logging;
-using ProcessingTools.Contracts.Models;
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Models.Content;
-using ProcessingTools.Extensions;
-
 namespace ProcessingTools.Services.Content
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using Microsoft.Extensions.Logging;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Models.Content;
+    using ProcessingTools.Extensions;
+
     /// <summary>
     /// Content tagger.
     /// </summary>

@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 

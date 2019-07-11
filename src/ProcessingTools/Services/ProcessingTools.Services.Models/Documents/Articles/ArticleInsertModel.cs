@@ -2,11 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Documents.Articles;
-
 namespace ProcessingTools.Services.Models.Documents.Articles
 {
     using System;
+    using ProcessingTools.Contracts.Services.Models.Documents.Articles;
 
     /// <summary>
     /// Article insert model.

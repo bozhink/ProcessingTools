@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.History;
-using ProcessingTools.Contracts.Services.Models.Documents.Documents;
-
 namespace ProcessingTools.Services.Documents
 {
     using System;
@@ -16,6 +12,9 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.DataAccess.Documents;
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Documents;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.History;
+    using ProcessingTools.Contracts.Services.Models.Documents.Documents;
     using ProcessingTools.Services.Models.Documents.Documents;
 
     /// <summary>
@@ -24,8 +23,8 @@ namespace ProcessingTools.Services.Documents
     public class DocumentsDataService : IDocumentsDataService
     {
         private readonly IDocumentsDataAccessObject dataAccessObject;
-        private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
+        private readonly IObjectHistoryDataService objectHistoryDataService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentsDataService"/> class.
@@ -49,13 +48,225 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(IDocumentInsertModel model)
+        public Task<object> DeleteAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.DeleteInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId)
+        {
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            return this.GetArticleDocumentsInternalAsync(articleId);
+        }
+
+        /// <inheritdoc/>
+        public Task<IDocumentModel> GetByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetByIdInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IDocumentDetailsModel> GetDetailsByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetDetailsByIdInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IDocumentArticleModel> GetDocumentArticleAsync(string articleId)
+        {
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            return this.GetDocumentArticleInternalAsync(articleId);
+        }
+
+        /// <inheritdoc/>
+        public Task<string> GetDocumentContentAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetDocumentContentInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> InsertAsync(IDocumentInsertModel model)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
+            return this.InsertInternalAsync(model);
+        }
+
+        /// <inheritdoc/>
+        public Task<IDocumentModel[]> SelectAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+
+        /// <inheritdoc/>
+        public Task<IDocumentDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectDetailsInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> SetAsFinalAsync(object id, string articleId)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            return this.SetAsFinalInternalAsync(id, articleId);
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SetDocumentContentAsync(object id, string content)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.SetDocumentContentInternalAsync(id, content);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> UpdateAsync(IDocumentUpdateModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.UpdateInternalAsync(model);
+        }
+
+        private async Task<object> DeleteInternalAsync(object id)
+        {
+            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<IDocumentModel[]> GetArticleDocumentsInternalAsync(string articleId)
+        {
+            var documents = await this.dataAccessObject.GetArticleDocumentsAsync(articleId).ConfigureAwait(false);
+
+            if (documents == null || !documents.Any())
+            {
+                return Array.Empty<IDocumentModel>();
+            }
+
+            var model = documents.Select(this.mapper.Map<IDocumentDataTransferObject, DocumentModel>).ToArray();
+
+            return model;
+        }
+
+        private async Task<IDocumentModel> GetByIdInternalAsync(object id)
+        {
+            var document = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
+
+            if (document == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IDocumentDataTransferObject, DocumentModel>(document);
+
+            return model;
+        }
+
+        private async Task<IDocumentDetailsModel> GetDetailsByIdInternalAsync(object id)
+        {
+            var document = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
+
+            if (document == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IDocumentDetailsDataTransferObject, DocumentDetailsModel>(document);
+
+            return model;
+        }
+
+        private async Task<IDocumentArticleModel> GetDocumentArticleInternalAsync(string articleId)
+        {
+            var article = await this.dataAccessObject.GetDocumentArticleAsync(articleId).ConfigureAwait(false);
+            if (article == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IDocumentArticleDataTransferObject, DocumentArticleModel>(article);
+
+            return model;
+        }
+
+        private async Task<string> GetDocumentContentInternalAsync(object id)
+        {
+            return await this.dataAccessObject.GetDocumentContentAsync(id).ConfigureAwait(false);
+        }
+
+        private async Task<object> InsertInternalAsync(IDocumentInsertModel model)
+        {
             var document = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
@@ -69,146 +280,20 @@ namespace ProcessingTools.Services.Documents
             return document.ObjectId;
         }
 
-        /// <inheritdoc/>
-        public async Task<object> UpdateAsync(IDocumentUpdateModel model)
+        private async Task<IDocumentDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var document = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (document == null)
-            {
-                throw new UpdateUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(document.ObjectId, document).ConfigureAwait(false);
-
-            return document.ObjectId;
-        }
-
-        /// <inheritdoc/>
-        public async Task<object> DeleteAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IDocumentModel> GetByIdAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var document = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
-
-            if (document == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IDocumentDataTransferObject, DocumentModel>(document);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IDocumentDetailsModel> GetDetailsByIdAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var document = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
-
-            if (document == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IDocumentDetailsDataTransferObject, DocumentDetailsModel>(document);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId)
-        {
-            if (string.IsNullOrWhiteSpace(articleId))
-            {
-                throw new ArgumentNullException(nameof(articleId));
-            }
-
-            var documents = await this.dataAccessObject.GetArticleDocumentsAsync(articleId).ConfigureAwait(false);
-
+            var documents = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (documents == null || !documents.Any())
             {
-                return Array.Empty<IDocumentModel>();
+                return Array.Empty<IDocumentDetailsModel>();
             }
 
-            var model = documents.Select(this.mapper.Map<IDocumentDataTransferObject, DocumentModel>).ToArray();
-
-            return model;
+            var items = documents.Select(this.mapper.Map<IDocumentDetailsDataTransferObject, DocumentDetailsModel>).ToArray();
+            return items;
         }
 
-        /// <inheritdoc/>
-        public async Task<IDocumentArticleModel> GetDocumentArticleAsync(string articleId)
+        private async Task<IDocumentModel[]> SelectInternalAsync(int skip, int take)
         {
-            if (string.IsNullOrWhiteSpace(articleId))
-            {
-                throw new ArgumentNullException(nameof(articleId));
-            }
-
-            var article = await this.dataAccessObject.GetDocumentArticleAsync(articleId).ConfigureAwait(false);
-            if (article == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IDocumentArticleDataTransferObject, DocumentArticleModel>(article);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<string> GetDocumentContentAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            string content = await this.dataAccessObject.GetDocumentContentAsync(id).ConfigureAwait(false);
-
-            return content;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IDocumentModel[]> SelectAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
             var documents = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 
             if (documents == null || !documents.Any())
@@ -220,61 +305,29 @@ namespace ProcessingTools.Services.Documents
             return items;
         }
 
-        /// <inheritdoc/>
-        public async Task<IDocumentDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        private async Task<object> SetAsFinalInternalAsync(object id, string articleId)
         {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var documents = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-            if (documents == null || !documents.Any())
-            {
-                return Array.Empty<IDocumentDetailsModel>();
-            }
-
-            var items = documents.Select(this.mapper.Map<IDocumentDetailsDataTransferObject, DocumentDetailsModel>).ToArray();
-            return items;
+            return await this.dataAccessObject.SetAsFinalAsync(id, articleId).ConfigureAwait(false);
         }
 
-        /// <inheritdoc/>
-        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
-
-        /// <inheritdoc/>
-        public async Task<long> SetDocumentContentAsync(object id, string content)
+        private async Task<long> SetDocumentContentInternalAsync(object id, string content)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var result = await this.dataAccessObject.SetDocumentContentAsync(id, content).ConfigureAwait(false);
-
-            return result;
+            return await this.dataAccessObject.SetDocumentContentAsync(id, content).ConfigureAwait(false);
         }
 
-        /// <inheritdoc/>
-        public async Task<object> SetAsFinalAsync(object id, string articleId)
+        private async Task<object> UpdateInternalAsync(IDocumentUpdateModel model)
         {
-            if (id == null)
+            var document = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (document == null)
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new UpdateUnsuccessfulException();
             }
 
-            if (string.IsNullOrWhiteSpace(articleId))
-            {
-                throw new ArgumentNullException(nameof(articleId));
-            }
+            await this.objectHistoryDataService.AddAsync(document.ObjectId, document).ConfigureAwait(false);
 
-            var result = await this.dataAccessObject.SetAsFinalAsync(id, articleId).ConfigureAwait(false);
-
-            return result;
+            return document.ObjectId;
         }
     }
 }

@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.Layout;
-
 namespace ProcessingTools.Services.Documents
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.Layout;
 
     /// <summary>
     /// Read document helper.
@@ -34,13 +33,18 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IDocument> ReadAsync(bool mergeInputFiles, params string[] fileNames)
+        public Task<IDocument> ReadAsync(bool mergeInputFiles, params string[] fileNames)
         {
             if (fileNames == null || fileNames.Length < 1)
             {
                 throw new ArgumentNullException(nameof(fileNames));
             }
 
+            return this.ReadInternalAsync(mergeInputFiles, fileNames);
+        }
+
+        private async Task<IDocument> ReadInternalAsync(bool mergeInputFiles, string[] fileNames)
+        {
             IDocument document;
 
             if (mergeInputFiles)

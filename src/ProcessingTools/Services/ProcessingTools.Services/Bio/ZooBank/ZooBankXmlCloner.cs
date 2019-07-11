@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.ZooBank;
-
 namespace ProcessingTools.Services.Bio.ZooBank
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Services.Bio.ZooBank
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Bio.ZooBank;
 
     /// <summary>
     /// ZooBank XML cloner.

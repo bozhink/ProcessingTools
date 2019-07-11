@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-
 namespace ProcessingTools.Services.Abstractions
 {
     using System;
@@ -14,6 +12,7 @@ namespace ProcessingTools.Services.Abstractions
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Extensions;
 
     /// <summary>

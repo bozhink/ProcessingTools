@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
-
 namespace ProcessingTools.Services.Models.Geo.Coordinates
 {
     using System;
@@ -11,6 +9,7 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
     using System.Text.RegularExpressions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -133,7 +132,7 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
 
             // There is a linguistic problem: O = Ost (German) = East, and O = Oeste (Spanish) = West
             // Here is supposed that O = Oeste
-            this.decimalCoordinatePartSign = (hasS || hasW || hasO) || (hasMinus && !(hasE || hasN)) ? -1 : 1;
+            this.decimalCoordinatePartSign = hasS || hasW || hasO || (hasMinus && !(hasE || hasN)) ? -1 : 1;
         }
 
         private double ParseCoordinatePart()

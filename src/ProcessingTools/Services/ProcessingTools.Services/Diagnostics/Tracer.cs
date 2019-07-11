@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
-
 namespace ProcessingTools.Services.Diagnostics
 {
+    using System.Diagnostics;
+    using System.Runtime.CompilerServices;
+    using System.Text;
+
     /// <summary>
     /// Tracer.
     /// </summary>

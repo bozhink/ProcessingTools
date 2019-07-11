@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.Layout;
-
 namespace ProcessingTools.Services.Documents
 {
     using System;
@@ -12,6 +9,8 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.Layout;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -37,7 +36,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<object> WriteAsync(string outputFileName, IDocument document, bool splitDocument)
+        public Task<object> WriteAsync(string outputFileName, IDocument document, bool splitDocument)
         {
             if (string.IsNullOrWhiteSpace(outputFileName))
             {
@@ -49,6 +48,11 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(document));
             }
 
+            return this.WriteInternalAsync(outputFileName, document, splitDocument);
+        }
+
+        private async Task<object> WriteInternalAsync(string outputFileName, IDocument document, bool splitDocument)
+        {
             if (splitDocument)
             {
                 var subdocuments = this.documentSplitter.Split(document);

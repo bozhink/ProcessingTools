@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-using ProcessingTools.Contracts.Services.Models.Bio.Taxonomy;
-
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
@@ -18,6 +15,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Models.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Bio.Taxonomy;
 
@@ -80,7 +79,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             });
         }
 
-        private static Expression<Func<ITaxonNamePart, bool>> MatchNotResolved(SpeciesPartType rank) => p => (p.Rank == rank) && (p.IsAbbreviated && !p.IsResolved);
+        private static Expression<Func<ITaxonNamePart, bool>> MatchNotResolved(SpeciesPartType rank) => p => (p.Rank == rank) && p.IsAbbreviated && !p.IsResolved;
 
         private static Expression<Func<ITaxonNamePart, bool>> MatchResolved(SpeciesPartType rank) => p => (p.Rank == rank) && (p.IsResolved || !p.IsAbbreviated);
 

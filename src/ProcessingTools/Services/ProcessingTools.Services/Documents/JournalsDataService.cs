@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.History;
-using ProcessingTools.Contracts.Services.Models.Documents.Journals;
-
 namespace ProcessingTools.Services.Documents
 {
     using System;
@@ -16,6 +12,9 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.DataAccess.Documents;
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Journals;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.History;
+    using ProcessingTools.Contracts.Services.Models.Documents.Journals;
     using ProcessingTools.Services.Models.Documents.Journals;
 
     /// <summary>
@@ -24,8 +23,8 @@ namespace ProcessingTools.Services.Documents
     public class JournalsDataService : IJournalsDataService
     {
         private readonly IJournalsDataAccessObject dataAccessObject;
-        private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
+        private readonly IObjectHistoryDataService objectHistoryDataService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalsDataService"/> class.
@@ -52,13 +51,145 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(IJournalInsertModel model)
+        public Task<object> DeleteAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.DeleteInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IJournalModel> GetByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetByIdInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IJournalDetailsModel> GetDetailsByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetDetailsByIdInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public async Task<IJournalPublisherModel[]> GetJournalPublishersAsync()
+        {
+            var publishers = await this.dataAccessObject.GetJournalPublishersAsync().ConfigureAwait(false);
+            if (publishers == null || !publishers.Any())
+            {
+                return Array.Empty<IJournalPublisherModel>();
+            }
+
+            return publishers.Select(this.mapper.Map<IJournalPublisherDataTransferObject, JournalPublisherModel>).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public Task<object> InsertAsync(IJournalInsertModel model)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
+            return this.InsertInternalAsync(model);
+        }
+
+        /// <inheritdoc/>
+        public Task<IJournalModel[]> SelectAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+
+        /// <inheritdoc/>
+        public Task<IJournalDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectDetailsInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> UpdateAsync(IJournalUpdateModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.UpdateInternalAsync(model);
+        }
+
+        private async Task<object> DeleteInternalAsync(object id)
+        {
+            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<IJournalModel> GetByIdInternalAsync(object id)
+        {
+            var journal = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
+
+            if (journal == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IJournalDataTransferObject, JournalModel>(journal);
+
+            return model;
+        }
+
+        private async Task<IJournalDetailsModel> GetDetailsByIdInternalAsync(object id)
+        {
+            var journal = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
+
+            if (journal == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IJournalDetailsDataTransferObject, JournalDetailsModel>(journal);
+
+            return model;
+        }
+
+        private async Task<object> InsertInternalAsync(IJournalInsertModel model)
+        {
             var journal = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
@@ -72,94 +203,20 @@ namespace ProcessingTools.Services.Documents
             return journal.ObjectId;
         }
 
-        /// <inheritdoc/>
-        public async Task<object> UpdateAsync(IJournalUpdateModel model)
+        private async Task<IJournalDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
         {
-            if (model == null)
+            var journals = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+            if (journals == null || !journals.Any())
             {
-                throw new ArgumentNullException(nameof(model));
+                return Array.Empty<IJournalDetailsModel>();
             }
 
-            var journal = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            if (journal == null)
-            {
-                throw new UpdateUnsuccessfulException();
-            }
-
-            await this.objectHistoryDataService.AddAsync(journal.ObjectId, journal).ConfigureAwait(false);
-
-            return journal.ObjectId;
+            var items = journals.Select(this.mapper.Map<IJournalDetailsDataTransferObject, JournalDetailsModel>).ToArray();
+            return items;
         }
 
-        /// <inheritdoc/>
-        public async Task<object> DeleteAsync(object id)
+        private async Task<IJournalModel[]> SelectInternalAsync(int skip, int take)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IJournalModel> GetByIdAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var journal = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
-
-            if (journal == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IJournalDataTransferObject, JournalModel>(journal);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IJournalDetailsModel> GetDetailsByIdAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var journal = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
-
-            if (journal == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IJournalDetailsDataTransferObject, JournalDetailsModel>(journal);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IJournalModel[]> SelectAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
             var journals = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 
             if (journals == null || !journals.Any())
@@ -171,42 +228,19 @@ namespace ProcessingTools.Services.Documents
             return items;
         }
 
-        /// <inheritdoc/>
-        public async Task<IJournalDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        private async Task<object> UpdateInternalAsync(IJournalUpdateModel model)
         {
-            if (skip < PaginationConstants.MinimalPageNumber)
+            var journal = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (journal == null)
             {
-                throw new InvalidPageNumberException();
+                throw new UpdateUnsuccessfulException();
             }
 
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
+            await this.objectHistoryDataService.AddAsync(journal.ObjectId, journal).ConfigureAwait(false);
 
-            var journals = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-            if (journals == null || !journals.Any())
-            {
-                return Array.Empty<IJournalDetailsModel>();
-            }
-
-            var items = journals.Select(this.mapper.Map<IJournalDetailsDataTransferObject, JournalDetailsModel>).ToArray();
-            return items;
-        }
-
-        /// <inheritdoc/>
-        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
-
-        /// <inheritdoc/>
-        public async Task<IJournalPublisherModel[]> GetJournalPublishersAsync()
-        {
-            var publishers = await this.dataAccessObject.GetJournalPublishersAsync().ConfigureAwait(false);
-            if (publishers == null || !publishers.Any())
-            {
-                return Array.Empty<IJournalPublisherModel>();
-            }
-
-            return publishers.Select(this.mapper.Map<IJournalPublisherDataTransferObject, JournalPublisherModel>).ToArray();
+            return journal.ObjectId;
         }
     }
 }

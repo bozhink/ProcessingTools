@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Environments;
-using ProcessingTools.Contracts.Services.Models.Bio.Environments;
-
 namespace ProcessingTools.Services.Bio.Environments
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Bio.Environments;
+    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
 
     /// <summary>
     /// ENVO terms data miner.
@@ -28,13 +27,18 @@ namespace ProcessingTools.Services.Bio.Environments
         }
 
         /// <inheritdoc/>
-        public async Task<IEnvoTerm[]> MineAsync(string context)
+        public Task<IEnvoTerm[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.MineInternalAsync(context);
+        }
+
+        private async Task<IEnvoTerm[]> MineInternalAsync(string context)
+        {
             string text = context.ToUpperInvariant();
 
             var data = await this.service.AllAsync().ConfigureAwait(false);

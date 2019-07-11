@@ -2,15 +2,14 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio;
-using ProcessingTools.Contracts.Services.Bio.Environments;
-using ProcessingTools.Contracts.Services.Models.Bio.Environments;
-
 namespace ProcessingTools.Services.Bio.Environments
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Bio;
+    using ProcessingTools.Contracts.Services.Bio.Environments;
+    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
     using ProcessingTools.Services.Models.Bio.Environments;
 
     /// <summary>
@@ -30,13 +29,18 @@ namespace ProcessingTools.Services.Bio.Environments
         }
 
         /// <inheritdoc/>
-        public async Task<IExtractHcmrEnvoTerm[]> MineAsync(string context)
+        public Task<IExtractHcmrEnvoTerm[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.MineInernalAsync(context);
+        }
+
+        private async Task<IExtractHcmrEnvoTerm[]> MineInernalAsync(string context)
+        {
             var response = await this.requester.RequestDataAsync(context).ConfigureAwait(false);
             if (response == null || response.Items == null)
             {

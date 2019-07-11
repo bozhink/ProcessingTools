@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Layout;
-
 namespace ProcessingTools.Services.Layout
 {
     using System;
@@ -11,6 +9,7 @@ namespace ProcessingTools.Services.Layout
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Layout;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -33,13 +32,18 @@ namespace ProcessingTools.Services.Layout
         }
 
         /// <inheritdoc/>
-        public async Task<object> FormatAsync(IDocument context)
+        public Task<object> FormatAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.FormatInternalAsync(context);
+        }
+
+        private async Task<object> FormatInternalAsync(IDocument context)
+        {
             var transformer = this.transformerFactory.Create(context.SchemaType);
             context.Xml = await transformer.TransformAsync(context.Xml).ConfigureAwait(false);
 

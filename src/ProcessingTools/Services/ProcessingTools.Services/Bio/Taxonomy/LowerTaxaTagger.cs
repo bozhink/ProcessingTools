@@ -2,11 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-using ProcessingTools.Contracts.Services.Meta;
-using ProcessingTools.Services.Models.Content;
-
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
@@ -19,9 +14,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Services.Models;
+    using ProcessingTools.Services.Models.Content;
 
     /// <summary>
     /// Lower taxa tagger.

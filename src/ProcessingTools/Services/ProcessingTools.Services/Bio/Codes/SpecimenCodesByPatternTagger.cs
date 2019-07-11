@@ -2,12 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Bio.Codes;
-using ProcessingTools.Contracts.Services.Bio.SpecimenCodes;
-using ProcessingTools.Contracts.Services.Content;
-using ProcessingTools.Services.Models.Content;
-
 namespace ProcessingTools.Services.Bio.Codes
 {
     using System;
@@ -15,19 +9,29 @@ namespace ProcessingTools.Services.Bio.Codes
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Models;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Bio.Codes;
+    using ProcessingTools.Contracts.Services.Bio.SpecimenCodes;
+    using ProcessingTools.Contracts.Services.Content;
     using ProcessingTools.Services.Models.Bio.Codes;
+    using ProcessingTools.Services.Models.Content;
 
+    /// <summary>
+    /// Specimen codes by-pattern tagger.
+    /// </summary>
     public class SpecimenCodesByPatternTagger : ISpecimenCodesByPatternTagger
     {
         private readonly ITextContentHarvester contentHarvester;
         private readonly ISpecimenCodesByPatternDataMiner miner;
         private readonly ISimpleXmlSerializableObjectTagger<SpecimenCodeSerializableModel> tagger;
 
-        public SpecimenCodesByPatternTagger(
-            ITextContentHarvester contentHarvester,
-            ISpecimenCodesByPatternDataMiner miner,
-            ISimpleXmlSerializableObjectTagger<SpecimenCodeSerializableModel> tagger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SpecimenCodesByPatternTagger"/> class.
+        /// </summary>
+        /// <param name="contentHarvester">Instance of <see cref="ITextContentHarvester"/>.</param>
+        /// <param name="miner">Instance of <see cref="ISpecimenCodesByPatternDataMiner"/>.</param>
+        /// <param name="tagger">Instance of <see cref="ISimpleXmlSerializableObjectTagger{SpecimenCodeSerializableModel}"/>.</param>
+        public SpecimenCodesByPatternTagger(ITextContentHarvester contentHarvester, ISpecimenCodesByPatternDataMiner miner, ISimpleXmlSerializableObjectTagger<SpecimenCodeSerializableModel> tagger)
         {
             this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
             this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
@@ -35,13 +39,18 @@ namespace ProcessingTools.Services.Bio.Codes
         }
 
         /// <inheritdoc/>
-        public async Task<object> TagAsync(IDocument context)
+        public Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.TagInternalAsync(context);
+        }
+
+        private async Task<object> TagInternalAsync(IDocument context)
+        {
             var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
             var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
                 .ToArray();

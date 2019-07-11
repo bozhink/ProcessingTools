@@ -2,13 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.ZooBank;
-
 namespace ProcessingTools.Services.Bio.ZooBank
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Bio.ZooBank;
 
     /// <summary>
     /// ZooBank registration XML generator.

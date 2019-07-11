@@ -19,15 +19,9 @@ namespace ProcessingTools.Services.Models
         [XmlAttribute(AttributeNames.XLinkType, Form = XmlSchemaForm.Qualified, Namespace = Namespaces.XlinkNamespaceUri)]
         public string XLinkType
         {
-            get
-            {
-                return ProcessingTools.Common.Enumerations.Nlm.XLinkType.Simple.ToString().ToLowerInvariant();
-            }
+            get => ProcessingTools.Common.Enumerations.Nlm.XLinkType.Simple.ToString().ToLowerInvariant();
 
-            set
-            {
-                // Skip
-            }
+            set => _ = value;
         }
     }
 }

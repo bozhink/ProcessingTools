@@ -2,14 +2,13 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.IO;
-
 namespace ProcessingTools.Services.Documents
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.IO;
 
     /// <summary>
     /// Document writer.

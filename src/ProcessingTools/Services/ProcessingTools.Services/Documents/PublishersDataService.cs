@@ -2,10 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Documents;
-using ProcessingTools.Contracts.Services.History;
-using ProcessingTools.Contracts.Services.Models.Documents.Publishers;
-
 namespace ProcessingTools.Services.Documents
 {
     using System;
@@ -16,6 +12,9 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.DataAccess.Documents;
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Publishers;
+    using ProcessingTools.Contracts.Services.Documents;
+    using ProcessingTools.Contracts.Services.History;
+    using ProcessingTools.Contracts.Services.Models.Documents.Publishers;
     using ProcessingTools.Services.Models.Documents.Publishers;
 
     /// <summary>
@@ -24,8 +23,8 @@ namespace ProcessingTools.Services.Documents
     public class PublishersDataService : IPublishersDataService
     {
         private readonly IPublishersDataAccessObject dataAccessObject;
-        private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
+        private readonly IObjectHistoryDataService objectHistoryDataService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishersDataService"/> class.
@@ -48,13 +47,133 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(IPublisherInsertModel model)
+        public Task<object> DeleteAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.DeleteInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IPublisherModel> GetByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetByIdInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<IPublisherDetailsModel> GetDetailsByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            return this.GetDetailsByIdInternalAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> InsertAsync(IPublisherInsertModel model)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
+            return this.InsertInternalAsync(model);
+        }
+
+        /// <inheritdoc/>
+        public Task<IPublisherModel[]> SelectAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+
+        /// <inheritdoc/>
+        public Task<IPublisherDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            return this.SelectDetailsInternalAsync(skip, take);
+        }
+
+        /// <inheritdoc/>
+        public Task<object> UpdateAsync(IPublisherUpdateModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.UpdateInternalAsync(model);
+        }
+
+        private async Task<object> DeleteInternalAsync(object id)
+        {
+            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            return result;
+        }
+
+        private async Task<IPublisherModel> GetByIdInternalAsync(object id)
+        {
+            var publisher = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
+
+            if (publisher == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IPublisherDataTransferObject, PublisherModel>(publisher);
+
+            return model;
+        }
+
+        private async Task<IPublisherDetailsModel> GetDetailsByIdInternalAsync(object id)
+        {
+            var publisher = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
+
+            if (publisher == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IPublisherDetailsDataTransferObject, PublisherDetailsModel>(publisher);
+
+            return model;
+        }
+
+        private async Task<object> InsertInternalAsync(IPublisherInsertModel model)
+        {
             var publisher = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
@@ -68,14 +187,34 @@ namespace ProcessingTools.Services.Documents
             return publisher.ObjectId;
         }
 
-        /// <inheritdoc/>
-        public async Task<object> UpdateAsync(IPublisherUpdateModel model)
+        private async Task<IPublisherDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
         {
-            if (model == null)
+            var publishers = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+
+            if (publishers == null || !publishers.Any())
             {
-                throw new ArgumentNullException(nameof(model));
+                return Array.Empty<IPublisherDetailsModel>();
             }
 
+            var items = publishers.Select(this.mapper.Map<IPublisherDetailsDataTransferObject, PublisherDetailsModel>).ToArray();
+            return items;
+        }
+
+        private async Task<IPublisherModel[]> SelectInternalAsync(int skip, int take)
+        {
+            var publishers = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
+
+            if (publishers == null || !publishers.Any())
+            {
+                return Array.Empty<IPublisherModel>();
+            }
+
+            var items = publishers.Select(this.mapper.Map<IPublisherDataTransferObject, PublisherModel>).ToArray();
+            return items;
+        }
+
+        private async Task<object> UpdateInternalAsync(IPublisherUpdateModel model)
+        {
             var publisher = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
@@ -88,110 +227,5 @@ namespace ProcessingTools.Services.Documents
 
             return publisher.ObjectId;
         }
-
-        /// <inheritdoc/>
-        public async Task<object> DeleteAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
-            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-
-            return result;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IPublisherModel> GetByIdAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var publisher = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
-
-            if (publisher == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IPublisherDataTransferObject, PublisherModel>(publisher);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IPublisherDetailsModel> GetDetailsByIdAsync(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var publisher = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
-
-            if (publisher == null)
-            {
-                return null;
-            }
-
-            var model = this.mapper.Map<IPublisherDetailsDataTransferObject, PublisherDetailsModel>(publisher);
-
-            return model;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IPublisherModel[]> SelectAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var publishers = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
-
-            if (publishers == null || !publishers.Any())
-            {
-                return Array.Empty<IPublisherModel>();
-            }
-
-            var items = publishers.Select(this.mapper.Map<IPublisherDataTransferObject, PublisherModel>).ToArray();
-            return items;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IPublisherDetailsModel[]> SelectDetailsAsync(int skip, int take)
-        {
-            if (skip < PaginationConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
-            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
-
-            var publishers = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-
-            if (publishers == null || !publishers.Any())
-            {
-                return Array.Empty<IPublisherDetailsModel>();
-            }
-
-            var items = publishers.Select(this.mapper.Map<IPublisherDetailsDataTransferObject, PublisherDetailsModel>).ToArray();
-            return items;
-        }
-
-        /// <inheritdoc/>
-        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
     }
 }

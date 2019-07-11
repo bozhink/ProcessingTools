@@ -2,16 +2,15 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio;
-using ProcessingTools.Contracts.Services.Bio.Biorepositories;
-using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
-
 namespace ProcessingTools.Services.Bio
 {
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Bio;
+    using ProcessingTools.Contracts.Services.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>

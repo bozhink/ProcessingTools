@@ -2,9 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services;
-using ProcessingTools.Contracts.Services.Geo;
-
 namespace ProcessingTools.Services.Abstractions.Geo
 {
     using System;
@@ -12,6 +9,8 @@ namespace ProcessingTools.Services.Abstractions.Geo
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Geo;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
 

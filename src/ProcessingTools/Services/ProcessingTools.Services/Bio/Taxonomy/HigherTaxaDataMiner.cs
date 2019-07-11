@@ -2,8 +2,6 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -28,7 +27,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             {
                 if (string.IsNullOrWhiteSpace(context))
                 {
-                return Array.Empty<string>();
+                    return Array.Empty<string>();
                 }
 
                 var words = context.ExtractWordsFromText()
