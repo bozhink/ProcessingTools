@@ -52,12 +52,12 @@
         {
             if (skip < 0)
             {
-                throw new InvalidSkipValuePagingException();
+                throw new InvalidSkipValuePagingException($"Invalid skip value = {skip}");
             }
 
             if (take < 1 || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidTakeValuePagingException();
+                throw new InvalidTakeValuePagingException($"Invalid take value = {take}");
             }
 
             return Task.Run(() =>

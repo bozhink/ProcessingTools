@@ -1,19 +1,27 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Tests.Integration.Tests.Commands
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services;
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Commands.Tagger;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
+    /// <summary>
+    /// <see cref="ExtractTaxaCommand"/> integration tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandIntegrationTests
     {
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract taxa - should not change document content.
+        /// </summary>
+        /// <param name="extractLowerTaxa">Extract lower taxa.</param>
+        /// <param name="extractHigherTaxa">Extract higher taxa.</param>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract taxa - should not change document content.")]
         [TestCase(false, false)]
         [TestCase(false, true)]
@@ -57,6 +65,10 @@
             Assert.AreEqual(initialContent, finalContent);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract only lower taxa - should not change document content.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract only lower taxa - should not change document content.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_ExtractOnlyLowerTaxa_ShouldNotChangeDocumentContent()
@@ -96,6 +108,10 @@
             Assert.AreEqual(initialContent, finalContent);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract only higher taxa - should not change document content.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract only higher taxa - should not change document content.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_ExtractOnlyHigherTaxa_ShouldNotChangeDocumentContent()
@@ -135,6 +151,10 @@
             Assert.AreEqual(initialContent, finalContent);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract lower and higher taxa - should not change document content.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract lower and higher taxa - should not change document content.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_ExtractLowerAndHigherTaxa_ShouldNotChangeDocumentContent()
@@ -174,6 +194,10 @@
             Assert.AreEqual(initialContent, finalContent);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - with no extract parameter - should not change document content.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - with no extract parameter - should not change document content.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_WithNoExtractParameter_ShouldNotChangeDocumentContent()
