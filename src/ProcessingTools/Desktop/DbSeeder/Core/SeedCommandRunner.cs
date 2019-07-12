@@ -8,12 +8,21 @@
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
 
+    /// <summary>
+    /// Seed command runner.
+    /// </summary>
     internal class SeedCommandRunner : ICommandRunner
     {
         private readonly ICommandNamesProvider commandNamesProvider;
         private readonly ITypesProvider typesProvider;
         private readonly Func<Type, IDbSeeder> seederFactory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SeedCommandRunner"/> class.
+        /// </summary>
+        /// <param name="commandNamesProvider">Instance of <see cref="ICommandNamesProvider"/>.</param>
+        /// <param name="typesProvider">Instance of <see cref="ITypesProvider"/>.</param>
+        /// <param name="seederFactory">Factory of seeders.</param>
         public SeedCommandRunner(
             ICommandNamesProvider commandNamesProvider,
             ITypesProvider typesProvider,
@@ -24,6 +33,7 @@
             this.seederFactory = seederFactory ?? throw new ArgumentNullException(nameof(seederFactory));
         }
 
+        /// <inheritdoc/>
         public async Task<object> RunAsync(string commandName)
         {
             var name = commandName ?? " ";
@@ -36,13 +46,13 @@
             {
                 throw new CommandNotFoundException(commandName);
             }
-            else if (matchedNames.Length > 1 && matchedNames.Count(n => string.Compare(n, name, true) == 0) != 1)
+            else if (matchedNames.Length > 1 && matchedNames.Count(n => n.ToUpperInvariant() == name.ToUpperInvariant()) != 1)
             {
                 throw new AmbiguousCommandException(commandName, matchedNames);
             }
             else
             {
-                name = matchedNames.Single(n => string.Compare(n, name, true) == 0);
+                name = matchedNames.Single(n => n.ToUpperInvariant() == name.ToUpperInvariant());
                 var seederType = this.typesProvider.GetTypes().Single(t => t.Name == $"I{name}DbSeeder");
 
                 var seeder = this.seederFactory(seederType);

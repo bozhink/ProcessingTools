@@ -1,16 +1,16 @@
 ﻿namespace ProcessingTools.Net.Tests.Integration.Tests
 {
     using System;
-    using ProcessingTools.Services.Net;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text;
     using System.Threading.Tasks;
     using Microsoft.Owin.Hosting;
     using Newtonsoft.Json;
     using NUnit.Framework;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Net;
     using ProcessingTools.Net.Tests.Models;
+    using ProcessingTools.Services.Net;
     using ProcessingTools.TestWebApiServer;
 
     /// <summary>
@@ -62,7 +62,7 @@
             var content = await requester.GetStringAsync(requestUri, "application/json").ConfigureAwait(false);
 
             // Assert
-            Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
+            Assert.IsTrue(content.Contains(checkString));
         }
 
         /// <summary>
@@ -88,11 +88,11 @@
             var responseObject = await requester.GetJsonToObjectAsync<Product>(requestUri).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(responseObject, "Response object should not be null.");
-            Assert.AreEqual(id, responseObject.Id, "Id should match.");
-            Assert.AreEqual(name, responseObject.Name, "Name should match.");
-            Assert.AreEqual(category, responseObject.Category, "Category should match.");
-            Assert.AreEqual(price, responseObject.Price, "Price should match.");
+            Assert.IsNotNull(responseObject);
+            Assert.AreEqual(id, responseObject.Id);
+            Assert.AreEqual(name, responseObject.Name);
+            Assert.AreEqual(category, responseObject.Category);
+            Assert.AreEqual(price, responseObject.Price);
         }
 
         /// <summary>
@@ -113,8 +113,8 @@
             var responseObject = await requester.GetJsonToObjectAsync<Product[]>(requestUri).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(responseObject, "Response object should not be null.");
-            Assert.AreEqual(numberOfItems, responseObject.Length, "Number of items should match.");
+            Assert.IsNotNull(responseObject);
+            Assert.AreEqual(numberOfItems, responseObject.Length);
 
             for (int i = 0; i < numberOfItems; ++i)
             {
@@ -144,7 +144,7 @@
             var content = await requester.GetStringAsync(requestUri, "application/xml").ConfigureAwait(false);
 
             // Assert
-            Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
+            Assert.IsTrue(content.Contains(checkString));
         }
 
         /// <summary>
@@ -170,11 +170,11 @@
             var responseObject = await requester.GetXmlToObjectAsync<Product>(requestUri).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(responseObject, "Response object should not be null.");
-            Assert.AreEqual(id, responseObject.Id, "Id should match.");
-            Assert.AreEqual(name, responseObject.Name, "Name should match.");
-            Assert.AreEqual(category, responseObject.Category, "Category should match.");
-            Assert.AreEqual(price, responseObject.Price, "Price should match.");
+            Assert.IsNotNull(responseObject);
+            Assert.AreEqual(id, responseObject.Id);
+            Assert.AreEqual(name, responseObject.Name);
+            Assert.AreEqual(category, responseObject.Category);
+            Assert.AreEqual(price, responseObject.Price);
         }
 
         /// <summary>
@@ -195,8 +195,8 @@
             var responseObject = await requester.GetXmlToObjectAsync<ArrayOfProduct>(requestUri).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(responseObject, "Response object should not be null.");
-            Assert.AreEqual(numberOfItems, responseObject.Products.Length, "Number of items should match.");
+            Assert.IsNotNull(responseObject);
+            Assert.AreEqual(numberOfItems, responseObject.Products.Length);
 
             for (int i = 0; i < numberOfItems; ++i)
             {
@@ -226,17 +226,17 @@
             {
                 { "name", name },
                 { "category", category },
-                { "price", price.ToString() },
+                { "price", price.ToString(CultureInfo.InvariantCulture) },
             };
 
             // Act
             var response = await requester.PostToStringAsync(requestUri, values, Encoding.UTF8).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(response, "Response should not be null.");
-            Assert.IsTrue(response.Contains(name), "Response should contain the name.");
-            Assert.IsTrue(response.Contains(category), "Response should contain the category.");
-            Assert.IsTrue(response.Contains(price.ToString()), "Response should contain the price.");
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.Contains(name));
+            Assert.IsTrue(response.Contains(category));
+            Assert.IsTrue(response.Contains(price.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
@@ -270,10 +270,10 @@
             var response = await requester.PostAsync(requestUri, content, "application/json", Encoding.UTF8).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(response, "Response should not be null.");
-            Assert.IsTrue(response.Contains(name), "Response should contain the name.");
-            Assert.IsTrue(response.Contains(category), "Response should contain the category.");
-            Assert.IsTrue(response.Contains(price.ToString()), "Response should contain the price.");
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.Contains(name));
+            Assert.IsTrue(response.Contains(category));
+            Assert.IsTrue(response.Contains(price.ToString(CultureInfo.InvariantCulture)));
 
             TestContext.WriteLine(content);
             TestContext.WriteLine(response);
@@ -300,17 +300,17 @@
             {
                 { "name", name },
                 { "category", category },
-                { "price", price.ToString() },
+                { "price", price.ToString(CultureInfo.InvariantCulture) },
             };
 
             // Act
             var responseObject = await requester.PostToXmlToObjectAsync<Product>(requestUri, values, Encoding.UTF8).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(responseObject, "Response should not be null.");
-            Assert.AreEqual(name, responseObject.Name, "Name should match.");
-            Assert.AreEqual(category, responseObject.Category, "Category should match.");
-            Assert.AreEqual(price, responseObject.Price, "Price should match.");
+            Assert.IsNotNull(responseObject);
+            Assert.AreEqual(name, responseObject.Name);
+            Assert.AreEqual(category, responseObject.Category);
+            Assert.AreEqual(price, responseObject.Price);
         }
     }
 }
