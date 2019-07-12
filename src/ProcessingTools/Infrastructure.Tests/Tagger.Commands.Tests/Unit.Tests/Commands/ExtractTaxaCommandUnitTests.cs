@@ -13,11 +13,17 @@
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
+    /// <summary>
+    /// <see cref="ExtractTaxaCommand"/> unit tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandUnitTests
     {
         #region ConstructorTests
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> with null harvester and null reporter should throw ArgumentNullException.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand with null harvester and null reporter should throw ArgumentNullException.")]
         [Timeout(2000)]
         public void ExtractTaxaCommand_WithNullHarvesterAndNullReporter_ShouldThrowArgumentNullException()
@@ -29,6 +35,9 @@
             });
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> with null harvester and valid reporter should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand with null harvester and valid reporter should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ExtractTaxaCommand_WithNullHarvesterAndValidReporter_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -42,11 +51,14 @@
                 new ExtractTaxaCommand(null, reporterMock.Object);
             });
 
-            Assert.AreEqual(ParameterNames.Harvester, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Harvester, exception.ParamName);
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> with valid harvester and null reporter should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand with valid harvester and null reporter should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ExtractTaxaCommand_WithValidHarvesterAndNullReporter_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -60,13 +72,16 @@
                 new ExtractTaxaCommand(harvesterMock.Object, null);
             });
 
-            Assert.AreEqual(ParameterNames.Reporter, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Reporter, exception.ParamName);
 
             harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
             harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
             harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> with valid harvester and valid reporter should correctly initialize object.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand with valid harvester and valid reporter should correctly initialize object.")]
         [Timeout(2000)]
         public void ExtractTaxaCommand_WithValidHarvesterAndValidReporter_ShouldCorrectlyInitializeObject()
@@ -79,19 +94,19 @@
             var command = new ExtractTaxaCommand(harvesterMock.Object, reporterMock.Object);
 
             // Assert
-            Assert.IsNotNull(command, "Initialized Command object should not be null.");
+            Assert.IsNotNull(command);
 
             var harvester = PrivateField.GetInstanceField<ExtractTaxaCommand>(
                 command,
                 ParameterNames.Harvester);
-            Assert.IsNotNull(harvester, "Private harvester field should not be null.");
-            Assert.AreSame(harvesterMock.Object, harvester, "Private harvester field should not be set correctly.");
+            Assert.IsNotNull(harvester);
+            Assert.AreSame(harvesterMock.Object, harvester);
 
             var reporter = PrivateField.GetInstanceField<ExtractTaxaCommand>(
                 command,
                 ParameterNames.Reporter);
-            Assert.IsNotNull(reporter, "Private reporter field should not be null.");
-            Assert.AreSame(reporterMock.Object, reporter, "Private reporter field should not be set correctly.");
+            Assert.IsNotNull(reporter);
+            Assert.AreSame(reporterMock.Object, reporter);
 
             harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
             harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
@@ -105,6 +120,9 @@
 
         #region ExecutionTests
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with null document and null program settings should throw ArgumentNullException.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with null document and null program settings should throw ArgumentNullException.")]
         [Timeout(2000)]
         public void ExtractTaxaCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
@@ -128,6 +146,9 @@
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ExtractTaxaCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -144,7 +165,7 @@
                 return command.RunAsync(null, settingsMock.Object);
             });
 
-            Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Document, exception.ParamName);
 
             harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
             harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
@@ -154,6 +175,9 @@
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ExtractTaxaCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -170,7 +194,7 @@
                 return command.RunAsync(documentMock.Object, null);
             });
 
-            Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Settings, exception.ParamName);
 
             harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
             harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
@@ -180,6 +204,10 @@
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract lower and higher taxa - should work.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract lower and higher taxa - should work.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_ExtractLowerAndHigherTaxa_ShouldWork()
@@ -226,6 +254,10 @@
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract only higher taxa - should work.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract only higher taxa - should work.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_ExtractOnlyHigherTaxa_ShouldWork()
@@ -271,6 +303,10 @@
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract only lower taxa - should work.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract only lower taxa - should work.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_ExtractOnlyLowerTaxa_ShouldWork()
@@ -316,6 +352,12 @@
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - extract taxa - should work.
+        /// </summary>
+        /// <param name="extractLowerTaxa">Extract lower taxa.</param>
+        /// <param name="extractHigherTaxa">Extract higher taxa.</param>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract taxa - should work.")]
         [TestCase(false, false)]
         [TestCase(false, true)]
@@ -365,6 +407,10 @@
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="ExtractTaxaCommand"/> Run with valid document and valid program settings - with no extract parameter - should work.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - with no extract parameter - should work.")]
         [Timeout(2000)]
         public async Task ExtractTaxaCommand_RunWithValidDocumentAndValidProgramSettings_WithNoExtractParameter_ShouldWork()

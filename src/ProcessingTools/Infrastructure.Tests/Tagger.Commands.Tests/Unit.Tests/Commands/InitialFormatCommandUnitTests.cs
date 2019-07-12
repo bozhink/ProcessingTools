@@ -4,18 +4,24 @@
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Layout;
 
+    /// <summary>
+    /// <see cref="InitialFormatCommand"/> unit tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(InitialFormatCommand))]
     public class InitialFormatCommandUnitTests
     {
         #region ConstructorTests
 
+        /// <summary>
+        /// <see cref="InitialFormatCommand"/> with null formatter should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand with null formatter should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void InitialFormatCommand_WithNullFormatter_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -26,9 +32,12 @@
                 new InitialFormatCommand(null);
             });
 
-            Assert.AreEqual(ParameterNames.Formatter, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Formatter, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="InitialFormatCommand"/> with valid formatter should correctly initialize object.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand with valid formatter should correctly initialize object.")]
         [Timeout(2000)]
         public void InitialFormatCommand_WithValidFormatter_ShouldCorrectlyInitializeObject()
@@ -38,21 +47,24 @@
             var command = new InitialFormatCommand(formatterMock.Object);
 
             // Assert
-            Assert.IsNotNull(command, "Initialized Command object should not be null.");
+            Assert.IsNotNull(command);
 
             var formatter = PrivateField.GetInstanceField(
                 typeof(InitialFormatCommand).BaseType,
                 command,
                 ParameterNames.Formatter);
 
-            Assert.IsNotNull(formatter, "Private formatter field should not be null.");
-            Assert.AreSame(formatterMock.Object, formatter, "Private formatter field should not be set correctly.");
+            Assert.IsNotNull(formatter);
+            Assert.AreSame(formatterMock.Object, formatter);
         }
 
         #endregion ConstructorTests
 
         #region ExecutionTests
 
+        /// <summary>
+        /// <see cref="InitialFormatCommand"/> Run with null document and null program settings should throw ArgumentNullException.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with null document and null program settings should throw ArgumentNullException.")]
         [Timeout(2000)]
         public void InitialFormatCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
@@ -70,6 +82,9 @@
             formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="InitialFormatCommand"/> Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void InitialFormatCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -85,11 +100,14 @@
                 return command.RunAsync(null, settingsMock.Object);
             });
 
-            Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Document, exception.ParamName);
 
             formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="InitialFormatCommand"/> Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void InitialFormatCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -105,11 +123,15 @@
                 return command.RunAsync(documentMock.Object, null);
             });
 
-            Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Settings, exception.ParamName);
 
             formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="InitialFormatCommand"/> Run with valid document and valid program settings should call formatter with correct parameter.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with valid document and valid program settings should call formatter with correct parameter.")]
         [Timeout(2000)]
         public async Task InitialFormatCommand_RunWithValidDocumentAndValidProgramSettings_ShouldCallParserWithCorrectParameter()

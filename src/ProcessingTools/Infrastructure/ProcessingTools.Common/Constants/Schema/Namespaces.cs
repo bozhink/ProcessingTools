@@ -9,6 +9,8 @@ namespace ProcessingTools.Common.Constants.Schema
     /// </summary>
     public static class Namespaces
     {
+#pragma warning disable S1075 // URIs should not be hardcoded
+
         /// <summary>
         /// Abbreviations namespace.
         /// </summary>
@@ -68,5 +70,7 @@ namespace ProcessingTools.Common.Constants.Schema
         /// MathML namespace URI.
         /// </summary>
         public const string MathMLNamespaceUri = "http://www.w3.org/1998/Math/MathML";
+
+#pragma warning restore S1075 // URIs should not be hardcoded
     }
 }

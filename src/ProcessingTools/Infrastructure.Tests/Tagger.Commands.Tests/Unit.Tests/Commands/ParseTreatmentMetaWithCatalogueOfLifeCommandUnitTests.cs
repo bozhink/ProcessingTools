@@ -4,19 +4,24 @@
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
+    /// <summary>
+    /// <see cref="ParseTreatmentMetaWithCatalogueOfLifeCommand"/> unit tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand))]
     public class ParseTreatmentMetaWithCatalogueOfLifeCommandUnitTests
     {
         #region ConstructorTests
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithCatalogueOfLifeCommand"/> with null parser should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand), Description = "ParseTreatmentMetaWithCatalogueOfLifeCommand with null parser should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_WithNullParser_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -27,9 +32,12 @@
                 new ParseTreatmentMetaWithCatalogueOfLifeCommand(null);
             });
 
-            Assert.AreEqual(ParameterNames.Parser, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Parser, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithCatalogueOfLifeCommand"/> with valid parser should correctly initialize object.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand), Description = "ParseTreatmentMetaWithCatalogueOfLifeCommand with valid parser should correctly initialize object.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_WithValidParser_ShouldCorrectlyInitializeObject()
@@ -39,21 +47,24 @@
             var command = new ParseTreatmentMetaWithCatalogueOfLifeCommand(parserMock.Object);
 
             // Assert
-            Assert.IsNotNull(command, "Initialized Command object should not be null.");
+            Assert.IsNotNull(command);
 
             var parser = PrivateField.GetInstanceField(
                 typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand).BaseType,
                 command,
                 ParameterNames.Parser);
 
-            Assert.IsNotNull(parser, "Private parser field should not be null.");
-            Assert.AreSame(parserMock.Object, parser, "Private parser field should not be set correctly.");
+            Assert.IsNotNull(parser);
+            Assert.AreSame(parserMock.Object, parser);
         }
 
         #endregion ConstructorTests
 
         #region ExecutionTests
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithCatalogueOfLifeCommand"/> Run with null document and null program settings should throw ArgumentNullException.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand), Description = "ParseTreatmentMetaWithCatalogueOfLifeCommand Run with null document and null program settings should throw ArgumentNullException.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
@@ -71,6 +82,9 @@
             parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithCatalogueOfLifeCommand"/> Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand), Description = "ParseTreatmentMetaWithCatalogueOfLifeCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -86,11 +100,14 @@
                 return command.RunAsync(null, settingsMock.Object);
             });
 
-            Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Document, exception.ParamName);
 
             parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithCatalogueOfLifeCommand"/> Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand), Description = "ParseTreatmentMetaWithCatalogueOfLifeCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -106,11 +123,15 @@
                 return command.RunAsync(documentMock.Object, null);
             });
 
-            Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Settings, exception.ParamName);
 
             parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithCatalogueOfLifeCommand"/> Run with valid document and valid program settings should call parser with correct parameter.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithCatalogueOfLifeCommand), Description = "ParseTreatmentMetaWithCatalogueOfLifeCommand Run with valid document and valid program settings should call parser with correct parameter.")]
         [Timeout(2000)]
         public async Task ParseTreatmentMetaWithCatalogueOfLifeCommand_RunWithValidDocumentAndValidProgramSettings_ShouldCallParserWithCorrectParameter()

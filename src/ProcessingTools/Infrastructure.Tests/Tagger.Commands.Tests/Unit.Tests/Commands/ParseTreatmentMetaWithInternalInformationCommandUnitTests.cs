@@ -11,11 +11,17 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
+    /// <summary>
+    /// <see cref="ParseTreatmentMetaWithInternalInformationCommand"/> unit tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand))]
     public class ParseTreatmentMetaWithInternalInformationCommandUnitTests
     {
         #region ConstructorTests
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithInternalInformationCommand"/> with null parser should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand with null parser should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithInternalInformationCommand_WithNullParser_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -26,9 +32,12 @@
                 new ParseTreatmentMetaWithInternalInformationCommand(null);
             });
 
-            Assert.AreEqual(ParameterNames.Parser, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Parser, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithInternalInformationCommand"/> with valid parser should correctly initialize object.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand with valid parser should correctly initialize object.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithInternalInformationCommand_WithValidParser_ShouldCorrectlyInitializeObject()
@@ -38,21 +47,24 @@
             var command = new ParseTreatmentMetaWithInternalInformationCommand(parserMock.Object);
 
             // Assert
-            Assert.IsNotNull(command, "Initialized Command object should not be null.");
+            Assert.IsNotNull(command);
 
             var parser = PrivateField.GetInstanceField(
                 typeof(ParseTreatmentMetaWithInternalInformationCommand).BaseType,
                 command,
                 ParameterNames.Parser);
 
-            Assert.IsNotNull(parser, "Private parser field should not be null.");
-            Assert.AreSame(parserMock.Object, parser, "Private parser field should not be set correctly.");
+            Assert.IsNotNull(parser);
+            Assert.AreSame(parserMock.Object, parser);
         }
 
         #endregion ConstructorTests
 
         #region ExecutionTests
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithInternalInformationCommand"/> Run with null document and null program settings should throw ArgumentNullException.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand Run with null document and null program settings should throw ArgumentNullException.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithInternalInformationCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
@@ -70,6 +82,9 @@
             parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithInternalInformationCommand"/> Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithInternalInformationCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -85,11 +100,14 @@
                 return command.RunAsync(null, settingsMock.Object);
             });
 
-            Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Document, exception.ParamName);
 
             parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithInternalInformationCommand"/> Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void ParseTreatmentMetaWithInternalInformationCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -105,11 +123,15 @@
                 return command.RunAsync(documentMock.Object, null);
             });
 
-            Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Settings, exception.ParamName);
 
             parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ParseTreatmentMetaWithInternalInformationCommand"/> Run with valid document and valid program settings should call parser with correct parameter.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand Run with valid document and valid program settings should call parser with correct parameter.")]
         [Timeout(2000)]
         public async Task ParseTreatmentMetaWithInternalInformationCommand_RunWithValidDocumentAndValidProgramSettings_ShouldCallParserWithCorrectParameter()

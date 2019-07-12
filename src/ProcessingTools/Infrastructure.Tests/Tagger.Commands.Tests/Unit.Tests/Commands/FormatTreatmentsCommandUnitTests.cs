@@ -4,18 +4,24 @@
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
+    /// <summary>
+    /// <see cref="FormatTreatmentsCommand"/> unit tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(FormatTreatmentsCommand))]
     public class FormatTreatmentsCommandUnitTests
     {
         #region ConstructorTests
 
+        /// <summary>
+        /// <see cref="FormatTreatmentsCommand"/> with null formatter should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(FormatTreatmentsCommand), Description = "FormatTreatmentsCommand with null formatter should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void FormatTreatmentsCommand_WithNullFormatter_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -26,9 +32,12 @@
                 new FormatTreatmentsCommand(null);
             });
 
-            Assert.AreEqual(ParameterNames.Formatter, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Formatter, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="FormatTreatmentsCommand"/> with valid formatter should correctly initialize object.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(FormatTreatmentsCommand), Description = "FormatTreatmentsCommand with valid formatter should correctly initialize object.")]
         [Timeout(2000)]
         public void FormatTreatmentsCommand_WithValidFormatter_ShouldCorrectlyInitializeObject()
@@ -38,21 +47,24 @@
             var command = new FormatTreatmentsCommand(formatterMock.Object);
 
             // Assert
-            Assert.IsNotNull(command, "Initialized Command object should not be null.");
+            Assert.IsNotNull(command);
 
             var formatter = PrivateField.GetInstanceField(
                 typeof(FormatTreatmentsCommand).BaseType,
                 command,
                 ParameterNames.Formatter);
 
-            Assert.IsNotNull(formatter, "Private formatter field should not be null.");
-            Assert.AreSame(formatterMock.Object, formatter, "Private formatter field should not be set correctly.");
+            Assert.IsNotNull(formatter);
+            Assert.AreSame(formatterMock.Object, formatter);
         }
 
         #endregion ConstructorTests
 
         #region ExecutionTests
 
+        /// <summary>
+        /// <see cref="FormatTreatmentsCommand"/> Run with null document and null program settings should throw ArgumentNullException.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(FormatTreatmentsCommand), Description = "FormatTreatmentsCommand Run with null document and null program settings should throw ArgumentNullException.")]
         [Timeout(2000)]
         public void FormatTreatmentsCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
@@ -70,6 +82,9 @@
             formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="FormatTreatmentsCommand"/> Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(FormatTreatmentsCommand), Description = "FormatTreatmentsCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void FormatTreatmentsCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -85,11 +100,14 @@
                 return command.RunAsync(null, settingsMock.Object);
             });
 
-            Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Document, exception.ParamName);
 
             formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="FormatTreatmentsCommand"/> Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(FormatTreatmentsCommand), Description = "FormatTreatmentsCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
         [Timeout(2000)]
         public void FormatTreatmentsCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -105,11 +123,15 @@
                 return command.RunAsync(documentMock.Object, null);
             });
 
-            Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
+            Assert.AreEqual(ParameterNames.Settings, exception.ParamName);
 
             formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="FormatTreatmentsCommand"/> Run with valid document and valid program settings should call formatter with correct parameter.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(FormatTreatmentsCommand), Description = "FormatTreatmentsCommand Run with valid document and valid program settings should call formatter with correct parameter.")]
         [Timeout(2000)]
         public async Task FormatTreatmentsCommand_RunWithValidDocumentAndValidProgramSettings_ShouldCallParserWithCorrectParameter()
