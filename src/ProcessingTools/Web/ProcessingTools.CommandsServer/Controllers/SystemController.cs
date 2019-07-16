@@ -8,7 +8,7 @@ namespace ProcessingTools.CommandsServer.Controllers
     using System.Net;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Web.Models.System;
+    using ProcessingTools.Web.Models.Application;
     using RabbitMQ.Client;
 
     /// <summary>

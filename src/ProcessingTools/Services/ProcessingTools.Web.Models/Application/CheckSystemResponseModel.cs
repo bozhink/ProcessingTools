@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Models.System
+namespace ProcessingTools.Web.Models.Application
 {
     using Newtonsoft.Json;
 
