@@ -120,9 +120,11 @@
             }
 
             var stream = new MemoryStream();
-            var writer = XmlWriter.Create(stream);
-            this.TransformNode(node)?.WriteTo(writer);
-            writer.Flush();
+            using (var writer = XmlWriter.Create(stream))
+            {
+                this.TransformNode(node)?.WriteTo(writer);
+                writer.Flush();
+            }
 
             return stream;
         }

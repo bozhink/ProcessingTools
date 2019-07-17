@@ -2,12 +2,11 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-using ProcessingTools.Contracts.Services.Models.Documents.Journals;
-
 namespace ProcessingTools.Web.Models.Documents.Journals
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Journals;
+    using ProcessingTools.Contracts.Services.Models.Documents.Journals;
 
     /// <summary>
     /// Journal edit request model.
