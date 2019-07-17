@@ -11,7 +11,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
     using ProcessingTools.Data.Models.Mongo.Bio.Taxonomy;
 
     /// <summary>
-    /// Implementation of <see cref="IBiotaxonomyDatabaseInitializer"/>.
+    /// MongoDB implementation of <see cref="IBiotaxonomyDatabaseInitializer"/>.
     /// </summary>
     public class MongoBiotaxonomyDatabaseInitializer : IBiotaxonomyDatabaseInitializer
     {

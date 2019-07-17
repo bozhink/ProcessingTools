@@ -46,7 +46,7 @@ namespace ProcessingTools.Data.Mongo
             };
             ConventionRegistry.Register(ConfigurationConstants.CamelCaseConventionPackName, conventionPack, t => true);
 
-            var client = new MongoClient(this.connectionString);
+            IMongoClient client = new MongoClient(this.connectionString);
             return client.GetDatabase(this.databaseName);
         }
     }
