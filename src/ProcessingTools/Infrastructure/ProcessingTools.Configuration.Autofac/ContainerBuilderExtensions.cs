@@ -2,9 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Documents.Extensions
+namespace ProcessingTools.Configuration.Autofac
 {
-    using Autofac;
+    using global::Autofac;
     using MongoDB.Driver;
     using ProcessingTools.Data.Mongo;
 
@@ -16,6 +16,7 @@ namespace ProcessingTools.Web.Documents.Extensions
         /// <summary>
         /// Register <see cref="IMongoCollection{T}" /> binding.
         /// </summary>
+        /// <typeparam name="T">Type of the entity.</typeparam>
         /// <param name="builder"><see cref="ContainerBuilder" /> instance to be updated.</param>
         /// <param name="bindingName">Name of the binding for the database provider.</param>
         /// <returns>Configured <see cref="ContainerBuilder" /> instance.</returns>
@@ -39,7 +40,7 @@ namespace ProcessingTools.Web.Documents.Extensions
             where T : class
         {
             var db = databaseProvider.Create();
-            string collectionName = ProcessingTools.Data.Mongo.MongoCollectionNameFactory.Create<T>();
+            string collectionName = MongoCollectionNameFactory.Create<T>();
             return db.GetCollection<T>(collectionName);
         }
     }

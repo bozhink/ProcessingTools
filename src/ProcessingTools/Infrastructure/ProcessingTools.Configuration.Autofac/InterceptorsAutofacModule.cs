@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Documents.Settings
+namespace ProcessingTools.Configuration.Autofac
 {
-    using Autofac;
-    using ProcessingTools.Web.Documents.Interceptors;
+    using global::Autofac;
+    using ProcessingTools.Configuration.Interceptors;
 
     /// <summary>
     /// Interceptors module.

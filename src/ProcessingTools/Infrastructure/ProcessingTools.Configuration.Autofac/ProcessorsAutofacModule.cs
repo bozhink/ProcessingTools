@@ -2,10 +2,10 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Documents.Settings
+namespace ProcessingTools.Configuration.Autofac
 {
     using System;
-    using Autofac;
+    using global::Autofac;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Geo.Coordinates;

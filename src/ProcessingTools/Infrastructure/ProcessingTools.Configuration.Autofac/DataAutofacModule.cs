@@ -2,12 +2,12 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Documents.Settings
+namespace ProcessingTools.Configuration.Autofac
 {
     using System;
     using System.Collections.Generic;
-    using Autofac;
-    using Autofac.Core;
+    using global::Autofac;
+    using global::Autofac.Core;
     using Microsoft.Extensions.Configuration;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Data;
@@ -20,7 +20,6 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Data.Mongo.Files;
     using ProcessingTools.Data.Mongo.History;
     using ProcessingTools.Data.Mongo.Layout;
-    using ProcessingTools.Web.Documents.Extensions;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Data.*.

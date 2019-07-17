@@ -2,9 +2,9 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Documents.Settings
+namespace ProcessingTools.Configuration.Autofac
 {
-    using Autofac;
+    using global::Autofac;
     using ProcessingTools.Contracts.Web.Services.Admin;
     using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Documents;
