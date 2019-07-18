@@ -328,5 +328,52 @@ namespace ProcessingTools.Extensions
             DateTime beginningOfWeek = instance.This(DateType.Week);
             return (beginningOfWeek - reference).TotalDays < DateTimeConstants.NumberOfDaysInWeek;
         }
+
+        /// <summary>
+        /// Gets the first day of the week.
+        /// </summary>
+        /// <param name="today">Referent date.</param>
+        /// <returns>The first day of the week.</returns>
+        public static DateTime GetFirstDayOfWeek(this DateTime today)
+        {
+            return today.DayOfWeek == DayOfWeek.Sunday ? today.AddDays(-6) : today.AddDays(-(today.DayOfWeek - DayOfWeek.Monday));
+        }
+
+        /// <summary>
+        /// Gets the last day of the week.
+        /// </summary>
+        /// <param name="today">Referent date.</param>
+        /// <returns>The last day of the week.</returns>
+        public static DateTime GetLastDayOfWeek(this DateTime today)
+        {
+            return today.DayOfWeek == DayOfWeek.Sunday ? today : today.AddDays(7 - (int)today.DayOfWeek);
+        }
+
+        /// <summary>
+        /// Gets the first day of the month.
+        /// </summary>
+        /// <param name="today">Referent date.</param>
+        /// <returns>The first day of the month.</returns>
+        public static DateTime GetFirstDayOfMonth(this DateTime today)
+        {
+            return new DateTime(
+                year: today.Year,
+                month: today.Month,
+                day: 1,
+                hour: today.Hour,
+                minute: today.Minute,
+                second: today.Second,
+                millisecond: today.Millisecond);
+        }
+
+        /// <summary>
+        /// Gets the last day of the month.
+        /// </summary>
+        /// <param name="today">Referent date.</param>
+        /// <returns>The last day of the month.</returns>
+        public static DateTime GetLastDayOfMonth(this DateTime today)
+        {
+            return today.GetFirstDayOfMonth().AddMonths(1).AddDays(-1);
+        }
     }
 }
