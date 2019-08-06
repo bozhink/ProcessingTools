@@ -1,0 +1,240 @@
+﻿// <copyright file="MongoMediatypesDataAccessObject.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.DataAccess.Mongo.Files
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using MongoDB.Driver;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.DataAccess.Files;
+    using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
+    using ProcessingTools.Data.Models.Mongo.Files;
+    using ProcessingTools.Data.Mongo;
+    using ProcessingTools.Data.Mongo.Abstractions;
+    using ProcessingTools.Extensions;
+
+    /// <summary>
+    /// MongoDB implementation of <see cref="IMediatypesDataAccessObject"/>.
+    /// </summary>
+    public class MongoMediatypesDataAccessObject : MongoDataAccessObjectBase<Mediatype>, IMediatypesDataAccessObject
+    {
+        private readonly IApplicationContext applicationContext;
+        private readonly IMapper mapper;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoMediatypesDataAccessObject"/> class.
+        /// </summary>
+        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
+        /// <param name="applicationContext">Application context.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
+        public MongoMediatypesDataAccessObject(IMongoDatabaseProvider databaseProvider, IApplicationContext applicationContext, IMapper mapper)
+            : base(databaseProvider)
+        {
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+
+            this.CollectionSettings = new MongoCollectionSettings
+            {
+                AssignIdOnInsert = true,
+                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
+            };
+        }
+
+        /// <inheritdoc/>
+        public async Task<IMediatypeDataTransferObject> InsertAsync(IMediatypeInsertModel model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
+            var mediatype = this.mapper.Map<IMediatypeInsertModel, Mediatype>(model);
+            mediatype.ObjectId = this.applicationContext.GuidProvider.Invoke();
+            mediatype.ModifiedBy = this.applicationContext.UserContext.UserId;
+            mediatype.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            mediatype.CreatedBy = mediatype.ModifiedBy;
+            mediatype.CreatedOn = mediatype.ModifiedOn;
+            mediatype.Id = null;
+
+            await this.Collection.InsertOneAsync(mediatype, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
+
+            return mediatype;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IMediatypeDataTransferObject> UpdateAsync(IMediatypeUpdateModel model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
+            Guid objectId = model.Id.ToNewGuid();
+
+            var mediatype = this.mapper.Map<IMediatypeUpdateModel, Mediatype>(model);
+            mediatype.ModifiedBy = this.applicationContext.UserContext.UserId;
+            mediatype.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+
+            var filterDefinition = new FilterDefinitionBuilder<Mediatype>().Eq(m => m.ObjectId, objectId);
+            var updateDefinition = new UpdateDefinitionBuilder<Mediatype>()
+                .Set(m => m.Extension, model.Extension)
+                .Set(m => m.MimeType, model.MimeType)
+                .Set(m => m.MimeSubtype, model.MimeSubtype)
+                .Set(m => m.Description, model.Description)
+                .Set(m => m.ModifiedBy, mediatype.ModifiedBy)
+                .Set(m => m.ModifiedOn, mediatype.ModifiedOn);
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = false,
+            };
+
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+
+            if (!result.IsAcknowledged)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            return mediatype;
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> DeleteAsync(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var result = await this.Collection.DeleteOneAsync(a => a.ObjectId == objectId).ConfigureAwait(false);
+
+            if (!result.IsAcknowledged)
+            {
+                throw new DeleteUnsuccessfulException();
+            }
+
+            return result;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IMediatypeDataTransferObject> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
+
+        /// <inheritdoc/>
+        public async Task<IMediatypeDetailsDataTransferObject> GetDetailsByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var mediatype = await this.Collection.Find(a => a.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return mediatype;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IMediatypeMetaModel> GetMediatypeByExtensionAsync(string extension)
+        {
+            if (string.IsNullOrWhiteSpace(extension?.TrimStart('.')))
+            {
+                return null;
+            }
+
+            string extensionCleaned = ("." + extension.TrimStart('.').Trim(' ')).ToLowerInvariant();
+
+            var data = await this.Collection.Find(m => m.Extension == extensionCleaned).FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return data;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IMediatypeMetaModel[]> GetMediatypesByExtensionAsync(string extension)
+        {
+            if (string.IsNullOrWhiteSpace(extension?.TrimStart('.')))
+            {
+                return Array.Empty<IMediatypeMetaModel>();
+            }
+
+            string extensionCleaned = ("." + extension.TrimStart('.').Trim(' ')).ToLowerInvariant();
+
+            var data = await this.Collection.Find(m => m.Extension == extensionCleaned).ToListAsync().ConfigureAwait(false);
+
+            return data.ToArray<IMediatypeMetaModel>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<string[]> GetMimeTypesAsync()
+        {
+            var query = this.Collection.Aggregate().Project(m => new { m.MimeType }).Group(m => m.MimeType, g => new { g.Key });
+
+            var data = await query.ToListAsync().ConfigureAwait(false);
+
+            return data.Select(g => g.Key).Distinct().ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task<string[]> GetMimeSubtypesAsync()
+        {
+            var query = this.Collection.Aggregate().Project(m => new { m.MimeSubtype }).Group(m => m.MimeSubtype, g => new { g.Key });
+
+            var data = await query.ToListAsync().ConfigureAwait(false);
+
+            return data.Select(g => g.Key).Distinct().ToArray();
+        }
+
+        /// <inheritdoc/>
+        public Task<long> SelectCountAsync()
+        {
+            return this.Collection.CountDocumentsAsync(a => true);
+        }
+
+        /// <inheritdoc/>
+        public async Task<IList<IMediatypeDataTransferObject>> SelectAsync(int skip, int take)
+        {
+            var mediatypes = await this.Collection.Find(a => true)
+                .SortByDescending(a => a.CreatedOn)
+                .Skip(skip)
+                .Limit(take)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (mediatypes == null || !mediatypes.Any())
+            {
+                return Array.Empty<IMediatypeDataTransferObject>();
+            }
+
+            return mediatypes.ToArray<IMediatypeDataTransferObject>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IList<IMediatypeDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
+        {
+            var mediatypes = await this.Collection.Find(a => true)
+               .SortByDescending(a => a.CreatedOn)
+               .Skip(skip)
+               .Limit(take)
+               .ToListAsync()
+               .ConfigureAwait(false);
+
+            if (mediatypes == null || !mediatypes.Any())
+            {
+                return Array.Empty<IMediatypeDetailsDataTransferObject>();
+            }
+
+            return mediatypes.ToArray<IMediatypeDetailsDataTransferObject>();
+        }
+    }
+}

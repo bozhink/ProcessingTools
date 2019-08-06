@@ -18,8 +18,11 @@ namespace ProcessingTools.Configuration.Autofac
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Documents;
     using ProcessingTools.Data.Mongo.Files;
-    using ProcessingTools.Data.Mongo.History;
     using ProcessingTools.Data.Mongo.Layout;
+    using ProcessingTools.DataAccess.Mongo.Documents;
+    using ProcessingTools.DataAccess.Mongo.Files;
+    using ProcessingTools.DataAccess.Mongo.History;
+    using ProcessingTools.DataAccess.Mongo.Layout.Styles;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Data.*.
@@ -233,11 +236,11 @@ namespace ProcessingTools.Configuration.Autofac
                 .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.BlackListItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
                 .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.TaxonRankItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName);
             builder
-                .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBlackListDataAccessObject>()
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Taxonomy.MongoBlackListDataAccessObject>()
                 .As<ProcessingTools.Contracts.DataAccess.Bio.Taxonomy.IBlackListDataAccessObject>()
                 .InstancePerLifetimeScope();
             builder
-                .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoTaxonRanksDataAccessObject>()
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Taxonomy.MongoTaxonRanksDataAccessObject>()
                 .As<ProcessingTools.Contracts.DataAccess.Bio.Taxonomy.ITaxonRanksDataAccessObject>()
                 .InstancePerLifetimeScope();
 

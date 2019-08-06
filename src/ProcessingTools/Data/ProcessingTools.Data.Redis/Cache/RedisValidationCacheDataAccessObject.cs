@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Redis.Cache
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.DataAccess.Cache;
@@ -37,100 +38,84 @@ namespace ProcessingTools.Data.Redis.Cache
         private Func<ValidationCacheEntity, string> Serialize => e => this.serializer.SerializeToString(e);
 
         /// <inheritdoc/>
-        public Task<object> AddAsync(string key, IValidationCacheModel model)
+        public async Task<bool> AddAsync(string key, IValidationCacheModel model)
         {
-            if (string.IsNullOrWhiteSpace(key))
+            if (string.IsNullOrWhiteSpace(key) || model is null)
             {
-                throw new ArgumentNullException(nameof(key));
+                return false;
             }
 
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
+            await Task.CompletedTask.ConfigureAwait(false);
 
-            return Task.Run<object>(() =>
-            {
-                var list = this.client.Lists[key];
-                list.Add(this.Serialize(new ValidationCacheEntity(model)));
+            var list = this.client.Lists[key];
+            list.Add(this.Serialize(new ValidationCacheEntity(model)));
 
-                return true;
-            });
+            return true;
         }
 
         /// <inheritdoc/>
-        public Task<object> RemoveAsync(string key, IValidationCacheModel model)
+        public async Task<bool> RemoveAsync(string key, IValidationCacheModel model)
         {
-            if (string.IsNullOrWhiteSpace(key))
+            if (string.IsNullOrWhiteSpace(key) || model is null)
             {
-                throw new ArgumentNullException(nameof(key));
+                return false;
             }
 
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
+            await Task.CompletedTask.ConfigureAwait(false);
 
-            return Task.Run<object>(() =>
-            {
-                var list = this.client.Lists[key];
-                return list.Remove(this.Serialize(new ValidationCacheEntity(model)));
-            });
+            var list = this.client.Lists[key];
+            return list.Remove(this.Serialize(new ValidationCacheEntity(model)));
         }
 
         /// <inheritdoc/>
-        public Task<object> RemoveAsync(string key)
+        public async Task<bool> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
-                throw new ArgumentNullException(nameof(key));
+                return false;
             }
 
-            return Task.Run<object>(() =>
-            {
-                return !this.client.ContainsKey(key) || this.client.Remove(key);
-            });
+            await Task.CompletedTask.ConfigureAwait(false);
+
+            return !this.client.ContainsKey(key) || this.client.Remove(key);
         }
 
         /// <inheritdoc/>
-        public Task<object> ClearCacheAsync()
+        public async Task<bool> ClearCacheAsync()
         {
-            return Task.Run<object>(() =>
-            {
-                var keys = this.client.GetAllKeys();
-                this.client.RemoveAll(keys);
-                return true;
-            });
+            await Task.CompletedTask.ConfigureAwait(false);
+
+            var keys = this.client.GetAllKeys();
+            this.client.RemoveAll(keys);
+            return true;
         }
 
         /// <inheritdoc/>
-        public Task<IValidationCacheDataTransferObject[]> GetAllForKeyAsync(string key)
+        public async Task<IList<IValidationCacheDataTransferObject>> GetAllForKeyAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
-                throw new ArgumentNullException(nameof(key));
+                return Array.Empty<IValidationCacheDataTransferObject>();
             }
 
-            return Task.Run(() =>
-            {
-                var list = this.client.Lists[key];
-                return list.Select(this.Deserialize).ToArray<IValidationCacheDataTransferObject>();
-            });
+            await Task.CompletedTask.ConfigureAwait(false);
+
+            var list = this.client.Lists[key];
+            return list.Select(this.Deserialize).ToArray<IValidationCacheDataTransferObject>();
         }
 
         /// <inheritdoc/>
-        public Task<IValidationCacheDataTransferObject> GetLastForKeyAsync(string key)
+        public async Task<IValidationCacheDataTransferObject> GetLastForKeyAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
-                throw new ArgumentNullException(nameof(key));
+                return null;
             }
 
-            return Task.Run(() =>
-            {
-                var list = this.client.Lists[key];
-                return list.Select(this.Deserialize).OrderByDescending(i => i.LastUpdate).FirstOrDefault<IValidationCacheDataTransferObject>();
-            });
+            await Task.CompletedTask.ConfigureAwait(false);
+
+            var list = this.client.Lists[key];
+            return list.Select(this.Deserialize).OrderByDescending(i => i.LastUpdate).FirstOrDefault<IValidationCacheDataTransferObject>();
         }
     }
 }

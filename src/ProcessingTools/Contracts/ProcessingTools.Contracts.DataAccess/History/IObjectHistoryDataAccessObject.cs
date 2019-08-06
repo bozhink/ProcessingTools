@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.DataAccess.History
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.History;
 
@@ -24,7 +25,7 @@ namespace ProcessingTools.Contracts.DataAccess.History
         /// </summary>
         /// <param name="objectId">ObjectId of the source object.</param>
         /// <returns>Array of object histories.</returns>
-        Task<IObjectHistory[]> GetAsync(object objectId);
+        Task<IList<IObjectHistory>> GetAsync(object objectId);
 
         /// <summary>
         /// Gets object histories for object with specified ObjectId.
@@ -33,6 +34,6 @@ namespace ProcessingTools.Contracts.DataAccess.History
         /// <param name="skip">Number of object histories to skip.</param>
         /// <param name="take">Number of object histories to take.</param>
         /// <returns>Array of object histories.</returns>
-        Task<IObjectHistory[]> GetAsync(object objectId, int skip, int take);
+        Task<IList<IObjectHistory>> GetAsync(object objectId, int skip, int take);
     }
 }

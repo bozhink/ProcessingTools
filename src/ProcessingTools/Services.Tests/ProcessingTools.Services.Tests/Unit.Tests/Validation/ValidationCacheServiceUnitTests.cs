@@ -16,9 +16,16 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Tests.Common;
 
+    /// <summary>
+    /// <see cref="ValidationCacheService"/> unit tests.
+    /// </summary>
     [TestFixture(Category = "Unit", TestOf = typeof(ValidationCacheService))]
     public class ValidationCacheServiceUnitTests
     {
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Add valid key and valid value should work.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add valid key and valid value should work.")]
         [MaxTime(100000)]
         public async Task ValidationCacheService_AddValidNonPresentKeyAndValidValue_ShouldWork()
@@ -30,7 +37,7 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             var daoMock = new Mock<IValidationCacheDataAccessObject>();
             daoMock
                 .Setup(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()))
-                .Returns(Task.FromResult<object>(true));
+                .Returns(Task.FromResult<bool>(true));
 
             var applicationContextMock = new Mock<IApplicationContext>();
 
@@ -46,6 +53,10 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Once);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Add with invalid key and null value should throw <see cref="ArgumentNullException"/>.
+        /// </summary>
+        /// <param name="key">Task.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add with invalid key and null value should throw ArgumentNullException.")]
         [TestCase(null)]
         [TestCase("")]
@@ -68,6 +79,10 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Add with invalid key and valid value should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
+        /// <param name="key">Task.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add with invalid key and valid value should throw ArgumentNullException with correct ParamName.")]
         [TestCase(null)]
         [TestCase("")]
@@ -93,6 +108,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Add with valid key and null value should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add with valid key and null value should throw ArgumentNullException with correct ParamName.")]
         [MaxTime(100000)]
         public void ValidationCacheService_AddWithValidKeyAndNullValue_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -115,6 +133,10 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Get valid key from cache in which is not present should return null.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key from cache in which is not present should return null.")]
         [MaxTime(100000)]
         public async Task ValidationCacheService_GetAllValidKeyFromCacheInWhichIsNotPresent_ShouldReturnEmptyIEnumerable()
@@ -141,6 +163,10 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Get valid key with empty list should return null.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with empty list should return null.")]
         [MaxTime(100000)]
         public async Task ValidationCacheService_GetAllValidKeyWithEmptyList_ShouldReturnEmptyIEnumerable()
@@ -169,6 +195,10 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Get with invalid key should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
+        /// <param name="key">Task.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get with invalid key should throw ArgumentNullException with correct ParamName.")]
         [TestCase(null)]
         [TestCase("")]
@@ -193,6 +223,10 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> Get valid key with list with single value should return a new copy of it.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with list with single value should return a new copy of it.")]
         [MaxTime(100000)]
         public async Task ValidationCacheService_GetValidKeyWithListWithSingleValue_ShouldReturnANewCopyIt()
@@ -217,14 +251,17 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             Assert.IsNotNull(result);
             Assert.AreNotSame(valueMock.Object, result);
 
-            Assert.AreEqual(valueMock.Object.Content, result.Content, "Content");
-            Assert.AreEqual(valueMock.Object.LastUpdate, result.LastUpdate, "LastUpdate");
-            Assert.AreEqual(valueMock.Object.Status, result.Status, "Status");
+            Assert.AreEqual(valueMock.Object.Content, result.Content);
+            Assert.AreEqual(valueMock.Object.LastUpdate, result.LastUpdate);
+            Assert.AreEqual(valueMock.Object.Status, result.Status);
 
             daoMock.Verify(r => r.GetLastForKeyAsync(key), Times.Once);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> with null DAO and null applicationContext in constructor should throw <see cref="ArgumentNullException"/>.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null DAO and null applicationContext in constructor should throw ArgumentNullException.")]
         [MaxTime(100000)]
         public void ValidationCacheService_WithNullDataAccessObjectAndNullApplicationContextInConstructor_ShouldThrowArgumentNullException()
@@ -236,6 +273,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             });
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> with null DAO and valid applicationContext in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null DAO and valid applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
         [MaxTime(100000)]
         public void ValidationCacheService_WithNullDataAccessObjectAndValidApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
@@ -252,6 +292,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             Assert.AreEqual(Constants.DataAccessObjectParamName, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> with valid parameters in constructor should be initialized correctly.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid parameters in constructor should be initialized correctly.")]
         [MaxTime(100000)]
         public void ValidationCacheService_WithValidParametersInConstructor_ShouldBeInitializedCorrectly()
@@ -268,12 +311,15 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Validation
             Assert.IsNotNull(service);
 
             var daoFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.DataAccessObjectParamName);
-            Assert.AreSame(daoMock.Object, daoFieldValue, "DAO field should be set correctly.");
+            Assert.AreSame(daoMock.Object, daoFieldValue);
 
             var applicationContextFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.ApplicationContextParamName);
-            Assert.AreEqual(applicationContextMock.Object, applicationContextFieldValue, "ApplicationContext field should be set correctly.");
+            Assert.AreEqual(applicationContextMock.Object, applicationContextFieldValue);
         }
 
+        /// <summary>
+        /// <see cref="ValidationCacheService"/> with valid DAO and null applicationContext in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid DAO and null applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
         [MaxTime(100000)]
         public void ValidationCacheService_WithValidDataAccessObjectAndNullApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()

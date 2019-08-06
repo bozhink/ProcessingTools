@@ -4,11 +4,12 @@
 
 namespace ProcessingTools.Contracts.DataAccess.Layout.Styles
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles;
 
     /// <summary>
-    /// Styles data access object.
+    /// Styles data access object (DAO).
     /// </summary>
     public interface IStylesDataAccessObject
     {
@@ -22,7 +23,7 @@ namespace ProcessingTools.Contracts.DataAccess.Layout.Styles
         /// <summary>
         /// Gets styles for select.
         /// </summary>
-        /// <returns>Styles data models with object ID, name and description.</returns>
-        Task<IIdentifiedStyleDataTransferObject[]> GetStylesForSelectAsync();
+        /// <returns>Styles data transfer objects (DTOs) with object ID, name and description.</returns>
+        Task<IList<IIdentifiedStyleDataTransferObject>> GetStylesForSelectAsync();
     }
 }

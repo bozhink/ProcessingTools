@@ -14,6 +14,7 @@
     using ProcessingTools.Contracts.Services.Serialization;
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Documents;
+    using ProcessingTools.DataAccess.Mongo.Documents;
     using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;

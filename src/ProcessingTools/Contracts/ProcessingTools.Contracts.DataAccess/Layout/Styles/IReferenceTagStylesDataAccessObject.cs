@@ -8,7 +8,7 @@ namespace ProcessingTools.Contracts.DataAccess.Layout.Styles
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
-    /// Reference tag styles data access object.
+    /// Reference tag styles data access object (DAO).
     /// </summary>
     public interface IReferenceTagStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IReferenceTagStyleDataTransferObject, IReferenceDetailsTagStyleDataTransferObject, IReferenceInsertTagStyleModel, IReferenceUpdateTagStyleModel>
     {

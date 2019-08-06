@@ -8,7 +8,7 @@ namespace ProcessingTools.Contracts.DataAccess.Layout.Styles
     using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
 
     /// <summary>
-    /// Float object parse styles data access object.
+    /// Float object parse styles data access object (DAO).
     /// </summary>
     public interface IFloatObjectParseStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IFloatObjectParseStyleDataTransferObject, IFloatObjectDetailsParseStyleDataTransferObject, IFloatObjectInsertParseStyleModel, IFloatObjectUpdateParseStyleModel>
     {

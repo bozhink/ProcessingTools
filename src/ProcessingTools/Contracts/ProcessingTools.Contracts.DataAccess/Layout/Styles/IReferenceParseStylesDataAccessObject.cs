@@ -8,7 +8,7 @@ namespace ProcessingTools.Contracts.DataAccess.Layout.Styles
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
-    /// Reference parse styles data access object.
+    /// Reference parse styles data access object (DAO).
     /// </summary>
     public interface IReferenceParseStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IReferenceParseStyleDataTransferObject, IReferenceDetailsParseStyleDataTransferObject, IReferenceInsertParseStyleModel, IReferenceUpdateParseStyleModel>
     {

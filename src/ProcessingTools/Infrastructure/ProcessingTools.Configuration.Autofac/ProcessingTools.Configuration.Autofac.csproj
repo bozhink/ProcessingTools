@@ -58,6 +58,7 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Web.Services\ProcessingTools.Contracts.Web.Services.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.DataAccess.Mongo\ProcessingTools.DataAccess.Mongo.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
     <ProjectReference Include="..\ProcessingTools.Configuration.Interceptors\ProcessingTools.Configuration.Interceptors.csproj" />
