@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.DataAccess.Models.Layout.Templates.Handlebar
     /// <summary>
     /// Handlebars template data transfer object (DTO).
     /// </summary>
-    public interface IHandlebarsTemplateDataTransferObject : IDataTransferObject, IHandlebarsTemplateModel
+    public interface IHandlebarsTemplateDataTransferObject : IDataTransferObject, IHandlebarsTemplateModel, IIdentifiedTemplateDataTransferObject
     {
     }
 }

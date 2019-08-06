@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Layout.Templates
     /// <summary>
     /// Template model.
     /// </summary>
-    public interface ITemplateModel : ITemplateMetaModel, IDescribed, IContent
+    public interface ITemplateModel : ITemplateMetaModel, IContent
     {
     }
 }
