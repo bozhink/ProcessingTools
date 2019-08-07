@@ -5,7 +5,7 @@
 namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
 {
     using global::AutoMapper;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
 
     /// <summary>

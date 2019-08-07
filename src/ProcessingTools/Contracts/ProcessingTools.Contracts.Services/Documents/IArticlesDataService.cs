@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Documents
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Models.Documents.Articles;
 
@@ -16,7 +17,7 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// Gets article journals for select.
         /// </summary>
         /// <returns>Array of article journals.</returns>
-        Task<IArticleJournalModel[]> GetArticleJournalsAsync();
+        Task<IList<IArticleJournalModel>> GetArticleJournalsAsync();
 
         /// <summary>
         /// Gets the object ID of the journal style for a specified article.

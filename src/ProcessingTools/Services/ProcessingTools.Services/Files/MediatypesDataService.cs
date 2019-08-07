@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Files
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -101,7 +102,7 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
-        public async Task<IMediatypeMetaModel[]> GetMediatypesByExtensionAsync(string extension)
+        public async Task<IList<IMediatypeMetaModel>> GetMediatypesByExtensionAsync(string extension)
         {
             if (string.IsNullOrWhiteSpace(extension))
             {
@@ -119,13 +120,13 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
-        public async Task<string[]> GetMimeSubtypesAsync()
+        public async Task<IList<string>> GetMimeSubtypesAsync()
         {
             return await this.dataAccessObject.GetMimeSubtypesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public async Task<string[]> GetMimeTypesAsync()
+        public async Task<IList<string>> GetMimeTypesAsync()
         {
             return await this.dataAccessObject.GetMimeTypesAsync().ConfigureAwait(false);
         }
@@ -142,7 +143,7 @@ namespace ProcessingTools.Services.Files
         }
 
         /// <inheritdoc/>
-        public Task<IMediatypeModel[]> SelectAsync(int skip, int take)
+        public Task<IList<IMediatypeModel>> SelectAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -161,7 +162,7 @@ namespace ProcessingTools.Services.Files
         public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
 
         /// <inheritdoc/>
-        public Task<IMediatypeDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        public Task<IList<IMediatypeDetailsModel>> SelectDetailsAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -238,7 +239,7 @@ namespace ProcessingTools.Services.Files
             return mediatype.ObjectId;
         }
 
-        private async Task<IMediatypeDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
+        private async Task<IList<IMediatypeDetailsModel>> SelectDetailsInternalAsync(int skip, int take)
         {
             var mediatypes = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (mediatypes == null || !mediatypes.Any())
@@ -250,7 +251,7 @@ namespace ProcessingTools.Services.Files
             return items;
         }
 
-        private async Task<IMediatypeModel[]> SelectInternalAsync(int skip, int take)
+        private async Task<IList<IMediatypeModel>> SelectInternalAsync(int skip, int take)
         {
             var mediatypes = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 

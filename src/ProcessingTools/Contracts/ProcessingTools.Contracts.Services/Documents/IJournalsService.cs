@@ -4,9 +4,10 @@
 
 namespace ProcessingTools.Contracts.Services.Documents
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
     using ProcessingTools.Contracts.Services.Models.Documents.Journals;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
 
     /// <summary>
     /// Journals service.
@@ -54,7 +55,7 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// <param name="skip">Number of journals to skip.</param>
         /// <param name="take">Number of journals to take.</param>
         /// <returns>Array of journals.</returns>
-        Task<IJournalModel[]> SelectAsync(int skip, int take);
+        Task<IList<IJournalModel>> SelectAsync(int skip, int take);
 
         /// <summary>
         /// Select journal details for pagination.
@@ -62,7 +63,7 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// <param name="skip">Number of journal details to skip.</param>
         /// <param name="take">Number of journal details to take.</param>
         /// <returns>Array of journal details.</returns>
-        Task<IJournalDetailsModel[]> SelectDetailsAsync(int skip, int take);
+        Task<IList<IJournalDetailsModel>> SelectDetailsAsync(int skip, int take);
 
         /// <summary>
         /// Gets the number of journals.
@@ -74,7 +75,7 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// Gets journal publishers for select.
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
-        Task<IJournalPublisherModel[]> GetJournalPublishersForSelectAsync();
+        Task<IList<IJournalPublisherModel>> GetJournalPublishersForSelectAsync();
 
         /// <summary>
         /// Gets journal style specified by ID.
@@ -87,6 +88,6 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// Gets journal styles for select.
         /// </summary>
         /// <returns>Array of journal styles.</returns>
-        Task<IIdentifiedStyleModel[]> GetJournalStylesForSelectAsync();
+        Task<IList<IIdentifiedStyleModel>> GetJournalStylesForSelectAsync();
     }
 }

@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
 
     /// <summary>
     /// Journal style update request model.

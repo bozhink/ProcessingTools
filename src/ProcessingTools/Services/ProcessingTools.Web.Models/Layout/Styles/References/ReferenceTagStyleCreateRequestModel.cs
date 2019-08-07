@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Models.Layout.Styles.References
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
     /// Reference tag style create request model.

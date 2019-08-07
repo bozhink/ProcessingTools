@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Documents
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Models.Documents.Journals;
 
@@ -16,6 +17,6 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// Gets journal publishers for select.
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
-        Task<IJournalPublisherModel[]> GetJournalPublishersAsync();
+        Task<IList<IJournalPublisherModel>> GetJournalPublishersAsync();
     }
 }

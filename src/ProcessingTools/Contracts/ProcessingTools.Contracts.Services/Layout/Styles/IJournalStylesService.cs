@@ -4,9 +4,10 @@
 
 namespace ProcessingTools.Contracts.Services.Layout.Styles
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
 
     /// <summary>
     /// Journal styles service.
@@ -54,7 +55,7 @@ namespace ProcessingTools.Contracts.Services.Layout.Styles
         /// <param name="skip">Number of journal styles to skip.</param>
         /// <param name="take">Number of journal styles to take.</param>
         /// <returns>Array of journal styles.</returns>
-        Task<IJournalStyleModel[]> SelectAsync(int skip, int take);
+        Task<IList<IJournalStyleModel>> SelectAsync(int skip, int take);
 
         /// <summary>
         /// Select journal style details for pagination.
@@ -62,7 +63,7 @@ namespace ProcessingTools.Contracts.Services.Layout.Styles
         /// <param name="skip">Number of journal styles to skip.</param>
         /// <param name="take">Number of journal styles to take.</param>
         /// <returns>Array of journal style details.</returns>
-        Task<IJournalDetailsStyleModel[]> SelectDetailsAsync(int skip, int take);
+        Task<IList<IJournalDetailsStyleModel>> SelectDetailsAsync(int skip, int take);
 
         /// <summary>
         /// Gets the number of journal styles.
@@ -74,24 +75,24 @@ namespace ProcessingTools.Contracts.Services.Layout.Styles
         /// Gets float object parse styles for select.
         /// </summary>
         /// <returns>Array of style models.</returns>
-        Task<IIdentifiedStyleModel[]> GetFloatObjectParseStylesForSelectAsync();
+        Task<IList<IIdentifiedStyleModel>> GetFloatObjectParseStylesForSelectAsync();
 
         /// <summary>
         /// Gets float object tag styles for select.
         /// </summary>
         /// <returns>Array of style models.</returns>
-        Task<IIdentifiedStyleModel[]> GetFloatObjectTagStylesForSelectAsync();
+        Task<IList<IIdentifiedStyleModel>> GetFloatObjectTagStylesForSelectAsync();
 
         /// <summary>
         /// Gets reference parse styles for select.
         /// </summary>
         /// <returns>Array of style models.</returns>
-        Task<IIdentifiedStyleModel[]> GetReferenceParseStylesForSelectAsync();
+        Task<IList<IIdentifiedStyleModel>> GetReferenceParseStylesForSelectAsync();
 
         /// <summary>
         /// Gets reference tag styles for select.
         /// </summary>
         /// <returns>Array of style models.</returns>
-        Task<IIdentifiedStyleModel[]> GetReferenceTagStylesForSelectAsync();
+        Task<IList<IIdentifiedStyleModel>> GetReferenceTagStylesForSelectAsync();
     }
 }

@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -91,7 +92,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public Task<IFileModel[]> SelectAsync(int skip, int take)
+        public Task<IList<IFileModel>> SelectAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -110,7 +111,7 @@ namespace ProcessingTools.Services.Documents
         public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
 
         /// <inheritdoc/>
-        public Task<IFileDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        public Task<IList<IFileDetailsModel>> SelectDetailsAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -187,7 +188,7 @@ namespace ProcessingTools.Services.Documents
             return file.ObjectId;
         }
 
-        private async Task<IFileDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
+        private async Task<IList<IFileDetailsModel>> SelectDetailsInternalAsync(int skip, int take)
         {
             var files = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (files == null || !files.Any())
@@ -199,7 +200,7 @@ namespace ProcessingTools.Services.Documents
             return items;
         }
 
-        private async Task<IFileModel[]> SelectInternalAsync(int skip, int take)
+        private async Task<IList<IFileModel>> SelectInternalAsync(int skip, int take)
         {
             var files = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 

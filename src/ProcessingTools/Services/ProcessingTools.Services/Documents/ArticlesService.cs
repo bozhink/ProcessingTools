@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
@@ -56,10 +57,10 @@ namespace ProcessingTools.Services.Documents
         public Task<object> DeleteAsync(object id) => this.articlesDataService.DeleteAsync(id);
 
         /// <inheritdoc/>
-        public Task<IArticleJournalModel[]> GetArticleJournalsAsync() => this.articlesDataService.GetArticleJournalsAsync();
+        public Task<IList<IArticleJournalModel>> GetArticleJournalsAsync() => this.articlesDataService.GetArticleJournalsAsync();
 
         /// <inheritdoc/>
-        public Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId) => this.documentsDataService.GetArticleDocumentsAsync(articleId);
+        public Task<IList<IDocumentModel>> GetArticleDocumentsAsync(string articleId) => this.documentsDataService.GetArticleDocumentsAsync(articleId);
 
         /// <inheritdoc/>
         public Task<IArticleDetailsModel> GetDetailsByIdAsync(object id) => this.articlesDataService.GetDetailsByIdAsync(id);
@@ -71,7 +72,7 @@ namespace ProcessingTools.Services.Documents
         public Task<long> SelectCountAsync() => this.articlesDataService.SelectCountAsync();
 
         /// <inheritdoc/>
-        public Task<IArticleDetailsModel[]> SelectDetailsAsync(int skip, int take) => this.articlesDataService.SelectDetailsAsync(skip, take);
+        public Task<IList<IArticleDetailsModel>> SelectDetailsAsync(int skip, int take) => this.articlesDataService.SelectDetailsAsync(skip, take);
 
         /// <inheritdoc/>
         public Task<object> UpdateAsync(IArticleUpdateModel model) => this.articlesDataService.UpdateAsync(model);

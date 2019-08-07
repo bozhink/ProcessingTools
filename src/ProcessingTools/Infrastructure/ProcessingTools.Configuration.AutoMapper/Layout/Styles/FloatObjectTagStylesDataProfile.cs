@@ -5,8 +5,9 @@
 namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
 {
     using global::AutoMapper;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
-    using ProcessingTools.Data.Models.Mongo.Layout;
+    using ProcessingTools.Services.Models.Layout.Styles.Floats;
 
     /// <summary>
     /// Float object tag styles data profile.
@@ -18,8 +19,15 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
         /// </summary>
         public FloatObjectTagStylesDataProfile()
         {
-            this.CreateMap<IFloatObjectInsertTagStyleModel, FloatObjectTagStyle>();
-            this.CreateMap<IFloatObjectUpdateTagStyleModel, FloatObjectTagStyle>();
+            // Data - Data Access
+            this.CreateMap<IFloatObjectInsertTagStyleModel, ProcessingTools.Data.Models.Mongo.Layout.FloatObjectTagStyle>();
+            this.CreateMap<IFloatObjectUpdateTagStyleModel, ProcessingTools.Data.Models.Mongo.Layout.FloatObjectTagStyle>();
+
+            // Data Access - Data Services
+            this.CreateMap<IFloatObjectTagStyleDataTransferObject, FloatObjectTagStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
+            this.CreateMap<IFloatObjectTagStyleDataTransferObject, IFloatObjectTagStyleModel>().As<FloatObjectTagStyleModel>();
+            this.CreateMap<IFloatObjectDetailsTagStyleDataTransferObject, FloatObjectDetailsTagStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
+            this.CreateMap<IFloatObjectDetailsTagStyleDataTransferObject, IFloatObjectDetailsTagStyleModel>().As<FloatObjectDetailsTagStyleModel>();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Layout.Styles;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.Web.Services.Layout.Styles;
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Shared;
@@ -158,7 +157,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.floatObjectTagStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.floatObjectTagStylesDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IFloatObjectTagStyleModel, FloatObjectTagStyleIndexViewModel>).ToArray() ?? Array.Empty<FloatObjectTagStyleIndexViewModel>();
+            var styles = data?.Select(this.mapper.Map<FloatObjectTagStyleIndexViewModel>).ToArray() ?? Array.Empty<FloatObjectTagStyleIndexViewModel>();
 
             return new FloatObjectTagStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }

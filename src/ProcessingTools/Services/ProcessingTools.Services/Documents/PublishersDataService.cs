@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -91,7 +92,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public Task<IPublisherModel[]> SelectAsync(int skip, int take)
+        public Task<IList<IPublisherModel>> SelectAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -110,7 +111,7 @@ namespace ProcessingTools.Services.Documents
         public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
 
         /// <inheritdoc/>
-        public Task<IPublisherDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        public Task<IList<IPublisherDetailsModel>> SelectDetailsAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -187,7 +188,7 @@ namespace ProcessingTools.Services.Documents
             return publisher.ObjectId;
         }
 
-        private async Task<IPublisherDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
+        private async Task<IList<IPublisherDetailsModel>> SelectDetailsInternalAsync(int skip, int take)
         {
             var publishers = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
 
@@ -200,7 +201,7 @@ namespace ProcessingTools.Services.Documents
             return items;
         }
 
-        private async Task<IPublisherModel[]> SelectInternalAsync(int skip, int take)
+        private async Task<IList<IPublisherModel>> SelectInternalAsync(int skip, int take)
         {
             var publishers = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 

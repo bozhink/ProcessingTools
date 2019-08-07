@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Layout.Styles
 {
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
 
     /// <summary>
     /// Float object tag styles data service.

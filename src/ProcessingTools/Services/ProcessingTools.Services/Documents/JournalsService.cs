@@ -5,11 +5,12 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Layout.Styles;
     using ProcessingTools.Contracts.Services.Models.Documents.Journals;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
 
     /// <summary>
     /// Journals service.
@@ -46,21 +47,21 @@ namespace ProcessingTools.Services.Documents
         public Task<IJournalDetailsModel> GetDetailsByIdAsync(object id) => this.journalsDataService.GetDetailsByIdAsync(id);
 
         /// <inheritdoc/>
-        public Task<IJournalModel[]> SelectAsync(int skip, int take) => this.journalsDataService.SelectAsync(skip, take);
+        public Task<IList<IJournalModel>> SelectAsync(int skip, int take) => this.journalsDataService.SelectAsync(skip, take);
 
         /// <inheritdoc/>
-        public Task<IJournalDetailsModel[]> SelectDetailsAsync(int skip, int take) => this.journalsDataService.SelectDetailsAsync(skip, take);
+        public Task<IList<IJournalDetailsModel>> SelectDetailsAsync(int skip, int take) => this.journalsDataService.SelectDetailsAsync(skip, take);
 
         /// <inheritdoc/>
         public Task<long> SelectCountAsync() => this.journalsDataService.SelectCountAsync();
 
         /// <inheritdoc/>
-        public Task<IJournalPublisherModel[]> GetJournalPublishersForSelectAsync() => this.journalsDataService.GetJournalPublishersAsync();
+        public Task<IList<IJournalPublisherModel>> GetJournalPublishersForSelectAsync() => this.journalsDataService.GetJournalPublishersAsync();
 
         /// <inheritdoc/>
         public Task<IIdentifiedStyleModel> GetJournalStyleByIdAsync(object id) => this.journalStylesDataService.GetStyleByIdAsync(id);
 
         /// <inheritdoc/>
-        public Task<IIdentifiedStyleModel[]> GetJournalStylesForSelectAsync() => this.journalStylesDataService.GetStylesForSelectAsync();
+        public Task<IList<IIdentifiedStyleModel>> GetJournalStylesForSelectAsync() => this.journalStylesDataService.GetStylesForSelectAsync();
     }
 }

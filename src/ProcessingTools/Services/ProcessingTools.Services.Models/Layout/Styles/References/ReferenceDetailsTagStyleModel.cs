@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Layout.Styles.References
 {
     using System;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
     /// Reference details tag style model.

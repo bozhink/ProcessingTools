@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Layout.Styles
 {
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
 
     /// <summary>
     /// Style model.

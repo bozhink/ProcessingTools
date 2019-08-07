@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Enumerations.Nlm;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
 
     /// <summary>
     /// Float object parse style create request model.

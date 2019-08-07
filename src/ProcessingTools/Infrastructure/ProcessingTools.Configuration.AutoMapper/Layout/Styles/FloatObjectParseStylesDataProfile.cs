@@ -5,8 +5,9 @@
 namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
 {
     using global::AutoMapper;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
-    using ProcessingTools.Data.Models.Mongo.Layout;
+    using ProcessingTools.Services.Models.Layout.Styles.Floats;
 
     /// <summary>
     /// Float object parse styles data profile.
@@ -18,8 +19,15 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
         /// </summary>
         public FloatObjectParseStylesDataProfile()
         {
-            this.CreateMap<IFloatObjectInsertParseStyleModel, FloatObjectParseStyle>();
-            this.CreateMap<IFloatObjectUpdateParseStyleModel, FloatObjectParseStyle>();
+            // Data - Data Access
+            this.CreateMap<IFloatObjectInsertParseStyleModel, ProcessingTools.Data.Models.Mongo.Layout.FloatObjectParseStyle>();
+            this.CreateMap<IFloatObjectUpdateParseStyleModel, ProcessingTools.Data.Models.Mongo.Layout.FloatObjectParseStyle>();
+
+            // Data Access - Data Services
+            this.CreateMap<IFloatObjectParseStyleDataTransferObject, FloatObjectParseStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
+            this.CreateMap<IFloatObjectParseStyleDataTransferObject, IFloatObjectParseStyleModel>().As<FloatObjectParseStyleModel>();
+            this.CreateMap<IFloatObjectDetailsParseStyleDataTransferObject, FloatObjectDetailsParseStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
+            this.CreateMap<IFloatObjectDetailsParseStyleDataTransferObject, IFloatObjectDetailsParseStyleModel>().As<FloatObjectDetailsParseStyleModel>();
         }
     }
 }

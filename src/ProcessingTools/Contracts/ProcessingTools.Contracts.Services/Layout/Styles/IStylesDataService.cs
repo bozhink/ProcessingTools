@@ -4,8 +4,9 @@
 
 namespace ProcessingTools.Contracts.Services.Layout.Styles
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
 
     /// <summary>
     /// Styles data service.
@@ -23,6 +24,6 @@ namespace ProcessingTools.Contracts.Services.Layout.Styles
         /// Gets styles for select.
         /// </summary>
         /// <returns>Styles data models with object ID, name and description.</returns>
-        Task<IIdentifiedStyleModel[]> GetStylesForSelectAsync();
+        Task<IList<IIdentifiedStyleModel>> GetStylesForSelectAsync();
     }
 }

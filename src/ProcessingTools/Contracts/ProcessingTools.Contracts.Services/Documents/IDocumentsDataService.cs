@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Documents
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Models.Documents.Documents;
 
@@ -32,7 +33,7 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// </summary>
         /// <param name="articleId">ID of the article.</param>
         /// <returns>Array of documents.</returns>
-        Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId);
+        Task<IList<IDocumentModel>> GetArticleDocumentsAsync(string articleId);
 
         /// <summary>
         /// Gets the article of documents.

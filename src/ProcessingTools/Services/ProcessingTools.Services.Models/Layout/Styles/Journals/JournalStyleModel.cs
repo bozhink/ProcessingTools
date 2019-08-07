@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Journals
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
 
     /// <summary>
     /// Journal style model.

@@ -10,7 +10,6 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Layout.Styles;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
     using ProcessingTools.Contracts.Web.Services.Layout.Styles;
     using ProcessingTools.Web.Models.Layout.Styles.References;
     using ProcessingTools.Web.Models.Shared;
@@ -158,7 +157,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.referenceTagStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.referenceTagStylesDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IReferenceTagStyleModel, ReferenceTagStyleIndexViewModel>).ToArray() ?? Array.Empty<ReferenceTagStyleIndexViewModel>();
+            var styles = data?.Select(this.mapper.Map<ReferenceTagStyleIndexViewModel>).ToArray() ?? Array.Empty<ReferenceTagStyleIndexViewModel>();
 
             return new ReferenceTagStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }

@@ -7,7 +7,6 @@ namespace ProcessingTools.Configuration.AutoMapper.Documents
     using global::AutoMapper;
     using ProcessingTools.Contracts.DataAccess.Models.Documents.Articles;
     using ProcessingTools.Contracts.Models.Documents.Articles;
-    using ProcessingTools.Data.Models.Mongo.Documents;
 
     /// <summary>
     /// Articles data profile.
@@ -19,11 +18,11 @@ namespace ProcessingTools.Configuration.AutoMapper.Documents
         /// </summary>
         public ArticlesDataProfile()
         {
-            this.CreateMap<IArticleInsertModel, Article>();
-            this.CreateMap<IArticleUpdateModel, Article>();
-            this.CreateMap<Journal, ArticleJournal>()
+            this.CreateMap<IArticleInsertModel, ProcessingTools.Data.Models.Mongo.Documents.Article>();
+            this.CreateMap<IArticleUpdateModel, ProcessingTools.Data.Models.Mongo.Documents.Article>();
+            this.CreateMap<ProcessingTools.Data.Models.Mongo.Documents.Journal, ProcessingTools.Data.Models.Mongo.Documents.ArticleJournal>()
                 .ForMember(aj => aj.Id, o => o.MapFrom(j => j.ObjectId.ToString()));
-            this.CreateMap<Journal, IArticleJournalDataTransferObject>().As<ArticleJournal>();
+            this.CreateMap<ProcessingTools.Data.Models.Mongo.Documents.Journal, IArticleJournalDataTransferObject>().As<ProcessingTools.Data.Models.Mongo.Documents.ArticleJournal>();
         }
     }
 }

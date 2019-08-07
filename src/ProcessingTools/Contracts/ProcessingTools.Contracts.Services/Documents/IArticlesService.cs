@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Documents
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Models.Documents.Articles;
@@ -57,7 +58,7 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// <param name="skip">Number of article items to skip.</param>
         /// <param name="take">Number of article items to take.</param>
         /// <returns>Array of article details.</returns>
-        Task<IArticleDetailsModel[]> SelectDetailsAsync(int skip, int take);
+        Task<IList<IArticleDetailsModel>> SelectDetailsAsync(int skip, int take);
 
         /// <summary>
         /// Get number of articles.
@@ -69,14 +70,14 @@ namespace ProcessingTools.Contracts.Services.Documents
         /// Gets journal publishers for select.
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
-        Task<IArticleJournalModel[]> GetArticleJournalsAsync();
+        Task<IList<IArticleJournalModel>> GetArticleJournalsAsync();
 
         /// <summary>
         /// Gets documents of a specified article.
         /// </summary>
         /// <param name="articleId">ID of the article.</param>
         /// <returns>Array of documents.</returns>
-        Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId);
+        Task<IList<IDocumentModel>> GetArticleDocumentsAsync(string articleId);
 
         /// <summary>
         /// Finalizes article specified by object ID.

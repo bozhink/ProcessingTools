@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -42,7 +43,7 @@ namespace ProcessingTools.Contracts.Services
         /// <param name="skip">Number of items to skip.</param>
         /// <param name="take">Number of items to take.</param>
         /// <returns>Task of items.</returns>
-        Task<T[]> SelectAsync(int skip, int take);
+        Task<IList<T>> SelectAsync(int skip, int take);
 
         /// <summary>
         /// Select items with details.
@@ -50,7 +51,7 @@ namespace ProcessingTools.Contracts.Services
         /// <param name="skip">Number of items to skip.</param>
         /// <param name="take">Number of items to take.</param>
         /// <returns>Task of items.</returns>
-        Task<TD[]> SelectDetailsAsync(int skip, int take);
+        Task<IList<TD>> SelectDetailsAsync(int skip, int take);
 
         /// <summary>
         /// Selects the count of all items in the data store.

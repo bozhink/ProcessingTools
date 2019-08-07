@@ -5,7 +5,7 @@
 namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
 {
     using global::AutoMapper;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
     using ProcessingTools.Web.Models.Layout.Styles.References;
 
     /// <summary>

@@ -4,11 +4,12 @@
 
 namespace ProcessingTools.Services.Layout.Styles
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Contracts.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
     using ProcessingTools.Contracts.Services.Layout.Styles;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
 
     /// <summary>
     /// Journal styles service.
@@ -62,11 +63,11 @@ namespace ProcessingTools.Services.Layout.Styles
 
         /// <inheritdoc/>
         [InjectProperty(nameof(JournalStylesDataService))]
-        public Task<IJournalStyleModel[]> SelectAsync(int skip, int take) => this.JournalStylesDataService.SelectAsync(skip, take);
+        public Task<IList<IJournalStyleModel>> SelectAsync(int skip, int take) => this.JournalStylesDataService.SelectAsync(skip, take);
 
         /// <inheritdoc/>
         [InjectProperty(nameof(JournalStylesDataService))]
-        public Task<IJournalDetailsStyleModel[]> SelectDetailsAsync(int skip, int take) => this.JournalStylesDataService.SelectDetailsAsync(skip, take);
+        public Task<IList<IJournalDetailsStyleModel>> SelectDetailsAsync(int skip, int take) => this.JournalStylesDataService.SelectDetailsAsync(skip, take);
 
         /// <inheritdoc/>
         [InjectProperty(nameof(JournalStylesDataService))]
@@ -74,18 +75,18 @@ namespace ProcessingTools.Services.Layout.Styles
 
         /// <inheritdoc/>
         [InjectProperty(nameof(FloatObjectParseStylesDataService))]
-        public Task<IIdentifiedStyleModel[]> GetFloatObjectParseStylesForSelectAsync() => this.FloatObjectParseStylesDataService.GetStylesForSelectAsync();
+        public Task<IList<IIdentifiedStyleModel>> GetFloatObjectParseStylesForSelectAsync() => this.FloatObjectParseStylesDataService.GetStylesForSelectAsync();
 
         /// <inheritdoc/>
         [InjectProperty(nameof(FloatObjectTagStylesDataService))]
-        public Task<IIdentifiedStyleModel[]> GetFloatObjectTagStylesForSelectAsync() => this.FloatObjectTagStylesDataService.GetStylesForSelectAsync();
+        public Task<IList<IIdentifiedStyleModel>> GetFloatObjectTagStylesForSelectAsync() => this.FloatObjectTagStylesDataService.GetStylesForSelectAsync();
 
         /// <inheritdoc/>
         [InjectProperty(nameof(ReferenceParseStylesDataService))]
-        public Task<IIdentifiedStyleModel[]> GetReferenceParseStylesForSelectAsync() => this.ReferenceParseStylesDataService.GetStylesForSelectAsync();
+        public Task<IList<IIdentifiedStyleModel>> GetReferenceParseStylesForSelectAsync() => this.ReferenceParseStylesDataService.GetStylesForSelectAsync();
 
         /// <inheritdoc/>
         [InjectProperty(nameof(ReferenceTagStylesDataService))]
-        public Task<IIdentifiedStyleModel[]> GetReferenceTagStylesForSelectAsync() => this.ReferenceTagStylesDataService.GetStylesForSelectAsync();
+        public Task<IList<IIdentifiedStyleModel>> GetReferenceTagStylesForSelectAsync() => this.ReferenceTagStylesDataService.GetStylesForSelectAsync();
     }
 }

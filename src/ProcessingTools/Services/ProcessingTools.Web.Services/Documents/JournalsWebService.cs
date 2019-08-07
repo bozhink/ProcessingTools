@@ -10,8 +10,6 @@ namespace ProcessingTools.Web.Services.Documents
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Documents;
-    using ProcessingTools.Contracts.Services.Models.Documents.Journals;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
     using ProcessingTools.Contracts.Web.Services.Documents;
     using ProcessingTools.Web.Models.Documents.Journals;
     using ProcessingTools.Web.Models.Shared;
@@ -104,7 +102,7 @@ namespace ProcessingTools.Web.Services.Documents
                 var journal = await this.journalsService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
+                    var publisher = this.mapper.Map<JournalPublisherViewModel>(journal.Publisher);
                     var journalStyle = await this.GetJournalStyleViewModelAsync(journal.JournalStyleId).ConfigureAwait(false);
 
                     var viewModel = new JournalDeleteViewModel(userContext, publisher, journalStyle);
@@ -127,7 +125,7 @@ namespace ProcessingTools.Web.Services.Documents
                 var journal = await this.journalsService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
+                    var publisher = this.mapper.Map<JournalPublisherViewModel>(journal.Publisher);
                     var journalStyle = await this.GetJournalStyleViewModelAsync(journal.JournalStyleId).ConfigureAwait(false);
 
                     var viewModel = new JournalDetailsViewModel(userContext, publisher, journalStyle);
@@ -171,7 +169,7 @@ namespace ProcessingTools.Web.Services.Documents
             var data = await this.journalsService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             var count = await this.journalsService.SelectCountAsync().ConfigureAwait(false);
 
-            var journals = data?.Select(this.mapper.Map<IJournalDetailsModel, JournalIndexViewModel>).ToArray() ?? Array.Empty<JournalIndexViewModel>();
+            var journals = data?.Select(this.mapper.Map<JournalIndexViewModel>).ToArray() ?? Array.Empty<JournalIndexViewModel>();
 
             return new JournalsIndexViewModel(userContext, count, take, skip / take, journals);
         }
@@ -233,7 +231,7 @@ namespace ProcessingTools.Web.Services.Documents
                 var journal = await this.journalsService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
+                    var publisher = this.mapper.Map<JournalPublisherViewModel>(journal.Publisher);
                     var journalStyle = await this.GetJournalStyleViewModelAsync(journal.JournalStyleId).ConfigureAwait(false);
 
                     var viewModel = new JournalDeleteViewModel(userContext, publisher, journalStyle);
@@ -249,7 +247,7 @@ namespace ProcessingTools.Web.Services.Documents
         private async Task<JournalPublisherViewModel[]> GetJournalPublishersViewModelsAsync()
         {
             var publishers = await this.journalsService.GetJournalPublishersForSelectAsync().ConfigureAwait(false);
-            return publishers?.Select(this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>).ToArray() ?? Array.Empty<JournalPublisherViewModel>();
+            return publishers?.Select(this.mapper.Map<JournalPublisherViewModel>).ToArray() ?? Array.Empty<JournalPublisherViewModel>();
         }
 
         private async Task<JournalStyleViewModel> GetJournalStyleViewModelAsync(string id)
@@ -260,14 +258,14 @@ namespace ProcessingTools.Web.Services.Documents
                 return new JournalStyleViewModel();
             }
 
-            return this.mapper.Map<IIdentifiedStyleModel, JournalStyleViewModel>(style);
+            return this.mapper.Map<JournalStyleViewModel>(style);
         }
 
         private async Task<JournalStyleViewModel[]> GetJournalStyleViewModelsAsync()
         {
             var styles = await this.journalsService.GetJournalStylesForSelectAsync().ConfigureAwait(false);
 
-            return styles?.Select(this.mapper.Map<IIdentifiedStyleModel, JournalStyleViewModel>).ToArray() ?? Array.Empty<JournalStyleViewModel>();
+            return styles?.Select(this.mapper.Map<JournalStyleViewModel>).ToArray() ?? Array.Empty<JournalStyleViewModel>();
         }
     }
 }

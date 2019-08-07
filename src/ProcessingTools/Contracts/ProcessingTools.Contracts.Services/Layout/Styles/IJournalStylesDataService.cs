@@ -4,10 +4,11 @@
 
 namespace ProcessingTools.Contracts.Services.Layout.Styles
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Floats;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.References;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
+    using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
+    using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
     /// <summary>
     /// Journal styles data service.
@@ -19,27 +20,27 @@ namespace ProcessingTools.Contracts.Services.Layout.Styles
         /// </summary>
         /// <param name="id">Object ID of the journal style.</param>
         /// <returns>Array of float object parse styles.</returns>
-        Task<IFloatObjectParseStyleModel[]> GetFloatObjectParseStylesAsync(object id);
+        Task<IList<IFloatObjectParseStyleModel>> GetFloatObjectParseStylesAsync(object id);
 
         /// <summary>
         /// Get referenced float object tag styles for specified journal style.
         /// </summary>
         /// <param name="id">Object ID of the journal style.</param>
         /// <returns>Array of float object tag styles.</returns>
-        Task<IFloatObjectTagStyleModel[]> GetFloatObjectTagStylesAsync(object id);
+        Task<IList<IFloatObjectTagStyleModel>> GetFloatObjectTagStylesAsync(object id);
 
         /// <summary>
         /// Get referenced reference parse styles for specified journal style.
         /// </summary>
         /// <param name="id">Object ID of the journal style.</param>
         /// <returns>Array of reference parse styles.</returns>
-        Task<IReferenceParseStyleModel[]> GetReferenceParseStylesAsync(object id);
+        Task<IList<IReferenceParseStyleModel>> GetReferenceParseStylesAsync(object id);
 
         /// <summary>
         /// Get referenced reference tag styles for specified journal style.
         /// </summary>
         /// <param name="id">Object ID of the journal style.</param>
         /// <returns>Array of reference tag styles.</returns>
-        Task<IReferenceTagStyleModel[]> GetReferenceTagStylesAsync(object id);
+        Task<IList<IReferenceTagStyleModel>> GetReferenceTagStylesAsync(object id);
     }
 }

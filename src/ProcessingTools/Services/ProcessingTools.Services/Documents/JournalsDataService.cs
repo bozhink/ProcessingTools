@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -84,7 +85,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalPublisherModel[]> GetJournalPublishersAsync()
+        public async Task<IList<IJournalPublisherModel>> GetJournalPublishersAsync()
         {
             var publishers = await this.dataAccessObject.GetJournalPublishersAsync().ConfigureAwait(false);
             if (publishers == null || !publishers.Any())
@@ -107,7 +108,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public Task<IJournalModel[]> SelectAsync(int skip, int take)
+        public Task<IList<IJournalModel>> SelectAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -126,7 +127,7 @@ namespace ProcessingTools.Services.Documents
         public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
 
         /// <inheritdoc/>
-        public Task<IJournalDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        public Task<IList<IJournalDetailsModel>> SelectDetailsAsync(int skip, int take)
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
@@ -203,7 +204,7 @@ namespace ProcessingTools.Services.Documents
             return journal.ObjectId;
         }
 
-        private async Task<IJournalDetailsModel[]> SelectDetailsInternalAsync(int skip, int take)
+        private async Task<IList<IJournalDetailsModel>> SelectDetailsInternalAsync(int skip, int take)
         {
             var journals = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (journals == null || !journals.Any())
@@ -215,7 +216,7 @@ namespace ProcessingTools.Services.Documents
             return items;
         }
 
-        private async Task<IJournalModel[]> SelectInternalAsync(int skip, int take)
+        private async Task<IList<IJournalModel>> SelectInternalAsync(int skip, int take)
         {
             var journals = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 

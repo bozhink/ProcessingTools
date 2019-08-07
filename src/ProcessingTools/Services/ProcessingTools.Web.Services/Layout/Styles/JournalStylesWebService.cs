@@ -10,8 +10,6 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Layout.Styles;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles;
-    using ProcessingTools.Contracts.Services.Models.Layout.Styles.Journals;
     using ProcessingTools.Contracts.Web.Services.Layout.Styles;
     using ProcessingTools.Web.Models.Layout.Styles.Journals;
     using ProcessingTools.Web.Models.Shared;
@@ -95,10 +93,10 @@ namespace ProcessingTools.Web.Services.Layout.Styles
 
             var viewModel = new JournalStyleCreateViewModel(userContext)
             {
-                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
+                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
             };
 
             return viewModel;
@@ -156,10 +154,10 @@ namespace ProcessingTools.Web.Services.Layout.Styles
 
             var viewModel = new JournalStyleEditViewModel(userContext)
             {
-                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
+                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
             };
 
             if (!string.IsNullOrWhiteSpace(id))
@@ -182,7 +180,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.journalStylesService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.journalStylesService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IJournalStyleModel, JournalStyleIndexViewModel>).ToArray() ?? Array.Empty<JournalStyleIndexViewModel>();
+            var styles = data?.Select(this.mapper.Map<JournalStyleIndexViewModel>).ToArray() ?? Array.Empty<JournalStyleIndexViewModel>();
 
             return new JournalStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }
@@ -199,10 +197,10 @@ namespace ProcessingTools.Web.Services.Layout.Styles
 
             var viewModel = new JournalStyleCreateViewModel(userContext)
             {
-                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
+                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
             };
 
             if (model != null)
@@ -225,10 +223,10 @@ namespace ProcessingTools.Web.Services.Layout.Styles
 
             var viewModel = new JournalStyleEditViewModel(userContext)
             {
-                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
-                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<IIdentifiedStyleModel, StyleSelectViewModel>).ToList(),
+                FloatObjectParseStyles = floatObjectParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                FloatObjectTagStyles = floatObjectTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceParseStyles = referenceParseStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
+                ReferenceTagStyles = referenceTagStyles.Select(this.mapper.Map<StyleSelectViewModel>).ToList(),
             };
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
