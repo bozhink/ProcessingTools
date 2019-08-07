@@ -90,8 +90,13 @@ namespace ProcessingTools.Services.Imaging
 
         private QRCodeData GetQRCodeData(string content)
         {
-            var qrcodeGenerator = new QRCodeGenerator();
-            var qrcodeData = qrcodeGenerator.CreateQrCode(content ?? string.Empty, QRCodeGenerator.ECCLevel.Q, forceUtf8: true);
+            QRCodeData qrcodeData;
+
+            using (var qrcodeGenerator = new QRCodeGenerator())
+            {
+                qrcodeData = qrcodeGenerator.CreateQrCode(content ?? string.Empty, QRCodeGenerator.ECCLevel.Q, forceUtf8: true);
+            }
+
             return qrcodeData;
         }
     }

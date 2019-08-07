@@ -51,13 +51,17 @@ namespace ProcessingTools.Services.Imaging
             };
 
             Image image;
-            if (width < ImagingConstants.MinimalBarcodeWidth || height < ImagingConstants.MinimalBarcodeHeight)
+
+            using (barcode)
             {
-                image = barcode.Encode((BarcodeLib.TYPE)((int)type), content);
-            }
-            else
-            {
-                image = barcode.Encode((BarcodeLib.TYPE)((int)type), content, width, height);
+                if (width < ImagingConstants.MinimalBarcodeWidth || height < ImagingConstants.MinimalBarcodeHeight)
+                {
+                    image = barcode.Encode((BarcodeLib.TYPE)((int)type), content);
+                }
+                else
+                {
+                    image = barcode.Encode((BarcodeLib.TYPE)((int)type), content, width, height);
+                }
             }
 
             return image;
