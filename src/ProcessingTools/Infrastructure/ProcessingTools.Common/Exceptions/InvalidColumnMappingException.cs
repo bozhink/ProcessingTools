@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Invalid column mapping exception.
@@ -14,14 +15,12 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class InvalidColumnMappingException : InvalidOperationException
     {
-        private const string DefaultMessage = "Invalid column mapping.";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidColumnMappingException"/> class with default
         /// error message.
         /// </summary>
         public InvalidColumnMappingException()
-            : base(message: DefaultMessage)
+            : base(message: StringResources.InvalidColumnMapping)
         {
         }
 
@@ -31,7 +30,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public InvalidColumnMappingException(string message)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}")
+            : base(message: $"{StringResources.InvalidColumnMapping}{Environment.NewLine}{message}")
         {
         }
 
@@ -42,7 +41,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public InvalidColumnMappingException(string message, Exception innerException)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}", innerException: innerException)
+            : base(message: $"{StringResources.InvalidColumnMapping}{Environment.NewLine}{message}", innerException: innerException)
         {
         }
 

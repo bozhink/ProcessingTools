@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Represents error that occur when insert operation is not successful.
@@ -14,14 +15,12 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class InsertUnsuccessfulException : Exception
     {
-        private const string DefaultMessage = "Insert operation is not successful.";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="InsertUnsuccessfulException"/> class with default
         /// error message.
         /// </summary>
         public InsertUnsuccessfulException()
-            : base(message: DefaultMessage)
+            : base(message: StringResources.InsertOperationIsNotSuccessful)
         {
         }
 
@@ -31,7 +30,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public InsertUnsuccessfulException(string message)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}")
+            : base(message: $"{StringResources.InsertOperationIsNotSuccessful}{Environment.NewLine}{message}")
         {
         }
 
@@ -42,7 +41,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public InsertUnsuccessfulException(string message, Exception innerException)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}", innerException: innerException)
+            : base(message: $"{StringResources.InsertOperationIsNotSuccessful}{Environment.NewLine}{message}", innerException: innerException)
         {
         }
 

@@ -71,6 +71,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Common.Resources\ProcessingTools.Common.Resources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="CommonAppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

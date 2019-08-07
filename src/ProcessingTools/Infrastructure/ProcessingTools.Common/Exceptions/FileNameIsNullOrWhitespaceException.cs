@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Represents error that occur when file name is null or whitespace.
@@ -14,14 +15,12 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class FileNameIsNullOrWhitespaceException : Exception
     {
-        private const string DefaultMessage = "File name is null or whitespace.";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="FileNameIsNullOrWhitespaceException"/> class with default
         /// error message.
         /// </summary>
         public FileNameIsNullOrWhitespaceException()
-            : base(message: DefaultMessage)
+            : base(message: StringResources.FileNameIsNullOrWhitespace)
         {
         }
 
@@ -31,7 +30,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public FileNameIsNullOrWhitespaceException(string message)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}")
+            : base(message: $"{StringResources.FileNameIsNullOrWhitespace}{Environment.NewLine}{message}")
         {
         }
 
@@ -42,7 +41,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public FileNameIsNullOrWhitespaceException(string message, Exception innerException)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}", innerException: innerException)
+            : base(message: $"{StringResources.FileNameIsNullOrWhitespace}{Environment.NewLine}{message}", innerException: innerException)
         {
         }
 

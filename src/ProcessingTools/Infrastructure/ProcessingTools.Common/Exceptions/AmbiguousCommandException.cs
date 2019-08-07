@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Represents error that occur when ambiguous command name is provided.
@@ -14,16 +15,13 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class AmbiguousCommandException : Exception
     {
-        private const string DefaultMessage = "Ambiguous command";
-        private const string MatchesMessage = "Possible matches";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AmbiguousCommandException"/> class with
         /// the name of the command that causes this exception.
         /// </summary>
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         public AmbiguousCommandException(string commandName)
-            : base(message: $"{DefaultMessage} '{commandName}'")
+            : base(message: $"{StringResources.AmbiguousCommand} '{commandName}'")
         {
             this.CommandName = commandName;
         }
@@ -35,7 +33,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         /// <param name="matchedNames">All the commands that match provided command name.</param>
         public AmbiguousCommandException(string commandName, string[] matchedNames)
-            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{MatchesMessage}: {string.Join(", ", matchedNames)}")
+            : base(message: $"{StringResources.AmbiguousCommand} '{commandName}'{Environment.NewLine}{StringResources.PossibleMatches}: {string.Join(", ", matchedNames)}")
         {
             this.CommandName = commandName;
         }
@@ -47,7 +45,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public AmbiguousCommandException(string commandName, string message)
-            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}")
+            : base(message: $"{StringResources.AmbiguousCommand} '{commandName}'{Environment.NewLine}{message ?? string.Empty}")
         {
             this.CommandName = commandName;
         }
@@ -60,7 +58,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="matchedNames">All the commands that match provided command name.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public AmbiguousCommandException(string commandName, string[] matchedNames, string message)
-            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{MatchesMessage}: {string.Join(", ", matchedNames)}{Environment.NewLine}{message ?? string.Empty}")
+            : base(message: $"{StringResources.AmbiguousCommand} '{commandName}'{Environment.NewLine}{StringResources.PossibleMatches}: {string.Join(", ", matchedNames)}{Environment.NewLine}{message ?? string.Empty}")
         {
             this.CommandName = commandName;
         }
@@ -74,7 +72,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public AmbiguousCommandException(string commandName, string message, Exception innerException)
-            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}", innerException: innerException)
+            : base(message: $"{StringResources.AmbiguousCommand} '{commandName}'{Environment.NewLine}{message ?? string.Empty}", innerException: innerException)
         {
             this.CommandName = commandName;
         }
@@ -89,7 +87,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public AmbiguousCommandException(string commandName, string[] matchedNames, string message, Exception innerException)
-            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{MatchesMessage}: {string.Join(", ", matchedNames)}{Environment.NewLine}{message ?? string.Empty}", innerException: innerException)
+            : base(message: $"{StringResources.AmbiguousCommand} '{commandName}'{Environment.NewLine}{StringResources.PossibleMatches}: {string.Join(", ", matchedNames)}{Environment.NewLine}{message ?? string.Empty}", innerException: innerException)
         {
             this.CommandName = commandName;
         }

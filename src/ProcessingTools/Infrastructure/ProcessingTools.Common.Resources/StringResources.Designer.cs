@@ -61,7 +61,16 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Article will not be deleted because it contains documents..
+        ///   Looks up a localized string similar to Ambiguous command.
+        /// </summary>
+        public static string AmbiguousCommand {
+            get {
+                return ResourceManager.GetString("AmbiguousCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Article will not be deleted because it contains documents.
         /// </summary>
         public static string ArticleWillNotBeDeletedBecauseItContainsDocuments {
             get {
@@ -70,7 +79,25 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete document content is not acknowledged..
+        ///   Looks up a localized string similar to Can not generate unique file name.
+        /// </summary>
+        public static string CanNotGenerateUniqueFileName {
+            get {
+                return ResourceManager.GetString("CanNotGenerateUniqueFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command not found.
+        /// </summary>
+        public static string CommandNotFound {
+            get {
+                return ResourceManager.GetString("CommandNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete document content is not acknowledged.
         /// </summary>
         public static string DeleteDocumentContentIsNotAcknowledged {
             get {
@@ -79,7 +106,7 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete document is not acknowledged..
+        ///   Looks up a localized string similar to Delete document is not acknowledged.
         /// </summary>
         public static string DeleteDocumentIsNotAcknowledged {
             get {
@@ -88,7 +115,106 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Journal will not be deleted because it contains related articles..
+        ///   Looks up a localized string similar to Delete operation is not successful.
+        /// </summary>
+        public static string DeleteOperationIsNotSuccessful {
+            get {
+                return ResourceManager.GetString("DeleteOperationIsNotSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entity not found.
+        /// </summary>
+        public static string EntityNotFound {
+            get {
+                return ResourceManager.GetString("EntityNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name is null or whitespace.
+        /// </summary>
+        public static string FileNameIsNullOrWhitespace {
+            get {
+                return ResourceManager.GetString("FileNameIsNullOrWhitespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information not found.
+        /// </summary>
+        public static string InformationNotFound {
+            get {
+                return ResourceManager.GetString("InformationNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert operation is not successful.
+        /// </summary>
+        public static string InsertOperationIsNotSuccessful {
+            get {
+                return ResourceManager.GetString("InsertOperationIsNotSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid code.
+        /// </summary>
+        public static string InvalidCode {
+            get {
+                return ResourceManager.GetString("InvalidCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid column mapping.
+        /// </summary>
+        public static string InvalidColumnMapping {
+            get {
+                return ResourceManager.GetString("InvalidColumnMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid command.
+        /// </summary>
+        public static string InvalidCommand {
+            get {
+                return ResourceManager.GetString("InvalidCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid data.
+        /// </summary>
+        public static string InvalidData {
+            get {
+                return ResourceManager.GetString("InvalidData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid document.
+        /// </summary>
+        public static string InvalidDocument {
+            get {
+                return ResourceManager.GetString("InvalidDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid model.
+        /// </summary>
+        public static string InvalidModel {
+            get {
+                return ResourceManager.GetString("InvalidModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journal will not be deleted because it contains related articles.
         /// </summary>
         public static string JournalWillNotBeDeletedBecauseItContainsRelatedArticles {
             get {
@@ -97,7 +223,52 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publisher will not be deleted because it contains related journals..
+        ///   Looks up a localized string similar to Key already exists.
+        /// </summary>
+        public static string KeyExists {
+            get {
+                return ResourceManager.GetString("KeyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key not found.
+        /// </summary>
+        public static string KeyNotFound {
+            get {
+                return ResourceManager.GetString("KeyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximal length of the file name is exceeded.
+        /// </summary>
+        public static string MaximalLengthOfFileNameExceeded {
+            get {
+                return ResourceManager.GetString("MaximalLengthOfFileNameExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximal number of iterations is exceeded.
+        /// </summary>
+        public static string MaximalNumberOfIterationsExceeded {
+            get {
+                return ResourceManager.GetString("MaximalNumberOfIterationsExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Possible matches.
+        /// </summary>
+        public static string PossibleMatches {
+            get {
+                return ResourceManager.GetString("PossibleMatches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publisher will not be deleted because it contains related journals.
         /// </summary>
         public static string PublisherWillNotBeDeletedBecauseItContainsRelatedJournals {
             get {
@@ -106,7 +277,7 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specified article does not have any final documents..
+        ///   Looks up a localized string similar to Specified article does not have any final documents.
         /// </summary>
         public static string SpecifiedArticleDoesNotHaveAnyFinalDocuments {
             get {
@@ -115,7 +286,7 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specified article does not have valid Journal ID..
+        ///   Looks up a localized string similar to Specified article does not have valid Journal ID.
         /// </summary>
         public static string SpecifiedArticleDoesNotHaveValidJournalId {
             get {
@@ -124,7 +295,7 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specified journal is null..
+        ///   Looks up a localized string similar to Specified journal is null.
         /// </summary>
         public static string SpecifiedJournalIsNull {
             get {
@@ -133,7 +304,7 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specified publisher is null..
+        ///   Looks up a localized string similar to Specified publisher is null.
         /// </summary>
         public static string SpecifiedPublisherIsNull {
             get {
@@ -142,7 +313,16 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update all documents as not final failed..
+        ///   Looks up a localized string similar to Stream can not be read.
+        /// </summary>
+        public static string StreamCanNotBeRead {
+            get {
+                return ResourceManager.GetString("StreamCanNotBeRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update all documents as not final failed.
         /// </summary>
         public static string UpdateAllDocumentsAsNotFinalFailed {
             get {
@@ -151,11 +331,38 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update single document as final failed..
+        ///   Looks up a localized string similar to Update operation is not successful.
+        /// </summary>
+        public static string UpdateOperationIsNotSuccessful {
+            get {
+                return ResourceManager.GetString("UpdateOperationIsNotSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update single document as final failed.
         /// </summary>
         public static string UpdateSingleDocumentAsFinalFailed {
             get {
                 return ResourceManager.GetString("UpdateSingleDocumentAsFinalFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upsert operation is not successful.
+        /// </summary>
+        public static string UpsertOperationIsNotSuccessful {
+            get {
+                return ResourceManager.GetString("UpsertOperationIsNotSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found.
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
     }

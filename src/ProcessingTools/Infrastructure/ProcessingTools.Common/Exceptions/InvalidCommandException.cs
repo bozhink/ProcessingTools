@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Represents error that occur when invalid command in current executing context is provided.
@@ -14,14 +15,12 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class InvalidCommandException : Exception
     {
-        private const string DefaultMessage = "Invalid command.";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidCommandException"/> class with default
         /// error message.
         /// </summary>
         public InvalidCommandException()
-            : base(message: DefaultMessage)
+            : base(message: StringResources.InvalidCommand)
         {
         }
 
@@ -42,7 +41,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         public InvalidCommandException(string message, string commandName)
-            : base(message: $"{message}{Environment.NewLine}{DefaultMessage} '{commandName}'")
+            : base(message: $"{message}{Environment.NewLine}{StringResources.InvalidCommand} '{commandName}'")
         {
             this.CommandName = commandName;
         }
@@ -67,7 +66,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public InvalidCommandException(string message, string commandName, Exception innerException)
-            : base(message: $"{message}{Environment.NewLine}{DefaultMessage} '{commandName}'", innerException: innerException)
+            : base(message: $"{message}{Environment.NewLine}{StringResources.InvalidCommand} '{commandName}'", innerException: innerException)
         {
             this.CommandName = commandName;
         }

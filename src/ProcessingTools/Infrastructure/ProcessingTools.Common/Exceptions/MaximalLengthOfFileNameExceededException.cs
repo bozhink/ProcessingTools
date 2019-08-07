@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Represents error that occur when the maximal length of the file name is exceeded.
@@ -14,14 +15,12 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class MaximalLengthOfFileNameExceededException : Exception
     {
-        private const string DefaultMessage = "Maximal length of the file name is exceeded.";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MaximalLengthOfFileNameExceededException"/> class with default
         /// error message.
         /// </summary>
         public MaximalLengthOfFileNameExceededException()
-            : base(message: DefaultMessage)
+            : base(message: StringResources.MaximalLengthOfFileNameExceeded)
         {
         }
 
@@ -31,7 +30,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public MaximalLengthOfFileNameExceededException(string message)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}")
+            : base(message: $"{StringResources.MaximalLengthOfFileNameExceeded}{Environment.NewLine}{message}")
         {
         }
 
@@ -42,7 +41,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public MaximalLengthOfFileNameExceededException(string message, Exception innerException)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}", innerException: innerException)
+            : base(message: $"{StringResources.MaximalLengthOfFileNameExceeded}{Environment.NewLine}{message}", innerException: innerException)
         {
         }
 

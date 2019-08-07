@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Represents error that occur when entity is not found.
@@ -14,14 +15,12 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class EntityNotFoundException : Exception
     {
-        private const string DefaultMessage = "Entity not found.";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityNotFoundException"/> class with default
         /// error message.
         /// </summary>
         public EntityNotFoundException()
-            : base(message: DefaultMessage)
+            : base(message: StringResources.EntityNotFound)
         {
         }
 
@@ -31,7 +30,7 @@ namespace ProcessingTools.Common.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public EntityNotFoundException(string message)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}")
+            : base(message: $"{StringResources.EntityNotFound}{Environment.NewLine}{message}")
         {
         }
 
@@ -42,7 +41,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public EntityNotFoundException(string message, Exception innerException)
-            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}", innerException: innerException)
+            : base(message: $"{StringResources.EntityNotFound}{Environment.NewLine}{message}", innerException: innerException)
         {
         }
 

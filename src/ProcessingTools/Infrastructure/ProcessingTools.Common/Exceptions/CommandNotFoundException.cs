@@ -6,6 +6,7 @@ namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Represents error that occur when invalid command name is provided.
@@ -14,15 +15,13 @@ namespace ProcessingTools.Common.Exceptions
     [Serializable]
     public class CommandNotFoundException : Exception
     {
-        private const string DefaultMessage = "Command not found.";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandNotFoundException"/> class with
         /// the name of the command that causes this exception.
         /// </summary>
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         public CommandNotFoundException(string commandName)
-            : base(message: $"{DefaultMessage} '{commandName}'")
+            : base(message: $"{StringResources.CommandNotFound} '{commandName}'")
         {
             this.CommandName = commandName;
         }
@@ -34,7 +33,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public CommandNotFoundException(string commandName, string message)
-            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}")
+            : base(message: $"{StringResources.CommandNotFound} '{commandName}'{Environment.NewLine}{message ?? string.Empty}")
         {
             this.CommandName = commandName;
         }
@@ -48,7 +47,7 @@ namespace ProcessingTools.Common.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public CommandNotFoundException(string commandName, string message, Exception innerException)
-            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}", innerException: innerException)
+            : base(message: $"{StringResources.CommandNotFound} '{commandName}'{Environment.NewLine}{message ?? string.Empty}", innerException: innerException)
         {
             this.CommandName = commandName;
         }

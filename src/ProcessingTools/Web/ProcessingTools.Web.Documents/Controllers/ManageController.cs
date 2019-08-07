@@ -537,7 +537,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 throw new OperationException($"Unexpected error occurred disabling 2FA for user with ID '{user.Id}'.");
             }
 
-            this.logger.LogInformation("User with ID {UserId} has disabled 2fa.", user.Id);
+            this.logger.LogInformation($"User with ID {user.Id} has disabled 2fa.");
             return this.RedirectToAction(TwoFactorAuthenticationActionName);
         }
 
@@ -593,7 +593,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             // Strip spaces and hyphens
-            var verificationCode = model.Code.Replace(" ", string.Empty).Replace("-", string.Empty);
+            var verificationCode = model.Code.Replace(" ", string.Empty, StringComparison.InvariantCulture).Replace("-", string.Empty, StringComparison.InvariantCulture);
 
             var is2faTokenValid = await this.userManager.VerifyTwoFactorTokenAsync(user, this.userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode).ConfigureAwait(false);
 
@@ -604,7 +604,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             await this.userManager.SetTwoFactorEnabledAsync(user, true).ConfigureAwait(false);
-            this.logger.LogInformation("User with ID {UserId} has enabled 2FA with an authenticator app.", user.Id);
+            this.logger.LogInformation($"User with ID {user.Id} has enabled 2FA with an authenticator app.");
             return this.RedirectToAction(GenerateRecoveryCodesActionName);
         }
 
@@ -636,7 +636,7 @@ namespace ProcessingTools.Web.Documents.Controllers
 
             await this.userManager.SetTwoFactorEnabledAsync(user, false).ConfigureAwait(false);
             await this.userManager.ResetAuthenticatorKeyAsync(user).ConfigureAwait(false);
-            this.logger.LogInformation("User with id '{UserId}' has reset their authentication app key.", user.Id);
+            this.logger.LogInformation($"User with id '{user.Id}' has reset their authentication app key.");
 
             return this.RedirectToAction(EnableAuthenticatorActionName);
         }
@@ -663,7 +663,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             var recoveryCodes = await this.userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10).ConfigureAwait(false);
             var model = new GenerateRecoveryCodesViewModel { RecoveryCodes = recoveryCodes.ToArray() };
 
-            this.logger.LogInformation("User with ID {UserId} has generated new 2FA recovery codes.", user.Id);
+            this.logger.LogInformation($"User with ID {user.Id} has generated new 2FA recovery codes.");
 
             return this.View(model);
         }

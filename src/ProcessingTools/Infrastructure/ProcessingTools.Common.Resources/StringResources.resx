@@ -117,37 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AmbiguousCommand" xml:space="preserve">
+    <value>Ambiguous command</value>
+  </data>
   <data name="ArticleWillNotBeDeletedBecauseItContainsDocuments" xml:space="preserve">
-    <value>Article will not be deleted because it contains documents.</value>
+    <value>Article will not be deleted because it contains documents</value>
+  </data>
+  <data name="CanNotGenerateUniqueFileName" xml:space="preserve">
+    <value>Can not generate unique file name</value>
+  </data>
+  <data name="CommandNotFound" xml:space="preserve">
+    <value>Command not found</value>
   </data>
   <data name="DeleteDocumentContentIsNotAcknowledged" xml:space="preserve">
-    <value>Delete document content is not acknowledged.</value>
+    <value>Delete document content is not acknowledged</value>
   </data>
   <data name="DeleteDocumentIsNotAcknowledged" xml:space="preserve">
-    <value>Delete document is not acknowledged.</value>
+    <value>Delete document is not acknowledged</value>
+  </data>
+  <data name="DeleteOperationIsNotSuccessful" xml:space="preserve">
+    <value>Delete operation is not successful</value>
+  </data>
+  <data name="EntityNotFound" xml:space="preserve">
+    <value>Entity not found</value>
+  </data>
+  <data name="FileNameIsNullOrWhitespace" xml:space="preserve">
+    <value>File name is null or whitespace</value>
+  </data>
+  <data name="InformationNotFound" xml:space="preserve">
+    <value>Information not found</value>
+  </data>
+  <data name="InsertOperationIsNotSuccessful" xml:space="preserve">
+    <value>Insert operation is not successful</value>
+  </data>
+  <data name="InvalidCode" xml:space="preserve">
+    <value>Invalid code</value>
+  </data>
+  <data name="InvalidColumnMapping" xml:space="preserve">
+    <value>Invalid column mapping</value>
+  </data>
+  <data name="InvalidCommand" xml:space="preserve">
+    <value>Invalid command</value>
+  </data>
+  <data name="InvalidData" xml:space="preserve">
+    <value>Invalid data</value>
+  </data>
+  <data name="InvalidDocument" xml:space="preserve">
+    <value>Invalid document</value>
+  </data>
+  <data name="InvalidModel" xml:space="preserve">
+    <value>Invalid model</value>
   </data>
   <data name="JournalWillNotBeDeletedBecauseItContainsRelatedArticles" xml:space="preserve">
-    <value>Journal will not be deleted because it contains related articles.</value>
+    <value>Journal will not be deleted because it contains related articles</value>
+  </data>
+  <data name="KeyExists" xml:space="preserve">
+    <value>Key already exists</value>
+  </data>
+  <data name="KeyNotFound" xml:space="preserve">
+    <value>Key not found</value>
+  </data>
+  <data name="MaximalLengthOfFileNameExceeded" xml:space="preserve">
+    <value>Maximal length of the file name is exceeded</value>
+  </data>
+  <data name="MaximalNumberOfIterationsExceeded" xml:space="preserve">
+    <value>Maximal number of iterations is exceeded</value>
+  </data>
+  <data name="PossibleMatches" xml:space="preserve">
+    <value>Possible matches</value>
   </data>
   <data name="PublisherWillNotBeDeletedBecauseItContainsRelatedJournals" xml:space="preserve">
-    <value>Publisher will not be deleted because it contains related journals.</value>
+    <value>Publisher will not be deleted because it contains related journals</value>
   </data>
   <data name="SpecifiedArticleDoesNotHaveAnyFinalDocuments" xml:space="preserve">
-    <value>Specified article does not have any final documents.</value>
+    <value>Specified article does not have any final documents</value>
   </data>
   <data name="SpecifiedArticleDoesNotHaveValidJournalId" xml:space="preserve">
-    <value>Specified article does not have valid Journal ID.</value>
+    <value>Specified article does not have valid Journal ID</value>
   </data>
   <data name="SpecifiedJournalIsNull" xml:space="preserve">
-    <value>Specified journal is null.</value>
+    <value>Specified journal is null</value>
   </data>
   <data name="SpecifiedPublisherIsNull" xml:space="preserve">
-    <value>Specified publisher is null.</value>
+    <value>Specified publisher is null</value>
+  </data>
+  <data name="StreamCanNotBeRead" xml:space="preserve">
+    <value>Stream can not be read</value>
   </data>
   <data name="UpdateAllDocumentsAsNotFinalFailed" xml:space="preserve">
-    <value>Update all documents as not final failed.</value>
+    <value>Update all documents as not final failed</value>
+  </data>
+  <data name="UpdateOperationIsNotSuccessful" xml:space="preserve">
+    <value>Update operation is not successful</value>
   </data>
   <data name="UpdateSingleDocumentAsFinalFailed" xml:space="preserve">
-    <value>Update single document as final failed.</value>
+    <value>Update single document as final failed</value>
+  </data>
+  <data name="UpsertOperationIsNotSuccessful" xml:space="preserve">
+    <value>Upsert operation is not successful</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User not found</value>
   </data>
 </root>
