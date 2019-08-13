@@ -20,15 +20,10 @@ namespace ProcessingTools.Data.Mongo.Documents
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoDocumentsDatabaseInitializer"/> class.
         /// </summary>
-        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
-        public MongoDocumentsDatabaseInitializer(IMongoDatabaseProvider databaseProvider)
+        /// <param name="db">Instance of <see cref="IMongoDatabase"/>.</param>
+        public MongoDocumentsDatabaseInitializer(IMongoDatabase db)
         {
-            if (databaseProvider == null)
-            {
-                throw new ArgumentNullException(nameof(databaseProvider));
-            }
-
-            this.db = databaseProvider.Create();
+            this.db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
         /// <inheritdoc/>

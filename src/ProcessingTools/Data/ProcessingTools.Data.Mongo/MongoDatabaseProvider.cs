@@ -50,12 +50,14 @@ namespace ProcessingTools.Data.Mongo
             return client.GetDatabase(this.databaseName);
         }
 
+        /// <inheritdoc/>
         public IMongoCollection<T> GetCollection<T>(IMongoDatabase db, MongoCollectionSettings settings)
         {
             string collectionName = MongoCollectionNameFactory.Create<T>();
             return db.GetCollection<T>(collectionName, settings);
         }
 
+        /// <inheritdoc/>
         public IMongoCollection<T> GetCollection<T>(IMongoDatabase db)
         {
             return this.GetCollection<T>(db, new MongoCollectionSettings

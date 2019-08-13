@@ -20,15 +20,10 @@ namespace ProcessingTools.Data.Mongo.Bio.Taxonomy
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoBiotaxonomyDatabaseInitializer"/> class.
         /// </summary>
-        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
-        public MongoBiotaxonomyDatabaseInitializer(IMongoDatabaseProvider databaseProvider)
+        /// <param name="db">Instance of <see cref="IMongoDatabase"/>.</param>
+        public MongoBiotaxonomyDatabaseInitializer(IMongoDatabase db)
         {
-            if (databaseProvider == null)
-            {
-                throw new ArgumentNullException(nameof(databaseProvider));
-            }
-
-            this.db = databaseProvider.Create();
+            this.db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
         /// <inheritdoc/>

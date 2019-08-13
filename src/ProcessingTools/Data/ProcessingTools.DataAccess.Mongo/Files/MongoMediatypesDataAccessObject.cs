@@ -16,36 +16,28 @@ namespace ProcessingTools.DataAccess.Mongo.Files
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Data.Models.Mongo.Files;
-    using ProcessingTools.Data.Mongo;
-    using ProcessingTools.Data.Mongo.Abstractions;
     using ProcessingTools.Extensions;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IMediatypesDataAccessObject"/>.
     /// </summary>
-    public class MongoMediatypesDataAccessObject : MongoDataAccessObjectBase<Mediatype>, IMediatypesDataAccessObject
+    public class MongoMediatypesDataAccessObject : IMediatypesDataAccessObject
     {
+        private readonly IMongoCollection<Mediatype> collection;
         private readonly IApplicationContext applicationContext;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoMediatypesDataAccessObject"/> class.
         /// </summary>
-        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
-        /// <param name="applicationContext">Application context.</param>
+        /// <param name="collection">Instance of <see cref="IMongoCollection{Mediatype}"/>.</param>
+        /// <param name="applicationContext">Instance of <see cref="IApplicationContext"/>.</param>
         /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
-        public MongoMediatypesDataAccessObject(IMongoDatabaseProvider databaseProvider, IApplicationContext applicationContext, IMapper mapper)
-            : base(databaseProvider)
+        public MongoMediatypesDataAccessObject(IMongoCollection<Mediatype> collection, IApplicationContext applicationContext, IMapper mapper)
         {
+            this.collection = collection ?? throw new ArgumentNullException(nameof(collection));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-
-            this.CollectionSettings = new MongoCollectionSettings
-            {
-                AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
-                WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
-            };
         }
 
         /// <inheritdoc/>
@@ -64,7 +56,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
             mediatype.CreatedOn = mediatype.ModifiedOn;
             mediatype.Id = null;
 
-            await this.Collection.InsertOneAsync(mediatype, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
+            await this.collection.InsertOneAsync(mediatype, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
 
             return mediatype;
         }
@@ -97,7 +89,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
                 IsUpsert = false,
             };
 
-            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+            var result = await this.collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
 
             if (!result.IsAcknowledged)
             {
@@ -117,7 +109,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
 
             Guid objectId = id.ToNewGuid();
 
-            var result = await this.Collection.DeleteOneAsync(a => a.ObjectId == objectId).ConfigureAwait(false);
+            var result = await this.collection.DeleteOneAsync(a => a.ObjectId == objectId).ConfigureAwait(false);
 
             if (!result.IsAcknowledged)
             {
@@ -140,7 +132,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
 
             Guid objectId = id.ToNewGuid();
 
-            var mediatype = await this.Collection.Find(a => a.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var mediatype = await this.collection.Find(a => a.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
             return mediatype;
         }
@@ -155,7 +147,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
 
             string extensionCleaned = ("." + extension.TrimStart('.').Trim(' ')).ToLowerInvariant();
 
-            var data = await this.Collection.Find(m => m.Extension == extensionCleaned).FirstOrDefaultAsync().ConfigureAwait(false);
+            var data = await this.collection.Find(m => m.Extension == extensionCleaned).FirstOrDefaultAsync().ConfigureAwait(false);
 
             return data;
         }
@@ -170,7 +162,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
 
             string extensionCleaned = ("." + extension.TrimStart('.').Trim(' ')).ToLowerInvariant();
 
-            var data = await this.Collection.Find(m => m.Extension == extensionCleaned).ToListAsync().ConfigureAwait(false);
+            var data = await this.collection.Find(m => m.Extension == extensionCleaned).ToListAsync().ConfigureAwait(false);
 
             return data.ToArray<IMediatypeMetaModel>();
         }
@@ -178,7 +170,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public async Task<string[]> GetMimeTypesAsync()
         {
-            var query = this.Collection.Aggregate().Project(m => new { m.MimeType }).Group(m => m.MimeType, g => new { g.Key });
+            var query = this.collection.Aggregate().Project(m => new { m.MimeType }).Group(m => m.MimeType, g => new { g.Key });
 
             var data = await query.ToListAsync().ConfigureAwait(false);
 
@@ -188,7 +180,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public async Task<string[]> GetMimeSubtypesAsync()
         {
-            var query = this.Collection.Aggregate().Project(m => new { m.MimeSubtype }).Group(m => m.MimeSubtype, g => new { g.Key });
+            var query = this.collection.Aggregate().Project(m => new { m.MimeSubtype }).Group(m => m.MimeSubtype, g => new { g.Key });
 
             var data = await query.ToListAsync().ConfigureAwait(false);
 
@@ -198,13 +190,13 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountDocumentsAsync(a => true);
+            return this.collection.CountDocumentsAsync(a => true);
         }
 
         /// <inheritdoc/>
         public async Task<IList<IMediatypeDataTransferObject>> SelectAsync(int skip, int take)
         {
-            var mediatypes = await this.Collection.Find(a => true)
+            var mediatypes = await this.collection.Find(a => true)
                 .SortByDescending(a => a.CreatedOn)
                 .Skip(skip)
                 .Limit(take)
@@ -222,7 +214,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public async Task<IList<IMediatypeDetailsDataTransferObject>> SelectDetailsAsync(int skip, int take)
         {
-            var mediatypes = await this.Collection.Find(a => true)
+            var mediatypes = await this.collection.Find(a => true)
                .SortByDescending(a => a.CreatedOn)
                .Skip(skip)
                .Limit(take)
@@ -236,5 +228,8 @@ namespace ProcessingTools.DataAccess.Mongo.Files
 
             return mediatypes.ToArray<IMediatypeDetailsDataTransferObject>();
         }
+
+        /// <inheritdoc/>
+        public Task<long> SaveChangesAsync() => Task.FromResult(-1L);
     }
 }

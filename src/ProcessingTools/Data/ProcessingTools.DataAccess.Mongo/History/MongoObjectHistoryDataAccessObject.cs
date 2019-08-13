@@ -14,36 +14,27 @@ namespace ProcessingTools.DataAccess.Mongo.History
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.History;
     using ProcessingTools.Data.Models.Mongo.History;
-    using ProcessingTools.Data.Mongo;
-    using ProcessingTools.Data.Mongo.Abstractions;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IObjectHistoryDataAccessObject"/>.
     /// </summary>
-    public class MongoObjectHistoryDataAccessObject : MongoDataAccessObjectBase<ObjectHistory>, IObjectHistoryDataAccessObject
+    public class MongoObjectHistoryDataAccessObject : IObjectHistoryDataAccessObject
     {
+        private readonly IMongoCollection<ObjectHistory> collection;
         private readonly IApplicationContext applicationContext;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoObjectHistoryDataAccessObject"/> class.
         /// </summary>
-        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
+        /// <param name="collection">Instance of <see cref="IMongoCollection{ObjectHistory}"/>.</param>
         /// <param name="applicationContext">Application context.</param>
         /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
-        public MongoObjectHistoryDataAccessObject(IMongoDatabaseProvider databaseProvider, IApplicationContext applicationContext, IMapper mapper)
-            : base(databaseProvider)
+        public MongoObjectHistoryDataAccessObject(IMongoCollection<ObjectHistory> collection, IApplicationContext applicationContext, IMapper mapper)
         {
+            this.collection = collection ?? throw new ArgumentNullException(nameof(collection));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-
-            this.CollectionSettings = new MongoCollectionSettings
-            {
-                AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard,
-                ReadPreference = new ReadPreference(ReadPreferenceMode.SecondaryPreferred),
-                WriteConcern = new WriteConcern(WriteConcern.Unacknowledged.W),
-            };
         }
 
         /// <inheritdoc/>
@@ -59,7 +50,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
             item.CreatedOn = this.applicationContext.DateTimeProvider.Invoke();
             item.Id = null;
 
-            await this.Collection.InsertOneAsync(item, new InsertOneOptions { BypassDocumentValidation = true }).ConfigureAwait(false);
+            await this.collection.InsertOneAsync(item, new InsertOneOptions { BypassDocumentValidation = true }).ConfigureAwait(false);
 
             return item;
         }
@@ -72,7 +63,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
                 return Array.Empty<IObjectHistory>();
             }
 
-            var data = await this.Collection
+            var data = await this.collection
                 .Find(h => h.ObjectId == objectId.ToString())
                 .Sort(Builders<ObjectHistory>.Sort.Descending(h => h.CreatedOn))
                 .ToListAsync()
@@ -94,7 +85,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
                 return Array.Empty<IObjectHistory>();
             }
 
-            var data = await this.Collection
+            var data = await this.collection
                 .Find(h => h.ObjectId == objectId.ToString())
                 .Sort(Builders<ObjectHistory>.Sort.Descending(h => h.CreatedOn))
                 .Skip(skip)
@@ -109,5 +100,8 @@ namespace ProcessingTools.DataAccess.Mongo.History
 
             return data.ToArray<IObjectHistory>();
         }
+
+        /// <inheritdoc/>
+        public Task<long> SaveChangesAsync() => Task.FromResult(-1L);
     }
 }

@@ -57,6 +57,10 @@ namespace ProcessingTools.Web.Documents.Settings
             {
                 Configuration = configuration,
             });
+            builder.RegisterModule(new DataAccessAutofacModule
+            {
+                Configuration = configuration,
+            });
             builder.RegisterModule<ServicesWebAutofacModule>();
             builder.RegisterModule(new ServicesAutofacModule
             {

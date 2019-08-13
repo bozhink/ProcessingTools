@@ -7,22 +7,11 @@ namespace ProcessingTools.Configuration.Autofac
     using System;
     using System.Collections.Generic;
     using global::Autofac;
-    using global::Autofac.Core;
     using Microsoft.Extensions.Configuration;
+    using MongoDB.Driver;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Data;
-    using ProcessingTools.Contracts.DataAccess.Documents;
-    using ProcessingTools.Contracts.DataAccess.Files;
-    using ProcessingTools.Contracts.DataAccess.History;
-    using ProcessingTools.Contracts.DataAccess.Layout.Styles;
     using ProcessingTools.Data.Mongo;
-    using ProcessingTools.Data.Mongo.Documents;
-    using ProcessingTools.Data.Mongo.Files;
-    using ProcessingTools.Data.Mongo.Layout;
-    using ProcessingTools.DataAccess.Mongo.Documents;
-    using ProcessingTools.DataAccess.Mongo.Files;
-    using ProcessingTools.DataAccess.Mongo.History;
-    using ProcessingTools.DataAccess.Mongo.Layout.Styles;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Data.*.
@@ -37,20 +26,135 @@ namespace ProcessingTools.Configuration.Autofac
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            // Register MongoCollectionSettings
+            builder
+                .Register(c => new MongoCollectionSettings
+                {
+                    AssignIdOnInsert = true,
+                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                    WriteConcern = new WriteConcern(WriteConcern.Acknowledged.W),
+                    ReadPreference = new ReadPreference(ReadPreferenceMode.SecondaryPreferred),
+                })
+                .As<MongoCollectionSettings>()
+                .Named<MongoCollectionSettings>(InjectionConstants.MongoDBHistoryDatabaseBindingName)
+                .SingleInstance();
+
+            builder
+                .Register(c => new MongoCollectionSettings
+                {
+                    AssignIdOnInsert = true,
+                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                    WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
+                })
+                .As<MongoCollectionSettings>()
+                .Named<MongoCollectionSettings>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)
+                .SingleInstance();
+
+            builder
+                .Register(c => new MongoCollectionSettings
+                {
+                    AssignIdOnInsert = true,
+                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                    WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
+                })
+                .As<MongoCollectionSettings>()
+                .Named<MongoCollectionSettings>(InjectionConstants.MongoDBFilesDatabaseBindingName)
+                .SingleInstance();
+
+            builder
+                .Register(c => new MongoCollectionSettings
+                {
+                    AssignIdOnInsert = true,
+                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                    WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
+                })
+                .As<MongoCollectionSettings>()
+                .Named<MongoCollectionSettings>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                .SingleInstance();
+
+            builder
+                .Register(c => new MongoCollectionSettings
+                {
+                    AssignIdOnInsert = true,
+                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                    WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
+                })
+                .As<MongoCollectionSettings>()
+                .Named<MongoCollectionSettings>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                .SingleInstance();
+
+            // Register MongoDB databases
+            builder.RegisterMongoDatabase(
+                connectionString: this.Configuration.GetConnectionString(ConfigurationConstants.HistoryDatabaseMongoDBConnectionStringName),
+                databaseName: this.Configuration[ConfigurationConstants.HistoryMongoDBDatabaseName],
+                bindingName: InjectionConstants.MongoDBHistoryDatabaseBindingName);
+
+            builder.RegisterMongoDatabase(
+                connectionString: this.Configuration.GetConnectionString(ConfigurationConstants.DocumentsDatabaseMongoDBConnectionStringName),
+                databaseName: this.Configuration[ConfigurationConstants.DocumentsMongoDBDatabaseName],
+                bindingName: InjectionConstants.MongoDBDocumentsDatabaseBindingName);
+
+            builder.RegisterMongoDatabase(
+                connectionString: this.Configuration.GetConnectionString(ConfigurationConstants.FilesDatabaseMongoDBConnectionStringName),
+                databaseName: this.Configuration[ConfigurationConstants.FilesMongoDBDatabaseName],
+                bindingName: InjectionConstants.MongoDBFilesDatabaseBindingName);
+
+            builder.RegisterMongoDatabase(
+                connectionString: this.Configuration.GetConnectionString(ConfigurationConstants.LayoutDatabaseMongoDBConnectionStringName),
+                databaseName: this.Configuration[ConfigurationConstants.LayoutMongoDBDatabaseName],
+                bindingName: InjectionConstants.MongoDBLayoutDatabaseBindingName);
+
+            builder.RegisterMongoDatabase(
+                connectionString: this.Configuration.GetConnectionString(ConfigurationConstants.BiotaxonomyDatabaseMongoDBConnectionStringName),
+                databaseName: this.Configuration[ConfigurationConstants.BiotaxonomyMongoDBDatabaseName],
+                bindingName: InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName);
+
+            // Register MongoDB collections
+            builder
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.History.ObjectHistory>(InjectionConstants.MongoDBHistoryDatabaseBindingName)
+                ;
+
+            builder
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Files.Mediatype>(InjectionConstants.MongoDBFilesDatabaseBindingName)
+                ;
+
+            builder
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Layout.Styles.FloatObjectParseStyle>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Layout.Styles.FloatObjectTagStyle>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Layout.Styles.JournalStyle>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Layout.Styles.ReferenceParseStyle>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Layout.Styles.ReferenceTagStyle>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Layout.Templates.HandlebarsTemplate>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                ;
+
+            builder
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.BlackListItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.WhiteListItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.TaxonRankItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                ;
+
+            // Register database initializers
             builder
                .Register<Func<IEnumerable<IDatabaseInitializer>>>(c =>
                {
                    var context = c.Resolve<IComponentContext>();
                    return () => new IDatabaseInitializer[]
                    {
-                        context.Resolve<MongoDocumentsDatabaseInitializer>(),
-                        context.Resolve<MongoFilesDatabaseInitializer>(),
-                        context.Resolve<MongoLayoutDatabaseInitializer>(),
+                        context.Resolve<ProcessingTools.Data.Mongo.Documents.MongoDocumentsDatabaseInitializer>(),
+                        context.Resolve<ProcessingTools.Data.Mongo.Files.MongoFilesDatabaseInitializer>(),
+                        context.Resolve<ProcessingTools.Data.Mongo.Layout.MongoLayoutDatabaseInitializer>(),
                         context.Resolve<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>(),
                    };
                })
                .As<Func<IEnumerable<IDatabaseInitializer>>>()
                .InstancePerDependency();
+
+            builder
+                .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Documents.MongoDocumentsDatabaseInitializer>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)
+                .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Files.MongoFilesDatabaseInitializer>(InjectionConstants.MongoDBFilesDatabaseBindingName)
+                .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Layout.MongoLayoutDatabaseInitializer>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
+                .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                ;
 
             // Documents DB provider
             builder
@@ -70,24 +174,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.FilesMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
 
-            // Layout DB provider
-            builder
-                .RegisterType<MongoDatabaseProvider>()
-                .As<IMongoDatabaseProvider>()
-                .Named<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
-                .WithParameter(InjectionConstants.ConnectionStringParameterName, this.Configuration.GetConnectionString(ConfigurationConstants.LayoutDatabaseMongoDBConnectionStringName))
-                .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.LayoutMongoDBDatabaseName])
-                .InstancePerLifetimeScope();
-
-            // Bio-taxonomy DB provider
-            builder
-                .RegisterType<MongoDatabaseProvider>()
-                .As<IMongoDatabaseProvider>()
-                .Named<IMongoDatabaseProvider>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
-                .WithParameter(InjectionConstants.ConnectionStringParameterName, this.Configuration.GetConnectionString(ConfigurationConstants.BiotaxonomyDatabaseMongoDBConnectionStringName))
-                .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.BiotaxonomyMongoDBDatabaseName])
-                .InstancePerLifetimeScope();
-
             // History DB provider
             builder
                 .RegisterType<MongoDatabaseProvider>()
@@ -96,163 +182,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .WithParameter(InjectionConstants.ConnectionStringParameterName, this.Configuration.GetConnectionString(ConfigurationConstants.HistoryDatabaseMongoDBConnectionStringName))
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.Configuration[ConfigurationConstants.HistoryMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
-
-            // History DAO
-            builder
-                .RegisterType<MongoObjectHistoryDataAccessObject>()
-                .As<IObjectHistoryDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBHistoryDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-
-            // Documents DAO
-            builder
-                .RegisterType<MongoPublishersDataAccessObject>()
-                .As<IPublishersDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoJournalsDataAccessObject>()
-                .As<IJournalsDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoArticlesDataAccessObject>()
-                .As<IArticlesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoDocumentsDataAccessObject>()
-                .As<IDocumentsDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoFilesDataAccessObject>()
-                .As<IFilesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-
-            // Documents DB initializer
-            builder
-                .RegisterType<MongoDocumentsDatabaseInitializer>()
-                .AsSelf()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
-
-            // Files DAO
-            builder
-                .RegisterType<MongoMediatypesDataAccessObject>()
-                .As<IMediatypesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBFilesDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-
-            // Files DB initializer
-            builder
-                .RegisterType<MongoFilesDatabaseInitializer>()
-                .AsSelf()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBFilesDatabaseBindingName)))
-                .InstancePerDependency();
-
-            // Layout DAO
-            builder
-                .RegisterType<MongoFloatObjectTagStylesDataAccessObject>()
-                .As<IFloatObjectTagStylesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoFloatObjectParseStylesDataAccessObject>()
-                .As<IFloatObjectParseStylesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoReferenceTagStylesDataAccessObject>()
-                .As<IReferenceTagStylesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoReferenceParseStylesDataAccessObject>()
-                .As<IReferenceParseStylesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<MongoJournalStylesDataAccessObject>()
-                .As<IJournalStylesDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
-                .InstancePerLifetimeScope();
-
-            // Layout DB initializer
-            builder
-                .RegisterType<MongoLayoutDatabaseInitializer>()
-                .AsSelf()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
-                .InstancePerDependency();
-
-            // Biotaxonomy DAO
-            builder
-                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.BlackListItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
-                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.TaxonRankItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName);
-            builder
-                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Taxonomy.MongoBlackListDataAccessObject>()
-                .As<ProcessingTools.Contracts.DataAccess.Bio.Taxonomy.IBlackListDataAccessObject>()
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Taxonomy.MongoTaxonRanksDataAccessObject>()
-                .As<ProcessingTools.Contracts.DataAccess.Bio.Taxonomy.ITaxonRanksDataAccessObject>()
-                .InstancePerLifetimeScope();
-
-            // Biotaxonomy DB initializer
-            builder
-                .RegisterType<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>()
-                .AsSelf()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)))
-                .InstancePerDependency();
         }
     }
 }
