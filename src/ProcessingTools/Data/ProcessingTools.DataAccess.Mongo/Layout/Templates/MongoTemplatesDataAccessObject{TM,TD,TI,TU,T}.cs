@@ -1,4 +1,4 @@
-﻿// <copyright file="MongoTemplatesDataAccessObject{TM,TD,TI,TU,TDM}.cs" company="ProcessingTools">
+﻿// <copyright file="MongoTemplatesDataAccessObject{TM,TD,TI,TU,T}.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -27,25 +27,25 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
     /// <typeparam name="TD">Type of the detailed data transfer object (DTO).</typeparam>
     /// <typeparam name="TI">Type of the insert model.</typeparam>
     /// <typeparam name="TU">Type of the update model.</typeparam>
-    /// <typeparam name="TDM">Type of the data model.</typeparam>
-    public class MongoTemplatesDataAccessObject<TM, TD, TI, TU, TDM> : ITemplatesDataAccessObject, IDataAccessObject<TM, TD, TI, TU>
+    /// <typeparam name="T">Type of the data model.</typeparam>
+    public abstract class MongoTemplatesDataAccessObject<TM, TD, TI, TU, T> : ITemplatesDataAccessObject, IDataAccessObject<TM, TD, TI, TU>
         where TM : class, IIdentifiedTemplateDataTransferObject, IDataTransferObject
         where TD : class, IIdentifiedTemplateDataTransferObject, IDataTransferObject
         where TI : class, ITemplateModel
         where TU : class, IIdentifiedTemplateModel
-        where TDM : MongoDataModel, ITemplateModel
+        where T : MongoDataModel, ITemplateModel
     {
+        private readonly IMongoCollection<T> collection;
         private readonly IApplicationContext applicationContext;
-        private readonly IMongoCollection<TDM> collection;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MongoTemplatesDataAccessObject{TM,TD,TI,TU,TDM}"/> class.
+        /// Initializes a new instance of the <see cref="MongoTemplatesDataAccessObject{TM,TD,TI,TU,T}"/> class.
         /// </summary>
-        /// <param name="collection">Instance of <see cref="IMongoCollection{TDM}"/>.</param>
+        /// <param name="collection">Instance of <see cref="IMongoCollection{T}"/>.</param>
         /// <param name="applicationContext">Instance of <see cref="IApplicationContext"/>.</param>
         /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
-        public MongoTemplatesDataAccessObject(IMongoCollection<TDM> collection, IApplicationContext applicationContext, IMapper mapper)
+        protected MongoTemplatesDataAccessObject(IMongoCollection<T> collection, IApplicationContext applicationContext, IMapper mapper)
         {
             this.collection = collection ?? throw new ArgumentNullException(nameof(collection));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
@@ -128,9 +128,9 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
         /// <inheritdoc/>
         public virtual async Task<IList<IIdentifiedTemplateMetaDataTransferObject>> GetTemplatesForSelectAsync()
         {
-            var projection = Builders<TDM>.Projection.Exclude(t => t.Content);
+            var projection = Builders<T>.Projection.Exclude(t => t.Content);
 
-            var data = await this.collection.Find(Builders<TDM>.Filter.Empty).Project(projection).As<TDM>()
+            var data = await this.collection.Find(Builders<T>.Filter.Empty).Project(projection).As<T>()
                 .SortBy(p => p.Name)
                 .ToListAsync()
                 .ConfigureAwait(false);
@@ -160,9 +160,9 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
         /// <inheritdoc/>
         public virtual async Task<IList<TM>> SelectAsync(int skip, int take)
         {
-            var projection = Builders<TDM>.Projection.Exclude(t => t.Content);
+            var projection = Builders<T>.Projection.Exclude(t => t.Content);
 
-            var data = await this.collection.Find(Builders<TDM>.Filter.Empty).Project(projection).As<TDM>()
+            var data = await this.collection.Find(Builders<T>.Filter.Empty).Project(projection).As<T>()
                 .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
@@ -180,13 +180,13 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
         /// <inheritdoc/>
         public virtual Task<long> SelectCountAsync()
         {
-            return this.collection.CountDocumentsAsync(Builders<TDM>.Filter.Empty);
+            return this.collection.CountDocumentsAsync(Builders<T>.Filter.Empty);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IList<TD>> SelectDetailsAsync(int skip, int take)
         {
-            var data = await this.collection.Find(Builders<TDM>.Filter.Empty)
+            var data = await this.collection.Find(Builders<T>.Filter.Empty)
                 .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
@@ -214,7 +214,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
 
         private async Task<TM> InsertInternalAsync(TI model)
         {
-            var dbmodel = this.mapper.Map<TDM>(model);
+            var dbmodel = this.mapper.Map<T>(model);
             dbmodel.ObjectId = this.applicationContext.GuidProvider.Invoke();
             dbmodel.ModifiedBy = this.applicationContext.UserContext.UserId;
             dbmodel.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
@@ -231,12 +231,12 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
         {
             Guid objectId = model.Id.ToNewGuid();
 
-            var dbmodel = this.mapper.Map<TDM>(model);
+            var dbmodel = this.mapper.Map<T>(model);
             dbmodel.ModifiedBy = this.applicationContext.UserContext.UserId;
             dbmodel.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
 
-            var filterDefinition = new FilterDefinitionBuilder<TDM>().Eq(m => m.ObjectId, objectId);
-            var updateDefinition = new UpdateDefinitionBuilder<TDM>()
+            var filterDefinition = new FilterDefinitionBuilder<T>().Eq(m => m.ObjectId, objectId);
+            var updateDefinition = new UpdateDefinitionBuilder<T>()
                 .Set(s => s.Name, model.Name)
                 .Set(s => s.Description, model.Description)
                 .Set(s => s.Content, model.Content)

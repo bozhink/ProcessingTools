@@ -57,6 +57,7 @@
     <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj" />
+    <ProjectReference Include="..\ProcessingTools.DataAccess.Models.Mongo\ProcessingTools.DataAccess.Models.Mongo.csproj" />
   </ItemGroup>
 
 </Project>
