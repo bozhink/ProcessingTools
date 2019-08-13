@@ -1,8 +1,8 @@
-﻿// <copyright file="StylesDataService{TM,TD,TI,TU,TMA,TDA,TDAO}.cs" company="ProcessingTools">
+﻿// <copyright file="TemplatesDataService{TM,TD,TI,TU,TMA,TDA,TDAO}.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Layout.Styles
+namespace ProcessingTools.Services.Layout.Templates
 {
     using System;
     using System.Collections.Generic;
@@ -13,16 +13,15 @@ namespace ProcessingTools.Services.Layout.Styles
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Resources;
     using ProcessingTools.Contracts.DataAccess;
-    using ProcessingTools.Contracts.DataAccess.Layout.Styles;
+    using ProcessingTools.Contracts.DataAccess.Layout.Templates;
     using ProcessingTools.Contracts.DataAccess.Models;
-    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles;
-    using ProcessingTools.Contracts.Models.Layout.Styles;
+    using ProcessingTools.Contracts.Models.Layout.Templates;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.History;
-    using ProcessingTools.Contracts.Services.Layout.Styles;
+    using ProcessingTools.Contracts.Services.Layout.Templates;
 
     /// <summary>
-    /// Styles data service.
+    /// Templates data service.
     /// </summary>
     /// <typeparam name="TM">Type of the resultant service model.</typeparam>
     /// <typeparam name="TD">Type of the detailed resultant service model.</typeparam>
@@ -31,26 +30,26 @@ namespace ProcessingTools.Services.Layout.Styles
     /// <typeparam name="TMA">Type of the data transfer object (DTO).</typeparam>
     /// <typeparam name="TDA">Type of the detailed data transfer object (DTO).</typeparam>
     /// <typeparam name="TDAO">Type of the data access object (DAO).</typeparam>
-    public class StylesDataService<TM, TD, TI, TU, TMA, TDA, TDAO> : IStylesDataService, IDataService<TM, TD, TI, TU>
+    public class TemplatesDataService<TM, TD, TI, TU, TMA, TDA, TDAO> : ITemplatesDataService, IDataService<TM, TD, TI, TU>
         where TM : class
         where TD : class
         where TI : class
         where TU : class
         where TMA : class, IDataTransferObject
         where TDA : class, IDataTransferObject
-        where TDAO : class, IStylesDataAccessObject, IDataAccessObject<TMA, TDA, TI, TU>
+        where TDAO : class, ITemplatesDataAccessObject, IDataAccessObject<TMA, TDA, TI, TU>
     {
         private readonly TDAO dataAccessObject;
         private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StylesDataService{TM,TD,TI,TU,TMA,TDA,TDAO}"/> class.
+        /// Initializes a new instance of the <see cref="TemplatesDataService{TM,TD,TI,TU,TMA,TDA,TDAO}"/> class.
         /// </summary>
         /// <param name="dataAccessObject">Instance of data access object (DAO).</param>
         /// <param name="objectHistoryDataService">Instance of <see cref="IObjectHistoryDataService"/>.</param>
         /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
-        public StylesDataService(TDAO dataAccessObject, IObjectHistoryDataService objectHistoryDataService, IMapper mapper)
+        public TemplatesDataService(TDAO dataAccessObject, IObjectHistoryDataService objectHistoryDataService, IMapper mapper)
         {
             this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
             this.objectHistoryDataService = objectHistoryDataService ?? throw new ArgumentNullException(nameof(objectHistoryDataService));
@@ -91,17 +90,22 @@ namespace ProcessingTools.Services.Layout.Styles
         }
 
         /// <inheritdoc/>
-        public virtual async Task<IIdentifiedStyleModel> GetStyleByIdAsync(object id)
+        public Task<string> GetTemplateContentByIdAsync(object id)
         {
-            var style = await this.dataAccessObject.GetStyleByIdAsync(id).ConfigureAwait(false);
-            return this.mapper.Map<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>(style);
+            return this.dataAccessObject.GetTemplateContentByIdAsync(id);
         }
 
         /// <inheritdoc/>
-        public virtual async Task<IList<IIdentifiedStyleModel>> GetStylesForSelectAsync()
+        public async Task<IList<IIdentifiedTemplateMetaModel>> GetTemplatesForSelectAsync()
         {
-            var styles = await this.dataAccessObject.GetStylesForSelectAsync().ConfigureAwait(false);
-            return styles.Select(this.mapper.Map<IIdentifiedStyleDataTransferObject, IIdentifiedStyleModel>).ToArray();
+            var data = await this.dataAccessObject.GetTemplatesForSelectAsync().ConfigureAwait(false);
+
+            if (data is null || !data.Any())
+            {
+                return Array.Empty<IIdentifiedTemplateMetaModel>();
+            }
+
+            return data.Select(this.mapper.Map<IIdentifiedTemplateMetaModel>).ToArray();
         }
 
         /// <inheritdoc/>

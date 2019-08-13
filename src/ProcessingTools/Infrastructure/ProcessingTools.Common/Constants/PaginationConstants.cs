@@ -53,5 +53,10 @@ namespace ProcessingTools.Common.Constants
         /// Minimal allowed page number.
         /// </summary>
         public const int MinimalPageNumber = 0;
+
+        /// <summary>
+        /// Minimal skip value.
+        /// </summary>
+        public const int MinimalSkipValue = 0;
     }
 }

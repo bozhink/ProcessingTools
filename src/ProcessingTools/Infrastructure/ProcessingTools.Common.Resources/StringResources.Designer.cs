@@ -205,11 +205,38 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid items per page.
+        /// </summary>
+        public static string InvalidItemsPerPage {
+            get {
+                return ResourceManager.GetString("InvalidItemsPerPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid model.
         /// </summary>
         public static string InvalidModel {
             get {
                 return ResourceManager.GetString("InvalidModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid page number.
+        /// </summary>
+        public static string InvalidPageNumber {
+            get {
+                return ResourceManager.GetString("InvalidPageNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid skip value.
+        /// </summary>
+        public static string InvalidSkipValue {
+            get {
+                return ResourceManager.GetString("InvalidSkipValue", resourceCulture);
             }
         }
         

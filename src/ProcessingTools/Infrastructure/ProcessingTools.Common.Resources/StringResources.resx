@@ -165,8 +165,17 @@
   <data name="InvalidDocument" xml:space="preserve">
     <value>Invalid document</value>
   </data>
+  <data name="InvalidItemsPerPage" xml:space="preserve">
+    <value>Invalid items per page</value>
+  </data>
   <data name="InvalidModel" xml:space="preserve">
     <value>Invalid model</value>
+  </data>
+  <data name="InvalidPageNumber" xml:space="preserve">
+    <value>Invalid page number</value>
+  </data>
+  <data name="InvalidSkipValue" xml:space="preserve">
+    <value>Invalid skip value</value>
   </data>
   <data name="JournalWillNotBeDeletedBecauseItContainsRelatedArticles" xml:space="preserve">
     <value>Journal will not be deleted because it contains related articles</value>
