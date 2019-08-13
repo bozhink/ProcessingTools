@@ -49,5 +49,21 @@ namespace ProcessingTools.Data.Mongo
             IMongoClient client = new MongoClient(this.connectionString);
             return client.GetDatabase(this.databaseName);
         }
+
+        public IMongoCollection<T> GetCollection<T>(IMongoDatabase db, MongoCollectionSettings settings)
+        {
+            string collectionName = MongoCollectionNameFactory.Create<T>();
+            return db.GetCollection<T>(collectionName, settings);
+        }
+
+        public IMongoCollection<T> GetCollection<T>(IMongoDatabase db)
+        {
+            return this.GetCollection<T>(db, new MongoCollectionSettings
+            {
+                AssignIdOnInsert = true,
+                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
+            });
+        }
     }
 }
