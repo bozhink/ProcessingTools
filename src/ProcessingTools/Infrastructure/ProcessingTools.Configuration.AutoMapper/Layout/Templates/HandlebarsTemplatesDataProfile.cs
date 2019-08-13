@@ -21,14 +21,15 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Templates
         /// </summary>
         public HandlebarsTemplatesDataProfile()
         {
+            // Data - Data Access
+            this.CreateMap<IHandlebarsTemplateInsertModel, HandlebarsTemplate>();
+            this.CreateMap<IHandlebarsTemplateUpdateModel, HandlebarsTemplate>();
             this.CreateMap<HandlebarsTemplate, HandlebarsTemplateDataTransferObject>();
             this.CreateMap<HandlebarsTemplate, IHandlebarsTemplateDataTransferObject>().As<HandlebarsTemplateDataTransferObject>();
             this.CreateMap<HandlebarsTemplate, HandlebarsTemplateDetailsDataTransferObject>();
             this.CreateMap<HandlebarsTemplate, IHandlebarsTemplateDetailsDataTransferObject>().As<HandlebarsTemplateDetailsDataTransferObject>();
             this.CreateMap<HandlebarsTemplate, HandlebarsTemplateMetaDataTransferObject>();
             this.CreateMap<HandlebarsTemplate, IIdentifiedTemplateMetaDataTransferObject>().As<HandlebarsTemplateMetaDataTransferObject>();
-            this.CreateMap<IHandlebarsTemplateInsertModel, HandlebarsTemplate>();
-            this.CreateMap<IHandlebarsTemplateUpdateModel, HandlebarsTemplate>();
         }
     }
 }

@@ -7,6 +7,8 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
     using global::AutoMapper;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
+    using ProcessingTools.Data.Models.Mongo.Layout.Styles;
+    using ProcessingTools.DataAccess.Models.Mongo.Layout.Styles.References;
     using ProcessingTools.Services.Models.Layout.Styles.References;
 
     /// <summary>
@@ -20,8 +22,12 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
         public ReferenceParseStylesDataProfile()
         {
             // Data - Data Access
-            this.CreateMap<IReferenceInsertParseStyleModel, ProcessingTools.Data.Models.Mongo.Layout.ReferenceParseStyle>();
-            this.CreateMap<IReferenceUpdateParseStyleModel, ProcessingTools.Data.Models.Mongo.Layout.ReferenceParseStyle>();
+            this.CreateMap<IReferenceInsertParseStyleModel, ReferenceParseStyle>();
+            this.CreateMap<IReferenceUpdateParseStyleModel, ReferenceParseStyle>();
+            this.CreateMap<ReferenceParseStyle, ReferenceParseStyleDataTransferObject>();
+            this.CreateMap<ReferenceParseStyle, IReferenceParseStyleDataTransferObject>().As<ReferenceParseStyleDataTransferObject>();
+            this.CreateMap<ReferenceParseStyle, ReferenceParseStyleDetailsDataTransferObject>();
+            this.CreateMap<ReferenceParseStyle, IReferenceDetailsParseStyleDataTransferObject>().As<ReferenceParseStyleDetailsDataTransferObject>();
 
             // Data Access - Data Services
             this.CreateMap<IReferenceParseStyleDataTransferObject, ReferenceParseStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));

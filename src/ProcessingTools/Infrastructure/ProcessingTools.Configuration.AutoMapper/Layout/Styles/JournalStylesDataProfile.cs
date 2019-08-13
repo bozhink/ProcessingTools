@@ -5,15 +5,11 @@
 namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
 {
     using global::AutoMapper;
-    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.Journals;
-    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References;
-    using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
     using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
-    using ProcessingTools.Contracts.Models.Layout.Styles.References;
-    using ProcessingTools.Services.Models.Layout.Styles.Floats;
+    using ProcessingTools.Data.Models.Mongo.Layout.Styles;
+    using ProcessingTools.DataAccess.Models.Mongo.Layout.Styles.Journals;
     using ProcessingTools.Services.Models.Layout.Styles.Journals;
-    using ProcessingTools.Services.Models.Layout.Styles.References;
 
     /// <summary>
     /// Journal styles data profile.
@@ -26,26 +22,22 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Styles
         public JournalStylesDataProfile()
         {
             // Data - Data Access
-            this.CreateMap<IJournalInsertStyleModel, ProcessingTools.Data.Models.Mongo.Layout.JournalStyle>();
-            this.CreateMap<IJournalUpdateStyleModel, ProcessingTools.Data.Models.Mongo.Layout.JournalStyle>();
+            this.CreateMap<IJournalInsertStyleModel, JournalStyle>();
+            this.CreateMap<IJournalUpdateStyleModel, JournalStyle>();
+            this.CreateMap<JournalStyle, JournalStyleDataTransferObject>();
+            this.CreateMap<JournalStyle, IJournalStyleDataTransferObject>().As<JournalStyleDataTransferObject>();
+            this.CreateMap<JournalStyle, JournalStyleDetailsDataTransferObject>()
+                .ForMember(dto => dto.FloatObjectParseStyles, o => o.MapFrom(dm => dm.FloatObjectParseStyles))
+                .ForMember(dto => dto.FloatObjectTagStyles, o => o.MapFrom(dm => dm.FloatObjectTagStyles))
+                .ForMember(dto => dto.ReferenceParseStyles, o => o.MapFrom(dm => dm.ReferenceParseStyles))
+                .ForMember(dto => dto.ReferenceTagStyles, o => o.MapFrom(dm => dm.ReferenceTagStyles));
+            this.CreateMap<JournalStyle, IJournalDetailsStyleDataTransferObject>().As<JournalStyleDetailsDataTransferObject>();
 
             // Data Access - Data Services
             this.CreateMap<IJournalStyleDataTransferObject, JournalStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
             this.CreateMap<IJournalStyleDataTransferObject, IJournalStyleModel>().As<JournalStyleModel>();
             this.CreateMap<IJournalDetailsStyleDataTransferObject, JournalDetailsStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
             this.CreateMap<IJournalDetailsStyleDataTransferObject, IJournalDetailsStyleModel>().As<JournalDetailsStyleModel>();
-
-            this.CreateMap<IFloatObjectParseStyleDataTransferObject, FloatObjectParseStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-            this.CreateMap<IFloatObjectParseStyleDataTransferObject, IFloatObjectParseStyleModel>().As<FloatObjectParseStyleModel>();
-
-            this.CreateMap<IFloatObjectTagStyleDataTransferObject, FloatObjectTagStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-            this.CreateMap<IFloatObjectTagStyleDataTransferObject, IFloatObjectTagStyleModel>().As<FloatObjectTagStyleModel>();
-
-            this.CreateMap<IReferenceParseStyleDataTransferObject, ReferenceParseStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-            this.CreateMap<IReferenceParseStyleDataTransferObject, IReferenceParseStyleModel>().As<ReferenceParseStyleModel>();
-
-            this.CreateMap<IReferenceTagStyleDataTransferObject, ReferenceTagStyleModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
-            this.CreateMap<IReferenceTagStyleDataTransferObject, IReferenceTagStyleModel>().As<ReferenceTagStyleModel>();
         }
     }
 }
