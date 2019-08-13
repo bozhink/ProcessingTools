@@ -30,5 +30,34 @@ namespace ProcessingTools.Data.Mongo.Integration.Tests.Fakes
             var client = new MongoClient(ConnectionString);
             return client.GetDatabase(this.databaseName);
         }
+
+        /// <inheritdoc/>
+        public IMongoCollection<T> GetCollection<T>(IMongoDatabase db)
+        {
+            if (db is null)
+            {
+                throw new System.ArgumentNullException(nameof(db));
+            }
+
+            string collectionName = MongoCollectionNameFactory.Create<T>();
+            return db.GetCollection<T>(collectionName);
+        }
+
+        /// <inheritdoc/>
+        public IMongoCollection<T> GetCollection<T>(IMongoDatabase db, MongoCollectionSettings settings)
+        {
+            if (db is null)
+            {
+                throw new System.ArgumentNullException(nameof(db));
+            }
+
+            if (settings is null)
+            {
+                throw new System.ArgumentNullException(nameof(settings));
+            }
+
+            string collectionName = MongoCollectionNameFactory.Create<T>();
+            return db.GetCollection<T>(collectionName, settings);
+        }
     }
 }
