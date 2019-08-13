@@ -5,11 +5,12 @@
 namespace ProcessingTools.DataAccess.Models.Mongo.Layout.Styles
 {
     using System;
+    using ProcessingTools.Contracts.DataAccess.Models.Layout.Styles;
 
     /// <summary>
     /// Style data model.
     /// </summary>
-    public class StyleDataTransferObject : ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.IIdentifiedStyleDataTransferObject
+    public class StyleDataTransferObject : IIdentifiedStyleDataTransferObject
     {
         /// <inheritdoc/>
         public string Id { get; set; }
