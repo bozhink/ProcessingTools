@@ -4,27 +4,14 @@
 
 namespace ProcessingTools.Data.Models.Mongo.Bio.Biorepositories
 {
-    using System;
-    using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Contracts.Data.Models.Bio.Biorepositories;
 
     /// <summary>
     /// Staff.
     /// </summary>
-    public class Staff : IStaffDataModel
+    public class Staff : MongoDataModel, IStaffDataModel
     {
-        /// <inheritdoc/>
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [BsonIgnoreIfDefault]
-        public string Id { get; set; }
-
-        /// <inheritdoc/>
-        [BsonRequired]
-        [BsonRepresentation(BsonType.String)]
-        public Guid ObjectId { get; set; } = Guid.NewGuid();
-
         /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string AdditionalAffiliations { get; set; }
@@ -100,17 +87,5 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Biorepositories
         /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string Url { get; set; }
-
-        /// <inheritdoc/>
-        public string CreatedBy { get; set; }
-
-        /// <inheritdoc/>
-        public DateTime CreatedOn { get; set; }
-
-        /// <inheritdoc/>
-        public string ModifiedBy { get; set; }
-
-        /// <inheritdoc/>
-        public DateTime ModifiedOn { get; set; }
     }
 }
