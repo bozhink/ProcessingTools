@@ -8,7 +8,7 @@ namespace ProcessingTools.Data.Mongo.Layout
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using ProcessingTools.Contracts.Data;
-    using ProcessingTools.Data.Models.Mongo.Layout;
+    using ProcessingTools.Data.Models.Mongo.Layout.Styles;
 
     /// <summary>
     /// MongoDB implementation for <see cref="IDocumentsDatabaseInitializer"/>.

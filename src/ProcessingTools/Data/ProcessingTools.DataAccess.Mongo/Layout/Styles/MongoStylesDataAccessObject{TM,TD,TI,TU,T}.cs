@@ -36,10 +36,6 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
         where TU : class, IIdentifiedStyleModel
         where T : MongoDataModel, IStyleModel
     {
-        private readonly IMongoCollection<T> collection;
-        private readonly IApplicationContext applicationContext;
-        private readonly IMapper mapper;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoStylesDataAccessObject{TM,TD,TI,TU,T}"/> class.
         /// </summary>
@@ -48,10 +44,25 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
         /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         protected MongoStylesDataAccessObject(IMongoCollection<T> collection, IApplicationContext applicationContext, IMapper mapper)
         {
-            this.collection = collection ?? throw new ArgumentNullException(nameof(collection));
-            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
-            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            this.Collection = collection ?? throw new ArgumentNullException(nameof(collection));
+            this.ApplicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            this.Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
+
+        /// <summary>
+        /// Gets the instance of the <see cref="IMongoCollection{T}"/>.
+        /// </summary>
+        protected IMongoCollection<T> Collection { get; }
+
+        /// <summary>
+        /// Gets the instance of the <see cref="IApplicationContext"/>.
+        /// </summary>
+        protected IApplicationContext ApplicationContext { get; }
+
+        /// <summary>
+        /// Gets the instance of the <see cref="IMapper"/>.
+        /// </summary>
+        protected IMapper Mapper { get; }
 
         /// <inheritdoc/>
         public virtual async Task<object> DeleteAsync(object id)
@@ -63,7 +74,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
 
             Guid objectId = id.ToNewGuid();
 
-            var result = await this.collection.DeleteOneAsync(s => s.ObjectId == objectId).ConfigureAwait(false);
+            var result = await this.Collection.DeleteOneAsync(s => s.ObjectId == objectId).ConfigureAwait(false);
 
             if (!result.IsAcknowledged)
             {
@@ -83,13 +94,13 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
 
             Guid objectId = id.ToNewGuid();
 
-            var dbmodel = await this.collection.Find(s => s.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var dbmodel = await this.Collection.Find(s => s.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
             if (dbmodel is null)
             {
                 return null;
             }
 
-            return this.mapper.Map<TM>(dbmodel);
+            return this.Mapper.Map<TM>(dbmodel);
         }
 
         /// <inheritdoc/>
@@ -102,26 +113,26 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
 
             Guid objectId = id.ToNewGuid();
 
-            var dbmodel = await this.collection.Find(s => s.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var dbmodel = await this.Collection.Find(s => s.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
             if (dbmodel is null)
             {
                 return null;
             }
 
-            return this.mapper.Map<TD>(dbmodel);
+            return this.Mapper.Map<TD>(dbmodel);
         }
 
         /// <inheritdoc/>
         public async Task<IIdentifiedStyleDataTransferObject> GetStyleByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
 
             Guid objectId = id.ToNewGuid();
 
-            var style = await this.collection.Find(s => s.ObjectId == objectId)
+            var style = await this.Collection.Find(s => s.ObjectId == objectId)
                 .Project(s => new StyleDataTransferObject
                 {
                     Id = s.Id,
@@ -138,7 +149,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
         /// <inheritdoc/>
         public async Task<IList<IIdentifiedStyleDataTransferObject>> GetStylesForSelectAsync()
         {
-            var data = await this.collection.Find(Builders<T>.Filter.Empty)
+            var data = await this.Collection.Find(Builders<T>.Filter.Empty)
                .Project(s => new StyleDataTransferObject
                {
                    Id = s.Id,
@@ -178,7 +189,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
 
             foreach (var item in propertiesToExclude)
             {
-                if (projection == null)
+                if (projection is null)
                 {
                     projection = Builders<T>.Projection.Exclude(item);
                 }
@@ -188,49 +199,49 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
                 }
             }
 
-            var data = await this.collection.Find(Builders<T>.Filter.Empty).Project(projection).As<T>()
+            var data = await this.Collection.Find(Builders<T>.Filter.Empty).Project(projection).As<T>()
                 .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<TM>();
             }
 
-            return data.Select(this.mapper.Map<TM>).ToArray();
+            return data.Select(this.Mapper.Map<TM>).ToArray();
         }
 
         /// <inheritdoc/>
         public virtual Task<long> SelectCountAsync()
         {
-            return this.collection.CountDocumentsAsync(Builders<T>.Filter.Empty);
+            return this.Collection.CountDocumentsAsync(Builders<T>.Filter.Empty);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IList<TD>> SelectDetailsAsync(int skip, int take)
         {
-            var data = await this.collection.Find(Builders<T>.Filter.Empty)
+            var data = await this.Collection.Find(Builders<T>.Filter.Empty)
                 .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<TD>();
             }
 
-            return data.Select(this.mapper.Map<TD>).ToArray();
+            return data.Select(this.Mapper.Map<TD>).ToArray();
         }
 
         /// <inheritdoc/>
-        public Task<TM> UpdateAsync(TU model)
+        public virtual Task<TM> UpdateAsync(TU model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -240,26 +251,26 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
 
         private async Task<TM> InsertInternalAsync(TI model)
         {
-            var dbmodel = this.mapper.Map<T>(model);
-            dbmodel.ObjectId = this.applicationContext.GuidProvider.Invoke();
-            dbmodel.ModifiedBy = this.applicationContext.UserContext.UserId;
-            dbmodel.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            var dbmodel = this.Mapper.Map<T>(model);
+            dbmodel.ObjectId = this.ApplicationContext.GuidProvider.Invoke();
+            dbmodel.ModifiedBy = this.ApplicationContext.UserContext.UserId;
+            dbmodel.ModifiedOn = this.ApplicationContext.DateTimeProvider.Invoke();
             dbmodel.CreatedBy = dbmodel.ModifiedBy;
             dbmodel.CreatedOn = dbmodel.ModifiedOn;
             dbmodel.Id = null;
 
-            await this.collection.InsertOneAsync(dbmodel, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
+            await this.Collection.InsertOneAsync(dbmodel, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
 
-            return this.mapper.Map<TM>(dbmodel);
+            return this.Mapper.Map<TM>(dbmodel);
         }
 
         private async Task<TM> UpdateInternalAsync(TU model)
         {
             Guid objectId = model.Id.ToNewGuid();
 
-            var dbmodel = this.mapper.Map<T>(model);
-            dbmodel.ModifiedBy = this.applicationContext.UserContext.UserId;
-            dbmodel.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            var dbmodel = this.Mapper.Map<T>(model);
+            dbmodel.ModifiedBy = this.ApplicationContext.UserContext.UserId;
+            dbmodel.ModifiedOn = this.ApplicationContext.DateTimeProvider.Invoke();
 
             var filterDefinition = new FilterDefinitionBuilder<T>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<T>()
@@ -273,14 +284,14 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Styles
                 IsUpsert = false,
             };
 
-            var result = await this.collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
 
             if (!result.IsAcknowledged)
             {
                 throw new UpdateUnsuccessfulException();
             }
 
-            return this.mapper.Map<TM>(dbmodel);
+            return this.Mapper.Map<TM>(dbmodel);
         }
     }
 }

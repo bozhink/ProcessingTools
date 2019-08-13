@@ -135,7 +135,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<IIdentifiedTemplateMetaDataTransferObject>();
             }
@@ -169,7 +169,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<TM>();
             }
@@ -193,7 +193,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<TD>();
             }
@@ -204,7 +204,7 @@ namespace ProcessingTools.DataAccess.Mongo.Layout.Templates
         /// <inheritdoc/>
         public Task<TM> UpdateAsync(TU model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
