@@ -10,6 +10,7 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Templates
     using ProcessingTools.Contracts.Models.Layout.Templates.Handlebars;
     using ProcessingTools.Data.Models.Mongo.Layout.Templates;
     using ProcessingTools.DataAccess.Models.Mongo.Layout.Templates.Handlebars;
+    using ProcessingTools.Services.Models.Layout.Templates.Handlebars;
 
     /// <summary>
     /// Handlebars templates data profile.
@@ -30,6 +31,12 @@ namespace ProcessingTools.Configuration.AutoMapper.Layout.Templates
             this.CreateMap<HandlebarsTemplate, IHandlebarsTemplateDetailsDataTransferObject>().As<HandlebarsTemplateDetailsDataTransferObject>();
             this.CreateMap<HandlebarsTemplate, HandlebarsTemplateMetaDataTransferObject>();
             this.CreateMap<HandlebarsTemplate, IIdentifiedTemplateMetaDataTransferObject>().As<HandlebarsTemplateMetaDataTransferObject>();
+
+            // Data Access - Data Services
+            this.CreateMap<IHandlebarsTemplateDataTransferObject, HandlebarsTemplateModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
+            this.CreateMap<IHandlebarsTemplateDataTransferObject, IHandlebarsTemplateModel>().As<HandlebarsTemplateModel>();
+            this.CreateMap<IHandlebarsTemplateDetailsDataTransferObject, HandlebarsTemplateDetailsModel>().ForMember(sm => sm.Id, o => o.MapFrom(dm => dm.ObjectId.ToString()));
+            this.CreateMap<IHandlebarsTemplateDetailsDataTransferObject, IHandlebarsTemplateDetailsModel>().As<HandlebarsTemplateDetailsModel>();
         }
     }
 }
