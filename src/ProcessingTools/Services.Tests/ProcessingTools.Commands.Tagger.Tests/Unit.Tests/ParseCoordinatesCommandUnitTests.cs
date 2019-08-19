@@ -22,8 +22,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseCoordinatesCommand))]
     public class ParseCoordinatesCommandUnitTests
     {
-        #region ConstructorTests
-
         /// <summary>
         /// <see cref="ParseCoordinatesCommand"/> with null parser should throw ArgumentNullException with correct ParamName.
         /// </summary>
@@ -62,10 +60,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             Assert.IsNotNull(parser);
             Assert.AreSame(parserMock.Object, parser);
         }
-
-        #endregion ConstructorTests
-
-        #region ExecutionTests
 
         /// <summary>
         /// <see cref="ParseCoordinatesCommand"/> Run with null document and null program settings should throw ArgumentNullException.
@@ -161,7 +155,5 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Once);
             parserMock.Verify(p => p.ParseAsync(xmldocumentStub.DocumentElement), Times.Once);
         }
-
-        #endregion ExecutionTests
     }
 }

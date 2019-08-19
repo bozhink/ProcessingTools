@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Models.ViewModels
 {
     /// <summary>
-    /// View model with paging
+    /// View model with paging.
     /// </summary>
     public interface IPagingViewModel : IPagedViewModel
     {

@@ -23,8 +23,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandUnitTests
     {
-        #region ConstructorTests
-
         /// <summary>
         /// <see cref="ExtractTaxaCommand"/> with null harvester and null reporter should throw ArgumentNullException.
         /// </summary>
@@ -119,10 +117,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
-
-        #endregion ConstructorTests
-
-        #region ExecutionTests
 
         /// <summary>
         /// <see cref="ExtractTaxaCommand"/> Run with null document and null program settings should throw ArgumentNullException.
@@ -458,7 +452,5 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
-
-        #endregion ExecutionTests
     }
 }

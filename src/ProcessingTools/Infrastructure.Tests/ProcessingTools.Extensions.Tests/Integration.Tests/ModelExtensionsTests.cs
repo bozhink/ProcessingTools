@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Extensions.Tests.Integration.Tests
 {
+    using System.Globalization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Extensions.Data;
     using ProcessingTools.Extensions.Tests.Models;
@@ -25,7 +26,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
                 Id = 1,
             };
 
-            var id = int.Parse(entity.GetIdValue().ToString());
+            var id = int.Parse(entity.GetIdValue().ToString(), CultureInfo.InvariantCulture);
             Assert.AreEqual(entity.Id, id, "Id should be 1.");
         }
 
@@ -56,7 +57,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
                 ComplexId = 1,
             };
 
-            var id = int.Parse(entity.GetIdValue().ToString());
+            var id = int.Parse(entity.GetIdValue().ToString(), CultureInfo.InvariantCulture);
             Assert.AreEqual(entity.ComplexId, id, "Id should be 1.");
         }
 
@@ -86,7 +87,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
                 IndexProperty = 1,
             };
 
-            var id = int.Parse(entity.GetIdValue<CustomIdAttribute>().ToString());
+            var id = int.Parse(entity.GetIdValue<CustomIdAttribute>().ToString(), CultureInfo.InvariantCulture);
             Assert.AreEqual(entity.IndexProperty, id, "Id should be 1.");
         }
     }

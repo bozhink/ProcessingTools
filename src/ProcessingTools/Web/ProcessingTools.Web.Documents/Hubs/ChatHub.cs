@@ -31,7 +31,7 @@ namespace ProcessingTools.Web.Documents.Hubs
         public async Task Send(string name, string message)
         {
             DateTime now = DateTime.Now;
-            await this.Clients.All.SendAsync(nameof(this.Send), now.ToString("yyyy-MM-dd hh:mm:ss.fff"), name, message).ConfigureAwait(false);
+            await this.Clients.All.SendAsync(nameof(this.Send), $"{now:yyyy-MM-dd hh:mm:ss.fff}", name, message).ConfigureAwait(false);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ProcessingTools.TasksServer
             var logger = NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
             try
             {
-                logger.Debug("Start application {0}", Assembly.GetExecutingAssembly().Location);
+                logger.Debug($"Start application {Assembly.GetExecutingAssembly().Location}");
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 

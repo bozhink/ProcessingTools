@@ -21,8 +21,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(InitialFormatCommand))]
     public class InitialFormatCommandUnitTests
     {
-        #region ConstructorTests
-
         /// <summary>
         /// <see cref="InitialFormatCommand"/> with null formatter should throw ArgumentNullException with correct ParamName.
         /// </summary>
@@ -61,10 +59,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             Assert.IsNotNull(formatter);
             Assert.AreSame(formatterMock.Object, formatter);
         }
-
-        #endregion ConstructorTests
-
-        #region ExecutionTests
 
         /// <summary>
         /// <see cref="InitialFormatCommand"/> Run with null document and null program settings should throw ArgumentNullException.
@@ -153,7 +147,5 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Once);
             formatterMock.Verify(p => p.FormatAsync(documentMock.Object), Times.Once);
         }
-
-        #endregion ExecutionTests
     }
 }

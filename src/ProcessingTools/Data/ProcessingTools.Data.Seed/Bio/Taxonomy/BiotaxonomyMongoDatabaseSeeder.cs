@@ -1,9 +1,16 @@
-﻿namespace ProcessingTools.Data.Seed.Bio.Taxonomy
+﻿// <copyright file="BiotaxonomyMongoDatabaseSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Bio.Taxonomy
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
 
+    /// <summary>
+    /// Biotaxonomy MongoDB Database Seeder.
+    /// </summary>
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder
     {
         private readonly ITaxonRanksDataAccessObject mongoTaxonRanksDataAccessObject;
@@ -12,6 +19,14 @@
         private readonly IBlackListDataAccessObject xmlBiotaxonomicBlackListRepositoryFactory;
         private readonly ITaxonRankTypesDataAccessObject mongoTaxonRankTypesDataAccessObject;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BiotaxonomyMongoDatabaseSeeder"/> class.
+        /// </summary>
+        /// <param name="mongoTaxonRanksDataAccessObject">MongoDB instance of <see cref="ITaxonRanksDataAccessObject"/>.</param>
+        /// <param name="xmlTaxonRanksDataAccessObject">XML instance of <see cref="ITaxonRanksDataAccessObject"/>.</param>
+        /// <param name="mongoBiotaxonomicBlackListRepositoryFactory">MongoDB instance of <see cref="IBlackListDataAccessObject"/>.</param>
+        /// <param name="xmlBiotaxonomicBlackListRepositoryFactory">XML instance of <see cref="IBlackListDataAccessObject"/>.</param>
+        /// <param name="mongoTaxonRankTypesDataAccessObject">Instance of <see cref="ITaxonRankTypesDataAccessObject"/>.</param>
         public BiotaxonomyMongoDatabaseSeeder(
             ITaxonRanksDataAccessObject mongoTaxonRanksDataAccessObject,
             ITaxonRanksDataAccessObject xmlTaxonRanksDataAccessObject,
