@@ -5,14 +5,11 @@
 namespace ProcessingTools.Web.Api.Controllers
 {
     using System;
-    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Contracts.Models.Files.Mediatypes;
-    using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Contracts.Web.Services.Files;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 
     /// <summary>
@@ -22,26 +19,18 @@ namespace ProcessingTools.Web.Api.Controllers
     [ApiController]
     public class MediatypesController : ControllerBase
     {
-        private readonly IMediatypesResolver mediatypesResolver;
-        private readonly IMapper mapper;
+        private readonly IMediatypesApiService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypesController"/> class.
         /// </summary>
-        /// <param name="mediatypesResolver">Instance of <see cref="IMediatypesResolver"/>.</param>
+        /// <param name="service">Instance of <see cref="IMediatypesApiService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public MediatypesController(IMediatypesResolver mediatypesResolver, ILogger<MediatypesController> logger)
+        public MediatypesController(IMediatypesApiService service, ILogger<MediatypesController> logger)
         {
-            this.mediatypesResolver = mediatypesResolver ?? throw new ArgumentNullException(nameof(mediatypesResolver));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<IMediatype, MediatypeResponseModel>();
-            });
-
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <summary>
@@ -54,14 +43,13 @@ namespace ProcessingTools.Web.Api.Controllers
         {
             try
             {
-                var result = await this.mediatypesResolver.ResolveMediatypeAsync(id).ConfigureAwait(false);
+                var result = await this.service.ResolveMediatypeAsync(id).ConfigureAwait(false);
                 if (result == null)
                 {
                     return this.NotFound();
                 }
 
-                var data = result.Select(this.mapper.Map<IMediatype, MediatypeResponseModel>).ToArray();
-                return this.Ok(data);
+                return this.Ok(result);
             }
             catch (Exception ex)
             {
