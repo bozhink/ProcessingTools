@@ -21,12 +21,19 @@ namespace ProcessingTools.Data.Seed.Bio.Biorepositories
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Serialization.Csv;
 
+    /// <summary>
+    /// Biorepositories data seeder.
+    /// </summary>
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {
         private readonly IMongoDatabaseProvider contextProvider;
         private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BiorepositoriesDataSeeder"/> class.
+        /// </summary>
+        /// <param name="contextProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
         public BiorepositoriesDataSeeder(IMongoDatabaseProvider contextProvider)
         {
             this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
@@ -76,7 +83,7 @@ namespace ProcessingTools.Data.Seed.Bio.Biorepositories
                     throw new ProcessingTools.Common.Exceptions.InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
                 }
 
-                string fileName = string.Format("{0}/{1}", this.dataFilesDirectoryPath, fileNameAttribute.Name);
+                string fileName = Path.Combine(this.dataFilesDirectoryPath, fileNameAttribute.Name);
                 if (!File.Exists(fileName))
                 {
                     throw new FileNotFoundException($"File {fileName} does not exist.");

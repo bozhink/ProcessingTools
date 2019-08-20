@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Seed.Geo
+﻿// <copyright file="GeoDataSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Geo
 {
     using System;
     using System.Collections.Concurrent;
@@ -10,6 +14,9 @@
     using ProcessingTools.Data.Entity.Geo;
     using ProcessingTools.Data.Models.Entity.Geo;
 
+    /// <summary>
+    /// Geo data seeder.
+    /// </summary>
     public class GeoDataSeeder : IGeoDataSeeder
     {
         private const string UserName = "system";
@@ -19,6 +26,10 @@
         private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeoDataSeeder"/> class.
+        /// </summary>
+        /// <param name="contextFactory">DB context factory.</param>
         public GeoDataSeeder(Func<GeoDbContext> contextFactory)
         {
             if (contextFactory == null)
@@ -32,9 +43,10 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
-        // TODO: Link countries and continents
+        /// <inheritdoc/>
         public async Task<object> SeedAsync()
         {
+            // TODO: Link countries and continents
             this.exceptions = new ConcurrentQueue<Exception>();
 
             var tasks = new[]
@@ -59,7 +71,8 @@
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
@@ -89,7 +102,8 @@
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
@@ -119,7 +133,8 @@
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
@@ -153,7 +168,8 @@
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try

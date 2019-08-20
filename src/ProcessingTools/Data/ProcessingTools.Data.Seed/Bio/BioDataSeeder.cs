@@ -6,6 +6,7 @@ namespace ProcessingTools.Data.Seed.Bio
 {
     using System;
     using System.Collections.Concurrent;
+    using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Data.Entity.Abstractions;
@@ -63,13 +64,14 @@ namespace ProcessingTools.Data.Seed.Bio
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         context.MorphologicalEpithets.AddRange(new MorphologicalEpithet
@@ -89,13 +91,14 @@ namespace ProcessingTools.Data.Seed.Bio
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         context.TypesStatuses.AddRange(new TypeStatus

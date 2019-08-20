@@ -6,6 +6,7 @@ namespace ProcessingTools.Data.Seed.Files
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -16,12 +17,19 @@ namespace ProcessingTools.Data.Seed.Files
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Seed.Files.Models;
 
+    /// <summary>
+    /// Mediatypes MongoDB database seeder.
+    /// </summary>
     public class MediatypesMongoDatabaseSeeder : IMediatypesMongoDatabaseSeeder
     {
         private readonly IMongoDatabase db;
 
         private ConcurrentQueue<Exception> exceptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediatypesMongoDatabaseSeeder"/> class.
+        /// </summary>
+        /// <param name="provider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
         public MediatypesMongoDatabaseSeeder(IMongoDatabaseProvider provider)
         {
             if (provider == null)
@@ -64,9 +72,9 @@ namespace ProcessingTools.Data.Seed.Files
             var mediatypesJson = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
             return mediatypesJson?.Select(m => new ExtensionJson
             {
-                Extension = m.Extension.ToLowerInvariant(),
-                Mimetype = m.Mimetype.ToLowerInvariant(),
-                Mimesubtype = m.Mimesubtype.ToLowerInvariant(),
+                Extension = m.Extension.ToLower(CultureInfo.CurrentCulture),
+                Mimetype = m.Mimetype.ToLower(CultureInfo.CurrentCulture),
+                Mimesubtype = m.Mimesubtype.ToLower(CultureInfo.CurrentCulture),
                 Description = m.Description,
             })
             .ToArray();
@@ -74,8 +82,7 @@ namespace ProcessingTools.Data.Seed.Files
 
         private async Task ImportMediatypesToDatabase(ExtensionJson[] mediatypes)
         {
-            //// TODO string collectionName = MongoCollectionNameFactory.Create<Mediatype>();
-            var collection = this.db.GetCollection<Mediatype>("mediatypes");
+            var collection = this.db.GetCollection<Mediatype>(MongoCollectionNameFactory.Create<Mediatype>());
 
             foreach (var mediatype in mediatypes)
             {

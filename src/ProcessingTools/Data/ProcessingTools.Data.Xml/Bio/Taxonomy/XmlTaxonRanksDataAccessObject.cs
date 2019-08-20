@@ -49,7 +49,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         {
             return Task.Run<IList<ITaxonRankItem>>(() =>
             {
-                return this.Context.DataSet.Where(t => t.Name.ToUpper() == filter.ToUpper()).ToArray();
+                return this.Context.DataSet.Where(t => t.Name.ToUpperInvariant() == filter.ToUpperInvariant()).ToArray();
             });
         }
 

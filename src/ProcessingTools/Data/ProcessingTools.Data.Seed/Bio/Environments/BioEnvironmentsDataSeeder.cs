@@ -1,8 +1,13 @@
-﻿namespace ProcessingTools.Data.Seed.Bio.Environments
+﻿// <copyright file="BioEnvironmentsDataSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Seed.Bio.Environments
 {
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -10,12 +15,19 @@
     using ProcessingTools.Data.Entity.Bio.Environments;
     using ProcessingTools.Data.Models.Entity.Bio.Environments;
 
+    /// <summary>
+    /// Bio environments data seeder.
+    /// </summary>
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {
         private readonly Func<BioEnvironmentsDbContext> contextFactory;
         private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BioEnvironmentsDataSeeder"/> class.
+        /// </summary>
+        /// <param name="contextFactory">DB context factory.</param>
         public BioEnvironmentsDataSeeder(Func<BioEnvironmentsDbContext> contextFactory)
         {
             this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
@@ -28,10 +40,15 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            await this.ImportEnvironmentsEntitiesAsync(AppSettings.EnvironmentsEntitiesFileName).ConfigureAwait(false);
-            await this.ImportEnvironmentsNamesAsync(AppSettings.EnvironmentsNamesFileName).ConfigureAwait(false);
-            await this.ImportEnvironmentsGroupsAsync(AppSettings.EnvironmentsGroupsFileName).ConfigureAwait(false);
-            await this.ImportEnvironmentsGlobalsAsync(AppSettings.EnvironmentsGlobalFileName).ConfigureAwait(false);
+            var tasks = new[]
+            {
+                this.ImportEnvironmentsEntitiesAsync(AppSettings.EnvironmentsEntitiesFileName),
+                this.ImportEnvironmentsNamesAsync(AppSettings.EnvironmentsNamesFileName),
+                this.ImportEnvironmentsGroupsAsync(AppSettings.EnvironmentsGroupsFileName),
+                this.ImportEnvironmentsGlobalsAsync(AppSettings.EnvironmentsGlobalFileName),
+            };
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -43,9 +60,10 @@
 
         private async Task ImportEnvironmentsEntitiesAsync(string fileName)
         {
-            if (fileName == null)
+            if (fileName is null)
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
@@ -59,7 +77,7 @@
                             return new EnvoEntity
                             {
                                 Id = entity[0],
-                                Index = int.Parse(entity[1]),
+                                Index = int.Parse(entity[1], CultureInfo.InvariantCulture),
                                 EnvoId = entity[2],
                             };
                         }))
@@ -77,9 +95,10 @@
 
         private async Task ImportEnvironmentsNamesAsync(string fileName)
         {
-            if (fileName == null)
+            if (fileName is null)
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
@@ -113,9 +132,10 @@
 
         private async Task ImportEnvironmentsGroupsAsync(string fileName)
         {
-            if (fileName == null)
+            if (fileName is null)
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try
@@ -146,9 +166,10 @@
 
         private async Task ImportEnvironmentsGlobalsAsync(string fileName)
         {
-            if (fileName == null)
+            if (fileName is null)
             {
-                throw new ArgumentNullException(nameof(fileName));
+                this.exceptions.Enqueue(new FileNotFoundException(string.Empty, fileName));
+                return;
             }
 
             try

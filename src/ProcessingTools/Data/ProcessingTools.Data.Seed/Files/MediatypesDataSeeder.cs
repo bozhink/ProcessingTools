@@ -7,6 +7,7 @@ namespace ProcessingTools.Data.Seed.Files
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -16,12 +17,19 @@ namespace ProcessingTools.Data.Seed.Files
     using ProcessingTools.Data.Models.Entity.Files;
     using ProcessingTools.Data.Seed.Files.Models;
 
+    /// <summary>
+    /// Mediatypes data seeder.
+    /// </summary>
     public class MediatypesDataSeeder : IMediatypesDataSeeder
     {
         private readonly Func<MediatypesDbContext> contextFactory;
 
         private ConcurrentQueue<Exception> exceptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediatypesDataSeeder"/> class.
+        /// </summary>
+        /// <param name="contextFactory">DB context factory.</param>
         public MediatypesDataSeeder(Func<MediatypesDbContext> contextFactory)
         {
             this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
@@ -63,9 +71,9 @@ namespace ProcessingTools.Data.Seed.Files
             var mediatypesJson = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
             return mediatypesJson?.Select(m => new ExtensionJson
             {
-                Extension = m.Extension.ToLowerInvariant(),
-                Mimetype = m.Mimetype.ToLowerInvariant(),
-                Mimesubtype = m.Mimesubtype.ToLowerInvariant(),
+                Extension = m.Extension.ToLower(CultureInfo.CurrentCulture),
+                Mimetype = m.Mimetype.ToLower(CultureInfo.CurrentCulture),
+                Mimesubtype = m.Mimesubtype.ToLower(CultureInfo.CurrentCulture),
                 Description = m.Description,
             })
             .ToArray();

@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Seed.Bio.Taxonomy
     using ProcessingTools.Data.Contracts;
 
     /// <summary>
-    /// Biotaxonomy Mongo database seeder.
+    /// Biotaxonomy MongoDB database seeder.
     /// </summary>
     public interface IBiotaxonomyMongoDatabaseSeeder : IDatabaseSeeder
     {
