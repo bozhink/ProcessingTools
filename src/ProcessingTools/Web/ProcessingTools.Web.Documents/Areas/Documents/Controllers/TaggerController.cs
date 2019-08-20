@@ -63,13 +63,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             try
             {
                 var result = await this.service.ParseReferencesAsync(documentId, articleId).ConfigureAwait(false);
-                this.logger.LogInformation("{0}", result);
+                this.logger.LogInformation($"{result}");
                 return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError("Error", ex.ToString());
-                this.logger.LogError(ex, "TaggerController.ParseReferences");
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
@@ -87,13 +87,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             try
             {
                 var result = await this.service.TagReferencesAsync(documentId, articleId).ConfigureAwait(false);
-                this.logger.LogInformation("{0}", result);
+                this.logger.LogInformation($"{result}");
                 return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError("Error", ex.ToString());
-                this.logger.LogError(ex, "TaggerController.TagReferences");
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
@@ -110,13 +110,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             try
             {
                 var result = await this.service.UpdateArticleDocumentsMetaAsync(articleId).ConfigureAwait(false);
-                this.logger.LogInformation("{0}", result);
+                this.logger.LogInformation($"{result}");
                 return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError("Error", ex.ToString());
-                this.logger.LogError(ex, "TaggerController.UpdateArticleDocumentsMeta");
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
@@ -134,13 +134,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             try
             {
                 var result = await this.service.UpdateDocumentMetaAsync(documentId, articleId).ConfigureAwait(false);
-                this.logger.LogInformation("{0}", result);
+                this.logger.LogInformation($"{result}");
                 return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError("Error", ex.ToString());
-                this.logger.LogError(ex, "TaggerController.UpdateDocumentMetaAsync");
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
@@ -232,16 +232,20 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var settings = this.commandSettingsFactory.Create();
 
                 var result = await command.RunAsync(document, settings)
-                    .ContinueWith(_ =>
-                    {
-                        _.Wait();
-                        return this.documentWriteNormalizer.NormalizeAsync(document);
-                    })
-                    .ContinueWith(_ =>
-                    {
-                        _.Wait();
-                        return document.XmlDocument;
-                    })
+                    .ContinueWith(
+                        _ =>
+                        {
+                            _.Wait();
+                            return this.documentWriteNormalizer.NormalizeAsync(document);
+                        },
+                        TaskScheduler.Default)
+                    .ContinueWith(
+                        _ =>
+                        {
+                            _.Wait();
+                            return document.XmlDocument;
+                        },
+                        TaskScheduler.Default)
                     .ConfigureAwait(false);
 
                 return result;

@@ -21,66 +21,84 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
     {
         private readonly IFilesDataService filesDataService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetadataController"/> class.
+        /// </summary>
+        /// <param name="filesDataService">Instance of <see cref="IFilesDataService"/>.</param>
         public MetadataController(IFilesDataService filesDataService)
         {
             this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
         }
 
-        public ActionResult Index()
+        /// <summary>
+        /// /Files/Metadata.
+        /// </summary>
+        /// <returns><see cref="IActionResult"/>.</returns>
+        public IActionResult Index()
         {
             return this.View();
         }
 
-        public async Task<ActionResult> Details(string id)
+        /// <summary>
+        /// /Files/Metadata/Details.
+        /// </summary>
+        /// <param name="id">ID of file.</param>
+        /// <returns><see cref="IActionResult"/>.</returns>
+        public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
+            if (!string.IsNullOrWhiteSpace(id))
             {
-                throw new ArgumentNullException(nameof(id));
+                var metadata = await this.filesDataService.GetMetadataAsync(id).ConfigureAwait(false);
+
+                var viewmodel = new FileMetadataViewModel
+                {
+                    Id = metadata.Id,
+                    FileName = metadata.FileName,
+                    FileExtension = metadata.FileExtension,
+                    FullName = metadata.FullName,
+                    ContentLength = metadata.ContentLength,
+                    ContentType = metadata.ContentType,
+                    Description = metadata.Description,
+                    CreatedBy = metadata.CreatedBy,
+                    CreatedOn = metadata.CreatedOn,
+                    ModifiedBy = metadata.ModifiedBy,
+                    ModifiedOn = metadata.ModifiedOn,
+                };
+
+                return this.View(viewmodel);
             }
 
-            var metadata = await this.filesDataService.GetMetadataAsync(id).ConfigureAwait(false);
-
-            var viewmodel = new FileMetadataViewModel
-            {
-                Id = metadata.Id,
-                FileName = metadata.FileName,
-                FileExtension = metadata.FileExtension,
-                FullName = metadata.FullName,
-                ContentLength = metadata.ContentLength,
-                ContentType = metadata.ContentType,
-                Description = metadata.Description,
-                CreatedBy = metadata.CreatedBy,
-                CreatedOn = metadata.CreatedOn,
-                ModifiedBy = metadata.ModifiedBy,
-                ModifiedOn = metadata.ModifiedOn,
-            };
-
-            return this.View(viewmodel);
+            return this.View();
         }
 
-        public async Task<ActionResult> Details(FileMetadataModel model)
+        /// <summary>
+        /// /Files/Metadata/Details.
+        /// </summary>
+        /// <param name="model">File metadata model.</param>
+        /// <returns><see cref="IActionResult"/>.</returns>
+        public IActionResult Details(FileMetadataModel model)
         {
-            if (model == null)
+            if (model != null)
             {
-                throw new ArgumentNullException(nameof(model));
+                var viewmodel = new FileMetadataViewModel
+                {
+                    Id = model.Id,
+                    FileName = model.FileName,
+                    FileExtension = model.FileExtension,
+                    FullName = model.FullName,
+                    ContentLength = model.ContentLength,
+                    ContentType = model.ContentType,
+                    Description = model.Description,
+                    CreatedBy = model.CreatedBy,
+                    CreatedOn = model.CreatedOn,
+                    ModifiedBy = model.ModifiedBy,
+                    ModifiedOn = model.ModifiedOn,
+                };
+
+                return this.View(viewmodel);
             }
 
-            var viewmodel = new FileMetadataViewModel
-            {
-                Id = model.Id,
-                FileName = model.FileName,
-                FileExtension = model.FileExtension,
-                FullName = model.FullName,
-                ContentLength = model.ContentLength,
-                ContentType = model.ContentType,
-                Description = model.Description,
-                CreatedBy = model.CreatedBy,
-                CreatedOn = model.CreatedOn,
-                ModifiedBy = model.ModifiedBy,
-                ModifiedOn = model.ModifiedOn,
-            };
-
-            return this.View(viewmodel);
+            return this.View();
         }
     }
 }

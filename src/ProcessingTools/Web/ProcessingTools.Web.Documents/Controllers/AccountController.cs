@@ -8,6 +8,7 @@
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
+    using System.Globalization;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authentication;
@@ -212,7 +213,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    this.logger.LogInformation("User logged in.");
+                    this.logger.LogInformation($"User {model.Email} logged in.");
                     return this.RedirectToLocal(returnUrl);
                 }
 
@@ -223,7 +224,7 @@ namespace ProcessingTools.Web.Documents.Controllers
 
                 if (result.IsLockedOut)
                 {
-                    this.logger.LogWarning("User account locked out.");
+                    this.logger.LogWarning($"User account {model.Email} locked out.");
                     return this.RedirectToAction(LockoutActionName);
                 }
                 else
@@ -285,23 +286,25 @@ namespace ProcessingTools.Web.Documents.Controllers
                 throw new UserNotFoundException($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
             }
 
-            var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
+            var authenticatorCode = model.TwoFactorCode
+                .Replace(" ", string.Empty, false, CultureInfo.InvariantCulture)
+                .Replace("-", string.Empty, false, CultureInfo.InvariantCulture);
 
             var result = await this.signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
 
             if (result.Succeeded)
             {
-                this.logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+                this.logger.LogInformation($"User with ID {user.Id} logged in with 2fa.");
                 return this.RedirectToLocal(returnUrl);
             }
             else if (result.IsLockedOut)
             {
-                this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                this.logger.LogWarning($"User with ID {user.Id} account locked out.");
                 return this.RedirectToAction(LockoutActionName);
             }
             else
             {
-                this.logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
+                this.logger.LogWarning($"Invalid authenticator code entered for user with ID {user.Id}.");
                 this.ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
                 return this.View();
             }
@@ -352,24 +355,24 @@ namespace ProcessingTools.Web.Documents.Controllers
                 throw new UserNotFoundException($"Unable to load two-factor authentication user.");
             }
 
-            var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
+            var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty, false, CultureInfo.InvariantCulture);
 
             var result = await this.signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
 
             if (result.Succeeded)
             {
-                this.logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
+                this.logger.LogInformation($"User with ID {user.Id} logged in with a recovery code.");
                 return this.RedirectToLocal(returnUrl);
             }
 
             if (result.IsLockedOut)
             {
-                this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                this.logger.LogWarning($"User with ID {user.Id} account locked out.");
                 return this.RedirectToAction(LockoutActionName);
             }
             else
             {
-                this.logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
+                this.logger.LogWarning($"Invalid recovery code entered for user with ID {user.Id}.");
                 this.ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
                 return this.View();
             }
@@ -420,14 +423,13 @@ namespace ProcessingTools.Web.Documents.Controllers
                 var result = await this.userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    this.logger.LogInformation("User created a new account with password.");
+                    this.logger.LogInformation($"User {user.Email} created a new account with password.");
 
                     var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = this.Url.EmailConfirmationLink(user.Id, code, this.Request.Scheme);
                     await this.emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     await this.signInManager.SignInAsync(user, isPersistent: false);
-                    this.logger.LogInformation("User created a new account with password.");
                     return this.RedirectToLocal(returnUrl);
                 }
 
@@ -498,7 +500,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                this.logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
+                this.logger.LogInformation($"User logged in with {info.LoginProvider} provider.");
                 return this.RedirectToLocal(returnUrl);
             }
 
@@ -550,7 +552,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                     if (result.Succeeded)
                     {
                         await this.signInManager.SignInAsync(user, isPersistent: false);
-                        this.logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        this.logger.LogInformation($"User created an account using {info.LoginProvider} provider.");
 
                         return this.RedirectToLocal(returnUrl);
                     }

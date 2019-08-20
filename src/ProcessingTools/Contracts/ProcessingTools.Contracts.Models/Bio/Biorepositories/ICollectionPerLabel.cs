@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Models.Bio.Biorepositories
 {
     /// <summary>
-    /// Biorepositories CollectionPerLabel
+    /// Biorepositories CollectionPerLabel.
     /// </summary>
     public interface ICollectionPerLabel
     {
