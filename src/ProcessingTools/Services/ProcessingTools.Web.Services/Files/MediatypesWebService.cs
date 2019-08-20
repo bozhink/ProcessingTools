@@ -9,8 +9,8 @@ namespace ProcessingTools.Web.Services.Files
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Contracts.Services.Files;
-    using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
     using ProcessingTools.Contracts.Web.Services.Files;
     using ProcessingTools.Web.Models.Files.Mediatypes;
     using ProcessingTools.Web.Models.Shared;

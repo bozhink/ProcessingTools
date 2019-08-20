@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Mediatypes;
-    using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
 
     /// <summary>
     /// Mediatype create request model.

@@ -11,11 +11,12 @@ namespace ProcessingTools.Services.Files
     using AutoMapper;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Resources;
     using ProcessingTools.Contracts.DataAccess.Files;
     using ProcessingTools.Contracts.DataAccess.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Contracts.Services.Files;
     using ProcessingTools.Contracts.Services.History;
-    using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
     using ProcessingTools.Services.Models.Files.Mediatypes;
 
     /// <summary>
@@ -24,8 +25,8 @@ namespace ProcessingTools.Services.Files
     public class MediatypesDataService : IMediatypesDataService
     {
         private readonly IMediatypesDataAccessObject dataAccessObject;
-        private readonly IMapper mapper;
         private readonly IObjectHistoryDataService objectHistoryDataService;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MediatypesDataService"/> class.
@@ -147,12 +148,12 @@ namespace ProcessingTools.Services.Files
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidSkipValuePagingException(StringResources.InvalidSkipValue);
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(StringResources.InvalidItemsPerPage);
             }
 
             return this.SelectInternalAsync(skip, take);
@@ -166,12 +167,12 @@ namespace ProcessingTools.Services.Files
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidSkipValuePagingException(StringResources.InvalidSkipValue);
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(StringResources.InvalidItemsPerPage);
             }
 
             return this.SelectDetailsInternalAsync(skip, take);

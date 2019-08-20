@@ -5,8 +5,9 @@
 namespace ProcessingTools.Configuration.AutoMapper.Files
 {
     using global::AutoMapper;
-    using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Web.Models.Files.Mediatypes;
+    using ProcessingTools.Web.Models.Resources.MediaTypes;
 
     /// <summary>
     /// Mediatypes (web) profile.
@@ -36,6 +37,8 @@ namespace ProcessingTools.Configuration.AutoMapper.Files
             this.CreateMap<IMediatypeDetailsModel, MediatypeEditViewModel>();
             this.CreateMap<IMediatypeDetailsModel, MediatypeIndexViewModel>()
                 .ForMember(vm => vm.ContentType, o => o.MapFrom(sm => sm.MimeType + "/" + sm.MimeSubtype));
+
+            this.CreateMap<IMediatype, MediatypeResponseModel>();
         }
     }
 }

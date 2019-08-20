@@ -15,6 +15,9 @@ namespace ProcessingTools.Web.Api.Controllers
     using ProcessingTools.Contracts.Services.Files;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 
+    /// <summary>
+    /// Mediatypes controller.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class MediatypesController : ControllerBase
@@ -23,6 +26,11 @@ namespace ProcessingTools.Web.Api.Controllers
         private readonly IMapper mapper;
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediatypesController"/> class.
+        /// </summary>
+        /// <param name="mediatypesResolver">Instance of <see cref="IMediatypesResolver"/>.</param>
+        /// <param name="logger">Logger.</param>
         public MediatypesController(IMediatypesResolver mediatypesResolver, ILogger<MediatypesController> logger)
         {
             this.mediatypesResolver = mediatypesResolver ?? throw new ArgumentNullException(nameof(mediatypesResolver));
@@ -36,6 +44,11 @@ namespace ProcessingTools.Web.Api.Controllers
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
+        /// <summary>
+        /// Resolves mediatype by file name.
+        /// </summary>
+        /// <param name="id">File name.</param>
+        /// <returns><see cref="MediatypeResponseModel"/> if resolved correctly.</returns>
         [HttpGet]
         public async Task<IActionResult> Get(string id)
         {

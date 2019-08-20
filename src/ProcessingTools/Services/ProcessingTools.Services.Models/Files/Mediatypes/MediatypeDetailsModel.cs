@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Files.Mediatypes
 {
     using System;
-    using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
 
     /// <summary>
     /// Mediatype details model.

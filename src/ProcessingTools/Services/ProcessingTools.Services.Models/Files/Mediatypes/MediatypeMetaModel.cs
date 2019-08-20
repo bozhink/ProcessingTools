@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Files.Mediatypes
 {
-    using ProcessingTools.Contracts.Services.Models.Files.Mediatypes;
+    using ProcessingTools.Contracts.Models.Files.Mediatypes;
 
     /// <summary>
     /// Mediatype meta model.
