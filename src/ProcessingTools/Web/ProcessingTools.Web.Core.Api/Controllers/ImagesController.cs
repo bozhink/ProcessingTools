@@ -52,7 +52,7 @@ namespace ProcessingTools.Web.Core.Api.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "Upload image");
+                this.logger.LogError(ex, string.Empty);
 
                 return new EmptyResult();
             }
