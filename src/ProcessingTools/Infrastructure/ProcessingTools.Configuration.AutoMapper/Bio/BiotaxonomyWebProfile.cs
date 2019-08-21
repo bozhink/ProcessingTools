@@ -9,7 +9,7 @@ namespace ProcessingTools.Configuration.AutoMapper.Bio
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 
     /// <summary>
-    /// Biotaxonomy web profile.
+    /// Bio taxonomy web profile.
     /// </summary>
     public class BiotaxonomyWebProfile : Profile
     {

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>ProcessingTools</Company>
@@ -39,5 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
   </ItemGroup>
 </Project>
