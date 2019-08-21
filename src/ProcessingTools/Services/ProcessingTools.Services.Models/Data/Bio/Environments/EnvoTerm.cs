@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Data.Bio.Environments
 {
-    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
+    using ProcessingTools.Contracts.Models.Bio.Environments;
 
     /// <summary>
     /// ENVO Term service model.

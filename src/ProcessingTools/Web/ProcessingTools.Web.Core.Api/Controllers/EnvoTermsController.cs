@@ -13,8 +13,9 @@ namespace ProcessingTools.Web.Api.Controllers
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Models.Bio;
+    using ProcessingTools.Contracts.Models.Bio.Environments;
     using ProcessingTools.Contracts.Services.Bio.Environments;
-    using ProcessingTools.Web.Models.Bio.EnvoTerms;
+    using ProcessingTools.Web.Models.Bio.Environments;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -24,17 +25,11 @@ namespace ProcessingTools.Web.Api.Controllers
         private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        public EnvoTermsController(IEnvoTermsDataService service, ILogger<EnvoTermsController> logger)
+        public EnvoTermsController(IEnvoTermsDataService service, ILogger<EnvoTermsController> logger, IMapper mapper)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<IEnvoTerm, EnvoTermResponseModel>();
-            });
-
-            this.mapper = mapperConfiguration.CreateMapper();
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]

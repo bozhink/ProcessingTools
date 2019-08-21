@@ -9,8 +9,8 @@ namespace ProcessingTools.Services.Bio.SpecimenCodes
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Bio.SpecimenCodes;
     using ProcessingTools.Contracts.Services.Bio.SpecimenCodes;
-    using ProcessingTools.Contracts.Services.Models.Bio.SpecimenCodes;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Bio.SpecimenCodes;
 
@@ -59,11 +59,11 @@ namespace ProcessingTools.Services.Bio.SpecimenCodes
         }
 
         /// <inheritdoc/>
-        public Task<ISpecimenCode[]> MineAsync(string context)
+        public Task<IList<ISpecimenCode>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                return Task.FromResult(Array.Empty<ISpecimenCode>());
+                return Task.FromResult<IList<ISpecimenCode>>(Array.Empty<ISpecimenCode>());
             }
 
             var data = this.patterns.AsParallel()
@@ -76,7 +76,7 @@ namespace ProcessingTools.Services.Bio.SpecimenCodes
                 .Distinct()
                 .ToArray<ISpecimenCode>();
 
-            return Task.FromResult(data);
+            return Task.FromResult<IList<ISpecimenCode>>(data);
         }
     }
 }

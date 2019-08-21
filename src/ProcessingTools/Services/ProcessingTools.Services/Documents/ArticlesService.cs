@@ -10,12 +10,12 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using System.Xml;
     using AutoMapper;
+    using ProcessingTools.Contracts.Models.Meta;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.IO;
     using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.Contracts.Services.Models.Documents.Articles;
     using ProcessingTools.Contracts.Services.Models.Documents.Documents;
-    using ProcessingTools.Contracts.Services.Models.Meta;
     using ProcessingTools.Services.Models.Documents.Articles;
     using ProcessingTools.Services.Models.Documents.Documents;
     using ProcessingTools.Services.Models.Documents.Files;

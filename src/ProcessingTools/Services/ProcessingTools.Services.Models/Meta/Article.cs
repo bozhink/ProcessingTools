@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Meta
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Services.Models.Meta;
+    using ProcessingTools.Contracts.Models.Meta;
 
     /// <summary>
     /// Article.

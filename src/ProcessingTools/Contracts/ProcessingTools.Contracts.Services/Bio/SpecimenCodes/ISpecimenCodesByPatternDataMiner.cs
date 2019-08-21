@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.SpecimenCodes
 {
-    using ProcessingTools.Contracts.Services.Models.Bio.SpecimenCodes;
+    using ProcessingTools.Contracts.Models.Bio.SpecimenCodes;
 
     /// <summary>
     /// Specimen codes by pattern data miner.

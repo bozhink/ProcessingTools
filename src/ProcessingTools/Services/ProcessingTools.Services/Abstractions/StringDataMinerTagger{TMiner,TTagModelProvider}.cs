@@ -9,7 +9,6 @@ namespace ProcessingTools.Services.Abstractions
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Contracts.Services.Models;
 
     /// <summary>
     /// Generic string data miner tagger.

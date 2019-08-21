@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Meta
 {
-    using ProcessingTools.Contracts.Services.Models.Meta;
+    using ProcessingTools.Contracts.Models.Meta;
 
     /// <summary>
     /// Person name model.

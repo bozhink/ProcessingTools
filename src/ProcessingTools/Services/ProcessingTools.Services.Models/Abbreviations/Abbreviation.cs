@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Models.Abbreviations
     using System.Text.RegularExpressions;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Abbreviations;
+    using ProcessingTools.Contracts.Models.Abbreviations;
     using ProcessingTools.Extensions;
 
     /// <summary>

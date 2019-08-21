@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Data.History
 {
     using System;
-    using ProcessingTools.Contracts.Models.Services.Data.History;
+    using ProcessingTools.Contracts.Models.History;
 
     /// <summary>
     /// History item service model.

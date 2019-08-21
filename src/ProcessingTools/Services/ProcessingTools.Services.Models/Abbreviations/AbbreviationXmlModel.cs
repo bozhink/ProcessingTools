@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Models.Abbreviations
     using System.ComponentModel;
     using System.Xml.Serialization;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Abbreviations;
+    using ProcessingTools.Contracts.Models.Abbreviations;
 
     /// <summary>
     /// Abbreviation XML model.

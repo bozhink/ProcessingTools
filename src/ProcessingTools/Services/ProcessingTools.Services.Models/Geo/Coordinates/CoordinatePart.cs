@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
     using System.Text.RegularExpressions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Extensions;
 
     /// <summary>

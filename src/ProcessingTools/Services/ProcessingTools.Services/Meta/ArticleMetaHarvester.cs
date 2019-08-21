@@ -8,8 +8,8 @@ namespace ProcessingTools.Services.Meta
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Meta;
     using ProcessingTools.Contracts.Services.Meta;
-    using ProcessingTools.Contracts.Services.Models.Meta;
     using ProcessingTools.Services.Models.Meta;
 
     /// <summary>

@@ -4,12 +4,12 @@
 
 namespace ProcessingTools.Services.Models.Data.Bio.Biorepositories
 {
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
     /// <summary>
     /// Biorepositories collection service model.
     /// </summary>
-    public class Collection : ICollection
+    public class Collection : ICollectionMetaModel
     {
         /// <summary>
         /// Gets or sets collection code.

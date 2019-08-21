@@ -31,7 +31,7 @@ namespace ProcessingTools.Services.Dates
         private const string MonthArabicSubpattern = @"(?<!\d)(?:0?[1-9]|1[0-2])(?!\d)";
 
         /// <inheritdoc/>
-        public async Task<string[]> MineAsync(string context)
+        public async Task<IList<string>> MineAsync(string context)
         {
             var patterns = new[]
             {
@@ -77,7 +77,7 @@ namespace ProcessingTools.Services.Dates
             return result;
         }
 
-        private async Task<string[]> GetMatches(string content, params string[] patterns)
+        private async Task<IList<string>> GetMatches(string content, IEnumerable<string> patterns)
         {
             var matches = new ConcurrentQueue<string>();
 

@@ -12,8 +12,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Services.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Bio.Taxonomy;

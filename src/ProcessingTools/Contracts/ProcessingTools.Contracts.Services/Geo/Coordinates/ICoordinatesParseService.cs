@@ -6,7 +6,7 @@ namespace ProcessingTools.Contracts.Services.Geo.Coordinates
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
 
     /// <summary>
     /// Coordinates parse service.
@@ -18,13 +18,13 @@ namespace ProcessingTools.Contracts.Services.Geo.Coordinates
         /// </summary>
         /// <param name="coordinates">Coordinates string.</param>
         /// <returns>Array of calculated coordinate strings.</returns>
-        Task<ICoordinateStringModel[]> ParseCoordinatesStringAsync(string coordinates);
+        Task<IList<ICoordinateStringModel>> ParseCoordinatesStringAsync(string coordinates);
 
         /// <summary>
         /// Parses coordinates as strings.
         /// </summary>
         /// <param name="coordinates">Coordinates as strings.</param>
         /// <returns>Array of calculated coordinate strings.</returns>
-        Task<ICoordinateStringModel[]> ParseCoordinateStringsAsync(IEnumerable<string> coordinates);
+        Task<IList<ICoordinateStringModel>> ParseCoordinateStringsAsync(IEnumerable<string> coordinates);
     }
 }

@@ -21,15 +21,15 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {
         /// <inheritdoc/>
-        public Task<string[]> HarvestAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Any));
+        public Task<IList<string>> HarvestAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Any));
 
         /// <inheritdoc/>
-        public Task<string[]> HarvestHigherTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Higher));
+        public Task<IList<string>> HarvestHigherTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Higher));
 
         /// <inheritdoc/>
-        public Task<string[]> HarvestLowerTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Lower));
+        public Task<IList<string>> HarvestLowerTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Lower));
 
-        private string[] ExtractTaxa(XmlNode context, TaxonType type)
+        private IList<string> ExtractTaxa(XmlNode context, TaxonType type)
         {
             if (context == null)
             {

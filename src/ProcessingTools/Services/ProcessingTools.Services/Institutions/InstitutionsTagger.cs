@@ -4,9 +4,9 @@
 
 namespace ProcessingTools.Services.Institutions
 {
+    using ProcessingTools.Contracts.Models.Institutions;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Institutions;
-    using ProcessingTools.Contracts.Services.Models.Institutions;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>

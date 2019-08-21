@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Bio
     using System;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Bio;
+    using ProcessingTools.Contracts.Models.Bio;
 
     /// <summary>
     /// Specimen count tag model provider.

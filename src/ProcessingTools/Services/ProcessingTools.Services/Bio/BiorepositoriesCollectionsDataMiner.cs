@@ -9,15 +9,15 @@ namespace ProcessingTools.Services.Bio
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Bio;
     using ProcessingTools.Contracts.Services.Bio.Biorepositories;
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>
     /// Biorepositories collections data miner.
     /// </summary>
-    public class BiorepositoriesCollectionsDataMiner : BiorepositoriesDataMinerBase<ICollection>, IBiorepositoriesCollectionsDataMiner
+    public class BiorepositoriesCollectionsDataMiner : BiorepositoriesDataMinerBase<ICollectionMetaModel>, IBiorepositoriesCollectionsDataMiner
     {
         private readonly IBiorepositoriesInstitutionalCollectionsDataService institutionalCollectionsDataService;
         private readonly IBiorepositoriesPersonalCollectionsDataService personalCollectionsDataService;
@@ -34,19 +34,24 @@ namespace ProcessingTools.Services.Bio
         }
 
         /// <inheritdoc/>
-        public async Task<ICollection[]> MineAsync(string context)
+        public Task<IList<ICollectionMetaModel>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            bool filter(ICollection x) => Regex.IsMatch(context, Regex.Escape(x.Code) + "|" + Regex.Escape(x.Name));
+            return this.MineInternalAsync(context);
+        }
 
-            var matches = new HashSet<ICollection>();
+        private async Task<IList<ICollectionMetaModel>> MineInternalAsync(string context)
+        {
+            bool Filter(ICollectionMetaModel x) => Regex.IsMatch(context, Regex.Escape(x.Code) + "|" + Regex.Escape(x.Name));
 
-            await this.GetMatches(this.institutionalCollectionsDataService, matches, filter).ConfigureAwait(false);
-            await this.GetMatches(this.personalCollectionsDataService, matches, filter).ConfigureAwait(false);
+            var matches = new HashSet<ICollectionMetaModel>();
+
+            await this.GetMatches(this.institutionalCollectionsDataService, matches, Filter).ConfigureAwait(false);
+            await this.GetMatches(this.personalCollectionsDataService, matches, Filter).ConfigureAwait(false);
 
             return matches.ToArray();
         }

@@ -4,9 +4,9 @@
 
 namespace ProcessingTools.Services.Dates
 {
+    using ProcessingTools.Contracts.Models.Dates;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Dates;
-    using ProcessingTools.Contracts.Services.Models.Dates;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>

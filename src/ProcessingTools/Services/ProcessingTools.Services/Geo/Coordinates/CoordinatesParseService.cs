@@ -9,8 +9,8 @@ namespace ProcessingTools.Services.Geo.Coordinates
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Services.Geo.Coordinates;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
     using ProcessingTools.Services.Models.Geo.Coordinates;
 
     /// <summary>
@@ -30,7 +30,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
         }
 
         /// <inheritdoc/>
-        public async Task<ICoordinateStringModel[]> ParseCoordinatesStringAsync(string coordinates)
+        public async Task<IList<ICoordinateStringModel>> ParseCoordinatesStringAsync(string coordinates)
         {
             if (string.IsNullOrWhiteSpace(coordinates))
             {
@@ -47,9 +47,9 @@ namespace ProcessingTools.Services.Geo.Coordinates
         }
 
         /// <inheritdoc/>
-        public Task<ICoordinateStringModel[]> ParseCoordinateStringsAsync(IEnumerable<string> coordinates)
+        public Task<IList<ICoordinateStringModel>> ParseCoordinateStringsAsync(IEnumerable<string> coordinates)
         {
-            return Task.Run(() =>
+            return Task.Run<IList<ICoordinateStringModel>>(() =>
             {
                 if (coordinates == null || !coordinates.Any())
                 {

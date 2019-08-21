@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.ExternalLinks
 {
-    using ProcessingTools.Contracts.Services.Models.ExternalLinks;
+    using ProcessingTools.Contracts.Models.ExternalLinks;
 
     /// <summary>
     /// External links data miner.

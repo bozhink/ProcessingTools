@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
     using System;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
 
     /// <summary>
     /// Coordinate tag model provider.

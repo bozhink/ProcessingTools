@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Abstractions
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts.Services;
@@ -28,7 +29,7 @@ namespace ProcessingTools.Services.Abstractions
         }
 
         /// <inheritdoc/>
-        public Task<TModel[]> HarvestAsync(XmlNode context, Func<XmlDocument, TModel[]> action)
+        public Task<IList<TModel>> HarvestAsync(XmlNode context, Func<XmlDocument, IList<TModel>> action)
         {
             if (context == null)
             {
@@ -43,14 +44,14 @@ namespace ProcessingTools.Services.Abstractions
             var document = this.contextWrapper.Create(context);
             if (document == null)
             {
-                return Task.FromResult(Array.Empty<TModel>());
+                return Task.FromResult<IList<TModel>>(Array.Empty<TModel>());
             }
 
-            return Task.Run(() => action(document));
+            return Task.Run<IList<TModel>>(() => action(document));
         }
 
         /// <inheritdoc/>
-        public Task<TModel[]> HarvestAsync(XmlNode context, Func<XmlDocument, Task<TModel[]>> actionAsync)
+        public Task<IList<TModel>> HarvestAsync(XmlNode context, Func<XmlDocument, Task<IList<TModel>>> actionAsync)
         {
             if (context == null)
             {
@@ -65,7 +66,7 @@ namespace ProcessingTools.Services.Abstractions
             var document = this.contextWrapper.Create(context);
             if (document == null)
             {
-                return Task.FromResult(Array.Empty<TModel>());
+                return Task.FromResult<IList<TModel>>(Array.Empty<TModel>());
             }
 
             return actionAsync(document);

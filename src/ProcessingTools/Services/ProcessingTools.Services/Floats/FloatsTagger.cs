@@ -15,8 +15,8 @@ namespace ProcessingTools.Services.Floats
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations.Nlm;
+    using ProcessingTools.Contracts.Models.Floats;
     using ProcessingTools.Contracts.Services.Floats;
-    using ProcessingTools.Contracts.Services.Models.Floats;
     using ProcessingTools.Extensions;
 
     /// <summary>

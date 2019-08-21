@@ -9,8 +9,8 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Services.Geo.Coordinates;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Web.Services.Geo.Coordinates;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Models.Tools.Coordinates;

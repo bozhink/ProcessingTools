@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Meta
 {
-    using ProcessingTools.Contracts.Services.Models.Meta;
+    using ProcessingTools.Contracts.Models.Meta;
 
     /// <summary>
     /// Article meta harvester.

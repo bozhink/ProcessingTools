@@ -10,8 +10,8 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.ExternalLinks
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Contracts.Models.ExternalLinks;
     using ProcessingTools.Contracts.Services.ExternalLinks;
-    using ProcessingTools.Contracts.Services.Models.ExternalLinks;
     using ProcessingTools.Services.Abstractions;
     using ProcessingTools.Services.ExternalLinks;
     using ProcessingTools.Services.IO;

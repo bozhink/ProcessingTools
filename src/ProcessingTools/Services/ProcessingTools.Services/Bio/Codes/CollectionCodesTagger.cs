@@ -5,14 +5,15 @@
 namespace ProcessingTools.Services.Bio.Codes
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio;
     using ProcessingTools.Contracts.Services.Bio.Codes;
     using ProcessingTools.Contracts.Services.Content;
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
     using ProcessingTools.Services.Models.Bio.Codes;
     using ProcessingTools.Services.Models.Content;
 
@@ -64,7 +65,7 @@ namespace ProcessingTools.Services.Bio.Codes
             return true;
         }
 
-        private async Task TagCollectionCodes(IDocument document, ICollection[] data)
+        private async Task TagCollectionCodes(IDocument document, IEnumerable<ICollectionMetaModel> data)
         {
             var collectionCodes = data.Select(c => new BiorepositoriesCollectionCodeSerializableModel
             {
@@ -82,7 +83,7 @@ namespace ProcessingTools.Services.Bio.Codes
             await this.collectionCodesTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings).ConfigureAwait(false);
         }
 
-        private async Task TagCollections(IDocument document, ICollection[] data)
+        private async Task TagCollections(IDocument document, IEnumerable<ICollectionMetaModel> data)
         {
             var collections = data.Select(c => new BiorepositoriesCollectionSerializableModel
             {

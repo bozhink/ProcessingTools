@@ -5,8 +5,8 @@
 namespace ProcessingTools.Services.Bio
 {
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Bio;
     using ProcessingTools.Contracts.Services.Bio;
-    using ProcessingTools.Contracts.Services.Models.Bio;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>

@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Abstractions
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
@@ -32,7 +33,7 @@ namespace ProcessingTools.Services.Abstractions
         }
 
         /// <inheritdoc/>
-        public Task<string[]> EvaluateAsync(IDocument document)
+        public Task<IList<string>> EvaluateAsync(IDocument document)
         {
             if (document == null)
             {
@@ -42,7 +43,7 @@ namespace ProcessingTools.Services.Abstractions
             return this.EvaluateInternalAsync(document);
         }
 
-        private async Task<string[]> EvaluateInternalAsync(IDocument document)
+        private async Task<IList<string>> EvaluateInternalAsync(IDocument document)
         {
             var textContent = await this.contentHarvester.HarvestAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
             var data = await this.miner.MineAsync(textContent).ConfigureAwait(false);

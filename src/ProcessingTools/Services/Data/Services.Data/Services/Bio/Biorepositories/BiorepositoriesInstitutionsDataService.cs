@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Bio.Biorepositories;
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
     using ProcessingTools.Data.Models.Mongo.Bio.Biorepositories;
     using ProcessingTools.Data.Mongo.Bio.Biorepositories;
 
@@ -27,7 +27,7 @@
         }
 
         /// <inheritdoc/>
-        public Task<IInstitution[]> GetAsync(int skip, int take)
+        public Task<IInstitutionMetaModel[]> GetAsync(int skip, int take)
         {
             if (skip < 0)
             {
@@ -42,7 +42,7 @@
             return Task.Run(() => this.GetData(skip, take));
         }
 
-        private IInstitution[] GetData(int skip, int take)
+        private IInstitutionMetaModel[] GetData(int skip, int take)
         {
             return this.repository.Query
                 .Where(i => i.InstitutionCode.Length > 1 && i.InstitutionName.Length > 1)
@@ -55,7 +55,7 @@
                     Name = i.InstitutionName,
                     Url = i.Url,
                 })
-                .ToArray<IInstitution>();
+                .ToArray<IInstitutionMetaModel>();
         }
     }
 }

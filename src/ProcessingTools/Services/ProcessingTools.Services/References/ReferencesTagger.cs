@@ -12,7 +12,7 @@ namespace ProcessingTools.Services.References
     using System.Xml;
     using System.Xml.Linq;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
-    using ProcessingTools.Contracts.Services.Models.References;
+    using ProcessingTools.Contracts.Models.References;
     using ProcessingTools.Contracts.Services.References;
     using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Services.Models.References;
@@ -196,7 +196,7 @@ namespace ProcessingTools.Services.References
             return xml;
         }
 
-        private async Task<IReferenceTemplateItem[]> GetReferencesTemplatesAsync(XmlNode context, string script)
+        private async Task<IList<IReferenceTemplateItem>> GetReferencesTemplatesAsync(XmlNode context, string script)
         {
             var text = await this.xmlTransformerFactory.CreateXmlTransformerFromSourceScript(script)
                 .TransformAsync(context)

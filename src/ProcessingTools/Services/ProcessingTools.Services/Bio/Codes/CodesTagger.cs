@@ -22,7 +22,7 @@ namespace ProcessingTools.Services.Bio.Codes
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Codes;
     using ProcessingTools.Contracts.Services.Content;
-    using ProcessingTools.Contracts.Services.Models.Bio.Codes;
+    using ProcessingTools.Contracts.Models.Bio.Codes;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Bio.Codes;
     using ProcessingTools.Services.Models.Content;

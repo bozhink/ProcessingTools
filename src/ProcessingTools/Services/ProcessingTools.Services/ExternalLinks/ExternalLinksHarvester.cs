@@ -5,11 +5,12 @@
 namespace ProcessingTools.Services.ExternalLinks
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Models.ExternalLinks;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.ExternalLinks;
-    using ProcessingTools.Contracts.Services.Models.ExternalLinks;
     using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Services.Models.ExternalLinks;
 
@@ -36,9 +37,9 @@ namespace ProcessingTools.Services.ExternalLinks
         }
 
         /// <inheritdoc/>
-        public Task<IExternalLinkModel[]> HarvestAsync(XmlNode context) => this.harvesterCore.HarvestAsync(context: context, actionAsync: this.RunAsync);
+        public Task<IList<IExternalLinkModel>> HarvestAsync(XmlNode context) => this.harvesterCore.HarvestAsync(context: context, actionAsync: this.RunAsync);
 
-        private async Task<IExternalLinkModel[]> RunAsync(XmlDocument document)
+        private async Task<IList<IExternalLinkModel>> RunAsync(XmlDocument document)
         {
             var transformer = this.transformerFactory.GetExternalLinksTransformer();
             var items = await this.serializer.DeserializeAsync<ExternalLinksModel>(transformer, document.OuterXml).ConfigureAwait(false);

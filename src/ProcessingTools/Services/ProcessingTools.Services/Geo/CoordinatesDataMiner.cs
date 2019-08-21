@@ -17,7 +17,7 @@ namespace ProcessingTools.Services.Geo
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {
         /// <inheritdoc/>
-        public Task<string[]> MineAsync(string context)
+        public Task<IList<string>> MineAsync(string context)
         {
             string[] patterns = new[]
             {
@@ -34,7 +34,7 @@ namespace ProcessingTools.Services.Geo
                 @"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b)\s*[;,\s]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b))",
             };
 
-            return Task.Run(() =>
+            return Task.Run<IList<string>>(() =>
             {
                 string content = Regex.Replace(context, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°");
 

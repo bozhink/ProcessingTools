@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Floats
 {
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Contracts.Services.Models.Floats;
+    using ProcessingTools.Contracts.Models.Floats;
 
     /// <summary>
     /// Mediatype response model.

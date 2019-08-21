@@ -11,8 +11,8 @@ namespace ProcessingTools.Services.ExternalLinks
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations.Nlm;
+    using ProcessingTools.Contracts.Models.ExternalLinks;
     using ProcessingTools.Contracts.Services.ExternalLinks;
-    using ProcessingTools.Contracts.Services.Models.ExternalLinks;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.ExternalLinks;
 
@@ -41,7 +41,7 @@ namespace ProcessingTools.Services.ExternalLinks
         private const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
 
         /// <inheritdoc/>
-        public Task<IExternalLink[]> MineAsync(string context)
+        public Task<IList<IExternalLink>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -62,7 +62,7 @@ namespace ProcessingTools.Services.ExternalLinks
             this.DataCleansing(data);
 
             var result = new HashSet<IExternalLink>(data);
-            return Task.FromResult(result.ToArray());
+            return Task.FromResult<IList<IExternalLink>>(result.ToArray());
         }
 
         private void DataCleansing(IEnumerable<ExternalLink> data)

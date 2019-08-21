@@ -4,9 +4,9 @@
 
 namespace ProcessingTools.Services.Geo
 {
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Geo;
-    using ProcessingTools.Contracts.Services.Models.Geo;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>

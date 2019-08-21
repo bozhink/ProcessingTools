@@ -4,12 +4,12 @@
 
 namespace ProcessingTools.Services.Models.Data.Bio.Biorepositories
 {
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
     /// <summary>
     /// Biorepositories institution service model.
     /// </summary>
-    public class Institution : IInstitution
+    public class Institution : IInstitutionMetaModel
     {
         /// <summary>
         /// Gets or sets institution code.

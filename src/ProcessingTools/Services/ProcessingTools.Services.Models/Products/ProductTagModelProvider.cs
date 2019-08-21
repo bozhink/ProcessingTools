@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Products
     using System;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Products;
+    using ProcessingTools.Contracts.Models.Products;
 
     /// <summary>
     /// Product tag model provider.

@@ -4,12 +4,12 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.Biorepositories
 {
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
     /// <summary>
     /// Biorepositories institutions data service.
     /// </summary>
-    public interface IBiorepositoriesInstitutionsDataService : IBiorepositoriesDataService<IInstitution>
+    public interface IBiorepositoriesInstitutionsDataService : IBiorepositoriesDataService<IInstitutionMetaModel>
     {
     }
 }

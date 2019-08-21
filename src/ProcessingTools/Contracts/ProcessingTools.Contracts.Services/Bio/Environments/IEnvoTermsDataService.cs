@@ -4,8 +4,9 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.Environments
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
+    using ProcessingTools.Contracts.Models.Bio.Environments;
 
     /// <summary>
     /// ENVO Terms data service.
@@ -16,7 +17,7 @@ namespace ProcessingTools.Contracts.Services.Bio.Environments
         /// Gets all ENVO terms.
         /// </summary>
         /// <returns>Array of ENVO terms.</returns>
-        Task<IEnvoTerm[]> AllAsync();
+        Task<IList<IEnvoTerm>> AllAsync();
 
         /// <summary>
         /// Gets ENVO terms.
@@ -24,6 +25,6 @@ namespace ProcessingTools.Contracts.Services.Bio.Environments
         /// <param name="skip">Number of terms to skip.</param>
         /// <param name="take">Number of terms to take.</param>
         /// <returns>Array of ENVO terms.</returns>
-        Task<IEnvoTerm[]> GetAsync(int skip, int take);
+        Task<IList<IEnvoTerm>> GetAsync(int skip, int take);
     }
 }

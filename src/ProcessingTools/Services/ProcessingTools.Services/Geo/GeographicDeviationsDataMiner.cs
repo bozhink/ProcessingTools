@@ -11,6 +11,7 @@
 namespace ProcessingTools.Services.Geo
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace ProcessingTools.Services.Geo
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
         /// <inheritdoc/>
-        public Task<string[]> MineAsync(string context)
+        public Task<IList<string>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -35,7 +36,7 @@ namespace ProcessingTools.Services.Geo
             return this.MineInternalAsync(context);
         }
 
-        private async Task<string[]> MineInternalAsync(string context)
+        private async Task<IList<string>> MineInternalAsync(string context)
         {
             const string Pattern = DistancePattern + @"\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|north)+)";
 

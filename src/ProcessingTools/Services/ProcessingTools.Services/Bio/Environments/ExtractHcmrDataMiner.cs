@@ -5,11 +5,12 @@
 namespace ProcessingTools.Services.Bio.Environments
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Bio.Environments;
     using ProcessingTools.Contracts.Services.Bio;
     using ProcessingTools.Contracts.Services.Bio.Environments;
-    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
     using ProcessingTools.Services.Models.Bio.Environments;
 
     /// <summary>
@@ -29,7 +30,7 @@ namespace ProcessingTools.Services.Bio.Environments
         }
 
         /// <inheritdoc/>
-        public Task<IExtractHcmrEnvoTerm[]> MineAsync(string context)
+        public Task<IList<IExtractHcmrEnvoTerm>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -39,7 +40,7 @@ namespace ProcessingTools.Services.Bio.Environments
             return this.MineInernalAsync(context);
         }
 
-        private async Task<IExtractHcmrEnvoTerm[]> MineInernalAsync(string context)
+        private async Task<IList<IExtractHcmrEnvoTerm>> MineInernalAsync(string context)
         {
             var response = await this.requester.RequestDataAsync(context).ConfigureAwait(false);
             if (response == null || response.Items == null)

@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Dates
     using System;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Dates;
+    using ProcessingTools.Contracts.Models.Dates;
 
     /// <summary>
     /// Date tag model provider.

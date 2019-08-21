@@ -4,12 +4,12 @@
 
 namespace ProcessingTools.Contracts.Services.Bio
 {
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
 
     /// <summary>
     /// Biorepositories collections data miner.
     /// </summary>
-    public interface IBiorepositoriesCollectionsDataMiner : IDataMiner<string, ICollection>
+    public interface IBiorepositoriesCollectionsDataMiner : IDataMiner<string, ICollectionMetaModel>
     {
     }
 }

@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -18,6 +19,6 @@ namespace ProcessingTools.Contracts.Services
         /// </summary>
         /// <param name="context">Context to be data-mined.</param>
         /// <returns>Array of output model.</returns>
-        Task<TModel[]> MineAsync(TContext context);
+        Task<IList<TModel>> MineAsync(TContext context);
     }
 }

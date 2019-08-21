@@ -40,13 +40,18 @@ namespace ProcessingTools.Services.Abstractions
         }
 
         /// <inheritdoc/>
-        public async Task<string[]> MineAsync(string context)
+        public Task<IList<string>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return this.MineInternalAsync(context);
+        }
+
+        private async Task<IList<string>> MineInternalAsync(string context)
+        {
             var matches = new List<string>();
 
             for (int i = 0; ; i += NumberOfItemsToTake)

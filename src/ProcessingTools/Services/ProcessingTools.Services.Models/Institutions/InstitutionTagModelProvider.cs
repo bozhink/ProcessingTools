@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Institutions
     using System;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Institutions;
+    using ProcessingTools.Contracts.Models.Institutions;
 
     /// <summary>
     /// Institution tag model provider.

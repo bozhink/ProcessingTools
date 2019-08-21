@@ -10,8 +10,8 @@ namespace ProcessingTools.Services.Abbreviations
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Contracts.Models.Abbreviations;
     using ProcessingTools.Contracts.Services.Abbreviations;
-    using ProcessingTools.Contracts.Services.Models.Abbreviations;
     using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
@@ -169,7 +169,7 @@ namespace ProcessingTools.Services.Abbreviations
                         }
                         catch (XmlException ex)
                         {
-                            this.logger.LogError(ex, "Exception in abbreviation {0}", abbreviation.Content);
+                            this.logger.LogError(ex, $"Exception in abbreviation {abbreviation.Content}");
                         }
                     }
                 }

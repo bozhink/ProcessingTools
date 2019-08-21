@@ -5,7 +5,7 @@
 namespace ProcessingTools.Configuration.AutoMapper.Geo.Coordinates
 {
     using global::AutoMapper;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Web.Models.Tools.Coordinates;
 
     /// <summary>

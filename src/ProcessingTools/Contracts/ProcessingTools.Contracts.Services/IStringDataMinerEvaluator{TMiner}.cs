@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
 
@@ -19,6 +20,6 @@ namespace ProcessingTools.Contracts.Services
         /// </summary>
         /// <param name="document"><see cref="IDocument"/> context to be evaluated.</param>
         /// <returns>Array of string data.</returns>
-        Task<string[]> EvaluateAsync(IDocument document);
+        Task<IList<string>> EvaluateAsync(IDocument document);
     }
 }

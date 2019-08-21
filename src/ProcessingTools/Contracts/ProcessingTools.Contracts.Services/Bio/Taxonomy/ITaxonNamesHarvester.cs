@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -17,13 +18,13 @@ namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
         /// </summary>
         /// <param name="context">Context to be harvested.</param>
         /// <returns>Array of lower taxon names.</returns>
-        Task<string[]> HarvestLowerTaxaAsync(XmlNode context);
+        Task<IList<string>> HarvestLowerTaxaAsync(XmlNode context);
 
         /// <summary>
         /// Harvest higher taxa.
         /// </summary>
         /// <param name="context">Context to be harvested.</param>
         /// <returns>Array of higher taxon names.</returns>
-        Task<string[]> HarvestHigherTaxaAsync(XmlNode context);
+        Task<IList<string>> HarvestHigherTaxaAsync(XmlNode context);
     }
 }

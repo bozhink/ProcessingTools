@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Models.ExternalLinks
     using System.ComponentModel;
     using System.Xml.Serialization;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.ExternalLinks;
+    using ProcessingTools.Contracts.Models.ExternalLinks;
 
     /// <summary>
     /// External Link Model.

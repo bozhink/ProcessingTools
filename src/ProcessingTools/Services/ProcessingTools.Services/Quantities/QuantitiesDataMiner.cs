@@ -25,6 +25,7 @@
 namespace ProcessingTools.Services.Quantities
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace ProcessingTools.Services.Quantities
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
         /// <inheritdoc/>
-        public Task<string[]> MineAsync(string context)
+        public Task<IList<string>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -47,7 +48,7 @@ namespace ProcessingTools.Services.Quantities
             return this.MineInternalAsync(context);
         }
 
-        private async Task<string[]> MineInternalAsync(string context)
+        private async Task<IList<string>> MineInternalAsync(string context)
         {
             const string Pattern = @"(?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b";
 

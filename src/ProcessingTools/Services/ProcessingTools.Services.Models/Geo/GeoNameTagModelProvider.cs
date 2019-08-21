@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Geo
     using System;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     /// <summary>
     /// Geo name tag model provider.

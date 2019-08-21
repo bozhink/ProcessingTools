@@ -5,11 +5,12 @@
 namespace ProcessingTools.Services.Abbreviations
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Models.Abbreviations;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Abbreviations;
-    using ProcessingTools.Contracts.Services.Models.Abbreviations;
     using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Services.Models.Abbreviations;
 
@@ -36,9 +37,9 @@ namespace ProcessingTools.Services.Abbreviations
         }
 
         /// <inheritdoc/>
-        public Task<IAbbreviationModel[]> HarvestAsync(XmlNode context) => this.harvesterCore.HarvestAsync(context: context, actionAsync: this.RunAsync);
+        public Task<IList<IAbbreviationModel>> HarvestAsync(XmlNode context) => this.harvesterCore.HarvestAsync(context: context, actionAsync: this.RunAsync);
 
-        private async Task<IAbbreviationModel[]> RunAsync(XmlDocument document)
+        private async Task<IList<IAbbreviationModel>> RunAsync(XmlDocument document)
         {
             var transformer = this.transformerFactory.GetAbbreviationsTransformer();
             var model = await this.serializer.DeserializeAsync<AbbreviationsXmlModel>(transformer, document.DocumentElement).ConfigureAwait(false);

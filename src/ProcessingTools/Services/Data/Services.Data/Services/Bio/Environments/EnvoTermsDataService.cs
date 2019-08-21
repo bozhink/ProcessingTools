@@ -1,12 +1,13 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Bio.Environments
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Models.Bio.Environments;
     using ProcessingTools.Contracts.Services.Bio.Environments;
-    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
     using ProcessingTools.Data.Entity.Bio.Environments;
     using ProcessingTools.Data.Models.Entity.Bio.Environments;
     using ProcessingTools.Services.Models.Data.Bio.Environments;
@@ -28,9 +29,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<IEnvoTerm[]> AllAsync()
+        public Task<IList<IEnvoTerm>> AllAsync()
         {
-            return Task.Run(() =>
+            return Task.Run<IList<IEnvoTerm>>(() =>
             {
                 var data = this.repository.Query
                     .Where(n => !n.Value.Contains("ENVO"))
@@ -48,7 +49,7 @@
         }
 
         /// <inheritdoc/>
-        public Task<IEnvoTerm[]> GetAsync(int skip, int take)
+        public Task<IList<IEnvoTerm>> GetAsync(int skip, int take)
         {
             if (skip < 0)
             {
@@ -60,7 +61,7 @@
                 throw new InvalidTakeValuePagingException($"Invalid take value = {take}");
             }
 
-            return Task.Run(() =>
+            return Task.Run<IList<IEnvoTerm>>(() =>
             {
                 var data = this.repository.Query
                     .Where(n => !n.Value.Contains("ENVO"))

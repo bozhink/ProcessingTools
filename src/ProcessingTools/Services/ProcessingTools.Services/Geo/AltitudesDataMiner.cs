@@ -27,7 +27,7 @@ namespace ProcessingTools.Services.Geo
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
         /// <inheritdoc/>
-        public Task<string[]> MineAsync(string context)
+        public Task<IList<string>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -41,7 +41,7 @@ namespace ProcessingTools.Services.Geo
             };
 
             var data = this.ExtractData(context, patterns).ToList();
-            return Task.FromResult(data.Distinct().ToArray());
+            return Task.FromResult<IList<string>>(data.Distinct().ToArray());
         }
 
         private IEnumerable<string> ExtractData(string content, IEnumerable<string> patterns)

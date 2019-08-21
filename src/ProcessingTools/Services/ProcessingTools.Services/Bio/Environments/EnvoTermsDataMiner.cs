@@ -5,10 +5,11 @@
 namespace ProcessingTools.Services.Bio.Environments
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Bio.Environments;
     using ProcessingTools.Contracts.Services.Bio.Environments;
-    using ProcessingTools.Contracts.Services.Models.Bio.Environments;
 
     /// <summary>
     /// ENVO terms data miner.
@@ -27,7 +28,7 @@ namespace ProcessingTools.Services.Bio.Environments
         }
 
         /// <inheritdoc/>
-        public Task<IEnvoTerm[]> MineAsync(string context)
+        public Task<IList<IEnvoTerm>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -37,10 +38,9 @@ namespace ProcessingTools.Services.Bio.Environments
             return this.MineInternalAsync(context);
         }
 
-        private async Task<IEnvoTerm[]> MineInternalAsync(string context)
+        private async Task<IList<IEnvoTerm>> MineInternalAsync(string context)
         {
             string text = context.ToUpperInvariant();
-
             var data = await this.service.AllAsync().ConfigureAwait(false);
             return data.Where(t => text.Contains(t.Content.ToUpperInvariant())).ToArray();
         }

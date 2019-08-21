@@ -8,15 +8,15 @@ namespace ProcessingTools.Services.Bio
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Bio;
     using ProcessingTools.Contracts.Services.Bio.Biorepositories;
-    using ProcessingTools.Contracts.Services.Models.Bio.Biorepositories;
     using ProcessingTools.Services.Abstractions;
 
     /// <summary>
     /// Biorepositories institutions data miner.
     /// </summary>
-    public class BiorepositoriesInstitutionsDataMiner : BiorepositoriesDataMinerBase<IInstitution>, IBiorepositoriesInstitutionsDataMiner
+    public class BiorepositoriesInstitutionsDataMiner : BiorepositoriesDataMinerBase<IInstitutionMetaModel>, IBiorepositoriesInstitutionsDataMiner
     {
         private readonly IBiorepositoriesInstitutionsDataService service;
 
@@ -30,18 +30,23 @@ namespace ProcessingTools.Services.Bio
         }
 
         /// <inheritdoc/>
-        public async Task<IInstitution[]> MineAsync(string context)
+        public Task<IList<IInstitutionMetaModel>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            bool filter(IInstitution x) => Regex.IsMatch(context, Regex.Escape(x.Code) + "|" + Regex.Escape(x.Name));
+            return this.MineInternalAsync(context);
+        }
 
-            var matches = new List<IInstitution>();
+        private async Task<IList<IInstitutionMetaModel>> MineInternalAsync(string context)
+        {
+            bool Filter(IInstitutionMetaModel x) => Regex.IsMatch(context, Regex.Escape(x.Code) + "|" + Regex.Escape(x.Name));
 
-            await this.GetMatches(this.service, matches, filter).ConfigureAwait(false);
+            var matches = new List<IInstitutionMetaModel>();
+
+            await this.GetMatches(this.service, matches, Filter).ConfigureAwait(false);
 
             return matches.ToArray();
         }

@@ -6,8 +6,8 @@ namespace ProcessingTools.Services.Geo.Coordinates
 {
     using System;
     using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Services.Geo.Coordinates;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
 
     /// <summary>
     /// Coordinate parser.

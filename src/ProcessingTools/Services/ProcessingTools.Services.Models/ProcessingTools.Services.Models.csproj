@@ -16,6 +16,11 @@
     <DocumentationFile>bin\docs\ProcessingTools.Services.Models.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Data\Geo\**" />
+    <EmbeddedResource Remove="Data\Geo\**" />
+    <None Remove="Data\Geo\**" />
+  </ItemGroup>
+  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
@@ -37,8 +42,5 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Geo\" />
   </ItemGroup>
 </Project>

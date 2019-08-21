@@ -12,9 +12,9 @@ namespace ProcessingTools.Services.Floats
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Constants.Schema;
+    using ProcessingTools.Contracts.Models.Floats;
     using ProcessingTools.Contracts.Services.Files;
     using ProcessingTools.Contracts.Services.Floats;
-    using ProcessingTools.Contracts.Services.Models.Floats;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Floats;
 

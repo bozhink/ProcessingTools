@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Meta
     using System;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Contracts.Services.Models.Meta;
+    using ProcessingTools.Contracts.Models.Meta;
 
     /// <summary>
     /// JATS Article meta model.

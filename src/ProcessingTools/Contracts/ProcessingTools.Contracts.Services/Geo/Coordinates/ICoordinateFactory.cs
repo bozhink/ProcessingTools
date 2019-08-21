@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Geo.Coordinates
 {
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
 
     /// <summary>
     /// Coordinates factory.

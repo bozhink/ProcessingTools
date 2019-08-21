@@ -6,12 +6,12 @@ namespace ProcessingTools.Configuration.Autofac
 {
     using System;
     using global::Autofac;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Geo.Coordinates;
     using ProcessingTools.Contracts.Services.Imaging;
     using ProcessingTools.Contracts.Services.Layout;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Services.References;
     using ProcessingTools.Contracts.Services.Rules;
     using ProcessingTools.Services;

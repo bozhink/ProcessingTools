@@ -12,7 +12,7 @@ namespace ProcessingTools.Services.Bio.EnvironmentTerms
     using ProcessingTools.Contracts.Services.Bio.Environments;
     using ProcessingTools.Contracts.Services.Bio.EnvironmentTerms;
     using ProcessingTools.Contracts.Services.Content;
-    using ProcessingTools.Services.Models.Bio.EnvironmentTerms;
+    using ProcessingTools.Services.Models.Bio.Environments;
     using ProcessingTools.Services.Models.Content;
 
     /// <summary>

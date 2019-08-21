@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Geo.Coordinates
 {
     using System;
-    using ProcessingTools.Contracts.Services.Models.Geo.Coordinates;
+    using ProcessingTools.Contracts.Models.Geo.Coordinates;
 
     /// <summary>
     /// Coordinate string model.
