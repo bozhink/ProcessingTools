@@ -5,11 +5,12 @@
 namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
 {
     using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Xml;
+    using System.Xml.Serialization;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
@@ -18,16 +19,15 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     /// </summary>
     public class CatalogueOfLifeDataRequester : ICatalogueOfLifeDataRequester
     {
-        private const string CatalogueOfLifeBaseAddress = "http://www.catalogueoflife.org";
-        private readonly IHttpRequester httpRequester;
+        private readonly IHttpClientFactory httpClientFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogueOfLifeDataRequester"/> class.
         /// </summary>
-        /// <param name="httpRequester">HTTP requester.</param>
-        public CatalogueOfLifeDataRequester(IHttpRequester httpRequester)
+        /// <param name="httpClientFactory">Instance of <see cref="IHttpClientFactory"/>.</param>
+        public CatalogueOfLifeDataRequester(IHttpClientFactory httpClientFactory)
         {
-            this.httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
+            this.httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         }
 
         /// <summary>
@@ -36,13 +36,23 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
         /// <returns>XmlDocument of the CoL API response.</returns>
         // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;response=full
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
         public async Task<XmlDocument> RequestXmlFromCatalogueOfLife(string scientificName)
         {
-            string relativeUri = $"col/webservice?name={scientificName}&response=full";
+            IDictionary<string, string> queryParameters = new Dictionary<string, string>
+            {
+                { "name", scientificName },
+                { "response", "full" },
+            };
 
-            Uri requestUri = UriExtensions.Append(CatalogueOfLifeBaseAddress, relativeUri);
+            string queryString = await queryParameters.GetQueryStringAsync().ConfigureAwait(false);
 
-            string response = await this.httpRequester.GetStringAsync(requestUri, ContentTypes.Xml).ConfigureAwait(false);
+            string relativeUri = $"col/webservice?{queryString}";
+
+            var client = this.httpClientFactory.CreateClient();
+
+            string response = await client.GetStringAsync(relativeUri).ConfigureAwait(false);
 
             return response.ToXmlDocument();
         }
@@ -53,14 +63,37 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>CatalogueOfLifeApiServiceResponse of the CoL API response.</returns>
         // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;esponse=full
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
         public async Task<CatalogueOfLifeApiServiceResponseModel> RequestDataAsync(string content)
         {
-            string requestName = content.UrlEncode();
-            string relativeUri = $"/col/webservice?name={requestName}&response=full";
+            IDictionary<string, string> queryParameters = new Dictionary<string, string>
+            {
+                { "name", content },
+                { "response", "full" },
+            };
 
-            Uri requestUri = UriExtensions.Append(CatalogueOfLifeBaseAddress, relativeUri);
+            string queryString = await queryParameters.GetQueryStringAsync().ConfigureAwait(false);
 
-            var result = await this.httpRequester.GetXmlToObjectAsync<CatalogueOfLifeApiServiceResponseModel>(requestUri).ConfigureAwait(false);
+            string relativeUri = $"col/webservice?{queryString}";
+
+            var client = this.httpClientFactory.CreateClient();
+
+            var stream = await client.GetStreamAsync(relativeUri).ConfigureAwait(false);
+
+            var reader = XmlReader.Create(stream, new XmlReaderSettings
+            {
+                ValidationType = ValidationType.None,
+                DtdProcessing = DtdProcessing.Ignore,
+                CloseInput = true,
+                IgnoreComments = true,
+                IgnoreProcessingInstructions = true,
+            });
+
+            var serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponseModel));
+
+            var result = (CatalogueOfLifeApiServiceResponseModel)serializer.Deserialize(reader);
+
             return result;
         }
     }

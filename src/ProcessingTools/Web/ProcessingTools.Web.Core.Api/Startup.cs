@@ -13,7 +13,13 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json.Serialization;
+    using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Images;
+    using ProcessingTools.Services.Bio.Taxonomy;
+    using ProcessingTools.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Web.Services.Images;
 
     /// <summary>
@@ -69,6 +75,23 @@ namespace ProcessingTools.Web.Core.Api
                         policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
                     });
                 });
+
+            services.AddScoped(typeof(ITaxonClassificationResolverApiService<>), typeof(TaxonClassificationResolverApiService<>));
+            services.AddScoped<ICatalogueOfLifeTaxonClassificationResolver, CatalogueOfLifeTaxonClassificationResolver>();
+            services.AddScoped<ICatalogueOfLifeDataRequester, CatalogueOfLifeDataRequester>();
+
+            services.AddHttpClient<CatalogueOfLifeDataRequester>()
+                .ConfigureHttpClient(c =>
+                {
+                    string baseAddress = this.Configuration.GetValue<string>(ConfigurationConstants.ExternalServicesCatalogueOfLifeWebserviceBaseAddress);
+
+                    c.BaseAddress = new Uri(baseAddress);
+                    c.DefaultRequestHeaders.Add("User-Agent", "PT");
+                    c.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
+                    c.DefaultRequestHeaders.Add("Accept", "application/xml");
+
+                })
+                .SetHandlerLifetime(TimeSpan.FromMinutes(5));
 
             var builder = new ContainerBuilder();
 

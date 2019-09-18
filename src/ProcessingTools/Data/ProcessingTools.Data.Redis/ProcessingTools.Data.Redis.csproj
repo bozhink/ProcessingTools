@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>ProcessingTools</Company>
@@ -18,13 +18,16 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.1.0" />
-    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.3" />
-    <PackageReference Include="ServiceStack.Common" Version="5.5.0" />
-    <PackageReference Include="ServiceStack.Interfaces" Version="5.5.0" />
-    <PackageReference Include="ServiceStack.Redis" Version="5.5.0" />
-    <PackageReference Include="ServiceStack.Text" Version="5.5.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.15.0.8572">
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.2.1" />
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ServiceStack.Common" Version="5.6.0" />
+    <PackageReference Include="ServiceStack.Interfaces" Version="5.6.0" />
+    <PackageReference Include="ServiceStack.Redis" Version="5.6.0" />
+    <PackageReference Include="ServiceStack.Text" Version="5.6.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.16.0.8981">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

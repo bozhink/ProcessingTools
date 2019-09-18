@@ -248,5 +248,10 @@ namespace ProcessingTools.Common.Constants
         /// Message queue exchange name.
         /// </summary>
         public const string MessageQueueExchangeName = "MessageQueue:ExchangeName";
+
+        /// <summary>
+        /// Catalogue of Life webservice base address.
+        /// </summary>
+        public const string ExternalServicesCatalogueOfLifeWebserviceBaseAddress = "ExternalServices:CatalogueOfLife:WebserviceBaseAddress";
     }
 }
