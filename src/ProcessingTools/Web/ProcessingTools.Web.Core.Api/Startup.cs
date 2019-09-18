@@ -7,6 +7,7 @@ namespace ProcessingTools.Web.Core.Api
     using System;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -80,7 +81,7 @@ namespace ProcessingTools.Web.Core.Api
             services.AddScoped<ICatalogueOfLifeTaxonClassificationResolver, CatalogueOfLifeTaxonClassificationResolver>();
             services.AddScoped<ICatalogueOfLifeDataRequester, CatalogueOfLifeDataRequester>();
 
-            services.AddHttpClient<CatalogueOfLifeDataRequester>()
+            services.AddHttpClient<CatalogueOfLifeDataRequester>(nameof(CatalogueOfLifeDataRequester))
                 .ConfigureHttpClient(c =>
                 {
                     string baseAddress = this.Configuration.GetValue<string>(ConfigurationConstants.ExternalServicesCatalogueOfLifeWebserviceBaseAddress);
@@ -88,10 +89,17 @@ namespace ProcessingTools.Web.Core.Api
                     c.BaseAddress = new Uri(baseAddress);
                     c.DefaultRequestHeaders.Add("User-Agent", "PT");
                     c.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
-                    c.DefaultRequestHeaders.Add("Accept", "application/xml");
-
+                    c.DefaultRequestHeaders.Add("Accept", "application/json");
                 })
                 .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+
+            // Configure AutoMapper.
+            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.AddMaps(typeof(ProcessingTools.Configuration.AutoMapper.AssemblySetup).Assembly);
+            });
+
+            services.AddSingleton<IMapper>(mapperConfiguration.CreateMapper());
 
             var builder = new ContainerBuilder();
 

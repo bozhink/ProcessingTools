@@ -38,9 +38,14 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
         /// </summary>
         /// <param name="id">Taxon name to be resolved.</param>
         /// <returns>List of found classification data.</returns>
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return this.BadRequest();
+            }
+
             try
             {
                 var result = await this.service.ResolveAsync(new[] { id }).ConfigureAwait(false);

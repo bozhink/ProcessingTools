@@ -77,7 +77,9 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
 
             string relativeUri = $"col/webservice?{queryString}";
 
-            var client = this.httpClientFactory.CreateClient();
+            var client = this.httpClientFactory.CreateClient(nameof(CatalogueOfLifeDataRequester));
+
+            ////string resp = await client.GetStringAsync(relativeUri).ConfigureAwait(false);
 
             var stream = await client.GetStreamAsync(relativeUri).ConfigureAwait(false);
 
