@@ -79,9 +79,9 @@ namespace ProcessingTools.Web.Core.Api
 
             services.AddScoped(typeof(ITaxonClassificationResolverApiService<>), typeof(TaxonClassificationResolverApiService<>));
             services.AddScoped<ICatalogueOfLifeTaxonClassificationResolver, CatalogueOfLifeTaxonClassificationResolver>();
-            services.AddScoped<ICatalogueOfLifeDataRequester, CatalogueOfLifeDataRequester>();
+            services.AddScoped<ICatalogueOfLifeWebserviceClient, CatalogueOfLifeWebserviceClient>();
 
-            services.AddHttpClient<CatalogueOfLifeDataRequester>(nameof(CatalogueOfLifeDataRequester))
+            services.AddHttpClient<CatalogueOfLifeWebserviceClient>(nameof(CatalogueOfLifeWebserviceClient))
                 .ConfigureHttpClient(c =>
                 {
                     string baseAddress = this.Configuration.GetValue<string>(ConfigurationConstants.ExternalServicesCatalogueOfLifeWebserviceBaseAddress);

@@ -20,21 +20,21 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     public class CatalogueOfLifeTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxonClassificationResolver
     {
-        private readonly ICatalogueOfLifeDataRequester requester;
+        private readonly ICatalogueOfLifeWebserviceClient client;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogueOfLifeTaxonClassificationResolver"/> class.
         /// </summary>
-        /// <param name="requester">Data requester.</param>
-        public CatalogueOfLifeTaxonClassificationResolver(ICatalogueOfLifeDataRequester requester)
+        /// <param name="client">Webservice client.</param>
+        public CatalogueOfLifeTaxonClassificationResolver(ICatalogueOfLifeWebserviceClient client)
         {
-            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
+            this.client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
         /// <inheritdoc/>
         protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
         {
-            var response = await this.requester.RequestDataAsync(scientificName).ConfigureAwait(false);
+            var response = await this.client.GetDataPerNameAsync(scientificName).ConfigureAwait(false);
 
             if (response is null || response.Results is null || response.Results.Length < 1)
             {

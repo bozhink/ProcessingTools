@@ -27,7 +27,7 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
             _ = factoryMock.Setup(f => f.CreateClient())
                 .Returns(new HttpClient { BaseAddress = new Uri("http://www.catalogueoflife.org") });
 
-            var requester = new CatalogueOfLifeDataRequester(factoryMock.Object);
+            var requester = new CatalogueOfLifeWebserviceClient(factoryMock.Object);
             var service = new CatalogueOfLifeTaxonClassificationResolver(requester);
 
             // Assert
@@ -49,7 +49,7 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
             _ = factoryMock.Setup(f => f.CreateClient())
                 .Returns(new HttpClient { BaseAddress = new Uri("http://www.catalogueoflife.org") });
 
-            var requester = new CatalogueOfLifeDataRequester(factoryMock.Object);
+            var requester = new CatalogueOfLifeWebserviceClient(factoryMock.Object);
             var service = new CatalogueOfLifeTaxonClassificationResolver(requester);
 
             // Act

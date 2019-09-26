@@ -1,4 +1,4 @@
-﻿// <copyright file="CatalogueOfLifeDataRequester.cs" company="ProcessingTools">
+﻿// <copyright file="CatalogueOfLifeWebserviceClient.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -15,17 +15,17 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     using ProcessingTools.Extensions;
 
     /// <summary>
-    /// Implementations of some of the Catalogue Of Life (CoL) API-s.
+    /// Catalogue of Life (CoL) webservice client.
     /// </summary>
-    public class CatalogueOfLifeDataRequester : ICatalogueOfLifeDataRequester
+    public class CatalogueOfLifeWebserviceClient : ICatalogueOfLifeWebserviceClient
     {
         private readonly IHttpClientFactory httpClientFactory;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CatalogueOfLifeDataRequester"/> class.
+        /// Initializes a new instance of the <see cref="CatalogueOfLifeWebserviceClient"/> class.
         /// </summary>
         /// <param name="httpClientFactory">Instance of <see cref="IHttpClientFactory"/>.</param>
-        public CatalogueOfLifeDataRequester(IHttpClientFactory httpClientFactory)
+        public CatalogueOfLifeWebserviceClient(IHttpClientFactory httpClientFactory)
         {
             this.httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         }
@@ -57,19 +57,15 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
             return response.ToXmlDocument();
         }
 
-        /// <summary>
-        /// Search scientific name in Catalogue Of Life (CoL).
-        /// </summary>
-        /// <param name="content">Scientific name of the taxon which rank is searched.</param>
-        /// <returns>CatalogueOfLifeApiServiceResponse of the CoL API response.</returns>
+        /// <inheritdoc/>
         // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;esponse=full
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
-        public async Task<CatalogueOfLifeApiServiceXmlResponseModel> RequestDataAsync(string content)
+        public async Task<CatalogueOfLifeApiServiceXmlResponseModel> GetDataPerNameAsync(string name)
         {
             IDictionary<string, string> queryParameters = new Dictionary<string, string>
             {
-                { "name", content },
+                { "name", name },
                 { "response", "full" },
             };
 
@@ -77,7 +73,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
 
             string relativeUri = $"col/webservice?{queryString}";
 
-            var client = this.httpClientFactory.CreateClient(nameof(CatalogueOfLifeDataRequester));
+            var client = this.httpClientFactory.CreateClient(nameof(CatalogueOfLifeWebserviceClient));
 
             ////string resp = await client.GetStringAsync(relativeUri).ConfigureAwait(false);
 
