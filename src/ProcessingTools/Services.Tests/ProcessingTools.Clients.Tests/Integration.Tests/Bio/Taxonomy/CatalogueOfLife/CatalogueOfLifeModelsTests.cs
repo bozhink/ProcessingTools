@@ -8,7 +8,7 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Catalogue
     using System.Linq;
     using System.Xml.Serialization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
 
     /// <summary>
     /// Catalogue of Life models tests.
@@ -22,12 +22,12 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Catalogue
         [TestMethod]
         public void CoLModel_Test_Deserialization()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponseModel));
-            CatalogueOfLifeApiServiceResponseModel response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceXmlResponseModel));
+            CatalogueOfLifeApiServiceXmlResponseModel response = null;
 
             using (var stream = new FileStream(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\Coleoptera-example-response.xml", FileMode.Open))
             {
-                response = serializer.Deserialize(stream) as CatalogueOfLifeApiServiceResponseModel;
+                response = serializer.Deserialize(stream) as CatalogueOfLifeApiServiceXmlResponseModel;
             }
 
             const string ScientificName = "Coleoptera";
@@ -45,12 +45,12 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Catalogue
         [TestMethod]
         public void ClassificationTaxonModel_Deserialization_ShouldWork()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Taxon));
-            Taxon response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceXmlResponseModel.Taxon));
+            CatalogueOfLifeApiServiceXmlResponseModel.Taxon response = null;
 
             using (var reader = new StreamReader(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\classification-taxon.xml"))
             {
-                response = (Taxon)serializer.Deserialize(reader);
+                response = (CatalogueOfLifeApiServiceXmlResponseModel.Taxon)serializer.Deserialize(reader);
             }
 
             Assert.IsNotNull(response, "Deserialized object should not be null.");
@@ -63,12 +63,12 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Catalogue
         [TestMethod]
         public void ReferenceModel_Deserialization_ShouldWork()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Reference));
-            Reference response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceXmlResponseModel.Reference));
+            CatalogueOfLifeApiServiceXmlResponseModel.Reference response = null;
 
             using (var reader = new StreamReader(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\reference.xml"))
             {
-                response = (Reference)serializer.Deserialize(reader);
+                response = (CatalogueOfLifeApiServiceXmlResponseModel.Reference)serializer.Deserialize(reader);
             }
 
             Assert.IsNotNull(response, "Deserialized object should not be null.");
@@ -82,12 +82,12 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Catalogue
         [TestMethod]
         public void ResultModel_Deserialization_ShouldWork()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Result));
-            Result response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceXmlResponseModel.Result));
+            CatalogueOfLifeApiServiceXmlResponseModel.Result response = null;
 
             using (var reader = new StreamReader(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\default-result.xml"))
             {
-                response = (Result)serializer.Deserialize(reader);
+                response = (CatalogueOfLifeApiServiceXmlResponseModel.Result)serializer.Deserialize(reader);
             }
 
             Assert.IsNotNull(response, "Deserialized object should not be null.");

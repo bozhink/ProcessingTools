@@ -4,12 +4,12 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
-    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
 
     /// <summary>
     /// Catalogue of Life (CoL) data requester.
     /// </summary>
-    public interface ICatalogueOfLifeDataRequester : IDataRequester<CatalogueOfLifeApiServiceResponseModel>
+    public interface ICatalogueOfLifeDataRequester : IDataRequester<CatalogueOfLifeApiServiceXmlResponseModel>
     {
     }
 }

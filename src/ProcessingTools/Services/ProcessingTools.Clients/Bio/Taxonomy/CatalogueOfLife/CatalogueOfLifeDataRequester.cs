@@ -10,7 +10,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Serialization;
-    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
@@ -65,7 +65,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;esponse=full
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
-        public async Task<CatalogueOfLifeApiServiceResponseModel> RequestDataAsync(string content)
+        public async Task<CatalogueOfLifeApiServiceXmlResponseModel> RequestDataAsync(string content)
         {
             IDictionary<string, string> queryParameters = new Dictionary<string, string>
             {
@@ -92,9 +92,9 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
                 IgnoreProcessingInstructions = true,
             });
 
-            var serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponseModel));
+            var serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceXmlResponseModel));
 
-            var result = (CatalogueOfLifeApiServiceResponseModel)serializer.Deserialize(reader);
+            var result = (CatalogueOfLifeApiServiceXmlResponseModel)serializer.Deserialize(reader);
 
             return result;
         }

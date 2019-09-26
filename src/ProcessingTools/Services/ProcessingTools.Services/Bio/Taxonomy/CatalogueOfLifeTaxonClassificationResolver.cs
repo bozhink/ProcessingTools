@@ -5,9 +5,10 @@
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
@@ -35,24 +36,18 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         {
             var response = await this.requester.RequestDataAsync(scientificName).ConfigureAwait(false);
 
-            try
+            if (response is null || response.Results is null || response.Results.Length < 1)
             {
-                return response.Results
-                    .Where(r => r.Name == scientificName)
-                    .DefaultIfEmpty()
-                    .Where(r => r != null)
-                    .Select(this.MapResultToClassification)
-                    .ToArray();
-            }
-            catch (ArgumentNullException)
-            {
-                // Linq queries failed. There are no matching response items.
+                return Array.Empty<ITaxonClassification>();
             }
 
-            return Array.Empty<ITaxonClassification>();
+            return response.Results
+                .Where(r => r != null && r.Name == scientificName)
+                .Select(this.MapResultToClassification)
+                .ToArray();
         }
 
-        private ITaxonClassification MapResultToClassification(Result result)
+        private ITaxonClassification MapResultToClassification(CatalogueOfLifeApiServiceXmlResponseModel.Result result)
         {
             var taxonClassification = new TaxonClassification
             {
@@ -74,24 +69,27 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return taxonClassification;
         }
 
-        private ITaxonRank GetClassificationItem(AcceptedName result, TaxonRankType rank)
+        private ITaxonRank GetClassificationItem(CatalogueOfLifeApiServiceXmlResponseModel.AcceptedName result, TaxonRankType rank)
         {
-            try
-            {
-                var name = result.Classification
-                    .FirstOrDefault(c => string.Compare(c.Rank, rank.MapTaxonRankTypeToTaxonRankString(), true) == 0)
-                    .Name;
-
-                return new TaxonRank
-                {
-                    ScientificName = name,
-                    Rank = rank,
-                };
-            }
-            catch
+            if (result is null || result.Classification is null || result.Classification.Length < 1)
             {
                 return null;
             }
+
+            var rankString = rank.MapTaxonRankTypeToTaxonRankString();
+            var first = result.Classification.FirstOrDefault(c => string.Compare(c.Rank, rankString, true, CultureInfo.InvariantCulture) == 0);
+            var name = first?.Name;
+
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+
+            return new TaxonRank
+            {
+                ScientificName = name,
+                Rank = rank,
+            };
         }
     }
 }
