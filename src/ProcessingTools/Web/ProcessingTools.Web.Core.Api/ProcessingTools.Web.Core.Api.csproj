@@ -45,7 +45,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.2.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.3.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.2.0" />

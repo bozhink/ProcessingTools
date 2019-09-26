@@ -25,7 +25,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.2.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.3.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.0" />
     <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.4">

@@ -37,23 +37,23 @@
     <DocumentationFile>bin\docs\ProcessingTools.Xml.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeAnalysis, Version=3.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.Common.3.2.1\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis, Version=3.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeAnalysis.Common.3.3.1\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=3.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.CSharp.3.2.1\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=3.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeAnalysis.CSharp.3.3.1\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces, Version=3.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.3.2.1\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces, Version=3.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.3.3.1\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.VisualBasic, Version=3.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.VisualBasic.3.2.1\lib\netstandard2.0\Microsoft.CodeAnalysis.VisualBasic.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.VisualBasic, Version=3.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeAnalysis.VisualBasic.3.3.1\lib\netstandard2.0\Microsoft.CodeAnalysis.VisualBasic.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces, Version=3.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.VisualBasic.Workspaces.3.2.1\lib\netstandard2.0\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces, Version=3.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeAnalysis.VisualBasic.Workspaces.3.3.1\lib\netstandard2.0\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.Workspaces, Version=3.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.Workspaces.Common.3.2.1\lib\netstandard2.0\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces, Version=3.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeAnalysis.Workspaces.Common.3.3.1\lib\netstandard2.0\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
     </Reference>
     <Reference Include="saxon9he-api, Version=9.9.1.5, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Saxon-HE.9.9.1.5\lib\net40\saxon9he-api.dll</HintPath>
