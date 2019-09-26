@@ -35,11 +35,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data-files\col-classification-taxon.xml" />
+    <None Remove="data-files\col-coleoptera-example-response.xml" />
+    <None Remove="data-files\col-default-result.xml" />
+    <None Remove="data-files\col-reference.xml" />
     <None Remove="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="data-files\col-classification-taxon.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\col-coleoptera-example-response.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\col-default-result.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\col-reference.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
