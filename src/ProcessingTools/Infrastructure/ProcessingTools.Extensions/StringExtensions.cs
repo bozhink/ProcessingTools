@@ -120,6 +120,7 @@ namespace ProcessingTools.Extensions
         /// </summary>
         /// <param name="text">Text to be transformed.</param>
         /// <returns>Transformed text.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "ToLower")]
         public static string ToFirstLetterUpperCase(this string text)
         {
             if (string.IsNullOrWhiteSpace(text))
@@ -282,7 +283,7 @@ namespace ProcessingTools.Extensions
                 }
                 else
                 {
-                    findStringIndex = originalString.IndexOf(findString, findStringIndex);
+                    findStringIndex = originalString.IndexOf(findString, findStringIndex, StringComparison.InvariantCulture);
                 }
 
                 if (findStringIndex == -1)
@@ -408,11 +409,11 @@ namespace ProcessingTools.Extensions
                 string matchValue = m.Value;
                 string formatString = m.Groups[1].Value;
 
-                int index = source.IndexOf(matchValue, i);
+                int index = source.IndexOf(matchValue, i, StringComparison.InvariantCultureIgnoreCase);
                 string text = source.Substring(i, index - i);
 
                 sb.Append(text);
-                sb.Append(dateTime.ToString(formatString));
+                sb.Append(dateTime.ToString(formatString, CultureInfo.InvariantCulture));
 
                 i = index + matchValue.Length;
             }
@@ -438,7 +439,7 @@ namespace ProcessingTools.Extensions
                 if (c > 127)
                 {
                     // This character is too big for ASCII
-                    string encodedValue = "\\u" + ((int)c).ToString("x4");
+                    string encodedValue = "\\u" + ((int)c).ToString("x4", CultureInfo.InvariantCulture);
                     sb.Append(encodedValue);
                 }
                 else
@@ -465,8 +466,27 @@ namespace ProcessingTools.Extensions
                 @"\\u(?<Value>[a-zA-Z0-9]{4})",
                 m =>
                 {
-                    return ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString();
+                    return ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
                 });
+        }
+
+        /// <summary>
+        /// Clean names to invariant form.
+        /// </summary>
+        /// <param name="names">List of string names to be cleaned.</param>
+        /// <returns>Cleaned names to invariant form.</returns>
+        public static IEnumerable<string> CleanNamesToInvariant(this IEnumerable<string> names)
+        {
+            if (names is null || !names.Any())
+            {
+                return Array.Empty<string>();
+            }
+
+            Regex matchWhitespaces = new Regex(@"\s+", RegexOptions.Compiled);
+
+            return new HashSet<string>(names.Select(s => matchWhitespaces.Replace(s, " ").Trim())
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => s.ToUpperInvariant()));
         }
     }
 }
