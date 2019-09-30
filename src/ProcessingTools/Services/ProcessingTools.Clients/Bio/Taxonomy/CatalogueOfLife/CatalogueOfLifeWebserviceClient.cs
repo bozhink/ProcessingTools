@@ -12,6 +12,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     using System.Xml.Serialization;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Serialization;
     using ProcessingTools.Extensions;
 
     /// <summary>
@@ -20,14 +21,17 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     public class CatalogueOfLifeWebserviceClient : ICatalogueOfLifeWebserviceClient
     {
         private readonly IHttpClientFactory httpClientFactory;
+        private readonly IXmlDeserializer<CatalogueOfLifeApiServiceXmlResponseModel> deserializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogueOfLifeWebserviceClient"/> class.
         /// </summary>
         /// <param name="httpClientFactory">Instance of <see cref="IHttpClientFactory"/>.</param>
-        public CatalogueOfLifeWebserviceClient(IHttpClientFactory httpClientFactory)
+        /// <param name="deserializer">Instance of <see cref="IXmlDeserializer{CatalogueOfLifeApiServiceXmlResponseModel}"/>.</param>
+        public CatalogueOfLifeWebserviceClient(IHttpClientFactory httpClientFactory, IXmlDeserializer<CatalogueOfLifeApiServiceXmlResponseModel> deserializer)
         {
             this.httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+            this.deserializer = deserializer ?? throw new ArgumentNullException(nameof(deserializer));
         }
 
         /// <summary>
@@ -79,18 +83,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
 
             var stream = await client.GetStreamAsync(relativeUri).ConfigureAwait(false);
 
-            var reader = XmlReader.Create(stream, new XmlReaderSettings
-            {
-                ValidationType = ValidationType.None,
-                DtdProcessing = DtdProcessing.Ignore,
-                CloseInput = true,
-                IgnoreComments = true,
-                IgnoreProcessingInstructions = true,
-            });
-
-            var serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceXmlResponseModel));
-
-            var result = (CatalogueOfLifeApiServiceXmlResponseModel)serializer.Deserialize(reader);
+            var result = this.deserializer.Deserialize(stream);
 
             return result;
         }

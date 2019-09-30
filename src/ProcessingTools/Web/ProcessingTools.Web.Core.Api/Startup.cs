@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Core.Api
 {
     using System;
+    using System.Net.Http;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using AutoMapper;
@@ -17,9 +18,12 @@ namespace ProcessingTools.Web.Core.Api
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Serialization;
     using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Images;
     using ProcessingTools.Services.Bio.Taxonomy;
+    using ProcessingTools.Services.Serialization;
+    using ProcessingTools.Web.Core.Api.Handlers;
     using ProcessingTools.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Web.Services.Images;
 
@@ -81,6 +85,14 @@ namespace ProcessingTools.Web.Core.Api
             services.AddScoped<ICatalogueOfLifeTaxonClassificationResolver, CatalogueOfLifeTaxonClassificationResolver>();
             services.AddScoped<ICatalogueOfLifeWebserviceClient, CatalogueOfLifeWebserviceClient>();
 
+            services.AddScoped(typeof(IXmlSerializer<>), typeof(XmlSerializer<>));
+            services.AddScoped(typeof(IXmlDeserializer<>), typeof(XmlDeserializer<>));
+            services.AddScoped(typeof(IXmlDeserializer), typeof(XmlDeserializer));
+            services.AddScoped(typeof(IJsonDeserializer<>), typeof(NewtonsoftJsonDeserializer<>));
+            services.AddScoped(typeof(IJsonDeserializer), typeof(NewtonsoftJsonDeserializer));
+
+            services.AddTransient<LoggingHandler>();
+
             services.AddHttpClient<CatalogueOfLifeWebserviceClient>(nameof(CatalogueOfLifeWebserviceClient))
                 .ConfigureHttpClient(c =>
                 {
@@ -91,7 +103,15 @@ namespace ProcessingTools.Web.Core.Api
                     c.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
                     c.DefaultRequestHeaders.Add("Accept", "application/json");
                 })
-                .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+                .SetHandlerLifetime(TimeSpan.FromMinutes(5))
+                .AddHttpMessageHandler<LoggingHandler>()
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                {
+                    AllowAutoRedirect = false,
+                    UseDefaultCredentials = true,
+                    UseCookies = false,
+                    UseProxy = false,
+                });
 
             // Configure AutoMapper.
             MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
