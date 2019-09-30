@@ -18,7 +18,7 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
         public void GbifTaxonClassificationResolver_DefaultConstructor_ShouldWork()
         {
             var httpRequester = new HttpRequester();
-            var requester = new GbifApiV09DataRequester(httpRequester);
+            var requester = new GbifApiV09Client(httpRequester);
             var service = new GbifTaxonClassificationResolver(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
@@ -32,7 +32,7 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Bio.Taxonomy
             const TaxonRankType Rank = TaxonRankType.Order;
 
             var httpRequester = new HttpRequester();
-            var requester = new GbifApiV09DataRequester(httpRequester);
+            var requester = new GbifApiV09Client(httpRequester);
             var service = new GbifTaxonClassificationResolver(requester);
             var response = service.ResolveAsync(new[] { CanonicalName }).Result;
 

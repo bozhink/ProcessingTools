@@ -29,13 +29,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants />
     <OutputPath></OutputPath>
-    <DocumentationFile>bin\docs\ProcessingTools.Clients.Integration.Tests.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants />
-    <DocumentationFile>bin\docs\ProcessingTools.Clients.Integration.Tests.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
     <OutputPath></OutputPath>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -92,6 +93,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
   </ItemGroup>
 
 </Project>

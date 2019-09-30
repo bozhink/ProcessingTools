@@ -9,7 +9,6 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Xml;
-    using System.Xml.Serialization;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Serialization;
@@ -40,8 +39,6 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
         /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
         /// <returns>XmlDocument of the CoL API response.</returns>
         // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;response=full
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
         public async Task<XmlDocument> RequestXmlFromCatalogueOfLife(string scientificName)
         {
             IDictionary<string, string> queryParameters = new Dictionary<string, string>
@@ -54,7 +51,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
 
             string relativeUri = $"col/webservice?{queryString}";
 
-            var client = this.httpClientFactory.CreateClient();
+            var client = this.httpClientFactory.CreateClient(nameof(CatalogueOfLifeWebserviceClient));
 
             string response = await client.GetStringAsync(relativeUri).ConfigureAwait(false);
 
@@ -63,8 +60,6 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
 
         /// <inheritdoc/>
         // Example: http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;esponse=full
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
         public async Task<CatalogueOfLifeApiServiceXmlResponseModel> GetDataPerNameAsync(string name)
         {
             IDictionary<string, string> queryParameters = new Dictionary<string, string>
@@ -78,8 +73,6 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
             string relativeUri = $"col/webservice?{queryString}";
 
             var client = this.httpClientFactory.CreateClient(nameof(CatalogueOfLifeWebserviceClient));
-
-            ////string resp = await client.GetStringAsync(relativeUri).ConfigureAwait(false);
 
             var stream = await client.GetStreamAsync(relativeUri).ConfigureAwait(false);
 

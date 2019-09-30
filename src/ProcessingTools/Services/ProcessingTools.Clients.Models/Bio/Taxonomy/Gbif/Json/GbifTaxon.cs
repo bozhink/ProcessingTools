@@ -1,135 +1,134 @@
-﻿// <copyright file="Alternative.cs" company="ProcessingTools">
+﻿// <copyright file="GbifTaxon.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json
 {
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Alternative.
     /// </summary>
-    [DataContract]
-    public class Alternative : IGbifTaxon
+    public class GbifTaxon : IGbifTaxon
     {
         /// <summary>
         /// Gets or sets usage key.
         /// </summary>
-        [DataMember(Name = "usageKey")]
+        [JsonProperty("usageKey")]
         public int UsageKey { get; set; }
 
         /// <summary>
         /// Gets or sets scientific name.
         /// </summary>
-        [DataMember(Name = "scientificName")]
+        [JsonProperty("scientificName")]
         public string ScientificName { get; set; }
 
         /// <summary>
         /// Gets or sets canonical name.
         /// </summary>
-        [DataMember(Name = "canonicalName")]
+        [JsonProperty("canonicalName")]
         public string CanonicalName { get; set; }
 
         /// <summary>
         /// Gets or sets rank.
         /// </summary>
-        [DataMember(Name = "rank")]
+        [JsonProperty("rank")]
         public string Rank { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether alternative is synonym.
         /// </summary>
-        [DataMember(Name = "synonym")]
+        [JsonProperty("synonym")]
         public bool Synonym { get; set; }
 
         /// <summary>
         /// Gets or sets confidence.
         /// </summary>
-        [DataMember(Name = "confidence")]
+        [JsonProperty("confidence")]
         public int Confidence { get; set; }
 
         /// <summary>
         /// Gets or sets note.
         /// </summary>
-        [DataMember(Name = "note")]
+        [JsonProperty("note")]
         public string Note { get; set; }
 
         /// <summary>
         /// Gets or sets match type.
         /// </summary>
-        [DataMember(Name = "matchType")]
+        [JsonProperty("matchType")]
         public string MatchType { get; set; }
 
         /// <summary>
         /// Gets or sets kingdom.
         /// </summary>
-        [DataMember(Name = "kingdom")]
+        [JsonProperty("kingdom")]
         public string Kingdom { get; set; }
 
         /// <summary>
         /// Gets or sets phylum.
         /// </summary>
-        [DataMember(Name = "phylum")]
+        [JsonProperty("phylum")]
         public string Phylum { get; set; }
 
         /// <summary>
         /// Gets or sets class.
         /// </summary>
-        [DataMember(Name = "class")]
+        [JsonProperty("class")]
         public string Class { get; set; }
 
         /// <summary>
         /// Gets or sets order.
         /// </summary>
-        [DataMember(Name = "order")]
+        [JsonProperty("order")]
         public string Order { get; set; }
 
         /// <summary>
         /// Gets or sets family.
         /// </summary>
-        [DataMember(Name = "family")]
+        [JsonProperty("family")]
         public string Family { get; set; }
 
         /// <summary>
         /// Gets or sets genus.
         /// </summary>
-        [DataMember(Name = "genus")]
+        [JsonProperty("genus")]
         public string Genus { get; set; }
 
         /// <summary>
         /// Gets or sets kingdom key.
         /// </summary>
-        [DataMember(Name = "kingdomKey")]
+        [JsonProperty("kingdomKey")]
         public int KingdomKey { get; set; }
 
         /// <summary>
         /// Gets or sets phylum key.
         /// </summary>
-        [DataMember(Name = "phylumKey")]
+        [JsonProperty("phylumKey")]
         public int PhylumKey { get; set; }
 
         /// <summary>
         /// Gets or sets class key.
         /// </summary>
-        [DataMember(Name = "classKey")]
+        [JsonProperty("classKey")]
         public int ClassKey { get; set; }
 
         /// <summary>
         /// Gets or sets order key.
         /// </summary>
-        [DataMember(Name = "orderKey")]
+        [JsonProperty("orderKey")]
         public int OrderKey { get; set; }
 
         /// <summary>
         /// Gets or sets family key.
         /// </summary>
-        [DataMember(Name = "familyKey")]
+        [JsonProperty("familyKey")]
         public int FamilyKey { get; set; }
 
         /// <summary>
         /// Gets or sets genus key.
         /// </summary>
-        [DataMember(Name = "genusKey")]
+        [JsonProperty("genusKey")]
         public int GenusKey { get; set; }
     }
 }

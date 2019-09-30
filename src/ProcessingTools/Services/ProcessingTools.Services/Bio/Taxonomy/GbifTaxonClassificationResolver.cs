@@ -20,15 +20,15 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     public class GbifTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassificationSearchResult>, IGbifTaxonClassificationResolver
     {
-        private readonly IGbifApiV09DataRequester requester;
+        private readonly IGbifApiV09Client client;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GbifTaxonClassificationResolver"/> class.
         /// </summary>
-        /// <param name="requester">Data requester.</param>
-        public GbifTaxonClassificationResolver(IGbifApiV09DataRequester requester)
+        /// <param name="client">GBIF API v0.9 Client.</param>
+        public GbifTaxonClassificationResolver(IGbifApiV09Client client)
         {
-            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
+            this.client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
         /// <inheritdoc/>
@@ -36,7 +36,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         {
             var result = new HashSet<ITaxonClassificationSearchResult>();
 
-            var response = await this.requester.RequestDataAsync(name).ConfigureAwait(false);
+            var response = await this.client.GetDataPerNameAsync(name).ConfigureAwait(false);
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) || !string.IsNullOrWhiteSpace(response.ScientificName)) &&

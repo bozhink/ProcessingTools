@@ -16,6 +16,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json.Serialization;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
+    using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Serialization;
@@ -82,8 +83,12 @@ namespace ProcessingTools.Web.Core.Api
                 });
 
             services.AddScoped(typeof(ITaxonClassificationResolverApiService<>), typeof(TaxonClassificationResolverApiService<>));
+
             services.AddScoped<ICatalogueOfLifeTaxonClassificationResolver, CatalogueOfLifeTaxonClassificationResolver>();
             services.AddScoped<ICatalogueOfLifeWebserviceClient, CatalogueOfLifeWebserviceClient>();
+
+            services.AddScoped<IGbifTaxonClassificationResolver, GbifTaxonClassificationResolver>();
+            services.AddScoped<IGbifApiV09Client, GbifApiV09Client>();
 
             services.AddScoped(typeof(IXmlSerializer<>), typeof(XmlSerializer<>));
             services.AddScoped(typeof(IXmlDeserializer<>), typeof(XmlDeserializer<>));
@@ -97,6 +102,26 @@ namespace ProcessingTools.Web.Core.Api
                 .ConfigureHttpClient(c =>
                 {
                     string baseAddress = this.Configuration.GetValue<string>(ConfigurationConstants.ExternalServicesCatalogueOfLifeWebserviceBaseAddress);
+
+                    c.BaseAddress = new Uri(baseAddress);
+                    c.DefaultRequestHeaders.Add("User-Agent", "PT");
+                    c.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
+                    c.DefaultRequestHeaders.Add("Accept", "application/json");
+                })
+                .SetHandlerLifetime(TimeSpan.FromMinutes(5))
+                .AddHttpMessageHandler<LoggingHandler>()
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                {
+                    AllowAutoRedirect = false,
+                    UseDefaultCredentials = true,
+                    UseCookies = false,
+                    UseProxy = false,
+                });
+
+            services.AddHttpClient<GbifApiV09Client>(nameof(GbifApiV09Client))
+                .ConfigureHttpClient(c =>
+                {
+                    string baseAddress = this.Configuration.GetValue<string>(ConfigurationConstants.ExternalServicesGbifApi09BaseAddress);
 
                     c.BaseAddress = new Uri(baseAddress);
                     c.DefaultRequestHeaders.Add("User-Agent", "PT");

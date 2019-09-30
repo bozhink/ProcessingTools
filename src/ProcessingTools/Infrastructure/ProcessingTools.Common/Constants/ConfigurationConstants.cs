@@ -253,5 +253,10 @@ namespace ProcessingTools.Common.Constants
         /// Catalogue of Life webservice base address.
         /// </summary>
         public const string ExternalServicesCatalogueOfLifeWebserviceBaseAddress = "ExternalServices:CatalogueOfLife:WebserviceBaseAddress";
+
+        /// <summary>
+        /// GBIF API v0.9 base address.
+        /// </summary>
+        public const string ExternalServicesGbifApi09BaseAddress = "ExternalServices:GBIF:Api09BaseAddress";
     }
 }

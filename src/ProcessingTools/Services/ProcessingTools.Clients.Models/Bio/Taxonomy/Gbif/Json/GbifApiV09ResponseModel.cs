@@ -4,19 +4,17 @@
 
 namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json
 {
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// GBIF API v0.9 response model.
     /// </summary>
-    [DataContract]
-    public class GbifApiV09ResponseModel : Alternative
+    public class GbifApiV09ResponseModel : GbifTaxon
     {
         /// <summary>
         /// Gets or sets alternatives.
         /// </summary>
-        [DataMember(Name = "alternatives")]
-        public IEnumerable<Alternative> Alternatives { get; set; }
+        [JsonProperty("alternatives")]
+        public GbifTaxon[] Alternatives { get; set; }
     }
 }
