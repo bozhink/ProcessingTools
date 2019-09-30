@@ -5,7 +5,6 @@
 namespace ProcessingTools.Contracts.Services.Serialization
 {
     using System.IO;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Deserializer.
@@ -13,11 +12,19 @@ namespace ProcessingTools.Contracts.Services.Serialization
     public interface IDeserializer
     {
         /// <summary>
-        /// Asynchronously deserialize stream.
+        /// Deserialize string source.
         /// </summary>
         /// <typeparam name="T">Type of output object.</typeparam>
-        /// <param name="stream">Stream to be read.</param>
-        /// <returns>Task of output type.</returns>
-        Task<T> DeserializeAsync<T>(Stream stream);
+        /// <param name="source">String source to be read.</param>
+        /// <returns>Deserialized object.</returns>
+        T Deserialize<T>(string source);
+
+        /// <summary>
+        /// Deserialize stream source.
+        /// </summary>
+        /// <typeparam name="T">Type of output object.</typeparam>
+        /// <param name="source">Stream source to be read.</param>
+        /// <returns>Deserialized object.</returns>
+        T Deserialize<T>(Stream source);
     }
 }

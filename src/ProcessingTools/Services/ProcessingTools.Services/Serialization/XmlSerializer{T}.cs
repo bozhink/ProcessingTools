@@ -6,9 +6,9 @@ namespace ProcessingTools.Services.Serialization
 {
     using System;
     using System.IO;
-    using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Serialization;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Services.Serialization;
 
     /// <summary>
@@ -36,17 +36,36 @@ namespace ProcessingTools.Services.Serialization
         }
 
         /// <inheritdoc/>
-        public Task<XmlNode> SerializeAsync(T @object)
+        public XmlNode Serialize(T source)
         {
-            return Task.Run(() =>
+            if (source is null)
             {
-                if (@object == null)
+                return null;
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                if (this.xmlns is null)
                 {
-                    return null;
+                    this.serializer.Serialize(stream, source);
+                }
+                else
+                {
+                    this.serializer.Serialize(stream, source, this.xmlns);
                 }
 
-                return this.Serialize(@object);
-            });
+                stream.Flush();
+                stream.Position = 0;
+
+                using (var reader = new StreamReader(stream, Defaults.Encoding, true, 4096, true))
+                {
+                    this.bufferXml.LoadXml(reader.ReadToEnd());
+                }
+
+                stream.Close();
+            }
+
+            return this.bufferXml.DocumentElement.CloneNode(true);
         }
 
         /// <inheritdoc/>
@@ -63,31 +82,6 @@ namespace ProcessingTools.Services.Serialization
             {
                 this.xmlns.Add(prefix, ns[prefix]);
             }
-        }
-
-        private XmlNode Serialize(T @object)
-        {
-            using (var stream = new MemoryStream())
-            {
-                if (this.xmlns == null)
-                {
-                    this.serializer.Serialize(stream, @object);
-                }
-                else
-                {
-                    this.serializer.Serialize(stream, @object, this.xmlns);
-                }
-
-                stream.Flush();
-                stream.Position = 0;
-
-                var reader = new StreamReader(stream);
-                this.bufferXml.LoadXml(reader.ReadToEnd());
-
-                stream.Close();
-            }
-
-            return this.bufferXml.DocumentElement.CloneNode(true);
         }
     }
 }

@@ -4,7 +4,6 @@
 
 namespace ProcessingTools.Contracts.Services.Serialization
 {
-    using System.Threading.Tasks;
     using System.Xml;
 
     /// <summary>
@@ -16,9 +15,9 @@ namespace ProcessingTools.Contracts.Services.Serialization
         /// <summary>
         /// Serialize object to <see cref="XmlNode"/>.
         /// </summary>
-        /// <param name="object">Object to be serialized.</param>
-        /// <returns>Task of <see cref="XmlNode"/> result.</returns>
-        Task<XmlNode> SerializeAsync(T @object);
+        /// <param name="source">Object to be serialized.</param>
+        /// <returns>Serialized <see cref="XmlNode"/>.</returns>
+        XmlNode Serialize(T source);
 
         /// <summary>
         /// Sets <see cref="XmlNamespaceManager"/> for output result.

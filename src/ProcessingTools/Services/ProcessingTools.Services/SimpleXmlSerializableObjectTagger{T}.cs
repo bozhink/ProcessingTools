@@ -71,7 +71,7 @@ namespace ProcessingTools.Services
             var nodeList = context.SelectNodes(xpath, namespaceManager).Cast<XmlNode>().ToList();
 
             var dataList = items.ToList();
-            var data = dataList.Select(x => this.serializer.SerializeAsync(x).Result)
+            var data = dataList.Select(this.serializer.Serialize)
                 .Cast<XmlElement>()
                 .OrderByDescending(i => i.InnerText.Length)
                 .ToArray();

@@ -6,28 +6,42 @@ namespace ProcessingTools.Services.Serialization
 {
     using System.IO;
     using System.Runtime.Serialization.Json;
-    using System.Threading.Tasks;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Services.Serialization;
 
     /// <summary>
     /// Data contract JSON deserializer.
     /// </summary>
-    public class DataContractJsonDeserializer : IDataContractJsonDeserializer
+    public class DataContractJsonDeserializer : IJsonDeserializer
     {
         /// <inheritdoc/>
-        public Task<T> DeserializeAsync<T>(Stream stream)
+        public T Deserialize<T>(string source)
         {
-            return Task.Run(() =>
+            if (string.IsNullOrEmpty(source))
             {
-                if (stream == null || !stream.CanRead)
-                {
-                    return default(T);
-                }
+                return default;
+            }
 
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                var result = (T)serializer.ReadObject(stream);
-                return result;
-            });
+            var bytes = Defaults.Encoding.GetBytes(source);
+            using (var stream = new MemoryStream(bytes))
+            {
+                return this.Deserialize<T>(stream);
+            }
+        }
+
+        /// <inheritdoc/>
+        public T Deserialize<T>(Stream source)
+        {
+            if (source is null || !source.CanRead)
+            {
+                return default;
+            }
+
+            var serializer = new DataContractJsonSerializer(typeof(T));
+
+            var result = serializer.ReadObject(source);
+
+            return (T)result;
         }
     }
 }

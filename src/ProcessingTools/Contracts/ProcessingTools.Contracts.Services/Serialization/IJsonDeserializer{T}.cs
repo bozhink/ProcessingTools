@@ -1,4 +1,4 @@
-﻿// <copyright file="IDataContractJsonDeserializer{T}.cs" company="ProcessingTools">
+﻿// <copyright file="IJsonDeserializer{T}.cs" company="ProcessingTools">
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,7 +8,7 @@ namespace ProcessingTools.Contracts.Services.Serialization
     /// Generic DataContract JSON deserializer.
     /// </summary>
     /// <typeparam name="T">Type of output result.</typeparam>
-    public interface IDataContractJsonDeserializer<T> : IDeserializer<T>
+    public interface IJsonDeserializer<out T> : IDeserializer<T>
     {
     }
 }

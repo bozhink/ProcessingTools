@@ -41,9 +41,13 @@ namespace ProcessingTools.Services.Meta
 
         private async Task<IJournalMeta> GetJournalMetaInternalAsync(string journalJsonFileName)
         {
+            await Task.CompletedTask.ConfigureAwait(false);
+
             using (var stream = new FileStream(journalJsonFileName, FileMode.Open))
             {
-                var journalJsonObject = await this.deserializer.DeserializeAsync<JournalMetaDataContract>(stream).ConfigureAwait(false);
+                var journalJsonObject = this.deserializer.Deserialize<JournalMetaDataContract>(stream);
+
+                stream.Close();
 
                 return new JournalMeta
                 {

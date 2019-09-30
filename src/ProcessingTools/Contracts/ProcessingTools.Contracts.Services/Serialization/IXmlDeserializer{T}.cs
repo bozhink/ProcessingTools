@@ -8,7 +8,7 @@ namespace ProcessingTools.Contracts.Services.Serialization
     /// Generic XML deserializer.
     /// </summary>
     /// <typeparam name="T">Type of output result.</typeparam>
-    public interface IXmlDeserializer<T> : IDeserializer<T>
+    public interface IXmlDeserializer<out T> : IDeserializer<T>
     {
     }
 }
