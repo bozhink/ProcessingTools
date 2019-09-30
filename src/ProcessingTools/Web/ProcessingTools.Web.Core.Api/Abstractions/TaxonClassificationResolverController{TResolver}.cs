@@ -38,8 +38,8 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
         /// </summary>
         /// <param name="id">Taxon name to be resolved.</param>
         /// <returns>List of found classification data.</returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string id)
+        [HttpGet("classification/{id}")]
+        public async Task<IActionResult> GetById(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -50,7 +50,69 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
             {
                 var result = await this.service.ResolveAsync(new[] { id }).ConfigureAwait(false);
 
-                if (result == null)
+                if (result is null)
+                {
+                    return this.NotFound();
+                }
+
+                return this.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, string.Empty);
+                return this.StatusCode((int)HttpStatusCode.InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Get classification for specified taxon name.
+        /// </summary>
+        /// <param name="name">Taxon name to be resolved.</param>
+        /// <returns>List of found classification data.</returns>
+        [HttpGet("classification")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return this.BadRequest();
+            }
+
+            try
+            {
+                var result = await this.service.ResolveAsync(new[] { name }).ConfigureAwait(false);
+
+                if (result is null)
+                {
+                    return this.NotFound();
+                }
+
+                return this.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, string.Empty);
+                return this.StatusCode((int)HttpStatusCode.InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Get classification for specified taxon names.
+        /// </summary>
+        /// <param name="names">Taxon names to be resolved.</param>
+        /// <returns>List of found classification data.</returns>
+        [HttpPost("classification")]
+        public async Task<IActionResult> GetByNames([FromBody] string[] names)
+        {
+            if (names is null || names.Length < 1)
+            {
+                return this.BadRequest();
+            }
+
+            try
+            {
+                var result = await this.service.ResolveAsync(names).ConfigureAwait(false);
+
+                if (result is null)
                 {
                     return this.NotFound();
                 }
