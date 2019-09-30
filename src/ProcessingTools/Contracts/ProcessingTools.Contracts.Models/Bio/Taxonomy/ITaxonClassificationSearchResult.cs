@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Models.Bio.Taxonomy
     /// <summary>
     /// Taxon classification search result.
     /// </summary>
-    public interface ITaxonClassificationSearchResult : ITaxonClassification, ISearchResult
+    public interface ITaxonClassificationSearchResult : ITaxonClassification, ITaxonRankSearchResult
     {
     }
 }
