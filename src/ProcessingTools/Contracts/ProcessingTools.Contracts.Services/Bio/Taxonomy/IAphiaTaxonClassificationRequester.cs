@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
@@ -15,8 +16,8 @@ namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
         /// <summary>
         /// Resolves classification of specified scientific name.
         /// </summary>
-        /// <param name="scientificName">Scientific name.</param>
+        /// <param name="name">Scientific name.</param>
         /// <returns>Taxon classification model.</returns>
-        Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName);
+        Task<IList<ITaxonClassification>> ResolveScientificNameAsync(string name);
     }
 }

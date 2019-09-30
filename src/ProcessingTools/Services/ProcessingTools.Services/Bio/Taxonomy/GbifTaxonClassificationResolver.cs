@@ -18,7 +18,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// <summary>
     /// Taxon rank resolver with GBIF.
     /// </summary>
-    public class GbifTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, IGbifTaxonClassificationResolver
+    public class GbifTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassificationSearchResult>, IGbifTaxonClassificationResolver
     {
         private readonly IGbifApiV09DataRequester requester;
 
@@ -32,22 +32,22 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
+        protected override async Task<IList<ITaxonClassificationSearchResult>> ResolveNameAsync(string name)
         {
-            var result = new HashSet<ITaxonClassification>();
+            var result = new HashSet<ITaxonClassificationSearchResult>();
 
-            var response = await this.requester.RequestDataAsync(scientificName).ConfigureAwait(false);
+            var response = await this.requester.RequestDataAsync(name).ConfigureAwait(false);
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) || !string.IsNullOrWhiteSpace(response.ScientificName)) &&
-                (response.CanonicalName.Equals(scientificName) || response.ScientificName.Contains(scientificName)))
+                (response.CanonicalName.Equals(name, StringComparison.InvariantCultureIgnoreCase) || response.ScientificName.Contains(name)))
             {
                 result.Add(this.MapGbifTaxonToTaxonClassification(response));
 
                 if (response.Alternatives != null)
                 {
                     response.Alternatives
-                        .Where(a => a.CanonicalName.Equals(scientificName) || a.ScientificName.Contains(scientificName))
+                        .Where(a => a.CanonicalName.Equals(name, StringComparison.InvariantCultureIgnoreCase) || a.ScientificName.Contains(name))
                         .Select(this.MapGbifTaxonToTaxonClassification)
                         .ToList()
                         .ForEach(a => result.Add(a));
@@ -57,9 +57,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return result.ToArray();
         }
 
-        private ITaxonClassification MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)
+        private ITaxonClassificationSearchResult MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)
         {
-            var result = new TaxonClassification
+            var result = new TaxonClassificationSearchResult
             {
                 ScientificName = taxon.ScientificName,
                 CanonicalName = taxon.CanonicalName,

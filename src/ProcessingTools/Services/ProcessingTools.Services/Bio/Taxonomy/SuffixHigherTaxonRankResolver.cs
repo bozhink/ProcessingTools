@@ -45,23 +45,23 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
+        public Task<IList<ITaxonRankSearchResult>> ResolveAsync(IEnumerable<string> names)
         {
-            return Task.Run<IList<ITaxonRank>>(() =>
+            return Task.Run<IList<ITaxonRankSearchResult>>(() =>
             {
-                var result = new HashSet<ITaxonRank>();
+                var result = new HashSet<ITaxonRankSearchResult>();
 
-                foreach (var scientificName in scientificNames)
+                foreach (var name in names)
                 {
                     var ranks = this.rankPerSuffix.Keys
-                        .Where(suffix => Regex.IsMatch(scientificName, $"\\A[A-Z](?:(?i)[a-z]*{suffix})\\Z"))
+                        .Where(suffix => Regex.IsMatch(name, $"\\A[A-Z](?:(?i)[a-z]*{suffix})\\Z"))
                         .Select(k => this.rankPerSuffix[k]);
 
                     foreach (var rank in ranks)
                     {
-                        result.Add(new TaxonRank
+                        result.Add(new TaxonRankSearchResult
                         {
-                            ScientificName = scientificName,
+                            ScientificName = name,
                             Rank = rank,
                         });
                     }

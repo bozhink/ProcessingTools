@@ -9,6 +9,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using ProcessingTools.Extensions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
@@ -32,37 +33,30 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
+        public async Task<IList<ITaxonRankSearchResult>> ResolveAsync(IEnumerable<string> names)
         {
-            var result = new ConcurrentQueue<ITaxonRank>();
+            if (names is null || !names.Any())
+            {
+                return Array.Empty<ITaxonRankSearchResult>();
+            }
 
-            await this.ResolveAsync(scientificNames, result).ConfigureAwait(false);
+            var result = new ConcurrentQueue<ITaxonRankSearchResult>();
+
+            await this.ResolveAsync(names, result).ConfigureAwait(false);
 
             return result.ToArray();
         }
 
-        private async Task ResolveAsync(IEnumerable<string> scientificNames, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task ResolveAsync(IEnumerable<string> scientificNames, ConcurrentQueue<ITaxonRankSearchResult> outputCollection)
         {
-            if (scientificNames == null || !scientificNames.Any())
-            {
-                return;
-            }
-
-            Regex matchWhitespaces = new Regex(@"\s+", RegexOptions.Compiled);
-
-            var names = scientificNames
-                .Select(s => matchWhitespaces.Replace(s, string.Empty))
-                .Where(s => !string.IsNullOrWhiteSpace(s))
-                .Select(s => s.ToUpperInvariant())
-                .Distinct()
-                .ToList();
+            var names = scientificNames.CleanNamesToInvariant();
 
             var tasks = names.Select(name => this.FindRankForSingleTaxonAsync(name, outputCollection)).ToArray();
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
         }
 
-        private async Task FindRankForSingleTaxonAsync(string name, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task FindRankForSingleTaxonAsync(string name, ConcurrentQueue<ITaxonRankSearchResult> outputCollection)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -79,7 +73,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                     {
                         foreach (var rank in item.Ranks)
                         {
-                            outputCollection.Enqueue(new TaxonRank
+                            outputCollection.Enqueue(new TaxonRankSearchResult
                             {
                                 ScientificName = item.Name,
                                 Rank = rank,

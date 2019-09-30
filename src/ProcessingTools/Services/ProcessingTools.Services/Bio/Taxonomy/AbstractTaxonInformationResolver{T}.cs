@@ -9,6 +9,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
     /// <summary>
@@ -16,41 +17,49 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     /// <typeparam name="T">Type of result object.</typeparam>
     public abstract class AbstractTaxonInformationResolver<T> : ITaxonInformationResolver<T>
+        where T : ISearchResult
     {
         /// <inheritdoc/>
-        public async Task<IList<T>> ResolveAsync(IEnumerable<string> scientificNames)
+        public async Task<IList<T>> ResolveAsync(IEnumerable<string> names)
         {
-            var queue = new ConcurrentQueue<T>();
+            var resolvedData = new ConcurrentQueue<T>();
             var exceptions = new ConcurrentQueue<Exception>();
-            var tasks = scientificNames
-                .Select(scientificName => this.ResolveScientificName(scientificName, queue, exceptions))
-                .ToArray();
+
+            var tasks = names.Select(name => this.ResolveSingleName(name, resolvedData, exceptions)).ToArray();
 
             await Task.WhenAll(tasks).ConfigureAwait(true);
 
-            if (exceptions.Count > 0)
+            if (exceptions.Any())
             {
                 throw new AggregateException(exceptions.ToList());
             }
 
-            return queue.ToArray();
+            return resolvedData.ToArray();
         }
 
         /// <summary>
         /// Resolve scientific name.
         /// </summary>
-        /// <param name="scientificName">Scientific name.</param>
-        /// <returns>Resolved models.</returns>
-        protected abstract Task<T[]> ResolveScientificNameAsync(string scientificName);
+        /// <param name="name">Taxon name.</param>
+        /// <returns>Resolved information.</returns>
+        protected abstract Task<IList<T>> ResolveNameAsync(string name);
 
-        private async Task ResolveScientificName(string scientificName, ConcurrentQueue<T> queue, ConcurrentQueue<Exception> exceptions)
+        private async Task ResolveSingleName(string name, ConcurrentQueue<T> resolvedData, ConcurrentQueue<Exception> exceptions)
         {
+            if (resolvedData is null || exceptions is null || string.IsNullOrWhiteSpace(name))
+            {
+                return;
+            }
+
             try
             {
-                var data = await this.ResolveScientificNameAsync(scientificName).ConfigureAwait(false);
-                foreach (var item in data)
+                var searchResults = await this.ResolveNameAsync(name).ConfigureAwait(false);
+
+                foreach (var searchResult in searchResults)
                 {
-                    queue.Enqueue(item);
+                    searchResult.SearchKey = name;
+
+                    resolvedData.Enqueue(searchResult);
                 }
             }
             catch (Exception e)

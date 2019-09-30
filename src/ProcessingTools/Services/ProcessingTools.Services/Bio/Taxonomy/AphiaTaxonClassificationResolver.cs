@@ -5,32 +5,43 @@
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using AutoMapper;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon classification resolver with Aphia.
     /// </summary>
-    public class AphiaTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, IAphiaTaxonClassificationResolver
+    public class AphiaTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassificationSearchResult>, IAphiaTaxonClassificationResolver
     {
         private readonly IAphiaTaxonClassificationRequester requester;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AphiaTaxonClassificationResolver"/> class.
         /// </summary>
         /// <param name="requester">Data requester.</param>
-        public AphiaTaxonClassificationResolver(IAphiaTaxonClassificationRequester requester)
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
+        public AphiaTaxonClassificationResolver(IAphiaTaxonClassificationRequester requester, IMapper mapper)
         {
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         /// <inheritdoc/>
-        protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
+        protected override async Task<IList<ITaxonClassificationSearchResult>> ResolveNameAsync(string name)
         {
-            var result = await this.requester.ResolveScientificNameAsync(scientificName).ConfigureAwait(false);
+            var response = await this.requester.ResolveScientificNameAsync(name).ConfigureAwait(false);
 
-            return result;
+            if (response is null || response.Count < 1)
+            {
+                return Array.Empty<ITaxonClassificationSearchResult>();
+            }
+
+            return response.Select(this.mapper.Map<ITaxonClassification, ITaxonClassificationSearchResult>).ToArray();
         }
     }
 }

@@ -43,14 +43,14 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
                 return Array.Empty<TaxonClassificationResponseModel>();
             }
 
-            IList<ITaxonClassification> classifications = await this.resolver.ResolveAsync(taxonNames).ConfigureAwait(false);
+            var classifications = await this.resolver.ResolveAsync(taxonNames).ConfigureAwait(false);
 
             if (classifications is null || !classifications.Any())
             {
                 return Array.Empty<TaxonClassificationResponseModel>();
             }
 
-            return classifications.Select(this.mapper.Map<ITaxonClassification, TaxonClassificationResponseModel>).ToArray();
+            return classifications.Select(this.mapper.Map<ITaxonClassificationSearchResult, TaxonClassificationResponseModel>).ToArray();
         }
     }
 }

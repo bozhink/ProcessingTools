@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// <summary>
     /// Taxon classification resolver with Catalogue of Life.
     /// </summary>
-    public class CatalogueOfLifeTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxonClassificationResolver
+    public class CatalogueOfLifeTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassificationSearchResult>, ICatalogueOfLifeTaxonClassificationResolver
     {
         private readonly ICatalogueOfLifeWebserviceClient client;
 
@@ -32,24 +33,24 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
+        protected override async Task<IList<ITaxonClassificationSearchResult>> ResolveNameAsync(string name)
         {
-            var response = await this.client.GetDataPerNameAsync(scientificName).ConfigureAwait(false);
+            var response = await this.client.GetDataPerNameAsync(name).ConfigureAwait(false);
 
             if (response is null || response.Results is null || response.Results.Length < 1)
             {
-                return Array.Empty<ITaxonClassification>();
+                return Array.Empty<ITaxonClassificationSearchResult>();
             }
 
             return response.Results
-                .Where(r => r != null && r.Name == scientificName)
+                .Where(r => r != null && r.Name == name)
                 .Select(this.MapResultToClassification)
                 .ToArray();
         }
 
-        private ITaxonClassification MapResultToClassification(CatalogueOfLifeApiServiceXmlResponseModel.Result result)
+        private ITaxonClassificationSearchResult MapResultToClassification(CatalogueOfLifeApiServiceXmlResponseModel.Result result)
         {
-            var taxonClassification = new TaxonClassification
+            var taxonClassification = new TaxonClassificationSearchResult
             {
                 ScientificName = result.Name,
                 Rank = result.Rank.MapTaxonRankStringToTaxonRankType(),

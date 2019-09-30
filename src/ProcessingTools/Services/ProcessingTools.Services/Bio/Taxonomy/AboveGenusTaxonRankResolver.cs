@@ -19,20 +19,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     public class AboveGenusTaxonRankResolver : IAboveGenusTaxonRankResolver
     {
         /// <inheritdoc/>
-        public Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
+        public async Task<IList<ITaxonRankSearchResult>> ResolveAsync(IEnumerable<string> names)
         {
-            if (scientificNames == null || !scientificNames.Any())
+            if (names is null || !names.Any())
             {
-                return Task.FromResult<IList<ITaxonRank>>(Array.Empty<ITaxonRank>());
+                return Array.Empty<ITaxonRankSearchResult>();
             }
 
-            return Task.Run<IList<ITaxonRank>>(() => scientificNames
-                .Select(scientificName => new TaxonRank
-                {
-                    ScientificName = scientificName,
-                    Rank = TaxonRankType.AboveGenus,
-                })
-                .ToArray<ITaxonRank>());
+            await Task.CompletedTask.ConfigureAwait(false);
+
+            return names.Select(name => new TaxonRankSearchResult { ScientificName = name, Rank = TaxonRankType.AboveGenus }).ToArray<ITaxonRankSearchResult>();
         }
     }
 }

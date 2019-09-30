@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
     /// <summary>
     /// Taxon rank resolver.
     /// </summary>
-    public interface ITaxonRankResolver : ITaxonInformationResolver<ITaxonRank>
+    public interface ITaxonRankResolver : ITaxonInformationResolver<ITaxonRankSearchResult>
     {
     }
 }

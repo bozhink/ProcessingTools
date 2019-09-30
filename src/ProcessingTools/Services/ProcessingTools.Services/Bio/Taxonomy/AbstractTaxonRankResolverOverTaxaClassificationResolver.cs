@@ -28,16 +28,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<IList<ITaxonRank>> ResolveAsync(IEnumerable<string> scientificNames)
+        public async Task<IList<ITaxonRankSearchResult>> ResolveAsync(IEnumerable<string> names)
         {
-            var classifications = await this.classificationResolver.ResolveAsync(scientificNames).ConfigureAwait(false);
+            var classifications = await this.classificationResolver.ResolveAsync(names).ConfigureAwait(false);
 
             if (classifications != null && classifications.Any())
             {
-                return classifications.ToArray<ITaxonRank>();
+                return classifications.ToArray<ITaxonRankSearchResult>();
             }
 
-            return Array.Empty<ITaxonRank>();
+            return Array.Empty<ITaxonRankSearchResult>();
         }
     }
 }

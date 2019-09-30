@@ -6,6 +6,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Clients.ConnectedServices.Bio.Aphia;
@@ -21,21 +22,21 @@ namespace ProcessingTools.Clients.Bio.Aphia
     public class AphiaTaxonClassificationRequester : IAphiaTaxonClassificationRequester
     {
         /// <inheritdoc/>
-        public async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
+        public async Task<IList<ITaxonClassification>> ResolveScientificNameAsync(string name)
         {
-            if (string.IsNullOrWhiteSpace(scientificName))
+            if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(scientificName));
+                return Array.Empty<ITaxonClassification>();
             }
 
-            var aphiaRecords = await this.GetAphiaRecordsAsync(scientificName);
+            var aphiaRecords = await this.GetAphiaRecordsAsync(name);
 
             var result = new HashSet<ITaxonClassification>();
 
             if (aphiaRecords != null && aphiaRecords.@return.Length > 0)
             {
                 var records = aphiaRecords.@return
-                    .Where(s => string.Compare(s.scientificname, scientificName, true) == 0)
+                    .Where(s => string.Compare(s.scientificname, name, true, CultureInfo.InvariantCulture) == 0)
                     .Select(this.MapAphiaRecordToTaxonClassification);
 
                 foreach (var record in records)
