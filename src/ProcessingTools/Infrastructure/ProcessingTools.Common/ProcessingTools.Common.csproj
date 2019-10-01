@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
@@ -13,15 +13,18 @@
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
     <PackageTags>common</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Common.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Common.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Common.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Common.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

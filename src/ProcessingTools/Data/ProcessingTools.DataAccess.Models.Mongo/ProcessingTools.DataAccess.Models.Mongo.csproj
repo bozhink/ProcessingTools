@@ -1,25 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
-    <Description>Data access models for MongoDB implementation</Description>
+    <Description>Data access models for MongoDB implementation.</Description>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Bozhin Karaivanov</Authors>
+    <PackageTags>data, MongoDB, models</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.DataAccess.Models.Mongo.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.DataAccess.Models.Mongo.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.DataAccess.Models.Mongo.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.DataAccess.Models.Mongo.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

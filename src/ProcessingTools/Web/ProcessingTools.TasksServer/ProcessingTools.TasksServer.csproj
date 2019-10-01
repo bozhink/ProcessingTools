@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
@@ -16,14 +16,18 @@
     <PackageTags>tasks, server</PackageTags>
     <Product>ProcessingTools.TasksServer</Product>
     <RootNamespace>ProcessingTools.TasksServer</RootNamespace>
+    <AssemblyName>ProcessingTools.TasksServer</AssemblyName>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.TasksServer.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.TasksServer.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.TasksServer.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.TasksServer.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

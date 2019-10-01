@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
@@ -12,11 +12,19 @@
     <Description>XML data models.</Description>
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>Bozhin Karaivanov</Authors>
+    <PackageTags>data, models, XML</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Models.Xml.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Data.Models.Xml.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\release\ProcessingTools.Data.Models.Xml.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

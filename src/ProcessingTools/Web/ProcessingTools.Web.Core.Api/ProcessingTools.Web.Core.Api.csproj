@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
@@ -13,14 +13,20 @@
     <DebugType>Full</DebugType>
     <LangVersion>Latest</LangVersion>
     <PackageTags>web, api</PackageTags>
+    <AssemblyName>ProcessingTools.Web.Core.Api</AssemblyName>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

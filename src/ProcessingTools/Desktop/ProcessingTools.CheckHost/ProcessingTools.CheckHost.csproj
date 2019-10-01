@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
@@ -13,14 +13,17 @@
     <Description>Check host invoker.</Description>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>
+    <PackageTags>app, check host</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.CheckHost.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.CheckHost.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.CheckHost.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.CheckHost.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

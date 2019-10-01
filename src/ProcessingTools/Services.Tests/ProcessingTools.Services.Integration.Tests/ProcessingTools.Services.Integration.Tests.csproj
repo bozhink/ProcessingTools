@@ -28,15 +28,15 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants />
-    <OutputPath></OutputPath>
-    <DocumentationFile>E:\Source\Repos\ProcessingTools\src\ProcessingTools\Services.Tests\ProcessingTools.Services.Integration.Tests\ProcessingTools.Services.Integration.Tests.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Services.Integration.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants />
-    <DocumentationFile>E:\Source\Repos\ProcessingTools\src\ProcessingTools\Services.Tests\ProcessingTools.Services.Integration.Tests\ProcessingTools.Services.Integration.Tests.xml</DocumentationFile>
-    <OutputPath></OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Services.Integration.Tests.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 

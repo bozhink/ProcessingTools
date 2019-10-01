@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
@@ -13,16 +13,20 @@
     <Description>ProcessingTools.PowerShell integration tests.</Description>
     <DebugType>Full</DebugType>
     <LangVersion>latest</LangVersion>
+    <Authors>Bozhin Karaivanov</Authors>
+    <PackageTags>tests, integration tests, PowerShell</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.PowerShell.Integration.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.PowerShell.Integration.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.PowerShell.Integration.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.PowerShell.Integration.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

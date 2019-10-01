@@ -2,24 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
-    <Description>Common interceptors</Description>
+    <Description>Common interceptors.</Description>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>configration, interceptor</PackageTags>
+    <PackageTags>configration, interceptors</PackageTags>
+    <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Configuration.Interceptors.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Configuration.Interceptors.xml</DocumentationFile>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Configuration.Interceptors.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Configuration.Interceptors.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

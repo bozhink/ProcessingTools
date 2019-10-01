@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
     <Description>Contracts for the data objects.</Description>
@@ -11,18 +11,21 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>contracts, data</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseFile></PackageLicenseFile>
+    <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Contracts.Data.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Contracts.Data.xml</DocumentationFile>
     <DefineConstants />
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Contracts.Data.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Contracts.Data.xml</DocumentationFile>
     <DefineConstants />
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

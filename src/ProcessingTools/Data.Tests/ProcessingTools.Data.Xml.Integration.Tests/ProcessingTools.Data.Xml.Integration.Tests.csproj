@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>
@@ -14,18 +14,21 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <LangVersion>latest</LangVersion>
+    <PackageTags>tests, integration tests, data, XML</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Xml.Integration.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Data.Xml.Integration.Tests.xml</DocumentationFile>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Xml.Integration.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Data.Xml.Integration.Tests.xml</DocumentationFile>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

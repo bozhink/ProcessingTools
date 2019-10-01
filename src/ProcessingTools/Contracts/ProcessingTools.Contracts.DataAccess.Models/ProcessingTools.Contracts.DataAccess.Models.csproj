@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
     <Description>Contracts for the data transfer objects.</Description>
@@ -11,17 +11,20 @@
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>contracts, data access, data transfer object</PackageTags>
+    <PackageTags>contracts, data, data access, data transfer object</PackageTags>
+    <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Contracts.DataAccess.Models.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Contracts.DataAccess.Models.xml</DocumentationFile>
     <DefineConstants />
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Contracts.DataAccess.Models.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Contracts.DataAccess.Models.xml</DocumentationFile>
     <DefineConstants />
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

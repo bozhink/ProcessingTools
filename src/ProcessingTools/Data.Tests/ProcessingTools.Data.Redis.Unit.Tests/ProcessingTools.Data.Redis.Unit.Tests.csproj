@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
@@ -13,16 +13,19 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <LangVersion>latest</LangVersion>
+    <PackageTags>tests, unit tests, data, Redis</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Redis.Unit.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Data.Redis.Unit.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Redis.Unit.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Data.Redis.Unit.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
