@@ -6,6 +6,7 @@ namespace ProcessingTools.Web.Core.Api
 {
     using System;
     using System.Net.Http;
+    using System.Text.Json;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using AutoMapper;
@@ -14,7 +15,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Newtonsoft.Json.Serialization;
+    using Microsoft.Extensions.Hosting;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
@@ -55,32 +56,40 @@ namespace ProcessingTools.Web.Core.Api
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services
-                .AddMvcCore()
-                .AddFormatterMappings()
-                .AddJsonFormatters()
-                .AddXmlDataContractSerializerFormatters()
-                .AddXmlSerializerFormatters()
-                .AddDataAnnotations()
-                .AddCors();
-
-            services
-                .AddMvc(o =>
-                {
-                    o.MaxModelValidationErrors = 50;
-                })
-                .AddJsonOptions(o => o.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
-                .AddXmlDataContractSerializerFormatters()
-                .AddXmlSerializerFormatters()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddCors(
-                options =>
+                .AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy", policy =>
                     {
                         policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
                     });
-                });
+                })
+                .AddControllers(options =>
+                {
+                    options.RespectBrowserAcceptHeader = true;
+                    options.MaxModelValidationErrors = 50;
+                })
+                .AddXmlDataContractSerializerFormatters()
+                .AddXmlSerializerFormatters()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.AllowTrailingCommas = true;
+                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                    options.JsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
+                    options.JsonSerializerOptions.WriteIndented = false;
+                })
+                .AddNewtonsoftJson(options =>
+                {
+                    options.AllowInputFormatterExceptionMessages = true;
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Include;
+                    options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.None;
+                    options.UseCamelCasing(false);
+                })
+                .AddFormatterMappings(options =>
+                {
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             services.AddScoped(typeof(ITaxonClassificationResolverApiService<>), typeof(TaxonClassificationResolverApiService<>));
 
@@ -163,7 +172,7 @@ namespace ProcessingTools.Web.Core.Api
         /// </summary>
         /// <param name="app">Application builder.</param>
         /// <param name="env">Hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -174,9 +183,17 @@ namespace ProcessingTools.Web.Core.Api
                 app.UseHsts();
             }
 
-            app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseMvc();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.UseCors("CorsPolicy");
         }
     }

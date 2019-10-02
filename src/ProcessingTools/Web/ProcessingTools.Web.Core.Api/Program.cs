@@ -6,9 +6,9 @@ namespace ProcessingTools.Web.Core.Api
 {
     using System;
     using System.IO;
-    using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
 
@@ -28,7 +28,10 @@ namespace ProcessingTools.Web.Core.Api
             try
             {
                 logger.Debug("init main");
-                BuildWebHost(args).Run();
+
+                var host = CreateHostBuilder(args).Build();
+
+                host.Run();
             }
             catch (Exception ex)
             {
@@ -42,28 +45,35 @@ namespace ProcessingTools.Web.Core.Api
             }
         }
 
-        private static IWebHost BuildWebHost(string[] args)
+        private static IHostBuilder CreateHostBuilder(string[] args)
         {
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+            IConfigurationBuilder configurationBuilder = CreateConfigurationBuilder(args);
+
+            IConfiguration configuration = configurationBuilder.Build();
+
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webHostBuilder =>
+                {
+                    webHostBuilder.UseConfiguration(configuration);
+                    webHostBuilder.UseEnvironment("Development");
+                    webHostBuilder.UseStartup<Startup>();
+                    webHostBuilder.ConfigureLogging(logging =>
+                    {
+                        logging.ClearProviders();
+                        logging.SetMinimumLevel(LogLevel.Trace);
+                    });
+                    webHostBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
+                });
+        }
+
+        private static IConfigurationBuilder CreateConfigurationBuilder(string[] args)
+        {
+            return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .AddCommandLine(args);
-
-            IConfiguration configuration = configurationBuilder.Build();
-
-            return WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(configuration)
-                .UseEnvironment("Development")
-                .UseStartup<Startup>()
-                .ConfigureLogging(logging =>
-                {
-                    logging.ClearProviders();
-                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-                })
-                .UseNLog() // NLog: setup NLog for Dependency injection
-                .Build();
         }
     }
 }
