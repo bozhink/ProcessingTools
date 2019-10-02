@@ -5,8 +5,8 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
-    using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
 
@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Documents
             try
             {
                 logger.Debug("Start application");
-                CreateWebHostBuilder(args).Build().Run();
+                CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
@@ -41,18 +41,20 @@ namespace ProcessingTools.Web.Documents
             }
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseEnvironment("Development")
-                .UseStartup<Startup>()
-                .ConfigureLogging(logging =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    logging.ClearProviders();
-                    logging.SetMinimumLevel(LogLevel.Trace);
-                    logging.AddConsole();
-                    logging.AddDebug();
-                })
-                .UseNLog() // NLog: setup NLog for Dependency injection
-                ;
+                    webBuilder.UseEnvironment("Development");
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureLogging(logging =>
+                    {
+                        logging.ClearProviders();
+                        logging.SetMinimumLevel(LogLevel.Trace);
+                        logging.AddConsole();
+                        logging.AddDebug();
+                    });
+                    webBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
+                });
     }
 }

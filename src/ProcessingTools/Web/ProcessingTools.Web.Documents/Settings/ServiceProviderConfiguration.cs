@@ -23,12 +23,12 @@ namespace ProcessingTools.Web.Documents.Settings
     public static class ServiceProviderConfiguration
     {
         /// <summary>
-        /// Build service provider.
+        /// Build DI container.
         /// </summary>
         /// <param name="services">Service collection to be configured.</param>
         /// <param name="configuration">Application configuration.</param>
         /// <returns>Configured service collection.</returns>
-        public static IServiceProvider BuildServiceProvider(this IServiceCollection services, IConfiguration configuration)
+        public static IContainer BuildContainer(this IServiceCollection services, IConfiguration configuration)
         {
             var builder = new ContainerBuilder();
 
@@ -67,9 +67,9 @@ namespace ProcessingTools.Web.Documents.Settings
                 Configuration = configuration,
             });
 
-            var container = builder.Build();
+            return builder.Build();
 
-            return container.Resolve<IServiceProvider>();
+            //return container.Resolve<IServiceProvider>();
         }
     }
 }

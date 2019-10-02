@@ -4,14 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>aspnet-ProcessingTools-EEA73E41-E818-42E8-B442-C1A58847B6E6</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
-    <TypeScriptBuildMode>true</TypeScriptBuildMode>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <!-- see https://github.com/aspnet/Razor/issues/2406 -->
-    <_RazorBuildServerPipeName>razor-issues-2406</_RazorBuildServerPipeName>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyName>ProcessingTools.Web.Documents</AssemblyName>
     <Version>0.1.1</Version>
     <Authors>Bozhin Karaivanov</Authors>
     <Company>ProcessingTools</Company>
@@ -22,14 +15,21 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>web, documents</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <TypeScriptBuildMode>true</TypeScriptBuildMode>
   </PropertyGroup>
 
   <!-- https://stackoverflow.com/questions/50778521/how-to-disable-precompiled-views-in-net-core-2-1-for-debugging -->
   <PropertyGroup>
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>true</RazorCompileOnPublish>
-    <AssemblyName>ProcessingTools.Web.Documents</AssemblyName>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- see https://github.com/aspnet/Razor/issues/2406 -->
+    <_RazorBuildServerPipeName>razor-issues-2406</_RazorBuildServerPipeName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -56,7 +56,14 @@
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Castle.Core" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
@@ -122,6 +129,9 @@
     </Content>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties _1eslint_1json__JsonSchema="http://json.schemastore.org/eslintrc" /></VisualStudio></ProjectExtensions>
-
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties _1eslint_1json__JsonSchema="http://json.schemastore.org/eslintrc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
