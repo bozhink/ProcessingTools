@@ -45,6 +45,11 @@
     <None Remove="data-files\col-coleoptera-example-response.xml" />
     <None Remove="data-files\col-default-result.xml" />
     <None Remove="data-files\col-reference.xml" />
+    <None Remove="data-files\extract-hcmr-sample.html" />
+    <None Remove="data-files\extract-hcmr-sample.xml" />
+    <None Remove="data-files\gnr-sample-1.xml" />
+    <None Remove="data-files\gnr-sample-2.xml" />
+    <None Remove="data-files\gnr-sample-3.xml" />
     <None Remove="stylecop.json" />
   </ItemGroup>
 
@@ -63,6 +68,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data-files\col-reference.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\extract-hcmr-sample.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\extract-hcmr-sample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\gnr-sample-1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\gnr-sample-2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data-files\gnr-sample-3.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -110,6 +130,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="data-files\gbif-v1-response.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="data-files\mendeley-10.1016--j.molcel.2009.09.013.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="data-files\mendeley-10.1371--journal.pone.0092567.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

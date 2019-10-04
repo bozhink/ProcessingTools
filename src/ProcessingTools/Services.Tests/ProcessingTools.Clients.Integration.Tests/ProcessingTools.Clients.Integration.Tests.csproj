@@ -40,11 +40,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data-files\materials-parser-request-xml-with-two-material-citations.xml" />
     <None Remove="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="data-files\materials-parser-request-xml-with-two-material-citations.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
