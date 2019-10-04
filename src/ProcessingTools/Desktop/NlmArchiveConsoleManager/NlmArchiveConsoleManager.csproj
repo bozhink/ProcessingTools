@@ -228,10 +228,6 @@
       <Project>{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}</Project>
       <Name>ProcessingTools.Configuration.Ninject</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
-      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
-      <Name>Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>

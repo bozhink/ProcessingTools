@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Entity\ProcessingTools.Data.Entity.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Entity\ProcessingTools.Data.Models.Entity.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj" />
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
+  </ItemGroup>
+
+</Project>
