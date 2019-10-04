@@ -1,7 +1,10 @@
-﻿namespace ProcessingTools.Xml
+﻿// <copyright file="AbstractGenericTransformCache.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Xml.XQuery
 {
     using System.Collections.Concurrent;
-    using ProcessingTools.Contracts.Services.Xml;
 
     /// <summary>
     /// Transform cache.

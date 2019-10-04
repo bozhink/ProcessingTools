@@ -1,11 +1,13 @@
-﻿namespace ProcessingTools.Xml
+﻿// <copyright file="XQueryTransformer.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Xml.XQuery
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Services.Xml;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// XQuery transformer.
@@ -53,7 +55,7 @@
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            var document = xml.ToXmlDocument();
+            var document = this.GetXmlDocument(xml);
             return this.TransformAsync(document.DocumentElement);
         }
 
@@ -137,7 +139,7 @@
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            var document = xml.ToXmlDocument();
+            var document = this.GetXmlDocument(xml);
             return this.TransformToStream(document.DocumentElement);
         }
 
@@ -146,6 +148,17 @@
             var transform = this.cache[this.xqueryFileName];
             var document = transform.Evaluate(node);
             return document;
+        }
+
+        private XmlDocument GetXmlDocument(string xml)
+        {
+            XmlDocument result = new XmlDocument
+            {
+                PreserveWhitespace = true,
+            };
+
+            result.LoadXml(xml);
+            return result;
         }
     }
 }

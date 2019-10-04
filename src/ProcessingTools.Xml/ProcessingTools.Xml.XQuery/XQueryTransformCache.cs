@@ -1,8 +1,11 @@
-﻿namespace ProcessingTools.Xml
+﻿// <copyright file="XQueryTransformCache.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Xml.XQuery
 {
     using System.Collections.Concurrent;
     using System.IO;
-    using ProcessingTools.Contracts.Services.Xml;
 
     /// <summary>
     /// XQuery transform cache.

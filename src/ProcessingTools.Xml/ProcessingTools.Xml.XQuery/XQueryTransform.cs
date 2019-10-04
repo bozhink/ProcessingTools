@@ -1,8 +1,11 @@
-﻿namespace ProcessingTools.Xml
+﻿// <copyright file="XQueryTransform.cs" company="ProcessingTools">
+// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Xml.XQuery
 {
     using System.IO;
     using System.Xml;
-    using ProcessingTools.Contracts.Services.Xml;
     using Saxon.Api;
 
     /// <summary>
