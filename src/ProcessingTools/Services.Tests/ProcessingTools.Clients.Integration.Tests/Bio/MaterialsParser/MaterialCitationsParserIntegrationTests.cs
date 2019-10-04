@@ -2,9 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
+namespace ProcessingTools.Clients.Integration.Tests.Bio.MaterialsParser
 {
-    using System.Configuration;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
@@ -51,13 +50,11 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 
             Assert.AreEqual(
                 requestXml.DocumentElement.LocalName,
-                responseXml.DocumentElement.LocalName,
-                "Local names of root elements should match.");
+                responseXml.DocumentElement.LocalName);
 
             Assert.AreEqual(
                 this.matchWhitespace.Replace(requestXml.DocumentElement.InnerText, " ").Trim(),
-                this.matchWhitespace.Replace(responseXml.DocumentElement.InnerText, " ").Trim(),
-                "ZeroTestContent should be unchanged.");
+                this.matchWhitespace.Replace(responseXml.DocumentElement.InnerText, " ").Trim());
         }
 
         /// <summary>
@@ -70,13 +67,14 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
         {
             var httpRequester = new HttpRequester();
             var parser = new MaterialCitationsParser(httpRequester, Encoding.UTF8);
+            string fileName = @"data-files/materials-parser-request-xml-with-two-material-citations.xml";
 
             var requestXml = new XmlDocument
             {
                 PreserveWhitespace = false,
             };
 
-            requestXml.Load(ConfigurationManager.AppSettings["RequestXmlWithTwoMaterialCitations"]);
+            requestXml.Load(fileName);
 
             string result = parser.ParseAsync(requestXml.OuterXml).Result;
 
@@ -89,13 +87,11 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 
             Assert.AreEqual(
                 requestXml.DocumentElement.LocalName,
-                responseXml.DocumentElement.LocalName,
-                "Local names of root elements should match.");
+                responseXml.DocumentElement.LocalName);
 
             Assert.AreEqual(
                 this.matchWhitespace.Replace(requestXml.DocumentElement.InnerText, " ").Trim(),
-                this.matchWhitespace.Replace(responseXml.DocumentElement.InnerText, " ").Trim(),
-                "Content should be unchanged.");
+                this.matchWhitespace.Replace(responseXml.DocumentElement.InnerText, " ").Trim());
         }
     }
 }

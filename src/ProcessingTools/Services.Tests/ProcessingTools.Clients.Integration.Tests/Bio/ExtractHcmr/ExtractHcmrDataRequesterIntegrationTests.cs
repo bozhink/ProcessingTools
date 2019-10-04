@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.ExtractHcmr
+namespace ProcessingTools.Clients.Integration.Tests.Bio.ExtractHcmr
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,20 +28,17 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.ExtractHcmr
             var requester = new ExtractHcmrDataRequester(new HttpRequester());
             var response = requester.RequestDataAsync(Content)?.Result;
 
-            Assert.IsNotNull(response, "Response should not be null.");
+            Assert.IsNotNull(response);
 
-            Assert.IsNotNull(response?.Items, "Response items should not be null");
+            Assert.IsNotNull(response?.Items);
 
-            Assert.IsTrue(response?.Items.Length > 0, "The number of response items should be greater than 0.");
+            Assert.IsTrue(response?.Items.Length > 0);
 
             var volcanoItem = response?.Items.FirstOrDefault(i => i.Name == "Volcano");
 
-            Assert.IsNotNull(volcanoItem, "Volcano item should not be null");
+            Assert.IsNotNull(volcanoItem);
 
-            Assert.AreEqual(
-                "ENVO:00000247",
-                volcanoItem?.Entities.FirstOrDefault().Identifier,
-                "Volcano identifier should match.");
+            Assert.AreEqual("ENVO:00000247", volcanoItem?.Entities.FirstOrDefault().Identifier);
 
             ////// This is valid only if entity type = -2 is used.
             ////var zetaproteobacteriaItem = response.Items.FirstOrDefault(i => i.Name == "Zetaproteobacteria");
@@ -55,12 +52,9 @@ namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.ExtractHcmr
 
             var sedimentsItem = response?.Items.FirstOrDefault(i => i.Name == "sediments");
 
-            Assert.IsNotNull(sedimentsItem, "Sediments item should not be null.");
+            Assert.IsNotNull(sedimentsItem);
 
-            Assert.AreEqual(
-                "ENVO:00002007",
-                sedimentsItem?.Entities.FirstOrDefault().Identifier,
-                "Sediments identifier should match.");
+            Assert.AreEqual("ENVO:00002007", sedimentsItem?.Entities.FirstOrDefault().Identifier);
         }
     }
 }

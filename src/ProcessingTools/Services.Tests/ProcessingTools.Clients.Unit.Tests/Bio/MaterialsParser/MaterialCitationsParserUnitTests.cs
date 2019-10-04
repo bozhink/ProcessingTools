@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Clients.Tests.Unit.Tests.Bio.MaterialsParser
+namespace ProcessingTools.Clients.Unit.Tests.Bio.MaterialsParser
 {
     using System;
     using System.Linq;
