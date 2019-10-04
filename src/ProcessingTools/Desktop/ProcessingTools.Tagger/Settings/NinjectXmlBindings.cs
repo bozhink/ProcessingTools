@@ -13,7 +13,6 @@
     using ProcessingTools.Contracts.Services.Special;
     using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Services.Xml;
-    using ProcessingTools.Xml;
 
     public class NinjectXmlBindings : NinjectModule
     {
@@ -110,11 +109,11 @@
                     ParameterNames.XslFileName,
                     AppSettings.GavinLaurensXslFileName);
 
-            this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
-                .Named(FactoryKeys.AbbreviationsTransformerName)
-                .WithConstructorArgument(
-                    ParameterNames.XQueyFileName,
-                    AppSettings.AbbreviationsXQueryFileName);
+            ////this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
+            ////    .Named(FactoryKeys.AbbreviationsTransformerName)
+            ////    .WithConstructorArgument(
+            ////        ParameterNames.XQueyFileName,
+            ////        AppSettings.AbbreviationsXQueryFileName);
 
             // Factories
             this.Bind<IXslTransformerFactory>()

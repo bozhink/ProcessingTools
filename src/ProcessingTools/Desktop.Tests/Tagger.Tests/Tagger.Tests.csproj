@@ -198,10 +198,6 @@
       <Project>{50171e07-3148-4f27-ae06-bf8ee2912322}</Project>
       <Name>ProcessingTools.Commands.Tagger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Desktop\Tagger\Tagger.csproj">
-      <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>
-      <Name>Tagger</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
