@@ -2,6 +2,8 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
+// See https://autofaccn.readthedocs.io/en/latest/integration/aspnetcore.html
+// See https://stackoverflow.com/questions/56385277/configure-autofac-in-asp-net-core-3-0-preview-5-or-higher
 namespace ProcessingTools.Web.Core.Api
 {
     using System;
@@ -49,11 +51,16 @@ namespace ProcessingTools.Web.Core.Api
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// ConfigureServices is where you register dependencies. This gets
+        /// called by the runtime before the ConfigureContainer method, below.
         /// </summary>
         /// <param name="services">Collection of services.</param>
-        /// <returns>Service provider.</returns>
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        /// <remarks>
+        /// Add services to the collection. Don't build or return
+        /// any IServiceProvider or the ConfigureContainer method
+        /// won't get called.
+        /// </remarks>
+        public void ConfigureServices(IServiceCollection services)
         {
             services
                 .AddCors(options =>
@@ -161,10 +168,15 @@ namespace ProcessingTools.Web.Core.Api
             builder.Populate(services);
 
             builder.RegisterType<ImageWriterWebService>().As<IImageWriterWebService>().InstancePerLifetimeScope();
+        }
 
-            var container = builder.Build();
-
-            return container.Resolve<IServiceProvider>();
+        // ConfigureContainer is where you can register things directly
+        // with Autofac. This runs after ConfigureServices so the things
+        // here will override registrations made in ConfigureServices.
+        // Don't build the container; that gets done for you by the factory.
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            //builder.RegisterModule(new AutofacModule());
         }
 
         /// <summary>

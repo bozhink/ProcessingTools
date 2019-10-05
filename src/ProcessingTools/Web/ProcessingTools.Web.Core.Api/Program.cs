@@ -6,6 +6,7 @@ namespace ProcessingTools.Web.Core.Api
 {
     using System;
     using System.IO;
+    using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Hosting;
@@ -52,15 +53,19 @@ namespace ProcessingTools.Web.Core.Api
             IConfiguration configuration = configurationBuilder.Build();
 
             return Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webHostBuilder =>
                 {
                     webHostBuilder.UseConfiguration(configuration);
                     webHostBuilder.UseEnvironment("Development");
                     webHostBuilder.UseStartup<Startup>();
-                    webHostBuilder.ConfigureLogging(logging =>
+                    webHostBuilder.ConfigureLogging((hostingContext, builder) =>
                     {
-                        logging.ClearProviders();
-                        logging.SetMinimumLevel(LogLevel.Trace);
+                        builder.ClearProviders();
+                        builder.SetMinimumLevel(LogLevel.Trace);
+                        builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                        builder.AddConsole();
+                        builder.AddDebug();
                     });
                     webHostBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
                 });
