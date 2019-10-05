@@ -6,7 +6,6 @@ namespace ProcessingTools.Configuration.Autofac
 {
     using System;
     using global::Autofac;
-    using global::Autofac.Extras.DynamicProxy;
     using ProcessingTools.Configuration.Interceptors;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Layout;
@@ -31,11 +30,10 @@ namespace ProcessingTools.Configuration.Autofac
             builder
                 .RegisterType<TransformersFactory>()
                 .As<IDocumentsFormatTransformersFactory>()
-                .As<IFormatTransformerFactory>()
-                .EnableInterfaceInterceptors()
-                .InterceptedBy(typeof(FactoryInterceptor));
+                .As<IFormatTransformerFactory>();
         }
 
+        // TODO: No interceptors due to Castle.DynamicProxy version collision. Needs implementation.
         private class TransformersFactory : IDocumentsFormatTransformersFactory, IFormatTransformerFactory
         {
             public IXmlTransformer GetFormatHtmlToXmlTransformer() => throw new NotSupportedException();

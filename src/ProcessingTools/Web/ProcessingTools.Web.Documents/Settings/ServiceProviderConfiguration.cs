@@ -52,7 +52,6 @@ namespace ProcessingTools.Web.Documents.Settings
             });
             builder.RegisterModule<TransformersFactoriesAutofacModule>();
             builder.RegisterModule<ProcessorsAutofacModule>();
-            builder.RegisterModule<InterceptorsAutofacModule>();
             builder.RegisterModule(new DataAutofacModule
             {
                 Configuration = configuration,
