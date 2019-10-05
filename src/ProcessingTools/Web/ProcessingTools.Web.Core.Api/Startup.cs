@@ -39,14 +39,19 @@ namespace ProcessingTools.Web.Core.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
-        /// <param name="configuration">Application configuration.</param>
-        public Startup(IConfiguration configuration)
+        /// <param name="env">Hosting environment.</param>
+        public Startup(IWebHostEnvironment env)
         {
-            this.Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            this.Configuration = builder.Build();
         }
 
         /// <summary>
-        /// Gets configuration.
+        /// Gets the configuration.
         /// </summary>
         public IConfiguration Configuration { get; }
 
@@ -62,12 +67,16 @@ namespace ProcessingTools.Web.Core.Api
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutofac();
+            services.AddLogging();
+
             services
                 .AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy", policy =>
                     {
-                        policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
+                        ////policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
+                        policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("*");
                     });
                 })
                 .AddControllers(options =>
@@ -153,34 +162,32 @@ namespace ProcessingTools.Web.Core.Api
                     UseCookies = false,
                     UseProxy = false,
                 });
+        }
 
+        /// <summary>
+        /// ConfigureContainer is where you can register things directly
+        /// with Autofac. This runs after ConfigureServices so the things
+        /// here will override registrations made in ConfigureServices.
+        /// Don't build the container; that gets done for you by the factory.
+        /// </summary>
+        /// <param name="builder">Instance of the <see cref="ContainerBuilder"/>.</param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
             // Configure AutoMapper.
             MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.AddMaps(typeof(ProcessingTools.Configuration.AutoMapper.AssemblySetup).Assembly);
             });
 
-            services.AddSingleton<IMapper>(mapperConfiguration.CreateMapper());
-
-            var builder = new ContainerBuilder();
-
-            // Add bindings
-            builder.Populate(services);
+            builder.RegisterInstance(mapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
 
             builder.RegisterType<ImageWriterWebService>().As<IImageWriterWebService>().InstancePerLifetimeScope();
         }
 
-        // ConfigureContainer is where you can register things directly
-        // with Autofac. This runs after ConfigureServices so the things
-        // here will override registrations made in ConfigureServices.
-        // Don't build the container; that gets done for you by the factory.
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            //builder.RegisterModule(new AutofacModule());
-        }
-
         /// <summary>
-        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// Configure is where you add middleware. This is called after
+        /// ConfigureContainer. You can use IApplicationBuilder.ApplicationServices
+        /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
         /// <param name="env">Hosting environment.</param>

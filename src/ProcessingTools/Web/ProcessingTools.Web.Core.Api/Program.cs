@@ -5,7 +5,6 @@
 namespace ProcessingTools.Web.Core.Api
 {
     using System;
-    using System.IO;
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -46,17 +45,10 @@ namespace ProcessingTools.Web.Core.Api
             }
         }
 
-        private static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            IConfigurationBuilder configurationBuilder = CreateConfigurationBuilder(args);
-
-            IConfiguration configuration = configurationBuilder.Build();
-
-            return Host.CreateDefaultBuilder(args)
+        private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webHostBuilder =>
                 {
-                    webHostBuilder.UseConfiguration(configuration);
                     webHostBuilder.UseEnvironment("Development");
                     webHostBuilder.UseStartup<Startup>();
                     webHostBuilder.ConfigureLogging((hostingContext, builder) =>
@@ -69,16 +61,5 @@ namespace ProcessingTools.Web.Core.Api
                     });
                     webHostBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
                 });
-        }
-
-        private static IConfigurationBuilder CreateConfigurationBuilder(string[] args)
-        {
-            return new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .AddCommandLine(args);
-        }
     }
 }
