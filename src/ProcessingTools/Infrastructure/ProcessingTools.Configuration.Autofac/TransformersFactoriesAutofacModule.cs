@@ -6,7 +6,6 @@ namespace ProcessingTools.Configuration.Autofac
 {
     using System;
     using global::Autofac;
-    using ProcessingTools.Configuration.Interceptors;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Layout;
     using ProcessingTools.Contracts.Services.Xml;

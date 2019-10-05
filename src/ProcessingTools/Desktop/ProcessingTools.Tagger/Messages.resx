@@ -122,13 +122,13 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="HelpMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\helpmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>message-texts\help-message.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="InputOutputFileNamesMessageFormat" xml:space="preserve">
     <value>Input file name: {0}
 Output file name: {1}</value>
   </data>
   <data name="WriteOutputFileMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\writeoutputfilemessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>message-texts\write-output-file-message.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
