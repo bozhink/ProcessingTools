@@ -42,6 +42,11 @@ namespace ProcessingTools.Web.Core.Api
         /// <param name="env">Hosting environment.</param>
         public Startup(IWebHostEnvironment env)
         {
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
+            }
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -67,16 +72,19 @@ namespace ProcessingTools.Web.Core.Api
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutofac();
-            services.AddLogging();
-
             services
                 .AddCors(options =>
                 {
-                    options.AddPolicy("CorsPolicy", policy =>
+                    options.AddPolicy("AllOriginsCorsPolicy", policy =>
                     {
                         ////policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
                         policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("*");
+                    });
+
+                    options.AddPolicy("StrictCorsPolicy", policy =>
+                    {
+                        ////policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
+                        policy.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(o => o.StartsWith("192.168."));
                     });
                 })
                 .AddControllers(options =>
@@ -190,18 +198,8 @@ namespace ProcessingTools.Web.Core.Api
         /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="env">Hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -212,8 +210,41 @@ namespace ProcessingTools.Web.Core.Api
             {
                 endpoints.MapControllers();
             });
+        }
 
-            app.UseCors("CorsPolicy");
+        /// <summary>
+        /// Configure for the Development environment.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        public void ConfigureDevelopment(IApplicationBuilder app)
+        {
+            app.UseDeveloperExceptionPage();
+            
+            this.Configure(app);
+
+            app.UseCors("AllOriginsCorsPolicy");
+        }
+
+        /// <summary>
+        /// Configure for the Staging environment.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        public void ConfigureStaging(IApplicationBuilder app)
+        {
+            app.UseHsts();
+            
+            this.Configure(app);
+
+            app.UseCors("StrictCorsPolicy");
+        }
+
+        /// <summary>
+        /// Configure for the Production environment.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        public void ConfigureProduction(IApplicationBuilder app)
+        {
+            this.ConfigureStaging(app);
         }
     }
 }
