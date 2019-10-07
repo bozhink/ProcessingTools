@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.TasksServer.Services
+namespace ProcessingTools.Contracts.Services
 {
     using System;
     using System.Threading;

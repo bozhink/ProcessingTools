@@ -100,6 +100,7 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Resources\ProcessingTools.Common.Resources.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />

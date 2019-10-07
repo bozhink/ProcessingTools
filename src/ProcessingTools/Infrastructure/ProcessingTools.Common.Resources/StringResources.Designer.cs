@@ -97,6 +97,51 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consume Scoped Service Hosted Service START ERROR.
+        /// </summary>
+        public static string ConsumeScopedServiceHostedServiceStartError {
+            get {
+                return ResourceManager.GetString("ConsumeScopedServiceHostedServiceStartError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consume Scoped Service Hosted Service is starting.
+        /// </summary>
+        public static string ConsumeScopedServiceHostedServiceStarting {
+            get {
+                return ResourceManager.GetString("ConsumeScopedServiceHostedServiceStarting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consume Scoped Service Hosted Service STOP ERROR.
+        /// </summary>
+        public static string ConsumeScopedServiceHostedServiceStopError {
+            get {
+                return ResourceManager.GetString("ConsumeScopedServiceHostedServiceStopError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consume Scoped Service Hosted Service is stopping.
+        /// </summary>
+        public static string ConsumeScopedServiceHostedServiceStopping {
+            get {
+                return ResourceManager.GetString("ConsumeScopedServiceHostedServiceStopping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consume Scoped Service Hosted Service is working.
+        /// </summary>
+        public static string ConsumeScopedServiceHostedServiceWorking {
+            get {
+                return ResourceManager.GetString("ConsumeScopedServiceHostedServiceWorking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete document content is not acknowledged.
         /// </summary>
         public static string DeleteDocumentContentIsNotAcknowledged {
@@ -300,6 +345,33 @@ namespace ProcessingTools.Common.Resources {
         public static string PublisherWillNotBeDeletedBecauseItContainsRelatedJournals {
             get {
                 return ResourceManager.GetString("PublisherWillNotBeDeletedBecauseItContainsRelatedJournals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queue Listener Scoped Processing Service is starting.
+        /// </summary>
+        public static string QueueListenerScopedProcessingServiceStarting {
+            get {
+                return ResourceManager.GetString("QueueListenerScopedProcessingServiceStarting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queue Listener Scoped Processing Service is stopping.
+        /// </summary>
+        public static string QueueListenerScopedProcessingServiceStopping {
+            get {
+                return ResourceManager.GetString("QueueListenerScopedProcessingServiceStopping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queue Listener Scoped Processing Service is working.
+        /// </summary>
+        public static string QueueListenerScopedProcessingServiceWorking {
+            get {
+                return ResourceManager.GetString("QueueListenerScopedProcessingServiceWorking", resourceCulture);
             }
         }
         

@@ -10,6 +10,7 @@ namespace ProcessingTools.TasksServer.Services
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Resources;
 
     /// <summary>
     /// Consume scoped service hosted service.
@@ -33,7 +34,7 @@ namespace ProcessingTools.TasksServer.Services
         /// <inheritdoc/>
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            this.logger.LogInformation("Consume Scoped Service Hosted Service is starting.");
+            this.logger.LogInformation(StringResources.ConsumeScopedServiceHostedServiceStarting);
 
             this.DoWork();
 
@@ -43,15 +44,14 @@ namespace ProcessingTools.TasksServer.Services
         /// <inheritdoc/>
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            this.logger.LogInformation(
-                "Consume Scoped Service Hosted Service is stopping.");
+            this.logger.LogInformation(StringResources.ConsumeScopedServiceHostedServiceStopping);
 
             return Task.CompletedTask;
         }
 
         private void DoWork()
         {
-            this.logger.LogInformation("Consume Scoped Service Hosted Service is working.");
+            this.logger.LogInformation(StringResources.ConsumeScopedServiceHostedServiceWorking);
 
             using (var scope = this.services.CreateScope())
             {

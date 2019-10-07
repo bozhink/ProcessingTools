@@ -9,6 +9,7 @@ namespace ProcessingTools.TasksServer.Services
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Contracts.Services;
 
     /// <summary>
     /// Queued hosted service.

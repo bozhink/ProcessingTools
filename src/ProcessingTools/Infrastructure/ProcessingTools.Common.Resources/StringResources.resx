@@ -129,6 +129,21 @@
   <data name="CommandNotFound" xml:space="preserve">
     <value>Command not found</value>
   </data>
+  <data name="ConsumeScopedServiceHostedServiceStartError" xml:space="preserve">
+    <value>Consume Scoped Service Hosted Service START ERROR</value>
+  </data>
+  <data name="ConsumeScopedServiceHostedServiceStarting" xml:space="preserve">
+    <value>Consume Scoped Service Hosted Service is starting</value>
+  </data>
+  <data name="ConsumeScopedServiceHostedServiceStopError" xml:space="preserve">
+    <value>Consume Scoped Service Hosted Service STOP ERROR</value>
+  </data>
+  <data name="ConsumeScopedServiceHostedServiceStopping" xml:space="preserve">
+    <value>Consume Scoped Service Hosted Service is stopping</value>
+  </data>
+  <data name="ConsumeScopedServiceHostedServiceWorking" xml:space="preserve">
+    <value>Consume Scoped Service Hosted Service is working</value>
+  </data>
   <data name="DeleteDocumentContentIsNotAcknowledged" xml:space="preserve">
     <value>Delete document content is not acknowledged</value>
   </data>
@@ -197,6 +212,15 @@
   </data>
   <data name="PublisherWillNotBeDeletedBecauseItContainsRelatedJournals" xml:space="preserve">
     <value>Publisher will not be deleted because it contains related journals</value>
+  </data>
+  <data name="QueueListenerScopedProcessingServiceStarting" xml:space="preserve">
+    <value>Queue Listener Scoped Processing Service is starting</value>
+  </data>
+  <data name="QueueListenerScopedProcessingServiceStopping" xml:space="preserve">
+    <value>Queue Listener Scoped Processing Service is stopping</value>
+  </data>
+  <data name="QueueListenerScopedProcessingServiceWorking" xml:space="preserve">
+    <value>Queue Listener Scoped Processing Service is working</value>
   </data>
   <data name="SpecifiedArticleDoesNotHaveAnyFinalDocuments" xml:space="preserve">
     <value>Specified article does not have any final documents</value>

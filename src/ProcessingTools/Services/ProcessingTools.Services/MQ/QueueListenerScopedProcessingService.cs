@@ -6,6 +6,7 @@ namespace ProcessingTools.Services.MQ
 {
     using System;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Resources;
     using ProcessingTools.Contracts.Services.MQ;
 
     /// <summary>
@@ -30,7 +31,7 @@ namespace ProcessingTools.Services.MQ
         /// <inheritdoc/>
         public void Start()
         {
-            this.logger.LogInformation("Queue Listener Scoped Processing Service is starting.");
+            this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceStarting);
             this.queueListener.Start();
         }
 
@@ -39,7 +40,7 @@ namespace ProcessingTools.Services.MQ
         {
             try
             {
-                this.logger.LogInformation("Queue Listener Scoped Processing Service is working.");
+                this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceWorking);
                 this.queueListener.Run(exceptionHandler);
             }
             catch (Exception ex)
@@ -51,7 +52,7 @@ namespace ProcessingTools.Services.MQ
         /// <inheritdoc/>
         public void Stop()
         {
-            this.logger.LogInformation("Queue Listener Scoped Processing Service is stopping.");
+            this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceStopping);
             this.queueListener.Stop();
         }
     }

@@ -10,6 +10,7 @@ namespace ProcessingTools.CommandsServer.Services
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Resources;
     using ProcessingTools.Contracts.Services;
 
     /// <summary>
@@ -47,7 +48,7 @@ namespace ProcessingTools.CommandsServer.Services
         /// <inheritdoc/>
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            this.logger.LogInformation("Consume Scoped Service Hosted Service is starting.");
+            this.logger.LogInformation(StringResources.ConsumeScopedServiceHostedServiceStarting);
 
             this.timer = new Timer(this.DoWork, null, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(5));
 
@@ -57,7 +58,7 @@ namespace ProcessingTools.CommandsServer.Services
         /// <inheritdoc/>
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            this.logger.LogInformation("Consume Scoped Service Hosted Service is stopping.");
+            this.logger.LogInformation(StringResources.ConsumeScopedServiceHostedServiceStopping);
 
             this.StopScopedService();
             this.timer?.Change(Timeout.Infinite, 0);
@@ -109,7 +110,7 @@ namespace ProcessingTools.CommandsServer.Services
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "Consume Scoped Service Hosted Service START ERROR");
+                this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStartError);
 
                 this.StopScopedService();
 
@@ -119,7 +120,7 @@ namespace ProcessingTools.CommandsServer.Services
 
         private void RunScopedService()
         {
-            this.logger.LogInformation("Consume Scoped Service Hosted Service is working.");
+            this.logger.LogInformation(StringResources.ConsumeScopedServiceHostedServiceWorking);
 
             using (var scope = this.services.CreateScope())
             {
@@ -131,7 +132,7 @@ namespace ProcessingTools.CommandsServer.Services
 
         private void ExceptionHandler(Exception ex)
         {
-            this.logger.LogError(ex, "Run scoped service");
+            this.logger.LogError(ex, string.Empty);
 
             this.StopScopedService();
 
@@ -148,7 +149,7 @@ namespace ProcessingTools.CommandsServer.Services
                 }
                 catch (Exception ex)
                 {
-                    this.logger.LogError(ex, "Consume Scoped Service Hosted Service STOP ERROR");
+                    this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStopError);
                 }
             }
         }
