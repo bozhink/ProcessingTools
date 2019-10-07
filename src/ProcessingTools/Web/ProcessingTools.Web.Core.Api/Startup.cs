@@ -10,14 +10,12 @@ namespace ProcessingTools.Web.Core.Api
     using System.Net.Http;
     using System.Text.Json;
     using Autofac;
-    using Autofac.Extensions.DependencyInjection;
     using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
@@ -219,7 +217,7 @@ namespace ProcessingTools.Web.Core.Api
         public void ConfigureDevelopment(IApplicationBuilder app)
         {
             app.UseDeveloperExceptionPage();
-            
+
             this.Configure(app);
 
             app.UseCors("AllOriginsCorsPolicy");
@@ -231,8 +229,9 @@ namespace ProcessingTools.Web.Core.Api
         /// <param name="app">Application builder.</param>
         public void ConfigureStaging(IApplicationBuilder app)
         {
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
-            
+
             this.Configure(app);
 
             app.UseCors("StrictCorsPolicy");

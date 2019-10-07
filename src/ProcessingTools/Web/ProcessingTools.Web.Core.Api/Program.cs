@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Core.Api
 {
     using System;
+    using System.Reflection;
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -27,7 +28,7 @@ namespace ProcessingTools.Web.Core.Api
             var logger = NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
             try
             {
-                logger.Debug("init main");
+                logger.Debug($"Start application {Assembly.GetExecutingAssembly().Location}");
 
                 var host = CreateHostBuilder(args).Build();
 
@@ -46,20 +47,20 @@ namespace ProcessingTools.Web.Core.Api
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureWebHostDefaults(webHostBuilder =>
+            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            .ConfigureWebHostDefaults(webHostBuilder =>
+            {
+                webHostBuilder.UseEnvironment("Development");
+                webHostBuilder.UseStartup<Startup>();
+                webHostBuilder.ConfigureLogging((hostingContext, builder) =>
                 {
-                    webHostBuilder.UseEnvironment("Development");
-                    webHostBuilder.UseStartup<Startup>();
-                    webHostBuilder.ConfigureLogging((hostingContext, builder) =>
-                    {
-                        builder.ClearProviders();
-                        builder.SetMinimumLevel(LogLevel.Trace);
-                        builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                        builder.AddConsole();
-                        builder.AddDebug();
-                    });
-                    webHostBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
+                    builder.ClearProviders();
+                    builder.SetMinimumLevel(LogLevel.Trace);
+                    builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    builder.AddConsole();
+                    builder.AddDebug();
                 });
+                webHostBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
+            });
     }
 }
