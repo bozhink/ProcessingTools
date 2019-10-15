@@ -46,21 +46,23 @@ namespace ProcessingTools.Web.Core.Api
             }
         }
 
-        private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
-            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-            .ConfigureWebHostDefaults(webHostBuilder =>
-            {
-                webHostBuilder.UseEnvironment("Development");
-                webHostBuilder.UseStartup<Startup>();
-                webHostBuilder.ConfigureLogging((hostingContext, builder) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureWebHostDefaults(webHostBuilder =>
                 {
-                    builder.ClearProviders();
-                    builder.SetMinimumLevel(LogLevel.Trace);
-                    builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    builder.AddConsole();
-                    builder.AddDebug();
+                    webHostBuilder
+                        .UseStartup<Startup>()
+                        .ConfigureLogging((hostingContext, builder) =>
+                        {
+                            builder.ClearProviders();
+                            builder.SetMinimumLevel(LogLevel.Trace);
+                            builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                            builder.AddConsole();
+                            builder.AddDebug();
+                        })
+                        .UseNLog() // NLog: setup NLog for Dependency injection
+                        ;
                 });
-                webHostBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
-            });
     }
 }

@@ -11,6 +11,7 @@ namespace ProcessingTools.TasksServer.Services
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Resources;
+    using ProcessingTools.Contracts.Services;
 
     /// <summary>
     /// Consume scoped service hosted service.
@@ -57,7 +58,7 @@ namespace ProcessingTools.TasksServer.Services
             {
                 var scopedProcessingService = scope.ServiceProvider.GetRequiredService<IScopedProcessingService>();
 
-                scopedProcessingService.DoWork();
+                scopedProcessingService.DoWork(e => _ = e);
             }
         }
     }

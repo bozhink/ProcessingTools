@@ -70,6 +70,11 @@ namespace ProcessingTools.Web.Core.Api
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
+            if (services is null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
+
             services
                 .AddCors(options =>
                 {
@@ -82,7 +87,7 @@ namespace ProcessingTools.Web.Core.Api
                     options.AddPolicy("StrictCorsPolicy", policy =>
                     {
                         ////policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
-                        policy.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(o => o.StartsWith("192.168."));
+                        policy.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(o => o.StartsWith("192.168.", StringComparison.InvariantCultureIgnoreCase));
                     });
                 })
                 .AddControllers(options =>
@@ -179,6 +184,11 @@ namespace ProcessingTools.Web.Core.Api
         /// <param name="builder">Instance of the <see cref="ContainerBuilder"/>.</param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
             // Configure AutoMapper.
             MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -198,6 +208,11 @@ namespace ProcessingTools.Web.Core.Api
         /// <param name="app">Application builder.</param>
         public void Configure(IApplicationBuilder app)
         {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -216,6 +231,11 @@ namespace ProcessingTools.Web.Core.Api
         /// <param name="app">Application builder.</param>
         public void ConfigureDevelopment(IApplicationBuilder app)
         {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
             app.UseDeveloperExceptionPage();
 
             this.Configure(app);
@@ -229,6 +249,11 @@ namespace ProcessingTools.Web.Core.Api
         /// <param name="app">Application builder.</param>
         public void ConfigureStaging(IApplicationBuilder app)
         {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
@@ -243,6 +268,11 @@ namespace ProcessingTools.Web.Core.Api
         /// <param name="app">Application builder.</param>
         public void ConfigureProduction(IApplicationBuilder app)
         {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
             this.ConfigureStaging(app);
         }
     }

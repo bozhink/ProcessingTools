@@ -11,10 +11,11 @@ namespace ProcessingTools.CommandsServer
     using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Text;
-    using Microsoft.AspNetCore;
+    using System.Threading.Tasks;
+    using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Hosting.WindowsServices;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
     using ProcessingTools.CommandsServer.Extensions;
@@ -28,7 +29,8 @@ namespace ProcessingTools.CommandsServer
         /// Entry point method of the application.
         /// </summary>
         /// <param name="args">Arguments to run the application.</param>
-        public static void Main(string[] args)
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        public static async Task Main(string[] args)
         {
             // NLog: setup the logger first to catch all errors
             var logger = NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
@@ -47,16 +49,16 @@ namespace ProcessingTools.CommandsServer
                     Directory.SetCurrentDirectory(pathToContentRoot);
                 }
 
-                IWebHost host = CreateWebHostBuilder(args).Build();
+                IHostBuilder hostBuilder = CreateHostBuilder(args);
 
                 if (isService && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    host.RunAsService();
+                    hostBuilder.UseWindowsService();
                 }
-                else
-                {
-                    host.Run();
-                }
+
+                IHost host = hostBuilder.Build();
+
+                await host.RunAsync().ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -70,32 +72,25 @@ namespace ProcessingTools.CommandsServer
             }
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                ////.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                ////.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .AddCommandLine(args);
-
-            IConfiguration configuration = configurationBuilder.Build();
-
-            return WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(configuration)
-                ////.UseEnvironment("Development")
-                .UseStartup<Startup>()
-                .UseShutdownTimeout(TimeSpan.FromSeconds(10))
-                .UseKestrel(options => options.ConfigureEndpoints())
-                .ConfigureLogging(logging =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureWebHostDefaults(webHostBuilder =>
                 {
-                    logging.ClearProviders();
-                    logging.SetMinimumLevel(LogLevel.Trace);
-                    logging.AddConsole();
-                    logging.AddDebug();
-                })
-                .UseNLog() // NLog: setup NLog for Dependency injection
-                ;
-        }
+                    webHostBuilder
+                        .UseStartup<Startup>()
+                        .UseShutdownTimeout(TimeSpan.FromSeconds(10))
+                        .UseKestrel(options => options.ConfigureEndpoints())
+                        .ConfigureLogging((hostingContext, builder) =>
+                        {
+                            builder.ClearProviders();
+                            builder.SetMinimumLevel(LogLevel.Trace);
+                            builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                            builder.AddConsole();
+                            builder.AddDebug();
+                        })
+                        .UseNLog() // NLog: setup NLog for Dependency injection
+                        ;
+                });
     }
 }

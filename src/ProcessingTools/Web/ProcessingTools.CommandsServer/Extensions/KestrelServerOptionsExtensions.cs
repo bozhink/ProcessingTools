@@ -27,7 +27,7 @@ namespace ProcessingTools.CommandsServer.Extensions
         public static void ConfigureEndpoints(this KestrelServerOptions options)
         {
             var configuration = options.ApplicationServices.GetRequiredService<IConfiguration>();
-            var environment = options.ApplicationServices.GetRequiredService<IHostingEnvironment>();
+            var environment = options.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
 
             var endpoints = configuration.GetSection("HttpServer:Endpoints")
                 .GetChildren()
@@ -76,7 +76,7 @@ namespace ProcessingTools.CommandsServer.Extensions
             }
         }
 
-        private static X509Certificate2 LoadCertificate(EndpointConfiguration config, IHostingEnvironment environment)
+        private static X509Certificate2 LoadCertificate(EndpointConfiguration config, IWebHostEnvironment environment)
         {
             if (config.StoreName != null && config.StoreLocation != null)
             {
@@ -87,7 +87,7 @@ namespace ProcessingTools.CommandsServer.Extensions
                     var certificate = store.Certificates.Find(
                         X509FindType.FindBySubjectName,
                         config.Host,
-                        validOnly: !environment.IsDevelopment());
+                        validOnly: environment.EnvironmentName != "Development");
 
                     if (certificate.Count == 0)
                     {
