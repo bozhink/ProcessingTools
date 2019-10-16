@@ -25,6 +25,16 @@ namespace ProcessingTools.Web.Documents.Constants
         public const string ReturnUrl = nameof(ReturnUrl);
 
         /// <summary>
+        /// Show the main footer of the page.
+        /// </summary>
+        public const string ShowApplicationFooter = nameof(ShowApplicationFooter);
+
+        /// <summary>
+        /// Show the main header of the page.
+        /// </summary>
+        public const string ShowApplicationHeader = nameof(ShowApplicationHeader);
+
+        /// <summary>
         /// Title.
         /// </summary>
         public const string Title = nameof(Title);

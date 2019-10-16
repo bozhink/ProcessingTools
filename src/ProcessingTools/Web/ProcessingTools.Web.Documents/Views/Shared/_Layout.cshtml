@@ -8,17 +8,24 @@
     @(RenderSection("Styles", required: false))
 </head>
 <body>
-    <partial name="_ApplicationNavbarPartial" />
+    @if (ViewData[ContextKeys.ShowApplicationHeader] as bool? != false)
+    {
+        <partial name="_ApplicationNavbarPartial" />
+    }
+    
     <partial name="_CookieConsentPartial" />
 
     <main role="main" class="body-content">
         @(RenderBody())
     </main>
 
-    <footer class="page-footer">
-        <partial name="_ApplicationFooterPartial" />
-    </footer>
-    
+    @if (ViewData[ContextKeys.ShowApplicationFooter] as bool? != false)
+    {
+        <footer class="page-footer">
+            <partial name="_ApplicationFooterPartial" />
+        </footer>
+    }
+
     <partial name="_ApplicationScriptsPartial" />
     @(RenderSection("Scripts", required: false))
 </body>

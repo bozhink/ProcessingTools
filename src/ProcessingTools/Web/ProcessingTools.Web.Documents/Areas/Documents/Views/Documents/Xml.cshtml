@@ -1,6 +1,7 @@
 ﻿@model ProcessingTools.Web.Models.Documents.Documents.DocumentXmlViewModel
 @{
     ViewData[ContextKeys.Title] = "Edit Document";
+    ViewData[ContextKeys.ShowApplicationFooter] = false;
     if (string.IsNullOrWhiteSpace(Model?.PageHeading))
     {
         string title = Html.DisplayNameFor(m => m.PageHeading);
