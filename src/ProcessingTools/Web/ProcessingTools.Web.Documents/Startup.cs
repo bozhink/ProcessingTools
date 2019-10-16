@@ -23,6 +23,7 @@ namespace ProcessingTools.Web.Documents
     using ProcessingTools.Contracts.Services.IO;
     using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.Contracts.Web.Services;
+    using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Controllers;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
@@ -351,37 +352,37 @@ namespace ProcessingTools.Web.Documents
             {
                 endpoints.MapAreaControllerRoute(
                    name: "AdminAreaRoute",
-                   areaName: "Admin",
+                   areaName: AreaNames.Admin,
                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                    name: "DataAreaRoute",
-                   areaName: "Data",
+                   areaName: AreaNames.Data,
                    pattern: "Data/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                    name: "DocumentsAreaRoute",
-                   areaName: "Documents",
+                   areaName: AreaNames.Documents,
                    pattern: "Documents/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                    name: "FilesAreaRoute",
-                   areaName: "Files",
+                   areaName: AreaNames.Files,
                    pattern: "Files/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                    name: "LayoutAreaRoute",
-                   areaName: "Layout",
+                   areaName: AreaNames.Layout,
                    pattern: "Layout/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                    name: "TestAreaRoute",
-                   areaName: "Test",
+                   areaName: AreaNames.Test,
                    pattern: "Test/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                    name: "ToolsAreaRoute",
-                   areaName: "Tools",
+                   areaName: AreaNames.Tools,
                    pattern: "Tools/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
