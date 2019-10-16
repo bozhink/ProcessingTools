@@ -9,7 +9,9 @@ namespace ProcessingTools.Web.Documents
     using Autofac;
     using AutoMapper;
     using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
@@ -81,7 +83,7 @@ namespace ProcessingTools.Web.Documents
             }
 
             services.AddMemoryCache();
-            services.AddSignalR();
+            services.AddHealthChecks().AddDbContextCheck<ApplicationDbContext>();
 
             // Configure databases
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -187,26 +189,42 @@ namespace ProcessingTools.Web.Documents
                 });
             }
 
-            ////// Configure authorization
-            ////// See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
-            ////// See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
-            ////services.AddAuthorization(options =>
-            ////{
-            ////    options.AddPolicy("ElevatedRights", policy =>
-            ////    {
-            ////        policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator");
-            ////    });
+            // Configure authorization.
+            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims.
+            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles.
+            // See https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-3.0&tabs=visual-studio#opt-in-to-runtime-compilation.
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ElevatedRights", policy =>
+                {
+                    policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator");
+                });
 
-            ////    options.AddPolicy("EmployeeOnly", policy =>
-            ////    {
-            ////        policy.RequireClaim("EmployeeNumber");
-            ////    });
+                options.AddPolicy("EmployeeOnly", policy =>
+                {
+                    policy.RequireClaim("EmployeeNumber");
+                });
 
-            ////    options.AddPolicy("Founders", policy =>
-            ////    {
-            ////        policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5");
-            ////    });
-            ////});
+                options.AddPolicy("Founders", policy =>
+                {
+                    policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5");
+                });
+
+                options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            });
+
+            // Configure SignalR
+            services
+                .AddSignalR(options =>
+                {
+                    options.MaximumReceiveMessageSize = 4096;
+                })
+                .AddNewtonsoftJsonProtocol(options =>
+                {
+                    options.PayloadSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    options.PayloadSerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                    options.PayloadSerializerSettings.Formatting = Newtonsoft.Json.Formatting.None;
+                });
 
             // Configure MVC
             services
@@ -336,6 +354,10 @@ namespace ProcessingTools.Web.Documents
 
             app.UseHttpsRedirection();
 
+            // For most apps, calls to UseAuthentication, UseAuthorization, and UseCors must appear between the calls to UseRouting and UseEndpoints to be effective.
+            // See https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-3.0&tabs=visual-studio#opt-in-to-runtime-compilation.
+            app.UseRouting();
+
             app.UseStaticFiles();
 
             app.UseWebSockets();
@@ -346,10 +368,10 @@ namespace ProcessingTools.Web.Documents
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
+
                 endpoints.MapAreaControllerRoute(
                    name: "AdminAreaRoute",
                    areaName: AreaNames.Admin,
@@ -393,10 +415,11 @@ namespace ProcessingTools.Web.Documents
                     action: ErrorController.HandleUnknownActionActionName,
                     controller: ErrorController.ControllerName);
 
-                endpoints.MapControllers();
                 endpoints.MapRazorPages();
 
                 endpoints.MapHub<ChatHub>("/r/chat");
+                endpoints.MapHealthChecks("/health");
+                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions { AllowCachingResponses = false }).RequireAuthorization(new AuthorizeAttribute { Roles = "admin" });
             });
         }
 

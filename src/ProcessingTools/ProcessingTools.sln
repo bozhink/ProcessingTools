@@ -165,15 +165,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Integration.Tests", "Services.Tests\ProcessingTools.Services.Integration.Tests\ProcessingTools.Services.Integration.Tests.csproj", "{C0199F23-BD47-412C-83F5-AF32A1FFE156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Clients.Unit.Tests", "Services.Tests\ProcessingTools.Clients.Unit.Tests\ProcessingTools.Clients.Unit.Tests.csproj", "{8A46A788-1A87-4B24-9F15-FAB644A104D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Unit.Tests", "Services.Tests\ProcessingTools.Clients.Unit.Tests\ProcessingTools.Clients.Unit.Tests.csproj", "{8A46A788-1A87-4B24-9F15-FAB644A104D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Services.DeleteMe", "Services\ProcessingTools.Services.DeleteMe\ProcessingTools.Services.DeleteMe.csproj", "{5E4678D8-A0DD-4EED-853E-06D3BAF2A9C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.DeleteMe", "Services\ProcessingTools.Services.DeleteMe\ProcessingTools.Services.DeleteMe.csproj", "{5E4678D8-A0DD-4EED-853E-06D3BAF2A9C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.NlmArchiveConsoleManager", "Desktop\ProcessingTools.NlmArchiveConsoleManager\ProcessingTools.NlmArchiveConsoleManager.csproj", "{9212C2A9-8AC8-445A-9DA5-E80E55B4AFAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.NlmArchiveConsoleManager", "Desktop\ProcessingTools.NlmArchiveConsoleManager\ProcessingTools.NlmArchiveConsoleManager.csproj", "{9212C2A9-8AC8-445A-9DA5-E80E55B4AFAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.DbSeeder", "Desktop\ProcessingTools.DbSeeder\ProcessingTools.DbSeeder.csproj", "{A52D656A-AF79-4689-9E73-C4E2329B3874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.DbSeeder", "Desktop\ProcessingTools.DbSeeder\ProcessingTools.DbSeeder.csproj", "{A52D656A-AF79-4689-9E73-C4E2329B3874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Tagger", "Desktop\ProcessingTools.Tagger\ProcessingTools.Tagger.csproj", "{245D9B57-2D84-4E32-BE35-68AE646B2559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tagger", "Desktop\ProcessingTools.Tagger\ProcessingTools.Tagger.csproj", "{245D9B57-2D84-4E32-BE35-68AE646B2559}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -874,7 +874,7 @@ Global
 		{245D9B57-2D84-4E32-BE35-68AE646B2559} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
