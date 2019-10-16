@@ -5,13 +5,19 @@
 namespace ProcessingTools.CommandsServer
 {
     using System;
+    using System.Linq;
     using Autofac;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using ProcessingTools.CommandsServer.HealthCheck;
     using ProcessingTools.CommandsServer.Services;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Configuration.Models;
@@ -43,6 +49,7 @@ namespace ProcessingTools.CommandsServer
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
             this.Configuration = builder.Build();
         }
 
@@ -61,6 +68,8 @@ namespace ProcessingTools.CommandsServer
             {
                 throw new ArgumentNullException(nameof(services));
             }
+
+            services.AddHealthChecks().AddCheck<QueueHealthCheck>("queue");
 
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
@@ -134,11 +143,39 @@ namespace ProcessingTools.CommandsServer
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    AllowCachingResponses = false,
+                    ResultStatusCodes =
+                    {
+                        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+                        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+                        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
+                    },
+                    ResponseWriter = (HttpContext httpContext, HealthReport result) =>
+                    {
+                        httpContext.Response.ContentType = "application/json";
+
+                        var json = new JObject
+                        {
+                            new JProperty("version", this.GetType().Assembly.GetName().Version?.ToString()),
+                            new JProperty("status", result.Status.ToString()),
+                        };
+
+                        if (result.Entries.Any())
+                        {
+                            json.Add(new JProperty("results", new JObject(result.Entries.Select(pair =>
+                                new JProperty(pair.Key, new JObject(
+                                    new JProperty("status", pair.Value.Status.ToString()),
+                                    new JProperty("description", pair.Value.Description),
+                                    new JProperty("data", new JObject(pair.Value.Data.Select(
+                                        p => new JProperty(p.Key, p.Value))))))))));
+                        }
+
+                        return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
+                    },
+                });
             });
         }
 

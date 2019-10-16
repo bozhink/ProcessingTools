@@ -79,6 +79,7 @@ namespace ProcessingTools.CommandsServer.Services
         {
             channel.CallbackException += (s, e) =>
             {
+                this.messageCacheService.Message = e.Exception.Message;
                 this.logger.LogError(e.Exception, "IModel.CallbackException");
             };
 

@@ -12,6 +12,7 @@ namespace ProcessingTools.CommandsServer.Services
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Resources;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Cache;
 
     /// <summary>
     /// Consume scoped service hosted service.
@@ -21,6 +22,7 @@ namespace ProcessingTools.CommandsServer.Services
         where T : IScopedProcessingService
     {
         private readonly IServiceProvider services;
+        private readonly IMessageCacheService messageCacheService;
         private readonly ILogger logger;
         private T scopedProcessingService;
         private Timer timer;
@@ -30,10 +32,12 @@ namespace ProcessingTools.CommandsServer.Services
         /// Initializes a new instance of the <see cref="ConsumeScopedServiceHostedService{T}"/> class.
         /// </summary>
         /// <param name="services">Instance of <see cref="IServiceProvider"/>.</param>
+        /// <param name="messageCacheService">Instance of <see cref="IMessageCacheService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public ConsumeScopedServiceHostedService(IServiceProvider services, ILogger<ConsumeScopedServiceHostedService<T>> logger)
+        public ConsumeScopedServiceHostedService(IServiceProvider services, IMessageCacheService messageCacheService, ILogger<ConsumeScopedServiceHostedService<T>> logger)
         {
             this.services = services ?? throw new ArgumentNullException(nameof(services));
+            this.messageCacheService = messageCacheService ?? throw new ArgumentNullException(nameof(messageCacheService));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -110,6 +114,8 @@ namespace ProcessingTools.CommandsServer.Services
             }
             catch (Exception ex)
             {
+                this.messageCacheService.Message = ex.Message;
+
                 this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStartError);
 
                 this.StopScopedService();
@@ -132,6 +138,8 @@ namespace ProcessingTools.CommandsServer.Services
 
         private void ExceptionHandler(Exception ex)
         {
+            this.messageCacheService.Message = ex.Message;
+
             this.logger.LogError(ex, string.Empty);
 
             this.StopScopedService();
@@ -149,6 +157,8 @@ namespace ProcessingTools.CommandsServer.Services
                 }
                 catch (Exception ex)
                 {
+                    this.messageCacheService.Message = ex.Message;
+
                     this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStopError);
                 }
             }
