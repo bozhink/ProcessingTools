@@ -215,6 +215,7 @@ namespace ProcessingTools.Web.Documents
                     options.MaxModelValidationErrors = 50;
                     options.InputFormatters.Insert(0, new RawRequestBodyFormatter());
                 })
+                .AddRazorRuntimeCompilation()
                 .AddXmlDataContractSerializerFormatters()
                 .AddXmlSerializerFormatters()
                 .AddJsonOptions(options =>
@@ -232,9 +233,6 @@ namespace ProcessingTools.Web.Documents
                     options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Include;
                     options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.None;
                     options.UseCamelCasing(false);
-                })
-                .AddFormatterMappings(options =>
-                {
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
@@ -255,10 +253,10 @@ namespace ProcessingTools.Web.Documents
             ////    ////options.HttpsPort = 24173;
             ////});
 
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
+            ////services.Configure<MvcOptions>(options =>
+            ////{
+            ////    options.Filters.Add(new RequireHttpsAttribute());
+            ////});
 
             // Configure CORS
             services.AddCors(options =>
@@ -351,8 +349,6 @@ namespace ProcessingTools.Web.Documents
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-
                 endpoints.MapAreaControllerRoute(
                    name: "AdminAreaRoute",
                    areaName: "Admin",
@@ -396,6 +392,7 @@ namespace ProcessingTools.Web.Documents
                     action: ErrorController.HandleUnknownActionActionName,
                     controller: ErrorController.ControllerName);
 
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
 
                 endpoints.MapHub<ChatHub>("/r/chat");
