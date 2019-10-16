@@ -14,19 +14,23 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Razor;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Configuration.Autofac;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Meta;
+    using ProcessingTools.Contracts.Web.Services;
     using ProcessingTools.Web.Documents.Controllers;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Web.Documents.Formatters;
     using ProcessingTools.Web.Documents.Hubs;
     using ProcessingTools.Web.Documents.Models;
-    using ProcessingTools.Web.Documents.Settings;
+    using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services;
 
     /// <summary>
     /// Start-up of the application.
@@ -46,8 +50,8 @@ namespace ProcessingTools.Web.Documents
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(environment.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
             this.Configuration = builder.Build();
@@ -59,12 +63,22 @@ namespace ProcessingTools.Web.Documents
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// ConfigureServices is where you register dependencies. This gets
+        /// called by the runtime before the ConfigureContainer method, below.
         /// </summary>
         /// <param name="services">Collection of services.</param>
-        /// <returns>Service provider.</returns>
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        /// <remarks>
+        /// Add services to the collection. Don't build or return
+        /// any IServiceProvider or the ConfigureContainer method
+        /// won't get called.
+        /// </remarks>
+        public void ConfigureServices(IServiceCollection services)
         {
+            if (services is null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
+
             services.AddMemoryCache();
             services.AddSignalR();
 
@@ -119,6 +133,7 @@ namespace ProcessingTools.Web.Documents
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.Secure = CookieSecurePolicy.Always;
             });
 
             services.ConfigureApplicationCookie(options =>
@@ -171,29 +186,26 @@ namespace ProcessingTools.Web.Documents
                 });
             }
 
-            // Configure authorization
-            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
-            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ElevatedRights", policy =>
-                {
-                    policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator");
-                });
-            });
+            ////// Configure authorization
+            ////// See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
+            ////// See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
+            ////services.AddAuthorization(options =>
+            ////{
+            ////    options.AddPolicy("ElevatedRights", policy =>
+            ////    {
+            ////        policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator");
+            ////    });
 
-            // Configure MVC Core
-            services.AddMvcCore()
-              .AddApiExplorer()
-              .AddAuthorization()
-              .AddFormatterMappings()
-              .AddXmlDataContractSerializerFormatters()
-              .AddXmlSerializerFormatters()
-              .AddViews()
-              .AddRazorViewEngine()
-              .AddCacheTagHelper()
-              .AddDataAnnotations()
-              .AddCors();
+            ////    options.AddPolicy("EmployeeOnly", policy =>
+            ////    {
+            ////        policy.RequireClaim("EmployeeNumber");
+            ////    });
+
+            ////    options.AddPolicy("Founders", policy =>
+            ////    {
+            ////        policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5");
+            ////    });
+            ////});
 
             // Configure MVC
             services
@@ -228,8 +240,8 @@ namespace ProcessingTools.Web.Documents
 
             services.AddRazorPages();
 
-            // Configure HTTPS
-            // See https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-2.1&tabs=visual-studio
+            ////// Configure HTTPS
+            ////// See https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-2.1&tabs=visual-studio
             //// services.AddHsts(options =>
             //// {
             ////     options.Preload = true;
@@ -237,11 +249,11 @@ namespace ProcessingTools.Web.Documents
             ////     options.MaxAge = TimeSpan.FromDays(30);
             //// });
 
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-                ////options.HttpsPort = 24173;
-            });
+            ////services.AddHttpsRedirection(options =>
+            ////{
+            ////    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+            ////    ////options.HttpsPort = 24173;
+            ////});
 
             services.Configure<MvcOptions>(options =>
             {
@@ -251,17 +263,17 @@ namespace ProcessingTools.Web.Documents
             // Configure CORS
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy", policy =>
+                options.AddPolicy("AllOriginsCorsPolicy", policy =>
                 {
-                    policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
+                    ////policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
+                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("*");
                 });
-            });
 
-            // Configure Razor
-            services.Configure<RazorViewEngineOptions>(options =>
-            {
-                ////options.AreaViewLocationFormats.Clear();
-                ////options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
+                options.AddPolicy("StrictCorsPolicy", policy =>
+                {
+                    ////policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
+                    policy.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(o => o.StartsWith("192.168.", StringComparison.InvariantCultureIgnoreCase));
+                });
             });
 
             // Configure AutoMapper.
@@ -271,58 +283,80 @@ namespace ProcessingTools.Web.Documents
             });
 
             services.AddSingleton<IMapper>(mapperConfiguration.CreateMapper());
-
-            // Configure container
-            var container = services.BuildContainer(this.Configuration);
-
-            return container.Resolve<IServiceProvider>();
         }
 
         /// <summary>
-        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// ConfigureContainer is where you can register things directly
+        /// with Autofac. This runs after ConfigureServices so the things
+        /// here will override registrations made in ConfigureServices.
+        /// Don't build the container; that gets done for you by the factory.
+        /// </summary>
+        /// <param name="builder">Instance of the <see cref="ContainerBuilder"/>.</param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
+            builder.RegisterType<ApplicationContextFactory>().AsSelf().InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
+            builder.Register(c => c.Resolve<IApplicationContext>().UserContext).As<IUserContext>().InstancePerDependency();
+
+            builder.RegisterType<ProcessingTools.Services.Meta.JatsArticleMetaHarvester>().As<IJatsArticleMetaHarvester>().InstancePerDependency();
+            builder.RegisterType<ProcessingTools.Services.IO.XmlReadService>().As<IXmlReadService>().InstancePerDependency();
+
+            builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
+
+            builder.RegisterInstance(ProcessingTools.Common.Constants.Defaults.Encoding).As<System.Text.Encoding>().SingleInstance();
+
+            builder.RegisterModule(new XmlTransformersAutofacModule
+            {
+                Configuration = this.Configuration,
+            });
+            builder.RegisterModule<TransformersFactoriesAutofacModule>();
+            builder.RegisterModule<ProcessorsAutofacModule>();
+            builder.RegisterModule(new DataAutofacModule { Configuration = this.Configuration });
+            builder.RegisterModule(new DataAccessAutofacModule { Configuration = this.Configuration });
+            builder.RegisterModule<ServicesWebAutofacModule>();
+            builder.RegisterModule(new ServicesAutofacModule { Configuration = this.Configuration });
+        }
+
+        /// <summary>
+        /// Configure is where you add middleware. This is called after
+        /// ConfigureContainer. You can use IApplicationBuilder.ApplicationServices
+        /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="env">Hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (app is null)
             {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-                app.UseDatabaseErrorPage();
+                throw new ArgumentNullException(nameof(app));
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
-
-            app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
-            if (env.IsDevelopment() || env.IsStaging())
-            {
-                app.ServeStaticFiles(env, "node_modules", "/node_modules");
-                app.ServeStaticFiles(env, "node_modules", "/lib");
-            }
-
-            app.UseCors("CorsPolicy");
             app.UseWebSockets();
+
+            app.UseApplicationContext();
 
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseApplicationContext();
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
+
                 endpoints.MapAreaControllerRoute(
-                    name: "AdminAreaRoute",
-                    areaName: "Admin",
-                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                   name: "AdminAreaRoute",
+                   areaName: "Admin",
+                   pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                    name: "DataAreaRoute",
@@ -366,6 +400,78 @@ namespace ProcessingTools.Web.Documents
 
                 endpoints.MapHub<ChatHub>("/r/chat");
             });
+        }
+
+        /// <summary>
+        /// Configure for the Development environment.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment environment)
+        {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
+            app.UseDeveloperExceptionPage();
+            app.UseBrowserLink();
+            app.UseDatabaseErrorPage();
+
+            this.Configure(app);
+
+            app.ServeStaticFiles(environment, "node_modules", "/node_modules");
+            app.ServeStaticFiles(environment, "node_modules", "/lib");
+
+            app.UseCors("AllOriginsCorsPolicy");
+        }
+
+        /// <summary>
+        /// Configure for the Staging environment.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment environment)
+        {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
+            app.UseExceptionHandler("/Error");
+            app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
+
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+
+            this.Configure(app);
+
+            app.ServeStaticFiles(environment, "node_modules", "/node_modules");
+            app.ServeStaticFiles(environment, "node_modules", "/lib");
+
+            app.UseCors("StrictCorsPolicy");
+        }
+
+        /// <summary>
+        /// Configure for the Production environment.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        public void ConfigureProduction(IApplicationBuilder app)
+        {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
+            app.UseExceptionHandler("/Error");
+            app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
+
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+
+            this.Configure(app);
+
+            app.UseCors("StrictCorsPolicy");
         }
     }
 }

@@ -5,6 +5,8 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
+    using System.Reflection;
+    using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
@@ -25,8 +27,13 @@ namespace ProcessingTools.Web.Documents
             var logger = NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
             try
             {
-                logger.Debug("Start application");
-                CreateHostBuilder(args).Build().Run();
+                logger.Debug($"Start application {Assembly.GetExecutingAssembly().Location}");
+
+                var hostBuilder = CreateHostBuilder(args);
+
+                var host = hostBuilder.Build();
+
+                host.Run();
             }
             catch (Exception ex)
             {
@@ -35,26 +42,27 @@ namespace ProcessingTools.Web.Documents
             }
             finally
             {
-                // Ensure to flush and stop internal timers/threads before application-exit (Avoid
-                // segmentation fault on Linux)
+                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
                 NLog.LogManager.Shutdown();
             }
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseEnvironment("Development");
-                    webBuilder.UseStartup<Startup>();
-                    webBuilder.ConfigureLogging(logging =>
-                    {
-                        logging.ClearProviders();
-                        logging.SetMinimumLevel(LogLevel.Trace);
-                        logging.AddConsole();
-                        logging.AddDebug();
-                    });
-                    webBuilder.UseNLog(); // NLog: setup NLog for Dependency injection
+                    webBuilder
+                        .UseStartup<Startup>()
+                        .ConfigureLogging(logging =>
+                        {
+                            logging.ClearProviders();
+                            logging.SetMinimumLevel(LogLevel.Trace);
+                            logging.AddConsole();
+                            logging.AddDebug();
+                        })
+                        .UseNLog() // NLog: setup NLog for Dependency injection
+                        ;
                 });
     }
 }

@@ -30,7 +30,9 @@ namespace ProcessingTools.Web.Core.Api
             {
                 logger.Debug($"Start application {Assembly.GetExecutingAssembly().Location}");
 
-                var host = CreateHostBuilder(args).Build();
+                var hostBuilder = CreateHostBuilder(args);
+
+                var host = hostBuilder.Build();
 
                 host.Run();
             }

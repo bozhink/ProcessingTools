@@ -37,19 +37,20 @@ namespace ProcessingTools.Web.Core.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
-        /// <param name="env">Hosting environment.</param>
-        public Startup(IWebHostEnvironment env)
+        /// <param name="environment">Hosting environment.</param>
+        public Startup(IWebHostEnvironment environment)
         {
-            if (env is null)
+            if (environment is null)
             {
-                throw new ArgumentNullException(nameof(env));
+                throw new ArgumentNullException(nameof(environment));
             }
 
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
+                .SetBasePath(environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
             this.Configuration = builder.Build();
         }
 

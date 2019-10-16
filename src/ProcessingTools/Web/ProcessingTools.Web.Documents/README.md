@@ -2,13 +2,12 @@
 
 ## Needed resources
 + NodeJS [Download](https://nodejs.org/en/)
-+ .NET Core + .NET Standard 2 SDK [Download](https://www.microsoft.com/net/download/linux/build)
++ .NET Core + .NET Standard 3 SDK [Download](https://www.microsoft.com/net/download/linux/build)
 + Windows / Linux / OS X
 
 ## Build
 - ```npm install```
 - ```npm run build```
-- ```TERM=xterm``` (for Linux only)
 - ```dotnet restore```
 - ```dotnet build```
 
