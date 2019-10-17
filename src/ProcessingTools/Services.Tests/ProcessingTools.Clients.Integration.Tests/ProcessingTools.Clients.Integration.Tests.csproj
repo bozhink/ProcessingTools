@@ -26,17 +26,18 @@
     <PackageTags>clients, tests, integration tests</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants />
-    <OutputPath>bin\release</OutputPath>
-    <DocumentationFile>bin\release\ProcessingTools.Clients.Integration.Tests.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Clients.Integration.Tests.xml</DocumentationFile>
+    <OutputPath>bin\debug\netcoreapp3.0</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants />
-    <DocumentationFile>bin\debug\ProcessingTools.Clients.Integration.Tests.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
-    <NoWarn>1701;1702;CA1707</NoWarn>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Clients.Integration.Tests.xml</DocumentationFile>
+    <OutputPath>bin\release\netcoreapp3.0</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

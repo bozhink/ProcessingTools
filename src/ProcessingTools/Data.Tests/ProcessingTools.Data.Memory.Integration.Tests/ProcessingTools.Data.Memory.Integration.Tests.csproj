@@ -18,15 +18,18 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.Data.Memory.Integration.Tests.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Data.Memory.Integration.Tests.xml</DocumentationFile>
+    <OutputPath>bin\debug\netcoreapp3.0</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
     <NoWarn>1701;1702;CA1707</NoWarn>
-    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\ProcessingTools.Data.Memory.Integration.Tests.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Data.Memory.Integration.Tests.xml</DocumentationFile>
+    <OutputPath>bin\release\netcoreapp3.0</OutputPath>
     <NoWarn>1701;1702;CA1707</NoWarn>
-    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

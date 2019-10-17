@@ -15,14 +15,15 @@
     <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.Services.xml</DocumentationFile>
-    <DefineConstants />
-    <OutputPath>bin\debug</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\debug\netstandard2.1\ProcessingTools.Services.xml</DocumentationFile>
+    <OutputPath>bin\debug\netstandard2.1</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants />
-    <DocumentationFile>bin\release\ProcessingTools.Services.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.Services.xml</DocumentationFile>
+    <OutputPath>bin\release\netstandard2.1</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Special\FloraReplace.txt" />

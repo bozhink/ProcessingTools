@@ -15,12 +15,15 @@
     <PackageTags>services, models, web</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.Web.Models.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\debug\netstandard2.1\ProcessingTools.Web.Models.xml</DocumentationFile>
+    <OutputPath>bin\debug\netstandard2.1</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>bin\release</OutputPath>
-    <DocumentationFile>bin\release\ProcessingTools.Web.Models.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.Web.Models.xml</DocumentationFile>
+    <OutputPath>bin\release\netstandard2.1</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

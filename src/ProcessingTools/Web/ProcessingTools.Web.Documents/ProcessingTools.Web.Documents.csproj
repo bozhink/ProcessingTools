@@ -33,13 +33,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.Web.Documents.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Web.Documents.xml</DocumentationFile>
+    <OutputPath>bin\debug\netcoreapp3.0</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\ProcessingTools.Web.Documents.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Web.Documents.xml</DocumentationFile>
+    <OutputPath>bin\release\netcoreapp3.0</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

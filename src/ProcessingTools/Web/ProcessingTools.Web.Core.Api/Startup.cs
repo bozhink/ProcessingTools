@@ -7,7 +7,9 @@
 namespace ProcessingTools.Web.Core.Api
 {
     using System;
+    using System.IO;
     using System.Net.Http;
+    using System.Reflection;
     using System.Text.Json;
     using Autofac;
     using AutoMapper;
@@ -16,6 +18,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.OpenApi.Models;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
@@ -119,6 +122,19 @@ namespace ProcessingTools.Web.Core.Api
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "API",
+                    Version = "v1",
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             services.AddScoped(typeof(ITaxonClassificationResolverApiService<>), typeof(TaxonClassificationResolverApiService<>));
 
             services.AddScoped<ICatalogueOfLifeTaxonClassificationResolver, CatalogueOfLifeTaxonClassificationResolver>();
@@ -215,6 +231,19 @@ namespace ProcessingTools.Web.Core.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

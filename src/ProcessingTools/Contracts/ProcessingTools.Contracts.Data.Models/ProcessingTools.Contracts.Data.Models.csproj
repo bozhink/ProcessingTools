@@ -15,16 +15,17 @@
     <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\ProcessingTools.Contracts.Data.Models.xml</DocumentationFile>
-    <DefineConstants />
-    <OutputPath>bin\release</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\debug\netstandard2.1\ProcessingTools.Contracts.Data.Models.xml</DocumentationFile>
+    <DefineConstants>DEBUG</DefineConstants>
+    <OutputPath>bin\debug\netstandard2.1</OutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.Contracts.Data.Models.xml</DocumentationFile>
-    <DefineConstants />
-    <OutputPath>bin\debug</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.Contracts.Data.Models.xml</DocumentationFile>
+    <OutputPath>bin\release\netstandard2.1</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

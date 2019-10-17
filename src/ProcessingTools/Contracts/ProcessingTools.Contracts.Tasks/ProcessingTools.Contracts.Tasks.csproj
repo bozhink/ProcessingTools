@@ -15,12 +15,15 @@
     <PackageTags>contracts, tasks</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.Contracts.Tasks.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\debug\netstandard2.1\ProcessingTools.Contracts.Tasks.xml</DocumentationFile>
+    <OutputPath>bin\debug\netstandard2.1</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\ProcessingTools.Contracts.Tasks.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.Contracts.Tasks.xml</DocumentationFile>
+    <OutputPath>bin\release\netstandard2.1</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

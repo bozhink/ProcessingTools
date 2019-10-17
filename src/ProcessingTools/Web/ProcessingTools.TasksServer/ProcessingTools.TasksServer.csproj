@@ -21,13 +21,16 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.TasksServer.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.TasksServer.xml</DocumentationFile>
+    <OutputPath>bin\debug\netcoreapp3.0</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\ProcessingTools.TasksServer.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.TasksServer.xml</DocumentationFile>
+    <OutputPath>bin\release\netcoreapp3.0</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
