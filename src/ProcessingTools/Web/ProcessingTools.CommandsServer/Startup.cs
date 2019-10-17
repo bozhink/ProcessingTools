@@ -69,16 +69,23 @@ namespace ProcessingTools.CommandsServer
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services
-                .AddHealthChecks()
-                .AddCheck<VersionHealthCheck>("version")
-                .AddCheck<QueueHealthCheck>("queue");
+            services.AddHealthChecks()
+                .AddCheck<VersionHealthCheck>("version", tags: new[] { "version" })
+                .AddCheck<QueueHealthCheck>("queue", tags: new[] { "queue" });
+
+            services.Configure<HealthCheckPublisherOptions>(options =>
+            {
+                options.Delay = TimeSpan.FromSeconds(10);
+                options.Predicate = (check) => !check.Tags.Contains("version");
+            });
 
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             services.AddScoped<IQueueListener, QueueListener>();
             services.AddScoped<IQueueListenerScopedProcessingService, QueueListenerScopedProcessingService>();
             services.AddHostedService<ConsumeScopedServiceHostedService<IQueueListenerScopedProcessingService>>();
+
+            services.AddSingleton<IHealthCheckPublisher, LoggingHealthCheckPublisher>();
         }
 
         /// <summary>
