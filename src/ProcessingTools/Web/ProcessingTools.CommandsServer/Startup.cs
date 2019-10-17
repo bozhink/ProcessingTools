@@ -36,18 +36,18 @@ namespace ProcessingTools.CommandsServer
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
-        /// <param name="env">Hosting environment.</param>
-        public Startup(IWebHostEnvironment env)
+        /// <param name="environment">Hosting environment.</param>
+        public Startup(IWebHostEnvironment environment)
         {
-            if (env is null)
+            if (environment is null)
             {
-                throw new ArgumentNullException(nameof(env));
+                throw new ArgumentNullException(nameof(environment));
             }
 
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
+                .SetBasePath(environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
             this.Configuration = builder.Build();
@@ -129,7 +129,8 @@ namespace ProcessingTools.CommandsServer
         /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void Configure(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -166,11 +167,29 @@ namespace ProcessingTools.CommandsServer
                         if (result.Entries.Any())
                         {
                             json.Add(new JProperty("results", new JObject(result.Entries.Select(pair =>
-                                new JProperty(pair.Key, new JObject(
+                            {
+                                var value = new JObject
+                                {
                                     new JProperty("status", pair.Value.Status.ToString()),
-                                    new JProperty("description", pair.Value.Description),
-                                    new JProperty("data", new JObject(pair.Value.Data.Select(
-                                        p => new JProperty(p.Key, p.Value))))))))));
+                                };
+
+                                if (!string.IsNullOrEmpty(pair.Value.Description))
+                                {
+                                    value.Add(new JProperty("description", pair.Value.Description));
+                                }
+
+                                if (pair.Value.Data != null && pair.Value.Data.Any())
+                                {
+                                    value.Add(new JProperty("data", new JObject(pair.Value.Data.Select(p => new JProperty(p.Key, p.Value)))));
+                                }
+
+                                if (pair.Value.Exception != null && environment.EnvironmentName == "Development")
+                                {
+                                    value.Add(new JProperty("exception", pair.Value.Exception.ToString()));
+                                }
+
+                                return new JProperty(pair.Key, value);
+                            }))));
                         }
 
                         return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
@@ -183,7 +202,8 @@ namespace ProcessingTools.CommandsServer
         /// Configure for the Development environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureDevelopment(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -192,14 +212,15 @@ namespace ProcessingTools.CommandsServer
 
             app.UseDeveloperExceptionPage();
 
-            this.Configure(app);
+            this.Configure(app, environment);
         }
 
         /// <summary>
         /// Configure for the Staging environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureStaging(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -209,21 +230,22 @@ namespace ProcessingTools.CommandsServer
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app);
+            this.Configure(app, environment);
         }
 
         /// <summary>
         /// Configure for the Production environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureProduction(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            this.ConfigureStaging(app);
+            this.ConfigureStaging(app, environment);
         }
     }
 }

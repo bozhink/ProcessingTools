@@ -36,7 +36,7 @@ namespace ProcessingTools.CommandsServer.HealthCheck
                 return Task.FromResult(HealthCheckResult.Healthy(message));
             }
 
-            return Task.FromResult(HealthCheckResult.Unhealthy(message));
+            return Task.FromResult(HealthCheckResult.Unhealthy(message, exception: this.messageCacheService.Exception));
         }
     }
 }

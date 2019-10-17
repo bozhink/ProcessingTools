@@ -115,6 +115,7 @@ namespace ProcessingTools.CommandsServer.Services
             catch (Exception ex)
             {
                 this.messageCacheService.Message = ex.Message;
+                this.messageCacheService.Exception = ex;
 
                 this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStartError);
 
@@ -139,6 +140,7 @@ namespace ProcessingTools.CommandsServer.Services
         private void ExceptionHandler(Exception ex)
         {
             this.messageCacheService.Message = ex.Message;
+            this.messageCacheService.Exception = ex;
 
             this.logger.LogError(ex, string.Empty);
 
@@ -158,6 +160,7 @@ namespace ProcessingTools.CommandsServer.Services
                 catch (Exception ex)
                 {
                     this.messageCacheService.Message = ex.Message;
+                    this.messageCacheService.Exception = ex;
 
                     this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStopError);
                 }

@@ -44,6 +44,7 @@ namespace ProcessingTools.CommandsServer.Extensions
                 if (exception is AggregateException aggregateException && aggregateException.InnerExceptions.Any(ex => ex is ConnectFailureException))
                 {
                     messageCacheService.Message = "No connection to the RabbitMQ server";
+                    messageCacheService.Exception = exception;
                 }
 
                 logger.LogError(e.Exception, "IConnection.ConnectionRecoveryError");
