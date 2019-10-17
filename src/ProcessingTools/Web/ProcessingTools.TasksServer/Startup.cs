@@ -5,12 +5,18 @@
 namespace ProcessingTools.TasksServer
 {
     using System;
+    using System.Linq;
     using Autofac;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Services;
     using ProcessingTools.TasksServer.Services;
@@ -55,6 +61,8 @@ namespace ProcessingTools.TasksServer
                 throw new ArgumentNullException(nameof(services));
             }
 
+            services.AddHealthChecks();
+
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
@@ -88,7 +96,8 @@ namespace ProcessingTools.TasksServer
         /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void Configure(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -102,6 +111,57 @@ namespace ProcessingTools.TasksServer
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    AllowCachingResponses = false,
+                    ResultStatusCodes =
+                    {
+                        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+                        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+                        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
+                    },
+                    ResponseWriter = (HttpContext httpContext, HealthReport result) =>
+                    {
+                        httpContext.Response.ContentType = "application/json";
+
+                        var json = new JObject
+                        {
+                            new JProperty("version", this.GetType().Assembly.GetName().Version?.ToString()),
+                            new JProperty("status", result.Status.ToString()),
+                        };
+
+                        if (result.Entries.Any())
+                        {
+                            json.Add(new JProperty("results", new JObject(result.Entries.Select(pair =>
+                            {
+                                var value = new JObject
+                                {
+                                    new JProperty("status", pair.Value.Status.ToString()),
+                                };
+
+                                if (!string.IsNullOrEmpty(pair.Value.Description))
+                                {
+                                    value.Add(new JProperty("description", pair.Value.Description));
+                                }
+
+                                if (pair.Value.Data != null && pair.Value.Data.Any())
+                                {
+                                    value.Add(new JProperty("data", new JObject(pair.Value.Data.Select(p => new JProperty(p.Key, p.Value)))));
+                                }
+
+                                if (pair.Value.Exception != null && environment.EnvironmentName == "Development")
+                                {
+                                    value.Add(new JProperty("exception", pair.Value.Exception.ToString()));
+                                }
+
+                                return new JProperty(pair.Key, value);
+                            }))));
+                        }
+
+                        return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
+                    },
+                });
             });
         }
 
@@ -109,7 +169,8 @@ namespace ProcessingTools.TasksServer
         /// Configure for the Development environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureDevelopment(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -118,14 +179,15 @@ namespace ProcessingTools.TasksServer
 
             app.UseDeveloperExceptionPage();
 
-            this.Configure(app);
+            this.Configure(app, environment);
         }
 
         /// <summary>
         /// Configure for the Staging environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureStaging(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -135,21 +197,22 @@ namespace ProcessingTools.TasksServer
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app);
+            this.Configure(app, environment);
         }
 
         /// <summary>
         /// Configure for the Production environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureProduction(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            this.ConfigureStaging(app);
+            this.ConfigureStaging(app, environment);
         }
     }
 }

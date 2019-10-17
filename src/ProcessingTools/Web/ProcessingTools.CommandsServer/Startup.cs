@@ -17,13 +17,13 @@ namespace ProcessingTools.CommandsServer
     using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using ProcessingTools.CommandsServer.HealthCheck;
     using ProcessingTools.CommandsServer.Services;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Configuration.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Contracts.Services.MQ;
+    using ProcessingTools.HealthChecks;
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.MQ;
     using RabbitMQ.Client;
@@ -69,7 +69,10 @@ namespace ProcessingTools.CommandsServer
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services.AddHealthChecks().AddCheck<QueueHealthCheck>("queue");
+            services
+                .AddHealthChecks()
+                .AddCheck<VersionHealthCheck>("version")
+                .AddCheck<QueueHealthCheck>("queue");
 
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
@@ -166,30 +169,7 @@ namespace ProcessingTools.CommandsServer
 
                         if (result.Entries.Any())
                         {
-                            json.Add(new JProperty("results", new JObject(result.Entries.Select(pair =>
-                            {
-                                var value = new JObject
-                                {
-                                    new JProperty("status", pair.Value.Status.ToString()),
-                                };
-
-                                if (!string.IsNullOrEmpty(pair.Value.Description))
-                                {
-                                    value.Add(new JProperty("description", pair.Value.Description));
-                                }
-
-                                if (pair.Value.Data != null && pair.Value.Data.Any())
-                                {
-                                    value.Add(new JProperty("data", new JObject(pair.Value.Data.Select(p => new JProperty(p.Key, p.Value)))));
-                                }
-
-                                if (pair.Value.Exception != null && environment.EnvironmentName == "Development")
-                                {
-                                    value.Add(new JProperty("exception", pair.Value.Exception.ToString()));
-                                }
-
-                                return new JProperty(pair.Key, value);
-                            }))));
+                            json.Add(result.GetResultsToJSON(environment.EnvironmentName == "Development"));
                         }
 
                         return httpContext.Response.WriteAsync(json.ToString(Formatting.None));

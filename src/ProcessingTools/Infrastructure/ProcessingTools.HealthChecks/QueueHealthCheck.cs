@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.CommandsServer.HealthCheck
+namespace ProcessingTools.HealthChecks
 {
     using System;
     using System.Threading;
