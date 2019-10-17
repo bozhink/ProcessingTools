@@ -8,17 +8,23 @@ namespace ProcessingTools.Web.Core.Api
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Net.Http;
     using System.Reflection;
     using System.Text.Json;
     using Autofac;
     using AutoMapper;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.OpenApi.Models;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
@@ -26,6 +32,7 @@ namespace ProcessingTools.Web.Core.Api
     using ProcessingTools.Contracts.Services.Serialization;
     using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Images;
+    using ProcessingTools.HealthChecks;
     using ProcessingTools.Services.Bio.Taxonomy;
     using ProcessingTools.Services.Serialization;
     using ProcessingTools.Web.Core.Api.Handlers;
@@ -78,6 +85,10 @@ namespace ProcessingTools.Web.Core.Api
             {
                 throw new ArgumentNullException(nameof(services));
             }
+
+            services
+                .AddHealthChecks()
+                .AddCheck<VersionHealthCheck>("version");
 
             services
                 .AddCors(options =>
@@ -223,7 +234,8 @@ namespace ProcessingTools.Web.Core.Api
         /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void Configure(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -252,6 +264,34 @@ namespace ProcessingTools.Web.Core.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    AllowCachingResponses = false,
+                    ResultStatusCodes =
+                    {
+                        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+                        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+                        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
+                    },
+                    ResponseWriter = (HttpContext httpContext, HealthReport result) =>
+                    {
+                        httpContext.Response.ContentType = "application/json";
+
+                        var json = new JObject
+                        {
+                            new JProperty("version", this.GetType().Assembly.GetName().Version?.ToString()),
+                            new JProperty("status", result.Status.ToString()),
+                        };
+
+                        if (result.Entries.Any())
+                        {
+                            json.Add(result.GetResultsToJSON(environment.EnvironmentName == "Development"));
+                        }
+
+                        return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
+                    },
+                });
             });
         }
 
@@ -259,7 +299,8 @@ namespace ProcessingTools.Web.Core.Api
         /// Configure for the Development environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureDevelopment(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -268,7 +309,7 @@ namespace ProcessingTools.Web.Core.Api
 
             app.UseDeveloperExceptionPage();
 
-            this.Configure(app);
+            this.Configure(app, environment);
 
             app.UseCors("AllOriginsCorsPolicy");
         }
@@ -277,7 +318,8 @@ namespace ProcessingTools.Web.Core.Api
         /// Configure for the Staging environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureStaging(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -287,7 +329,7 @@ namespace ProcessingTools.Web.Core.Api
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app);
+            this.Configure(app, environment);
 
             app.UseCors("StrictCorsPolicy");
         }
@@ -296,14 +338,15 @@ namespace ProcessingTools.Web.Core.Api
         /// Configure for the Production environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureProduction(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            this.ConfigureStaging(app);
+            this.ConfigureStaging(app, environment);
         }
     }
 }

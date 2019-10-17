@@ -88,6 +88,7 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Web.Services\ProcessingTools.Contracts.Web.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Autofac\ProcessingTools.Configuration.Autofac.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.HealthChecks\ProcessingTools.HealthChecks.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
   </ItemGroup>

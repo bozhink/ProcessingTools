@@ -18,6 +18,7 @@ namespace ProcessingTools.TasksServer
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.HealthChecks;
     using ProcessingTools.Services;
     using ProcessingTools.TasksServer.Services;
 
@@ -61,7 +62,9 @@ namespace ProcessingTools.TasksServer
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services.AddHealthChecks();
+            services
+                .AddHealthChecks()
+                .AddCheck<VersionHealthCheck>("version");
 
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
@@ -133,30 +136,7 @@ namespace ProcessingTools.TasksServer
 
                         if (result.Entries.Any())
                         {
-                            json.Add(new JProperty("results", new JObject(result.Entries.Select(pair =>
-                            {
-                                var value = new JObject
-                                {
-                                    new JProperty("status", pair.Value.Status.ToString()),
-                                };
-
-                                if (!string.IsNullOrEmpty(pair.Value.Description))
-                                {
-                                    value.Add(new JProperty("description", pair.Value.Description));
-                                }
-
-                                if (pair.Value.Data != null && pair.Value.Data.Any())
-                                {
-                                    value.Add(new JProperty("data", new JObject(pair.Value.Data.Select(p => new JProperty(p.Key, p.Value)))));
-                                }
-
-                                if (pair.Value.Exception != null && environment.EnvironmentName == "Development")
-                                {
-                                    value.Add(new JProperty("exception", pair.Value.Exception.ToString()));
-                                }
-
-                                return new JProperty(pair.Key, value);
-                            }))));
+                            json.Add(result.GetResultsToJSON(environment.EnvironmentName == "Development"));
                         }
 
                         return httpContext.Response.WriteAsync(json.ToString(Formatting.None));

@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
+    using System.Linq;
     using System.Text.Json;
     using Autofac;
     using AutoMapper;
@@ -19,12 +20,16 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Configuration.Autofac;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.IO;
     using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.Contracts.Web.Services;
+    using ProcessingTools.HealthChecks;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Controllers;
     using ProcessingTools.Web.Documents.Data;
@@ -83,7 +88,10 @@ namespace ProcessingTools.Web.Documents
             }
 
             services.AddMemoryCache();
-            services.AddHealthChecks().AddDbContextCheck<ApplicationDbContext>();
+            services
+                .AddHealthChecks()
+                .AddCheck<VersionHealthCheck>("version")
+                .AddDbContextCheck<ApplicationDbContext>();
 
             // Configure databases
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -345,7 +353,8 @@ namespace ProcessingTools.Web.Documents
         /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void Configure(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -418,8 +427,35 @@ namespace ProcessingTools.Web.Documents
                 endpoints.MapRazorPages();
 
                 endpoints.MapHub<ChatHub>("/r/chat");
-                endpoints.MapHealthChecks("/health");
+
                 endpoints.MapHealthChecks("/healthz", new HealthCheckOptions { AllowCachingResponses = false }).RequireAuthorization(new AuthorizeAttribute { Roles = "admin" });
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    AllowCachingResponses = false,
+                    ResultStatusCodes =
+                    {
+                        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+                        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+                        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
+                    },
+                    ResponseWriter = (HttpContext httpContext, HealthReport result) =>
+                    {
+                        httpContext.Response.ContentType = "application/json";
+
+                        var json = new JObject
+                        {
+                            new JProperty("version", this.GetType().Assembly.GetName().Version?.ToString()),
+                            new JProperty("status", result.Status.ToString()),
+                        };
+
+                        if (result.Entries.Any())
+                        {
+                            json.Add(result.GetResultsToJSON(environment.EnvironmentName == "Development"));
+                        }
+
+                        return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
+                    },
+                });
             });
         }
 
@@ -439,7 +475,7 @@ namespace ProcessingTools.Web.Documents
             app.UseBrowserLink();
             app.UseDatabaseErrorPage();
 
-            this.Configure(app);
+            this.Configure(app, environment);
 
             app.ServeStaticFiles(environment, "node_modules", "/node_modules");
             app.ServeStaticFiles(environment, "node_modules", "/lib");
@@ -465,7 +501,7 @@ namespace ProcessingTools.Web.Documents
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app);
+            this.Configure(app, environment);
 
             app.ServeStaticFiles(environment, "node_modules", "/node_modules");
             app.ServeStaticFiles(environment, "node_modules", "/lib");
@@ -477,7 +513,8 @@ namespace ProcessingTools.Web.Documents
         /// Configure for the Production environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        public void ConfigureProduction(IApplicationBuilder app)
+        /// <param name="environment">Hosting environment.</param>
+        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment environment)
         {
             if (app is null)
             {
@@ -490,7 +527,7 @@ namespace ProcessingTools.Web.Documents
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app);
+            this.Configure(app, environment);
 
             app.UseCors("StrictCorsPolicy");
         }
