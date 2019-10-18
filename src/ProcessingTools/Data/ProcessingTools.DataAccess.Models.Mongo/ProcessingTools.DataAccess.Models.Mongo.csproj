@@ -18,14 +18,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\debug\netstandard2.1\ProcessingTools.DataAccess.Models.Mongo.xml</DocumentationFile>
-    <OutputPath>bin\debug\netstandard2.1</OutputPath>
+    <OutputPath>bin\debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.DataAccess.Models.Mongo.xml</DocumentationFile>
-    <OutputPath>bin\release\netstandard2.1</OutputPath>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

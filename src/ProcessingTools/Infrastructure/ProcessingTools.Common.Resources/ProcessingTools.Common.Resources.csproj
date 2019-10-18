@@ -16,13 +16,13 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <OutputPath>bin\release\netstandard2.1</OutputPath>
+    <OutputPath>bin\release</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <OutputPath>bin\debug\netstandard2.1</OutputPath>
+    <OutputPath>bin\debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 

@@ -19,14 +19,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.DbSeeder.xml</DocumentationFile>
-    <OutputPath>bin\debug\netcoreapp3.0</OutputPath>
+    <OutputPath>bin\debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.DbSeeder.xml</DocumentationFile>
-    <OutputPath>bin\release\netcoreapp3.0</OutputPath>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

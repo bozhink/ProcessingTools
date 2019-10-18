@@ -18,12 +18,12 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\debug\netstandard2.1\ProcessingTools.Contracts.Commands.Models.xml</DocumentationFile>
     <DefineConstants>DEBUG</DefineConstants>
-    <OutputPath>bin\debug\netstandard2.1</OutputPath>
+    <OutputPath>bin\debug</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.Contracts.Commands.Models.xml</DocumentationFile>
-    <OutputPath>bin\release\netstandard2.1</OutputPath>
+    <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
