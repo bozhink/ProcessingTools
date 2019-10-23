@@ -8,47 +8,41 @@ namespace ProcessingTools.Services.Security
     using System.Security.Cryptography;
     using System.Security.Cryptography.X509Certificates;
     using System.Text;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Contracts.Services.Security;
 
     /// <summary>
     /// Validation service with crypto certificate.
     /// </summary>
-    public class CertificateValidator
+    public class CertificateValidator : ICertificateValidator
     {
-        /// <summary>
-        /// Gets or sets the encoding.
-        /// </summary>
-        public Encoding Encoding { get; set; } = Encoding.UTF8;
+        /// <inheritdoc/>
+        public Encoding Encoding { get; set; } = Defaults.Encoding;
 
-        /// <summary>
-        /// Gets personal <see cref="X509Certificate2"/> by certificate subject.
-        /// </summary>
-        /// <param name="certificateSubject">Certificate subject.</param>
-        /// <returns>Instance of <see cref="X509Certificate2"/>.</returns>
+        /// <inheritdoc/>
         public X509Certificate2 GetPersonalX509CertificateBySubject(string certificateSubject)
         {
             // Access Personal (MY) certificate store of current user
-            X509Store my = new X509Store(StoreName.My, StoreLocation.CurrentUser);
-            my.Open(OpenFlags.ReadOnly);
-
-            // Find the certificate we'll use to sign
-            foreach (X509Certificate2 certificate in my.Certificates)
+            using (X509Store my = new X509Store(StoreName.My, StoreLocation.CurrentUser))
             {
-                if (certificate.Subject.Contains(certificateSubject))
+                my.Open(OpenFlags.ReadOnly);
+
+                // Find the certificate we'll use to sign
+                foreach (X509Certificate2 certificate in my.Certificates)
                 {
-                    // We found it.
-                    // Get its associated CSP (Crypto Service Provider) and private key
-                    return certificate;
+                    if (certificate.Subject.Contains(certificateSubject, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        // We found it.
+                        // Get its associated CSP (Crypto Service Provider) and private key
+                        return certificate;
+                    }
                 }
             }
 
             return null;
         }
 
-        /// <summary>
-        /// Gets <see cref="X509Certificate2"/> by file name.
-        /// </summary>
-        /// <param name="fileName">File name of the certificate (.cer) file.</param>
-        /// <returns>Instance of <see cref="X509Certificate2"/>.</returns>
+        /// <inheritdoc/>
         public X509Certificate2 GetX509CertificateByFileName(string fileName)
         {
             // Load the certificate we'll use from a file
@@ -56,15 +50,10 @@ namespace ProcessingTools.Services.Security
             return certificate;
         }
 
-        /// <summary>
-        /// Sign text with specified certificate.
-        /// </summary>
-        /// <param name="text">Text to be signed.</param>
-        /// <param name="certificate">Certificate to be used.</param>
-        /// <returns>Sign as byte array.</returns>
+        /// <inheritdoc/>
         public byte[] Sign(string text, X509Certificate2 certificate)
         {
-            if (certificate == null)
+            if (certificate is null)
             {
                 throw new ArgumentNullException(nameof(certificate));
             }
@@ -81,21 +70,15 @@ namespace ProcessingTools.Services.Security
             }
         }
 
-        /// <summary>
-        /// Verifies signature of text with specified certificate.
-        /// </summary>
-        /// <param name="text">Text to be verified.</param>
-        /// <param name="signature">Signature to be verified.</param>
-        /// <param name="certificate">Certificate to be used.</param>
-        /// <returns>Verification result.</returns>
+        /// <inheritdoc/>
         public bool Verify(string text, byte[] signature, X509Certificate2 certificate)
         {
-            if (certificate == null)
+            if (certificate is null)
             {
                 throw new ArgumentNullException(nameof(certificate));
             }
 
-            if (string.IsNullOrEmpty(text) || signature == null || signature.Length < 1)
+            if (string.IsNullOrEmpty(text) || signature is null || signature.Length < 1)
             {
                 return false;
             }
