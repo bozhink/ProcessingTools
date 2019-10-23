@@ -669,7 +669,7 @@ namespace ProcessingTools.Services.Security
             {
                 var msg = encoding.GetBytes(message);
                 var hash = hmac.ComputeHash(msg);
-                return BitConverter.ToString(hash).ToUpperInvariant().Replace("-", string.Empty);
+                return BitConverter.ToString(hash).ToUpperInvariant().Replace("-", string.Empty, StringComparison.InvariantCultureIgnoreCase);
             }
         }
     }
