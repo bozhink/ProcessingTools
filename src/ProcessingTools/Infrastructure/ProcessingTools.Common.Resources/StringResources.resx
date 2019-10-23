@@ -126,6 +126,9 @@
   <data name="CanNotGenerateUniqueFileName" xml:space="preserve">
     <value>Can not generate unique file name</value>
   </data>
+  <data name="CertificateIsNotAccepted" xml:space="preserve">
+    <value>Certificate is not accepted</value>
+  </data>
   <data name="CommandNotFound" xml:space="preserve">
     <value>Command not found</value>
   </data>

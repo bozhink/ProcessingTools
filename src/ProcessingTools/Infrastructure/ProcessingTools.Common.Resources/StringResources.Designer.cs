@@ -88,6 +88,15 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Certificate is not accepted.
+        /// </summary>
+        public static string CertificateIsNotAccepted {
+            get {
+                return ResourceManager.GetString("CertificateIsNotAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command not found.
         /// </summary>
         public static string CommandNotFound {
