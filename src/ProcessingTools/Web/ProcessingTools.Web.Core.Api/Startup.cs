@@ -30,6 +30,8 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.OpenApi.Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Polly;
+    using Polly.Extensions.Http;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
@@ -232,7 +234,19 @@ namespace ProcessingTools.Web.Core.Api
                     UseDefaultCredentials = true,
                     UseCookies = false,
                     UseProxy = false,
-                });
+                })
+                .AddPolicyHandler(Policy.BulkheadAsync<HttpResponseMessage>( // Needs to be mapped to singleton
+                    maxParallelization: 4,
+                    maxQueuingActions: 32,
+                    onBulkheadRejectedAsync: context =>
+                    {
+                        return Task.CompletedTask;
+                    }))
+                .AddPolicyHandler(
+                    HttpPolicyExtensions.HandleTransientHttpError()
+                        .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                        .WaitAndRetryAsync(1, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)))
+                    );
 
             services.AddHttpClient<GbifApiV09Client>(nameof(GbifApiV09Client))
                 .ConfigureHttpClient(c =>
