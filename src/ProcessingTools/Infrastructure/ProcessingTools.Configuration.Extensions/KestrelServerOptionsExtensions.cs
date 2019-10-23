@@ -11,6 +11,7 @@ namespace ProcessingTools.Configuration.Extensions
     using System.Security.Cryptography.X509Certificates;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
+    using Microsoft.AspNetCore.Server.Kestrel.Https;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -23,10 +24,26 @@ namespace ProcessingTools.Configuration.Extensions
     public static class KestrelServerOptionsExtensions
     {
         /// <summary>
+        /// Configure Kestrel to require certificate.
+        /// </summary>
+        /// <param name="options">Kestrel server options.</param>
+        /// <returns>Updated options.</returns>
+        public static KestrelServerOptions RequireCertificate(this KestrelServerOptions options)
+        {
+            options.ConfigureHttpsDefaults(opt =>
+            {
+                opt.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+            });
+
+            return options;
+        }
+
+        /// <summary>
         /// Configure endpoints.
         /// </summary>
         /// <param name="options">Kestrel server options.</param>
-        public static void ConfigureEndpoints(this KestrelServerOptions options)
+        /// <returns>Updated options.</returns>
+        public static KestrelServerOptions ConfigureEndpoints(this KestrelServerOptions options)
         {
             var configuration = options.ApplicationServices.GetRequiredService<IConfiguration>();
             var environment = options.ApplicationServices.GetRequiredService<IHostEnvironment>();
@@ -76,6 +93,8 @@ namespace ProcessingTools.Configuration.Extensions
                     });
                 }
             }
+
+            return options;
         }
 
         private static X509Certificate2 LoadCertificate(EndpointConfiguration config, IHostEnvironment environment)

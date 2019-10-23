@@ -11,9 +11,12 @@ namespace ProcessingTools.Web.Core.Api
     using System.Linq;
     using System.Net.Http;
     using System.Reflection;
+    using System.Security.Claims;
     using System.Text.Json;
+    using System.Threading.Tasks;
     using Autofac;
     using AutoMapper;
+    using Microsoft.AspNetCore.Authentication.Certificate;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
@@ -22,6 +25,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi.Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -86,9 +90,40 @@ namespace ProcessingTools.Web.Core.Api
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services
-                .AddHealthChecks()
+            services.AddHealthChecks()
                 .AddCheck<VersionHealthCheck>("version");
+
+            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
+                .AddCertificate(options =>
+                {
+                    options.ValidateCertificateUse = true;
+                    options.ValidateValidityPeriod = true;
+
+                    options.Events = new CertificateAuthenticationEvents
+                    {
+                        OnCertificateValidated = context =>
+                        {
+                            var claims = new[]
+                            {
+                                new Claim(ClaimTypes.NameIdentifier, context.ClientCertificate.Subject, ClaimValueTypes.String, context.Options.ClaimsIssuer),
+                                new Claim(ClaimTypes.Name, context.ClientCertificate.Subject, ClaimValueTypes.String, context.Options.ClaimsIssuer),
+                            };
+
+                            context.Principal = new ClaimsPrincipal(new ClaimsIdentity(claims, context.Scheme.Name));
+                            context.Success();
+
+                            return Task.CompletedTask;
+                        },
+                        OnAuthenticationFailed = context =>
+                        {
+                            var logger = context.HttpContext.RequestServices.GetService<ILogger<CertificateAuthenticationEvents>>();
+
+                            logger.LogError(context.Exception, string.Empty);
+
+                            return Task.CompletedTask;
+                        },
+                    };
+                });
 
             services
                 .AddCors(options =>
@@ -259,6 +294,7 @@ namespace ProcessingTools.Web.Core.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

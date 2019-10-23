@@ -12,6 +12,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
+    using ProcessingTools.Configuration.Extensions;
 
     /// <summary>
     /// Entry point of the application.
@@ -55,6 +56,7 @@ namespace ProcessingTools.Web.Core.Api
                 {
                     webHostBuilder
                         .UseStartup<Startup>()
+                        .UseKestrel(options => options.ConfigureEndpoints().RequireCertificate())
                         .ConfigureLogging((hostingContext, builder) =>
                         {
                             builder.ClearProviders();
