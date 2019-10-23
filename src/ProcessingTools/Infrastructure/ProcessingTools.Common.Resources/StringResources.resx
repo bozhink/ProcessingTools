@@ -207,6 +207,9 @@
   <data name="MaximalNumberOfIterationsExceeded" xml:space="preserve">
     <value>Maximal number of iterations is exceeded</value>
   </data>
+  <data name="NoValidCertificateConfiguration" xml:space="preserve">
+    <value>No valid certificate configuration found for the current endpoint</value>
+  </data>
   <data name="PossibleMatches" xml:space="preserve">
     <value>Possible matches</value>
   </data>

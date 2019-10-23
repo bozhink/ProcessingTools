@@ -18,7 +18,7 @@ namespace ProcessingTools.TasksServer
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
-    using ProcessingTools.TasksServer.Extensions;
+    using ProcessingTools.Configuration.Extensions;
 
     /// <summary>
     /// Entry point of the application.

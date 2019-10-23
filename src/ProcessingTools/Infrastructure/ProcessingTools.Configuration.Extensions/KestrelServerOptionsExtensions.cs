@@ -2,7 +2,7 @@
 // Copyright (c) 2019 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.CommandsServer.Extensions
+namespace ProcessingTools.Configuration.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +13,8 @@ namespace ProcessingTools.CommandsServer.Extensions
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using ProcessingTools.Common.Resources;
     using ProcessingTools.Configuration.Models;
 
     /// <summary>
@@ -27,7 +29,7 @@ namespace ProcessingTools.CommandsServer.Extensions
         public static void ConfigureEndpoints(this KestrelServerOptions options)
         {
             var configuration = options.ApplicationServices.GetRequiredService<IConfiguration>();
-            var environment = options.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
+            var environment = options.ApplicationServices.GetRequiredService<IHostEnvironment>();
 
             var endpoints = configuration.GetSection("HttpServer:Endpoints")
                 .GetChildren()
@@ -76,7 +78,7 @@ namespace ProcessingTools.CommandsServer.Extensions
             }
         }
 
-        private static X509Certificate2 LoadCertificate(EndpointConfiguration config, IWebHostEnvironment environment)
+        private static X509Certificate2 LoadCertificate(EndpointConfiguration config, IHostEnvironment environment)
         {
             if (config.StoreName != null && config.StoreLocation != null)
             {
@@ -103,7 +105,7 @@ namespace ProcessingTools.CommandsServer.Extensions
                 return new X509Certificate2(config.FilePath, config.Password);
             }
 
-            throw new InvalidOperationException("No valid certificate configuration found for the current endpoint.");
+            throw new InvalidOperationException(StringResources.NoValidCertificateConfiguration);
         }
     }
 }

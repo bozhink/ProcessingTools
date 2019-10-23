@@ -18,7 +18,7 @@ namespace ProcessingTools.CommandsServer
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
-    using ProcessingTools.CommandsServer.Extensions;
+    using ProcessingTools.Configuration.Extensions;
 
     /// <summary>
     /// Entry point of the application.

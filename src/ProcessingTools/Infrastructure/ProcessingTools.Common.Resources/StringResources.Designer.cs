@@ -331,6 +331,15 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No valid certificate configuration found for the current endpoint.
+        /// </summary>
+        public static string NoValidCertificateConfiguration {
+            get {
+                return ResourceManager.GetString("NoValidCertificateConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Possible matches.
         /// </summary>
         public static string PossibleMatches {
