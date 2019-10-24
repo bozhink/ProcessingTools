@@ -185,6 +185,7 @@ namespace ProcessingTools.Web.Core.Api
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
+            // See https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.0&tabs=visual-studio
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -245,8 +246,7 @@ namespace ProcessingTools.Web.Core.Api
                 .AddPolicyHandler(
                     HttpPolicyExtensions.HandleTransientHttpError()
                         .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
-                        .WaitAndRetryAsync(1, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)))
-                    );
+                        .WaitAndRetryAsync(1, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))));
 
             services.AddHttpClient<GbifApiV09Client>(nameof(GbifApiV09Client))
                 .ConfigureHttpClient(c =>
@@ -320,7 +320,6 @@ namespace ProcessingTools.Web.Core.Api
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-                c.RoutePrefix = string.Empty;
             });
 
             app.UseRouting();

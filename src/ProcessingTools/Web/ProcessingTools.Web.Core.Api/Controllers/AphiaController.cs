@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Api.Controllers
     /// <summary>
     /// Taxon classification with APHIA service API controller.
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AphiaController : TaxonClassificationResolverController<IAphiaTaxonClassificationResolver>
     {

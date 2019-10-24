@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Core.Api.Controllers
 {
     using System;
+    using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ namespace ProcessingTools.Web.Core.Api.Controllers
     /// <summary>
     /// Images controller.
     /// </summary>
-    [Route("api/image")]
+    [Route("api/v1/image")]
     [ApiController]
     public class ImagesController : ControllerBase
     {
@@ -37,24 +38,29 @@ namespace ProcessingTools.Web.Core.Api.Controllers
         /// </summary>
         /// <param name="file">File to be uploaded.</param>
         /// <returns>Action result.</returns>
+        /// <response code="200">Resultant message of the operation.</response>
+        /// <response code="422">If the provided file is not valid.</response>
+        /// <response code="500">If something unexpected happened. See log for details.</response>
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(422)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
-            if (file == null)
+            if (file is null)
             {
                 return this.UnprocessableEntity();
             }
 
             try
             {
-                var result = await this.service.UploadImageAsync(file).ConfigureAwait(false);
+                string result = await this.service.UploadImageAsync(file).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
             {
                 this.logger.LogError(ex, string.Empty);
-
-                return new EmptyResult();
+                return this.StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
     }

@@ -5,12 +5,14 @@
 namespace ProcessingTools.Web.Core.Api.Abstractions
 {
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
+    using ProcessingTools.Web.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Generic taxon classification resolver API controller.
@@ -38,7 +40,15 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
         /// </summary>
         /// <param name="id">Taxon name to be resolved.</param>
         /// <returns>List of found classification data.</returns>
+        /// <response code="200">Returns resolved items.</response>
+        /// <response code="400">If no valid taxon name is provided.</response>
+        /// <response code="404">If no resolution is found.</response>
+        /// <response code="500">If something unexpected happened. See log for details.</response>
         [HttpGet("classification/{id}")]
+        [ProducesResponseType(200, Type = typeof(IList<TaxonClassificationResponseModel>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetById(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -48,7 +58,7 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
 
             try
             {
-                var result = await this.service.ResolveAsync(new[] { id }).ConfigureAwait(false);
+                IList<TaxonClassificationResponseModel> result = await this.service.ResolveAsync(new[] { id }).ConfigureAwait(false);
 
                 if (result is null)
                 {
@@ -69,7 +79,15 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
         /// </summary>
         /// <param name="name">Taxon name to be resolved.</param>
         /// <returns>List of found classification data.</returns>
+        /// <response code="200">Returns resolved items.</response>
+        /// <response code="400">If no valid taxon name is provided.</response>
+        /// <response code="404">If no resolution is found.</response>
+        /// <response code="500">If something unexpected happened. See log for details.</response>
         [HttpGet("classification")]
+        [ProducesResponseType(200, Type = typeof(IList<TaxonClassificationResponseModel>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -79,7 +97,7 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
 
             try
             {
-                var result = await this.service.ResolveAsync(new[] { name }).ConfigureAwait(false);
+                IList<TaxonClassificationResponseModel> result = await this.service.ResolveAsync(new[] { name }).ConfigureAwait(false);
 
                 if (result is null)
                 {
@@ -100,7 +118,15 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
         /// </summary>
         /// <param name="names">Taxon names to be resolved.</param>
         /// <returns>List of found classification data.</returns>
+        /// <response code="200">Returns resolved items.</response>
+        /// <response code="400">If no valid taxon names are provided.</response>
+        /// <response code="404">If no resolution is found.</response>
+        /// <response code="500">If something unexpected happened. See log for details.</response>
         [HttpPost("classification")]
+        [ProducesResponseType(200, Type = typeof(IList<TaxonClassificationResponseModel>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetByNames([FromBody] string[] names)
         {
             if (names is null || names.Length < 1)
@@ -110,7 +136,7 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
 
             try
             {
-                var result = await this.service.ResolveAsync(names).ConfigureAwait(false);
+                IList<TaxonClassificationResponseModel> result = await this.service.ResolveAsync(names).ConfigureAwait(false);
 
                 if (result is null)
                 {

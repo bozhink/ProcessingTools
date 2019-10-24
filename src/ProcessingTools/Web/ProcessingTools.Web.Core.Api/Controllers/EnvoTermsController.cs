@@ -12,12 +12,11 @@ namespace ProcessingTools.Web.Api.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Contracts.Models.Bio;
     using ProcessingTools.Contracts.Models.Bio.Environments;
     using ProcessingTools.Contracts.Services.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.Environments;
 
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class EnvoTermsController : ControllerBase
     {

@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Api.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace ProcessingTools.Web.Api.Controllers
     /// <summary>
     /// Mediatypes controller.
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class MediatypesController : ControllerBase
     {
@@ -37,14 +38,28 @@ namespace ProcessingTools.Web.Api.Controllers
         /// Resolves mediatype by file name.
         /// </summary>
         /// <param name="id">File name.</param>
-        /// <returns><see cref="MediatypeResponseModel"/> if resolved correctly.</returns>
+        /// <returns>Response model if resolved correctly.</returns>
+        /// <response code="200">Returns resolved items.</response>
+        /// <response code="400">If no valid file name is provided.</response>
+        /// <response code="404">If no resolution is found.</response>
+        /// <response code="500">If something unexpected happened. See log for details.</response>
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IList<MediatypeResponseModel>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Get(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return this.BadRequest();
+            }
+
             try
             {
-                var result = await this.service.ResolveMediatypeAsync(id).ConfigureAwait(false);
-                if (result == null)
+                IList<MediatypeResponseModel> result = await this.service.ResolveMediatypeAsync(id).ConfigureAwait(false);
+
+                if (result is null)
                 {
                     return this.NotFound();
                 }
