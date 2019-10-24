@@ -49,6 +49,7 @@ namespace ProcessingTools.TasksServer
                     Directory.SetCurrentDirectory(pathToContentRoot);
                 }
 
+                // See https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-3.0&tabs=visual-studio
                 IHostBuilder hostBuilder = CreateHostBuilder(args);
 
                 if (isService && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
