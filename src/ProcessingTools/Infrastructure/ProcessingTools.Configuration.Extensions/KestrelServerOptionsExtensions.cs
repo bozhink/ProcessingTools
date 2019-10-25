@@ -6,6 +6,7 @@ namespace ProcessingTools.Configuration.Extensions
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Net;
     using System.Security.Cryptography.X509Certificates;
@@ -108,11 +109,11 @@ namespace ProcessingTools.Configuration.Extensions
                     var certificate = store.Certificates.Find(
                         X509FindType.FindBySubjectName,
                         config.Host,
-                        validOnly: environment.EnvironmentName != "Development");
+                        validOnly: !environment.IsDevelopment());
 
-                    if (certificate.Count == 0)
+                    if (certificate.Count < 1)
                     {
-                        throw new InvalidOperationException($"Certificate not found for {config.Host}.");
+                        throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, StringResources.CertificateNotFoundForHostFormat, config.Host));
                     }
 
                     return certificate[0];

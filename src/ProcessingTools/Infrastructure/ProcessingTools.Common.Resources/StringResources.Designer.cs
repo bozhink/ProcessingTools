@@ -97,6 +97,15 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Certificate not found for {0}.
+        /// </summary>
+        public static string CertificateNotFoundForHostFormat {
+            get {
+                return ResourceManager.GetString("CertificateNotFoundForHostFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command not found.
         /// </summary>
         public static string CommandNotFound {

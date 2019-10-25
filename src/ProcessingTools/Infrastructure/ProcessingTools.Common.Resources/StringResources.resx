@@ -129,6 +129,9 @@
   <data name="CertificateIsNotAccepted" xml:space="preserve">
     <value>Certificate is not accepted</value>
   </data>
+  <data name="CertificateNotFoundForHostFormat" xml:space="preserve">
+    <value>Certificate not found for {0}</value>
+  </data>
   <data name="CommandNotFound" xml:space="preserve">
     <value>Command not found</value>
   </data>
