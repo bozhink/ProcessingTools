@@ -23,6 +23,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -95,6 +96,9 @@ namespace ProcessingTools.Web.Core.Api
             {
                 throw new ArgumentNullException(nameof(services));
             }
+
+            // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-3.0
+            services.Configure<KestrelServerOptions>(this.Configuration.GetSection("Kestrel"));
 
             services.AddHealthChecks()
                 .AddCheck<VersionHealthCheck>("version");

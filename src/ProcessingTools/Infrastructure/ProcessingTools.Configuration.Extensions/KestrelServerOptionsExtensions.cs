@@ -9,6 +9,7 @@ namespace ProcessingTools.Configuration.Extensions
     using System.Globalization;
     using System.Linq;
     using System.Net;
+    using System.Security.Authentication;
     using System.Security.Cryptography.X509Certificates;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -31,9 +32,12 @@ namespace ProcessingTools.Configuration.Extensions
         /// <returns>Updated options.</returns>
         public static KestrelServerOptions RequireCertificate(this KestrelServerOptions options)
         {
-            options.ConfigureHttpsDefaults(opt =>
+            options.ConfigureHttpsDefaults(listenOptions =>
             {
-                opt.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+                listenOptions.CheckCertificateRevocation = true;
+                listenOptions.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+                listenOptions.HandshakeTimeout = TimeSpan.FromSeconds(1);
+                listenOptions.SslProtocols = SslProtocols.Tls12;
             });
 
             return options;
