@@ -84,6 +84,7 @@ namespace ProcessingTools.CommandsServer
             services.AddScoped<IQueueListener, QueueListener>();
             services.AddScoped<IQueueListenerScopedProcessingService, QueueListenerScopedProcessingService>();
             services.AddHostedService<ConsumeScopedServiceHostedService<IQueueListenerScopedProcessingService>>();
+            services.AddHostedService<ChapterLister>();
 
             services.AddSingleton<IHealthCheckPublisher, LoggingHealthCheckPublisher>();
         }
