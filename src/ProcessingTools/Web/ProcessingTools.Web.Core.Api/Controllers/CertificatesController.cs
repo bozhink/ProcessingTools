@@ -10,10 +10,18 @@ namespace ProcessingTools.Web.Core.Api.Controllers
     using System.Security.Cryptography.X509Certificates;
     using Microsoft.AspNetCore.Mvc;
 
+    /// <summary>
+    /// Certificates controller.
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class CertificatesController : ControllerBase
     {
+        /// <summary>
+        /// Get certificate.
+        /// </summary>
+        /// <param name="certificateName">Certificate name.</param>
+        /// <returns>Certificate as file.</returns>
         [HttpGet]
         public IActionResult Get(string certificateName)
         {
