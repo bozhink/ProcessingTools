@@ -39,6 +39,7 @@ namespace ProcessingTools.Web.Documents
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services;
+    using RabbitMQ.Client;
 
     /// <summary>
     /// Start-up of the application.
@@ -345,6 +346,24 @@ namespace ProcessingTools.Web.Documents
             builder.RegisterModule(new DataAccessAutofacModule { Configuration = this.Configuration });
             builder.RegisterModule<ServicesWebAutofacModule>();
             builder.RegisterModule(new ServicesAutofacModule { Configuration = this.Configuration });
+
+            // Rabbit MQ
+            builder
+                .Register(c => new ConnectionFactory
+                {
+                    HostName = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueHostName),
+                    Port = this.Configuration.GetValue<int>(ConfigurationConstants.MessageQueuePort),
+                    VirtualHost = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueVirtualHost),
+                    UserName = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueueUserName),
+                    Password = this.Configuration.GetValue<string>(ConfigurationConstants.MessageQueuePassword),
+                    AutomaticRecoveryEnabled = true,
+                    Ssl = new SslOption
+                    {
+                        AcceptablePolicyErrors = System.Net.Security.SslPolicyErrors.None,
+                    },
+                })
+                .As<IConnectionFactory>()
+                .SingleInstance();
         }
 
         /// <summary>

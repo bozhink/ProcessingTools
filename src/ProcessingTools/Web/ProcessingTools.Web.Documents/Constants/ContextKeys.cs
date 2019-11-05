@@ -35,6 +35,11 @@ namespace ProcessingTools.Web.Documents.Constants
         public const string ShowApplicationHeader = nameof(ShowApplicationHeader);
 
         /// <summary>
+        /// Success.
+        /// </summary>
+        public const string Success = nameof(Success);
+
+        /// <summary>
         /// Title.
         /// </summary>
         public const string Title = nameof(Title);

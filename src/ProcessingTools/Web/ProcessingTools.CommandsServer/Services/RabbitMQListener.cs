@@ -94,7 +94,7 @@ namespace ProcessingTools.CommandsServer.Services
             this.channel = this.connection.CreateModel();
 
             this.channel.ExchangeDeclare(exchange: this.ExchangeName, type: "topic");
-            this.channel.QueueDeclare(queue: this.QueueName, exclusive: false);
+            this.channel.QueueDeclare(queue: this.QueueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
             this.channel.QueueBind(queue: this.QueueName, exchange: this.ExchangeName, routingKey: this.RoutingKey);
 
             var consumer = new EventingBasicConsumer(this.channel);
