@@ -11,12 +11,14 @@
    <xsd:element name="url" type="xsd:string"/>
    <xsd:element name="scientificname" type="xsd:string"/>
    <xsd:element name="authority" type="xsd:string"/>
+   <xsd:element name="taxonRankID" type="xsd:int"/>
    <xsd:element name="rank" type="xsd:string"/>
    <xsd:element name="status" type="xsd:string"/>
    <xsd:element name="unacceptreason" type="xsd:string"/>
    <xsd:element name="valid_AphiaID" type="xsd:int"/>
    <xsd:element name="valid_name" type="xsd:string"/>
    <xsd:element name="valid_authority" type="xsd:string"/>
+   <xsd:element name="parentNameUsageID" type="xsd:int"/>
    <xsd:element name="kingdom" type="xsd:string"/>
    <xsd:element name="phylum" type="xsd:string"/>
    <xsd:element name="class" type="xsd:string"/>
@@ -131,6 +133,21 @@
    </xsd:restriction>
   </xsd:complexContent>
  </xsd:complexType>
+ <xsd:complexType name="AphiaRank">
+  <xsd:all>
+   <xsd:element name="taxonRankID" type="xsd:int"/>
+   <xsd:element name="taxonRank" type="xsd:string"/>
+   <xsd:element name="AphiaID" type="xsd:int"/>
+   <xsd:element name="kingdom" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="AphiaRanks">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:AphiaRank[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
  <xsd:complexType name="AttributeKey">
   <xsd:all>
    <xsd:element name="measurementTypeID" type="xsd:int"/>
@@ -219,6 +236,10 @@
   <part name="AphiaID" type="xsd:int" /></message>
 <message name="getAphiaRecordByIDResponse">
   <part name="return" type="tns:AphiaRecord" /></message>
+<message name="getAphiaRecordsByIDsRequest">
+  <part name="aphiaids" type="tns:aphiaids" /></message>
+<message name="getAphiaRecordsByIDsResponse">
+  <part name="return" type="tns:AphiaRecords" /></message>
 <message name="getAphiaRecordByExtIDRequest">
   <part name="id" type="xsd:string" />
   <part name="type" type="xsd:string" /></message>
@@ -258,7 +279,8 @@
 <message name="getSourcesByAphiaIDResponse">
   <part name="return" type="tns:Sources" /></message>
 <message name="getAphiaSynonymsByIDRequest">
-  <part name="AphiaID" type="xsd:int" /></message>
+  <part name="AphiaID" type="xsd:int" />
+  <part name="offset" type="xsd:int" /></message>
 <message name="getAphiaSynonymsByIDResponse">
   <part name="return" type="tns:AphiaRecords" /></message>
 <message name="getAphiaVernacularsByIDRequest">
@@ -280,6 +302,22 @@
   <part name="AphiaID" type="xsd:int" /></message>
 <message name="getAphiaDistributionsByIDResponse">
   <part name="return" type="tns:Distributions" /></message>
+<message name="getAphiaTaxonRanksByIDRequest">
+  <part name="taxonRankID" type="xsd:int" />
+  <part name="AphiaID" type="xsd:int" /></message>
+<message name="getAphiaTaxonRanksByIDResponse">
+  <part name="return" type="tns:AphiaRanks" /></message>
+<message name="getAphiaTaxonRanksByNameRequest">
+  <part name="taxonRank" type="xsd:string" />
+  <part name="AphiaID" type="xsd:int" /></message>
+<message name="getAphiaTaxonRanksByNameResponse">
+  <part name="return" type="tns:AphiaRanks" /></message>
+<message name="getAphiaRecordsByTaxonRankIDRequest">
+  <part name="taxonRankID" type="xsd:int" />
+  <part name="belongsTo" type="xsd:int" />
+  <part name="offset" type="xsd:int" /></message>
+<message name="getAphiaRecordsByTaxonRankIDResponse">
+  <part name="return" type="tns:AphiaRecords" /></message>
 <message name="getAphiaAttributeKeysByIDRequest">
   <part name="id" type="xsd:int" />
   <part name="include_children" type="xsd:boolean" /></message>
@@ -336,15 +374,21 @@
   <operation name="getAphiaRecordByID">
     <documentation>&lt;strong&gt;Get the complete AphiaRecord for a given AphiaID&lt;/strong&gt;
 		&lt;br /&gt; The returned AphiaRecord has this format:
-		&lt;br /&gt; &lt;ul&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;AphiaID&lt;/b&gt;&lt;/u&gt; : Unique and persistent identifier within WoRMS. Primary key in the database&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;url&lt;/b&gt;&lt;/u&gt; : HTTP URL to the AphiaRecord&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;scientificname&lt;/b&gt;&lt;/u&gt; : the full scientific name without authorship&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;authority&lt;/b&gt;&lt;/u&gt; : the authorship information for the scientificname formatted according to the conventions of the applicable nomenclaturalCode&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;rank&lt;/b&gt;&lt;/u&gt; : the taxonomic rank of the most specific name in the scientificname&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;status&lt;/b&gt;&lt;/u&gt; : the status of the use of the scientificname (usually a taxonomic opinion). Additional technical statuses are (1) &lt;u&gt;quarantined&lt;/u&gt;: hidden from public interface after decision from an editor and (2) &lt;u&gt;deleted&lt;/u&gt;: AphiaID should NOT be used anymore, please replace it by the valid_AphiaID&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;unacceptreason&lt;/b&gt;&lt;/u&gt; : the reason why a scientificname is unaccepted&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;valid_AphiaID&lt;/b&gt;&lt;/u&gt; : the AphiaID (for the scientificname) of the currently accepted taxon. NULL if there is no currently accepted taxon.&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;valid_name&lt;/b&gt;&lt;/u&gt; : the scientificname of the currently accepted taxon&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;valid_authority&lt;/b&gt;&lt;/u&gt; : the authorship information for the scientificname of the currently accepted taxon&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;kingdom&lt;/b&gt;&lt;/u&gt; : the full scientific name of the kingdom in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;phylum&lt;/b&gt;&lt;/u&gt; : the full scientific name of the phylum or division in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;class&lt;/b&gt;&lt;/u&gt; : the full scientific name of the class in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;order&lt;/b&gt;&lt;/u&gt; : the full scientific name of the order in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;family&lt;/b&gt;&lt;/u&gt; : the full scientific name of the family in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;genus&lt;/b&gt;&lt;/u&gt; : the full scientific name of the genus in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;citation&lt;/b&gt;&lt;/u&gt; : a bibliographic reference for the resource as a statement indicating how this record should be cited (attributed) when used&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;lsid&lt;/b&gt;&lt;/u&gt; : LifeScience Identifier. Persistent GUID for an AphiaID&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isMarine&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating whether the taxon is a marine organism, i.e. can be found in/above sea water. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isBrackish&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating whether the taxon occurrs in brackish habitats. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isFreshwater&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating whether the taxon occurrs in freshwater habitats, i.e. can be found in/above rivers or lakes. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isTerrestrial&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating the taxon is a terrestial organism, i.e. occurrs on land as opposed to the sea. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isExtinct&lt;/b&gt;&lt;/u&gt; : a flag indicating an extinct organism. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;match_type&lt;/b&gt;&lt;/u&gt; : Type of match. Possible values: exact/like/phonetic/near_1/near_2&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;modified&lt;/b&gt;&lt;/u&gt; : The most recent date-time in GMT on which the resource was changed&lt;/li&gt;&lt;/ul&gt;</documentation>
+		&lt;br /&gt; &lt;ul&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;AphiaID&lt;/b&gt;&lt;/u&gt; : Unique and persistent identifier within WoRMS. Primary key in the database&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;url&lt;/b&gt;&lt;/u&gt; : HTTP URL to the AphiaRecord&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;scientificname&lt;/b&gt;&lt;/u&gt; : the full scientific name without authorship&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;authority&lt;/b&gt;&lt;/u&gt; : the authorship information for the scientificname formatted according to the conventions of the applicable nomenclaturalCode&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;taxonRankID&lt;/b&gt;&lt;/u&gt; : the taxonomic rank identifier of the most specific name in the scientificname&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;rank&lt;/b&gt;&lt;/u&gt; : the taxonomic rank of the most specific name in the scientificname&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;status&lt;/b&gt;&lt;/u&gt; : the status of the use of the scientificname (usually a taxonomic opinion). Additional technical statuses are (1) &lt;u&gt;quarantined&lt;/u&gt;: hidden from public interface after decision from an editor and (2) &lt;u&gt;deleted&lt;/u&gt;: AphiaID should NOT be used anymore, please replace it by the valid_AphiaID&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;unacceptreason&lt;/b&gt;&lt;/u&gt; : the reason why a scientificname is unaccepted&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;valid_AphiaID&lt;/b&gt;&lt;/u&gt; : the AphiaID (for the scientificname) of the currently accepted taxon. NULL if there is no currently accepted taxon.&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;valid_name&lt;/b&gt;&lt;/u&gt; : the scientificname of the currently accepted taxon&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;valid_authority&lt;/b&gt;&lt;/u&gt; : the authorship information for the scientificname of the currently accepted taxon&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;parentNameUsageID&lt;/b&gt;&lt;/u&gt; : the AphiaID (for the scientificname) of the direct, most proximate higher-rank parent taxon (in a classification)&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;kingdom&lt;/b&gt;&lt;/u&gt; : the full scientific name of the kingdom in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;phylum&lt;/b&gt;&lt;/u&gt; : the full scientific name of the phylum or division in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;class&lt;/b&gt;&lt;/u&gt; : the full scientific name of the class in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;order&lt;/b&gt;&lt;/u&gt; : the full scientific name of the order in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;family&lt;/b&gt;&lt;/u&gt; : the full scientific name of the family in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;genus&lt;/b&gt;&lt;/u&gt; : the full scientific name of the genus in which the taxon is classified&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;citation&lt;/b&gt;&lt;/u&gt; : a bibliographic reference for the resource as a statement indicating how this record should be cited (attributed) when used&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;lsid&lt;/b&gt;&lt;/u&gt; : LifeScience Identifier. Persistent GUID for an AphiaID&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isMarine&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating whether the taxon is a marine organism, i.e. can be found in/above sea water. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isBrackish&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating whether the taxon occurrs in brackish habitats. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isFreshwater&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating whether the taxon occurrs in freshwater habitats, i.e. can be found in/above rivers or lakes. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isTerrestrial&lt;/b&gt;&lt;/u&gt; : a boolean flag indicating the taxon is a terrestial organism, i.e. occurrs on land as opposed to the sea. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;isExtinct&lt;/b&gt;&lt;/u&gt; : a flag indicating an extinct organism. Possible values: 0/1/NULL&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;match_type&lt;/b&gt;&lt;/u&gt; : Type of match. Possible values: exact/like/phonetic/near_1/near_2&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;modified&lt;/b&gt;&lt;/u&gt; : The most recent date-time in GMT on which the resource was changed&lt;/li&gt;&lt;/ul&gt;</documentation>
     <input message="tns:getAphiaRecordByIDRequest"/>
     <output message="tns:getAphiaRecordByIDResponse"/>
+  </operation>
+  <operation name="getAphiaRecordsByIDs">
+    <documentation>&lt;strong&gt;Get an AphiaRecord for multiple AphiaIDs in one go (max: 50)&lt;/strong&gt;
+		&lt;br /&gt; For the structure of the returned AphiaRecords, please refer to the function getAphiaRecordByID()</documentation>
+    <input message="tns:getAphiaRecordsByIDsRequest"/>
+    <output message="tns:getAphiaRecordsByIDsResponse"/>
   </operation>
   <operation name="getAphiaRecordByExtID">
     <documentation>&lt;strong&gt;Get the Aphia Record for a given external identifier&lt;/strong&gt;
 		&lt;br /&gt;Parameters:
 		&lt;ul&gt;
-			&lt;li&gt;&lt;u&gt;Type&lt;/u&gt;: Type of external identifier to search for. The type should be one of the following values:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;u&gt;bold&lt;/u&gt;: Barcode of Life Database (BOLD) TaxID&lt;/li&gt;&lt;li&gt;&lt;u&gt;dyntaxa&lt;/u&gt;: Dyntaxa ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;eol&lt;/u&gt;: Encyclopedia of Life (EoL) page identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;fishbase&lt;/u&gt;: FishBase species ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;iucn&lt;/u&gt;: IUCN Red List Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;lsid&lt;/u&gt;: Life Science Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;ncbi&lt;/u&gt;: NCBI Taxonomy ID (Genbank)&lt;/li&gt;&lt;li&gt;&lt;u&gt;tsn&lt;/u&gt;: ITIS Taxonomic Serial Number&lt;/li&gt;&lt;li&gt;&lt;u&gt;gisd&lt;/u&gt;: Global Invasive Species Database&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;u&gt;Type&lt;/u&gt;: Type of external identifier to search for. The type should be one of the following values:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;u&gt;algaebase&lt;/u&gt;: Algaebase species ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;bold&lt;/u&gt;: Barcode of Life Database (BOLD) TaxID&lt;/li&gt;&lt;li&gt;&lt;u&gt;dyntaxa&lt;/u&gt;: Dyntaxa ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;eol&lt;/u&gt;: Encyclopedia of Life (EoL) page identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;fishbase&lt;/u&gt;: FishBase species ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;iucn&lt;/u&gt;: IUCN Red List Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;lsid&lt;/u&gt;: Life Science Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;ncbi&lt;/u&gt;: NCBI Taxonomy ID (Genbank)&lt;/li&gt;&lt;li&gt;&lt;u&gt;tsn&lt;/u&gt;: ITIS Taxonomic Serial Number&lt;/li&gt;&lt;li&gt;&lt;u&gt;gisd&lt;/u&gt;: Global Invasive Species Database&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
 		&lt;/ul&gt;</documentation>
     <input message="tns:getAphiaRecordByExtIDRequest"/>
     <output message="tns:getAphiaRecordByExtIDResponse"/>
@@ -353,7 +397,7 @@
     <documentation>&lt;strong&gt;Get any external identifier(s) for a given AphiaID&lt;/strong&gt;
 		&lt;br/&gt;Parameters:
 		&lt;ul&gt;
-			&lt;li&gt;&lt;u&gt;Type&lt;/u&gt;: Type of external identifier to return. The type should be one of the following values:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;u&gt;bold&lt;/u&gt;: Barcode of Life Database (BOLD) TaxID&lt;/li&gt;&lt;li&gt;&lt;u&gt;dyntaxa&lt;/u&gt;: Dyntaxa ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;eol&lt;/u&gt;: Encyclopedia of Life (EoL) page identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;fishbase&lt;/u&gt;: FishBase species ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;iucn&lt;/u&gt;: IUCN Red List Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;lsid&lt;/u&gt;: Life Science Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;ncbi&lt;/u&gt;: NCBI Taxonomy ID (Genbank)&lt;/li&gt;&lt;li&gt;&lt;u&gt;tsn&lt;/u&gt;: ITIS Taxonomic Serial Number&lt;/li&gt;&lt;li&gt;&lt;u&gt;gisd&lt;/u&gt;: Global Invasive Species Database&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;u&gt;Type&lt;/u&gt;: Type of external identifier to return. The type should be one of the following values:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;u&gt;algaebase&lt;/u&gt;: Algaebase species ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;bold&lt;/u&gt;: Barcode of Life Database (BOLD) TaxID&lt;/li&gt;&lt;li&gt;&lt;u&gt;dyntaxa&lt;/u&gt;: Dyntaxa ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;eol&lt;/u&gt;: Encyclopedia of Life (EoL) page identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;fishbase&lt;/u&gt;: FishBase species ID&lt;/li&gt;&lt;li&gt;&lt;u&gt;iucn&lt;/u&gt;: IUCN Red List Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;lsid&lt;/u&gt;: Life Science Identifier&lt;/li&gt;&lt;li&gt;&lt;u&gt;ncbi&lt;/u&gt;: NCBI Taxonomy ID (Genbank)&lt;/li&gt;&lt;li&gt;&lt;u&gt;tsn&lt;/u&gt;: ITIS Taxonomic Serial Number&lt;/li&gt;&lt;li&gt;&lt;u&gt;gisd&lt;/u&gt;: Global Invasive Species Database&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
 		&lt;/ul&gt;</documentation>
     <input message="tns:getExtIDbyAphiaIDRequest"/>
     <output message="tns:getExtIDbyAphiaIDResponse"/>
@@ -382,11 +426,11 @@
     <output message="tns:getAphiaRecordsByVernacularResponse"/>
   </operation>
   <operation name="getAphiaRecordsByDate">
-    <documentation>&lt;strong&gt;Lists all AphiaRecords (taxa) modified or added between a specific time interval&lt;/strong&gt;
+    <documentation>&lt;strong&gt;Lists all AphiaRecords (taxa) that have their last edit action (modified or added) during the specified period&lt;/strong&gt;
 		&lt;br/&gt;Parameters:
 		&lt;ul&gt;
-			&lt;li&gt;&lt;u&gt;startdate&lt;/u&gt;: ISO 8601 formatted start date(time). Default=today(). i.e. 2018-08-08T08:51:21+00:00&lt;/li&gt;
-			&lt;li&gt;&lt;u&gt;enddate&lt;/u&gt;: ISO 8601 formatted end date(time). Default=today().i.e. 2018-08-08T08:51:21+00:00&lt;/li&gt;
+			&lt;li&gt;&lt;u&gt;startdate&lt;/u&gt;: ISO 8601 formatted start date(time). Default=today(). i.e. 2019-11-05T13:40:58+00:00&lt;/li&gt;
+			&lt;li&gt;&lt;u&gt;enddate&lt;/u&gt;: ISO 8601 formatted end date(time). Default=today().i.e. 2019-11-05T13:40:58+00:00&lt;/li&gt;
 			&lt;li&gt;&lt;u&gt;marine_only&lt;/u&gt;: Limit to marine taxa. Default=true&lt;/li&gt;
 			&lt;li&gt;&lt;u&gt;offset&lt;/u&gt;: Starting recordnumber, when retrieving next chunk of (50) records. Default=1&lt;/li&gt;
 		&lt;/ul&gt;
@@ -407,7 +451,11 @@
     <output message="tns:getSourcesByAphiaIDResponse"/>
   </operation>
   <operation name="getAphiaSynonymsByID">
-    <documentation>&lt;strong&gt;Get all synonyms for a given AphiaID&lt;/strong&gt;</documentation>
+    <documentation>&lt;strong&gt;Get all synonyms for a given AphiaID&lt;/strong&gt;
+        &lt;br /&gt;Parameters:
+		&lt;ul&gt;
+			&lt;li&gt;&lt;u&gt;offset&lt;/u&gt;: Starting recordnumber, when retrieving next chunk of (50) records. Default=1&lt;/li&gt;
+		&lt;/ul&gt;</documentation>
     <input message="tns:getAphiaSynonymsByIDRequest"/>
     <output message="tns:getAphiaSynonymsByIDResponse"/>
   </operation>
@@ -442,6 +490,27 @@
 		&lt;br /&gt; &lt;ul&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;locality&lt;/b&gt;&lt;/u&gt; : The specific description of the place&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;locationID&lt;/b&gt;&lt;/u&gt; : An identifier for the locality. Using the Marine Regions Geographic IDentifier (MRGID), see &lt;a href='http://www.marineregions.org/mrgid.php' target='_blank'&gt;http://www.marineregions.org/mrgid.php&lt;/a&gt;&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;higherGeography&lt;/b&gt;&lt;/u&gt; : A geographic name less specific than the information captured in the locality term. Possible values: an IHO Sea Area or Nation, derived from the MarineRegions &lt;a href='http://www.marineregions.org/gazetteer.php' target='_blank'&gt;gazetteer&lt;/a&gt;&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;higherGeographyID&lt;/b&gt;&lt;/u&gt; : An identifier for the geographic region within which the locality occurred, using MRGID&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;recordStatus&lt;/b&gt;&lt;/u&gt; : The status of the distribution record. Possible values are 'valid' ,'doubtful' or 'inaccurate'. See &lt;a href='http://www.marinespecies.org/aphia.php?p=manual#topic8b' target=_blank&gt;here&lt;/a&gt; for explanation of the statuses&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;typeStatus&lt;/b&gt;&lt;/u&gt; : The type status of the distribution. Possible values: 'holotype' or empty.&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;establishmentMeans&lt;/b&gt;&lt;/u&gt; : The process by which the biological individual(s) represented in the Occurrence became established at the location. Possible values: values listed as Origin &lt;a href='http://www.marinespecies.org/introduced/wiki/Traits:Origin' target=_blank&gt;in WRIMS&lt;/a&gt;&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;decimalLatitude&lt;/b&gt;&lt;/u&gt; : The geographic latitude (in decimal degrees, WGS84)&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;decimalLongitude&lt;/b&gt;&lt;/u&gt; : The geographic longitude (in decimal degrees, WGS84)&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;qualityStatus&lt;/b&gt;&lt;/u&gt; : Quality status of the record. Possible values: 'checked', 'trusted' or 'unreviewed'. See &lt;a href='http://www.marinespecies.org/aphia.php?p=manual#topic22' target='_blank'&gt;http://www.marinespecies.org/aphia.php?p=manual#topic22&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</documentation>
     <input message="tns:getAphiaDistributionsByIDRequest"/>
     <output message="tns:getAphiaDistributionsByIDResponse"/>
+  </operation>
+  <operation name="getAphiaTaxonRanksByID">
+    <documentation>&lt;strong&gt;Get taxonomic ranks by their identifier&lt;/strong&gt;
+		&lt;br /&gt;Output fields include:
+		&lt;br /&gt; &lt;ul&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;taxonRankID&lt;/b&gt;&lt;/u&gt; : A taxonomic rank identifier&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;taxonRank&lt;/b&gt;&lt;/u&gt; : A taxonomic rank name&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;AphiaID&lt;/b&gt;&lt;/u&gt; : AphiaID of the kingdom&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;kingdom&lt;/b&gt;&lt;/u&gt; : The name of a taxonomic kingdom the rank is used in&lt;/li&gt;&lt;/ul&gt;</documentation>
+    <input message="tns:getAphiaTaxonRanksByIDRequest"/>
+    <output message="tns:getAphiaTaxonRanksByIDResponse"/>
+  </operation>
+  <operation name="getAphiaTaxonRanksByName">
+    <documentation>&lt;strong&gt;Get taxonomic ranks by their name&lt;/strong&gt;
+		&lt;br /&gt;Output fields include:
+		&lt;br /&gt; &lt;ul&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;taxonRankID&lt;/b&gt;&lt;/u&gt; : A taxonomic rank identifier&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;taxonRank&lt;/b&gt;&lt;/u&gt; : A taxonomic rank name&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;AphiaID&lt;/b&gt;&lt;/u&gt; : AphiaID of the kingdom&lt;/li&gt;&lt;li&gt;	&lt;u&gt;&lt;b&gt;kingdom&lt;/b&gt;&lt;/u&gt; : The name of a taxonomic kingdom the rank is used in&lt;/li&gt;&lt;/ul&gt;</documentation>
+    <input message="tns:getAphiaTaxonRanksByNameRequest"/>
+    <output message="tns:getAphiaTaxonRanksByNameResponse"/>
+  </operation>
+  <operation name="getAphiaRecordsByTaxonRankID">
+    <documentation>&lt;strong&gt;Get the AphiaRecords for a given taxonRankID (max 50)&lt;/strong&gt;
+		&lt;br /&gt;Output fields include:
+		&lt;br /&gt; For the structure of the returned AphiaRecords, please refer to the function getAphiaRecordByID()</documentation>
+    <input message="tns:getAphiaRecordsByTaxonRankIDRequest"/>
+    <output message="tns:getAphiaRecordsByTaxonRankIDResponse"/>
   </operation>
   <operation name="getAphiaAttributeKeysByID">
     <documentation>&lt;strong&gt;Get attribute definitions. To refer to root items specify ID = '0'&lt;/strong&gt;
@@ -513,6 +582,11 @@
     <input><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRecord" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
     <output><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRecord" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
+  <operation name="getAphiaRecordsByIDs">
+    <soap:operation soapAction="getAphiaRecordsByIDs" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRecords" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRecords" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
   <operation name="getAphiaRecordByExtID">
     <soap:operation soapAction="getAphiaRecordByExtID" style="rpc"/>
     <input><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRecord" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
@@ -572,6 +646,21 @@
     <soap:operation soapAction="getAphiaDistributionsByID" style="rpc"/>
     <input><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaDistributions" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
     <output><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaDistributions" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="getAphiaTaxonRanksByID">
+    <soap:operation soapAction="getAphiaTaxonRanksByID" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRanks" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRanks" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="getAphiaTaxonRanksByName">
+    <soap:operation soapAction="getAphiaTaxonRanksByName" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRanks" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRanks" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="getAphiaRecordsByTaxonRankID">
+    <soap:operation soapAction="getAphiaRecordsByTaxonRankID" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRecords" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://aphia/v1.0/AphiaRecords" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="getAphiaAttributeKeysByID">
     <soap:operation soapAction="getAphiaAttributeKeysByID" style="rpc"/>

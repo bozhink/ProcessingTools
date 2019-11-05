@@ -14,12 +14,16 @@
     <DebugType>Full</DebugType>
     <LangVersion>latest</LangVersion>
     <Authors>Bozhin Karaivanov</Authors>
-    <PackageTags>tests, connected services</PackageTags>
+    <PackageTags>tests, integration tests, connected services</PackageTags>
+    <AssemblyName>ProcessingTools.Clients.ConnectedServices.Integration.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Clients.ConnectedServices.Integration.Tests</RootNamespace>
+    <PackageId>ProcessingTools.Clients.ConnectedServices.Integration.Tests</PackageId>
+    <Product>ProcessingTools.Clients.ConnectedServices.Integration.Tests</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Clients.ConnectedServices.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Clients.ConnectedServices.Integration.Tests.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <NoWarn>1701;1702;CA1707</NoWarn>
@@ -27,10 +31,18 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Clients.ConnectedServices.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Clients.ConnectedServices.Integration.Tests.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis" Version="3.3.1" />
@@ -68,6 +80,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.ConnectedServices\ProcessingTools.Clients.ConnectedServices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,19 @@
+﻿{
+  "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
+  "Version": "15.0.30730.948",
+  "ExtendedData": {
+    "inputs": [
+      "../../Bio/aphia.wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "messageContract": true,
+    "namespaceMappings": [
+      "*, ProcessingTools.Clients.ConnectedServices.Bio.AphiaServiceReference"
+    ],
+    "targetFramework": "netstandard2.1",
+    "typeReuseMode": "None"
+  }
+}

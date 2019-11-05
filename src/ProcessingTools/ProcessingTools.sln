@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Contra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.ConnectedServices", "Services\ProcessingTools.Clients.ConnectedServices\ProcessingTools.Clients.ConnectedServices.csproj", "{30E121DD-97E2-4998-993E-F64B8E6A7EBA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.ConnectedServices.Tests", "Services.Tests\ProcessingTools.Clients.ConnectedServices.Tests\ProcessingTools.Clients.ConnectedServices.Tests.csproj", "{F2BFFCBD-D8C1-4217-8EF6-3A7861C37051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.ConnectedServices.Integration.Tests", "Services.Tests\ProcessingTools.Clients.ConnectedServices.Tests\ProcessingTools.Clients.ConnectedServices.Integration.Tests.csproj", "{F2BFFCBD-D8C1-4217-8EF6-3A7861C37051}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Xml", "Infrastructure\ProcessingTools.Xml\ProcessingTools.Xml.csproj", "{B1D6B5B8-219D-4F0F-9CE6-A7A61FC55EBD}"
 EndProject
@@ -177,9 +177,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tagger", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.HealthChecks", "Infrastructure\ProcessingTools.HealthChecks\ProcessingTools.HealthChecks.csproj", "{DC21358F-4050-4994-BE1F-9ADA3D7C51BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Extensions", "Infrastructure\ProcessingTools.Configuration.Extensions\ProcessingTools.Configuration.Extensions.csproj", "{BAB4356F-9BE8-44B3-8CFC-158652792CAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Extensions", "Infrastructure\ProcessingTools.Configuration.Extensions\ProcessingTools.Configuration.Extensions.csproj", "{BAB4356F-9BE8-44B3-8CFC-158652792CAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.DependencyInjection", "Infrastructure\ProcessingTools.Configuration.DependencyInjection\ProcessingTools.Configuration.DependencyInjection.csproj", "{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.DependencyInjection", "Infrastructure\ProcessingTools.Configuration.DependencyInjection\ProcessingTools.Configuration.DependencyInjection.csproj", "{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -907,7 +907,7 @@ Global
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal

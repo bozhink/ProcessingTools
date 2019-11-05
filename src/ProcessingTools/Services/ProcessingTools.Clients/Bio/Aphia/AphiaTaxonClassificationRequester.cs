@@ -9,7 +9,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.ConnectedServices.Bio.Aphia;
+    using ProcessingTools.Clients.ConnectedServices.Bio.AphiaServiceReference;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
@@ -50,15 +50,16 @@ namespace ProcessingTools.Clients.Bio.Aphia
 
         private async Task<getAphiaRecordsResponse> GetAphiaRecordsAsync(string scientificName)
         {
-            var client = new AphiaNameServicePortTypeClient();
+            using (var client = new AphiaNameServicePortTypeClient())
+            {
+                await client.OpenAsync().ConfigureAwait(false);
 
-            await client.OpenAsync().ConfigureAwait(false);
+                var aphiaRecords = await client.getAphiaRecordsAsync(new getAphiaRecordsRequest(scientificName, false, true, false, 0)).ConfigureAwait(false);
 
-            var aphiaRecords = await client.getAphiaRecordsAsync(new getAphiaRecordsRequest(scientificName, false, true, false, 0)).ConfigureAwait(false);
+                await client.CloseAsync().ConfigureAwait(false);
 
-            await client.CloseAsync().ConfigureAwait(false);
-
-            return aphiaRecords;
+                return aphiaRecords;
+            }
         }
 
         private ITaxonClassification MapAphiaRecordToTaxonClassification(AphiaRecord record)
