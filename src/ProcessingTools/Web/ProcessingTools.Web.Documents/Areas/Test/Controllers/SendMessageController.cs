@@ -64,24 +64,27 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
 
             try
             {
-                var connection = this.connectionFactory.CreateConnection();
-                var channel = connection.CreateModel();
+                using (var connection = this.connectionFactory.CreateConnection())
+                {
+                    using (var channel = connection.CreateModel())
+                    {
+                        channel.QueueDeclare(
+                            queue: "lemonnovelapi.chapter",
+                            durable: false,
+                            exclusive: false,
+                            autoDelete: false,
+                            arguments: null);
 
-                channel.QueueDeclare(
-                    queue: "lemonnovelapi.chapter",
-                    durable: false,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
+                        string json = JsonConvert.SerializeObject(message);
+                        var body = Encoding.UTF8.GetBytes(json);
 
-                string json = JsonConvert.SerializeObject(message);
-                var body = Encoding.UTF8.GetBytes(json);
-
-                channel.BasicPublish(
-                    exchange: "message",
-                    routingKey: "done.task",
-                    basicProperties: null,
-                    body: body);
+                        channel.BasicPublish(
+                            exchange: "message",
+                            routingKey: "done.task",
+                            basicProperties: null,
+                            body: body);
+                    }
+                }
 
                 this.ViewData[ContextKeys.Success] = true;
                 return this.View(model: message);

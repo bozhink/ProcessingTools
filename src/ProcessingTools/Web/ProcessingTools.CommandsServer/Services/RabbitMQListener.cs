@@ -110,7 +110,7 @@ namespace ProcessingTools.CommandsServer.Services
                 }
             };
 
-            this.channel.BasicConsume(queue: this.QueueName, consumer: consumer);
+            this.channel.BasicConsume(queue: this.QueueName, autoAck: false, consumer: consumer);
         }
 
         /// <summary>
