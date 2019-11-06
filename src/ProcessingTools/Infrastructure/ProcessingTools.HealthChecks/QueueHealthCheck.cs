@@ -15,6 +15,11 @@ namespace ProcessingTools.HealthChecks
     /// </summary>
     public class QueueHealthCheck : IHealthCheck
     {
+        /// <summary>
+        /// Name of the health check.
+        /// </summary>
+        public const string HealthCheckName = "queue";
+
         private readonly IMessageCacheService messageCacheService;
 
         /// <summary>

@@ -17,6 +17,11 @@ namespace ProcessingTools.HealthChecks
     /// </summary>
     public class VersionHealthCheck : IHealthCheck
     {
+        /// <summary>
+        /// Name of the health check.
+        /// </summary>
+        public const string HealthCheckName = "version";
+
         /// <inheritdoc/>
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
