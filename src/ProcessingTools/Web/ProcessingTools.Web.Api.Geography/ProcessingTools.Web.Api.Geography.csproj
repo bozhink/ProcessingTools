@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -61,7 +61,6 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
     <PackageReference Include="NLog" Version="4.6.8" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.6.1" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.0" />
@@ -78,6 +77,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
+    <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Web.Services\ProcessingTools.Contracts.Web.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Autofac\ProcessingTools.Configuration.Autofac.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.AutoMapper\ProcessingTools.Configuration.AutoMapper.csproj" />
@@ -85,6 +88,10 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Extensions\ProcessingTools.Configuration.Extensions.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Models\ProcessingTools.Configuration.Models.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.HealthChecks\ProcessingTools.HealthChecks.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
