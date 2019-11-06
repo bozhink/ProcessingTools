@@ -9,34 +9,30 @@ namespace ProcessingTools.Web.Core.Api
     using System;
     using System.Globalization;
     using System.IO;
-    using System.Linq;
     using System.Net.Http;
     using System.Reflection;
     using System.Security.Claims;
     using System.Text.Json;
     using System.Threading.Tasks;
     using Autofac;
-    using AutoMapper;
     using Microsoft.AspNetCore.Authentication.Certificate;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi.Models;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
     using Polly;
     using Polly.Extensions.Http;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Resources;
+    using ProcessingTools.Configuration.DependencyInjection;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Security;
     using ProcessingTools.Contracts.Services.Serialization;
@@ -98,10 +94,10 @@ namespace ProcessingTools.Web.Core.Api
             }
 
             // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-3.0
-            services.Configure<KestrelServerOptions>(this.Configuration.GetSection("Kestrel"));
+            services.Configure<KestrelServerOptions>(this.Configuration.GetSection(ConfigurationConstants.KestrelSectionName));
 
             services.AddHealthChecks()
-                .AddCheck<VersionHealthCheck>("version");
+                .AddCheck<VersionHealthCheck>(name: VersionHealthCheck.HealthCheckName);
 
             services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
                 .AddCertificate(options =>
@@ -164,6 +160,7 @@ namespace ProcessingTools.Web.Core.Api
                 .AddControllers(options =>
                 {
                     options.RespectBrowserAcceptHeader = true;
+                    options.ReturnHttpNotAcceptable = true;
                     options.MaxModelValidationErrors = 50;
                 })
                 .AddXmlDataContractSerializerFormatters()
@@ -271,6 +268,9 @@ namespace ProcessingTools.Web.Core.Api
                     UseCookies = false,
                     UseProxy = false,
                 });
+
+            // Configure AutoMapper
+            services.ConfigureAutoMapper();
         }
 
         /// <summary>
@@ -286,14 +286,6 @@ namespace ProcessingTools.Web.Core.Api
             {
                 throw new ArgumentNullException(nameof(builder));
             }
-
-            // Configure AutoMapper.
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.AddMaps(typeof(ProcessingTools.Configuration.AutoMapper.AssemblySetup).Assembly);
-            });
-
-            builder.RegisterInstance(mapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
 
             builder.RegisterType<ImageWriterWebService>().As<IImageWriterWebService>().InstancePerLifetimeScope();
         }
@@ -335,33 +327,7 @@ namespace ProcessingTools.Web.Core.Api
             {
                 endpoints.MapControllers();
 
-                endpoints.MapHealthChecks("/health", new HealthCheckOptions
-                {
-                    AllowCachingResponses = false,
-                    ResultStatusCodes =
-                    {
-                        [HealthStatus.Healthy] = StatusCodes.Status200OK,
-                        [HealthStatus.Degraded] = StatusCodes.Status200OK,
-                        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
-                    },
-                    ResponseWriter = (HttpContext httpContext, HealthReport result) =>
-                    {
-                        httpContext.Response.ContentType = "application/json";
-
-                        var json = new JObject
-                        {
-                            new JProperty("version", this.GetType().Assembly.GetName().Version?.ToString()),
-                            new JProperty("status", result.Status.ToString()),
-                        };
-
-                        if (result.Entries.Any())
-                        {
-                            json.Add(result.GetResultsToJSON(environment.EnvironmentName == "Development"));
-                        }
-
-                        return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
-                    },
-                });
+                endpoints.MapHealthChecks("/health", HealthChecksExtensions.GetHealthCheckOptions(this.GetType().Assembly, environment.IsDevelopment()));
             });
         }
 

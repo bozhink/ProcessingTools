@@ -12,6 +12,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Configuration.Extensions;
 
     /// <summary>
@@ -23,6 +24,7 @@ namespace ProcessingTools.Web.Core.Api
         /// Entry point method of the application.
         /// </summary>
         /// <param name="args">Arguments to run the application.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Startup fatal exception")]
         public static void Main(string[] args)
         {
             // NLog: setup the logger first to catch all errors
@@ -60,8 +62,8 @@ namespace ProcessingTools.Web.Core.Api
                         .ConfigureLogging((hostingContext, builder) =>
                         {
                             builder.ClearProviders();
-                            builder.SetMinimumLevel(LogLevel.Trace);
-                            builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                            builder.SetMinimumLevel(hostingContext.HostingEnvironment.IsDevelopment() ? LogLevel.Trace : LogLevel.Debug);
+                            builder.AddConfiguration(hostingContext.Configuration.GetSection(ConfigurationConstants.LoggingSectionName));
                             builder.AddConsole();
                             builder.AddDebug();
                         })
