@@ -11,6 +11,7 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// Entry point of the application.
@@ -21,6 +22,7 @@ namespace ProcessingTools.Web.Documents
         /// Entry point method of the application.
         /// </summary>
         /// <param name="args">Arguments to run the application.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Startup fatal exception")]
         public static void Main(string[] args)
         {
             // NLog: setup the logger first to catch all errors
@@ -50,16 +52,18 @@ namespace ProcessingTools.Web.Documents
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureWebHostDefaults(webHostBuilder =>
                 {
-                    webBuilder
+                    webHostBuilder
                         .UseStartup<Startup>()
-                        .ConfigureLogging(logging =>
+                        .UseShutdownTimeout(TimeSpan.FromSeconds(10))
+                        .ConfigureLogging((hostingContext, builder) =>
                         {
-                            logging.ClearProviders();
-                            logging.SetMinimumLevel(LogLevel.Trace);
-                            logging.AddConsole();
-                            logging.AddDebug();
+                            builder.ClearProviders();
+                            builder.SetMinimumLevel(hostingContext.HostingEnvironment.IsDevelopment() ? LogLevel.Trace : LogLevel.Debug);
+                            builder.AddConfiguration(hostingContext.Configuration.GetSection(ConfigurationConstants.LoggingSectionName));
+                            builder.AddConsole();
+                            builder.AddDebug();
                         })
                         .UseNLog() // NLog: setup NLog for Dependency injection
                         ;

@@ -8,7 +8,6 @@ namespace ProcessingTools.Web.Documents
     using System.Linq;
     using System.Text.Json;
     using Autofac;
-    using AutoMapper;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
@@ -25,6 +24,7 @@ namespace ProcessingTools.Web.Documents
     using Newtonsoft.Json.Linq;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Configuration.Autofac;
+    using ProcessingTools.Configuration.DependencyInjection;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.IO;
     using ProcessingTools.Contracts.Services.Meta;
@@ -91,7 +91,7 @@ namespace ProcessingTools.Web.Documents
             services.AddMemoryCache();
             services
                 .AddHealthChecks()
-                .AddCheck<VersionHealthCheck>("version")
+                .AddCheck<VersionHealthCheck>(name: VersionHealthCheck.HealthCheckName)
                 .AddDbContextCheck<ApplicationDbContext>();
 
             // Configure databases
@@ -302,13 +302,8 @@ namespace ProcessingTools.Web.Documents
                 });
             });
 
-            // Configure AutoMapper.
-            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.AddMaps(typeof(ProcessingTools.Configuration.AutoMapper.AssemblySetup).Assembly);
-            });
-
-            services.AddSingleton<IMapper>(mapperConfiguration.CreateMapper());
+            // Configure AutoMapper
+            services.ConfigureAutoMapper();
         }
 
         /// <summary>
