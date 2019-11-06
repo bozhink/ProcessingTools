@@ -18,6 +18,7 @@ namespace ProcessingTools.CommandsServer
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Configuration.Extensions;
 
     /// <summary>
@@ -30,6 +31,7 @@ namespace ProcessingTools.CommandsServer
         /// </summary>
         /// <param name="args">Arguments to run the application.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Startup fatal exception")]
         public static async Task Main(string[] args)
         {
             // NLog: setup the logger first to catch all errors
@@ -85,8 +87,8 @@ namespace ProcessingTools.CommandsServer
                         .ConfigureLogging((hostingContext, builder) =>
                         {
                             builder.ClearProviders();
-                            builder.SetMinimumLevel(LogLevel.Trace);
-                            builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                            builder.SetMinimumLevel(hostingContext.HostingEnvironment.IsDevelopment() ? LogLevel.Trace : LogLevel.Debug);
+                            builder.AddConfiguration(hostingContext.Configuration.GetSection(ConfigurationConstants.LoggingSectionName));
                             builder.AddConsole();
                             builder.AddDebug();
                         })
