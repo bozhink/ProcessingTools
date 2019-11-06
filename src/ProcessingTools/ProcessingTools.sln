@@ -181,6 +181,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configurati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.DependencyInjection", "Infrastructure\ProcessingTools.Configuration.DependencyInjection\ProcessingTools.Configuration.DependencyInjection.csproj", "{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Biology", "Web\ProcessingTools.Web.Api.Biology\ProcessingTools.Web.Api.Biology.csproj", "{867E462D-D92C-4068-B917-E59266184757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Documents", "Web\ProcessingTools.Web.Api.Documents\ProcessingTools.Web.Api.Documents.csproj", "{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Geography", "Web\ProcessingTools.Web.Api.Geography\ProcessingTools.Web.Api.Geography.csproj", "{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Layout", "Web\ProcessingTools.Web.Api.Layout\ProcessingTools.Web.Api.Layout.csproj", "{07155165-96DA-42AC-A541-912B602AE67D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -821,6 +829,38 @@ Global
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}.Release|x64.ActiveCfg = Release|Any CPU
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}.Release|x64.Build.0 = Release|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Debug|x64.Build.0 = Debug|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Release|x64.ActiveCfg = Release|Any CPU
+		{867E462D-D92C-4068-B917-E59266184757}.Release|x64.Build.0 = Release|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|x64.Build.0 = Debug|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|x64.Build.0 = Release|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Release|x64.Build.0 = Release|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|x64.Build.0 = Debug|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Release|x64.ActiveCfg = Release|Any CPU
+		{07155165-96DA-42AC-A541-912B602AE67D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -905,9 +945,13 @@ Global
 		{DC21358F-4050-4994-BE1F-9ADA3D7C51BB} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{BAB4356F-9BE8-44B3-8CFC-158652792CAA} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{867E462D-D92C-4068-B917-E59266184757} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
+		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
+		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
+		{07155165-96DA-42AC-A541-912B602AE67D} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
