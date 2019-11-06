@@ -5,18 +5,13 @@
 namespace ProcessingTools.TasksServer
 {
     using System;
-    using System.Linq;
     using Autofac;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Diagnostics.HealthChecks;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+    using Microsoft.Extensions.Hosting;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.HealthChecks;
     using ProcessingTools.Services;
@@ -43,6 +38,7 @@ namespace ProcessingTools.TasksServer
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
             this.Configuration = builder.Build();
         }
 
@@ -64,7 +60,7 @@ namespace ProcessingTools.TasksServer
 
             services
                 .AddHealthChecks()
-                .AddCheck<VersionHealthCheck>("version");
+                .AddCheck<VersionHealthCheck>(name: VersionHealthCheck.HealthCheckName);
 
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
@@ -115,33 +111,7 @@ namespace ProcessingTools.TasksServer
             {
                 endpoints.MapControllers();
 
-                endpoints.MapHealthChecks("/health", new HealthCheckOptions
-                {
-                    AllowCachingResponses = false,
-                    ResultStatusCodes =
-                    {
-                        [HealthStatus.Healthy] = StatusCodes.Status200OK,
-                        [HealthStatus.Degraded] = StatusCodes.Status200OK,
-                        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
-                    },
-                    ResponseWriter = (HttpContext httpContext, HealthReport result) =>
-                    {
-                        httpContext.Response.ContentType = "application/json";
-
-                        var json = new JObject
-                        {
-                            new JProperty("version", this.GetType().Assembly.GetName().Version?.ToString()),
-                            new JProperty("status", result.Status.ToString()),
-                        };
-
-                        if (result.Entries.Any())
-                        {
-                            json.Add(result.GetResultsToJSON(environment.EnvironmentName == "Development"));
-                        }
-
-                        return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
-                    },
-                });
+                endpoints.MapHealthChecks("/health", HealthChecksExtensions.GetHealthCheckOptions(this.GetType().Assembly, environment.IsDevelopment()));
             });
         }
 
