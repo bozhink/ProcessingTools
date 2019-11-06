@@ -17,6 +17,7 @@ namespace ProcessingTools.Configuration.Extensions
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Resources;
     using ProcessingTools.Configuration.Models;
 
@@ -32,6 +33,11 @@ namespace ProcessingTools.Configuration.Extensions
         /// <returns>Updated options.</returns>
         public static KestrelServerOptions RequireCertificate(this KestrelServerOptions options)
         {
+            if (options is null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
             options.ConfigureHttpsDefaults(listenOptions =>
             {
                 listenOptions.CheckCertificateRevocation = true;
@@ -50,10 +56,15 @@ namespace ProcessingTools.Configuration.Extensions
         /// <returns>Updated options.</returns>
         public static KestrelServerOptions ConfigureEndpoints(this KestrelServerOptions options)
         {
+            if (options is null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
             var configuration = options.ApplicationServices.GetRequiredService<IConfiguration>();
             var environment = options.ApplicationServices.GetRequiredService<IHostEnvironment>();
 
-            var endpoints = configuration.GetSection("HttpServer:Endpoints")
+            var endpoints = configuration.GetSection(ConfigurationConstants.HttpServerEndpointsSectionName)
                 .GetChildren()
                 .ToDictionary(section => section.Key, section =>
                 {
