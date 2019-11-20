@@ -19,6 +19,7 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -162,6 +163,10 @@ namespace ProcessingTools.Web.Core.Api
                     options.RespectBrowserAcceptHeader = true;
                     options.ReturnHttpNotAcceptable = true;
                     options.MaxModelValidationErrors = 50;
+
+                    // See https://docs.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-3.0
+                    // Returned NULL value will be serialized as corresponding NULL and OK status will be 200 OK, not 204 No Content
+                    options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
                 })
                 .AddXmlDataContractSerializerFormatters()
                 .AddXmlSerializerFormatters()

@@ -83,6 +83,7 @@ namespace ProcessingTools.Web.Api.Geography
                 })
                 .AddControllers(options =>
                 {
+                    options.RespectBrowserAcceptHeader = true;
                     options.ReturnHttpNotAcceptable = true;
                     options.MaxModelValidationErrors = 50;
                 })
