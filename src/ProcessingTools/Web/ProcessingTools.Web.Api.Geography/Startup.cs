@@ -16,6 +16,7 @@ namespace ProcessingTools.Web.Api.Geography
     using Microsoft.Extensions.Hosting;
     using Newtonsoft.Json;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Configuration.Autofac.Geo;
     using ProcessingTools.Configuration.DependencyInjection;
     using ProcessingTools.HealthChecks;
 
@@ -82,7 +83,6 @@ namespace ProcessingTools.Web.Api.Geography
                 })
                 .AddControllers(options =>
                 {
-                    options.RespectBrowserAcceptHeader = true;
                     options.ReturnHttpNotAcceptable = true;
                     options.MaxModelValidationErrors = 50;
                 })
@@ -126,6 +126,15 @@ namespace ProcessingTools.Web.Api.Geography
             {
                 throw new ArgumentNullException(nameof(builder));
             }
+
+            builder.RegisterInstance(Defaults.Encoding).As<System.Text.Encoding>().SingleInstance();
+
+            builder.RegisterModule<CoordinatesAutofacModule>();
+
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Geo.Coordinates.CoordinatesCalculatorApiService>()
+                .As<ProcessingTools.Contracts.Web.Services.Geo.Coordinates.ICoordinatesCalculatorApiService>()
+                .InstancePerLifetimeScope();
         }
 
         /// <summary>

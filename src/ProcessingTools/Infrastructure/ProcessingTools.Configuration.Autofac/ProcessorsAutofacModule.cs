@@ -4,19 +4,15 @@
 
 namespace ProcessingTools.Configuration.Autofac
 {
-    using System;
     using global::Autofac;
-    using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Documents;
-    using ProcessingTools.Contracts.Services.Geo.Coordinates;
     using ProcessingTools.Contracts.Services.Imaging;
     using ProcessingTools.Contracts.Services.Layout;
     using ProcessingTools.Contracts.Services.References;
     using ProcessingTools.Contracts.Services.Rules;
     using ProcessingTools.Services;
     using ProcessingTools.Services.Documents;
-    using ProcessingTools.Services.Geo.Coordinates;
     using ProcessingTools.Services.Imaging;
     using ProcessingTools.Services.Layout;
     using ProcessingTools.Services.References;
@@ -42,36 +38,6 @@ namespace ProcessingTools.Configuration.Autofac
 
             builder.RegisterType<QRCodeEncoder>().As<IQRCodeEncoder>().InstancePerLifetimeScope();
             builder.RegisterType<BarcodeEncoder>().As<IBarcodeEncoder>().InstancePerLifetimeScope();
-
-            builder.RegisterType<CoordinateParser>().As<ICoordinateParser>().InstancePerLifetimeScope();
-            builder.RegisterType<Coordinate2DParser>().As<ICoordinate2DParser>().InstancePerLifetimeScope();
-            builder.RegisterType<UtmCoordinatesTransformer>().As<IUtmCoordinatesTransformer>().InstancePerLifetimeScope();
-            builder.RegisterType<UtmCoordinatesConverter>().As<IUtmCoordinatesConverter>().InstancePerLifetimeScope();
-            builder
-                .RegisterType<ProcessingTools.Services.Models.Geo.Coordinates.Coordinate>()
-                .As<ICoordinate>()
-                .InstancePerDependency();
-            builder
-                .Register<Func<ICoordinate>>(ctx =>
-                {
-                    var context = ctx.Resolve<IComponentContext>();
-                    return () => context.Resolve<ICoordinate>();
-                })
-                .As<Func<ICoordinate>>()
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<ProcessingTools.Services.Models.Geo.Coordinates.CoordinatePart>()
-                .As<ICoordinatePart>()
-                .InstancePerDependency();
-            builder
-                .Register<Func<ICoordinatePart>>(ctx =>
-                {
-                    var context = ctx.Resolve<IComponentContext>();
-                    return () => context.Resolve<ICoordinatePart>();
-                })
-                .As<Func<ICoordinatePart>>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<CoordinateFactory>().As<ICoordinateFactory>().InstancePerLifetimeScope();
         }
     }
 }
