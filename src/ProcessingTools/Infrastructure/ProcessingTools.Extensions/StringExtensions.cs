@@ -19,6 +19,8 @@ namespace ProcessingTools.Extensions
     /// </summary>
     public static class StringExtensions
     {
+        private static readonly Regex MatchNewLine = new Regex(@"(\\r\\n|\r\n|\\r|\r|\\n|\n)", RegexOptions.Compiled);
+
         /// <summary>
         /// Gets list of first words of a given list of strings.
         /// </summary>
@@ -300,33 +302,33 @@ namespace ProcessingTools.Extensions
         }
 
         /// <summary>
-        /// Parses a string into an array of lines broken by \r\n or \n.
+        /// Parses a string into an array of non-empty lines split by new line.
         /// </summary>
-        /// <param name="source">String to check for lines.</param>
-        /// <returns>Array of strings.</returns>
-        public static string[] GetLines(this string source) => GetLines(source, 0);
-
-        /// <summary>
-        /// Parses a string into an array of lines broken by \r\n or \n.
-        /// </summary>
-        /// <param name="source">String to check for lines.</param>
-        /// <param name="maxLines">Optional - max number of lines to return.</param>
-        /// <returns>Array of strings.</returns>
-        public static string[] GetLines(this string source, int maxLines)
+        /// <param name="source">String to be split.</param>
+        /// <returns>Array of non-empty lines.</returns>
+        public static string[] GetNonEmptyLines(this string source)
         {
-            if (source == null)
+            if (string.IsNullOrWhiteSpace(source))
             {
                 return Array.Empty<string>();
             }
 
-            source = source.Replace("\r\n", "\n");
+            return MatchNewLine.Replace(source, "\n").Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        }
 
-            if (maxLines < 1)
+        /// <summary>
+        /// Parses a string into an array of lines split by new line.
+        /// </summary>
+        /// <param name="source">String to be split.</param>
+        /// <returns>Array of lines.</returns>
+        public static string[] GetLines(this string source)
+        {
+            if (string.IsNullOrEmpty(source))
             {
-                return source.Split(new[] { '\n' });
+                return Array.Empty<string>();
             }
 
-            return source.Split(new[] { '\n' }).Take(maxLines).ToArray();
+            return MatchNewLine.Replace(source, "\n").Split(new[] { '\n' }, StringSplitOptions.None);
         }
 
         /// <summary>
