@@ -165,6 +165,8 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// </summary>
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
+        [HttpGet]
+        [HttpPost]
         [ActionName(IndexActionName)]
         public IActionResult Index(string returnUrl = null)
         {
@@ -187,7 +189,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme).ConfigureAwait(false);
 
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
             return this.View();
@@ -210,7 +212,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     this.logger.LogInformation($"User {model.Email} logged in.");
@@ -250,7 +252,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load two-factor authentication user.");
@@ -280,7 +282,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 return this.View(model);
             }
 
-            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
@@ -290,7 +292,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 .Replace(" ", string.Empty, false, CultureInfo.InvariantCulture)
                 .Replace("-", string.Empty, false, CultureInfo.InvariantCulture);
 
-            var result = await this.signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
+            var result = await this.signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine).ConfigureAwait(false);
 
             if (result.Succeeded)
             {
@@ -321,7 +323,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load two-factor authentication user.");
@@ -349,7 +351,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 return this.View(model);
             }
 
-            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load two-factor authentication user.");
@@ -357,7 +359,7 @@ namespace ProcessingTools.Web.Documents.Controllers
 
             var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty, false, CultureInfo.InvariantCulture);
 
-            var result = await this.signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
+            var result = await this.signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode).ConfigureAwait(false);
 
             if (result.Succeeded)
             {
@@ -420,16 +422,16 @@ namespace ProcessingTools.Web.Documents.Controllers
             if (this.ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await this.userManager.CreateAsync(user, model.Password);
+                var result = await this.userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     this.logger.LogInformation($"User {user.Email} created a new account with password.");
 
-                    var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false);
                     var callbackUrl = this.Url.EmailConfirmationLink(user.Id, code, this.Request.Scheme);
-                    await this.emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    await this.emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl).ConfigureAwait(false);
 
-                    await this.signInManager.SignInAsync(user, isPersistent: false);
+                    await this.signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     return this.RedirectToLocal(returnUrl);
                 }
 
@@ -449,7 +451,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         [ActionName(LogoutActionName)]
         public async Task<IActionResult> Logout()
         {
-            await this.signInManager.SignOutAsync();
+            await this.signInManager.SignOutAsync().ConfigureAwait(false);
             this.logger.LogInformation("User logged out.");
             return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName);
         }
@@ -490,14 +492,14 @@ namespace ProcessingTools.Web.Documents.Controllers
                 return this.RedirectToAction(LoginActionName);
             }
 
-            var info = await this.signInManager.GetExternalLoginInfoAsync();
+            var info = await this.signInManager.GetExternalLoginInfoAsync().ConfigureAwait(false);
             if (info == null)
             {
                 return this.RedirectToAction(LoginActionName);
             }
 
             // Sign in the user with this external login provider if the user already has a login.
-            var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true).ConfigureAwait(false);
             if (result.Succeeded)
             {
                 this.logger.LogInformation($"User logged in with {info.LoginProvider} provider.");
@@ -533,7 +535,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             if (this.ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                var info = await this.signInManager.GetExternalLoginInfoAsync();
+                var info = await this.signInManager.GetExternalLoginInfoAsync().ConfigureAwait(false);
                 if (info == null)
                 {
                     throw new InformationNotFoundException("Error loading external login information during confirmation.");
@@ -545,13 +547,13 @@ namespace ProcessingTools.Web.Documents.Controllers
                     Email = model.Email,
                 };
 
-                var result = await this.userManager.CreateAsync(user);
+                var result = await this.userManager.CreateAsync(user).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    result = await this.userManager.AddLoginAsync(user, info);
+                    result = await this.userManager.AddLoginAsync(user, info).ConfigureAwait(false);
                     if (result.Succeeded)
                     {
-                        await this.signInManager.SignInAsync(user, isPersistent: false);
+                        await this.signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                         this.logger.LogInformation($"User created an account using {info.LoginProvider} provider.");
 
                         return this.RedirectToLocal(returnUrl);
@@ -581,13 +583,13 @@ namespace ProcessingTools.Web.Documents.Controllers
                 return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName);
             }
 
-            var user = await this.userManager.FindByIdAsync(userId);
+            var user = await this.userManager.FindByIdAsync(userId).ConfigureAwait(false);
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{userId}'.");
             }
 
-            var result = await this.userManager.ConfirmEmailAsync(user, code);
+            var result = await this.userManager.ConfirmEmailAsync(user, code).ConfigureAwait(false);
             return this.View(result.Succeeded ? ConfirmEmailViewName : ErrorViewName);
         }
 
@@ -616,8 +618,8 @@ namespace ProcessingTools.Web.Documents.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var user = await this.userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user)))
+                var user = await this.userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
+                if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user).ConfigureAwait(false)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return this.RedirectToAction(ForgotPasswordConfirmationActionName);
@@ -625,10 +627,10 @@ namespace ProcessingTools.Web.Documents.Controllers
 
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                var code = await this.userManager.GeneratePasswordResetTokenAsync(user);
+                var code = await this.userManager.GeneratePasswordResetTokenAsync(user).ConfigureAwait(false);
                 var callbackUrl = this.Url.ResetPasswordCallbackLink(user.Id, code, this.Request.Scheme);
 
-                await this.emailSender.SendEmailAsync(model.Email, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                await this.emailSender.SendEmailAsync(model.Email, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>").ConfigureAwait(false);
 
                 return this.RedirectToAction(ForgotPasswordConfirmationActionName);
             }
@@ -684,14 +686,14 @@ namespace ProcessingTools.Web.Documents.Controllers
                 return this.View(model);
             }
 
-            var user = await this.userManager.FindByEmailAsync(model.Email);
+            var user = await this.userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return this.RedirectToAction(ResetPasswordConfirmationActionName);
             }
 
-            var result = await this.userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            var result = await this.userManager.ResetPasswordAsync(user, model.Code, model.Password).ConfigureAwait(false);
             if (result.Succeeded)
             {
                 return this.RedirectToAction(ResetPasswordConfirmationActionName);
@@ -728,6 +730,8 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// Help.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
+        [HttpGet]
+        [HttpPost]
         [ActionName(ActionNames.Help)]
         public IActionResult Help()
         {
