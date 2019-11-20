@@ -17,11 +17,11 @@ namespace ProcessingTools.Web.Models.Geography.Coordinates
         /// <summary>
         /// Gets or sets the latitude as string.
         /// </summary>
-        public decimal Latitude { get; set; }
+        public decimal? Latitude { get; set; }
 
         /// <summary>
         /// Gets or sets the longitude as string.
         /// </summary>
-        public decimal Longitude { get; set; }
+        public decimal? Longitude { get; set; }
     }
 }
