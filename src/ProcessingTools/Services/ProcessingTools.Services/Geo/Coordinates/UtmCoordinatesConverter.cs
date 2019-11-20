@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Geo.Coordinates
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using GeoAPI.CoordinateSystems;
     using GeoAPI.CoordinateSystems.Transformations;
@@ -38,7 +39,8 @@ namespace ProcessingTools.Services.Geo.Coordinates
         /// <returns>Pair of UTM Easting and UTM Northing.</returns>
         public double[] TransformDecimal2Utm(double latitude, double longitude, string utmZone)
         {
-            var transformation = this.CreateTransformation(utmZone);
+            var zone = (utmZone ?? string.Empty).Trim();
+            var transformation = this.CreateTransformation(zone);
             var point = new[] { latitude, longitude };
             var result = transformation.Transform(point);
             return result;
@@ -55,7 +57,8 @@ namespace ProcessingTools.Services.Geo.Coordinates
         {
             try
             {
-                var transformation = this.CreateTransformation(utmZone).Inverse();
+                var zone = (utmZone ?? string.Empty).Trim();
+                var transformation = this.CreateTransformation(zone).Inverse();
                 var point = new[] { utmEasting, utmNorthing };
                 var retult = transformation.Transform(point);
                 return retult.Reverse().ToArray();
@@ -69,8 +72,9 @@ namespace ProcessingTools.Services.Geo.Coordinates
 
         private IMathTransform CreateTransformation(string utmZone)
         {
-            bool isNorthHemisphere = utmZone[utmZone.Length - 1] >= 'N';
-            var zone = int.Parse(utmZone.Substring(0, utmZone.Length - 1));
+            bool isNorthHemisphere = utmZone[^1] >= 'N';
+
+            var zone = int.Parse(utmZone[0..^1], NumberStyles.Any, CultureInfo.InvariantCulture);
 
             IProjectedCoordinateSystem pcsUTM = ProjectedCoordinateSystem.WGS84_UTM(zone, isNorthHemisphere);
             var transformation = this.coordinateTransformationFactory.CreateFromCoordinateSystems(this.gcsWGS84, pcsUTM);
