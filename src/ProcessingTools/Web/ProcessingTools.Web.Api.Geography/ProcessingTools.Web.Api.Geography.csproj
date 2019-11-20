@@ -33,6 +33,10 @@
     <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Remove="stylecop.json" />
   </ItemGroup>
