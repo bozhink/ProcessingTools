@@ -65,8 +65,8 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
             parser.ParseCoordinateString(decimalCoordinateString, coordinateType, latitude, longitude);
 
             // Assert
-            Assert.AreEqual(latitudeValue, latitude.Value, "Latitude should match");
-            Assert.AreEqual(longitudeValue, longitude.Value, "Longitude should match");
+            Assert.AreEqual(latitudeValue, latitude.Value);
+            Assert.AreEqual(longitudeValue, longitude.Value);
         }
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
             parser.ParseCoordinateString(utmCoordinateString, coordinateType, latitude, longitude);
 
             // Assert
-            Assert.AreEqual(latitudeValue, latitude.Value, "Latitude should match");
-            Assert.AreEqual(longitudeValue, longitude.Value, "Longitude should match");
+            Assert.AreEqual(latitudeValue, latitude.Value);
+            Assert.AreEqual(longitudeValue, longitude.Value);
         }
     }
 }

@@ -403,6 +403,15 @@ namespace ProcessingTools.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Repeated directions in the coordinate string.
+        /// </summary>
+        public static string RepeatedDirectionsInCoordinateStringErrorMessage {
+            get {
+                return ResourceManager.GetString("RepeatedDirectionsInCoordinateStringErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specified article does not have any final documents.
         /// </summary>
         public static string SpecifiedArticleDoesNotHaveAnyFinalDocuments {

@@ -5,11 +5,13 @@
 namespace ProcessingTools.Services.Geo.Coordinates
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Text.RegularExpressions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Resources;
     using ProcessingTools.Contracts.Models.Geo.Coordinates;
     using ProcessingTools.Contracts.Services.Geo.Coordinates;
     using ProcessingTools.Extensions;
@@ -20,8 +22,6 @@ namespace ProcessingTools.Services.Geo.Coordinates
     /// </summary>
     public class Coordinate2DParser : ICoordinate2DParser
     {
-        private const string RepeatedDirectionsErrorMessage = "Repeated directions in the coordinate string.";
-
         private const string LatitudeTypeValue = AttributeNames.Latitude;
         private const string LongitudeTypeValue = AttributeNames.Longitude;
         private const string UtmZoneValue = "zone";
@@ -40,6 +40,9 @@ namespace ProcessingTools.Services.Geo.Coordinates
 
         private readonly IUtmCoordinatesTransformer utmCoordinatesTransformer;
 
+        private readonly Regex matchLatitudeByLetter = new Regex(@"[NS]", RegexOptions.Compiled);
+        private readonly Regex matchLongitudeByLetter = new Regex(@"[EWO]", RegexOptions.Compiled);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Coordinate2DParser"/> class.
         /// </summary>
@@ -52,80 +55,29 @@ namespace ProcessingTools.Services.Geo.Coordinates
         /// <inheritdoc/>
         public void ParseCoordinateString(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
         {
+            if (latitude is null)
+            {
+                throw new ArgumentNullException(nameof(latitude));
+            }
+
+            if (longitude is null)
+            {
+                throw new ArgumentNullException(nameof(longitude));
+            }
+
             try
             {
+                if (this.ParseAsUtmCoordinate(coordinateString, latitude, longitude))
                 {
-                    var integerUtmCoordinatesMatchPatterns = new[]
-                    {
-                    // UTM WGS84: 33T 455.4683
-                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\s*\Z",
-
-                    // UTM ED50: 33T 4498003N; 674582E
-                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7})N\W+(?<easting>[0-9]{2,7})E\s*\Z",
-
-                    // UTM ED50: 33T 674582E; 4498003N
-                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\s*\Z",
-
-                    // 55G 595500 5371700
-                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,6})\W+(?<northing>[0-9]{2,7})\s*\Z",
-                    };
-
-                    var integerUtmCoordinatesMatches = integerUtmCoordinatesMatchPatterns.Select(p => Regex.Match(coordinateString, p));
-                    foreach (var match in integerUtmCoordinatesMatches)
-                    {
-                        if (this.ProcessIntegerUTMCoordinate(match, latitude, longitude))
-                        {
-                            return;
-                        }
-                    }
+                    return;
                 }
 
+                if (this.ParseAsSphericalCoordinate(coordinateString, latitude, longitude))
                 {
-                    string coordinateText = coordinateString
-                        .RegexReplace("[–—−-]", "-")
-                        .RegexReplace(@"\s*:\s*", " ");
-
-                    var simpleSphericalCoordinatesPatterns = new[]
-                    {
-                    // 29.5423°, -86.1926°  /see test case/
-                    @"\A(?<latitude>\-?[0-9]+\.[0-9]+\W?)[;,\s]+(?<longitude>\-?[0-9]+\.[0-9]+\W?)\Z",
-
-                    // -31:34:55; 159:5:9 /see test case/
-                    @"\A(?<latitude>\-?[0-9]+ [0-9]+ [0-9]+)[;,\s]+(?<longitude>\-?[0-9]+ [0-9]+ [0-9]+)\Z",
-                    };
-
-                    var simplesphericalCoordinatesMatches = simpleSphericalCoordinatesPatterns.Select(p => Regex.Match(coordinateText, p));
-                    foreach (var match in simplesphericalCoordinatesMatches)
-                    {
-                        if (this.ProcessSimpleSphericalCoordinate(match, latitude, longitude))
-                        {
-                            return;
-                        }
-                    }
+                    return;
                 }
 
-                {
-                    //// 03°14.78S, 72°54.61W /see test case/
-                    //// 03°15’S 72°54’W /see test case/
-                    //// 20°20.1N 74°33.6W /see test case/
-                    //// 37°08'09.4"N, 8°23'04.2"W /see test case/
-                    //// 08º48’23’’S, 115º56’24’’E /see test case/
-
-                    string coordinateText = this.SimplifyCoordinateString(coordinateString);
-
-                    if (string.IsNullOrWhiteSpace(coordinateType))
-                    {
-                        this.ParseGeneralTypeCoordinate(coordinateText, latitude, longitude);
-                    }
-                    else if (coordinateType == LatitudeTypeValue)
-                    {
-                        this.ParseLatitudeTypeCoordinate(coordinateText, latitude);
-                    }
-                    else if (coordinateType == LongitudeTypeValue)
-                    {
-                        this.ParseLongitudeTypeCoordinate(coordinateText, longitude);
-                    }
-                }
+                this.ParseCoordinatesByType(coordinateString, coordinateType, latitude, longitude);
             }
             catch (CoordinateException)
             {
@@ -139,6 +91,88 @@ namespace ProcessingTools.Services.Geo.Coordinates
                     latitude,
                     longitude);
             }
+        }
+
+        private void ParseCoordinatesByType(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
+        {
+            //// 03°14.78S, 72°54.61W /see test case/
+            //// 03°15’S 72°54’W /see test case/
+            //// 20°20.1N 74°33.6W /see test case/
+            //// 37°08'09.4"N, 8°23'04.2"W /see test case/
+            //// 08º48’23’’S, 115º56’24’’E /see test case/
+
+            string coordinateText = this.SimplifyCoordinateString(coordinateString);
+
+            switch (coordinateType)
+            {
+                case LatitudeTypeValue:
+                    this.ParseLatitudeTypeCoordinate(coordinateText, latitude);
+                    break;
+
+                case LongitudeTypeValue:
+                    this.ParseLongitudeTypeCoordinate(coordinateText, longitude);
+                    break;
+
+                default:
+                    this.ParseGeneralTypeCoordinate(coordinateText, latitude, longitude);
+                    break;
+            }
+        }
+
+        private bool ParseAsUtmCoordinate(string coordinateString, ICoordinatePart latitude, ICoordinatePart longitude)
+        {
+            string[] integerUtmCoordinatesMatchPatterns = new[]
+            {
+                // UTM WGS84: 33T 455.4683
+                @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\s*\Z",
+
+                // UTM ED50: 33T 4498003N; 674582E
+                @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7})N\W+(?<easting>[0-9]{2,7})E\s*\Z",
+
+                // UTM ED50: 33T 674582E; 4498003N
+                @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\s*\Z",
+
+                // 55G 595500 5371700
+                @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,6})\W+(?<northing>[0-9]{2,7})\s*\Z",
+            };
+
+            var integerUtmCoordinatesMatches = integerUtmCoordinatesMatchPatterns.Select(p => Regex.Match(coordinateString, p));
+
+            foreach (var match in integerUtmCoordinatesMatches)
+            {
+                if (this.ProcessIntegerUTMCoordinate(match, latitude, longitude))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool ParseAsSphericalCoordinate(string coordinateString, ICoordinatePart latitude, ICoordinatePart longitude)
+        {
+            string coordinateText = coordinateString.RegexReplace("[–—−-]", "-").RegexReplace(@"\s*:\s*", " ");
+
+            string[] simpleSphericalCoordinatesPatterns = new[]
+            {
+                // 29.5423°, -86.1926°  /see test case/
+                @"\A(?<latitude>\-?[0-9]+\.[0-9]+\W?)[;,\s]+(?<longitude>\-?[0-9]+\.[0-9]+\W?)\Z",
+
+                // -31:34:55; 159:5:9 /see test case/
+                @"\A(?<latitude>\-?[0-9]+ [0-9]+ [0-9]+)[;,\s]+(?<longitude>\-?[0-9]+ [0-9]+ [0-9]+)\Z",
+            };
+
+            var simplesphericalCoordinatesMatches = simpleSphericalCoordinatesPatterns.Select(p => Regex.Match(coordinateText, p));
+
+            foreach (var match in simplesphericalCoordinatesMatches)
+            {
+                if (this.ProcessSimpleSphericalCoordinate(match, latitude, longitude))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private bool ProcessSimpleSphericalCoordinate(Match match, ICoordinatePart latitude, ICoordinatePart longitude)
@@ -176,8 +210,8 @@ namespace ProcessingTools.Services.Geo.Coordinates
                 var utmNorthingString = utmCoordinatesMatch.Groups[UtmNorthingValue].Value.Trim().PadRight(7, '0');
 
                 var utmZone = utmCoordinatesMatch.Groups[UtmZoneValue].Value.Trim();
-                var utmEasting = double.Parse(utmEastingString);
-                var utmNorthing = double.Parse(utmNorthingString);
+                var utmEasting = double.Parse(utmEastingString, CultureInfo.InvariantCulture);
+                var utmNorthing = double.Parse(utmNorthingString, CultureInfo.InvariantCulture);
 
                 var point = this.utmCoordinatesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
 
@@ -209,13 +243,11 @@ namespace ProcessingTools.Services.Geo.Coordinates
 
         private void DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(ICoordinate coordinate, string leftPart, string rightPart)
         {
-            if ((leftPart.Contains("N") || leftPart.Contains("S")) &&
-                (rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O")))
+            if (this.matchLatitudeByLetter.IsMatch(leftPart) && this.matchLongitudeByLetter.IsMatch(rightPart))
             {
-                if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") ||
-                    rightPart.Contains("N") || rightPart.Contains("S"))
+                if (this.matchLongitudeByLetter.IsMatch(leftPart) || this.matchLatitudeByLetter.IsMatch(rightPart))
                 {
-                    throw new CoordinateException(RepeatedDirectionsErrorMessage);
+                    throw new CoordinateException(StringResources.RepeatedDirectionsInCoordinateStringErrorMessage);
                 }
                 else
                 {
@@ -223,11 +255,11 @@ namespace ProcessingTools.Services.Geo.Coordinates
                     coordinate.Longitude = rightPart;
                 }
             }
-            else if ((leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O")) && (rightPart.Contains("N") || rightPart.Contains("S")))
+            else if (this.matchLongitudeByLetter.IsMatch(leftPart) && this.matchLatitudeByLetter.IsMatch(rightPart))
             {
-                if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
+                if (this.matchLatitudeByLetter.IsMatch(leftPart) || this.matchLongitudeByLetter.IsMatch(rightPart))
                 {
-                    throw new CoordinateException(RepeatedDirectionsErrorMessage);
+                    throw new CoordinateException(StringResources.RepeatedDirectionsInCoordinateStringErrorMessage);
                 }
                 else
                 {

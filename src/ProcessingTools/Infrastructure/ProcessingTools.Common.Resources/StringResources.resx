@@ -231,6 +231,9 @@
   <data name="QueueListenerScopedProcessingServiceWorking" xml:space="preserve">
     <value>Queue Listener Scoped Processing Service is working</value>
   </data>
+  <data name="RepeatedDirectionsInCoordinateStringErrorMessage" xml:space="preserve">
+    <value>Repeated directions in the coordinate string</value>
+  </data>
   <data name="SpecifiedArticleDoesNotHaveAnyFinalDocuments" xml:space="preserve">
     <value>Specified article does not have any final documents</value>
   </data>
