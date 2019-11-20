@@ -242,7 +242,9 @@ namespace ProcessingTools.Web.Documents
                 {
                     options.RespectBrowserAcceptHeader = true;
                     options.MaxModelValidationErrors = 50;
-                    options.InputFormatters.Insert(0, new RawRequestBodyFormatter());
+                    options.InputFormatters.Insert(0, new VcardInputFormatter());
+                    options.InputFormatters.Insert(1, new RawRequestBodyFormatter());
+                    options.OutputFormatters.Insert(0, new VcardOutputFormatter());
                 })
                 .AddRazorRuntimeCompilation()
                 .AddXmlDataContractSerializerFormatters()
