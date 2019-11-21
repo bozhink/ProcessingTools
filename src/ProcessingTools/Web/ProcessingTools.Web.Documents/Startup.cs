@@ -512,6 +512,7 @@ namespace ProcessingTools.Web.Documents
             }
 
             app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
             app.UseBrowserLink();
             app.UseDatabaseErrorPage();
 
