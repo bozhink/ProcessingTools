@@ -1,5 +1,5 @@
 ﻿// <copyright file="AssemblySetup.cs" company="ProcessingTools">
-// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DynamicProxyGenAssembly2")]

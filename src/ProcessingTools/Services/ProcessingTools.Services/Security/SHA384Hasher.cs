@@ -1,5 +1,5 @@
 ﻿// <copyright file="SHA384Hasher.cs" company="ProcessingTools">
-// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
 #pragma warning disable S101 // Types should be named in PascalCase

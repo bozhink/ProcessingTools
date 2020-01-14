@@ -1,5 +1,5 @@
 ﻿// <copyright file="LogExceptionAttribute.cs" company="ProcessingTools">
-// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://blog.kulman.sk/intercepting-methods-with-ninject-for-error-logging/

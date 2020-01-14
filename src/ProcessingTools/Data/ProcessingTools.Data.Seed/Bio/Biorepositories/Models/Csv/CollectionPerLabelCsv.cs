@@ -1,5 +1,5 @@
 ﻿// <copyright file="CollectionPerLabelCsv.cs" company="ProcessingTools">
-// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Data.Seed.Bio.Biorepositories.Models.Csv

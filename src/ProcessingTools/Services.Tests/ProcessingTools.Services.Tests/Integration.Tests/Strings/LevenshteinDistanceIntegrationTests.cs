@@ -1,5 +1,5 @@
 ﻿// <copyright file="LevenshteinDistanceIntegrationTests.cs" company="ProcessingTools">
-// Copyright (c) 2019 ProcessingTools. All rights reserved.
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://www.datacamp.com/community/tutorials/fuzzy-string-python
