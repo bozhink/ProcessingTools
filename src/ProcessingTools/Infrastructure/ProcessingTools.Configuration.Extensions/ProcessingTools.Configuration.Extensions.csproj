@@ -38,13 +38,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Core" Version="2.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.3.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.7">
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.0.0.9566">
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.2.0.14119">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
