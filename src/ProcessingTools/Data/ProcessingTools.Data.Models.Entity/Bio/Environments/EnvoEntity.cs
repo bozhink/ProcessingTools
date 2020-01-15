@@ -27,18 +27,18 @@ namespace ProcessingTools.Data.Models.Entity.Bio.Environments
         public string EnvoId { get; set; }
 
         /// <summary>
-        /// Gets or sets the collection of related ENVO names.
+        /// Gets the collection of related ENVO names.
         /// </summary>
-        public virtual ICollection<EnvoName> Names { get; set; } = new HashSet<EnvoName>();
+        public virtual ICollection<EnvoName> Names { get; private set; } = new HashSet<EnvoName>();
 
         /// <summary>
-        /// Gets or sets the collection of first groups.
+        /// Gets the collection of first groups.
         /// </summary>
-        public virtual ICollection<EnvoGroup> Groups1 { get; set; } = new HashSet<EnvoGroup>();
+        public virtual ICollection<EnvoGroup> Groups1 { get; private set; } = new HashSet<EnvoGroup>();
 
         /// <summary>
-        /// Gets or sets the collection of second groups.
+        /// Gets the collection of second groups.
         /// </summary>
-        public virtual ICollection<EnvoGroup> Groups2 { get; set; } = new HashSet<EnvoGroup>();
+        public virtual ICollection<EnvoGroup> Groups2 { get; private set; } = new HashSet<EnvoGroup>();
     }
 }

@@ -1,24 +1,20 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Bio.Taxonomy
+﻿// <copyright file="TaxonName.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Models.Entity.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxon name entity.
+    /// </summary>
     public class TaxonName
     {
-        private ICollection<TaxonRank> ranks;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="TaxonName"/> class.
-        /// </summary>
-        public TaxonName()
-        {
-            this.ranks = new HashSet<TaxonRank>();
-            this.WhiteListed = false;
-        }
-
-        /// <summary>
-        /// Gets or sets the key field of the TaxonName.
+        /// Gets or sets the ID of the taxon name entity.
         /// </summary>
         [Key]
         public int Id { get; set; }
@@ -34,19 +30,11 @@
         /// Gets or sets a value indicating whether this TaxonName must appear
         /// in the white list for taxon tagging.
         /// </summary>
-        public bool WhiteListed { get; set; }
+        public bool WhiteListed { get; set; } = false;
 
-        public virtual ICollection<TaxonRank> Ranks
-        {
-            get
-            {
-                return this.ranks;
-            }
-
-            set
-            {
-                this.ranks = value;
-            }
-        }
+        /// <summary>
+        /// Gets the collection of taxon rank entities.
+        /// </summary>
+        public virtual ICollection<TaxonRank> Ranks { get; private set; } = new HashSet<TaxonRank>();
     }
 }

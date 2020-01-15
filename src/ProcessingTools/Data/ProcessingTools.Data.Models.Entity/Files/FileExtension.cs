@@ -1,39 +1,40 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Files
+﻿// <copyright file="FileExtension.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Models.Entity.Files
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Mediatypes;
 
+    /// <summary>
+    /// File extension entity.
+    /// </summary>
     public class FileExtension
     {
-        private ICollection<MimetypePair> mimetypePairs;
-
-        public FileExtension()
-        {
-            this.mimetypePairs = new HashSet<MimetypePair>();
-        }
-
+        /// <summary>
+        /// Gets or sets the ID of the file extension entity.
+        /// </summary>
         [Key]
         public int Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the file extension.
+        /// </summary>
         [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfFileExtensionName)]
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the description of the file extension.
+        /// </summary>
         [MaxLength(ValidationConstants.MaximalLengthOfFileExtensionDescription)]
         public string Description { get; set; }
 
-        public virtual ICollection<MimetypePair> MimetypePairs
-        {
-            get
-            {
-                return this.mimetypePairs;
-            }
-
-            set
-            {
-                this.mimetypePairs = value;
-            }
-        }
+        /// <summary>
+        /// Gets the collection of media-types.
+        /// </summary>
+        public virtual ICollection<MimetypePair> MimetypePairs { get; private set; } = new HashSet<MimetypePair>();
     }
 }

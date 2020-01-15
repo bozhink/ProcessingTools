@@ -1,48 +1,36 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Files
+﻿// <copyright file="Mimesubtype.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Models.Entity.Files
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Mediatypes;
 
+    /// <summary>
+    /// Mime-subtype entity.
+    /// </summary>
     public class Mimesubtype
     {
         private string name;
-        private ICollection<MimetypePair> mimeTypePairs;
 
-        public Mimesubtype()
-        {
-            this.mimeTypePairs = new HashSet<MimetypePair>();
-        }
-
+        /// <summary>
+        /// Gets or sets the ID of the mime-subtype entity.
+        /// </summary>
         [Key]
         public int Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the mime-subtype.
+        /// </summary>
         [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfMimeSubtypeName)]
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
+        public string Name { get => this.name; set => this.name = value?.ToLowerInvariant(); }
 
-            set
-            {
-                this.name = value?.ToLowerInvariant();
-            }
-        }
-
-        public virtual ICollection<MimetypePair> MimeTypePairs
-        {
-            get
-            {
-                return this.mimeTypePairs;
-            }
-
-            set
-            {
-                this.mimeTypePairs = value;
-            }
-        }
+        /// <summary>
+        /// Gets the collection of mime-type-pair entities.
+        /// </summary>
+        public virtual ICollection<MimetypePair> MimeTypePairs { get; private set; } = new HashSet<MimetypePair>();
     }
 }
