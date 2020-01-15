@@ -5,7 +5,6 @@
 namespace ProcessingTools.Contracts.Models.Geo
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// District.

@@ -4,8 +4,6 @@
 
 namespace ProcessingTools.Contracts.Models.Resources
 {
-    using ProcessingTools.Contracts.Models;
-
     /// <summary>
     /// Content type entity.
     /// </summary>

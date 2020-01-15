@@ -5,7 +5,6 @@
 namespace ProcessingTools.Contracts.Models.Resources
 {
     using System;
-    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Abbreviation entity.

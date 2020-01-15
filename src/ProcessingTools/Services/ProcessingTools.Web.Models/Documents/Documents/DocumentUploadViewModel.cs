@@ -5,7 +5,6 @@
 namespace ProcessingTools.Web.Models.Documents.Documents
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Web.Models.Shared;
 

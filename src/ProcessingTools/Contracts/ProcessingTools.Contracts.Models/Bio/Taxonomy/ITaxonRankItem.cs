@@ -6,7 +6,6 @@ namespace ProcessingTools.Contracts.Models.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models;
 
     /// <summary>
     /// Taxon rank item.

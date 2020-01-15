@@ -4,8 +4,6 @@
 
 namespace ProcessingTools.Contracts.Models.History
 {
-    using ProcessingTools.Contracts.Models;
-
     /// <summary>
     /// Object history model.
     /// </summary>
