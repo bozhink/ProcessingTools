@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>1d878758-c902-43e8-92d9-62b29d299455</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
@@ -25,12 +25,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG</DefineConstants>
     <OutputPath>bin\debug</OutputPath>
-    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\release</OutputPath>
-    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>

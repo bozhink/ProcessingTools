@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
 
@@ -28,7 +28,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Commands.Tagger.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Commands.Tagger.Tests.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <NoWarn>1701;1702;CA1707</NoWarn>
@@ -36,7 +36,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Commands.Tagger.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Commands.Tagger.Tests.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>

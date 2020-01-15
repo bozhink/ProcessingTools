@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-ProcessingTools-EEA73E41-E818-42E8-B442-C1A58847B6E6</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <AssemblyName>ProcessingTools.Web.Documents</AssemblyName>
@@ -33,13 +33,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Web.Documents.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Web.Documents.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Web.Documents.xml</DocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Web.Documents.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 

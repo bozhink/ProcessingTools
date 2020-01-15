@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>63cb3e41-1c08-475a-b7b9-b5374092eef5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
@@ -25,13 +25,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG</DefineConstants>
     <OutputPath>bin\debug</OutputPath>
-    <DocumentationFile>bin\debug\netcoreapp3.0\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants />
     <OutputPath>bin\release</OutputPath>
-    <DocumentationFile>bin\release\netcoreapp3.0\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
+    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
