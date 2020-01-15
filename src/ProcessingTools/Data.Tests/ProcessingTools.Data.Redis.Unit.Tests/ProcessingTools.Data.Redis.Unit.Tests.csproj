@@ -59,7 +59,7 @@
     <PackageReference Include="ServiceStack.Interfaces" Version="5.8.0" />
     <PackageReference Include="ServiceStack.Redis" Version="5.8.0" />
     <PackageReference Include="ServiceStack.Text" Version="5.8.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.0.0.9566">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.2.0.14119">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
