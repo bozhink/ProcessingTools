@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.DataResources
+﻿// <copyright file="ResourcesDbContext.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.DataResources
 {
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Data.Models.Entity.DataResources;

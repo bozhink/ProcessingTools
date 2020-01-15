@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
+﻿// <copyright file="NinjectConfig.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
     using global::Ninject;

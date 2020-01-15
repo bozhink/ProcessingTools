@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.DbSeeder.Abstractions.Seeders
+﻿// <copyright file="GenericDbSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.DbSeeder.Abstractions.Seeders
 {
     using System;
     using System.Threading.Tasks;

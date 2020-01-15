@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.History
+﻿// <copyright file="HistoryDbContext.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.History
 {
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Data.Models.Entity.History;

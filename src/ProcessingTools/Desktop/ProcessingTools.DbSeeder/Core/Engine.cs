@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.DbSeeder.Core
+﻿// <copyright file="Engine.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.DbSeeder.Core
 {
     using System;
     using System.Collections.Concurrent;

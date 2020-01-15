@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
+﻿// <copyright file="FileReplacementModel.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Models
 {
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
 

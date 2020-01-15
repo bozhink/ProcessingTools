@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
+﻿// <copyright file="Engine.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.IO;

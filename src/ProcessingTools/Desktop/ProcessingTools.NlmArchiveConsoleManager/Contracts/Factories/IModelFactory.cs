@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories
+﻿// <copyright file="IModelFactory.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories
 {
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
 

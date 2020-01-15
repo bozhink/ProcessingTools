@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.DbSeeder.Seeders
+﻿// <copyright file="TaxonomyDbSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.DbSeeder.Seeders
 {
     using ProcessingTools.Data.Entity.Bio.Taxonomy;
     using ProcessingTools.Data.Seed.Bio.Taxonomy;

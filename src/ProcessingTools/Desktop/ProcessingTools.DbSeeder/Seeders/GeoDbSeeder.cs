@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.DbSeeder.Seeders
+﻿// <copyright file="GeoDbSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.DbSeeder.Seeders
 {
     using ProcessingTools.Data.Entity.Geo;
     using ProcessingTools.Data.Seed.Geo;

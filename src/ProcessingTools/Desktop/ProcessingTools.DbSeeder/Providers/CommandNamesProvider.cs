@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.DbSeeder.Providers
+﻿// <copyright file="CommandNamesProvider.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.DbSeeder.Providers
 {
     using System;
     using System.Collections.Generic;

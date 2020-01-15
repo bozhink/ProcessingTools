@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="GeoDbContext.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Data.Models.Entity.Geo;

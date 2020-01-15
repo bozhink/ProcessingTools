@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Files
+﻿// <copyright file="MediatypesDbContext.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Files
 {
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Data.Models.Entity.Files;

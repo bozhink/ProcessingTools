@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.DbSeeder.Settings
+﻿// <copyright file="NinjectBindings.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.DbSeeder.Settings
 {
     using System;
     using System.Reflection;
