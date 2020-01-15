@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tagger.Core
+﻿// <copyright file="Engine.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Threading.Tasks;
@@ -6,11 +10,19 @@
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Tagger.Contracts;
 
+    /// <summary>
+    /// Tagger's engine.
+    /// </summary>
     public class Engine : IEngine
     {
         private readonly IFileProcessor fileProcessor;
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Engine"/> class.
+        /// </summary>
+        /// <param name="fileProcessor">Instance of <see cref="IFileProcessor"/>.</param>
+        /// <param name="logger">Logger.</param>
         public Engine(IFileProcessor fileProcessor, ILogger<Engine> logger)
         {
             this.fileProcessor = fileProcessor ?? throw new ArgumentNullException(nameof(fileProcessor));

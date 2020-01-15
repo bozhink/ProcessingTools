@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tagger
+﻿// <copyright file="Program.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tagger
 {
     using System;
     using System.Diagnostics;
@@ -6,8 +10,16 @@
     using ProcessingTools.Tagger.Contracts;
     using ProcessingTools.Tagger.Settings;
 
+    /// <summary>
+    /// Program.
+    /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// Main method.
+        /// </summary>
+        /// <param name="args">CLI arguments.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public static void Main(string[] args)
         {
             Stopwatch mainTimer = new Stopwatch();
@@ -29,7 +41,7 @@
             }
 
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("Main timer {0}.", mainTimer.Elapsed);
+            Console.WriteLine($"Main timer {mainTimer.Elapsed}.");
             Console.ResetColor();
         }
     }

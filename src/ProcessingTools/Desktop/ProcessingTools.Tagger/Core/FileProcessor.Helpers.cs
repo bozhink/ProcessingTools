@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tagger.Core
+﻿// <copyright file="FileProcessor.Helpers.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Diagnostics;

@@ -30,18 +30,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MessageTexts\HelpMessage.txt" />
-    <None Remove="MessageTexts\WriteOutputFileMessage.txt" />
+    <Compile Remove="MessageTexts\**" />
+    <EmbeddedResource Remove="MessageTexts\**" />
+    <None Remove="MessageTexts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="MessageTexts\HelpMessage.txt" />
-    <Content Include="MessageTexts\WriteOutputFileMessage.txt" />
   </ItemGroup>
 
   <ItemGroup>

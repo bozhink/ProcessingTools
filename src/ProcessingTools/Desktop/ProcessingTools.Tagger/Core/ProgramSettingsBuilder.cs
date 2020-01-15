@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tagger.Core
+﻿// <copyright file="ProgramSettingsBuilder.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Collections.Generic;

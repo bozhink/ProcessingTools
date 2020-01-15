@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tagger.Settings
+﻿// <copyright file="NinjectBindings.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tagger.Settings
 {
     using System;
     using global::Ninject;
@@ -19,6 +23,7 @@
     /// </summary>
     public class NinjectBindings : NinjectModule
     {
+        /// <inheritdoc/>
         public override void Load()
         {
             this.Bind(b =>

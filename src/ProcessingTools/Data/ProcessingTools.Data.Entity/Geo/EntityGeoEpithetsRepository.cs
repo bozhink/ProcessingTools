@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="EntityGeoEpithetsRepository.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System;
     using System.Linq;

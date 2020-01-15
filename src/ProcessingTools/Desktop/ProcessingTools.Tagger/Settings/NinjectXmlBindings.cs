@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tagger.Settings
+﻿// <copyright file="NinjectXmlBindings.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tagger.Settings
 {
     using global::Ninject.Extensions.Factory;
     using global::Ninject.Modules;
@@ -14,8 +18,12 @@
     using ProcessingTools.Contracts.Services.Xml;
     using ProcessingTools.Services.Xml;
 
+    /// <summary>
+    /// NinjectModule to bind XML objects.
+    /// </summary>
     public class NinjectXmlBindings : NinjectModule
     {
+        /// <inheritdoc/>
         public override void Load()
         {
             // Transformers

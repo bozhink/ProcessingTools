@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tagger.Core
+﻿// <copyright file="FileProcessor.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Collections.Concurrent;
@@ -43,6 +47,7 @@
             this.tasks = new ConcurrentQueue<Task>();
         }
 
+        /// <inheritdoc/>
         public async Task RunAsync(IProgramSettings settings)
         {
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
