@@ -8,7 +8,6 @@ namespace ProcessingTools.DbSeeder.Core
     using System.Collections.Concurrent;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.DbSeeder.Contracts.Core;
 
     public class Engine : IEngine
     {
@@ -23,6 +22,7 @@ namespace ProcessingTools.DbSeeder.Core
             this.helpProvider = helpProvider;
         }
 
+        /// <inheritdoc/>
         public async Task RunAsync(string[] args)
         {
             if (args == null || args.Length < 1)

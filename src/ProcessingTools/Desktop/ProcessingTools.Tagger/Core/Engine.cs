@@ -7,7 +7,7 @@ namespace ProcessingTools.Tagger.Core
     using System;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Tagger.Contracts;
 
     /// <summary>
@@ -29,23 +29,9 @@ namespace ProcessingTools.Tagger.Core
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public void Run(string[] args)
-        {
-            if (!int.TryParse(AppSettings.MaximalTimeInMinutesToWaitTheMainThread, out int timeSpanInMunutesValue))
-            {
-                throw new InvalidCastException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
-            }
-
-            var ts = TimeSpan.FromMinutes(timeSpanInMunutesValue);
-
-            var succeeded = this.RunAsync(args).Wait(ts);
-            if (!succeeded)
-            {
-                this.logger.LogError("The timeout interval elapsed.");
-            }
-        }
-
-        private async Task RunAsync(string[] args)
+        /// <inheritdoc/>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Run engine")]
+        public async Task RunAsync(string[] args)
         {
             try
             {

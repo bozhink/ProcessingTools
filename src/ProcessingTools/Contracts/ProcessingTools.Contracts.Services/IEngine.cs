@@ -2,10 +2,12 @@
 // Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Tagger.Contracts
+namespace ProcessingTools.Contracts.Services
 {
+    using System.Threading.Tasks;
+
     /// <summary>
-    /// Engine.
+    /// Engine of the main functional unit.
     /// </summary>
     public interface IEngine
     {
@@ -13,6 +15,7 @@ namespace ProcessingTools.Tagger.Contracts
         /// Run the execution of the engine.
         /// </summary>
         /// <param name="args">Arguments for the run.</param>
-        void Run(string[] args);
+        /// <returns>Task.</returns>
+        Task RunAsync(string[] args);
     }
 }

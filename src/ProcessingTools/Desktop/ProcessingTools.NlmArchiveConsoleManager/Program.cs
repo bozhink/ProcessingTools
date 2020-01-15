@@ -7,7 +7,7 @@ namespace ProcessingTools.NlmArchiveConsoleManager
     using System;
     using System.Diagnostics;
     using global::Ninject;
-    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.NlmArchiveConsoleManager.Settings;
 
     internal static class Program
@@ -22,7 +22,7 @@ namespace ProcessingTools.NlmArchiveConsoleManager
                 using (var kernel = NinjectConfig.CreateKernel())
                 {
                     var engine = kernel.Get<IEngine>();
-                    engine.Run(args).Wait();
+                    engine.RunAsync(args).Wait();
                 }
             }
             catch (Exception e)

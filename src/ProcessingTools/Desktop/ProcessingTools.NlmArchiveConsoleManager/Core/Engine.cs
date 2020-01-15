@@ -12,7 +12,6 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Core
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Meta;
-    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
 
     public class Engine : IEngine
@@ -61,7 +60,8 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Core
             }
         };
 
-        public async Task Run(params string[] args)
+        /// <inheritdoc/>
+        public async Task RunAsync(string[] args)
         {
             int numberOfDoubleDashedArguments = args.Count(this.FilterDoubleDashedOption);
             if (numberOfDoubleDashedArguments != 1)

@@ -7,7 +7,7 @@ namespace ProcessingTools.DbSeeder
     using System;
     using System.Diagnostics;
     using global::Ninject;
-    using ProcessingTools.DbSeeder.Contracts.Core;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Settings;
 
     public static class Program

@@ -7,7 +7,8 @@ namespace ProcessingTools.Tagger
     using System;
     using System.Diagnostics;
     using global::Ninject;
-    using ProcessingTools.Tagger.Contracts;
+    using ProcessingTools.Common.Constants.Configuration;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Tagger.Settings;
 
     /// <summary>
@@ -27,10 +28,22 @@ namespace ProcessingTools.Tagger
 
             try
             {
+                if (!int.TryParse(AppSettings.MaximalTimeInMinutesToWaitTheMainThread, out int timeSpanInMunutesValue))
+                {
+                    throw new InvalidCastException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
+                }
+
+                var ts = TimeSpan.FromMinutes(timeSpanInMunutesValue);
+
                 using (var kernel = NinjectConfig.CreateKernel())
                 {
                     var engine = kernel.Get<IEngine>();
-                    engine.Run(args);
+                    var succeeded = engine.RunAsync(args).Wait(ts);
+
+                    if (!succeeded)
+                    {
+                        throw new InvalidOperationException("Timeout.");
+                    }
                 }
             }
             catch (Exception e)
