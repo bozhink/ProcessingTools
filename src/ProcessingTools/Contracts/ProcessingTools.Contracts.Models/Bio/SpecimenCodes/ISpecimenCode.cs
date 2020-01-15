@@ -4,8 +4,6 @@
 
 namespace ProcessingTools.Contracts.Models.Bio.SpecimenCodes
 {
-    using ProcessingTools.Contracts.Models;
-
     /// <summary>
     /// Specimen code.
     /// </summary>

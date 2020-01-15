@@ -19,7 +19,6 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Layout;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
@@ -58,6 +57,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="documentId">Document object ID.</param>
         /// <param name="articleId">Article object ID.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> ParseReferences(string documentId, string articleId)
         {
             try
@@ -82,6 +82,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="documentId">Document object ID.</param>
         /// <param name="articleId">Article object ID.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> TagReferences(string documentId, string articleId)
         {
             try
@@ -105,6 +106,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="articleId">Article object ID.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> UpdateArticleDocumentsMeta(string articleId)
         {
             try
@@ -129,6 +131,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="documentId">Document object ID.</param>
         /// <param name="articleId">Article object ID.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> UpdateDocumentMeta(string documentId, string articleId)
         {
             try

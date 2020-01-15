@@ -4,9 +4,9 @@
 
 namespace ProcessingTools.Extensions.Tests.Integration.Tests
 {
+    using System;
     using System.Globalization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// String extensions tests.
@@ -34,12 +34,12 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         {
             Assert.AreEqual(
                 1.0,
-                "1.0".Replace(".", this.decimalSeparator).ConvertTo<double>(),
+                "1.0".Replace(".", this.decimalSeparator, StringComparison.InvariantCulture).ConvertTo<double>(),
                 "1.0 should be double.");
 
             Assert.AreEqual(
                 -10.0,
-                "-10.0".Replace(".", this.decimalSeparator).ConvertTo<double>(),
+                "-10.0".Replace(".", this.decimalSeparator, StringComparison.InvariantCulture).ConvertTo<double>(),
                 "-10.0 should be double.");
         }
 
@@ -61,12 +61,12 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         {
             Assert.AreEqual(
                 1.0,
-                "1.0".Replace(".", this.decimalSeparator).ConvertTo(typeof(double)),
+                "1.0".Replace(".", this.decimalSeparator, StringComparison.InvariantCulture).ConvertTo(typeof(double)),
                 "1.0 should be double.");
 
             Assert.AreEqual(
                 -10.0,
-                "-10.0".Replace(".", this.decimalSeparator).ConvertTo(typeof(double)),
+                "-10.0".Replace(".", this.decimalSeparator, StringComparison.InvariantCulture).ConvertTo(typeof(double)),
                 "-10.0 should be double.");
         }
     }

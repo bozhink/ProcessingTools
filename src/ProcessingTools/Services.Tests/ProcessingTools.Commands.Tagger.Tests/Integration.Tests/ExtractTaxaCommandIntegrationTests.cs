@@ -8,7 +8,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Integration.Tests
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;

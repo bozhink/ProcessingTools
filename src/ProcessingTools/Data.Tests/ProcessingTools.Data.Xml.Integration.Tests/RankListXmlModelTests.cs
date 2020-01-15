@@ -8,7 +8,6 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
     using System.Xml;
     using System.Xml.Serialization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
 

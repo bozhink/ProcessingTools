@@ -9,7 +9,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Commands.Models;
@@ -22,8 +21,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseLowerTaxaCommand))]
     public class ParseLowerTaxaCommandUnitTests
     {
-        #region ConstructorTests
-
         /// <summary>
         /// <see cref="ParseLowerTaxaCommand"/> with null parser should throw ArgumentNullException with correct ParamName.
         /// </summary>
@@ -62,10 +59,6 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             Assert.IsNotNull(parser);
             Assert.AreSame(parserMock.Object, parser);
         }
-
-        #endregion ConstructorTests
-
-        #region ExecutionTests
 
         /// <summary>
         /// <see cref="ParseLowerTaxaCommand"/> Run with null document and null program settings should throw ArgumentNullException.
@@ -161,7 +154,5 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
             parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Once);
             parserMock.Verify(p => p.ParseAsync(xmldocumentStub.DocumentElement), Times.Once);
         }
-
-        #endregion ExecutionTests
     }
 }

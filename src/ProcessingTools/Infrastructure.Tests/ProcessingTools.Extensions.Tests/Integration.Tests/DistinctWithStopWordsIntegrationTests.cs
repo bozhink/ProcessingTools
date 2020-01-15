@@ -6,7 +6,6 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
 {
     using System.Collections.Generic;
     using NUnit.Framework;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Distinct with stop words integration tests.

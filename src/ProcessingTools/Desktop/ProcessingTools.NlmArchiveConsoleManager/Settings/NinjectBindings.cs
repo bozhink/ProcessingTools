@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
+﻿// <copyright file="NinjectBindings.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
     using global::Ninject.Extensions.Conventions;
@@ -13,7 +17,6 @@
     using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.Contracts.Services.Serialization;
     using ProcessingTools.Data.Mongo;
-    using ProcessingTools.Data.Mongo.Documents;
     using ProcessingTools.DataAccess.Mongo.Documents;
     using ProcessingTools.Ninject.Interceptors;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
@@ -21,8 +24,12 @@
     using ProcessingTools.Services.IO;
     using ProcessingTools.Services.Serialization;
 
+    /// <summary>
+    /// Ninject bindings.
+    /// </summary>
     public class NinjectBindings : NinjectModule
     {
+        /// <inheritdoc/>
         public override void Load()
         {
             this.Bind(b =>

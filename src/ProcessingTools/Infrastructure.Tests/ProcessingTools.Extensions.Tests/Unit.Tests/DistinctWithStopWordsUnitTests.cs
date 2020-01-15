@@ -7,7 +7,6 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests
     using System.Collections.Generic;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Distinct with stop words unit tests.

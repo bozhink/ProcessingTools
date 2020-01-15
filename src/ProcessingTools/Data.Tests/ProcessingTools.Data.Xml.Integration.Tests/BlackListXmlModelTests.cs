@@ -9,7 +9,6 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
     using System.Xml;
     using System.Xml.Serialization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
 
@@ -43,7 +42,7 @@ namespace ProcessingTools.Data.Xml.Integration.Tests
 
             Assert.IsTrue(list.Items.Any(), "Number of items should be greater than zero.");
 
-            Assert.AreEqual(NumberOfListItems, list.Items.Count(), $"The number of BlackList items should be {NumberOfListItems}.");
+            Assert.AreEqual(NumberOfListItems, list.Items.Length, $"The number of BlackList items should be {NumberOfListItems}.");
 
             var items = list.Items.ToArray();
             Assert.AreEqual("Abdominal", items[0], "First item should match.");

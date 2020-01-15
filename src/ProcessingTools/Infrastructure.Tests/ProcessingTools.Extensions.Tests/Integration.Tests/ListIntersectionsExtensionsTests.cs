@@ -7,7 +7,6 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// List intersections extensions tests.
@@ -24,9 +23,16 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
+            if (context is null)
+            {
+                throw new System.ArgumentNullException(nameof(context));
+            }
+
             var words = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "City", "city", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England", "FA", "far", "fire", "football", "Football", "football", "for", "from" };
 
             wordList = words.ToList();
+
+            context.WriteLine(string.Join(", ", words));
         }
 
         /// <summary>

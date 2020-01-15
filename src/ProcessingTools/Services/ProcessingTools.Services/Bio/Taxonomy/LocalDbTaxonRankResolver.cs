@@ -8,12 +8,11 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
-    using ProcessingTools.Extensions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     /// <summary>

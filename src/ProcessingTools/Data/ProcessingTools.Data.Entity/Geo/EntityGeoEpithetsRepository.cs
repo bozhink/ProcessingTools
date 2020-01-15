@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Data.Contracts.Geo;

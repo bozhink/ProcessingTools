@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="AbstractGeoSynonymisableRepository.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System;
     using System.Linq;
@@ -6,7 +10,6 @@
     using AutoMapper;
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Data.Contracts;

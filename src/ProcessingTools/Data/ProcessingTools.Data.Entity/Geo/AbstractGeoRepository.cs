@@ -1,10 +1,13 @@
-﻿namespace ProcessingTools.Data.Entity.Geo
+﻿// <copyright file="AbstractGeoRepository.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Geo
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Models.Entity.Geo;

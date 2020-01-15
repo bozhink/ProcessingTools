@@ -5,7 +5,6 @@
 namespace ProcessingTools.Data.Mongo.Integration.Tests.Fakes
 {
     using MongoDB.Driver;
-    using ProcessingTools.Data.Mongo;
 
     /// <summary>
     /// Real MongoDB database provider.
