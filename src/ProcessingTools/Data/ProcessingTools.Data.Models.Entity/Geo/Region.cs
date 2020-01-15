@@ -1,113 +1,92 @@
-﻿namespace ProcessingTools.Data.Models.Entity.Geo
+﻿// <copyright file="Region.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Models.Entity.Geo
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
+    /// <summary>
+    /// Region entity.
+    /// </summary>
     public class Region : BaseModel, ISynonymisable<RegionSynonym>, INamedIntegerIdentified, IAbbreviatedNamed
     {
-        private ICollection<District> districts;
-        private ICollection<Municipality> municipalities;
-        private ICollection<County> counties;
-        private ICollection<City> cities;
-        private ICollection<RegionSynonym> synonyms;
-
-        public Region()
-        {
-            this.districts = new HashSet<District>();
-            this.municipalities = new HashSet<Municipality>();
-            this.counties = new HashSet<County>();
-            this.cities = new HashSet<City>();
-            this.synonyms = new HashSet<RegionSynonym>();
-        }
-
+        /// <summary>
+        /// Gets or sets the ID of the region entity.
+        /// </summary>
         [Key]
         public int Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the region.
+        /// </summary>
         [Required(AllowEmptyStrings = false)]
         [MinLength(ValidationConstants.MinimalLengthOfStateName)]
         [MaxLength(ValidationConstants.MaximalLengthOfStateName)]
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the  abbreviated name of the region.
+        /// </summary>
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedName)]
         public string AbbreviatedName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ID of the country entity.
+        /// </summary>
         public virtual int CountryId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the country entity.
+        /// </summary>
         public virtual Country Country { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ID of the state entity.
+        /// </summary>
         public virtual int? StateId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the state entity.
+        /// </summary>
         public virtual State State { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ID of the province entity.
+        /// </summary>
         public virtual int? ProvinceId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the province entity.
+        /// </summary>
         public virtual Province Province { get; set; }
 
-        public virtual ICollection<District> Districts
-        {
-            get
-            {
-                return this.districts;
-            }
+        /// <summary>
+        /// Gets the collection of district entities.
+        /// </summary>
+        public virtual ICollection<District> Districts { get; private set; } = new HashSet<District>();
 
-            set
-            {
-                this.districts = value;
-            }
-        }
+        /// <summary>
+        /// Gets the collection of municipality entities.
+        /// </summary>
+        public virtual ICollection<Municipality> Municipalities { get; private set; } = new HashSet<Municipality>();
 
-        public virtual ICollection<Municipality> Municipalities
-        {
-            get
-            {
-                return this.municipalities;
-            }
+        /// <summary>
+        /// Gets the collection of county entities.
+        /// </summary>
+        public virtual ICollection<County> Counties { get; private set; } = new HashSet<County>();
 
-            set
-            {
-                this.municipalities = value;
-            }
-        }
+        /// <summary>
+        /// Gets the collection of city entities.
+        /// </summary>
+        public virtual ICollection<City> Cities { get; private set; } = new HashSet<City>();
 
-        public virtual ICollection<County> Counties
-        {
-            get
-            {
-                return this.counties;
-            }
-
-            set
-            {
-                this.counties = value;
-            }
-        }
-
-        public virtual ICollection<City> Cities
-        {
-            get
-            {
-                return this.cities;
-            }
-
-            set
-            {
-                this.cities = value;
-            }
-        }
-
-        public virtual ICollection<RegionSynonym> Synonyms
-        {
-            get
-            {
-                return this.synonyms;
-            }
-
-            set
-            {
-                this.synonyms = value;
-            }
-        }
+        /// <summary>
+        /// Gets the collection of synonym entities.
+        /// </summary>
+        public virtual ICollection<RegionSynonym> Synonyms { get; private set; } = new HashSet<RegionSynonym>();
     }
 }

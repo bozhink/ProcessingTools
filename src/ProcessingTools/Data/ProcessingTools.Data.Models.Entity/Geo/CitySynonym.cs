@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Entity.Geo
         public virtual int CityId { get; set; }
 
         /// <summary>
-        /// Gets or set the city.
+        /// Gets or sets the city.
         /// </summary>
         public virtual City City { get; set; }
     }

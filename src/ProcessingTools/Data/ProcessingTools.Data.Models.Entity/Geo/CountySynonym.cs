@@ -15,7 +15,7 @@ namespace ProcessingTools.Data.Models.Entity.Geo
         public virtual int CountyId { get; set; }
 
         /// <summary>
-        /// Gets or set the county.
+        /// Gets or sets the county.
         /// </summary>
         public virtual County County { get; set; }
     }
