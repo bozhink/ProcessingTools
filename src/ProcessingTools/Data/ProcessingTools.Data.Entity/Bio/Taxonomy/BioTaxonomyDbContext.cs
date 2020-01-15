@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Bio.Taxonomy
+﻿// <copyright file="BioTaxonomyDbContext.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Bio.Taxonomy
 {
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Data.Models.Entity.Bio.Taxonomy;

@@ -69,22 +69,22 @@ namespace ProcessingTools.Data.Entity.Geo
                         CallingCode = m.CallingCode,
                         Iso639xCode = m.Iso639xCode,
                         LanguageCode = m.LanguageCode,
-                        Continents = m.Continents
-                            .Select(x => new ContinentModel
-                            {
-                                Id = x.Id,
-                                Name = x.Name,
-                            })
-                            .ToList<IContinent>(),
-                        Synonyms = m.Synonyms
-                            .Select(s => new CountrySynonymModel
-                            {
-                                Id = s.Id,
-                                LanguageCode = s.LanguageCode,
-                                Name = s.Name,
-                                ParentId = m.Id,
-                            })
-                            .ToList<ICountrySynonym>(),
+                        ////Continents = m.Continents
+                        ////    .Select(x => new ContinentModel
+                        ////    {
+                        ////        Id = x.Id,
+                        ////        Name = x.Name,
+                        ////    })
+                        ////    .ToList<IContinent>(),
+                        ////Synonyms = m.Synonyms
+                        ////    .Select(s => new CountrySynonymModel
+                        ////    {
+                        ////        Id = s.Id,
+                        ////        LanguageCode = s.LanguageCode,
+                        ////        Name = s.Name,
+                        ////        ParentId = m.Id,
+                        ////    })
+                        ////    .ToList<ICountrySynonym>(),
                     });
 
                 c.CreateMap<CountrySynonym, ICountrySynonym>()

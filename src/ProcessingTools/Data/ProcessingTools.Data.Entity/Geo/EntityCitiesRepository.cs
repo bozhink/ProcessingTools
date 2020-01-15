@@ -79,24 +79,24 @@
                             Iso639xCode = m.Country.Iso639xCode,
                             LanguageCode = m.Country.LanguageCode,
                         },
-                        PostCodes = m.PostCodes
-                            .Select(p => new PostCodeModel
-                            {
-                                Id = p.Id,
-                                Code = p.Code,
-                                Type = p.Type,
-                                CityId = m.Id,
-                            })
-                            .ToList<IPostCode>(),
-                        Synonyms = m.Synonyms
-                            .Select(s => new CitySynonymModel
-                            {
-                                Id = s.Id,
-                                LanguageCode = s.LanguageCode,
-                                Name = s.Name,
-                                ParentId = m.Id,
-                            })
-                            .ToList<ICitySynonym>(),
+                        ////PostCodes = m.PostCodes
+                        ////    .Select(p => new PostCodeModel
+                        ////    {
+                        ////        Id = p.Id,
+                        ////        Code = p.Code,
+                        ////        Type = p.Type,
+                        ////        CityId = m.Id,
+                        ////    })
+                        ////    .ToList<IPostCode>(),
+                        ////Synonyms = m.Synonyms
+                        ////    .Select(s => new CitySynonymModel
+                        ////    {
+                        ////        Id = s.Id,
+                        ////        LanguageCode = s.LanguageCode,
+                        ////        Name = s.Name,
+                        ////        ParentId = m.Id,
+                        ////    })
+                        ////    .ToList<ICitySynonym>(),
                     });
 
                 c.CreateMap<CitySynonym, ICitySynonym>()

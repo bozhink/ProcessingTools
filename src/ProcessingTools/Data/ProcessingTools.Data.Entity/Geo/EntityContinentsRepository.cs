@@ -50,15 +50,15 @@
                         Id = m.Id,
                         Name = m.Name,
                         AbbreviatedName = m.AbbreviatedName,
-                        Synonyms = m.Synonyms
-                            .Select(s => new ContinentSynonymModel
-                            {
-                                Id = s.Id,
-                                Name = s.Name,
-                                LanguageCode = s.LanguageCode,
-                                ParentId = m.Id,
-                            })
-                            .ToList<IContinentSynonym>(),
+                        ////Synonyms = m.Synonyms
+                        ////    .Select(s => new ContinentSynonymModel
+                        ////    {
+                        ////        Id = s.Id,
+                        ////        Name = s.Name,
+                        ////        LanguageCode = s.LanguageCode,
+                        ////        ParentId = m.Id,
+                        ////    })
+                        ////    .ToList<IContinentSynonym>(),
                     });
 
                 c.CreateMap<ContinentSynonym, IContinentSynonym>()

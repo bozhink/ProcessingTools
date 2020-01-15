@@ -67,15 +67,15 @@ namespace ProcessingTools.Data.Entity.Geo
                         Name = m.Name,
                         AbbreviatedName = m.AbbreviatedName,
                         CountryId = m.CountryId,
-                        Synonyms = m.Synonyms
-                            .Select(s => new StateSynonymModel
-                            {
-                                Id = s.Id,
-                                LanguageCode = s.LanguageCode,
-                                Name = s.Name,
-                                ParentId = m.Id,
-                            })
-                            .ToList<IStateSynonym>(),
+                        ////Synonyms = m.Synonyms
+                        ////    .Select(s => new StateSynonymModel
+                        ////    {
+                        ////        Id = s.Id,
+                        ////        LanguageCode = s.LanguageCode,
+                        ////        Name = s.Name,
+                        ////        ParentId = m.Id,
+                        ////    })
+                        ////    .ToList<IStateSynonym>(),
                     });
 
                 c.CreateMap<StateSynonym, IStateSynonym>()

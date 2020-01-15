@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Abstractions
+﻿// <copyright file="FileByLineDbContextSeeder.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Abstractions
 {
     using System;
     using System.Collections.Concurrent;

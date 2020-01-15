@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Entity.Abstractions
+﻿// <copyright file="IDbContextInitializer{T}.cs" company="ProcessingTools">
+// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Entity.Abstractions
 {
     using Microsoft.EntityFrameworkCore;
     using ProcessingTools.Contracts.Data;

@@ -68,15 +68,15 @@
                         ProvinceId = m.ProvinceId,
                         RegionId = m.RegionId,
                         StateId = m.StateId,
-                        Synonyms = m.Synonyms
-                            .Select(s => new CountySynonymModel
-                            {
-                                Id = s.Id,
-                                LanguageCode = s.LanguageCode,
-                                Name = s.Name,
-                                ParentId = m.Id,
-                            })
-                            .ToList<ICountySynonym>(),
+                        ////Synonyms = m.Synonyms
+                        ////    .Select(s => new CountySynonymModel
+                        ////    {
+                        ////        Id = s.Id,
+                        ////        LanguageCode = s.LanguageCode,
+                        ////        Name = s.Name,
+                        ////        ParentId = m.Id,
+                        ////    })
+                        ////    .ToList<ICountySynonym>(),
                     });
 
                 c.CreateMap<CountySynonym, ICountySynonym>()
