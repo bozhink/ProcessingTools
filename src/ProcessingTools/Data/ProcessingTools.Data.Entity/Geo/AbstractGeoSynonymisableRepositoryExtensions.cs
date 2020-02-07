@@ -21,9 +21,9 @@ namespace ProcessingTools.Data.Entity.Geo
         where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
-        private IQueryable<TEntity> SelectQuery(IQueryable<TEntity> query, int skip, int take, string sortColumn, SortOrder sortOrder)
+        private IQueryable<TEntity> SelectQuery(IQueryable<TEntity> query, int skip, int take, string sortColumn, ProcessingTools.Common.Enumerations.SortOrder sortOrder)
         {
-            return query.OrderByName(sortColumn, sortOrder).Skip(skip).Take(take);
+            return query.OrderByName(sortColumn, (ProcessingTools.Extensions.Linq.SortOrder)sortOrder).Skip(skip).Take(take);
         }
     }
 }

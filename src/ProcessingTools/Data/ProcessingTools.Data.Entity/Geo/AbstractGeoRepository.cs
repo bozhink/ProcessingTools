@@ -93,10 +93,10 @@ namespace ProcessingTools.Data.Entity.Geo
             return result;
         }
 
-        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
+        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, ProcessingTools.Common.Enumerations.SortOrder sortOrder)
         {
             var query = this.GetQuery(filter)
-                .OrderByName(sortColumn, sortOrder)
+                .OrderByName(sortColumn, (ProcessingTools.Extensions.Linq.SortOrder)sortOrder)
                 .Skip(skip)
                 .Take(take);
 

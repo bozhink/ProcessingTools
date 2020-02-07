@@ -52,10 +52,10 @@ namespace ProcessingTools.Data.Entity.Geo
         }
 
         /// <inheritdoc/>
-        public override async Task<IGeoName[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
+        public override async Task<IGeoName[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, ProcessingTools.Common.Enumerations.SortOrder sortOrder)
         {
             var query = this.GetQuery(filter)
-                .OrderByName(sortColumn, sortOrder)
+                .OrderByName(sortColumn, (ProcessingTools.Extensions.Linq.SortOrder)sortOrder)
                 .Skip(skip)
                 .Take(take)
                 .Select(this.MapEntityToModelExpression);
