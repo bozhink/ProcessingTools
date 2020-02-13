@@ -51,14 +51,14 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
-    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="6.2.3" />
-    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.2.3" />
-    <PackageReference Include="Microsoft.WSMan.Management" Version="6.2.3" />
+    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="6.2.4" />
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.2.4" />
+    <PackageReference Include="Microsoft.WSMan.Management" Version="6.2.4" />
     <PackageReference Include="Ninject" Version="3.3.4" />
     <PackageReference Include="Ninject.Extensions.Conventions" Version="3.3.0" />
     <PackageReference Include="Ninject.Extensions.Factory" Version="3.3.2" />
-    <PackageReference Include="Ninject.Extensions.Interception" Version="3.3.3" />
-    <PackageReference Include="Ninject.Extensions.Interception.DynamicProxy" Version="3.3.3" />
+    <PackageReference Include="Ninject.Extensions.Interception" Version="3.3.5" />
+    <PackageReference Include="Ninject.Extensions.Interception.DynamicProxy" Version="3.3.5" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.2.0.14119">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
