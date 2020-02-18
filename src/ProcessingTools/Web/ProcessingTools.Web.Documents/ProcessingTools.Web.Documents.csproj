@@ -119,7 +119,6 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.DependencyInjection\ProcessingTools.Configuration.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Interceptors\ProcessingTools.Configuration.Interceptors.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.HealthChecks\ProcessingTools.HealthChecks.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Xml\ProcessingTools.Xml.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Models\ProcessingTools.Contracts.Commands.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Tagger\ProcessingTools.Contracts.Commands.Tagger.csproj" />
