@@ -42,7 +42,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="MongoDB.Bson" Version="2.10.2" />
     <PackageReference Include="MongoDB.Driver" Version="2.10.2" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.10.2" />
