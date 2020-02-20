@@ -29,7 +29,7 @@ namespace ProcessingTools.Extensions
         {
             return item.GetType()
                 .GetMember(item.ToString())
-                .SelectMany(m => m.GetCustomAttributes<DisplayAttribute>(false), (m, v) => v.Name)
+                .SelectMany(m => m.GetCustomAttributes<DisplayAttribute>(false), (m, v) => v.GetName())
                 .FirstOrDefault() ?? item.ToString();
         }
 
@@ -40,7 +40,7 @@ namespace ProcessingTools.Extensions
         /// <returns>Value of the Description property of <see cref="DescriptionAttribute" />.</returns>
         public static string GetDescription(this object item)
         {
-            return item.GetType().GetCustomAttribute<DescriptionAttribute>(false)?.Description;
+            return item?.GetType().GetCustomAttribute<DescriptionAttribute>(false)?.Description;
         }
     }
 }
