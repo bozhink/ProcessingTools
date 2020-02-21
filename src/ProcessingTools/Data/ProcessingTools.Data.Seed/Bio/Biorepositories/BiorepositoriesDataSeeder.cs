@@ -18,7 +18,7 @@ namespace ProcessingTools.Data.Seed.Bio.Biorepositories
     using ProcessingTools.Data.Mongo;
     using ProcessingTools.Data.Mongo.Bio.Biorepositories;
     using ProcessingTools.Data.Seed.Bio.Biorepositories.Models.Csv;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Dynamic;
     using ProcessingTools.Services.Serialization.Csv;
 
     /// <summary>

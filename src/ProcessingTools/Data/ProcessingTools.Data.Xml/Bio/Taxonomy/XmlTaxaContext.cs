@@ -12,11 +12,11 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// XML taxa context.

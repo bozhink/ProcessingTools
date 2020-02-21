@@ -315,7 +315,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
 
             var filterDefinition = new FilterDefinitionBuilder<DocumentContent>().Eq(m => m.DocumentId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<DocumentContent>()
-                .Set(m => m.ContentType, ProcessingTools.Common.Constants.ContentTypes.Xml)
+                .Set(m => m.ContentType, ProcessingTools.Extensions.ContentTypes.Xml)
                 .Set(m => m.Content, content)
                 .Set(m => m.ModifiedBy, this.applicationContext.UserContext.UserId)
                 .Set(m => m.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke());
