@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Higher taxa data miner.

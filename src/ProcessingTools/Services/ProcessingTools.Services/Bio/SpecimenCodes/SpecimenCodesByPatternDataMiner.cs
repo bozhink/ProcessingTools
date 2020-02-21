@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Bio.SpecimenCodes
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Bio.SpecimenCodes;
     using ProcessingTools.Contracts.Services.Bio.SpecimenCodes;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Models.Bio.SpecimenCodes;
 
     /// <summary>

@@ -7,8 +7,8 @@ namespace ProcessingTools.Web.Services.Files
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.StaticFiles;
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Extensions;
 
     /// <summary>
     /// MIME mapping service.

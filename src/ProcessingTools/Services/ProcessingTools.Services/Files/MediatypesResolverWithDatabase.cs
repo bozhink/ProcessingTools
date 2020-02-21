@@ -14,6 +14,7 @@ namespace ProcessingTools.Services.Files
     using ProcessingTools.Contracts.DataAccess.Files;
     using ProcessingTools.Contracts.Models.Files.Mediatypes;
     using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     /// <summary>

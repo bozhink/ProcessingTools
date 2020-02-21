@@ -7,10 +7,10 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
     using System;
     using System.Linq.Expressions;
     using System.Xml;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Taxon name part.
@@ -158,7 +158,7 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            return this.GetHashCode() == obj.GetHashCode();
+            return this.GetHashCode() == obj?.GetHashCode();
         }
     }
 }

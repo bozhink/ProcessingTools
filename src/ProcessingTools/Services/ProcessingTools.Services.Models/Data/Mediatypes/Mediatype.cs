@@ -4,8 +4,9 @@
 
 namespace ProcessingTools.Services.Models.Data.Mediatypes
 {
-    using ProcessingTools.Common.Constants;
+    using System;
     using ProcessingTools.Contracts.Models.Files.Mediatypes;
+    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Mediatype service model.
@@ -32,7 +33,12 @@ namespace ProcessingTools.Services.Models.Data.Mediatypes
         /// <param name="mediatype">Mediatype.</param>
         public Mediatype(string mediatype)
         {
-            int slashIndex = mediatype.IndexOf('/');
+            if (string.IsNullOrEmpty(mediatype))
+            {
+                throw new ArgumentNullException(nameof(mediatype));
+            }
+
+            int slashIndex = mediatype.IndexOf('/', StringComparison.InvariantCulture);
             this.MimeType = mediatype.Substring(0, slashIndex);
             this.MimeSubtype = mediatype.Substring(slashIndex + 1);
         }

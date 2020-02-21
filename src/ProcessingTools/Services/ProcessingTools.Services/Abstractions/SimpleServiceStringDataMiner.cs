@@ -13,7 +13,7 @@ namespace ProcessingTools.Services.Abstractions
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Simple service string data miner.

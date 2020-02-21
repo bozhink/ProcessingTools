@@ -12,6 +12,7 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Layout.Styles;
     using ProcessingTools.Contracts.Services.References;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Documents.Documents;
 
     /// <summary>

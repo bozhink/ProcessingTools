@@ -9,11 +9,11 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Bio.Taxonomy;
 
     /// <summary>

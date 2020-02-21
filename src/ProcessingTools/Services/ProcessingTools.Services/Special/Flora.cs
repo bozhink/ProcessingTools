@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Special
     using System.Xml;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Special;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Flora.

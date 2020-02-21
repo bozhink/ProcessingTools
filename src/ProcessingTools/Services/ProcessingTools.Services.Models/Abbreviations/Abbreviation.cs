@@ -10,6 +10,7 @@ namespace ProcessingTools.Services.Models.Abbreviations
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models.Abbreviations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Abbreviation.

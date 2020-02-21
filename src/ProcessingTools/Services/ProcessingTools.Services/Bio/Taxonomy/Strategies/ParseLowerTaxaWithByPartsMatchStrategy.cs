@@ -9,9 +9,10 @@ namespace ProcessingTools.Services.Bio.Taxonomy.Strategies
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Services.Strategies.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Parse lower taxa with by-parts-match strategy.

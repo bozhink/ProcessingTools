@@ -58,7 +58,6 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

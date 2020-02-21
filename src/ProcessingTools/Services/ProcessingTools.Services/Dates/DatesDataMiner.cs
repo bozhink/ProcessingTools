@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Dates
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Dates;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Dates data miner.

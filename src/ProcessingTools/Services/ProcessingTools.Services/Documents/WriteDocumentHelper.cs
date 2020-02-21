@@ -7,11 +7,11 @@ namespace ProcessingTools.Services.Documents
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Documents;
     using ProcessingTools.Contracts.Services.Layout;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Write document helper.

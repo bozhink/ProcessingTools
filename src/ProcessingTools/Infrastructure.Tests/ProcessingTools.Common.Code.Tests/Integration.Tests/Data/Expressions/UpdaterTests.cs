@@ -6,11 +6,13 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Common.Code.Data.Expressions;
     using ProcessingTools.Common.Code.Tests.Models;
     using ProcessingTools.Contracts.DataAccess.Expressions;
+    using ProcessingTools.Extensions.Dynamic;
 
     /// <summary>
     /// Updater tests.
@@ -21,24 +23,22 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
         /// <summary>
         /// Updater with null updateExpression should throw ArgumentNullException with "updateExpression" ParamName.
         /// </summary>
-        [Test(Description = @"Updater with null updateExpression should throw ArgumentNullException with ""updateExpression"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        [Test(Description = @"Updater with null updateExpression should throw ArgumentNullException with ""updateExpression"" ParamName.", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithNullUpdateExpression_ShouldThrowArgumentNullExceptionWithUpdateExpressionParamName()
         {
             // Arrange + Act + Assert
-            var exception = Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    new Updater<ITweet>(null);
-                },
-                "Updater with null updateExpression should throw ArgumentNullException.");
+            var exception = Assert.Throws<ArgumentNullException>(() =>
+            {
+                _ = new Updater<ITweet>(null);
+            });
 
-            Assert.AreEqual("updateExpression", exception.ParamName, @"ParamName should be ""updateExpression"".");
+            Assert.AreEqual("updateExpression", exception.ParamName);
         }
 
         /// <summary>
         /// Updater with valid updateExpression should correctly initialize the updateExpression field.
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression should correctly initialize the updateExpression field.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression should correctly initialize the updateExpression field.", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithValiUpdateExpression_ShouldCorrectlyInitializeUpdateExpressionField()
         {
             // Arrange
@@ -52,14 +52,14 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var updateExpressionFieldValue = PrivateField.GetInstanceField<Updater<ITweet>>(updater, UpdateExpressionFieldName);
 
             // Assert
-            Assert.IsNotNull(updateExpressionFieldValue, "Updater.updateExpression should not be null.");
-            Assert.AreSame(updateExpression, updateExpressionFieldValue, "Updater.updateExpression should be set correctly.");
+            Assert.IsNotNull(updateExpressionFieldValue);
+            Assert.AreSame(updateExpression, updateExpressionFieldValue);
         }
 
         /// <summary>
         /// Updater with valid updateExpression should correctly initialize the UpdateExpression property.
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression should correctly initialize the UpdateExpression property.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression should correctly initialize the UpdateExpression property.", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithValiUpdateExpression_ShouldCorrectlyInitializeUpdateExpressionProperty()
         {
             // Arrange
@@ -71,14 +71,14 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var updateExpressionValue = updater.UpdateExpression;
 
             // Assert
-            Assert.IsNotNull(updateExpressionValue, "Updater.UpdateExpression should not be null.");
-            Assert.AreSame(updateExpression, updateExpressionValue, "Updater.UpdateExpression should be set correctly.");
+            Assert.IsNotNull(updateExpressionValue);
+            Assert.AreSame(updateExpression, updateExpressionValue);
         }
 
         /// <summary>
         /// Updater with valid updateExpression  on Invoke with null object should throw AggregateException with inner ArgumentNullException with "obj" ParamName.
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression  on Invoke with null object should throw AggregateException with inner ArgumentNullException with ""obj"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression  on Invoke with null object should throw AggregateException with inner ArgumentNullException with ""obj"" ParamName.", TestOf = typeof(Updater<ITweet>))]
         [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionOnInvokeWithNullObject_ShouldThrowAggregateExceptionWithInnerArgumentNullExceptionWithCorrectParamName()
         {
@@ -88,28 +88,27 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var updater = new Updater<ITweet>(updateExpression);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(
-                () =>
-                {
-                    updater.InvokeAsync(null).Wait();
-                },
-                "Updater.Invoke(null) should throw AggregateException.");
+            var exception = Assert.ThrowsAsync<AggregateException>(async () =>
+            {
+                await updater.InvokeAsync(null).ConfigureAwait(false);
+            });
 
-            Assert.AreEqual(1, exception.InnerExceptions.Count, "Number of inner exceptions should be 1.");
+            Assert.AreEqual(1, exception.InnerExceptions.Count);
 
             var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(innerException, "Inner exception should be instance of ArgumentNullException.");
+            Assert.IsInstanceOf<ArgumentNullException>(innerException);
 
             var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual("obj", argumentNullException.ParamName, @"ParamName should be ""obj"".");
+            Assert.AreEqual("obj", argumentNullException.ParamName);
         }
 
         /// <summary>
         /// Updater with valid updateExpression with single valid Set command on Invoke with valid input object should correctly set corresponding property of the input object.
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression with single valid Set command on Invoke with valid input object should correctly set corresponding property of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        /// <returns>Task.</returns>
+        [Test(Description = @"Updater with valid updateExpression with single valid Set command on Invoke with valid input object should correctly set corresponding property of the input object.", TestOf = typeof(Updater<ITweet>))]
         [MaxTime(2000)]
-        public void Updater_WithValidUpdateExpressionWithSingleValidSetCommandOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertyOfTheInputObject()
+        public async Task Updater_WithValidUpdateExpressionWithSingleValidSetCommandOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertyOfTheInputObject()
         {
             // Arrange
             const string SetMethodName = "Set";
@@ -148,30 +147,31 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var targetObject = targetObjectMock.Object;
 
             // Act
-            updater.InvokeAsync(targetObject).Wait();
+            await updater.InvokeAsync(targetObject).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(targetObject, "Updated target object should not be null.");
+            Assert.IsNotNull(targetObject);
 
-            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once, "IUpdateExpression.UpdateCommands should be invoked once.");
+            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once);
 
-            updateContentCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateContentCommand.UpdateVerb should not be invoked.");
-            updateContentCommandMock.VerifyGet(c => c.FieldName, Times.Once, "UpdateContentCommand.FieldName should be invoked once.");
-            updateContentCommandMock.VerifyGet(c => c.Value, Times.Once, "UpdateContentCommand.Value should be invoked once.");
+            updateContentCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateContentCommandMock.VerifyGet(c => c.FieldName, Times.Once);
+            updateContentCommandMock.VerifyGet(c => c.Value, Times.Once);
 
-            targetObjectMock.VerifySet(t => t.Content = contentValue, Times.Once, "ITweet.Content should be set to appropriate value once.");
-            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never, "ITweet.DatePosted setter should not be invoked.");
-            targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never, "ITweet.Faves setter should not be invoked.");
+            targetObjectMock.VerifySet(t => t.Content = contentValue, Times.Once);
+            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never);
+            targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never);
 
-            Assert.AreEqual(contentValue, targetContent, "Target object Content should be set correctly.");
+            Assert.AreEqual(contentValue, targetContent);
         }
 
         /// <summary>
         /// Updater with valid updateExpression with two different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression with two different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        /// <returns>Task.</returns>
+        [Test(Description = @"Updater with valid updateExpression with two different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", TestOf = typeof(Updater<ITweet>))]
         [MaxTime(2000)]
-        public void Updater_WithValidUpdateExpressionWithTwoDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
+        public async Task Updater_WithValidUpdateExpressionWithTwoDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
         {
             // Arrange
             const string SetMethodName = "Set";
@@ -230,35 +230,36 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var targetObject = targetObjectMock.Object;
 
             // Act
-            updater.InvokeAsync(targetObject).Wait();
+            await updater.InvokeAsync(targetObject).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(targetObject, "Updated target object should not be null.");
+            Assert.IsNotNull(targetObject);
 
-            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once, "IUpdateExpression.UpdateCommands should be invoked once.");
+            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once);
 
-            updateContentCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateContentCommand.UpdateVerb should not be invoked.");
-            updateContentCommandMock.VerifyGet(c => c.FieldName, Times.Once, "UpdateContentCommand.FieldName should be invoked once.");
-            updateContentCommandMock.VerifyGet(c => c.Value, Times.Once, "UpdateContentCommand.Value should be invoked once.");
+            updateContentCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateContentCommandMock.VerifyGet(c => c.FieldName, Times.Once);
+            updateContentCommandMock.VerifyGet(c => c.Value, Times.Once);
 
-            updateFavesCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateFavesCommand.UpdateVerb should not be invoked.");
-            updateFavesCommandMock.VerifyGet(c => c.FieldName, Times.Once, "UpdateFavesCommand.FieldName should be invoked once.");
-            updateFavesCommandMock.VerifyGet(c => c.Value, Times.Once, "UpdateFavesCommand.Value should be invoked once.");
+            updateFavesCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateFavesCommandMock.VerifyGet(c => c.FieldName, Times.Once);
+            updateFavesCommandMock.VerifyGet(c => c.Value, Times.Once);
 
-            targetObjectMock.VerifySet(t => t.Content = contentValue, Times.Once, "ITweet.Content should be set to appropriate value once.");
-            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never, "ITweet.DatePosted setter should not be invoked.");
-            targetObjectMock.VerifySet(t => t.Faves = favesValue, Times.Once, "ITweet.Faves should be set to appropriate value once.");
+            targetObjectMock.VerifySet(t => t.Content = contentValue, Times.Once);
+            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never);
+            targetObjectMock.VerifySet(t => t.Faves = favesValue, Times.Once);
 
-            Assert.AreEqual(contentValue, targetContent, "Target object Content should be set correctly.");
-            Assert.AreEqual(favesValue, targetFaves, "Target object Faves should be set correctly.");
+            Assert.AreEqual(contentValue, targetContent);
+            Assert.AreEqual(favesValue, targetFaves);
         }
 
         /// <summary>
         /// Updater with valid updateExpression with three different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression with three different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        /// <returns>Task.</returns>
+        [Test(Description = @"Updater with valid updateExpression with three different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", TestOf = typeof(Updater<ITweet>))]
         [MaxTime(2000)]
-        public void Updater_WithValidUpdateExpressionWithTThreeDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
+        public async Task Updater_WithValidUpdateExpressionWithTThreeDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
         {
             // Arrange
             const string SetMethodName = "Set";
@@ -336,38 +337,38 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var targetObject = targetObjectMock.Object;
 
             // Act
-            updater.InvokeAsync(targetObject).Wait();
+            await updater.InvokeAsync(targetObject).ConfigureAwait(false);
 
             // Assert
-            Assert.IsNotNull(targetObject, "Updated target object should not be null.");
+            Assert.IsNotNull(targetObject);
 
-            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once, "IUpdateExpression.UpdateCommands should be invoked once.");
+            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once);
 
-            updateContentCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateContentCommand.UpdateVerb should not be invoked.");
-            updateContentCommandMock.VerifyGet(c => c.FieldName, Times.Once, "UpdateContentCommand.FieldName should be invoked once.");
-            updateContentCommandMock.VerifyGet(c => c.Value, Times.Once, "UpdateContentCommand.Value should be invoked once.");
+            updateContentCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateContentCommandMock.VerifyGet(c => c.FieldName, Times.Once);
+            updateContentCommandMock.VerifyGet(c => c.Value, Times.Once);
 
-            updateFavesCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateFavesCommand.UpdateVerb should not be invoked.");
-            updateFavesCommandMock.VerifyGet(c => c.FieldName, Times.Once, "UpdateFavesCommand.FieldName should be invoked once.");
-            updateFavesCommandMock.VerifyGet(c => c.Value, Times.Once, "UpdateFavesCommand.Value should be invoked once.");
+            updateFavesCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateFavesCommandMock.VerifyGet(c => c.FieldName, Times.Once);
+            updateFavesCommandMock.VerifyGet(c => c.Value, Times.Once);
 
-            updateDatePostedCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateDatePostedCommand.UpdateVerb should not be invoked.");
-            updateDatePostedCommandMock.VerifyGet(c => c.FieldName, Times.Once, "UpdateDatePostedCommand.FieldName should be invoked once.");
-            updateDatePostedCommandMock.VerifyGet(c => c.Value, Times.Once, "UpdateDatePostedCommand.Value should be invoked once.");
+            updateDatePostedCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateDatePostedCommandMock.VerifyGet(c => c.FieldName, Times.Once);
+            updateDatePostedCommandMock.VerifyGet(c => c.Value, Times.Once);
 
-            targetObjectMock.VerifySet(t => t.Content = contentValue, Times.Once, "ITweet.Content should be set to appropriate value once.");
-            targetObjectMock.VerifySet(t => t.DatePosted = datePostedValue, Times.Once, "ITweet.DatePosted should be set to appropriate value once.");
-            targetObjectMock.VerifySet(t => t.Faves = favesValue, Times.Once, "ITweet.Faves should be set to appropriate value once.");
+            targetObjectMock.VerifySet(t => t.Content = contentValue, Times.Once);
+            targetObjectMock.VerifySet(t => t.DatePosted = datePostedValue, Times.Once);
+            targetObjectMock.VerifySet(t => t.Faves = favesValue, Times.Once);
 
-            Assert.AreEqual(contentValue, targetContent, "Target object Content should be set correctly.");
-            Assert.AreEqual(favesValue, targetFaves, "Target object Faves should be set correctly.");
-            Assert.AreEqual(datePostedValue, targetDatePosted, "Target object DatePosted should be set correctly.");
+            Assert.AreEqual(contentValue, targetContent);
+            Assert.AreEqual(favesValue, targetFaves);
+            Assert.AreEqual(datePostedValue, targetDatePosted);
         }
 
         /// <summary>
         /// Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing "Property" and "is not found".
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Property"" and ""is not found"".", TestOf = typeof(Updater<ITweet>))]
         [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleSetCommandWithErroneousFieldNameOnInvokeWithValidInputObject_ShouldThrowAggregateExceptionWithInnerInvalidOperationExceptionWithMessageContainingPropertyAndIsNotFound()
         {
@@ -404,38 +405,36 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var targetObject = targetObjectMock.Object;
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(
-                () =>
-                {
-                    updater.InvokeAsync(targetObject).Wait();
-                },
-                "AggregateException should be thrown.");
+            var exception = Assert.ThrowsAsync<AggregateException>(async () =>
+            {
+                await updater.InvokeAsync(targetObject).ConfigureAwait(false);
+            });
 
-            Assert.AreEqual(1, exception.InnerExceptions.Count, "Number of inner exceptions should be 1.");
+            Assert.AreEqual(1, exception.InnerExceptions.Count);
 
             var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<InvalidOperationException>(innerException, "Inner exception should be instance of InvalidOperationException.");
+            Assert.IsInstanceOf<InvalidOperationException>(innerException);
 
-            StringAssert.Contains("Property", innerException.Message, @"InnerException.Message should contain string ""Property"".");
-            StringAssert.Contains("is not found", innerException.Message, @"InnerException.Message should contain string ""is not found"".");
+            StringAssert.Contains("Property", innerException.Message);
+            StringAssert.Contains("is not found", innerException.Message);
 
-            Assert.IsNotNull(targetObject, "Updated target object should not be null.");
+            Assert.IsNotNull(targetObject);
 
-            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once, "IUpdateExpression.UpdateCommands should be invoked once.");
+            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once);
 
-            updateUserNameCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateContentCommand.UpdateVerb should not be invoked.");
-            updateUserNameCommandMock.VerifyGet(c => c.FieldName, Times.Exactly(2), "UpdateContentCommand.FieldName should be invoked twice.");
-            updateUserNameCommandMock.VerifyGet(c => c.Value, Times.Never, "UpdateContentCommand.Value should not be invoked.");
+            updateUserNameCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateUserNameCommandMock.VerifyGet(c => c.FieldName, Times.Exactly(2));
+            updateUserNameCommandMock.VerifyGet(c => c.Value, Times.Never);
 
-            targetObjectMock.VerifySet(t => t.Content = It.IsAny<string>(), Times.Never, "ITweet.Content setter should not be invoked.");
-            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never, "ITweet.DatePosted setter should not be invoked.");
-            targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never, "ITweet.Faves setter should not be invoked.");
+            targetObjectMock.VerifySet(t => t.Content = It.IsAny<string>(), Times.Never);
+            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never);
+            targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never);
         }
 
         /// <summary>
         /// Updater with valid updateExpression with single Set command with fieldName of non-settable property on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing "Set method of property" and "is not found".
         /// </summary>
-        [Test(Description = @"Updater with valid updateExpression with single Set command with fieldName of non-settable property on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Set method of property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression with single Set command with fieldName of non-settable property on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Set method of property"" and ""is not found"".", TestOf = typeof(Updater<ITweet>))]
         [MaxTime(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleSetCommandWithFieldNameOfNonSettablePropertyOnInvokeWithValidInputObject_ShouldThrowAggregateExceptionWithInnerInvalidOperationExceptionWithMessageContainingSetMethodOfPropertyAndIsNotFound()
         {
@@ -472,32 +471,30 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
             var targetObject = targetObjectMock.Object;
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(
-                () =>
-                {
-                    updater.InvokeAsync(targetObject).Wait();
-                },
-                "AggregateException should be thrown.");
+            var exception = Assert.ThrowsAsync<AggregateException>(async () =>
+            {
+                await updater.InvokeAsync(targetObject).ConfigureAwait(false);
+            });
 
-            Assert.AreEqual(1, exception.InnerExceptions.Count, "Number of inner exceptions should be 1.");
+            Assert.AreEqual(1, exception.InnerExceptions.Count);
 
             var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<InvalidOperationException>(innerException, "Inner exception should be instance of InvalidOperationException.");
+            Assert.IsInstanceOf<InvalidOperationException>(innerException);
 
-            StringAssert.Contains("Set method of property", innerException.Message, @"InnerException.Message should contain string ""Set method of property"".");
-            StringAssert.Contains("is not found", innerException.Message, @"InnerException.Message should contain string ""is not found"".");
+            StringAssert.Contains("Set method of property", innerException.Message);
+            StringAssert.Contains("is not found", innerException.Message);
 
-            Assert.IsNotNull(targetObject, "Updated target object should not be null.");
+            Assert.IsNotNull(targetObject);
 
-            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once, "IUpdateExpression.UpdateCommands should be invoked once.");
+            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once);
 
-            updateIdCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateContentCommand.UpdateVerb should not be invoked.");
-            updateIdCommandMock.VerifyGet(c => c.FieldName, Times.Exactly(2), "UpdateContentCommand.FieldName should be invoked twice.");
-            updateIdCommandMock.VerifyGet(c => c.Value, Times.Never, "UpdateContentCommand.Value should not be invoked.");
+            updateIdCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never);
+            updateIdCommandMock.VerifyGet(c => c.FieldName, Times.Exactly(2));
+            updateIdCommandMock.VerifyGet(c => c.Value, Times.Never);
 
-            targetObjectMock.VerifySet(t => t.Content = It.IsAny<string>(), Times.Never, "ITweet.Content setter should not be invoked.");
-            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never, "ITweet.DatePosted setter should not be invoked.");
-            targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never, "ITweet.Faves setter should not be invoked.");
+            targetObjectMock.VerifySet(t => t.Content = It.IsAny<string>(), Times.Never);
+            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never);
+            targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never);
         }
     }
 }

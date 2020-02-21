@@ -13,7 +13,7 @@ namespace ProcessingTools.Services.ExternalLinks
     using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Contracts.Models.ExternalLinks;
     using ProcessingTools.Contracts.Services.ExternalLinks;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Models.ExternalLinks;
 
     /// <summary>

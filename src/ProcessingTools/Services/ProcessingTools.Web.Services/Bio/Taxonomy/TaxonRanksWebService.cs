@@ -7,9 +7,9 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Web.Models.Bio.Taxonomy.TaxonRanks;
 
     /// <summary>
@@ -29,13 +29,29 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(TaxonRanksRequestModel model)
+        public Task<object> InsertAsync(TaxonRanksRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
+            return this.InsertInternalAsync(model);
+        }
+
+        /// <inheritdoc/>
+        public Task<SearchResponseModel> SearchAsync(SearchRequestModel model)
+        {
+            if (model is null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return this.SearchInternalAsync(model);
+        }
+
+        private async Task<object> InsertInternalAsync(TaxonRanksRequestModel model)
+        {
             if (model.Items != null && model.Items.Any())
             {
                 var items = model.Items
@@ -54,14 +70,8 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
             return null;
         }
 
-        /// <inheritdoc/>
-        public async Task<SearchResponseModel> SearchAsync(SearchRequestModel model)
+        private async Task<SearchResponseModel> SearchInternalAsync(SearchRequestModel model)
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
             var foundItems = await this.service.SearchAsync(model.SearchString).ConfigureAwait(false);
 
             if (foundItems != null && foundItems.Any())

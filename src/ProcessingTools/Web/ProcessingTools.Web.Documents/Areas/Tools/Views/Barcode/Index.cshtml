@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-6">
                         <select asp-for="Type" class="form-control">
-                            @foreach (var type in Model.Type)
+                            @foreach (var type in Model.Types)
                             {
                                 if (type.Key == Model.SelectedType)
                                 {

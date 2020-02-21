@@ -2,9 +2,10 @@
 // Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Extensions
+namespace ProcessingTools.Common.Code.Extensions
 {
     using System;
+    using System.Text.RegularExpressions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
 
@@ -27,9 +28,10 @@ namespace ProcessingTools.Extensions
 
             string articleId = document.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText ?? string.Empty;
 
-            string referencesFileName = articleId.ToLowerInvariant()
-                .RegexReplace(@"\A.*/", string.Empty)
-                .RegexReplace(@"\W+", "-")
+            Regex matchSlash = new Regex(@"\A.*/", RegexOptions.Compiled);
+            Regex matchNonCharacter = new Regex(@"\W+", RegexOptions.Compiled); // TODO: ProcessingTools.Extensions.Text
+
+            string referencesFileName = matchNonCharacter.Replace(matchSlash.Replace(articleId.ToLowerInvariant(), string.Empty), "-")
                 .Trim(new[] { ' ', '-' });
 
             if (string.IsNullOrWhiteSpace(referencesFileName))

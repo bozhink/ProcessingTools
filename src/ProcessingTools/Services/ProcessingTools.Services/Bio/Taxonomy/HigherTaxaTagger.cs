@@ -9,13 +9,13 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Content;
     using ProcessingTools.Contracts.Services.Meta;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Higher taxa tagger.
@@ -58,9 +58,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement);
-            var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement);
-            var seed = await this.whitelist.GetItemsAsync();
+            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var seed = await this.whitelist.GetItemsAsync().ConfigureAwait(false);
 
             var data = await this.miner.MineAsync(textContent, seed, stopWords).ConfigureAwait(false) ?? Array.Empty<string>();
 

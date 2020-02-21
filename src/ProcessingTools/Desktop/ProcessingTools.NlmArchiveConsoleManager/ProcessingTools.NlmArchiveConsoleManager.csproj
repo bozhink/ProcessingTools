@@ -83,7 +83,6 @@
     <ProjectReference Include="..\..\Data\ProcessingTools.DataAccess.Models.Mongo\ProcessingTools.DataAccess.Models.Mongo.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.DataAccess.Mongo\ProcessingTools.DataAccess.Mongo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Ninject.Modules\ProcessingTools.Configuration.Ninject.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
   </ItemGroup>

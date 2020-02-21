@@ -10,11 +10,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Meta;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Lower taxa in italic tagger.
@@ -107,7 +108,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                       Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
                       Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z]{2,}[’”]?)\Z");
 
-            result &= !textToCheck.Contains("s.n.") && !textToCheck.Contains(" coll.");
+            result &= !textToCheck.Contains("s.n.", StringComparison.InvariantCulture) && !textToCheck.Contains(" coll.", StringComparison.InvariantCulture);
 
             return result;
         }
@@ -134,8 +135,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
-            var personNames = await this.personNamesHarvester.HarvestAsync(context);
-            var blacklistItems = await this.blacklist.GetItemsAsync();
+            var personNames = await this.personNamesHarvester.HarvestAsync(context).ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.GetItemsAsync().ConfigureAwait(false);
 
             var stopWords = personNames
                 .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })

@@ -7,10 +7,10 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
     using System;
     using System.Linq;
     using System.Xml;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Taxon name.
@@ -43,8 +43,8 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
             }
 
             var positionAttribute = node.Attributes[AttributeNames.Position];
-            long position = PositionDefaultValue;
-            if (positionAttribute != null && long.TryParse(positionAttribute.InnerText, out position))
+
+            if (positionAttribute != null && long.TryParse(positionAttribute.InnerText, out long position))
             {
                 this.Position = position;
             }
@@ -76,7 +76,7 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
         /// <inheritdoc/>
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} | {3}", this.Id, this.Type, this.Position, string.Join(" / ", this.Parts));
+            return $"{this.Id} {this.Type} {this.Position} | {string.Join(" / ", this.Parts)}";
         }
     }
 }

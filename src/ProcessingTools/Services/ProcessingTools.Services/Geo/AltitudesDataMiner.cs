@@ -17,7 +17,7 @@ namespace ProcessingTools.Services.Geo
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Geo;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Altitudes data miner.

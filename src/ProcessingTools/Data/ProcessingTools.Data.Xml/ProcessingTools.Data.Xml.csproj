@@ -58,7 +58,6 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess\ProcessingTools.Contracts.DataAccess.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Xml\ProcessingTools.Data.Models.Xml.csproj" />
   </ItemGroup>

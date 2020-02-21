@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Layout
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Layout;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Document final formatter.
@@ -19,7 +19,7 @@ namespace ProcessingTools.Services.Layout
         /// <inheritdoc/>
         public Task<object> FormatAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

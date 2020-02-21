@@ -24,7 +24,7 @@ namespace ProcessingTools.Services.Bio
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Bio;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Specimen count data miner.

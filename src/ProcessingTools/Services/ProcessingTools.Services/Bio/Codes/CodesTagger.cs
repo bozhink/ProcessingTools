@@ -19,11 +19,12 @@ namespace ProcessingTools.Services.Bio.Codes
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Bio.Codes;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Codes;
     using ProcessingTools.Contracts.Services.Content;
-    using ProcessingTools.Contracts.Models.Bio.Codes;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Models.Bio.Codes;
     using ProcessingTools.Services.Models.Content;
 
@@ -338,7 +339,7 @@ namespace ProcessingTools.Services.Bio.Codes
                     nodeInnerXml = guessNextCode.Replace(nodeInnerXml, replacement);
                 }
 
-                await node.SafeReplaceInnerXmlAsync(nodeInnerXml).ConfigureAwait(false);
+                node.SafeReplaceInnerXml(nodeInnerXml);
 
                 if (xpathToSelectSpecimenCodeTags != null && xpathToSelectSpecimenCodeTags.Length > 0)
                 {

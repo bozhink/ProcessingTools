@@ -17,7 +17,7 @@ namespace ProcessingTools.Services.Floats
     using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Contracts.Models.Floats;
     using ProcessingTools.Contracts.Services.Floats;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Floats tagger.

@@ -7,6 +7,7 @@ namespace ProcessingTools.Services.Serialization.Csv
     using System;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Dynamic;
 
     /// <summary>
     /// Mapping extensions.

@@ -6,19 +6,21 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Models.Content;
 
     /// <summary>
@@ -26,22 +28,17 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     public class LowerTaxaTagger : ILowerTaxaTagger
     {
-        private const string SensuSubpattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
         private const string InfragenericRankSubpattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";
         private const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|mod|sp|var|subvar|subsp|sbsp|subspec|subspecies|ssp|race|rassa|(?:sub)?f[ao]?|(?:sub)?forma?|st|r|sf|cf|gr|n\.?\s*sp|nr|(?:sp(?:\.\s*|\s+))?(?:near|afn|aff)|prope|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?(?:\s*[γβɑ])?(?:\s*\bn(?:ova?)?\b\.?)?|×|\?)";
-
-        private const string ParallelStructureXPath = ".//p[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]|.//td[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]|.//th[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]";
-
-        private const string SequentialStructureXPath = ".//title|.//article-meta/title-group|.//label|.//license-p|.//li|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
-
-        private const string LowerTaxaXPath = ".//p|.//td|.//th|.//li|.//article-title|.//title|.//label|.//ref|.//kwd|.//tp:nomenclature-citation|.//*[@object_id='95']|.//*[@object_id='90']|.//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']";
-
         private const string ItalicXPath = ".//i[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//Italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]";
-
-        private readonly IPersonNamesHarvester personNamesHarvester;
-        private readonly IContentTagger contentTagger;
+        private const string LowerTaxaXPath = ".//p|.//td|.//th|.//li|.//article-title|.//title|.//label|.//ref|.//kwd|.//tp:nomenclature-citation|.//*[@object_id='95']|.//*[@object_id='90']|.//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']";
+        private const string ParallelStructureXPath = ".//p[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]|.//td[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]|.//th[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]";
+        private const string SensuSubpattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
+        private const string SequentialStructureXPath = ".//title|.//article-meta/title-group|.//label|.//license-p|.//li|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
         private readonly IBlackList blacklist;
+        private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
+        private readonly IPersonNamesHarvester personNamesHarvester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LowerTaxaTagger"/> class.
@@ -61,7 +58,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -72,56 +69,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return true;
         }
 
-        private async Task MainTagAsync(IDocument context)
+        private static void AppendSpecificTaxonNamePartsToStringBuilder(XmlNode node, string speciesFormatString, string taxonNamePartElementName, StringBuilder stringBuilder)
         {
-            var knownTaxa = this.GetKnownLowerTaxa(context);
-            var plausibleTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownTaxa));
-            var cleanedLowerTaxa = await this.ClearFakeTaxaNamesAsync(context, plausibleTaxa).ConfigureAwait(false);
-
-            plausibleTaxa = new HashSet<string>(cleanedLowerTaxa.Select(t => t.ToLowerInvariant()));
-
-            this.TagDirectTaxonomicMatches(context, plausibleTaxa);
-
-            // TODO: move to format
-            context.Xml = Regex.Replace(
-                context.Xml,
-                @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
-                "$1‘$2’ $4$3");
-
-            this.AdvancedTagLowerTaxa(context);
-            //// this.Xml = this.TagInfraspecificTaxa(this.Xml);
+            string taxonNamePartTextValue = SelectTaxonNamePartTextValue(node, taxonNamePartElementName);
+            if (!string.IsNullOrEmpty(taxonNamePartTextValue))
+            {
+                stringBuilder.AppendFormat(CultureInfo.InvariantCulture, speciesFormatString, taxonNamePartTextValue);
+            }
         }
 
-        private void TagDirectTaxonomicMatches(IDocument document, IEnumerable<string> taxonomicNames)
-        {
-            var comparer = StringComparer.InvariantCultureIgnoreCase;
-
-            // Tag all direct matches
-            document.SelectNodes(ItalicXPath)
-                .AsParallel()
-                .ForAll(node =>
-                {
-                    if (taxonomicNames.Contains(node.InnerText, comparer))
-                    {
-                        var tn = document.CreateTaxonNameXmlElement(TaxonType.Lower);
-                        tn.InnerXml = node.InnerXml
-                            .RegexReplace(@"\A([A-Z][A-Za-z]{0,2}\.)([a-z])", "$1 $2");
-                        node.InnerXml = tn.OuterXml;
-                    }
-                });
-        }
-
-        private IEnumerable<string> GetPlausibleLowerTaxa(IDocument document)
-        {
-            var result = document.SelectNodes(ItalicXPath)
-                .Select(x => x.InnerText)
-                .Where(this.IsMatchingLowerTaxaFormat)
-                .ToArray();
-
-            return result;
-        }
-
-        private IEnumerable<string> GetKnownLowerTaxa(IDocument document)
+        private static IEnumerable<string> GetKnownLowerTaxa(IDocument document)
         {
             var result = document.SelectNodes(".//tn[@type='lower']")
                 .Select(x => x.InnerText)
@@ -130,70 +87,52 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return result;
         }
 
-        // TODO: XPath-s correction needed
-        private void AdvancedTagLowerTaxa(IDocument document)
+        private static string SelectTaxonNamePartTextValue(XmlNode node, string taxonNamePartElementName)
         {
-            document.SelectNodes(ParallelStructureXPath)
-                .AsParallel()
-                .ForAll(this.TagInfrarankTaxaSync);
-
-            var xpaths = new[]
-            {
-                SequentialStructureXPath,
-                ".//value[.//tn[@type='lower']]",
-            };
-
-            foreach (string xpath in xpaths)
-            {
-                foreach (var node in document.SelectNodes(xpath))
-                {
-                    this.TagInfrarankTaxaSync(node);
-                }
-            }
+            string textValue = node.SelectSingleNode(taxonNamePartElementName)?.InnerText ?? string.Empty;
+            return Regex.Replace(textValue, @"\s+", string.Empty);
         }
 
-        private void TagInfrarankTaxaSync(XmlNode node)
+        // Tag bare infraspecific citations in text
+        // section <italic>Stenodiptera</italic>
+        private static void TagBareInfragenericTaxa(XmlNode node)
         {
-            this.TagInfrarankTaxa(node).Wait();
-        }
-
-        private async Task TagInfrarankTaxa(XmlNode node)
-        {
-            await this.TagSensuAsync(node).ConfigureAwait(false);
-            await this.TagBindedInfragenericTaxaAsync(node).ConfigureAwait(false);
-            await this.TagBareInfragenericTaxaAsync(node).ConfigureAwait(false);
-            await this.TagBindedInfraspecificTaxaAsync(node).ConfigureAwait(false);
-            await this.TagBareInfraspecificTaxaAsync(node).ConfigureAwait(false);
-            await this.TagInfraspecicTaxaFinalizeAsync(node).ConfigureAwait(false);
-        }
-
-        private async Task TagInfraspecicTaxaFinalizeAsync(XmlNode node)
-        {
-            // Here we must extract species+subspecies in <infraspecific/>, which comes from tagging of subgenera and [sub]sections
-            string replace = node.InnerXml;
-            replace = Regex.Replace(replace, @"<infraspecific>([A-Za-z][A-Za-z\.-]+)\s+([a-z][a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
-
-            replace = Regex.Replace(replace, @" (?:<(?:[a-z-]+)?authority></(?:[a-z-]+)?authority>|<(?:[a-z-]+)?authority\s*/>)", string.Empty);
-
-            await node.SafeReplaceInnerXmlAsync(replace).ConfigureAwait(false);
-        }
-
-        // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-        private async Task TagSensuAsync(XmlNode node)
-        {
-            const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*(" + SensuSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z][a-z\s-]+)(?:</tn>)?</i>";
-            Regex re = new Regex(InfraspecificPattern);
+            const string BareInfragenericPattern = @"(" + InfragenericRankSubpattern + @")\s*<i>(?:<tn type=""lower"">)?([A-Za-z][A-Za-z\.\-]+)(?:</tn>)?</i>";
+            Regex re = new Regex(BareInfragenericPattern);
 
             string result = node.InnerXml;
-            result = re.Replace(
-                result,
-                @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
 
-            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
+            if (re.IsMatch(result))
+            {
+                result = re.Replace(
+                    result,
+                    @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
+            }
+
+            node.SafeReplaceInnerXml(result);
+        }
+
+        // Tag bare infraspecific citations in text
+        // var. <italic>schischkinii</italic>
+        private static void TagBareInfraspecificTaxa(XmlNode node)
+        {
+            const string BareInfraspecificPattern = @"(" + InfraspecificRankSubpattern + @")\s*<i>([A-Za-z][A-Za-z\.\-]+)</i>";
+            Regex re = new Regex(BareInfraspecificPattern);
+
+            string result = node.InnerXml;
+
+            if (re.IsMatch(result))
+            {
+                result = re.Replace(
+                    result,
+                    @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
+            }
+
+            node.SafeReplaceInnerXml(result);
         }
 
         // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
-        private async Task TagBindedInfragenericTaxaAsync(XmlNode node)
+        private static void TagBindedInfragenericTaxa(XmlNode node)
         {
             const string Subpattern = @"(?!\s*[,\.:])(?!\s+and\b)(?!\s+w?as\b)(?!\s+from\b)(?!\s+w?remains\b)(?!\s+to\b)\s*([^<>\(\)\[\]:\+\\\/]{0,40}?)\s*(\(\s*)?(" + InfragenericRankSubpattern + @")\s*(?:<i>)?(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.-]+(?:\s+[a-z\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
@@ -230,7 +169,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1");
             }
 
-            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
+            node.SafeReplaceInnerXml(result);
         }
 
         // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
@@ -238,7 +177,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         // <i>Melitaea phoebe</i> Knoch rassa <i>occitanica</i> Staudinger 2-gen. <i>francescoi</i>
         // <i>Melitaea phoebe</i> Knoch sbsp. n. <i>canellina</i> Stauder, 1922
         // <i>Melitaea phoebe</i> mod. <i>nimbula</i> Higgins, 1941
-        private async Task TagBindedInfraspecificTaxaAsync(XmlNode node)
+        private static void TagBindedInfraspecificTaxa(XmlNode node)
         {
             const string InfraspecificRankNamePairSubpattern = @"\s*(" + InfraspecificRankSubpattern + @")\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([a-z][a-z-]+)(?:</tn>)?</i>";
 
@@ -275,59 +214,69 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 }
             }
 
-            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
+            node.SafeReplaceInnerXml(result);
         }
 
-        // Tag bare infraspecific citations in text
-        // var. <italic>schischkinii</italic>
-        private async Task TagBareInfraspecificTaxaAsync(XmlNode node)
+        private static void TagDirectTaxonomicMatches(IDocument document, IEnumerable<string> taxonomicNames)
         {
-            const string BareInfraspecificPattern = @"(" + InfraspecificRankSubpattern + @")\s*<i>([A-Za-z][A-Za-z\.\-]+)</i>";
-            Regex re = new Regex(BareInfraspecificPattern);
+            var comparer = StringComparer.InvariantCultureIgnoreCase;
+
+            // Tag all direct matches
+            document.SelectNodes(ItalicXPath)
+                .AsParallel()
+                .ForAll(node =>
+                {
+                    if (taxonomicNames.Contains(node.InnerText, comparer))
+                    {
+                        var tn = document.CreateTaxonNameXmlElement(TaxonType.Lower);
+                        tn.InnerXml = node.InnerXml
+                            .RegexReplace(@"\A([A-Z][A-Za-z]{0,2}\.)([a-z])", "$1 $2");
+                        node.InnerXml = tn.OuterXml;
+                    }
+                });
+        }
+
+        // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
+        private static void TagSensu(XmlNode node)
+        {
+            const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*(" + SensuSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z][a-z\s-]+)(?:</tn>)?</i>";
+            Regex re = new Regex(InfraspecificPattern);
 
             string result = node.InnerXml;
+            result = re.Replace(
+                result,
+                @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
 
-            if (re.IsMatch(result))
-            {
-                result = re.Replace(
-                    result,
-                    @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
-            }
-
-            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
+            node.SafeReplaceInnerXml(result);
         }
 
-        // Tag bare infraspecific citations in text
-        // section <italic>Stenodiptera</italic>
-        private async Task TagBareInfragenericTaxaAsync(XmlNode node)
+        // TODO: XPath-s correction needed
+        private void AdvancedTagLowerTaxa(IDocument document)
         {
-            const string BareInfragenericPattern = @"(" + InfragenericRankSubpattern + @")\s*<i>(?:<tn type=""lower"">)?([A-Za-z][A-Za-z\.\-]+)(?:</tn>)?</i>";
-            Regex re = new Regex(BareInfragenericPattern);
+            document.SelectNodes(ParallelStructureXPath)
+                .AsParallel()
+                .ForAll(this.TagInfrarankTaxaSync);
 
-            string result = node.InnerXml;
-
-            if (re.IsMatch(result))
+            var xpaths = new[]
             {
-                result = re.Replace(
-                    result,
-                    @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
-            }
+                SequentialStructureXPath,
+                ".//value[.//tn[@type='lower']]",
+            };
 
-            await node.SafeReplaceInnerXmlAsync(result).ConfigureAwait(false);
+            foreach (string xpath in xpaths)
+            {
+                foreach (var node in document.SelectNodes(xpath))
+                {
+                    this.TagInfrarankTaxaSync(node);
+                }
+            }
         }
 
-        private bool IsMatchingLowerTaxaFormat(string textToCheck)
+        private async Task<IEnumerable<string>> ClearFakeTaxaNamesAsync(IDocument document, IEnumerable<string> taxaNames)
         {
-            bool result = false;
+            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWordAsync(document, taxaNames).ConfigureAwait(false);
 
-            result |= Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]*)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]*)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z]{2,}[’”]?)\Z");
-
-            result &= !textToCheck.Contains("s.n.") && !textToCheck.Contains(" coll.");
-
+            var result = taxaNames.Where(tn => taxaNamesFirstWord.Contains(tn.GetFirstWord()));
             return result;
         }
 
@@ -385,6 +334,32 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             }
         }
 
+        private IEnumerable<string> GetPlausibleLowerTaxa(IDocument document)
+        {
+            var result = document.SelectNodes(ItalicXPath)
+                .Select(x => x.InnerText)
+                .Where(this.IsMatchingLowerTaxaFormat)
+                .ToArray();
+
+            return result;
+        }
+
+        private async Task<IEnumerable<string>> GetStopWordsAsync(XmlNode context)
+        {
+            var personNames = await this.personNamesHarvester.HarvestAsync(context).ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.GetItemsAsync().ConfigureAwait(false);
+
+            var stopWords = personNames
+                .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
+                .Where(n => !string.IsNullOrWhiteSpace(n))
+                .Union(blacklistItems)
+                .Select(w => w.ToLowerInvariant())
+                .Distinct()
+                .ToArray();
+
+            return stopWords;
+        }
+
         private string GetSystemTaxonNameString(XmlNode node)
         {
             const string SpeciesFormatString = " {0}";
@@ -398,79 +373,91 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
             var stringBuilder = new StringBuilder();
 
-            string genus = this.SelectTaxonNamePartTextValue(node, nameof(genus));
+            string genus = SelectTaxonNamePartTextValue(node, nameof(genus));
             if (!string.IsNullOrEmpty(genus))
             {
                 stringBuilder.Append(genus);
             }
 
-            string subgenus = this.SelectTaxonNamePartTextValue(node, nameof(subgenus));
+            string subgenus = SelectTaxonNamePartTextValue(node, nameof(subgenus));
             if (!string.IsNullOrEmpty(subgenus))
             {
-                stringBuilder.AppendFormat(string.IsNullOrEmpty(genus) ? SpeciesFormatString : " ({0})", subgenus);
+                stringBuilder.AppendFormat(CultureInfo.InvariantCulture, string.IsNullOrEmpty(genus) ? SpeciesFormatString : " ({0})", subgenus);
             }
 
             foreach (var elementName in specificTaxonNamePartsRanks)
             {
-                this.AppendSpecificTaxonNamePartsToStringBuilder(node, SpeciesFormatString, elementName, stringBuilder);
+                AppendSpecificTaxonNamePartsToStringBuilder(node, SpeciesFormatString, elementName, stringBuilder);
             }
 
             string taxonNameFullString = stringBuilder.ToString().Trim();
 
-            this.logger.LogDebug("{0} -> {1}", nameof(this.GetSystemTaxonNameString), taxonNameFullString);
+            this.logger.LogDebug($"{nameof(GetSystemTaxonNameString)} -> {taxonNameFullString}");
 
             return taxonNameFullString;
-        }
-
-        private void AppendSpecificTaxonNamePartsToStringBuilder(XmlNode node, string speciesFormatString, string taxonNamePartElementName, StringBuilder stringBuilder)
-        {
-            string taxonNamePartTextValue = this.SelectTaxonNamePartTextValue(node, taxonNamePartElementName);
-            if (!string.IsNullOrEmpty(taxonNamePartTextValue))
-            {
-                stringBuilder.AppendFormat(speciesFormatString, taxonNamePartTextValue);
-            }
-        }
-
-        private string SelectTaxonNamePartTextValue(XmlNode node, string taxonNamePartElementName)
-        {
-            string textValue = node.SelectSingleNode(taxonNamePartElementName)?.InnerText ?? string.Empty;
-            return Regex.Replace(textValue, @"\s+", string.Empty);
-        }
-
-        private async Task<IEnumerable<string>> ClearFakeTaxaNamesAsync(IDocument document, IEnumerable<string> taxaNames)
-        {
-            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWordAsync(document, taxaNames).ConfigureAwait(false);
-
-            var result = taxaNames.Where(tn => taxaNamesFirstWord.Contains(tn.GetFirstWord()));
-            return result;
         }
 
         private async Task<IEnumerable<string>> GetTaxaNamesFirstWordAsync(IDocument document, IEnumerable<string> taxaNames)
         {
             var stopWords = await this.GetStopWordsAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
-            var taxaNamesFirstWord = await taxaNames.GetFirstWord()
-                .Distinct()
-                .DistinctWithStopWords(stopWords)
-                .ToArrayAsync();
-
-            return new HashSet<string>(taxaNamesFirstWord);
+            return new HashSet<string>(taxaNames.GetFirstWord().Distinct().DistinctWithStopWords(stopWords));
         }
 
-        private async Task<IEnumerable<string>> GetStopWordsAsync(XmlNode context)
+        private bool IsMatchingLowerTaxaFormat(string textToCheck)
         {
-            var personNames = await this.personNamesHarvester.HarvestAsync(context);
-            var blacklistItems = await this.blacklist.GetItemsAsync();
+            bool result = false;
 
-            var stopWords = personNames
-                .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
-                .Where(n => !string.IsNullOrWhiteSpace(n))
-                .Union(blacklistItems)
-                .Select(w => w.ToLowerInvariant())
-                .Distinct()
-                .ToArray();
+            result |= Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]*)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]*)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z]{2,}[’”]?)\Z");
 
-            return stopWords;
+            result &= !textToCheck.Contains("s.n.", StringComparison.InvariantCulture) && !textToCheck.Contains(" coll.", StringComparison.InvariantCulture);
+
+            return result;
+        }
+
+        private async Task MainTagAsync(IDocument context)
+        {
+            var knownTaxa = GetKnownLowerTaxa(context);
+            var plausibleTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownTaxa));
+            var cleanedLowerTaxa = await this.ClearFakeTaxaNamesAsync(context, plausibleTaxa).ConfigureAwait(false);
+
+            plausibleTaxa = new HashSet<string>(cleanedLowerTaxa.Select(t => t.ToLowerInvariant()));
+
+            TagDirectTaxonomicMatches(context, plausibleTaxa);
+
+            // TODO: move to format
+            context.Xml = Regex.Replace(
+                context.Xml,
+                @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
+                "$1‘$2’ $4$3");
+
+            this.AdvancedTagLowerTaxa(context);
+            //// this.Xml = this.TagInfraspecificTaxa(this.Xml);
+        }
+
+        private void TagInfrarankTaxaSync(XmlNode node)
+        {
+            TagSensu(node);
+            TagBindedInfragenericTaxa(node);
+            TagBareInfragenericTaxa(node);
+            TagBindedInfraspecificTaxa(node);
+            TagBareInfraspecificTaxa(node);
+            this.TagInfraspecicTaxaFinalize(node);
+        }
+
+        private void TagInfraspecicTaxaFinalize(XmlNode node)
+        {
+            // Here we must extract species+subspecies in <infraspecific/>, which comes from tagging of subgenera and [sub]sections
+            string replace = node.InnerXml;
+            replace = Regex.Replace(replace, @"<infraspecific>([A-Za-z][A-Za-z\.-]+)\s+([a-z][a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
+
+            replace = Regex.Replace(replace, @" (?:<(?:[a-z-]+)?authority></(?:[a-z-]+)?authority>|<(?:[a-z-]+)?authority\s*/>)", string.Empty);
+
+            node.SafeReplaceInnerXml(replace);
         }
     }
 }

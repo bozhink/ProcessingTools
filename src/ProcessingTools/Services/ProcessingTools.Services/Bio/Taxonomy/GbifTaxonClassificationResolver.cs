@@ -9,10 +9,10 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     /// <summary>
@@ -40,14 +40,14 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) || !string.IsNullOrWhiteSpace(response.ScientificName)) &&
-                (response.CanonicalName.Equals(name, StringComparison.InvariantCultureIgnoreCase) || response.ScientificName.Contains(name)))
+                (response.CanonicalName.Equals(name, StringComparison.InvariantCultureIgnoreCase) || response.ScientificName.Contains(name, StringComparison.InvariantCulture)))
             {
                 result.Add(this.MapGbifTaxonToTaxonClassification(response));
 
                 if (response.Alternatives != null)
                 {
                     response.Alternatives
-                        .Where(a => a.CanonicalName.Equals(name, StringComparison.InvariantCultureIgnoreCase) || a.ScientificName.Contains(name))
+                        .Where(a => a.CanonicalName.Equals(name, StringComparison.InvariantCultureIgnoreCase) || a.ScientificName.Contains(name, StringComparison.InvariantCulture))
                         .Select(this.MapGbifTaxonToTaxonClassification)
                         .ToList()
                         .ForEach(a => result.Add(a));

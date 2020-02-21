@@ -48,7 +48,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="ProcessingTools.Extensions.Linq" Version="0.1.2" />
+    <PackageReference Include="ProcessingTools.Extensions" Version="0.1.3" />
+    <PackageReference Include="ProcessingTools.Extensions.Linq" Version="0.1.5" />
+    <PackageReference Include="ProcessingTools.Extensions.Text" Version="0.1.6" />
     <PackageReference Include="ProjNET4GeoAPI" Version="1.4.1" />
     <PackageReference Include="QRCoder" Version="1.3.6" />
     <PackageReference Include="SkiaSharp" Version="1.68.1.1" />
@@ -102,7 +104,6 @@
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Resources\ProcessingTools.Common.Resources.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />

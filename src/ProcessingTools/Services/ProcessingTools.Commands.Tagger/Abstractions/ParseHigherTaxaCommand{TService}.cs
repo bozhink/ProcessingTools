@@ -8,13 +8,13 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Parse higher taxa command.
@@ -74,7 +74,7 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
                 this.reporter.AppendContent("Non-parsed taxa:");
                 foreach (var taxonName in uniqueHigherTaxaList)
                 {
-                    this.reporter.AppendContent(string.Format("\t{0}", taxonName));
+                    this.reporter.AppendContent($"\t{taxonName}");
                 }
 
                 await this.reporter.MakeReportAsync().ConfigureAwait(false);

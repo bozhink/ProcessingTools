@@ -2,7 +2,7 @@
 // Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Extensions
+namespace ProcessingTools.Common.Code.Extensions
 {
     using System;
     using System.Collections.Generic;

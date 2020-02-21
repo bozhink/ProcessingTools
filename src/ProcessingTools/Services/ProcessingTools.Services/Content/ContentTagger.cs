@@ -33,14 +33,14 @@ namespace ProcessingTools.Services.Content
         }
 
         /// <inheritdoc/>
-        public async Task TagContentInDocumentAsync(IEnumerable<string> textToTagList, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
+        public Task TagContentInDocumentAsync(IEnumerable<string> textToTagList, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
         {
-            if (textToTagList == null)
+            if (textToTagList is null)
             {
                 throw new ArgumentNullException(nameof(textToTagList));
             }
 
-            if (tagModel == null)
+            if (tagModel is null)
             {
                 throw new ArgumentNullException(nameof(tagModel));
             }
@@ -50,16 +50,93 @@ namespace ProcessingTools.Services.Content
                 throw new ArgumentNullException(nameof(xpath));
             }
 
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (settings == null)
+            if (settings is null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            return this.TagContentInDocumentInternalAsync(textToTagList, tagModel, xpath, document, settings);
+        }
+
+        /// <inheritdoc/>
+        public Task TagContentInDocumentAsync(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
+        {
+            if (string.IsNullOrWhiteSpace(textToTag))
+            {
+                throw new ArgumentNullException(nameof(textToTag));
+            }
+
+            if (tagModel is null)
+            {
+                throw new ArgumentNullException(nameof(tagModel));
+            }
+
+            if (string.IsNullOrWhiteSpace(xpath))
+            {
+                throw new ArgumentNullException(nameof(xpath));
+            }
+
+            if (document is null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings is null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return this.TagContentInDocumentInternalAsync(textToTag, tagModel, xpath, document, settings);
+        }
+
+        /// <inheritdoc/>
+        public Task TagContentInDocumentAsync(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items)
+        {
+            if (nodeList is null || !nodeList.Any())
+            {
+                return Task.CompletedTask;
+            }
+
+            if (settings is null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            if (items is null || items.Length < 1)
+            {
+                return Task.CompletedTask;
+            }
+
+            return this.TagContentInDocumentInternalAsync(nodeList, settings, items);
+        }
+
+        private static Func<XmlNode, bool> GetMatchNodePredicate(string value, bool caseSensitive)
+        {
+            if (caseSensitive)
+            {
+                return x => x.InnerText.Contains(value, StringComparison.InvariantCulture);
+            }
+            else
+            {
+                return x => x.InnerText.Contains(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+        }
+
+        private string GetReplacementOfTagNode(XmlNode item)
+        {
+            XmlElement replacementNode = (XmlElement)item.CloneNode(true);
+            replacementNode.InnerText = "$1";
+            return replacementNode.OuterXml;
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Expected")]
+        private async Task TagContentInDocumentInternalAsync(IEnumerable<string> textToTagList, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
+        {
             foreach (string textToTag in textToTagList)
             {
                 try
@@ -68,63 +145,21 @@ namespace ProcessingTools.Services.Content
                 }
                 catch (Exception e)
                 {
-                    this.logger.LogError(e, "Item: {0}.", textToTag);
+                    this.logger.LogError(e, $"Item: {textToTag}.");
                 }
             }
         }
 
-        /// <inheritdoc/>
-        public async Task TagContentInDocumentAsync(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
+        private async Task TagContentInDocumentInternalAsync(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
         {
-            if (string.IsNullOrWhiteSpace(textToTag))
-            {
-                throw new ArgumentNullException(nameof(textToTag));
-            }
-
-            if (tagModel == null)
-            {
-                throw new ArgumentNullException(nameof(tagModel));
-            }
-
-            if (string.IsNullOrWhiteSpace(xpath))
-            {
-                throw new ArgumentNullException(nameof(xpath));
-            }
-
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
             XmlElement item = (XmlElement)tagModel.CloneNode(true);
             item.InnerText = textToTag;
 
-            await this.TagContentInDocumentAsync(item, xpath, document, settings).ConfigureAwait(false);
+            await this.TagContentInDocumentInternalAsync(item, xpath, document, settings).ConfigureAwait(false);
         }
 
-        /// <inheritdoc/>
-        public async Task TagContentInDocumentAsync(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items)
+        private Task TagContentInDocumentInternalAsync(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, XmlElement[] items)
         {
-            if (nodeList == null || !nodeList.Any())
-            {
-                return;
-            }
-
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
-            if (items == null || items.Length < 1)
-            {
-                return;
-            }
-
             string caseSensitiveness = settings.CaseSensitive ? string.Empty : "(?i)";
 
             foreach (var node in nodeList)
@@ -163,16 +198,11 @@ namespace ProcessingTools.Services.Content
                         replace = textToTagPatternRegex.Replace(replace, replacement);
                     }
 
-                    await node.SafeReplaceInnerXmlAsync(replace).ConfigureAwait(false);
+                    node.SafeReplaceInnerXml(replace);
                 }
             }
-        }
 
-        private string GetReplacementOfTagNode(XmlNode item)
-        {
-            XmlElement replacementNode = (XmlElement)item.CloneNode(true);
-            replacementNode.InnerText = "$1";
-            return replacementNode.OuterXml;
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -183,25 +213,13 @@ namespace ProcessingTools.Services.Content
         /// <param name="document">IDocument object to be tagged.</param>
         /// <param name="settings">Tagging settings.</param>
         /// <returns>Task.</returns>
-        private async Task TagContentInDocumentAsync(XmlElement item, string xpath, IDocument document, IContentTaggerSettings settings)
+        private async Task TagContentInDocumentInternalAsync(XmlElement item, string xpath, IDocument document, IContentTaggerSettings settings)
         {
             var nodeList = document.SelectNodes(xpath)
                 .AsEnumerable()
-                .Where(this.GetMatchNodePredicate(item.InnerText, settings.CaseSensitive));
+                .Where(GetMatchNodePredicate(item.InnerText, settings.CaseSensitive));
 
             await this.TagContentInDocumentAsync(nodeList, settings, item).ConfigureAwait(false);
-        }
-
-        private Func<XmlNode, bool> GetMatchNodePredicate(string value, bool caseSensitive)
-        {
-            if (caseSensitive)
-            {
-                return x => x.InnerText.Contains(value);
-            }
-            else
-            {
-                return x => x.InnerText.ToLowerInvariant().Contains(value.ToLowerInvariant());
-            }
         }
     }
 }

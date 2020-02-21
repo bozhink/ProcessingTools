@@ -10,6 +10,7 @@ namespace ProcessingTools.Web.Services.Tools
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Services.Imaging;
     using ProcessingTools.Contracts.Web.Services.Tools;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Web.Models.Tools.Barcode;
 
     /// <summary>
@@ -31,9 +32,9 @@ namespace ProcessingTools.Web.Services.Tools
         /// <inheritdoc/>
         public async Task<object> EncodeAsync(BarcodeRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
-                throw new ArgumentNullException(nameof(model));
+                return null;
             }
 
             var image = await this.encoder.EncodeBase64Async(
@@ -48,7 +49,9 @@ namespace ProcessingTools.Web.Services.Tools
         /// <inheritdoc/>
         public Task<BarcodeViewModel> GetBarcodeViewModelAsync()
         {
-            var viewModel = new BarcodeViewModel
+            var types = typeof(BarcodeType).EnumToDictionary();
+
+            var viewModel = new BarcodeViewModel(types)
             {
                 Width = ImagingConstants.DefaultBarcodeWidth,
                 Height = ImagingConstants.DefaultBarcodeHeight,
@@ -60,7 +63,9 @@ namespace ProcessingTools.Web.Services.Tools
         /// <inheritdoc/>
         public Task<BarcodeViewModel> MapToViewModel(BarcodeRequestModel model)
         {
-            var viewModel = new BarcodeViewModel(model?.Type ?? 0)
+            var types = typeof(BarcodeType).EnumToDictionary();
+
+            var viewModel = new BarcodeViewModel(model?.Type ?? (int)BarcodeType.Unspecified, types)
             {
                 Content = model?.Content,
                 Width = model?.Width ?? ImagingConstants.DefaultBarcodeWidth,

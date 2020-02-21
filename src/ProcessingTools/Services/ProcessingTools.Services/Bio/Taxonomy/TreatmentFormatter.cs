@@ -13,6 +13,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Treatment formatter.

@@ -11,6 +11,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy.Strategies
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Contracts.Services.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Parse lower taxa with basionym strategy.

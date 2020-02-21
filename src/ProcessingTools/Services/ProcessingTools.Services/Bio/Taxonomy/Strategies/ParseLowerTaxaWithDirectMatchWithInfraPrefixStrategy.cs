@@ -8,8 +8,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy.Strategies
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Contracts.Services.Strategies.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Parse lower taxa with direct match with infra-prefix strategy.

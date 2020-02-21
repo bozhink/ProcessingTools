@@ -17,7 +17,7 @@ namespace ProcessingTools.Services.Validation
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Contracts.Services.Validation;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Abstractions.Validation;
 
     /// <summary>
@@ -40,10 +40,7 @@ namespace ProcessingTools.Services.Validation
         }
 
         /// <inheritdoc/>
-        protected override Func<string, string> GetPermalink => item => string.Format(
-            "{0}:{1}",
-            PermalinkPrefixes.ValidationCacheTaxonName,
-            item.Trim().RegexReplace(@"\W+", "_").ToUpperInvariant());
+        protected override Func<string, string> GetPermalink => item => $"{PermalinkPrefixes.ValidationCacheTaxonName}:{item.Trim().RegexReplace(@"\W+", "_").ToUpperInvariant()}";
 
         /// <inheritdoc/>
         protected override async Task<IValidationModel<string>[]> ValidateAsync(IEnumerable<string> items)

@@ -10,11 +10,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Models.Bio.Taxonomy;
 
     /// <summary>
@@ -58,7 +59,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 return uniqueHigherTaxaList.LongLength;
             }
 
-            var response = await this.service.ResolveAsync(uniqueHigherTaxaList);
+            var response = await this.service.ResolveAsync(uniqueHigherTaxaList).ConfigureAwait(false);
             if (response == null)
             {
                 throw new ServiceReturnedNullException("Current taxa rank data service instance returned null.");

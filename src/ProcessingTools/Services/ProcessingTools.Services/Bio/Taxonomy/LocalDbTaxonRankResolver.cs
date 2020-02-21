@@ -12,7 +12,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     /// <summary>

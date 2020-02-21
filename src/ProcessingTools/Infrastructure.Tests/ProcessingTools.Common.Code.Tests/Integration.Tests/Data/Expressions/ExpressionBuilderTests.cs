@@ -19,7 +19,7 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
         /// <summary>
         /// ExpressionBuilder with single valid Set should create one Set command in UpdateCommands.
         /// </summary>
-        [Test(Description = @"ExpressionBuilder with single valid Set should create one Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(ExpressionBuilder<ITweet>))]
+        [Test(Description = @"ExpressionBuilder with single valid Set should create one Set command in UpdateCommands", TestOf = typeof(ExpressionBuilder<ITweet>))]
         public void ExpressionBuilder_WithSingleValidSet_ShouldCreateOneSetCommandInUpdateCommands()
         {
             // Arrange
@@ -42,7 +42,7 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
         /// <summary>
         /// ExpressionBuilder with two different valid Set should create two Set command in UpdateCommands.
         /// </summary>
-        [Test(Description = @"ExpressionBuilder with two different valid Set should create two Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(ExpressionBuilder<ITweet>))]
+        [Test(Description = @"ExpressionBuilder with two different valid Set should create two Set command in UpdateCommands", TestOf = typeof(ExpressionBuilder<ITweet>))]
         public void ExpressionBuilder_WithTwoDifferentValidSet_ShouldCreateTwoSetCommandInUpdateCommands()
         {
             // Arrange
@@ -72,7 +72,7 @@ namespace ProcessingTools.Common.Code.Tests.Integration.Tests.Data.Expressions
         /// <summary>
         /// ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands.
         /// </summary>
-        [Test(Description = @"ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(ExpressionBuilder<ITweet>))]
+        [Test(Description = @"ExpressionBuilder with three different valid Set should create three Set command in UpdateCommands", TestOf = typeof(ExpressionBuilder<ITweet>))]
         public void ExpressionBuilder_WithThreeDifferentValidSet_ShouldCreateThreeSetCommandInUpdateCommands()
         {
             // Arrange

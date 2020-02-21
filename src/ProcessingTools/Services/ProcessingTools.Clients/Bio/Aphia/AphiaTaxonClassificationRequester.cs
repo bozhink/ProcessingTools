@@ -11,10 +11,10 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using System.Threading.Tasks;
     using ProcessingTools.Clients.ConnectedServices.Bio.AphiaServiceReference;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Aphia taxon classification requester.

@@ -7,12 +7,14 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
@@ -97,7 +99,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                         AttributeValues.TaxonNameIdPrefix + counter);
                     taxonNameElement.SetAttribute(
                         AttributeNames.Position,
-                        counter.ToString());
+                        counter.ToString(CultureInfo.InvariantCulture));
                     ++counter;
                 }
             }
@@ -136,7 +138,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                         if (!n.HasAttribute(AttributeNames.FullName))
                         {
                             string content = n.InnerText;
-                            if (string.IsNullOrWhiteSpace(content) || content.Contains("."))
+                            if (string.IsNullOrWhiteSpace(content) || content.Contains(".", StringComparison.InvariantCulture))
                             {
                                 n.SetAttribute(AttributeNames.FullName, string.Empty);
                             }
@@ -172,7 +174,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                     .Cast<XmlElement>()
                     .Select(g =>
                     {
-                        if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.')) && g.Attributes[AttributeNames.FullName] != null)
+                        if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.', StringComparison.InvariantCulture)) && g.Attributes[AttributeNames.FullName] != null)
                         {
                             return g.Attributes[AttributeNames.FullName].InnerText.Trim();
                         }
@@ -181,7 +183,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                             return g.InnerText.Trim();
                         }
                     })
-                    .Where(g => !string.IsNullOrWhiteSpace(g) && !g.Contains("."))
+                    .Where(g => !string.IsNullOrWhiteSpace(g) && !g.Contains(".", StringComparison.InvariantCulture))
                     .Distinct()
                     .ToList();
 
@@ -260,7 +262,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                         // Copy only *type* attributes
                         foreach (XmlAttribute attribute in innerNode.Attributes)
                         {
-                            if (attribute.Name.Contains(AttributeNames.Type))
+                            if (attribute.Name.Contains(AttributeNames.Type, StringComparison.InvariantCulture))
                             {
                                 XmlAttribute typeAttribute = document.CreateAttribute(attribute.Name);
                                 typeAttribute.InnerText = attribute.InnerText;
@@ -424,8 +426,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                                 taxonNamePart.FullName = taxonNamePartValue;
                                 taxonNamePart.IsModified = true;
 
-                                messageBag.AppendFormat("\tSubstitution ({0}):", taxonNamePart.Rank);
-                                messageBag.AppendFormat("\t\t{0}", taxonNamePartValue);
+                                messageBag.AppendFormat(CultureInfo.InvariantCulture, "\tSubstitution ({0}):", taxonNamePart.Rank);
+                                messageBag.AppendFormat(CultureInfo.InvariantCulture, "\t\t{0}", taxonNamePartValue);
                                 messageBag.AppendLine();
                                 break;
                             }
@@ -498,12 +500,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
                             if (matchedFullNames.Length < 1)
                             {
-                                messageBag.AppendFormat("\tError: taxon-name-part of rank {0} does not have valid matches:", taxonNamePart.Rank);
+                                messageBag.AppendFormat(CultureInfo.InvariantCulture, "\tError: taxon-name-part of rank {0} does not have valid matches:", taxonNamePart.Rank);
                                 messageBag.AppendLine();
                             }
                             else if (matchedFullNames.Length > 1)
                             {
-                                messageBag.AppendFormat("\tError: Multiple matches ({0}):", taxonNamePart.Rank);
+                                messageBag.AppendFormat(CultureInfo.InvariantCulture, "\tError: Multiple matches ({0}):", taxonNamePart.Rank);
                                 messageBag.AppendLine();
                             }
                             else
@@ -512,13 +514,13 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                                 taxonNamePart.FullName = name;
                                 taxonNamePart.IsModified = true;
 
-                                messageBag.AppendFormat("\tSubstitution ({0}):", taxonNamePart.Rank);
+                                messageBag.AppendFormat(CultureInfo.InvariantCulture, "\tSubstitution ({0}):", taxonNamePart.Rank);
                                 messageBag.AppendLine();
                             }
 
                             foreach (var match in matches)
                             {
-                                messageBag.AppendFormat("\t\t{0}", match);
+                                messageBag.AppendFormat(CultureInfo.InvariantCulture, "\t\t{0}", match);
                                 messageBag.AppendLine();
                             }
                         }
@@ -546,16 +548,16 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             abbreviatedGenera.AsParallel()
                 .ForAll(abbreviatedGenus =>
                 {
-                    var matches = genera.Where(g => g.IndexOf(abbreviatedGenus.Pattern) == 0).ToArray();
+                    var matches = genera.Where(g => g.IndexOf(abbreviatedGenus.Pattern, StringComparison.InvariantCulture) == 0).ToArray();
                     if (matches.Length == 1)
                     {
                         {
                             var messageBag = new StringBuilder();
-                            messageBag.AppendFormat("\tSubstitution ({0}):", abbreviatedGenus);
+                            messageBag.AppendFormat(CultureInfo.InvariantCulture, "\tSubstitution ({0}):", abbreviatedGenus);
                             messageBag.AppendLine();
                             foreach (var match in matches)
                             {
-                                messageBag.AppendFormat("\t\t{0}", match);
+                                messageBag.AppendFormat(CultureInfo.InvariantCulture, "\t\t{0}", match);
                                 messageBag.AppendLine();
                             }
 

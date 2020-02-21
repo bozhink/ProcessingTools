@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts.Services.Geo.Coordinates;
     using ProcessingTools.Contracts.Web.Services.Geo.Coordinates;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
     using ProcessingTools.Web.Models.Geography.Coordinates;
 
     /// <summary>

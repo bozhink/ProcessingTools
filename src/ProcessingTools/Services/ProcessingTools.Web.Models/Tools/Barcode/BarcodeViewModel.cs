@@ -4,11 +4,11 @@
 
 namespace ProcessingTools.Web.Models.Tools.Barcode
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Extensions;
     using ValidationConstants = ProcessingTools.Common.Constants.ValidationConstants;
 
     /// <summary>
@@ -19,8 +19,9 @@ namespace ProcessingTools.Web.Models.Tools.Barcode
         /// <summary>
         /// Initializes a new instance of the <see cref="BarcodeViewModel"/> class.
         /// </summary>
-        public BarcodeViewModel()
-            : this(0)
+        /// <param name="types">List of barcode types.</param>
+        public BarcodeViewModel(IReadOnlyDictionary<int, string> types)
+            : this((int)BarcodeType.Unspecified, types)
         {
         }
 
@@ -28,8 +29,10 @@ namespace ProcessingTools.Web.Models.Tools.Barcode
         /// Initializes a new instance of the <see cref="BarcodeViewModel"/> class.
         /// </summary>
         /// <param name="selectedType">The selected barcode type.</param>
-        public BarcodeViewModel(int selectedType)
+        /// <param name="types">List of barcode types.</param>
+        public BarcodeViewModel(int selectedType, IReadOnlyDictionary<int, string> types)
         {
+            this.Types = types ?? throw new ArgumentNullException(nameof(types));
             this.SelectedType = selectedType;
             this.Width = ImagingConstants.DefaultBarcodeWidth;
             this.Height = ImagingConstants.DefaultBarcodeHeight;
@@ -69,7 +72,7 @@ namespace ProcessingTools.Web.Models.Tools.Barcode
         /// </summary>
         [Required]
         [Display(Name = "Barcode Type", Description = "Barcode Type")]
-        public IDictionary<int, string> Type => typeof(BarcodeType).EnumToDictionary();
+        public IReadOnlyDictionary<int, string> Types { get; }
 
         /// <summary>
         /// Gets or sets the resultant image.

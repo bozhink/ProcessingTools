@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Models.Geo.Coordinates;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Coordinate part.

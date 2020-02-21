@@ -9,6 +9,7 @@ namespace ProcessingTools.Services.Files
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Services.Files;
+    using ProcessingTools.Extensions;
 
     /// <summary>
     /// MIME mapping service with static dictionary.

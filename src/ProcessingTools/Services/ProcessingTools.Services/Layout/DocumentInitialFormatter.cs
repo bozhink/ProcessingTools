@@ -11,6 +11,7 @@ namespace ProcessingTools.Services.Layout
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Layout;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Text;
 
     /// <summary>
     /// Document initial formatter.
