@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Models.Meta
     /// <summary>
     /// Author.
     /// </summary>
-    internal class Author : IAuthor
+    public class Author : IAuthor
     {
         /// <inheritdoc/>
         public string GivenNames { get; set; }
