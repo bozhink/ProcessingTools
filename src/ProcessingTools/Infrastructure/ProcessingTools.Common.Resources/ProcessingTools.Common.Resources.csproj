@@ -6,24 +6,24 @@
     <Authors>Bozhin Karaivanov</Authors>
     <Company>ProcessingTools</Company>
     <Description>Resources.</Description>
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>resources</PackageTags>
-    <Copyright>Copyright © 2019 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <OutputPath>bin\release</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+   
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <OutputPath>bin\debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+   
   </PropertyGroup>
 
   <ItemGroup>

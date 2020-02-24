@@ -6,32 +6,28 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <Version>0.1.1</Version>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Bozhin Karaivanov</Authors>
     <Company>ProcessingTools</Company>
     <Description>Web API for document operations</Description>
-    <Copyright>Copyright © 2019 ProcessingTools</Copyright>
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>web, api, documents</PackageTags>
-    <AssemblyName>ProcessingTools.Web.Api.Documents</AssemblyName>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>DEBUG</DefineConstants>
     <OutputPath>bin\debug</OutputPath>
-    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants />
     <OutputPath>bin\release</OutputPath>
-    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Web.Api.Documents.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -53,7 +49,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Certificate" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

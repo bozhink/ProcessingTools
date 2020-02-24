@@ -3,17 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
     <Version>0.1.1</Version>
     <Authors>Bozhin Karaivanov</Authors>
     <Company>ProcessingTools</Company>
     <Description>Data seed integration tests.</Description>
-    <Copyright>Copyright © 2019 ProcessingTools</Copyright>
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <LangVersion>latest</LangVersion>
     <PackageTags>tests, integration tests, data, seed</PackageTags>
   </PropertyGroup>
 
@@ -21,7 +20,6 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Data.Seed.Integration.Tests.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
@@ -43,7 +41,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Castle.Core" Version="4.4.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -66,7 +63,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
-    <PackageReference Include="System.Runtime" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,5 +70,4 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
   </ItemGroup>
-
 </Project>

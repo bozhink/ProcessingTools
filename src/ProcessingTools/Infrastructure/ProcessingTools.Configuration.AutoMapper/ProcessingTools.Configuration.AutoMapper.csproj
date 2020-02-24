@@ -6,10 +6,10 @@
     <Version>0.1.1</Version>
     <Company>ProcessingTools</Company>
     <Description>Configuration of common mappings for AutoMapper</Description>
-    <Copyright>Copyright © 2019 ProcessingTools</Copyright>
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>configuration, AutoMapper</PackageTags>
     <Authors>Bozhin Karaivanov</Authors>
@@ -24,7 +24,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.Configuration.AutoMapper.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Configuration.AutoMapper.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
@@ -39,7 +39,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -13,15 +13,15 @@
 
     <Description>Unit tests for clients.</Description>
 
-    <Copyright>Copyright © 2019 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
 
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
 
     <RepositoryType>git</RepositoryType>
 
-    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
 
     <PackageTags>clients, tests, unit tests</PackageTags>
   </PropertyGroup>
@@ -30,7 +30,6 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Clients.Integration.Tests.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
@@ -42,12 +41,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="data-files\**" />
-    <EmbeddedResource Remove="data-files\**" />
-    <None Remove="data-files\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="stylecop.json" />
   </ItemGroup>
 
@@ -56,7 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

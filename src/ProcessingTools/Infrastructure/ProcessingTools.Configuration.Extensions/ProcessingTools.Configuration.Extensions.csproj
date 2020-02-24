@@ -2,29 +2,28 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
     <Version>0.1.1</Version>
+    <Authors>Bozhin Karaivanov</Authors>
     <Company>ProcessingTools</Company>
     <Description>Configuration extensions.</Description>
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>configuration</PackageTags>
-    <Authors>Bozhin Karaivanov</Authors>
-    <Copyright>Copyright © 2019 ProcessingTools</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\netstandard2.1\ProcessingTools.Configuration.Extensions.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Configuration.Extensions.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netstandard2.1\ProcessingTools.Configuration.Extensions.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Configuration.Extensions.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
   </PropertyGroup>
 
@@ -38,7 +37,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Core" Version="2.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -62,5 +60,4 @@
     <ProjectReference Include="..\ProcessingTools.Common.Resources\ProcessingTools.Common.Resources.csproj" />
     <ProjectReference Include="..\ProcessingTools.Configuration.Models\ProcessingTools.Configuration.Models.csproj" />
   </ItemGroup>
-
 </Project>
