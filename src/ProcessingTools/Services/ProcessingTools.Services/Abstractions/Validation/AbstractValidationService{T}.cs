@@ -54,7 +54,7 @@ namespace ProcessingTools.Services.Abstractions.Validation
         /// <inheritdoc/>
         public async Task<IValidationModel<T>[]> ValidateAsync(params T[] items)
         {
-            if (items == null || items.Length < 1)
+            if (items is null || items.Length < 1)
             {
                 return null;
             }
@@ -95,7 +95,7 @@ namespace ProcessingTools.Services.Abstractions.Validation
                 return;
             }
 
-            if (item == null)
+            if (item is null)
             {
                 return;
             }
@@ -142,7 +142,7 @@ namespace ProcessingTools.Services.Abstractions.Validation
             }
 
             var cachedItem = await this.cacheService.GetAsync(permalink).ConfigureAwait(false);
-            if (cachedItem == null)
+            if (cachedItem is null)
             {
                 return DefaultStatus;
             }
@@ -152,7 +152,7 @@ namespace ProcessingTools.Services.Abstractions.Validation
 
         private async Task<object> ValidateWithCacheAsync(IEnumerable<IValidationModel<T>> items)
         {
-            if (!this.CacheServiceIsUsable || items == null)
+            if (!this.CacheServiceIsUsable || items is null)
             {
                 return false;
             }

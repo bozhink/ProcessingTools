@@ -36,7 +36,7 @@ namespace ProcessingTools.Services.Xml
         /// <inheritdoc/>
         public Task<string> TransformAsync(XmlReader reader, bool closeReader)
         {
-            if (reader == null)
+            if (reader is null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }
@@ -47,7 +47,7 @@ namespace ProcessingTools.Services.Xml
         /// <inheritdoc/>
         public Task<string> TransformAsync(XmlNode node)
         {
-            if (node == null)
+            if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
@@ -70,7 +70,7 @@ namespace ProcessingTools.Services.Xml
         /// <inheritdoc/>
         public Stream TransformToStream(XmlReader reader)
         {
-            if (reader == null)
+            if (reader is null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }
@@ -85,7 +85,7 @@ namespace ProcessingTools.Services.Xml
         /// <inheritdoc/>
         public Stream TransformToStream(XmlNode node)
         {
-            if (node == null)
+            if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }

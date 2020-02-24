@@ -54,7 +54,7 @@ namespace ProcessingTools.Commands.Tagger
 
             this.processor.XQueryFileName = settings.FileNames[2];
 
-            await this.processor.ProcessAsync(document);
+            await this.processor.ProcessAsync(document).ConfigureAwait(false);
 
             return true;
         }

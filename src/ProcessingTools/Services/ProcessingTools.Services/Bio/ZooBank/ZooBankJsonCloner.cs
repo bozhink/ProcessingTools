@@ -33,12 +33,12 @@ namespace ProcessingTools.Services.Bio.ZooBank
         /// <inheritdoc/>
         public Task<object> CloneAsync(IDocument target, ZooBankRegistration source)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (source == null)
+            if (source is null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
@@ -75,7 +75,7 @@ namespace ProcessingTools.Services.Bio.ZooBank
         {
             string articleLsid = UrlConstants.ZooBankPrefix + source.ReferenceUuid.Trim();
             var selfUriNode = target.SelectSingleNode(XPathStrings.ArticleZooBankSelfUri);
-            if (selfUriNode == null)
+            if (selfUriNode is null)
             {
                 throw new InvalidDocumentException("article-meta/self-uri/@content-type='zoobank' is missing.");
             }

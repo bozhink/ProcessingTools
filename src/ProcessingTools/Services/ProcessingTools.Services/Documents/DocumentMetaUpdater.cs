@@ -22,22 +22,22 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> UpdateMetaAsync(IDocument document, IArticleMetaModel articleMeta, IJournalMetaModel journalMeta, IPublisherMetaModel publisherMeta)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (articleMeta == null)
+            if (articleMeta is null)
             {
                 throw new ArgumentNullException(nameof(articleMeta));
             }
 
-            if (journalMeta == null)
+            if (journalMeta is null)
             {
                 throw new ArgumentNullException(nameof(journalMeta));
             }
 
-            if (publisherMeta == null)
+            if (publisherMeta is null)
             {
                 throw new ArgumentNullException(nameof(publisherMeta));
             }
@@ -53,7 +53,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateFront(IDocument document, IArticleMetaModel articleMeta, IJournalMetaModel journalMeta, IPublisherMetaModel publisherMeta, XmlNode articleNode)
         {
             XmlElement frontElement = articleNode[ElementNames.Front];
-            if (frontElement == null)
+            if (frontElement is null)
             {
                 frontElement = document.XmlDocument.CreateElement(ElementNames.Article);
                 articleNode.PrependChild(frontElement);
@@ -67,7 +67,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateArticleMeta(IDocument document, IArticleMetaModel articleMeta, XmlElement frontElement)
         {
             XmlElement articleMetaElement = frontElement[ElementNames.ArticleMeta];
-            if (articleMetaElement == null)
+            if (articleMetaElement is null)
             {
                 articleMetaElement = document.XmlDocument.CreateElement(ElementNames.ArticleMeta);
                 frontElement.AppendChild(articleMetaElement);
@@ -101,7 +101,7 @@ namespace ProcessingTools.Services.Documents
             XmlElement historyElement = articleMetaElement[ElementNames.History];
             if (articleMeta.AcceptedOn.HasValue || articleMeta.ReceivedOn.HasValue)
             {
-                if (historyElement == null)
+                if (historyElement is null)
                 {
                     historyElement = document.XmlDocument.CreateElement(ElementNames.History);
                     articleMetaElement.AppendChild(historyElement);
@@ -132,7 +132,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (dateAcceptedElement == null)
+                if (dateAcceptedElement is null)
                 {
                     dateAcceptedElement = document.XmlDocument.CreateElement(ElementNames.Date);
 
@@ -162,7 +162,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (dateReceivedElement == null)
+                if (dateReceivedElement is null)
                 {
                     dateReceivedElement = document.XmlDocument.CreateElement(ElementNames.Date);
 
@@ -192,7 +192,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (element == null)
+                if (element is null)
                 {
                     element = document.XmlDocument.CreateElement(name);
                     parent.AppendChild(element);
@@ -214,7 +214,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (archivalPublicationDateElement == null)
+                if (archivalPublicationDateElement is null)
                 {
                     archivalPublicationDateElement = document.XmlDocument.CreateElement(ElementNames.PubDate);
 
@@ -244,7 +244,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (electronicPublicationDateElement == null)
+                if (electronicPublicationDateElement is null)
                 {
                     electronicPublicationDateElement = document.XmlDocument.CreateElement(ElementNames.PubDate);
 
@@ -274,7 +274,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (collectionPublicationDateElement == null)
+                if (collectionPublicationDateElement is null)
                 {
                     collectionPublicationDateElement = document.XmlDocument.CreateElement(ElementNames.PubDate);
 
@@ -293,7 +293,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateDayElement(IDocument document, XmlElement parent, int value)
         {
             XmlElement dayElement = parent[ElementNames.Day];
-            if (dayElement == null)
+            if (dayElement is null)
             {
                 dayElement = document.XmlDocument.CreateElement(ElementNames.Day);
                 parent.AppendChild(dayElement);
@@ -305,7 +305,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateMonthElement(IDocument document, XmlElement parent, int value)
         {
             XmlElement monthElement = parent[ElementNames.Month];
-            if (monthElement == null)
+            if (monthElement is null)
             {
                 monthElement = document.XmlDocument.CreateElement(ElementNames.Month);
                 parent.AppendChild(monthElement);
@@ -317,7 +317,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateYearElement(IDocument document, XmlElement parent, int value)
         {
             XmlElement yearElement = parent[ElementNames.Year];
-            if (yearElement == null)
+            if (yearElement is null)
             {
                 yearElement = document.XmlDocument.CreateElement(ElementNames.Year);
                 parent.AppendChild(yearElement);
@@ -329,7 +329,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateTitleGroup(IDocument document, IArticleMetaModel articleMeta, XmlElement articleMetaElement)
         {
             XmlElement titleGroupElement = articleMetaElement[ElementNames.TitleGroup];
-            if (titleGroupElement == null)
+            if (titleGroupElement is null)
             {
                 titleGroupElement = document.XmlDocument.CreateElement(ElementNames.TitleGroup);
                 articleMetaElement.AppendChild(titleGroupElement);
@@ -345,7 +345,7 @@ namespace ProcessingTools.Services.Documents
             if (!string.IsNullOrWhiteSpace(articleMeta.SubTitle))
             {
                 XmlElement articleSubTitleElement = titleGroupElement[ElementNames.ArticleSubTitle];
-                if (articleSubTitleElement == null)
+                if (articleSubTitleElement is null)
                 {
                     articleSubTitleElement = document.XmlDocument.CreateElement(ElementNames.ArticleSubTitle);
                     titleGroupElement.AppendChild(articleSubTitleElement);
@@ -362,7 +362,7 @@ namespace ProcessingTools.Services.Documents
             if (!string.IsNullOrWhiteSpace(articleMeta.Title))
             {
                 XmlElement articleTitleElement = titleGroupElement[ElementNames.ArticleTitle];
-                if (articleTitleElement == null)
+                if (articleTitleElement is null)
                 {
                     articleTitleElement = document.XmlDocument.CreateElement(ElementNames.ArticleTitle);
                     titleGroupElement.PrependChild(articleTitleElement);
@@ -386,7 +386,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (articleIdElement == null)
+                if (articleIdElement is null)
                 {
                     articleIdElement = document.XmlDocument.CreateElement(ElementNames.ArticleId);
 
@@ -414,7 +414,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (articleIdElement == null)
+                if (articleIdElement is null)
                 {
                     articleIdElement = document.XmlDocument.CreateElement(ElementNames.ArticleId);
 
@@ -433,7 +433,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateJournalMeta(IDocument document, IJournalMetaModel journalMeta, IPublisherMetaModel publisherMeta, XmlElement frontElement)
         {
             XmlElement journalMetaElement = frontElement[ElementNames.JournalMeta];
-            if (journalMetaElement == null)
+            if (journalMetaElement is null)
             {
                 journalMetaElement = document.XmlDocument.CreateElement(ElementNames.JournalMeta);
                 frontElement.PrependChild(journalMetaElement);
@@ -453,7 +453,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateJournalId(IDocument document, IJournalMetaModel journalMeta, XmlElement journalMetaElement)
         {
             XmlElement journalIdElement = journalMetaElement[ElementNames.JournalId];
-            if (journalIdElement == null || journalIdElement.Attributes[AttributeNames.JournalIdType]?.InnerText != AttributeValues.JournalIdTypePublisherId)
+            if (journalIdElement is null || journalIdElement.Attributes[AttributeNames.JournalIdType]?.InnerText != AttributeValues.JournalIdTypePublisherId)
             {
                 journalIdElement = document.XmlDocument.CreateElement(ElementNames.JournalId);
 
@@ -471,7 +471,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdatePublisher(IDocument document, IPublisherMetaModel publisherMeta, XmlElement journalMetaElement)
         {
             XmlElement publisherElement = journalMetaElement[ElementNames.Publisher];
-            if (publisherElement == null)
+            if (publisherElement is null)
             {
                 publisherElement = document.XmlDocument.CreateElement(ElementNames.Publisher);
                 publisherElement.PrependChild(publisherElement);
@@ -494,7 +494,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (publisherLocationElement == null)
+                if (publisherLocationElement is null)
                 {
                     publisherLocationElement = document.XmlDocument.CreateElement(ElementNames.PublisherLocation);
                     publisherElement.AppendChild(publisherLocationElement);
@@ -507,7 +507,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdatePublisherName(IDocument document, IPublisherMetaModel publisherMeta, XmlElement publisherElement)
         {
             XmlElement publisherNameElement = publisherElement[ElementNames.PublisherName];
-            if (publisherNameElement == null)
+            if (publisherNameElement is null)
             {
                 publisherNameElement = document.XmlDocument.CreateElement(ElementNames.PublisherName);
                 publisherElement.PrependChild(publisherNameElement);
@@ -528,7 +528,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (electronicIssnElement == null)
+                if (electronicIssnElement is null)
                 {
                     electronicIssnElement = document.XmlDocument.CreateElement(ElementNames.Issn);
 
@@ -556,7 +556,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (printIssnElement == null)
+                if (printIssnElement is null)
                 {
                     printIssnElement = document.XmlDocument.CreateElement(ElementNames.Issn);
 
@@ -575,7 +575,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateJournalTitleGroup(IDocument document, IJournalMetaModel journalMeta, XmlElement journalMetaElement)
         {
             XmlElement journalTitleGroupElement = journalMetaElement[ElementNames.JournalTitleGroup];
-            if (journalTitleGroupElement == null)
+            if (journalTitleGroupElement is null)
             {
                 journalTitleGroupElement = document.XmlDocument.CreateElement(ElementNames.JournalTitleGroup);
                 journalMetaElement.AppendChild(journalTitleGroupElement);
@@ -598,7 +598,7 @@ namespace ProcessingTools.Services.Documents
             }
             else
             {
-                if (abbrevJournalTitleElement == null)
+                if (abbrevJournalTitleElement is null)
                 {
                     abbrevJournalTitleElement = document.XmlDocument.CreateElement(ElementNames.AbbrevJournalTitle);
                     journalTitleGroupElement.AppendChild(abbrevJournalTitleElement);
@@ -611,7 +611,7 @@ namespace ProcessingTools.Services.Documents
         private static void UpdateJournalTitle(IDocument document, IJournalMetaModel journalMeta, XmlElement journalTitleGroupElement)
         {
             XmlElement journalTitleElement = journalTitleGroupElement[ElementNames.JournalTitle];
-            if (journalTitleElement == null)
+            if (journalTitleElement is null)
             {
                 journalTitleElement = document.XmlDocument.CreateElement(ElementNames.JournalTitle);
                 journalTitleGroupElement.PrependChild(journalTitleElement);

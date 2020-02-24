@@ -48,7 +48,7 @@ namespace ProcessingTools.Services.Maps
             var uri = new Uri(string.Format(BingMapApiURL, address));
             try
             {
-                var response = await this.httpClient.GetAsync(uri);
+                var response = await this.httpClient.GetAsync(uri).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 JObject json = (JObject)JsonConvert.DeserializeObject(response.Content.ReadAsStringAsync().Result);
                 var coordinates = json["resourceSets"][0]["resources"][0]["point"]["coordinates"];

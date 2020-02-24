@@ -40,7 +40,7 @@ namespace ProcessingTools.Services
         /// <inheritdoc/>
         public void EnqueueBackgroundWorkItem(Func<CancellationToken, Task> workItem)
         {
-            if (workItem == null)
+            if (workItem is null)
             {
                 throw new ArgumentNullException(nameof(workItem));
             }

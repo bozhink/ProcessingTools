@@ -39,7 +39,7 @@ namespace ProcessingTools.Services.Xml
         /// <inheritdoc/>
         public IDocument Create(XmlNode context, SchemaType schemaType)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

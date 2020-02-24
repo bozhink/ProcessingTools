@@ -44,7 +44,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -55,7 +55,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<IJournalStyleModel> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -66,7 +66,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<IJournalDetailsStyleModel> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -77,7 +77,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<IList<IFloatObjectParseStyleModel>> GetFloatObjectParseStylesAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -88,7 +88,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<IList<IFloatObjectTagStyleModel>> GetFloatObjectTagStylesAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -99,7 +99,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<IList<IReferenceParseStyleModel>> GetReferenceParseStylesAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -110,7 +110,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<IList<IReferenceTagStyleModel>> GetReferenceTagStylesAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -135,7 +135,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<object> InsertAsync(IJournalInsertStyleModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -148,12 +148,12 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidPageNumberException(string.Empty, nameof(skip));
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(string.Empty, nameof(take));
             }
 
             return this.SelectInternalAsync(skip, take);
@@ -167,12 +167,12 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidPageNumberException(string.Empty, nameof(skip));
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(string.Empty, nameof(take));
             }
 
             return this.SelectDetailsInternalAsync(skip, take);
@@ -181,7 +181,7 @@ namespace ProcessingTools.Services.Layout.Styles
         /// <inheritdoc/>
         public Task<object> UpdateAsync(IJournalUpdateStyleModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -201,7 +201,7 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             var journalStyle = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
-            if (journalStyle == null)
+            if (journalStyle is null)
             {
                 return null;
             }
@@ -213,7 +213,7 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             var journalStyle = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
-            if (journalStyle == null)
+            if (journalStyle is null)
             {
                 return null;
             }
@@ -250,7 +250,7 @@ namespace ProcessingTools.Services.Layout.Styles
             var journalStyle = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (journalStyle == null)
+            if (journalStyle is null)
             {
                 throw new InsertUnsuccessfulException();
             }
@@ -264,7 +264,7 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             var journalStyles = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
 
-            if (journalStyles == null || !journalStyles.Any())
+            if (journalStyles is null || !journalStyles.Any())
             {
                 return Array.Empty<IJournalDetailsStyleModel>();
             }
@@ -277,7 +277,7 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             var journalStyles = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 
-            if (journalStyles == null || !journalStyles.Any())
+            if (journalStyles is null || !journalStyles.Any())
             {
                 return Array.Empty<IJournalStyleModel>();
             }
@@ -291,7 +291,7 @@ namespace ProcessingTools.Services.Layout.Styles
             var journalStyle = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (journalStyle == null)
+            if (journalStyle is null)
             {
                 throw new UpdateUnsuccessfulException();
             }

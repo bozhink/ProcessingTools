@@ -155,7 +155,7 @@ namespace ProcessingTools.Services.Bio.Codes
         /// <inheritdoc/>
         public async Task TagKnownSpecimenCodesAsync(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -176,7 +176,7 @@ namespace ProcessingTools.Services.Bio.Codes
         /// <inheritdoc/>
         public async Task TagSpecimenCodesAsync(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

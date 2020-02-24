@@ -32,7 +32,7 @@ namespace ProcessingTools.Services
         /// <inheritdoc/>
         public Task ProcessAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

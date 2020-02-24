@@ -34,7 +34,7 @@ namespace ProcessingTools.Services.Layout
 
         private Task<object> NormalizeAsync(IDocument document, SchemaType schemaType)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

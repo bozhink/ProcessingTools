@@ -24,7 +24,7 @@ namespace ProcessingTools.Services.Net
         /// <returns>Request-response model.</returns>
         public static HttpRequestMessage GetPostJsonHttpRequestMessage(Uri requestUri, object model)
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }

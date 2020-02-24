@@ -48,7 +48,7 @@ namespace ProcessingTools.Services.Net
         /// <inheritdoc/>
         public Task<string> GetStringAsync(Uri requestUri)
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
@@ -75,7 +75,7 @@ namespace ProcessingTools.Services.Net
         /// <inheritdoc/>
         public Task<string> GetStringAsync(Uri requestUri, string acceptContentType)
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
@@ -102,7 +102,7 @@ namespace ProcessingTools.Services.Net
         /// <inheritdoc/>
         public Task<string> GetJsonAsync(Uri requestUri)
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
@@ -126,7 +126,7 @@ namespace ProcessingTools.Services.Net
         public Task<T> GetJsonToObjectAsync<T>(Uri requestUri)
             where T : class
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
@@ -148,7 +148,7 @@ namespace ProcessingTools.Services.Net
         /// <inheritdoc/>
         public Task<string> GetXmlAsync(Uri requestUri)
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
@@ -172,7 +172,7 @@ namespace ProcessingTools.Services.Net
         public Task<T> GetXmlToObjectAsync<T>(Uri requestUri)
             where T : class
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
@@ -199,7 +199,7 @@ namespace ProcessingTools.Services.Net
                 throw new ArgumentNullException(nameof(content));
             }
 
-            if (encoding == null)
+            if (encoding is null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
@@ -212,7 +212,7 @@ namespace ProcessingTools.Services.Net
         /// <inheritdoc/>
         public Task<string> PostAsync(Uri requestUri, string content, string contentType, Encoding encoding)
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
@@ -222,7 +222,7 @@ namespace ProcessingTools.Services.Net
                 throw new ArgumentNullException(nameof(content));
             }
 
-            if (encoding == null)
+            if (encoding is null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
@@ -246,7 +246,7 @@ namespace ProcessingTools.Services.Net
                 throw new ArgumentNullException(nameof(requestUri));
             }
 
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -259,12 +259,12 @@ namespace ProcessingTools.Services.Net
         /// <inheritdoc/>
         public Task<string> PostToStringAsync(Uri requestUri, IDictionary<string, string> values, Encoding encoding)
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
 
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -297,7 +297,7 @@ namespace ProcessingTools.Services.Net
                 throw new ArgumentNullException(nameof(requestUri));
             }
 
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -311,12 +311,12 @@ namespace ProcessingTools.Services.Net
         public Task<T> PostToXmlToObjectAsync<T>(Uri requestUri, IDictionary<string, string> values, Encoding encoding)
             where T : class
         {
-            if (requestUri == null)
+            if (requestUri is null)
             {
                 throw new ArgumentNullException(nameof(requestUri));
             }
 
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }

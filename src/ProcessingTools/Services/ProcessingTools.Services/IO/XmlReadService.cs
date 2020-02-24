@@ -81,7 +81,7 @@ namespace ProcessingTools.Services.IO
         /// <inheritdoc/>
         public XmlReader GetXmlReaderForStream(Stream stream)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -131,7 +131,7 @@ namespace ProcessingTools.Services.IO
         /// <inheritdoc/>
         public Task<XmlDocument> ReadStreamToXmlDocumentAsync(Stream stream)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -147,7 +147,7 @@ namespace ProcessingTools.Services.IO
         /// <inheritdoc/>
         public Task<XmlDocument> ReadXmlReaderToXmlDocumentAsync(XmlReader reader)
         {
-            if (reader == null)
+            if (reader is null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }

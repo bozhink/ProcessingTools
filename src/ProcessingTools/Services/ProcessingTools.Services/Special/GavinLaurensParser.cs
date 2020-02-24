@@ -28,7 +28,7 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public Task<object> ParseAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

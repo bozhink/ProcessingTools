@@ -54,17 +54,17 @@ namespace ProcessingTools.Services.Security
         /// <returns>JWS token.</returns>
         public static string JwsCreateRsaTokenWithEmbeddedCertificate(IDictionary<string, object> header, object payload, X509Certificate2 certificate)
         {
-            if (header == null)
+            if (header is null)
             {
                 throw new ArgumentNullException(nameof(header));
             }
 
-            if (payload == null)
+            if (payload is null)
             {
                 throw new ArgumentNullException(nameof(payload));
             }
 
-            if (certificate == null)
+            if (certificate is null)
             {
                 throw new ArgumentNullException(nameof(certificate));
             }
@@ -83,17 +83,17 @@ namespace ProcessingTools.Services.Security
         /// <returns>JWS token.</returns>
         public static string JwsCreateRsaToken(IDictionary<string, object> header, object payload, X509Certificate2 certificate)
         {
-            if (header == null)
+            if (header is null)
             {
                 throw new ArgumentNullException(nameof(header));
             }
 
-            if (payload == null)
+            if (payload is null)
             {
                 throw new ArgumentNullException(nameof(payload));
             }
 
-            if (certificate == null)
+            if (certificate is null)
             {
                 throw new ArgumentNullException(nameof(certificate));
             }
@@ -127,7 +127,7 @@ namespace ProcessingTools.Services.Security
 
             byte[] jwsSignature = SecurityUtilities.RsaSignHash(encoding.GetBytes(jwsSecuredInput), algorithm, certificate);
 
-            if (jwsSignature == null || jwsSignature.Length < 1)
+            if (jwsSignature is null || jwsSignature.Length < 1)
             {
                 return null;
             }
@@ -241,7 +241,7 @@ namespace ProcessingTools.Services.Security
 
         private static bool JwsVerifyRsaToken(X509Certificate2 certificate, string[] jwsTokenParts, Encoding encoding, string algorithm)
         {
-            if (certificate == null || encoding == null || string.IsNullOrWhiteSpace(algorithm))
+            if (certificate is null || encoding is null || string.IsNullOrWhiteSpace(algorithm))
             {
                 return false;
             }

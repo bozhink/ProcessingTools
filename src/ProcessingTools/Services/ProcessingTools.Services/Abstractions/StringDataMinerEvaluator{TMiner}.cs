@@ -35,7 +35,7 @@ namespace ProcessingTools.Services.Abstractions
         /// <inheritdoc/>
         public Task<IList<string>> EvaluateAsync(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

@@ -28,7 +28,7 @@ namespace ProcessingTools.Services.Layout
         /// <inheritdoc/>
         public Task<object> NormalizeAsync(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

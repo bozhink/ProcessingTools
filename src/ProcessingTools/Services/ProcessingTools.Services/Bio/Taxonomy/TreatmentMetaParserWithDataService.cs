@@ -44,7 +44,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> ParseAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -81,7 +81,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void ReplaceTreatmentMetaClassificationItem(IDocument document, IEnumerable<ITaxonClassification> classification, string genus, TaxonRankType rank)
         {
-            if (classification == null)
+            if (classification is null)
             {
                 throw new ArgumentNullException(nameof(classification));
             }

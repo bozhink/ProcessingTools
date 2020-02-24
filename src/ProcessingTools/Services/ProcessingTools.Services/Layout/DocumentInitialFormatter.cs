@@ -35,7 +35,7 @@ namespace ProcessingTools.Services.Layout
         /// <inheritdoc/>
         public Task<object> FormatAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

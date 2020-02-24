@@ -37,7 +37,7 @@ namespace ProcessingTools.Services.Floats
         /// <inheritdoc/>
         public Task<object> ParseAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

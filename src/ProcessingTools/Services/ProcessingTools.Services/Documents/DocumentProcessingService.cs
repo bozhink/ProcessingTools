@@ -59,28 +59,28 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<object> ParseReferencesAsync(object documentId, object articleId)
         {
-            if (documentId == null)
+            if (documentId is null)
             {
                 throw new ArgumentNullException(nameof(documentId));
             }
 
-            if (articleId == null)
+            if (articleId is null)
             {
                 throw new ArgumentNullException(nameof(articleId));
             }
 
             var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
-            if (journalStyleId == null)
+            if (journalStyleId is null)
             {
                 return null;
             }
 
             var styles = await this.journalStylesDataService.GetReferenceParseStylesAsync(journalStyleId).ConfigureAwait(false);
 
-            var document = await this.GetDocumentAsync(documentId);
+            var document = await this.GetDocumentAsync(documentId).ConfigureAwait(false);
 
             var parsed = await this.referencesParser.ParseAsync(document.XmlDocument.DocumentElement, styles).ConfigureAwait(false);
-            if (parsed == null)
+            if (parsed is null)
             {
                 return null;
             }
@@ -93,28 +93,28 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<object> TagReferencesAsync(object documentId, object articleId)
         {
-            if (documentId == null)
+            if (documentId is null)
             {
                 throw new ArgumentNullException(nameof(documentId));
             }
 
-            if (articleId == null)
+            if (articleId is null)
             {
                 throw new ArgumentNullException(nameof(articleId));
             }
 
             var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
-            if (journalStyleId == null)
+            if (journalStyleId is null)
             {
                 return null;
             }
 
             var styles = await this.journalStylesDataService.GetReferenceTagStylesAsync(journalStyleId).ConfigureAwait(false);
 
-            var document = await this.GetDocumentAsync(documentId);
+            var document = await this.GetDocumentAsync(documentId).ConfigureAwait(false);
 
             var parsed = await this.referencesTagger.TagAsync(document.XmlDocument.DocumentElement, styles).ConfigureAwait(false);
-            if (parsed == null)
+            if (parsed is null)
             {
                 return null;
             }
@@ -127,12 +127,12 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<object> UpdateDocumentMetaAsync(object documentId, object articleId)
         {
-            if (documentId == null)
+            if (documentId is null)
             {
                 throw new ArgumentNullException(nameof(documentId));
             }
 
-            if (articleId == null)
+            if (articleId is null)
             {
                 throw new ArgumentNullException(nameof(articleId));
             }
@@ -143,7 +143,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<object> UpdateArticleDocumentsMetaAsync(object articleId)
         {
-            if (articleId == null)
+            if (articleId is null)
             {
                 throw new ArgumentNullException(nameof(articleId));
             }

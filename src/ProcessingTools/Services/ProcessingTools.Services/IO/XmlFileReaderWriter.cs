@@ -97,7 +97,7 @@ namespace ProcessingTools.Services.IO
         /// <inheritdoc/>
         public Task<long> WriteAsync(Stream stream, string fileName, string basePath)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }

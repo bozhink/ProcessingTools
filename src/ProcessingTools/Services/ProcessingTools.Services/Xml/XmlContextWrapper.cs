@@ -16,7 +16,7 @@ namespace ProcessingTools.Services.Xml
         /// <inheritdoc/>
         public XmlDocument Create(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

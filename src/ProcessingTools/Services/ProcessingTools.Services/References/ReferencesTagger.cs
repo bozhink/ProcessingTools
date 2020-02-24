@@ -38,12 +38,12 @@ namespace ProcessingTools.Services.References
         /// <inheritdoc/>
         public Task<object> TagAsync(XmlNode context, IEnumerable<IReferenceTagStyleModel> styles)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (styles == null || !styles.Any())
+            if (styles is null || !styles.Any())
             {
                 return Task.FromResult<object>(false);
             }

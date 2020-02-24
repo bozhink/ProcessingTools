@@ -6,6 +6,7 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -23,6 +24,9 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Core
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
 
+    /// <summary>
+    /// File processor.
+    /// </summary>
     public class FileProcessor : IFileProcessor
     {
         private readonly IArticleMetaHarvester articleMetaHarvester;
@@ -111,9 +115,10 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Core
 
         private async Task<string> ComposeFileNameReplacementPrefixAsync(ProcessingTools.Contracts.Models.IDocument document)
         {
-            var articleMeta = await this.articleMetaHarvester.HarvestAsync(document);
+            var articleMeta = await this.articleMetaHarvester.HarvestAsync(document).ConfigureAwait(false);
 
             string fileNameReplacementPrefix = string.Format(
+                CultureInfo.InvariantCulture,
                 this.journalMeta.FileNamePattern,
                 articleMeta.Volume?.ConvertTo<int>(),
                 articleMeta.Issue?.ConvertTo<int>(),

@@ -23,7 +23,7 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public void ParseInfra(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -55,12 +55,12 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public void ParseTn(IDocument document, XmlDocument template)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (template == null)
+            if (template is null)
             {
                 throw new ArgumentNullException(nameof(template));
             }
@@ -101,12 +101,12 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public void PerformReplace(IDocument document, XmlDocument template)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (template == null)
+            if (template is null)
             {
                 throw new ArgumentNullException(nameof(template));
             }

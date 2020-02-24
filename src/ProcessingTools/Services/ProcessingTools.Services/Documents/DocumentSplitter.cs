@@ -31,7 +31,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public IEnumerable<IDocument> Split(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

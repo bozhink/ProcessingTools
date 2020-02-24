@@ -71,7 +71,7 @@ namespace ProcessingTools.Services.Serialization
         /// <inheritdoc/>
         public void SetNamespaces(XmlNamespaceManager namespaceManager)
         {
-            if (namespaceManager == null)
+            if (namespaceManager is null)
             {
                 throw new ArgumentNullException(nameof(namespaceManager));
             }

@@ -31,12 +31,12 @@ namespace ProcessingTools.Services.Bio.ZooBank
         /// <inheritdoc/>
         public Task<object> CloneAsync(IDocument target, IDocument source)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (source == null)
+            if (source is null)
             {
                 throw new ArgumentNullException(nameof(source));
             }

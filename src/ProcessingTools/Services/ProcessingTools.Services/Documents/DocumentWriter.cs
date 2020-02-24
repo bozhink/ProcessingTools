@@ -34,7 +34,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

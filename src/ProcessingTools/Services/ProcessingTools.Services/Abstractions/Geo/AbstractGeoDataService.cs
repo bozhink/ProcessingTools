@@ -36,7 +36,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
         /// <inheritdoc/>
         public virtual Task<object> DeleteAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -47,7 +47,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
         /// <inheritdoc/>
         public virtual Task<object> DeleteByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -61,7 +61,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
         /// <inheritdoc/>
         public virtual Task<object> InsertAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -81,7 +81,7 @@ namespace ProcessingTools.Services.Abstractions.Geo
         /// <inheritdoc/>
         public virtual Task<object> UpdateAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }

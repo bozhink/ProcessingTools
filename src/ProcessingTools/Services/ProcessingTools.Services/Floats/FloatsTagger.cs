@@ -55,7 +55,7 @@ namespace ProcessingTools.Services.Floats
 
         private object TagSync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

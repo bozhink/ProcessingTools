@@ -39,7 +39,7 @@ namespace ProcessingTools.Services.Files
 
             var mediatypes = await this.resolver.ResolveMediatypeAsync(Path.GetExtension(fileName)).ConfigureAwait(false);
 
-            if (mediatypes == null || !mediatypes.Any())
+            if (mediatypes is null || !mediatypes.Any())
             {
                 return ContentTypes.OctetStream;
             }

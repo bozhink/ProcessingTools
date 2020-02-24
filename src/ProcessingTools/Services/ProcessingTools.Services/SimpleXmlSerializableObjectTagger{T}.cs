@@ -36,17 +36,17 @@ namespace ProcessingTools.Services
         /// <inheritdoc/>
         public Task<object> TagAsync(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> items, string xpath, IContentTaggerSettings settings)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (namespaceManager == null)
+            if (namespaceManager is null)
             {
                 throw new ArgumentNullException(nameof(namespaceManager));
             }
 
-            if (items == null)
+            if (items is null)
             {
                 throw new ArgumentNullException(nameof(items));
             }
@@ -56,7 +56,7 @@ namespace ProcessingTools.Services
                 throw new ArgumentNullException(nameof(xpath));
             }
 
-            if (settings == null)
+            if (settings is null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }

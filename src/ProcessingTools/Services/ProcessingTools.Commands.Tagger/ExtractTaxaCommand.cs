@@ -55,7 +55,7 @@ namespace ProcessingTools.Commands.Tagger
 
             if (settings.ExtractTaxa)
             {
-                var data = await this.harvester.HarvestAsync(context);
+                var data = await this.harvester.HarvestAsync(context).ConfigureAwait(false);
 
                 string message = @"
         Extract all taxa.

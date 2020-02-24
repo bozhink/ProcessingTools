@@ -126,13 +126,13 @@ namespace ProcessingTools.Services.Serialization.Csv
         /// <returns>The expected name of the column as it should appear in the table.</returns>
         private string GetColumnNameInTable(PropertyInfo property)
         {
-            if (property == null)
+            if (property is null)
             {
                 throw new ArgumentNullException(nameof(property));
             }
 
             var attribute = property.GetCustomAttribute<CsvColumnAttribute>(false);
-            if (attribute == null)
+            if (attribute is null)
             {
                 return null;
             }

@@ -21,12 +21,12 @@ namespace ProcessingTools.Services.Validation
         /// <inheritdoc/>
         public Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (reporter == null)
+            if (reporter is null)
             {
                 throw new ArgumentNullException(nameof(reporter));
             }

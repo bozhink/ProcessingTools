@@ -53,7 +53,7 @@ namespace ProcessingTools.Services.Abstractions
         /// <inheritdoc/>
         public Task<T1> HarvestAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

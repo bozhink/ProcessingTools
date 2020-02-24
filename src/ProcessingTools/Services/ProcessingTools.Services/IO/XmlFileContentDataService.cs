@@ -53,7 +53,7 @@ namespace ProcessingTools.Services.IO
                 throw new ArgumentNullException(nameof(fullName));
             }
 
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

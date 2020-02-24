@@ -34,7 +34,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<IDocument> MergeAsync(params string[] fileNames)
         {
-            if (fileNames == null || fileNames.Length < 1)
+            if (fileNames is null || fileNames.Length < 1)
             {
                 throw new ArgumentNullException(nameof(fileNames));
             }

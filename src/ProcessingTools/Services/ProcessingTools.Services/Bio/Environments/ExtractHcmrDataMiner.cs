@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Bio.Environments
         private async Task<IList<IExtractHcmrEnvoTerm>> MineInernalAsync(string context)
         {
             var response = await this.requester.RequestDataAsync(context).ConfigureAwait(false);
-            if (response == null || response.Items == null)
+            if (response is null || response.Items is null)
             {
                 return null;
             }

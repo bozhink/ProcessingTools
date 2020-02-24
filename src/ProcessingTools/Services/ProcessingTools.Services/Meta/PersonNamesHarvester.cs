@@ -22,7 +22,7 @@ namespace ProcessingTools.Services.Meta
         /// <inheritdoc/>
         public Task<IList<IPersonNameModel>> HarvestAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

@@ -39,7 +39,7 @@ namespace ProcessingTools.Services.Abstractions
         /// <inheritdoc/>
         public Task<object> TagAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

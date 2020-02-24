@@ -177,7 +177,7 @@ namespace ProcessingTools.Services.Security
         /// <returns>RSA signature of the source.</returns>
         public static byte[] RsaSignHash(byte[] source, string algorithm, X509Certificate2 certificate)
         {
-            if (source == null || string.IsNullOrEmpty(algorithm) || certificate == null)
+            if (source is null || string.IsNullOrEmpty(algorithm) || certificate is null)
             {
                 return Array.Empty<byte>();
             }
@@ -204,7 +204,7 @@ namespace ProcessingTools.Services.Security
         /// <returns>Verification result of the RSA signature.</returns>
         public static bool RsaVerifyHash(byte[] source, byte[] signature, string algorithm, X509Certificate2 certificate)
         {
-            if (source == null || signature == null || string.IsNullOrEmpty(algorithm) || certificate == null)
+            if (source is null || signature is null || string.IsNullOrEmpty(algorithm) || certificate is null)
             {
                 return false;
             }
@@ -255,12 +255,12 @@ namespace ProcessingTools.Services.Security
         /// <returns>Hash of the source.</returns>
         public static byte[] GetHash(string source, Encoding encoding, HashAlgorithm hashAlgorithm)
         {
-            if (encoding == null)
+            if (encoding is null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
 
-            if (hashAlgorithm == null)
+            if (hashAlgorithm is null)
             {
                 throw new ArgumentNullException(nameof(hashAlgorithm));
             }
@@ -616,7 +616,7 @@ namespace ProcessingTools.Services.Security
         /// </remarks>
         public static void ExportCerFile(string fileName, X509Certificate2 certificate, string password)
         {
-            if (certificate == null)
+            if (certificate is null)
             {
                 throw new ArgumentNullException(nameof(certificate));
             }
@@ -640,7 +640,7 @@ namespace ProcessingTools.Services.Security
         /// </remarks>
         public static void ExportPfxFile(string fileName, X509Certificate2 certificate, string password)
         {
-            if (certificate == null)
+            if (certificate is null)
             {
                 throw new ArgumentNullException(nameof(certificate));
             }

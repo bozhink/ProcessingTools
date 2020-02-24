@@ -28,7 +28,7 @@ namespace ProcessingTools.Services.Xml
                 throw new ArgumentNullException(nameof(xslContent));
             }
 
-            if (cache == null)
+            if (cache is null)
             {
                 throw new ArgumentNullException(nameof(cache));
             }

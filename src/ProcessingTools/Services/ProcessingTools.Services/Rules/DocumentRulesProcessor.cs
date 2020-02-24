@@ -21,12 +21,12 @@ namespace ProcessingTools.Services.Rules
         /// <inheritdoc/>
         public Task<object> ProcessAsync(IDocument context, IEnumerable<IXmlReplaceRuleSetModel> ruleSets)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (ruleSets == null || !ruleSets.Any())
+            if (ruleSets is null || !ruleSets.Any())
             {
                 return Task.FromResult<object>(false);
             }

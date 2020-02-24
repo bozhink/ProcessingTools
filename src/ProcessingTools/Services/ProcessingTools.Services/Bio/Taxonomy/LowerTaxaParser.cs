@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> ParseAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -77,7 +77,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void EnsureFormatting(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -107,7 +107,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void EnsureUncertaintyRank(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -210,7 +210,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void AddTaxonNamePartsToTaxonNameElements(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -240,7 +240,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private IDictionary<string, string> BuildDictionaryOfKnownRanks(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -311,12 +311,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void ResolveWithDictionaryOfKnownRanks(XmlNode context, IDictionary<string, string> dictionary)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (dictionary == null)
+            if (dictionary is null)
             {
                 throw new ArgumentNullException(nameof(dictionary));
             }
@@ -352,7 +352,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                         if (match.Rank != taxonNamePart.Rank)
                         {
                             XmlAttribute rankAttribute = node.Attributes[AttributeNames.Type];
-                            if (rankAttribute == null)
+                            if (rankAttribute is null)
                             {
                                 rankAttribute = document.CreateAttribute(AttributeNames.Type);
                                 node.Attributes.Append(rankAttribute);

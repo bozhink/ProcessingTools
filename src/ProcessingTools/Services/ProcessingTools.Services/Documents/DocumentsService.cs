@@ -74,7 +74,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var document = await this.documentsDataService.GetByIdAsync(id).ConfigureAwait(false);
-            if (document == null || document.ArticleId != articleId)
+            if (document is null || document.ArticleId != articleId)
             {
                 return null;
             }
@@ -101,7 +101,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var document = await this.documentsDataService.GetByIdAsync(id).ConfigureAwait(false);
-            if (document == null || document.ArticleId != articleId)
+            if (document is null || document.ArticleId != articleId)
             {
                 return null;
             }
@@ -123,7 +123,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var document = await this.documentsDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
-            if (document == null || document.ArticleId != articleId)
+            if (document is null || document.ArticleId != articleId)
             {
                 return null;
             }
@@ -232,7 +232,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<object> UpdateAsync(IDocumentUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -243,12 +243,12 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<object> UploadAsync(IDocumentFileModel model, Stream stream, string articleId)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -264,7 +264,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             XmlDocument xmlDocument = await this.xmlReadService.ReadStreamToXmlDocumentAsync(stream).ConfigureAwait(false);
-            if (xmlDocument == null)
+            if (xmlDocument is null)
             {
                 throw new InvalidOperationException("XML document cannot be processed.");
             }

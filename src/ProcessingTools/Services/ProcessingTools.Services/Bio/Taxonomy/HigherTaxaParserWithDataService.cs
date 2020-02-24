@@ -44,7 +44,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<long> ParseAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -60,7 +60,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             }
 
             var response = await this.service.ResolveAsync(uniqueHigherTaxaList).ConfigureAwait(false);
-            if (response == null)
+            if (response is null)
             {
                 throw new ServiceReturnedNullException("Current taxa rank data service instance returned null.");
             }

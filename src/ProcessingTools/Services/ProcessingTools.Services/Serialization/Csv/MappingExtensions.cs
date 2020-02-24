@@ -35,17 +35,17 @@ namespace ProcessingTools.Services.Serialization.Csv
         /// <returns>Mapped object.</returns>
         public static object MapToObjectProperties(this string[] values, Type type, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
 
-            if (propertiesMapping == null)
+            if (propertiesMapping is null)
             {
                 throw new ArgumentNullException(nameof(propertiesMapping));
             }
 
-            if (values == null || values.Length < 1)
+            if (values is null || values.Length < 1)
             {
                 return type.Default();
             }

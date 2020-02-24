@@ -45,7 +45,7 @@ namespace ProcessingTools.Services.Validation
         /// <inheritdoc/>
         protected override async Task<IValidationModel<string>[]> ValidateAsync(IEnumerable<string> items)
         {
-            if (items == null)
+            if (items is null)
             {
                 return null;
             }

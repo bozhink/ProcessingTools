@@ -47,7 +47,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public Task<object> ParseAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -153,7 +153,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void ForceExactSpeciesMatchExpand(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -210,7 +210,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                             .ForAll(t =>
                             {
                                 var fullNameAttribute = t.Attributes[AttributeNames.FullName];
-                                if (fullNameAttribute == null)
+                                if (fullNameAttribute is null)
                                 {
                                     t.SetAttribute(AttributeNames.FullName, genus);
                                 }
@@ -242,7 +242,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private IEnumerable<string> GetListOfNonShortenedTaxa(XmlNode node)
         {
-            if (node == null)
+            if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
@@ -292,7 +292,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private IEnumerable<string> GetListOfShortenedTaxa(XmlNode node)
         {
-            if (node == null)
+            if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }

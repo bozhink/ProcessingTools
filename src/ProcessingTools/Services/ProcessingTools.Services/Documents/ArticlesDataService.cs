@@ -54,7 +54,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> InsertAsync(IArticleInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -65,7 +65,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> UpdateAsync(IArticleUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -76,7 +76,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -87,7 +87,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<IArticleModel> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -98,7 +98,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<IArticleDetailsModel> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -111,12 +111,12 @@ namespace ProcessingTools.Services.Documents
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidPageNumberException(string.Empty, nameof(skip));
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(string.Empty, nameof(take));
             }
 
             return this.SelectInternalAsync(skip, take);
@@ -127,12 +127,12 @@ namespace ProcessingTools.Services.Documents
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidPageNumberException(string.Empty, nameof(skip));
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(string.Empty, nameof(take));
             }
 
             return this.SelectDetailsInternalAsync(skip, take);
@@ -145,7 +145,7 @@ namespace ProcessingTools.Services.Documents
         public async Task<IList<IArticleJournalModel>> GetArticleJournalsAsync()
         {
             var journals = await this.dataAccessObject.GetArticleJournalsAsync().ConfigureAwait(false);
-            if (journals == null || !journals.Any())
+            if (journals is null || !journals.Any())
             {
                 return Array.Empty<IArticleJournalModel>();
             }
@@ -159,7 +159,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> FinalizeAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -172,7 +172,7 @@ namespace ProcessingTools.Services.Documents
             var article = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (article == null)
+            if (article is null)
             {
                 throw new InsertUnsuccessfulException();
             }
@@ -187,7 +187,7 @@ namespace ProcessingTools.Services.Documents
             var article = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (article == null)
+            if (article is null)
             {
                 throw new UpdateUnsuccessfulException();
             }
@@ -209,7 +209,7 @@ namespace ProcessingTools.Services.Documents
         {
             var article = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
-            if (article == null)
+            if (article is null)
             {
                 return null;
             }
@@ -223,7 +223,7 @@ namespace ProcessingTools.Services.Documents
         {
             var article = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
-            if (article == null)
+            if (article is null)
             {
                 return null;
             }
@@ -237,7 +237,7 @@ namespace ProcessingTools.Services.Documents
         {
             var articles = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 
-            if (articles == null || !articles.Any())
+            if (articles is null || !articles.Any())
             {
                 return Array.Empty<IArticleModel>();
             }
@@ -249,7 +249,7 @@ namespace ProcessingTools.Services.Documents
         private async Task<IList<IArticleDetailsModel>> SelectDetailsInternalAsync(int skip, int take)
         {
             var articles = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-            if (articles == null || !articles.Any())
+            if (articles is null || !articles.Any())
             {
                 return Array.Empty<IArticleDetailsModel>();
             }
@@ -263,7 +263,7 @@ namespace ProcessingTools.Services.Documents
             var article = await this.dataAccessObject.FinalizeAsync(id).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (article == null)
+            if (article is null)
             {
                 throw new UpdateUnsuccessfulException();
             }

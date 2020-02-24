@@ -36,12 +36,12 @@ namespace ProcessingTools.Services.History
         /// <inheritdoc/>
         public Task<object> AddAsync(object objectId, object source)
         {
-            if (objectId == null)
+            if (objectId is null)
             {
                 throw new ArgumentNullException(nameof(objectId));
             }
 
-            if (source == null)
+            if (source is null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
@@ -52,12 +52,12 @@ namespace ProcessingTools.Services.History
         /// <inheritdoc/>
         public Task<object[]> GetAsync(object objectId, Type objectType)
         {
-            if (objectId == null)
+            if (objectId is null)
             {
                 throw new ArgumentNullException(nameof(objectId));
             }
 
-            if (objectType == null)
+            if (objectType is null)
             {
                 throw new ArgumentNullException(nameof(objectType));
             }
@@ -68,12 +68,12 @@ namespace ProcessingTools.Services.History
         /// <inheritdoc/>
         public Task<object[]> GetAsync(object objectId, Type objectType, int skip, int take)
         {
-            if (objectId == null)
+            if (objectId is null)
             {
                 throw new ArgumentNullException(nameof(objectId));
             }
 
-            if (objectType == null)
+            if (objectType is null)
             {
                 throw new ArgumentNullException(nameof(objectType));
             }
@@ -94,7 +94,7 @@ namespace ProcessingTools.Services.History
         /// <inheritdoc/>
         public Task<IObjectHistory[]> GetHistoriesAsync(object objectId)
         {
-            if (objectId == null)
+            if (objectId is null)
             {
                 throw new ArgumentNullException(nameof(objectId));
             }
@@ -105,7 +105,7 @@ namespace ProcessingTools.Services.History
         /// <inheritdoc/>
         public Task<IObjectHistory[]> GetHistoriesAsync(object objectId, int skip, int take)
         {
-            if (objectId == null)
+            if (objectId is null)
             {
                 throw new ArgumentNullException(nameof(objectId));
             }
@@ -154,7 +154,7 @@ namespace ProcessingTools.Services.History
         private async Task<IObjectHistory[]> GetHistoriesInternalAsync(object objectId)
         {
             var data = await this.dataAccessObject.GetAsync(objectId).ConfigureAwait(false);
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<IObjectHistory>();
             }
@@ -167,7 +167,7 @@ namespace ProcessingTools.Services.History
         private async Task<IObjectHistory[]> GetHistoriesInternalAsync(object objectId, int skip, int take)
         {
             var data = await this.dataAccessObject.GetAsync(objectId, skip, take).ConfigureAwait(false);
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<IObjectHistory>();
             }
@@ -180,7 +180,7 @@ namespace ProcessingTools.Services.History
         private async Task<object[]> GetInternalAsync(object objectId, Type objectType)
         {
             var data = await this.dataAccessObject.GetAsync(objectId).ConfigureAwait(false);
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<object>();
             }
@@ -193,7 +193,7 @@ namespace ProcessingTools.Services.History
         private async Task<object[]> GetInternalAsync(object objectId, Type objectType, int skip, int take)
         {
             var data = await this.dataAccessObject.GetAsync(objectId, skip, take).ConfigureAwait(false);
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<object>();
             }

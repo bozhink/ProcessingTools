@@ -25,7 +25,7 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public Task<object> FormatAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Special
 
         private void FinalFormat(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -65,7 +65,7 @@ namespace ProcessingTools.Services.Special
 
         private void InitialFormat(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -81,7 +81,7 @@ namespace ProcessingTools.Services.Special
 
         private void Split1(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -98,7 +98,7 @@ namespace ProcessingTools.Services.Special
 
         private void Split2(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

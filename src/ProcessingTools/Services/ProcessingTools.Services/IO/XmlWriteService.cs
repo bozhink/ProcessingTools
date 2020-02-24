@@ -53,7 +53,7 @@ namespace ProcessingTools.Services.IO
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -91,7 +91,7 @@ namespace ProcessingTools.Services.IO
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            if (reader == null)
+            if (reader is null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }

@@ -38,25 +38,25 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<IArticleFullModel> GetArticleAsync(string articleId)
         {
-            if (articleId == null)
+            if (articleId is null)
             {
                 return null;
             }
 
             var article = await this.articlesDataService.GetByIdAsync(articleId).ConfigureAwait(false);
-            if (article == null)
+            if (article is null)
             {
                 return null;
             }
 
             var journal = await this.journalsDataService.GetByIdAsync(article.JournalId).ConfigureAwait(false);
-            if (journal == null)
+            if (journal is null)
             {
                 return null;
             }
 
             var publisher = await this.publishersDataService.GetByIdAsync(journal.PublisherId).ConfigureAwait(false);
-            if (publisher == null)
+            if (publisher is null)
             {
                 return null;
             }
@@ -72,7 +72,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<IArticleDocumentsFullModel> GetArticleDocumentsAsync(string articleId)
         {
-            if (articleId == null)
+            if (articleId is null)
             {
                 return null;
             }
@@ -80,19 +80,19 @@ namespace ProcessingTools.Services.Documents
             var documentsTask = this.documentsDataService.GetArticleDocumentsAsync(articleId);
 
             var article = await this.articlesDataService.GetByIdAsync(articleId).ConfigureAwait(false);
-            if (article == null)
+            if (article is null)
             {
                 return null;
             }
 
             var journal = await this.journalsDataService.GetByIdAsync(article.JournalId).ConfigureAwait(false);
-            if (journal == null)
+            if (journal is null)
             {
                 return null;
             }
 
             var publisher = await this.publishersDataService.GetByIdAsync(journal.PublisherId).ConfigureAwait(false);
-            if (publisher == null)
+            if (publisher is null)
             {
                 return null;
             }
@@ -111,31 +111,31 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<IDocumentFullModel> GetDocumentAsync(string documentId)
         {
-            if (documentId == null)
+            if (documentId is null)
             {
                 return null;
             }
 
             var document = await this.documentsDataService.GetByIdAsync(documentId).ConfigureAwait(false);
-            if (document == null)
+            if (document is null)
             {
                 return null;
             }
 
             var article = await this.articlesDataService.GetByIdAsync(document.ArticleId).ConfigureAwait(false);
-            if (article == null)
+            if (article is null)
             {
                 return null;
             }
 
             var journal = await this.journalsDataService.GetByIdAsync(article.JournalId).ConfigureAwait(false);
-            if (journal == null)
+            if (journal is null)
             {
                 return null;
             }
 
             var publisher = await this.publishersDataService.GetByIdAsync(journal.PublisherId).ConfigureAwait(false);
-            if (publisher == null)
+            if (publisher is null)
             {
                 return null;
             }

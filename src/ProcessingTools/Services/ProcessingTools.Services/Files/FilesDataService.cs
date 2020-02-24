@@ -34,7 +34,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<bool> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -55,7 +55,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<IFileMetadata> GetMetadataAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -66,7 +66,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public StreamReader GetReader(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -84,7 +84,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Stream ReadToStream(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -102,7 +102,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<IFileMetadata> UpdateAsync(IFileMetadata metadata)
         {
-            if (metadata == null)
+            if (metadata is null)
             {
                 throw new ArgumentNullException(nameof(metadata));
             }
@@ -113,12 +113,12 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<IFileMetadata> UpdateAsync(IFileMetadata metadata, Stream stream)
         {
-            if (metadata == null)
+            if (metadata is null)
             {
                 throw new ArgumentNullException(nameof(metadata));
             }
 
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -129,12 +129,12 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<IFileMetadata> UpdateAsync(object id, Stream stream)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -145,12 +145,12 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<object> WriteAsync(object id, StreamReader streamReader)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (streamReader == null)
+            if (streamReader is null)
             {
                 throw new ArgumentNullException(nameof(streamReader));
             }
@@ -161,12 +161,12 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<object> WriteAsync(object id, Stream stream)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }

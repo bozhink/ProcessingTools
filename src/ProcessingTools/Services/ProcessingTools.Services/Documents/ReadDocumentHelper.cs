@@ -35,7 +35,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<IDocument> ReadAsync(bool mergeInputFiles, params string[] fileNames)
         {
-            if (fileNames == null || fileNames.Length < 1)
+            if (fileNames is null || fileNames.Length < 1)
             {
                 throw new ArgumentNullException(nameof(fileNames));
             }
@@ -56,7 +56,7 @@ namespace ProcessingTools.Services.Documents
                 document = await this.documentReader.ReadDocumentAsync(fileNames[0]).ConfigureAwait(false);
             }
 
-            await this.documentNormalizer.NormalizeAsync(document);
+            await this.documentNormalizer.NormalizeAsync(document).ConfigureAwait(false);
 
             return document;
         }

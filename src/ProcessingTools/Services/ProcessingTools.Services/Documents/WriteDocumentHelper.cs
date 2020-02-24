@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(outputFileName));
             }
 
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -77,7 +77,7 @@ namespace ProcessingTools.Services.Documents
 
         private async Task<object> WriteSingleDocumentAsync(string fileName, IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 return false;
             }

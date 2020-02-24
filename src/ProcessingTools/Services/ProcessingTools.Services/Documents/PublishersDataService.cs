@@ -50,7 +50,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -61,7 +61,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<IPublisherModel> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -72,7 +72,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<IPublisherDetailsModel> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -83,7 +83,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> InsertAsync(IPublisherInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -96,12 +96,12 @@ namespace ProcessingTools.Services.Documents
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidPageNumberException(string.Empty, nameof(skip));
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(string.Empty, nameof(take));
             }
 
             return this.SelectInternalAsync(skip, take);
@@ -115,12 +115,12 @@ namespace ProcessingTools.Services.Documents
         {
             if (skip < PaginationConstants.MinimalPageNumber)
             {
-                throw new InvalidPageNumberException();
+                throw new InvalidPageNumberException(string.Empty, nameof(skip));
             }
 
             if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
-                throw new InvalidItemsPerPageException();
+                throw new InvalidItemsPerPageException(string.Empty, nameof(take));
             }
 
             return this.SelectDetailsInternalAsync(skip, take);
@@ -129,7 +129,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public Task<object> UpdateAsync(IPublisherUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -149,7 +149,7 @@ namespace ProcessingTools.Services.Documents
         {
             var publisher = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
-            if (publisher == null)
+            if (publisher is null)
             {
                 return null;
             }
@@ -163,7 +163,7 @@ namespace ProcessingTools.Services.Documents
         {
             var publisher = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
-            if (publisher == null)
+            if (publisher is null)
             {
                 return null;
             }
@@ -178,7 +178,7 @@ namespace ProcessingTools.Services.Documents
             var publisher = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (publisher == null)
+            if (publisher is null)
             {
                 throw new InsertUnsuccessfulException();
             }
@@ -192,7 +192,7 @@ namespace ProcessingTools.Services.Documents
         {
             var publishers = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
 
-            if (publishers == null || !publishers.Any())
+            if (publishers is null || !publishers.Any())
             {
                 return Array.Empty<IPublisherDetailsModel>();
             }
@@ -205,7 +205,7 @@ namespace ProcessingTools.Services.Documents
         {
             var publishers = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 
-            if (publishers == null || !publishers.Any())
+            if (publishers is null || !publishers.Any())
             {
                 return Array.Empty<IPublisherModel>();
             }
@@ -219,7 +219,7 @@ namespace ProcessingTools.Services.Documents
             var publisher = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (publisher == null)
+            if (publisher is null)
             {
                 throw new UpdateUnsuccessfulException();
             }

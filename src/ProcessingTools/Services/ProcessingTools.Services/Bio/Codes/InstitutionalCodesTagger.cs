@@ -46,7 +46,7 @@ namespace ProcessingTools.Services.Bio.Codes
         /// <inheritdoc/>
         public Task<object> TagAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

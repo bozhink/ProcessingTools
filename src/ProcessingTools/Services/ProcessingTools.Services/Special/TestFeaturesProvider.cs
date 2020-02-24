@@ -20,7 +20,7 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public void ExtractSystemChecklistAuthority(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -35,7 +35,7 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclature(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -56,7 +56,7 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public void WrapEmptySuperscriptsInFootnoteXrefTag(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -82,7 +82,7 @@ namespace ProcessingTools.Services.Special
         /// <inheritdoc/>
         public void RenumerateFootNotes(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

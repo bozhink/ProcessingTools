@@ -80,12 +80,12 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<object> CreateFromFileAsync(IArticleFileModel model, Stream stream, string journalId)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -96,7 +96,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             XmlDocument xmlDocument = await this.xmlReadService.ReadStreamToXmlDocumentAsync(stream).ConfigureAwait(false);
-            if (xmlDocument == null)
+            if (xmlDocument is null)
             {
                 throw new InvalidOperationException("XML document cannot be processed.");
             }

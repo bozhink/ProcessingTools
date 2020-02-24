@@ -26,7 +26,7 @@ namespace ProcessingTools.Services.Serialization.Csv
         /// <returns>List of mapped object.</returns>
         public IEnumerable<T> MapTableToObjects<T>(IEnumerable<string[]> table, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
-            if (table == null || table.Any())
+            if (table is null || table.Any())
             {
                 return new List<T> { };
             }
@@ -51,7 +51,7 @@ namespace ProcessingTools.Services.Serialization.Csv
         /// <returns>List of mapped object.</returns>
         public IEnumerable<object> MapTableToObjects(Type type, IEnumerable<string[]> table, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
-            if (table == null || table.Any())
+            if (table is null || table.Any())
             {
                 return new List<object> { };
             }

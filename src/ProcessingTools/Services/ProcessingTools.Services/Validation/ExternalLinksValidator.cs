@@ -35,12 +35,12 @@ namespace ProcessingTools.Services.Validation
         /// <inheritdoc/>
         public Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (reporter == null)
+            if (reporter is null)
             {
                 throw new ArgumentNullException(nameof(reporter));
             }
@@ -54,7 +54,7 @@ namespace ProcessingTools.Services.Validation
 
             var externalLinks = data?.Select(e => e.FullAddress).Distinct().ToArray();
 
-            if (externalLinks == null || externalLinks.Length < 1)
+            if (externalLinks is null || externalLinks.Length < 1)
             {
                 reporter.AppendContent("Warning: No external links found.");
                 return false;

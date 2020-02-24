@@ -27,7 +27,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private object Format(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
@@ -41,7 +41,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void CleanTitleNodeContent(XmlNode titleNode)
         {
-            if (titleNode == null)
+            if (titleNode is null)
             {
                 return;
             }
@@ -54,7 +54,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void FormatNomencatureContent(IDocument document, XmlNode titleNode)
         {
-            if (titleNode == null)
+            if (titleNode is null)
             {
                 return;
             }
@@ -115,7 +115,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void FormatObjectIdInNomenclature(XmlNode nomenclature)
         {
-            if (nomenclature == null)
+            if (nomenclature is null)
             {
                 return;
             }
@@ -132,7 +132,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void ProcessAuthorityStatusNode(IDocument document, XmlNode authorityStatusNode)
         {
-            if (authorityStatusNode == null)
+            if (authorityStatusNode is null)
             {
                 return;
             }
@@ -153,7 +153,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 Namespaces.TaxPubNamespaceUri);
 
             var statusNode = this.SelectTaxonStatusNode(document, authorityStatusNode);
-            if (statusNode == null)
+            if (statusNode is null)
             {
                 var authorityNode = authorityStatusNode.OwnerDocument.CreateElement(
                     Namespaces.TaxPubNamespacePrefix,
@@ -226,7 +226,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void TagAuthorityStatus(XmlNode titleNode, XmlNode taxonNameNode)
         {
-            if (titleNode == null || taxonNameNode == null)
+            if (titleNode is null || taxonNameNode is null)
             {
                 return;
             }
@@ -243,7 +243,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private void TagLabel(XmlNode titleNode, XmlNode taxonNameNode)
         {
-            if (titleNode == null || taxonNameNode == null)
+            if (titleNode is null || taxonNameNode is null)
             {
                 return;
             }

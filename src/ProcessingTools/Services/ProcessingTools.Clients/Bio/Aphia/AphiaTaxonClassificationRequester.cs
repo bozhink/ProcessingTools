@@ -29,7 +29,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
                 return Array.Empty<ITaxonClassification>();
             }
 
-            var aphiaRecords = await this.GetAphiaRecordsAsync(name);
+            var aphiaRecords = await this.GetAphiaRecordsAsync(name).ConfigureAwait(false);
 
             var result = new HashSet<ITaxonClassification>();
 

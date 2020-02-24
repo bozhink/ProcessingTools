@@ -59,7 +59,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private IList<string> ValidateInputItems(IEnumerable<string> items)
         {
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 throw new ArgumentNullException(nameof(items));
             }

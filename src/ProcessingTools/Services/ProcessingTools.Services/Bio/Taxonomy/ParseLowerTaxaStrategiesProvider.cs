@@ -22,7 +22,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         /// <param name="strategyFactory">Strategy factory.</param>
         public ParseLowerTaxaStrategiesProvider(Func<Type, IParseLowerTaxaStrategy> strategyFactory)
         {
-            if (strategyFactory == null)
+            if (strategyFactory is null)
             {
                 throw new ArgumentNullException(nameof(strategyFactory));
             }

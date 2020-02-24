@@ -39,7 +39,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
 
         private object Parse(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

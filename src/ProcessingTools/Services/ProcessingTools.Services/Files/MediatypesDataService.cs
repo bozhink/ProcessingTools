@@ -54,7 +54,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -65,7 +65,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<IMediatypeModel> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -76,7 +76,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<IMediatypeDetailsModel> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -94,7 +94,7 @@ namespace ProcessingTools.Services.Files
 
             var mediatype = await this.dataAccessObject.GetMediatypeByExtensionAsync(extension).ConfigureAwait(false);
 
-            if (mediatype == null)
+            if (mediatype is null)
             {
                 return null;
             }
@@ -112,7 +112,7 @@ namespace ProcessingTools.Services.Files
 
             var mediatypes = await this.dataAccessObject.GetMediatypesByExtensionAsync(extension).ConfigureAwait(false);
 
-            if (mediatypes == null || !mediatypes.Any())
+            if (mediatypes is null || !mediatypes.Any())
             {
                 return Array.Empty<IMediatypeMetaModel>();
             }
@@ -135,7 +135,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<object> InsertAsync(IMediatypeInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -181,7 +181,7 @@ namespace ProcessingTools.Services.Files
         /// <inheritdoc/>
         public Task<object> UpdateAsync(IMediatypeUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -201,7 +201,7 @@ namespace ProcessingTools.Services.Files
         {
             var mediatype = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
-            if (mediatype == null)
+            if (mediatype is null)
             {
                 return null;
             }
@@ -215,7 +215,7 @@ namespace ProcessingTools.Services.Files
         {
             var mediatype = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
-            if (mediatype == null)
+            if (mediatype is null)
             {
                 return null;
             }
@@ -230,7 +230,7 @@ namespace ProcessingTools.Services.Files
             var mediatype = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (mediatype == null)
+            if (mediatype is null)
             {
                 throw new InsertUnsuccessfulException();
             }
@@ -243,7 +243,7 @@ namespace ProcessingTools.Services.Files
         private async Task<IList<IMediatypeDetailsModel>> SelectDetailsInternalAsync(int skip, int take)
         {
             var mediatypes = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-            if (mediatypes == null || !mediatypes.Any())
+            if (mediatypes is null || !mediatypes.Any())
             {
                 return Array.Empty<IMediatypeDetailsModel>();
             }
@@ -256,7 +256,7 @@ namespace ProcessingTools.Services.Files
         {
             var mediatypes = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
 
-            if (mediatypes == null || !mediatypes.Any())
+            if (mediatypes is null || !mediatypes.Any())
             {
                 return Array.Empty<IMediatypeModel>();
             }
@@ -270,7 +270,7 @@ namespace ProcessingTools.Services.Files
             var mediatype = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
-            if (mediatype == null)
+            if (mediatype is null)
             {
                 throw new UpdateUnsuccessfulException();
             }

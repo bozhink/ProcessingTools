@@ -30,7 +30,7 @@ namespace ProcessingTools.Services.Content
         /// <inheritdoc/>
         public async Task<string> HarvestAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

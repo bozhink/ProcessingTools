@@ -32,17 +32,17 @@ namespace ProcessingTools.Services
         /// <inheritdoc/>
         public Task<object> TagAsync(IDocument document, IEnumerable<string> items, XmlElement tagModel, string xpath)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (items == null)
+            if (items is null)
             {
                 throw new ArgumentNullException(nameof(items));
             }
 
-            if (tagModel == null)
+            if (tagModel is null)
             {
                 throw new ArgumentNullException(nameof(tagModel));
             }

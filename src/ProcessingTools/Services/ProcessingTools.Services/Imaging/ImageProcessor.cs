@@ -19,7 +19,7 @@ namespace ProcessingTools.Services.Imaging
         /// <inheritdoc/>
         public Task<byte[]> ResizeAsync(byte[] sourceImage, int width)
         {
-            if (sourceImage == null)
+            if (sourceImage is null)
             {
                 throw new ArgumentNullException(nameof(sourceImage));
             }
@@ -45,7 +45,7 @@ namespace ProcessingTools.Services.Imaging
         /// <inheritdoc/>
         public Stream Resize(Stream sourceImage, int width)
         {
-            if (sourceImage == null)
+            if (sourceImage is null)
             {
                 throw new ArgumentNullException(nameof(sourceImage));
             }
@@ -75,7 +75,7 @@ namespace ProcessingTools.Services.Imaging
 
                     using (var resized = original.Resize(new SKImageInfo(width, height), SKFilterQuality.High))
                     {
-                        if (resized == null)
+                        if (resized is null)
                         {
                             return;
                         }

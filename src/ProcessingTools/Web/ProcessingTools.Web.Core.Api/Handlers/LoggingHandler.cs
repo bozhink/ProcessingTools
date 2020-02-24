@@ -30,24 +30,29 @@ namespace ProcessingTools.Web.Core.Api.Handlers
         /// <inheritdoc/>
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.AppendLine("Request:");
             stringBuilder.AppendLine(request.ToString());
             if (request.Content != null)
             {
-                stringBuilder.AppendLine(await request.Content.ReadAsStringAsync());
+                stringBuilder.AppendLine(await request.Content.ReadAsStringAsync().ConfigureAwait(false));
             }
 
             stringBuilder.AppendLine();
 
-            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+            HttpResponseMessage response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
             stringBuilder.AppendLine("Response:");
             stringBuilder.AppendLine(response.ToString());
             if (response.Content != null)
             {
-                stringBuilder.AppendLine(await response.Content.ReadAsStringAsync());
+                stringBuilder.AppendLine(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
             }
 
             stringBuilder.AppendLine();

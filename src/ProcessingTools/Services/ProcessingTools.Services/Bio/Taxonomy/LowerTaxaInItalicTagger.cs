@@ -41,7 +41,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

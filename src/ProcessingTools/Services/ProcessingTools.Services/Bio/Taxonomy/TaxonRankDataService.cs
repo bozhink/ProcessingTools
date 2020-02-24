@@ -96,7 +96,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private IList<ITaxonRank> ValidateTaxa(IEnumerable<ITaxonRank> taxonRanks)
         {
-            if (taxonRanks == null || !taxonRanks.Any())
+            if (taxonRanks is null || !taxonRanks.Any())
             {
                 throw new ArgumentNullException(nameof(taxonRanks));
             }

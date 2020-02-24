@@ -31,7 +31,7 @@ namespace ProcessingTools.Services.Layout
         /// <inheritdoc/>
         public async Task<object> NormalizeAsync(IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 return false;
             }

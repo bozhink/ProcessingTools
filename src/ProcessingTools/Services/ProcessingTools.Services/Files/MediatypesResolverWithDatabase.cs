@@ -47,7 +47,7 @@ namespace ProcessingTools.Services.Files
             {
                 var response = await this.dataAccessObject.GetMediatypesByExtensionAsync(extension).ConfigureAwait(false);
 
-                if (response == null || !response.Any())
+                if (response is null || !response.Any())
                 {
                     return this.GetDefaultResult();
                 }

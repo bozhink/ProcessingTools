@@ -60,7 +60,7 @@ namespace ProcessingTools.Services.IO
         /// <inheritdoc/>
         public Task<XmlDocument> ReadStreamToXmlDocumentAsync(Stream stream)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -128,7 +128,7 @@ namespace ProcessingTools.Services.IO
 
         private XmlDocument RestoreXmlDocument(string fileName)
         {
-            if (fileName == null)
+            if (fileName is null)
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
@@ -156,7 +156,7 @@ namespace ProcessingTools.Services.IO
 
         private XmlDocument RestoreXmlDocument(Stream stream)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }

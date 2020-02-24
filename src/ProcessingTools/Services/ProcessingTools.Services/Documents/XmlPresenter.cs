@@ -33,7 +33,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<string> GetHtmlAsync(object id, string articleId)
         {
-            if (id == null || string.IsNullOrWhiteSpace(articleId))
+            if (id is null || string.IsNullOrWhiteSpace(articleId))
             {
                 return null;
             }
@@ -57,7 +57,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<string> GetXmlAsync(object id, string articleId)
         {
-            if (id == null || string.IsNullOrWhiteSpace(articleId))
+            if (id is null || string.IsNullOrWhiteSpace(articleId))
             {
                 return null;
             }
@@ -80,7 +80,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> SetHtmlAsync(object id, string articleId, string content)
         {
-            if (id == null || string.IsNullOrWhiteSpace(articleId))
+            if (id is null || string.IsNullOrWhiteSpace(articleId))
             {
                 return false;
             }
@@ -113,7 +113,7 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> SetXmlAsync(object id, string articleId, string content)
         {
-            if (id == null || string.IsNullOrWhiteSpace(articleId))
+            if (id is null || string.IsNullOrWhiteSpace(articleId))
             {
                 return false;
             }

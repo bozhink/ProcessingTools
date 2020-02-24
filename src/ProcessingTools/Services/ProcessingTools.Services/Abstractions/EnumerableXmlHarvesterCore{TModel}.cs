@@ -31,18 +31,18 @@ namespace ProcessingTools.Services.Abstractions
         /// <inheritdoc/>
         public Task<IList<TModel>> HarvestAsync(XmlNode context, Func<XmlDocument, IList<TModel>> action)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (action == null)
+            if (action is null)
             {
                 throw new ArgumentNullException(nameof(action));
             }
 
             var document = this.contextWrapper.Create(context);
-            if (document == null)
+            if (document is null)
             {
                 return Task.FromResult<IList<TModel>>(Array.Empty<TModel>());
             }
@@ -53,18 +53,18 @@ namespace ProcessingTools.Services.Abstractions
         /// <inheritdoc/>
         public Task<IList<TModel>> HarvestAsync(XmlNode context, Func<XmlDocument, Task<IList<TModel>>> actionAsync)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (actionAsync == null)
+            if (actionAsync is null)
             {
                 throw new ArgumentNullException(nameof(actionAsync));
             }
 
             var document = this.contextWrapper.Create(context);
-            if (document == null)
+            if (document is null)
             {
                 return Task.FromResult<IList<TModel>>(Array.Empty<TModel>());
             }

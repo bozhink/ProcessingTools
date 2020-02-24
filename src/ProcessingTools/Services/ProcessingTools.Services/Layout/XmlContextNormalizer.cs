@@ -29,7 +29,7 @@ namespace ProcessingTools.Services.Layout
         /// <inheritdoc/>
         public Task<string> NormalizeAsync(XmlNode context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

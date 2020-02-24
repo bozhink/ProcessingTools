@@ -51,7 +51,7 @@ namespace ProcessingTools.Services.Geo.Coordinates
         {
             return Task.Run<IList<ICoordinateStringModel>>(() =>
             {
-                if (coordinates == null || !coordinates.Any())
+                if (coordinates is null || !coordinates.Any())
                 {
                     return Array.Empty<ICoordinateStringModel>();
                 }

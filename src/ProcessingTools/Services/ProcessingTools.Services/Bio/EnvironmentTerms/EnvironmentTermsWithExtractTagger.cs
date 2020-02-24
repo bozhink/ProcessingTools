@@ -42,7 +42,7 @@ namespace ProcessingTools.Services.Bio.EnvironmentTerms
         /// <inheritdoc/>
         public Task<object> TagAsync(IDocument context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -52,7 +52,7 @@ namespace ProcessingTools.Services.Bio.EnvironmentTerms
 
         private async Task<object> TagInternalAsync(IDocument context)
         {
-            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement);
+            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
             var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
                 .Select(t => new EnvoExtractHcmrSerializableModel
                 {

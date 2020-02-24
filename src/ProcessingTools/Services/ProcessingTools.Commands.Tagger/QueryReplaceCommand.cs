@@ -54,7 +54,7 @@ namespace ProcessingTools.Commands.Tagger
 
             string queryFileName = settings.FileNames[2];
 
-            var processedContent = await this.queryReplacer.ReplaceAsync(document.Xml, queryFileName);
+            var processedContent = await this.queryReplacer.ReplaceAsync(document.Xml, queryFileName).ConfigureAwait(false);
 
             document.Xml = processedContent;
 

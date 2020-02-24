@@ -48,7 +48,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var metaData = await this.documentMetaResolver.GetDocumentAsync(documentId).ConfigureAwait(false);
-            if (metaData == null)
+            if (metaData is null)
             {
                 return false;
             }
@@ -65,7 +65,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var metaData = await this.documentMetaResolver.GetArticleDocumentsAsync(articleId).ConfigureAwait(false);
-            if (metaData == null || !metaData.Documents.Any())
+            if (metaData is null || !metaData.Documents.Any())
             {
                 return false;
             }
