@@ -31,6 +31,11 @@ namespace ProcessingTools.Ninject.Interceptors
         /// <inheritdoc/>
         public void Intercept(IInvocation invocation)
         {
+            if (invocation is null)
+            {
+                throw new ArgumentNullException(nameof(invocation));
+            }
+
             if (invocation.Request.Target is ICommandRunner && invocation.Request.Method.Name == nameof(ICommandRunner.RunAsync))
             {
                 var target = invocation.Request.Target as ICommandRunner;

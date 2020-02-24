@@ -7,11 +7,11 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
     using System;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts.Models.ExternalLinks;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.ExternalLinks;
     using ProcessingTools.Contracts.Services.Xml;
+    using ProcessingTools.Extensions.Dynamic;
     using ProcessingTools.Services.ExternalLinks;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]

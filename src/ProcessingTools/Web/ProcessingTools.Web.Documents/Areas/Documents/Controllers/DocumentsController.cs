@@ -13,6 +13,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Web.Services.Documents;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Documents.Documents;
 

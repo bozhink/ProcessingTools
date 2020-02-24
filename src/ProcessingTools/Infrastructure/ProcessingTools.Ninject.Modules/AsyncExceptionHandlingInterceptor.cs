@@ -3,16 +3,14 @@
 // </copyright>
 
 // See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
-
 namespace ProcessingTools.Ninject.Interceptors
 {
     using System;
     using System.Reflection;
     using System.Threading.Tasks;
     using global::Ninject.Extensions.Interception;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Dynamic;
 
     /// <summary>
     /// Async exception handling interceptor.
@@ -36,6 +34,11 @@ namespace ProcessingTools.Ninject.Interceptors
         /// <inheritdoc/>
         public void Intercept(IInvocation invocation)
         {
+            if (invocation is null)
+            {
+                throw new ArgumentNullException(nameof(invocation));
+            }
+
             var delegateType = invocation.Request.Method.GetDelegateType();
             switch (delegateType)
             {

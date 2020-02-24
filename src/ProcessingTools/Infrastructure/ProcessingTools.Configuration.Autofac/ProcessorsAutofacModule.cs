@@ -26,6 +26,11 @@ namespace ProcessingTools.Configuration.Autofac
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new System.ArgumentNullException(nameof(builder));
+            }
+
             builder.RegisterType<TaxPubDocumentFactory>().As<IDocumentFactory>().InstancePerLifetimeScope();
             builder.RegisterType<DocumentSchemaNormalizer>().As<IDocumentSchemaNormalizer>().InstancePerLifetimeScope();
             builder.RegisterType<DocumentMetaUpdater>().As<IDocumentMetaUpdater>().InstancePerLifetimeScope();

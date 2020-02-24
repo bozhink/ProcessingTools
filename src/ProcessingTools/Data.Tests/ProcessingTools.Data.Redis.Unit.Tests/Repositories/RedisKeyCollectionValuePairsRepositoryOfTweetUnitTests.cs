@@ -10,9 +10,9 @@ namespace ProcessingTools.Data.Redis.Unit.Tests.Repositories
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Data.Redis.Abstractions;
     using ProcessingTools.Data.Redis.Unit.Tests.Models;
+    using ProcessingTools.Extensions.Dynamic;
     using ServiceStack.Redis;
 
     /// <summary>

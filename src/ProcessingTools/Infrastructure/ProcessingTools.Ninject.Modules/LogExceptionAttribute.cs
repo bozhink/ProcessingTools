@@ -20,6 +20,11 @@ namespace ProcessingTools.Ninject.Interceptors
         /// <inheritdoc/>
         public override IInterceptor CreateInterceptor(IProxyRequest request)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             return request.Context.Kernel.Get<ExceptionLoggingInterceptor>();
         }
     }

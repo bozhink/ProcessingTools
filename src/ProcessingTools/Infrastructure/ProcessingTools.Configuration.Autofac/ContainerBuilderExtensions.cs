@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Configuration.Autofac
 {
+    using System;
     using global::Autofac;
     using global::Autofac.Core;
     using MongoDB.Driver;
@@ -25,6 +26,11 @@ namespace ProcessingTools.Configuration.Autofac
         /// <returns>Configured <see cref="ContainerBuilder" /> instance.</returns>
         public static ContainerBuilder RegisterMongoDatabase(this ContainerBuilder builder, string connectionString, string databaseName, string bindingName)
         {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
             builder
                 .Register(c =>
                 {
@@ -48,6 +54,11 @@ namespace ProcessingTools.Configuration.Autofac
         public static ContainerBuilder RegisterMongoDatabaseInitializer<T>(this ContainerBuilder builder, string bindingName)
             where T : IDatabaseInitializer
         {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
             builder.RegisterType<T>().AsSelf()
                 .WithParameter(new ResolvedParameter(
                     (p, c) => p.ParameterType == typeof(IMongoDatabase),
@@ -67,6 +78,11 @@ namespace ProcessingTools.Configuration.Autofac
         public static ContainerBuilder RegisterMongoCollectionBinding<T>(this ContainerBuilder builder, string bindingName)
             where T : class
         {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
             builder
                 .Register(c => GetMongoCollection<T>(c, bindingName))
                 .As<IMongoCollection<T>>()
@@ -78,6 +94,16 @@ namespace ProcessingTools.Configuration.Autofac
         private static IMongoCollection<T> GetMongoCollection<T>(IComponentContext context, string bindingName)
             where T : class
         {
+            if (context is null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (string.IsNullOrEmpty(bindingName))
+            {
+                throw new ArgumentNullException(nameof(bindingName));
+            }
+
             var db = context.ResolveNamed<IMongoDatabase>(bindingName);
             var settings = context.ResolveNamed<MongoCollectionSettings>(bindingName);
             string collectionName = MongoCollectionNameFactory.Create<T>();

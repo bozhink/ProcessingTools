@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents.Formatters
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.Net.Http.Headers;
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Extensions;
 
     /// <summary>
     /// Raw request body formatter.
@@ -55,6 +55,11 @@ namespace ProcessingTools.Web.Documents.Formatters
         /// <returns>Input formatter result.</returns>
         public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
         {
+            if (context is null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             var request = context.HttpContext.Request;
             var contentType = context.HttpContext.Request.ContentType;
 

@@ -18,6 +18,11 @@ namespace ProcessingTools.Configuration.Autofac.Geo
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
             builder.RegisterType<CoordinateParser>().As<ICoordinateParser>().InstancePerLifetimeScope();
             builder.RegisterType<Coordinate2DParser>().As<ICoordinate2DParser>().InstancePerLifetimeScope();
             builder.RegisterType<UtmCoordinatesTransformer>().As<IUtmCoordinatesTransformer>().InstancePerLifetimeScope();

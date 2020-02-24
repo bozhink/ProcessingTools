@@ -7,11 +7,11 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
     using System;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Contracts.Models.Abbreviations;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Abbreviations;
     using ProcessingTools.Contracts.Services.Xml;
+    using ProcessingTools.Extensions.Dynamic;
     using ProcessingTools.Services.Abbreviations;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(AbbreviationsHarvester))]

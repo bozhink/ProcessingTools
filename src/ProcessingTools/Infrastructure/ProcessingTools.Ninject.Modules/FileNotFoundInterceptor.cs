@@ -28,6 +28,11 @@ namespace ProcessingTools.Ninject.Interceptors
         /// <inheritdoc/>
         public void Intercept(IInvocation invocation)
         {
+            if (invocation is null)
+            {
+                throw new ArgumentNullException(nameof(invocation));
+            }
+
             if (invocation.Request.Arguments.Length < 1)
             {
                 throw new InvalidOperationException($"{nameof(FileNotFoundInterceptor)} requires invocation with at least 1 argument");

@@ -19,6 +19,11 @@ namespace ProcessingTools.Configuration.Autofac
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
             builder
                 .RegisterType<XslTransformerFactory>()
                 .As<IXslTransformerFactory>()

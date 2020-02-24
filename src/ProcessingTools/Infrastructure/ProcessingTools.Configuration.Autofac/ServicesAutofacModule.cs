@@ -40,6 +40,11 @@ namespace ProcessingTools.Configuration.Autofac
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new System.ArgumentNullException(nameof(builder));
+            }
+
             builder.RegisterType<ObjectHistoryDataService>().As<IObjectHistoryDataService>().InstancePerLifetimeScope();
 
             builder.RegisterType<PublishersDataService>().As<IPublishersDataService>().InstancePerLifetimeScope();

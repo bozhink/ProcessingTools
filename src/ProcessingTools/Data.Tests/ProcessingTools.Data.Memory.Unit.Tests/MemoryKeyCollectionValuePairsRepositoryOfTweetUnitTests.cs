@@ -10,9 +10,9 @@ namespace ProcessingTools.Data.Memory.Unit.Tests
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Data.Memory.Abstractions;
     using ProcessingTools.Data.Memory.Unit.Tests.Models;
+    using ProcessingTools.Extensions.Dynamic;
 
     /// <summary>
     /// <see cref="MemoryKeyCollectionValuePairsRepository{ITweet}"/> unit tests.

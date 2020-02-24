@@ -26,6 +26,11 @@ namespace ProcessingTools.Configuration.Autofac
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
             // Register MongoCollectionSettings
             builder
                 .Register(c => new MongoCollectionSettings

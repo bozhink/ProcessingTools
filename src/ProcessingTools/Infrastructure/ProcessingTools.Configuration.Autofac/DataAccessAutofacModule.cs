@@ -23,6 +23,11 @@ namespace ProcessingTools.Configuration.Autofac
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new System.ArgumentNullException(nameof(builder));
+            }
+
             // History DAO
             builder
                 .RegisterType<ProcessingTools.DataAccess.Mongo.History.MongoObjectHistoryDataAccessObject>()

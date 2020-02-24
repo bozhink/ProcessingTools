@@ -29,6 +29,11 @@ namespace ProcessingTools.Ninject.Interceptors
         /// <inheritdoc/>
         public void Intercept(IInvocation invocation)
         {
+            if (invocation is null)
+            {
+                throw new ArgumentNullException(nameof(invocation));
+            }
+
             try
             {
                 invocation.Proceed();

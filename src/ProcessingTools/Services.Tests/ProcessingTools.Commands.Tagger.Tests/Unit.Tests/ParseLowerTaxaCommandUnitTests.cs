@@ -9,11 +9,11 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
     using System.Xml;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
+    using ProcessingTools.Extensions.Dynamic;
 
     /// <summary>
     /// <see cref="ParseLowerTaxaCommand"/> unit tests.

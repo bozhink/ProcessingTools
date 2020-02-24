@@ -27,6 +27,11 @@ namespace ProcessingTools.Configuration.Autofac
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            if (builder is null)
+            {
+                throw new System.ArgumentNullException(nameof(builder));
+            }
+
             builder.RegisterType<PublishersWebService>().As<IPublishersWebService>().InstancePerDependency();
             builder.RegisterType<JournalsWebService>().As<IJournalsWebService>().InstancePerDependency();
             builder.RegisterType<ArticlesWebService>().As<IArticlesWebService>().InstancePerDependency();

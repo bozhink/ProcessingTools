@@ -8,9 +8,9 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
     using System.Linq;
     using System.Threading.Tasks;
     using NUnit.Framework;
-    using ProcessingTools.Common.Code.Tests;
     using ProcessingTools.Data.Redis.Abstractions;
     using ProcessingTools.Data.Redis.Integration.Tests.Models;
+    using ProcessingTools.Extensions.Dynamic;
     using ServiceStack.Redis;
 
     /// <summary>
