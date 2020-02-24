@@ -51,6 +51,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public IActionResult Index()
         {
             var viewModel = new QRCodeViewModel
@@ -69,17 +70,18 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(IndexActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<ActionResult> Index([Bind(nameof(QRCodeRequestModel.PixelPerModule), nameof(QRCodeRequestModel.Content))]QRCodeRequestModel model)
         {
             var viewModel = new QRCodeViewModel
             {
-                Content = model.Content,
-                PixelPerModule = model.PixelPerModule,
+                Content = model?.Content ?? string.Empty,
+                PixelPerModule = model?.PixelPerModule ?? ImagingConstants.MinimalQRCodePixelsPerModule,
             };
 
             try
             {
-                if (this.ModelState.IsValid)
+                if (model != null && this.ModelState.IsValid)
                 {
                     viewModel.Image = await this.encoder.EncodeBase64Async(model.Content, viewModel.PixelPerModule).ConfigureAwait(false);
                 }
@@ -91,7 +93,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
             catch (Exception e)
             {
                 this.ModelState.AddModelError(nameof(model.Content), e.Message);
-                this.logger.LogError(e, "POST QRCode/Index");
+                this.logger.LogError(e, string.Empty);
             }
 
             return this.View(viewModel);

@@ -73,12 +73,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
-        public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Index(int? p, int? n, Uri returnUrl = null)
         {
-            const string LogMessage = "Fetch Journal Styles";
-
-            this.logger.LogTrace(LogMessage);
-
             int pageNumber = Math.Max(
                 PaginationConstants.MinimalPageNumber,
                 p ?? PaginationConstants.DefaultPageNumber);
@@ -98,7 +95,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();
@@ -111,12 +108,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(CreateActionName)]
-        public async Task<IActionResult> Create(string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Create(Uri returnUrl = null)
         {
-            const string LogMessage = "GET Create Journal Style";
-
-            this.logger.LogTrace(LogMessage);
-
             try
             {
                 var viewModel = await this.service.GetJournalStyleCreateViewModelAsync().ConfigureAwait(false);
@@ -127,7 +121,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();
@@ -141,24 +135,21 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(CreateActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Create(JournalStyleCreateRequestModel model)
         {
-            const string LogMessage = "POST Create Journal Style";
-
-            this.logger.LogTrace(LogMessage);
-
             try
             {
-                if (this.ModelState.IsValid)
+                if (model != null && this.ModelState.IsValid)
                 {
                     try
                     {
                         var ok = await this.service.CreateJournalStyleAsync(model).ConfigureAwait(false);
                         if (ok)
                         {
-                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            if (model.ReturnUrl != null)
                             {
-                                return this.Redirect(model.ReturnUrl);
+                                return this.Redirect(model.ReturnUrl.ToString());
                             }
 
                             return this.RedirectToAction(IndexActionName);
@@ -169,19 +160,19 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
                     catch (Exception ex)
                     {
                         this.ModelState.AddModelError(string.Empty, ex.Message);
-                        this.logger.LogError(ex, LogMessage);
+                        this.logger.LogError(ex, string.Empty);
                     }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
-                viewModel.ReturnUrl = model.ReturnUrl;
+                viewModel.ReturnUrl = model?.ReturnUrl;
 
                 return this.View(viewModel);
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();
@@ -195,12 +186,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
-        public async Task<IActionResult> Edit(string id, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Edit(string id, Uri returnUrl = null)
         {
-            const string LogMessage = "GET Edit Journal Style";
-
-            this.logger.LogTrace(LogMessage);
-
             try
             {
                 var viewModel = await this.service.GetJournalStyleEditViewModelAsync(id).ConfigureAwait(false);
@@ -211,7 +199,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();
@@ -225,24 +213,21 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(EditActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Edit(JournalStyleUpdateRequestModel model)
         {
-            const string LogMessage = "POST Edit Journal Style";
-
-            this.logger.LogTrace(LogMessage);
-
             try
             {
-                if (this.ModelState.IsValid)
+                if (model != null && this.ModelState.IsValid)
                 {
                     try
                     {
                         var ok = await this.service.UpdateJournalStyleAsync(model).ConfigureAwait(false);
                         if (ok)
                         {
-                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            if (model.ReturnUrl != null)
                             {
-                                return this.Redirect(model.ReturnUrl);
+                                return this.Redirect(model.ReturnUrl.ToString());
                             }
 
                             return this.RedirectToAction(EditActionName, new { model.Id });
@@ -253,19 +238,19 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
                     catch (Exception ex)
                     {
                         this.ModelState.AddModelError(string.Empty, ex.Message);
-                        this.logger.LogError(ex, LogMessage);
+                        this.logger.LogError(ex, string.Empty);
                     }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
-                viewModel.ReturnUrl = model.ReturnUrl;
+                viewModel.ReturnUrl = model?.ReturnUrl;
 
                 return this.View(viewModel);
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();
@@ -279,12 +264,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
-        public async Task<IActionResult> Delete(string id, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Delete(string id, Uri returnUrl = null)
         {
-            const string LogMessage = "GET Delete Journal Style";
-
-            this.logger.LogTrace(LogMessage);
-
             try
             {
                 var viewModel = await this.service.GetJournalStyleDeleteViewModelAsync(id).ConfigureAwait(false);
@@ -295,7 +277,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();
@@ -309,24 +291,21 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(DeleteActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Delete(JournalStyleDeleteRequestModel model)
         {
-            const string LogMessage = "POST Delete Journal Style";
-
-            this.logger.LogTrace(LogMessage);
-
             try
             {
-                if (this.ModelState.IsValid)
+                if (model != null && this.ModelState.IsValid)
                 {
                     try
                     {
                         var ok = await this.service.DeleteJournalStyleAsync(model.Id).ConfigureAwait(false);
                         if (ok)
                         {
-                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            if (model.ReturnUrl != null)
                             {
-                                return this.Redirect(model.ReturnUrl);
+                                return this.Redirect(model.ReturnUrl.ToString());
                             }
 
                             return this.RedirectToAction(IndexActionName);
@@ -337,19 +316,19 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
                     catch (Exception ex)
                     {
                         this.ModelState.AddModelError(string.Empty, ex.Message);
-                        this.logger.LogError(ex, LogMessage);
+                        this.logger.LogError(ex, string.Empty);
                     }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
-                viewModel.ReturnUrl = model.ReturnUrl;
+                viewModel.ReturnUrl = model?.ReturnUrl;
 
                 return this.View(viewModel);
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();
@@ -362,12 +341,9 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
-        public async Task<IActionResult> Details(string id, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Details(string id, Uri returnUrl = null)
         {
-            const string LogMessage = "Fetch Journal Style Details";
-
-            this.logger.LogTrace(LogMessage);
-
             try
             {
                 var viewModel = await this.service.GetJournalStyleDetailsViewModelAsync(id).ConfigureAwait(false);
@@ -378,7 +354,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();

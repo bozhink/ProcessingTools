@@ -11,7 +11,6 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Web.Services.Documents;
     using ProcessingTools.Extensions;
     using ProcessingTools.Web.Documents.Constants;
@@ -115,11 +114,12 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
-        public IActionResult Index(string articleId, string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public IActionResult Index(string articleId, Uri returnUrl)
         {
-            if (!string.IsNullOrWhiteSpace(returnUrl))
+            if (returnUrl != null)
             {
-                return this.Redirect(returnUrl);
+                return this.Redirect(returnUrl.ToString());
             }
 
             if (!string.IsNullOrWhiteSpace(articleId))
@@ -138,17 +138,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(UploadActionName)]
-        public async Task<IActionResult> Upload(string articleId, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Upload(string articleId, Uri returnUrl = null)
         {
-            const string LogMessage = "GET Upload Document";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -163,7 +159,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -180,17 +176,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(UploadActionName)]
-        public async Task<IActionResult> Upload(IFormFile file, string articleId, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Upload(IFormFile file, string articleId, Uri returnUrl = null)
         {
-            const string LogMessage = "POST Upload Document";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -200,20 +192,21 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var ok = await this.service.UploadDocumentAsync(file, articleId).ConfigureAwait(false);
                 if (ok)
                 {
-                    if (!string.IsNullOrWhiteSpace(returnUrl))
+                    if (returnUrl != null)
                     {
-                        return this.Redirect(returnUrl);
+                        return this.Redirect(returnUrl.ToString());
                     }
 
                     return this.RedirectToAction(IndexActionName);
                 }
 
                 this.ModelState.AddModelError(string.Empty, "Document is not uploaded.");
+                this.logger.LogError($"{this.ModelState}");
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             var viewModel = await this.service.GetDocumentUploadViewModelAsync(articleId).ConfigureAwait(false);
@@ -230,24 +223,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="articleId">Object ID of the article.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DownloadActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Download(string id, string articleId)
         {
-            const string LogMessage = "Download Document";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(id))
             {
-                string modelError = "Invalid document";
-                this.logger.LogError(modelError);
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
 
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
@@ -265,7 +251,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -279,24 +265,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="articleId">Object ID of the article.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(SetAsFinalActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> SetAsFinal(string id, string articleId)
         {
-            const string LogMessage = "Document SetAsFinal";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(id))
             {
-                string modelError = "Invalid document";
-                this.logger.LogError(modelError);
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
 
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new EmptyResult();
             }
@@ -306,14 +285,14 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var ok = await this.service.SetAsFinalAsync(id, articleId).ConfigureAwait(false);
                 if (!ok)
                 {
-                    this.logger.LogError("SetAsFinal is not OK");
+                    this.logger.LogError($"{articleId} - {ok}");
                 }
 
                 return this.RedirectToAction(IndexActionName, new { articleId });
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -329,17 +308,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(EditActionName)]
-        public async Task<IActionResult> Edit(string id, string articleId, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Edit(string id, string articleId, Uri returnUrl = null)
         {
-            const string LogMessage = "GET Edit Document";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -349,9 +324,8 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var viewModel = await this.service.GetDocumentEditViewModelAsync(id, articleId).ConfigureAwait(false);
                 if (viewModel.ArticleId != articleId)
                 {
-                    string modelError = "Document-article mismatch";
-                    this.logger.LogError(modelError);
-                    this.ModelState.AddModelError(string.Empty, modelError);
+                    this.ModelState.AddModelError(string.Empty, "Document-article mismatch");
+                    this.logger.LogError($"{this.ModelState}");
                     this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return this.View();
                 }
@@ -363,7 +337,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -378,17 +352,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(EditActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Edit(DocumentUpdateRequestModel model)
         {
-            const string LogMessage = "POST Edit Document";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(model?.ArticleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -402,20 +372,21 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                         var ok = await this.service.UpdateDocumentAsync(model).ConfigureAwait(false);
                         if (ok)
                         {
-                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            if (model.ReturnUrl != null)
                             {
-                                return this.Redirect(model.ReturnUrl);
+                                return this.Redirect(model.ReturnUrl.ToString());
                             }
 
                             return this.RedirectToAction(EditActionName, new { model.Id, model.ArticleId });
                         }
 
                         this.ModelState.AddModelError(string.Empty, "Document is not updated.");
+                        this.logger.LogError($"{this.ModelState}");
                     }
                     catch (Exception ex)
                     {
                         this.ModelState.AddModelError(string.Empty, ex.Message);
-                        this.logger.LogError(ex, LogMessage);
+                        this.logger.LogError(ex, string.Empty);
                     }
                 }
 
@@ -428,7 +399,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -444,17 +415,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
-        public async Task<IActionResult> Delete(string id, string articleId, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Delete(string id, string articleId, Uri returnUrl = null)
         {
-            const string LogMessage = "GET Delete Document";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -464,9 +431,8 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var viewModel = await this.service.GetDocumentDeleteViewModelAsync(id, articleId).ConfigureAwait(false);
                 if (viewModel.ArticleId != articleId)
                 {
-                    string modelError = "Document-article mismatch";
-                    this.logger.LogError(modelError);
-                    this.ModelState.AddModelError(string.Empty, modelError);
+                    this.ModelState.AddModelError(string.Empty, "Document-article mismatch");
+                    this.logger.LogError($"{this.ModelState}");
                     this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return this.View();
                 }
@@ -478,7 +444,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -493,17 +459,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(DeleteActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Delete(DocumentDeleteRequestModel model)
         {
-            const string LogMessage = "POST Delete Document";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(model?.ArticleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -517,20 +479,21 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                         var ok = await this.service.DeleteDocumentAsync(model.Id, model.ArticleId).ConfigureAwait(false);
                         if (ok)
                         {
-                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            if (model.ReturnUrl != null)
                             {
-                                return this.Redirect(model.ReturnUrl);
+                                return this.Redirect(model.ReturnUrl.ToString());
                             }
 
                             return this.RedirectToAction(IndexActionName);
                         }
 
                         this.ModelState.AddModelError(string.Empty, "Document is not deleted.");
+                        this.logger.LogError($"{this.ModelState}");
                     }
                     catch (Exception ex)
                     {
                         this.ModelState.AddModelError(string.Empty, ex.Message);
-                        this.logger.LogError(ex, LogMessage);
+                        this.logger.LogError(ex, string.Empty);
                     }
                 }
 
@@ -543,7 +506,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -558,17 +521,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(DetailsActionName)]
-        public async Task<IActionResult> Details(string id, string articleId, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Details(string id, string articleId, Uri returnUrl = null)
         {
-            const string LogMessage = "Fetch Document Details";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -578,9 +537,8 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 var viewModel = await this.service.GetDocumentDetailsViewModelAsync(id, articleId).ConfigureAwait(false);
                 if (viewModel.ArticleId != articleId)
                 {
-                    string modelError = "Document-article mismatch";
-                    this.logger.LogError(modelError);
-                    this.ModelState.AddModelError(string.Empty, modelError);
+                    this.ModelState.AddModelError(string.Empty, "Document-article mismatch");
+                    this.logger.LogError($"{this.ModelState}");
                     this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return this.View();
                 }
@@ -592,7 +550,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -607,17 +565,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(HtmlActionName)]
-        public async Task<IActionResult> Html(string id, string articleId, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Html(string id, string articleId, Uri returnUrl = null)
         {
-            const string LogMessage = "Fetch Document Html";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -633,7 +587,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -648,17 +602,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(XmlActionName)]
-        public async Task<IActionResult> Xml(string id, string articleId, string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Xml(string id, string articleId, Uri returnUrl = null)
         {
-            const string LogMessage = "Fetch Document Xml";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                string modelError = "Invalid article";
-                this.logger.LogError(modelError);
-                this.ModelState.AddModelError(string.Empty, modelError);
+                this.ModelState.AddModelError(string.Empty, "Invalid article");
+                this.logger.LogError($"{this.ModelState}");
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View();
             }
@@ -674,7 +624,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -689,12 +639,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(GetXmlActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> GetXml(string id, string articleId)
         {
-            const string LogMessage = "Get XML";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
             {
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
@@ -716,7 +663,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
 
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {
@@ -734,12 +681,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPost]
         [ActionName(GetHtmlActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> GetHtml(string id, string articleId)
         {
-            const string LogMessage = "Get HTML";
-
-            this.logger.LogTrace(LogMessage);
-
             if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
             {
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
@@ -761,7 +705,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
 
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {
@@ -780,13 +724,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPut]
         [ActionName(SetXmlActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> SetXml(string id, string articleId, [FromBody]DocumentContentRequestModel model)
         {
-            const string LogMessage = "Set XML";
-
-            this.logger.LogTrace(LogMessage);
-
-            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId) || string.IsNullOrWhiteSpace(model?.Content))
             {
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
                 {
@@ -807,7 +748,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
 
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {
@@ -826,13 +767,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpPut]
         [ActionName(SetHtmlActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> SetHtml(string id, string articleId, [FromBody]DocumentContentRequestModel model)
         {
-            const string LogMessage = "Set HTML";
-
-            this.logger.LogTrace(LogMessage);
-
-            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId) || string.IsNullOrWhiteSpace(model?.Content))
             {
                 return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
                 {
@@ -853,7 +791,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, LogMessage);
+                this.logger.LogError(ex, string.Empty);
 
                 return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
                 {

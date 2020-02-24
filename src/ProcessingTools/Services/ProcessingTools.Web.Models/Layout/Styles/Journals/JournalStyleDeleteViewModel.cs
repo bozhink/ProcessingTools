@@ -84,6 +84,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
         public DateTime ModifiedOn { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

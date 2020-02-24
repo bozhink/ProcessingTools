@@ -4,6 +4,8 @@
 
 namespace ProcessingTools.Contracts.Models
 {
+    using System;
+
     /// <summary>
     /// Web model.
     /// </summary>
@@ -12,6 +14,6 @@ namespace ProcessingTools.Contracts.Models
         /// <summary>
         /// Gets or sets the return-URL.
         /// </summary>
-        string ReturnUrl { get; set; }
+        Uri ReturnUrl { get; set; }
     }
 }

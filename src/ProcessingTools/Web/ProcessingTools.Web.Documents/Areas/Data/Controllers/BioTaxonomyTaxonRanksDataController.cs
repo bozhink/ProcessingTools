@@ -41,9 +41,10 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         /// <param name="model">Request model.</param>
         /// <returns>Task of result.</returns>
         [HttpPost]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Insert(TaxonRanksRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return this.BadRequest();
             }
@@ -52,7 +53,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
             {
                 var response = await this.service.InsertAsync(model).ConfigureAwait(false);
 
-                if (response == null)
+                if (response is null)
                 {
                     return this.StatusCode((int)HttpStatusCode.UnprocessableEntity);
                 }
@@ -61,12 +62,12 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
             }
             catch (ArgumentException ex)
             {
-                this.logger.LogError(ex, "Insert Bad Request");
+                this.logger.LogError(ex, string.Empty);
                 return this.BadRequest();
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "Insert Internal Server Error");
+                this.logger.LogError(ex, string.Empty);
                 return this.StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
@@ -77,6 +78,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         /// <param name="model">Request model.</param>
         /// <returns>Task of result.</returns>
         [HttpPost]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Search(SearchRequestModel model)
         {
             if (string.IsNullOrWhiteSpace(model?.SearchString))
@@ -88,7 +90,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
             {
                 var response = await this.service.SearchAsync(model).ConfigureAwait(false);
 
-                if (response == null)
+                if (response is null)
                 {
                     this.NotFound();
                 }
@@ -97,12 +99,12 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
             }
             catch (ArgumentException ex)
             {
-                this.logger.LogError(ex, "Search Bad Request");
+                this.logger.LogError(ex, string.Empty);
                 return this.BadRequest();
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "Search Internal Server Error");
+                this.logger.LogError(ex, string.Empty);
                 return this.StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }

@@ -21,6 +21,11 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
         /// <returns>The model name.</returns>
         public static string GetModelName(Type type)
         {
+            if (type is null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
             ModelNameAttribute modelNameAttribute = type.GetCustomAttribute<ModelNameAttribute>();
             if (modelNameAttribute != null && !string.IsNullOrEmpty(modelNameAttribute.Name))
             {
@@ -36,7 +41,7 @@ namespace ProcessingTools.Web.Models.HelpPage.ModelDescriptions
                 string genericTypeName = genericType.Name;
 
                 // Trim the generic parameter counts from the name
-                genericTypeName = genericTypeName.Substring(0, genericTypeName.IndexOf('`'));
+                genericTypeName = genericTypeName.Substring(0, genericTypeName.IndexOf('`', StringComparison.InvariantCulture));
                 string[] argumentTypeNames = genericArguments.Select(t => GetModelName(t)).ToArray();
                 modelName = string.Format(CultureInfo.InvariantCulture, "{0}Of{1}", genericTypeName, string.Join("And", argumentTypeNames));
             }

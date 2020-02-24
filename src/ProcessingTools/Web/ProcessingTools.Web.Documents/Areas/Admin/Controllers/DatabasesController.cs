@@ -55,11 +55,12 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(IndexActionName)]
-        public IActionResult Index(string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public IActionResult Index(Uri returnUrl = null)
         {
-            if (!string.IsNullOrWhiteSpace(returnUrl))
+            if (returnUrl != null)
             {
-                return this.Redirect(returnUrl);
+                return this.Redirect(returnUrl.ToString());
             }
 
             return this.View();
@@ -71,7 +72,8 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(InitializeAllActionName)]
-        public async Task<IActionResult> InitializeAll(string returnUrl = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> InitializeAll(Uri returnUrl = null)
         {
             try
             {
@@ -82,7 +84,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
 
                 if (viewModel.Exceptions?.Any() == true)
                 {
-                    this.logger.LogError(new AggregateException(viewModel.Exceptions), "Database initialization exceptions.");
+                    this.logger.LogError(new AggregateException(viewModel.Exceptions), string.Empty);
                 }
 
                 return this.View(viewModel);
@@ -90,7 +92,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.logger.LogError(ex, "Error in database initialization.");
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View();

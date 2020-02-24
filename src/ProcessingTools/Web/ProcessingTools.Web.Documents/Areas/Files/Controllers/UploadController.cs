@@ -23,9 +23,9 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
     [Area(AreaNames.Files)]
     public class UploadController : Controller
     {
-        private readonly IFilesDataService filesDataService;
-        private readonly IFileNameResolver fileNameResolver;
         private readonly IFileNameGenerator fileNameGenerator;
+        private readonly IFileNameResolver fileNameResolver;
+        private readonly IFilesDataService filesDataService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadController"/> class.
@@ -51,21 +51,21 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         }
 
         /// <summary>
-        /// GET: Files/UploadSingleFile.
-        /// </summary>
-        /// <returns><see cref="IActionResult"/>.</returns>
-        [HttpGet]
-        public IActionResult UploadSingleFile()
-        {
-            return this.View();
-        }
-
-        /// <summary>
         /// GET: Files/UploadMultipleFiles.
         /// </summary>
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         public IActionResult UploadMultipleFiles()
+        {
+            return this.View();
+        }
+
+        /// <summary>
+        /// GET: Files/UploadSingleFile.
+        /// </summary>
+        /// <returns><see cref="IActionResult"/>.</returns>
+        [HttpGet]
+        public IActionResult UploadSingleFile()
         {
             return this.View();
         }

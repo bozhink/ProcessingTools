@@ -4,12 +4,14 @@
 
 namespace ProcessingTools.Web.Models.Documents.Files
 {
+    using System;
+
     /// <summary>
     /// File edit request model.
     /// </summary>
     public class FileEditRequestModel : ProcessingTools.Contracts.Models.IWebModel
     {
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

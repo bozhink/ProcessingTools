@@ -49,6 +49,6 @@ namespace ProcessingTools.Web.Models.Documents.Documents
         public string Content { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

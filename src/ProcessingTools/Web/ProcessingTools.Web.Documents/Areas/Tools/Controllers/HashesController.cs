@@ -56,12 +56,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index(string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public IActionResult Index(Uri returnUrl)
         {
-            const string LogMessage = "GET Hash/Index";
-
-            this.logger.LogTrace(LogMessage);
-
             return this.RedirectToAction(ActionNames.Index, ControllerNames.Home, new { returnUrl });
         }
 
@@ -72,12 +69,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(AllActionName)]
-        public async Task<IActionResult> All(string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> All(Uri returnUrl)
         {
-            const string LogMessage = "GET Hash/All";
-
-            this.logger.LogTrace(LogMessage);
-
             HashesViewModel viewModel = await this.hashesWebService.GetHashesViewModelAsync().ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
@@ -94,12 +88,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(AllActionName)]
-        public async Task<IActionResult> All([Bind(nameof(HashContentRequestModel.Content))]HashContentRequestModel model, string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> All([Bind(nameof(HashContentRequestModel.Content))]HashContentRequestModel model, Uri returnUrl)
         {
-            const string LogMessage = "POST Hash/All";
-
-            this.logger.LogTrace(LogMessage);
-
             HashesViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
@@ -111,7 +102,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 catch (Exception ex)
                 {
                     this.ModelState.AddModelError(string.Empty, ex.Message);
-                    this.logger.LogError(ex, LogMessage);
+                    this.logger.LogError(ex, string.Empty);
                 }
             }
 

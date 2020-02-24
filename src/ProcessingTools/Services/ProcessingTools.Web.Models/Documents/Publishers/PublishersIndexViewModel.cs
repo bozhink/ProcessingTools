@@ -40,6 +40,6 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         public UserContext UserContext { get; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

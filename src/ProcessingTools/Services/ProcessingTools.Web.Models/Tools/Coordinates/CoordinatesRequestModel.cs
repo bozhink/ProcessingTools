@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Tools.Coordinates
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -20,6 +21,6 @@ namespace ProcessingTools.Web.Models.Tools.Coordinates
         public string Coordinates { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

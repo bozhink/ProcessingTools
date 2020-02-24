@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Files.Mediatypes
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Mediatypes;
     using ProcessingTools.Contracts.Models.Files.Mediatypes;
@@ -33,6 +34,6 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
         public string Description { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

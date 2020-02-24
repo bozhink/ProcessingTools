@@ -107,6 +107,6 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public string JournalStyleId { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

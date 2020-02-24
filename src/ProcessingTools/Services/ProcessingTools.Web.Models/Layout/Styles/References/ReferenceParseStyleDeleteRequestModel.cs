@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Layout.Styles.References
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -18,6 +19,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
         public string Id { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

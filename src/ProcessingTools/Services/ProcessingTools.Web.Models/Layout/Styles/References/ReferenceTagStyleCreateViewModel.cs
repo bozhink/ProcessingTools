@@ -69,6 +69,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
         public string TargetXPath { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

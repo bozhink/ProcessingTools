@@ -95,6 +95,6 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         public DateTime ModifiedOn { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

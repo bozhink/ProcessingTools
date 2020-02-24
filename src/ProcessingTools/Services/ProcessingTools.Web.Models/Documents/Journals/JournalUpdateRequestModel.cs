@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Documents.Journals
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Journals;
     using ProcessingTools.Contracts.Services.Models.Documents.Journals;
@@ -55,6 +56,6 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public string JournalStyleId { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Documents.Publishers
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -18,6 +19,6 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         public string Id { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

@@ -105,6 +105,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
         public DateTime ModifiedOn { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

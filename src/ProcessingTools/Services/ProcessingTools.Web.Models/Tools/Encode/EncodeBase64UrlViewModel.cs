@@ -46,6 +46,6 @@ namespace ProcessingTools.Web.Models.Tools.Encode
         public string Base64EncodedString { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

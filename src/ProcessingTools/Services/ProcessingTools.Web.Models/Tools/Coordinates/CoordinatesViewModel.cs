@@ -43,6 +43,6 @@ namespace ProcessingTools.Web.Models.Tools.Coordinates
         public IEnumerable<CoordinateViewModel> Coordinates { get; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Layout.Styles.Journals
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Contracts.Models.Layout.Styles.Journals;
@@ -37,6 +38,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
         public IList<string> ReferenceTagStyleIds { get; set; } = new List<string>();
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

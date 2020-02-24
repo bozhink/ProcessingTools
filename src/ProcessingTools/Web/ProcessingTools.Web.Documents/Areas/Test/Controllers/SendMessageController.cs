@@ -58,10 +58,9 @@ namespace ProcessingTools.Web.Documents.Areas.Test.Controllers
         /// <param name="message">Message to be send.</param>
         /// <returns>Submission status.</returns>
         [HttpPost]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public IActionResult Send(string message)
         {
-            this.logger.LogDebug($"Send message: {message}");
-
             try
             {
                 using (var connection = this.connectionFactory.CreateConnection())

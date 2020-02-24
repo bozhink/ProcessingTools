@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Documents.Files
 {
+    using System;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
@@ -17,6 +18,6 @@ namespace ProcessingTools.Web.Models.Documents.Files
         public UserContext UserContext { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

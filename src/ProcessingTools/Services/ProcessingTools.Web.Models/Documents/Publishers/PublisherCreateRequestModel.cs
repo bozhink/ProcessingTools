@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Documents.Publishers
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Constants.Data.Journals;
     using ProcessingTools.Contracts.Services.Models.Documents.Publishers;
@@ -28,6 +29,6 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         public string Address { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

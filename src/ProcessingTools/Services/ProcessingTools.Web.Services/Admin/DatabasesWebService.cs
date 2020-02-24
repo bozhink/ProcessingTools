@@ -62,13 +62,13 @@ namespace ProcessingTools.Web.Services.Admin
 
             if (model != null)
             {
-                var viewModel = new InitializeViewModel(userContext);
+                var viewModel = new InitializeViewModel(userContext, model.Exceptions);
                 this.mapper.Map(model, viewModel);
 
                 return viewModel;
             }
 
-            return new InitializeViewModel(userContext);
+            return new InitializeViewModel(userContext, null);
         }
     }
 }

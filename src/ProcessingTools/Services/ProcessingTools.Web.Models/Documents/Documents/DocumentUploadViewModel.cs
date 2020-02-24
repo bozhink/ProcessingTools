@@ -53,6 +53,6 @@ namespace ProcessingTools.Web.Models.Documents.Documents
         public DocumentArticleViewModel Article { get; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

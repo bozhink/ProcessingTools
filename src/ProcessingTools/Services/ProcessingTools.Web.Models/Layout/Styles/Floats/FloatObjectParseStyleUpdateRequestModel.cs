@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Layout.Styles.Floats
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Common.Enumerations.Nlm;
     using ProcessingTools.Contracts.Models.Layout.Styles.Floats;
@@ -38,6 +39,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
         public string FloatObjectXPath { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

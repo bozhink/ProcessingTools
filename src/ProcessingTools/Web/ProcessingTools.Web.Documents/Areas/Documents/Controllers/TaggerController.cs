@@ -215,6 +215,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             /// </example>
             public async Task<XmlDocument> RunCommand(string commandId, XmlDocument xmldocument)
             {
+                if (xmldocument is null)
+                {
+                    return xmldocument;
+                }
+
                 var document = this.documentFactory.Create(xmldocument.OuterXml);
                 if (document.XmlDocument.DocumentElement.Name == ElementNames.Article)
                 {

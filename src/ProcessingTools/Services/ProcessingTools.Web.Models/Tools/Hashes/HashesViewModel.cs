@@ -91,6 +91,6 @@ namespace ProcessingTools.Web.Models.Tools.Hashes
         public string SHA512Base64String { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

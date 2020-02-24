@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Layout.Styles.References
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Contracts.Models.Layout.Styles.References;
 
@@ -33,6 +34,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
         public string ReferenceXPath { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

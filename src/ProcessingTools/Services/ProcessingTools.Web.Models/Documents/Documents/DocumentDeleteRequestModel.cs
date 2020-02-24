@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Documents.Documents
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -24,6 +25,6 @@ namespace ProcessingTools.Web.Models.Documents.Documents
         public string ArticleId { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

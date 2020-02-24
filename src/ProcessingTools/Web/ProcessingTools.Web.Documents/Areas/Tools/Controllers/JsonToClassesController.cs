@@ -7,7 +7,6 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using System;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
@@ -32,17 +31,6 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string JsonToCSharpActionName = nameof(JsonToCSharp);
 
-        private readonly ILogger logger;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JsonToClassesController"/> class.
-        /// </summary>
-        /// <param name="logger">Logger.</param>
-        public JsonToClassesController(ILogger<JsonToClassesController> logger)
-        {
-            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-
         /// <summary>
         /// GET Encode.
         /// </summary>
@@ -50,12 +38,8 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index(string returnUrl)
+        public IActionResult Index(Uri returnUrl)
         {
-            const string LogMessage = "GET JsonToClasses/Index";
-
-            this.logger.LogTrace(LogMessage);
-
             return this.RedirectToAction(ActionNames.Index, ControllerNames.Home, new { returnUrl });
         }
 
@@ -65,12 +49,8 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/>.</returns>
         [ActionName(JsonToCSharpActionName)]
-        public IActionResult JsonToCSharp(string returnUrl)
+        public IActionResult JsonToCSharp(Uri returnUrl)
         {
-            const string LogMessage = "JsonToClasses/JsonToCSharp";
-
-            this.logger.LogTrace(LogMessage);
-
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
 
             return this.View();

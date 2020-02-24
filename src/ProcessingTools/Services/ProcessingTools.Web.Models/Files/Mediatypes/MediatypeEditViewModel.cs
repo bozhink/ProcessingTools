@@ -113,6 +113,6 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
         public IEnumerable<string> MimeSubtypes { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

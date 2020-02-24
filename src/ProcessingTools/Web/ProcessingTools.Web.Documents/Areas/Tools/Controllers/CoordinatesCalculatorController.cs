@@ -51,12 +51,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public async Task<IActionResult> Index(string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Index(Uri returnUrl)
         {
-            const string LogMessage = "GET Coordinates Calculator Parse Coordinates";
-
-            this.logger.LogTrace(LogMessage);
-
             var viewModel = await this.service.GetCoordinatesViewModelAsync().ConfigureAwait(false);
             viewModel.ReturnUrl = returnUrl;
 
@@ -72,12 +69,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(IndexActionName)]
-        public async Task<IActionResult> Index([Bind(nameof(CoordinatesRequestModel.Coordinates))]CoordinatesRequestModel model, string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Index([Bind(nameof(CoordinatesRequestModel.Coordinates))]CoordinatesRequestModel model, Uri returnUrl)
         {
-            const string LogMessage = "POST Coordinates Calculator Parse Coordinates";
-
-            this.logger.LogTrace(LogMessage);
-
             CoordinatesViewModel viewModel;
 
             if (this.ModelState.IsValid)
@@ -92,7 +86,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 catch (Exception ex)
                 {
                     this.ModelState.AddModelError(string.Empty, ex.Message);
-                    this.logger.LogError(ex, LogMessage);
+                    this.logger.LogError(ex, string.Empty);
                 }
             }
 

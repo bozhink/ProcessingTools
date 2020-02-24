@@ -97,6 +97,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
         public IEnumerable<StyleSelectViewModel> ReferenceTagStyles { get; set; } = new List<StyleSelectViewModel>();
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

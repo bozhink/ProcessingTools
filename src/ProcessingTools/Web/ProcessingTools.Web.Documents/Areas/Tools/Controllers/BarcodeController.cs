@@ -50,6 +50,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<IActionResult> Index()
         {
             var viewModel = await this.service.GetBarcodeViewModelAsync().ConfigureAwait(false);
@@ -65,6 +66,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(IndexActionName)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
         public async Task<ActionResult> Index([Bind(nameof(BarcodeRequestModel.Width), nameof(BarcodeRequestModel.Height), nameof(BarcodeRequestModel.Type), nameof(BarcodeRequestModel.Content))]BarcodeRequestModel model)
         {
             var viewModel = await this.service.MapToViewModel(model).ConfigureAwait(false);
@@ -82,7 +84,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
             catch (Exception e)
             {
                 this.ModelState.AddModelError(nameof(model.Content), e.Message);
-                this.logger.LogError(e, "POST Barcode/Index");
+                this.logger.LogError(e, string.Empty);
             }
 
             return this.View(viewModel);

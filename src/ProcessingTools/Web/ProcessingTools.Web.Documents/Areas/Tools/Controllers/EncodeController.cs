@@ -61,12 +61,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index(string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public IActionResult Index(Uri returnUrl)
         {
-            const string LogMessage = "GET Encode/Index";
-
-            this.logger.LogTrace(LogMessage);
-
             return this.RedirectToAction(ActionNames.Index, ControllerNames.Home, new { returnUrl });
         }
 
@@ -77,14 +74,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64ActionName)]
-        public async Task<IActionResult> Base64(string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Base64(Uri returnUrl)
         {
-            const string LogMessage = "GET Encode/Base64";
-
-            this.logger.LogTrace(LogMessage);
-
-            this.logger.LogTrace(LogMessage);
-
             EncodeBase64ViewModel viewModel = await this.encodeWebService.GetEncodeBase64ViewModelAsync().ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
@@ -101,12 +93,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64ActionName)]
-        public async Task<IActionResult> Base64([Bind(nameof(EncodeBase64RequestModel.Content))]EncodeBase64RequestModel model, string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Base64([Bind(nameof(EncodeBase64RequestModel.Content))]EncodeBase64RequestModel model, Uri returnUrl)
         {
-            const string LogMessage = "POST Encode/Base64";
-
-            this.logger.LogTrace(LogMessage);
-
             EncodeBase64ViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
@@ -118,11 +107,11 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 catch (Exception ex)
                 {
                     this.ModelState.AddModelError(string.Empty, ex.Message);
-                    this.logger.LogError(ex, LogMessage);
+                    this.logger.LogError(ex, string.Empty);
                 }
             }
 
-            viewModel = viewModel ?? await this.encodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
+            viewModel ??= await this.encodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
 
@@ -136,12 +125,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// <returns><see cref="IActionResult"/>.</returns>
         [HttpGet]
         [ActionName(Base64UrlActionName)]
-        public async Task<IActionResult> Base64Url(string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Base64Url(Uri returnUrl)
         {
-            const string LogMessage = "GET Encode/Base64Url";
-
-            this.logger.LogTrace(LogMessage);
-
             EncodeBase64UrlViewModel viewModel = await this.encodeWebService.GetEncodeBase64UrlViewModelAsync().ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
@@ -158,12 +144,9 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(Base64UrlActionName)]
-        public async Task<IActionResult> Base64Url([Bind(nameof(EncodeBase64UrlRequestModel.Content))]EncodeBase64UrlRequestModel model, string returnUrl)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
+        public async Task<IActionResult> Base64Url([Bind(nameof(EncodeBase64UrlRequestModel.Content))]EncodeBase64UrlRequestModel model, Uri returnUrl)
         {
-            const string LogMessage = "POST Encode/Base64Url";
-
-            this.logger.LogTrace(LogMessage);
-
             EncodeBase64UrlViewModel viewModel = null;
 
             if (this.ModelState.IsValid)
@@ -175,11 +158,11 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 catch (Exception ex)
                 {
                     this.ModelState.AddModelError(string.Empty, ex.Message);
-                    this.logger.LogError(ex, LogMessage);
+                    this.logger.LogError(ex, string.Empty);
                 }
             }
 
-            viewModel = viewModel ?? await this.encodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
+            viewModel ??= await this.encodeWebService.MapToViewModelAsync(model).ConfigureAwait(false);
 
             viewModel.ReturnUrl = returnUrl;
 

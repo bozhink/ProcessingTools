@@ -54,6 +54,6 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public IEnumerable<ArticleJournalViewModel> Journals { get; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

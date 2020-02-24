@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Documents.Documents
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Contracts.Models.Documents.Documents;
 
@@ -36,6 +37,6 @@ namespace ProcessingTools.Web.Models.Documents.Documents
         public string Description { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

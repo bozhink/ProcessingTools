@@ -58,6 +58,6 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         public string Address { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

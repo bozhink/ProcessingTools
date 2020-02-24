@@ -18,9 +18,11 @@ namespace ProcessingTools.Web.Models.Admin.Databases
         /// Initializes a new instance of the <see cref="InitializeViewModel"/> class.
         /// </summary>
         /// <param name="userContext">The user context.</param>
-        public InitializeViewModel(UserContext userContext)
+        /// <param name="exceptions">Exceptions during initialization.</param>
+        public InitializeViewModel(UserContext userContext, IEnumerable<Exception> exceptions)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
+            this.Exceptions = exceptions;
         }
 
         /// <summary>
@@ -45,11 +47,11 @@ namespace ProcessingTools.Web.Models.Admin.Databases
         public bool Success { get; set; }
 
         /// <summary>
-        /// Gets or sets the exceptions.
+        /// Gets the exceptions.
         /// </summary>
-        public ICollection<Exception> Exceptions { get; set; } = new HashSet<Exception>();
+        public IEnumerable<Exception> Exceptions { get; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

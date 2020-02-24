@@ -4,10 +4,8 @@
 
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
-    using System;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
@@ -37,17 +35,6 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string CodeMirrorActionName = nameof(CodeMirror);
 
-        private readonly ILogger logger;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TextEditorController"/> class.
-        /// </summary>
-        /// <param name="logger">Logger.</param>
-        public TextEditorController(ILogger<TextEditorController> logger)
-        {
-            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-
         /// <summary>
         /// Tools/TextEditor.
         /// </summary>
@@ -55,10 +42,6 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ActionName(IndexActionName)]
         public IActionResult Index()
         {
-            const string LogMessage = "TextEditor/Index";
-
-            this.logger.LogTrace(LogMessage);
-
             return this.RedirectToAction(MonacoEditorActionName);
         }
 
@@ -69,10 +52,6 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ActionName(MonacoEditorActionName)]
         public IActionResult MonacoEditor()
         {
-            const string LogMessage = "TextEditor/MonacoEditor";
-
-            this.logger.LogTrace(LogMessage);
-
             return this.View();
         }
 
@@ -83,10 +62,6 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         [ActionName(CodeMirrorActionName)]
         public IActionResult CodeMirror()
         {
-            const string LogMessage = "TextEditor/CodeMirror";
-
-            this.logger.LogTrace(LogMessage);
-
             return this.View();
         }
     }

@@ -134,6 +134,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
         public DateTime ModifiedOn { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

@@ -70,6 +70,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
         public string FloatObjectXPath { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

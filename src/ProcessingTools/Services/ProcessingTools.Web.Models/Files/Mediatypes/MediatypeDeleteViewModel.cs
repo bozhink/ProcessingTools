@@ -105,6 +105,6 @@ namespace ProcessingTools.Web.Models.Files.Mediatypes
         public DateTime ModifiedOn { get; set; }
 
         /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }
