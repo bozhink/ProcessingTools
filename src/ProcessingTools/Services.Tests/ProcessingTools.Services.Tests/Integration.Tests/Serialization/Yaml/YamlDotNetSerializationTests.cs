@@ -49,13 +49,17 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 ";
 
             var deserializer = new Deserializer();
-            var result = deserializer.Deserialize<List<Hashtable>>(new StringReader(yaml));
+
+            StringReader stringReader = new StringReader(yaml);
+
+            var result = deserializer.Deserialize<List<Hashtable>>(stringReader);
+
+            stringReader.Dispose();
 
             Assert.IsNotNull(result);
 
             foreach (var item in result)
             {
-                this.TestContext.WriteLine("Item:");
                 foreach (DictionaryEntry entry in item)
                 {
                     this.TestContext.WriteLine("- {0} = {1}", entry.Key, entry.Value);
@@ -84,13 +88,17 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 ";
 
             var deserializer = new Deserializer();
-            var result = deserializer.Deserialize<IEnumerable<LayerModel>>(new StringReader(yaml));
+
+            StringReader stringReader = new StringReader(yaml);
+
+            var result = deserializer.Deserialize<IEnumerable<LayerModel>>(stringReader);
+
+            stringReader.Dispose();
 
             Assert.IsNotNull(result);
 
             foreach (var item in result)
             {
-                this.TestContext.WriteLine("Item:");
                 this.TestContext.WriteLine($"- id = {item.Id}");
                 this.TestContext.WriteLine($"- layer = {item.Layer}");
                 this.TestContext.WriteLine($"- label = {item.Label}");
@@ -121,13 +129,17 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
-            var result = deserializer.Deserialize<IEnumerable<LayerModel>>(new StringReader(yaml));
+
+            StringReader stringReader = new StringReader(yaml);
+
+            var result = deserializer.Deserialize<IEnumerable<LayerModel>>(stringReader);
+
+            stringReader.Dispose();
 
             Assert.IsNotNull(result);
 
             foreach (var item in result)
             {
-                this.TestContext.WriteLine("Item:");
                 this.TestContext.WriteLine($"- id = {item.Id}");
                 this.TestContext.WriteLine($"- layer = {item.Layer}");
                 this.TestContext.WriteLine($"- label = {item.Label}");
@@ -155,7 +167,11 @@ Rules:
                 .IgnoreUnmatchedProperties()
                 .Build();
 
-            var result = deserializer.Deserialize<XmlReplaceRuleSetModel>(new StringReader(yaml));
+            StringReader stringReader = new StringReader(yaml);
+
+            var result = deserializer.Deserialize<XmlReplaceRuleSetModel>(stringReader);
+
+            stringReader.Dispose();
 
             Assert.IsNotNull(result, "result");
             Assert.AreEqual("entry", result.XPath, "result.XPath");
@@ -198,10 +214,14 @@ Rules:
                 .IgnoreUnmatchedProperties()
                 .Build();
 
-            var result = deserializer.Deserialize<XmlReplaceRuleSetModel[]>(new StringReader(yaml));
+            StringReader stringReader = new StringReader(yaml);
 
-            Assert.IsNotNull(result, "result");
-            Assert.AreEqual(2, result.Count(), "result.Rules.Count");
+            var result = deserializer.Deserialize<XmlReplaceRuleSetModel[]>(stringReader);
+
+            stringReader.Dispose();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Length);
 
             foreach (var item in result)
             {
@@ -245,7 +265,11 @@ Rules:
                 .IgnoreUnmatchedProperties()
                 .Build();
 
-            var result = deserializer.Deserialize<IEnumerable<XmlReplaceRuleSetModel>>(new StringReader(yaml));
+            StringReader stringReader = new StringReader(yaml);
+
+            var result = deserializer.Deserialize<IEnumerable<XmlReplaceRuleSetModel>>(stringReader);
+
+            stringReader.Dispose();
 
             Assert.IsNotNull(result, "result");
             Assert.AreEqual(2, result.Count(), "result.Rules.Count");

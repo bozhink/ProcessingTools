@@ -64,7 +64,9 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
-            Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
+            Assert.AreEqual(0, repository.GetAll(key).ToList().Count);
+
+            client.Dispose();
         }
 
         /// <summary>
@@ -150,7 +152,9 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
-            Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
+            Assert.AreEqual(0, repository.GetAll(key).ToList().Count);
+
+            client.Dispose();
         }
 
         /// <summary>
@@ -215,7 +219,9 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
-            Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
+            Assert.AreEqual(0, repository.GetAll(key).ToList().Count);
+
+            client.Dispose();
         }
 
         /// <summary>
@@ -275,6 +281,8 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             // Act + Assert: SaveChanges
             // Expected internal catch of "ServiceStack.Redis.RedisResponseException : Background save already in progress"
             Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(1L));
+
+            client.Dispose();
         }
 
         /// <summary>
@@ -328,7 +336,9 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             var keysAfterRemove = repository.Keys.ToList();
 
             // Assert: Get Keys
-            Assert.AreEqual(0, keysAfterRemove.Count, $"Number of keys after insert should be 0.");
+            Assert.AreEqual(0, keysAfterRemove.Count);
+
+            client.Dispose();
         }
 
         /// <summary>
@@ -350,6 +360,8 @@ namespace ProcessingTools.Data.Redis.Integration.Tests.Repositories
             var clientField = PrivateField.GetInstanceField(baseType, repository, Constants.ClientFieldName);
             var clientProperty = PrivateProperty.GetInstanceProperty(baseType, repository, Constants.ClientPropertyName);
             Assert.AreSame(client, clientField ?? clientProperty);
+
+            client.Dispose();
         }
     }
 }

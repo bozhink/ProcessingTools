@@ -43,8 +43,9 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization
                 stream.Flush();
                 stream.Position = 0;
 
-                var reader = new StreamReader(stream, new UTF8Encoding());
+                var reader = new StreamReader(stream, Encoding.UTF8, leaveOpen: true);
                 var result = reader.ReadToEnd();
+                reader.Dispose();
 
                 var xml = new XmlDocument();
                 xml.LoadXml(result);
@@ -75,8 +76,9 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization
                 stream.Flush();
                 stream.Position = 0;
 
-                var reader = new StreamReader(stream, new UTF8Encoding());
+                var reader = new StreamReader(stream, Encoding.UTF8, leaveOpen: true);
                 var result = reader.ReadToEnd();
+                reader.Dispose();
 
                 var xml = new XmlDocument();
                 xml.LoadXml(result);
