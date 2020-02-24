@@ -25,6 +25,21 @@ namespace ProcessingTools.CommandsServer.Extensions
         /// <returns>Configured connection.</returns>
         public static IConnection ConfigureConnection(this IConnection connection, IMessageCacheService messageCacheService, ILogger logger)
         {
+            if (connection is null)
+            {
+                throw new ArgumentNullException(nameof(connection));
+            }
+
+            if (messageCacheService is null)
+            {
+                throw new ArgumentNullException(nameof(messageCacheService));
+            }
+
+            if (logger is null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
+
             connection.CallbackException += (s, e) =>
             {
                 logger.LogError(e.Exception, "IConnection.CallbackException");
