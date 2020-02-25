@@ -15,7 +15,8 @@ namespace ProcessingTools.Contracts.Services.Maps
         /// Gets longitude and latitude by address.
         /// </summary>
         /// <param name="address">Address to be requested.</param>
+        /// <param name="serviceKey">Key for the Bing Maps service.</param>
         /// <returns>Pair of coordinates.</returns>
-        Task<string[]> GetLongitudeAndLatitudeByAddressAsync(string address);
+        Task<string[]> GetLongitudeAndLatitudeByAddressAsync(string address, string serviceKey);
     }
 }

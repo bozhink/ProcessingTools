@@ -5,13 +5,12 @@
 namespace ProcessingTools.Services.Maps
 {
     using System;
-    using System.Collections.Generic;
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Services.Maps;
 
     /// <summary>
@@ -19,8 +18,6 @@ namespace ProcessingTools.Services.Maps
     /// </summary>
     public class BingMapService : IBingMapService
     {
-        private static readonly string BingMapApiURL = "http://dev.virtualearth.net/REST/v1/Locations/US/{0}?output=json&key=" + AppSettings.BingMapsKey;
-
         private readonly HttpClient httpClient;
         private readonly ILogger logger;
 
@@ -40,27 +37,51 @@ namespace ProcessingTools.Services.Maps
         /// Reference URL: https://msdn.microsoft.com/en-us/library/ff701711.aspx.
         /// </summary>
         /// <param name="address">Address to get longitude and latitude.</param>
-        /// <returns>Task.</returns>
-        public async Task<string[]> GetLongitudeAndLatitudeByAddressAsync(string address)
+        /// <param name="serviceKey">Key for the Bing Maps service.</param>
+        /// <returns>Pair of coordinates.</returns>
+        public Task<string[]> GetLongitudeAndLatitudeByAddressAsync(string address, string serviceKey)
         {
-            var result = new List<string>(2);
+            if (string.IsNullOrEmpty(serviceKey))
+            {
+                throw new ArgumentNullException(nameof(serviceKey));
+            }
 
-            var uri = new Uri(string.Format(BingMapApiURL, address));
+            if (string.IsNullOrEmpty(address))
+            {
+                return Task.FromResult(Array.Empty<string>());
+            }
+
+            return this.GetLongitudeAndLatitudeByAddressInternalAsync(address, serviceKey);
+        }
+
+        private async Task<string[]> GetLongitudeAndLatitudeByAddressInternalAsync(string address, string serviceKey)
+        {
+            Uri baseAddress = new Uri($"http://dev.virtualearth.net");
+
+            string[] result = new string[2];
+
             try
             {
-                var response = await this.httpClient.GetAsync(uri).ConfigureAwait(false);
+                string requestAddress = WebUtility.UrlEncode(address);
+
+                var requestUri = new Uri(baseAddress, $"/REST/v1/Locations/US/{requestAddress}?output=json&key={serviceKey}");
+
+                var response = await this.httpClient.GetAsync(requestUri).ConfigureAwait(false);
+
                 response.EnsureSuccessStatusCode();
+
                 JObject json = (JObject)JsonConvert.DeserializeObject(response.Content.ReadAsStringAsync().Result);
                 var coordinates = json["resourceSets"][0]["resources"][0]["point"]["coordinates"];
-                result.Add(coordinates[0].ToString());
-                result.Add(coordinates[1].ToString());
+
+                result[0] = coordinates[0].ToString();
+                result[1] = coordinates[1].ToString();
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "Error in Bing Maps service request.");
+                this.logger.LogError(ex, string.Empty);
             }
 
-            return result.ToArray();
+            return result;
         }
     }
 }

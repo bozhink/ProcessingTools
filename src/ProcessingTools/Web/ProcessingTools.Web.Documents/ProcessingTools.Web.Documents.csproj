@@ -133,9 +133,4 @@
     </Content>
   </ItemGroup>
 
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties _1eslint_1json__JsonSchema="http://json.schemastore.org/eslintrc" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
