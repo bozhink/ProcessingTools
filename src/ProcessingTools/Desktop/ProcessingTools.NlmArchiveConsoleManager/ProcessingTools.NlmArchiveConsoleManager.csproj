@@ -16,16 +16,14 @@
     <PackageTags>app, NLM, archive</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.NlmArchiveConsoleManager.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.NlmArchiveConsoleManager.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.NlmArchiveConsoleManager.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.NlmArchiveConsoleManager.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

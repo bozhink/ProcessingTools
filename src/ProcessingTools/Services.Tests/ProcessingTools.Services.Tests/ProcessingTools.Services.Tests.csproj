@@ -12,18 +12,17 @@
     <Description>Services tests.</Description>
     <PackageTags>tests, services</PackageTags>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Services.Tests.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
-    <NoWarn>1701;1702;CA1707</NoWarn>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Services.Tests.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Services.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Services.Tests.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="DataFiles\article-with-abbrev.xml" />
     <None Remove="DataFiles\article-with-external-links.xml" />

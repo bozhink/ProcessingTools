@@ -19,18 +19,16 @@
     <Product>ProcessingTools.Clients.ConnectedServices.Integration.Tests</Product>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Clients.ConnectedServices.Integration.Tests.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Clients.ConnectedServices.Integration.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Clients.ConnectedServices.Integration.Tests.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;CA1707</NoWarn>
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Clients.ConnectedServices.Integration.Tests.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -79,5 +77,4 @@
   <ItemGroup>
     <Folder Include="Connected Services\" />
   </ItemGroup>
-
 </Project>
