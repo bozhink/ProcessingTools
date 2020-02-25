@@ -10,18 +10,17 @@
     <RepositoryType>git</RepositoryType>
     <Description>Clients of external services.</Description>
     <Authors>Bozhin Karaivanov</Authors>
-    <PackageTags>cleints</PackageTags>
+    <PackageTags>clients</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\ProcessingTools.Clients.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Clients.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\ProcessingTools.Clients.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Clients.xml</DocumentationFile>
   </PropertyGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>

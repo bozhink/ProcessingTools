@@ -13,15 +13,14 @@
     <PackageTags>tasks</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\ProcessingTools.Tasks.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Tasks.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\ProcessingTools.Tasks.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Tasks.xml</DocumentationFile>
   </PropertyGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>

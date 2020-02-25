@@ -15,16 +15,14 @@
     <Copyright>Copyright © 2020 ProcessingTools</Copyright>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\ProcessingTools.Configuration.Models.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Configuration.Models.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\ProcessingTools.Configuration.Models.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Configuration.Models.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

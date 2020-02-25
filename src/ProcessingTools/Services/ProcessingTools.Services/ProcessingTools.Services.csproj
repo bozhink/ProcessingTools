@@ -13,23 +13,16 @@
     <Authors>Bozhin Karaivanov</Authors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\ProcessingTools.Services.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Services.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\ProcessingTools.Services.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Services.xml</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Special\FloraReplace.txt" />
-  </ItemGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Special\FloraReplace.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
