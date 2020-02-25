@@ -47,9 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Contra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.ConnectedServices", "Services\ProcessingTools.Clients.ConnectedServices\ProcessingTools.Clients.ConnectedServices.csproj", "{30E121DD-97E2-4998-993E-F64B8E6A7EBA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.ConnectedServices.Integration.Tests", "Services.Tests\ProcessingTools.Clients.ConnectedServices.Tests\ProcessingTools.Clients.ConnectedServices.Integration.Tests.csproj", "{F2BFFCBD-D8C1-4217-8EF6-3A7861C37051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.ConnectedServices.Integration.Tests", "Services\ProcessingTools.Clients.ConnectedServices.Tests\ProcessingTools.Clients.ConnectedServices.Integration.Tests.csproj", "{F2BFFCBD-D8C1-4217-8EF6-3A7861C37051}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Tests", "Services.Tests\ProcessingTools.Services.Tests\ProcessingTools.Services.Tests.csproj", "{B346E2EC-3B16-4CD4-B1C7-499755F8613B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Tests", "Services\ProcessingTools.Services.Tests\ProcessingTools.Services.Tests.csproj", "{B346E2EC-3B16-4CD4-B1C7-499755F8613B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Models", "Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj", "{35E931D4-265B-413C-B837-09E530321F57}"
 EndProject
@@ -59,21 +59,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Commands.Tagger", "Contracts\ProcessingTools.Contracts.Commands.Tagger\ProcessingTools.Contracts.Commands.Tagger.csproj", "{A88D9D6F-8842-48B5-A847-5AD192E0814D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks", "Infrastructure\ProcessingTools.Tasks\ProcessingTools.Tasks.csproj", "{DA89759D-D334-40A2-BDEC-45C554D0C083}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks", "Services\ProcessingTools.Tasks\ProcessingTools.Tasks.csproj", "{DA89759D-D334-40A2-BDEC-45C554D0C083}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Tasks", "Contracts\ProcessingTools.Contracts.Tasks\ProcessingTools.Contracts.Tasks.csproj", "{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Models", "Infrastructure\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj", "{5024521E-CA0B-417E-92A1-446F1124579B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Models", "Services\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj", "{5024521E-CA0B-417E-92A1-446F1124579B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Tasks.Models", "Contracts\ProcessingTools.Contracts.Tasks.Models\ProcessingTools.Contracts.Tasks.Models.csproj", "{E9589748-749C-4C72-ADD5-F074F49BCFF4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Code", "Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj", "{EBD6C134-433A-4D4D-864A-50745CE94BCA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Code.Tests", "Infrastructure.Tests\ProcessingTools.Common.Code.Tests\ProcessingTools.Common.Code.Tests.csproj", "{26EB94FE-D40B-439B-AB19-3E65B504B49C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Code.Tests", "Infrastructure\ProcessingTools.Common.Code.Tests\ProcessingTools.Common.Code.Tests.csproj", "{26EB94FE-D40B-439B-AB19-3E65B504B49C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common", "Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj", "{89A08F07-815A-4168-941F-C80FA07020F1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Tests", "Infrastructure.Tests\ProcessingTools.Common.Tests\ProcessingTools.Common.Tests.csproj", "{3FA3B3CD-3BBD-4C59-819A-80780AD73900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Tests", "Infrastructure\ProcessingTools.Common.Tests\ProcessingTools.Common.Tests.csproj", "{3FA3B3CD-3BBD-4C59-819A-80780AD73900}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.Mongo", "Data\ProcessingTools.Data.Models.Mongo\ProcessingTools.Data.Models.Mongo.csproj", "{A84A59AE-A52A-4F51-B2A8-AD8306ED395A}"
 EndProject
@@ -95,19 +95,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Xml", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Memory", "Data\ProcessingTools.Data.Memory\ProcessingTools.Data.Memory.csproj", "{2B17354C-4BA0-448C-AB8D-8E43210ADD04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Memory.Integration.Tests", "Data.Tests\ProcessingTools.Data.Memory.Integration.Tests\ProcessingTools.Data.Memory.Integration.Tests.csproj", "{6CD6DC67-2E82-4966-B2BE-9FCBC14CA75B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Memory.Integration.Tests", "Data\ProcessingTools.Data.Memory.Integration.Tests\ProcessingTools.Data.Memory.Integration.Tests.csproj", "{6CD6DC67-2E82-4966-B2BE-9FCBC14CA75B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Memory.Unit.Tests", "Data.Tests\ProcessingTools.Data.Memory.Unit.Tests\ProcessingTools.Data.Memory.Unit.Tests.csproj", "{7DDAB91F-A863-4541-BE21-82020F47A30C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Memory.Unit.Tests", "Data\ProcessingTools.Data.Memory.Unit.Tests\ProcessingTools.Data.Memory.Unit.Tests.csproj", "{7DDAB91F-A863-4541-BE21-82020F47A30C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Mongo.Integration.Tests", "Data.Tests\ProcessingTools.Data.Mongo.Integration.Tests\ProcessingTools.Data.Mongo.Integration.Tests.csproj", "{EEB273AB-84AA-4021-970E-BFCADF12FD82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Mongo.Integration.Tests", "Data\ProcessingTools.Data.Mongo.Integration.Tests\ProcessingTools.Data.Mongo.Integration.Tests.csproj", "{EEB273AB-84AA-4021-970E-BFCADF12FD82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Xml.Integration.Tests", "Data.Tests\ProcessingTools.Data.Xml.Integration.Tests\ProcessingTools.Data.Xml.Integration.Tests.csproj", "{B4BAC4B5-4E9E-464B-A729-D4DC9F2B5D53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Xml.Integration.Tests", "Data\ProcessingTools.Data.Xml.Integration.Tests\ProcessingTools.Data.Xml.Integration.Tests.csproj", "{B4BAC4B5-4E9E-464B-A729-D4DC9F2B5D53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Redis.Integration.Tests", "Data.Tests\ProcessingTools.Data.Redis.Integration.Tests\ProcessingTools.Data.Redis.Integration.Tests.csproj", "{C93A9E8A-BC6B-4F0C-B86F-3FE8EE147B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Redis.Integration.Tests", "Data\ProcessingTools.Data.Redis.Integration.Tests\ProcessingTools.Data.Redis.Integration.Tests.csproj", "{C93A9E8A-BC6B-4F0C-B86F-3FE8EE147B0A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Redis.Unit.Tests", "Data.Tests\ProcessingTools.Data.Redis.Unit.Tests\ProcessingTools.Data.Redis.Unit.Tests.csproj", "{6222CD73-CAF3-4D62-AE0E-04179C34ACCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Redis.Unit.Tests", "Data\ProcessingTools.Data.Redis.Unit.Tests\ProcessingTools.Data.Redis.Unit.Tests.csproj", "{6222CD73-CAF3-4D62-AE0E-04179C34ACCA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Seed.Integration.Tests", "Data.Tests\ProcessingTools.Data.Seed.Integration.Tests\ProcessingTools.Data.Seed.Integration.Tests.csproj", "{AA839E49-A281-494E-81A1-68697A481BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Seed.Integration.Tests", "Data\ProcessingTools.Data.Seed.Integration.Tests\ProcessingTools.Data.Seed.Integration.Tests.csproj", "{AA839E49-A281-494E-81A1-68697A481BF8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Core.Api", "Web\ProcessingTools.Web.Core.Api\ProcessingTools.Web.Core.Api.csproj", "{F9003823-B2B1-41ED-A0FA-771467197C85}"
 EndProject
@@ -135,7 +135,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.TasksServer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.CommandsServer", "Web\ProcessingTools.CommandsServer\ProcessingTools.CommandsServer.csproj", "{BE00FBA2-E7A5-4C17-95B2-6F4E2B0CFF07}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Tagger.Tests", "Services.Tests\ProcessingTools.Commands.Tagger.Tests\ProcessingTools.Commands.Tagger.Tests.csproj", "{CD3D733A-F3A7-46A4-8BDD-6A6918003586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Tagger.Tests", "Services\ProcessingTools.Commands.Tagger.Tests\ProcessingTools.Commands.Tagger.Tests.csproj", "{CD3D733A-F3A7-46A4-8BDD-6A6918003586}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Interceptors", "Infrastructure\ProcessingTools.Configuration.Interceptors\ProcessingTools.Configuration.Interceptors.csproj", "{C8BADB0E-F8AE-488A-85D0-21EB8F9914D4}"
 EndProject
@@ -145,13 +145,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.DataAccess.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Resources", "Infrastructure\ProcessingTools.Common.Resources\ProcessingTools.Common.Resources.csproj", "{068708D4-83C7-48B9-B501-5C39634A99C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Models.Integration.Tests", "Services.Tests\ProcessingTools.Clients.Models.Integration.Tests\ProcessingTools.Clients.Models.Integration.Tests.csproj", "{BB2DB1FD-900D-426C-A008-AB8F27823C82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Models.Integration.Tests", "Services\ProcessingTools.Clients.Models.Integration.Tests\ProcessingTools.Clients.Models.Integration.Tests.csproj", "{BB2DB1FD-900D-426C-A008-AB8F27823C82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Integration.Tests", "Services.Tests\ProcessingTools.Clients.Integration.Tests\ProcessingTools.Clients.Integration.Tests.csproj", "{85475DAF-47F4-475C-B55E-527912000468}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Integration.Tests", "Services\ProcessingTools.Clients.Integration.Tests\ProcessingTools.Clients.Integration.Tests.csproj", "{85475DAF-47F4-475C-B55E-527912000468}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Integration.Tests", "Services.Tests\ProcessingTools.Services.Integration.Tests\ProcessingTools.Services.Integration.Tests.csproj", "{C0199F23-BD47-412C-83F5-AF32A1FFE156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Integration.Tests", "Services\ProcessingTools.Services.Integration.Tests\ProcessingTools.Services.Integration.Tests.csproj", "{C0199F23-BD47-412C-83F5-AF32A1FFE156}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Unit.Tests", "Services.Tests\ProcessingTools.Clients.Unit.Tests\ProcessingTools.Clients.Unit.Tests.csproj", "{8A46A788-1A87-4B24-9F15-FAB644A104D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Unit.Tests", "Services\ProcessingTools.Clients.Unit.Tests\ProcessingTools.Clients.Unit.Tests.csproj", "{8A46A788-1A87-4B24-9F15-FAB644A104D5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.DeleteMe", "Services\ProcessingTools.Services.DeleteMe\ProcessingTools.Services.DeleteMe.csproj", "{5E4678D8-A0DD-4EED-853E-06D3BAF2A9C8}"
 EndProject
@@ -815,9 +815,9 @@ Global
 		{D7A7689B-5972-4357-B2A2-54FF6ADEACDC} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{50171E07-3148-4F27-AE06-BF8EE2912322} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{A88D9D6F-8842-48B5-A847-5AD192E0814D} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
-		{DA89759D-D334-40A2-BDEC-45C554D0C083} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{DA89759D-D334-40A2-BDEC-45C554D0C083} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
-		{5024521E-CA0B-417E-92A1-446F1124579B} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{5024521E-CA0B-417E-92A1-446F1124579B} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{E9589748-749C-4C72-ADD5-F074F49BCFF4} = {594BA8BF-8E5C-4E08-80B1-CC93ADDFCC63}
 		{EBD6C134-433A-4D4D-864A-50745CE94BCA} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{26EB94FE-D40B-439B-AB19-3E65B504B49C} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
@@ -872,9 +872,5 @@ Global
 		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{07155165-96DA-42AC-A541-912B602AE67D} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
