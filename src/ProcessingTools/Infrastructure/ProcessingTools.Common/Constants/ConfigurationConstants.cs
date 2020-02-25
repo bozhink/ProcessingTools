@@ -65,6 +65,16 @@ namespace ProcessingTools.Common.Constants
         public const string BiotaxonomyMongoDBDatabaseName = "DatabaseNames:BiotaxonomyMongoDB";
 
         /// <summary>
+        /// Biorepositories database MongoDB connection string name.
+        /// </summary>
+        public const string BiorepositoriesDatabaseMongoDBConnectionStringName = "BiorepositoriesDatabaseMongoDB";
+
+        /// <summary>
+        /// Biorepositories MongoDB database name.
+        /// </summary>
+        public const string BiorepositoriesMongoDBDatabaseName = "DatabaseNames:BiorepositoriesMongoDB";
+
+        /// <summary>
         /// Codes remove non-code nodes XSL file path.
         /// </summary>
         public const string CodesRemoveNonCodeNodesXslFilePath = "StaticFiles:CodesRemoveNonCodeNodesXslFilePath";

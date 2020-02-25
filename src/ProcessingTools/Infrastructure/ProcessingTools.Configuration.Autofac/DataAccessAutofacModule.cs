@@ -120,6 +120,40 @@ namespace ProcessingTools.Configuration.Autofac
                 .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Taxonomy.MongoTaxonRanksDataAccessObject>()
                 .As<ProcessingTools.Contracts.DataAccess.Bio.Taxonomy.ITaxonRanksDataAccessObject>()
                 .InstancePerLifetimeScope();
+
+            // Biorepositories
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoCollectionLabelsDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.ICollectionLabelsDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoCollectionPerLabelsDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.ICollectionPerLabelsDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoCollectionPersDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.ICollectionPersDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoCollectionsDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.ICollectionsDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoInstitutionLabelsDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.IInstitutionLabelsDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoInstitutionsDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.IInstitutionsDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoStaffDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.IStaffDataAccessObject>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.DataAccess.Mongo.Bio.Biorepositories.MongoStaffLabelsDataAccessObject>()
+                .As<ProcessingTools.Contracts.DataAccess.Bio.Biorepositories.IStaffLabelsDataAccessObject>()
+                .InstancePerLifetimeScope();
         }
     }
 }

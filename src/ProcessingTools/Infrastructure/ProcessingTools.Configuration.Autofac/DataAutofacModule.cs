@@ -88,6 +88,17 @@ namespace ProcessingTools.Configuration.Autofac
                 .Named<MongoCollectionSettings>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
                 .SingleInstance();
 
+            builder
+                .Register(c => new MongoCollectionSettings
+                {
+                    AssignIdOnInsert = true,
+                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
+                    WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
+                })
+                .As<MongoCollectionSettings>()
+                .Named<MongoCollectionSettings>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .SingleInstance();
+
             // Register MongoDB databases
             builder.RegisterMongoDatabase(
                 connectionString: this.Configuration.GetConnectionString(ConfigurationConstants.HistoryDatabaseMongoDBConnectionStringName),
@@ -114,6 +125,11 @@ namespace ProcessingTools.Configuration.Autofac
                 databaseName: this.Configuration[ConfigurationConstants.BiotaxonomyMongoDBDatabaseName],
                 bindingName: InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName);
 
+            builder.RegisterMongoDatabase(
+                connectionString: this.Configuration.GetConnectionString(ConfigurationConstants.BiorepositoriesDatabaseMongoDBConnectionStringName),
+                databaseName: this.Configuration[ConfigurationConstants.BiorepositoriesMongoDBDatabaseName],
+                bindingName: InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName);
+
             // Register MongoDB collections
             builder
                 .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.History.ObjectHistory>(InjectionConstants.MongoDBHistoryDatabaseBindingName)
@@ -138,6 +154,17 @@ namespace ProcessingTools.Configuration.Autofac
                 .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Taxonomy.TaxonRankItem>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
                 ;
 
+            builder
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.Collection>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.CollectionLabel>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.CollectionPer>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.CollectionPerLabel>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.Institution>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.InstitutionLabel>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.Staff>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                .RegisterMongoCollectionBinding<ProcessingTools.Data.Models.Mongo.Bio.Biorepositories.StaffLabel>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
+                ;
+
             // Register database initializers
             builder
                .Register<Func<IEnumerable<IDatabaseInitializer>>>(c =>
@@ -159,6 +186,7 @@ namespace ProcessingTools.Configuration.Autofac
                 .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Files.MongoFilesDatabaseInitializer>(InjectionConstants.MongoDBFilesDatabaseBindingName)
                 .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Layout.MongoLayoutDatabaseInitializer>(InjectionConstants.MongoDBLayoutDatabaseBindingName)
                 .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Bio.Taxonomy.MongoBiotaxonomyDatabaseInitializer>(InjectionConstants.MongoDBBiotaxonomyDatabaseBindingName)
+                .RegisterMongoDatabaseInitializer<ProcessingTools.Data.Mongo.Bio.Biorepositories.MongoBiorepositoriesDatabaseInitializer>(InjectionConstants.MongoDBBiorepositoriesDatabaseBindingName)
                 ;
 
             // Documents DB provider
