@@ -15,10 +15,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\release</OutputPath>
     <DocumentationFile>bin\release\ProcessingTools.Contracts.Tasks.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1040</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\debug</OutputPath>
     <DocumentationFile>bin\debug\ProcessingTools.Contracts.Tasks.xml</DocumentationFile>
+    <NoWarn>1701;1702;CA1040</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="stylecop.json" />
