@@ -14,6 +14,9 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>web, documents</PackageTags>
+    <AssemblyName>ProcessingTools.Web.Documents</AssemblyName>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- https://stackoverflow.com/questions/50778521/how-to-disable-precompiled-views-in-net-core-2-1-for-debugging -->
@@ -22,19 +25,14 @@
     <RazorCompileOnPublish>true</RazorCompileOnPublish>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <!-- see https://github.com/aspnet/Razor/issues/2406 -->
-    <_RazorBuildServerPipeName>razor-issues-2406</_RazorBuildServerPipeName>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Web.Documents.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\debug\ProcessingTools.Web.Documents.xml</DocumentationFile>
     <OutputPath>bin\debug</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\ProcessingTools.Web.Documents.xml</DocumentationFile>
-    <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Web.Documents.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

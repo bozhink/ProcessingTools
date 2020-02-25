@@ -22,20 +22,18 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-   
-    <OutputPath>bin\debug</OutputPath>
-    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.Web.Api.Biology.xml</DocumentationFile>
+  <PropertyGroup>
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants />
     <OutputPath>bin\release</OutputPath>
-    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.Web.Api.Biology.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Web.Api.Biology.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Web.Api.Biology.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -108,5 +106,4 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
 </Project>

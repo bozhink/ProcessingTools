@@ -6,7 +6,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    
+
     <Version>0.1.1</Version>
     <Authors>Bozhin Karaivanov</Authors>
     <Company>ProcessingTools</Company>
@@ -19,9 +19,10 @@
     <PackageTags>web, api, geography, geo</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>bin\debug</OutputPath>
-    <DocumentationFile>bin\debug\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
+  <PropertyGroup>
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+    <AssemblyName>ProcessingTools.Web.Api.Geography</AssemblyName>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -29,8 +30,9 @@
     <DocumentationFile>bin\release\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Web.Api.Geography.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -110,5 +112,4 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
 </Project>

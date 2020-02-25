@@ -13,19 +13,19 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>commands, server</PackageTags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\netcoreapp3.1\ProcessingTools.CommandsServer.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
-   
+    <AssemblyName>ProcessingTools.CommandsServer</AssemblyName>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\netcoreapp3.1\ProcessingTools.CommandsServer.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.CommandsServer.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.CommandsServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

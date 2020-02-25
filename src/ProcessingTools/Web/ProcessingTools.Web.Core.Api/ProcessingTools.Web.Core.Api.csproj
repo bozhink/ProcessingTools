@@ -14,20 +14,21 @@
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\debug\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
-    <OutputPath>bin\debug</OutputPath>
+  <PropertyGroup>
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+    <AssemblyName>ProcessingTools.Web.Core.Api</AssemblyName>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\release\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
     <OutputPath>bin\release</OutputPath>
+    <DocumentationFile>bin\release\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\debug</OutputPath>
+    <DocumentationFile>bin\debug\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
