@@ -4,6 +4,9 @@
 
 namespace ProcessingTools.DbSeeder.Contracts.Seeders
 {
+    /// <summary>
+    /// Bio Environments database seeder.
+    /// </summary>
     public interface IBioEnvironmentsDbSeeder : IDbSeeder
     {
     }

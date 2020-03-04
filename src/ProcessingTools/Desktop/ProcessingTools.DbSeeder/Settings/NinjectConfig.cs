@@ -7,8 +7,15 @@ namespace ProcessingTools.DbSeeder.Settings
     using System.Reflection;
     using global::Ninject;
 
+    /// <summary>
+    /// Ninject configuration.
+    /// </summary>
     public static class NinjectConfig
     {
+        /// <summary>
+        /// Create instance of <see cref="IKernel"/>.
+        /// </summary>
+        /// <returns>Configured instnce of <see cref="IKernel"/>.</returns>
         public static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
@@ -17,10 +24,9 @@ namespace ProcessingTools.DbSeeder.Settings
             {
                 kernel.Load(Assembly.GetExecutingAssembly());
             }
-            catch
+            finally
             {
                 kernel.Dispose();
-                throw;
             }
 
             return kernel;

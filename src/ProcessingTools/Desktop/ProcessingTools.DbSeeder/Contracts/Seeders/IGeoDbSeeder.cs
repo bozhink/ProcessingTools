@@ -4,6 +4,9 @@
 
 namespace ProcessingTools.DbSeeder.Contracts.Seeders
 {
+    /// <summary>
+    /// Geo database seeder.
+    /// </summary>
     public interface IGeoDbSeeder : IDbSeeder
     {
     }

@@ -4,6 +4,9 @@
 
 namespace ProcessingTools.DbSeeder.Contracts.Seeders
 {
+    /// <summary>
+    /// Mediatypes MongoDB database seeder.
+    /// </summary>
     public interface IMediatypesMongoDbSeeder : IDbSeeder
     {
     }

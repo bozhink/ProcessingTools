@@ -9,12 +9,21 @@ namespace ProcessingTools.DbSeeder.Core
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services;
 
+    /// <summary>
+    /// DbSeeder engine.
+    /// </summary>
     public class Engine : IEngine
     {
         private readonly ICommandRunner commandRunner;
         private readonly ISandbox sandbox;
         private readonly IHelpProvider helpProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Engine"/> class.
+        /// </summary>
+        /// <param name="commandRunner">Instance of <see cref="ICommandRunner"/>.</param>
+        /// <param name="sandbox"></param>
+        /// <param name="helpProvider"></param>
         public Engine(ICommandRunner commandRunner, ISandbox sandbox, IHelpProvider helpProvider)
         {
             this.commandRunner = commandRunner ?? throw new ArgumentNullException(nameof(commandRunner));
@@ -25,7 +34,7 @@ namespace ProcessingTools.DbSeeder.Core
         /// <inheritdoc/>
         public async Task RunAsync(string[] args)
         {
-            if (args == null || args.Length < 1)
+            if (args is null || args.Length < 1)
             {
                 await this.helpProvider.GetHelpAsync().ConfigureAwait(false);
                 return;

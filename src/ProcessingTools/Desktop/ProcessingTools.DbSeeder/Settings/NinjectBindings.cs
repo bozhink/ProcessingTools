@@ -22,6 +22,7 @@ namespace ProcessingTools.DbSeeder.Settings
     /// </summary>
     public class NinjectBindings : NinjectModule
     {
+        /// <inheritdoc/>
         public override void Load()
         {
             this.Bind(b =>

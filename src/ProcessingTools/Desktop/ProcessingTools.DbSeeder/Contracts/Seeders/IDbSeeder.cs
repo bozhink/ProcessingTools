@@ -6,8 +6,15 @@ namespace ProcessingTools.DbSeeder.Contracts.Seeders
 {
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Database seeder.
+    /// </summary>
     public interface IDbSeeder
     {
-        Task Seed();
+        /// <summary>
+        /// Perform seeding procedure.
+        /// </summary>
+        /// <returns>Task.</returns>
+        Task SeedAsync();
     }
 }

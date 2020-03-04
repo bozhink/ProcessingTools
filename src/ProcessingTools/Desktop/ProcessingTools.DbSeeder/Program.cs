@@ -10,8 +10,15 @@ namespace ProcessingTools.DbSeeder
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Settings;
 
+    /// <summary>
+    /// Program.
+    /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// Main method.
+        /// </summary>
+        /// <param name="args">CLI arguments.</param>
         public static void Main(string[] args)
         {
             Stopwatch timer = new Stopwatch();

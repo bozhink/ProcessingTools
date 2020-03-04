@@ -60,7 +60,7 @@ namespace ProcessingTools.DbSeeder.Core
                 var seederType = this.typesProvider.GetTypes().Single(t => t.Name == $"I{name}DbSeeder");
 
                 var seeder = this.seederFactory(seederType);
-                await seeder.Seed().ConfigureAwait(false);
+                await seeder.SeedAsync().ConfigureAwait(false);
             }
 
             return true;

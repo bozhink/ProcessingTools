@@ -6,8 +6,14 @@ namespace ProcessingTools.DbSeeder.Contracts.Providers
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Command names provider.
+    /// </summary>
     public interface ICommandNamesProvider
     {
+        /// <summary>
+        /// Gets the list of available commands.
+        /// </summary>
         IEnumerable<string> CommandNames { get; }
     }
 }

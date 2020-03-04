@@ -9,21 +9,24 @@ namespace ProcessingTools.DbSeeder.Seeders
     using ProcessingTools.Data.Seed.Bio.Biorepositories;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
 
+    /// <summary>
+    /// Biorepositories database seeder.
+    /// </summary>
     public class BiorepositoriesDbSeeder : IBiorepositoriesDbSeeder
     {
         private readonly IBiorepositoriesDataSeeder seeder;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BiorepositoriesDbSeeder"/> class.
+        /// </summary>
+        /// <param name="seeder">Instance of <see cref="IBiorepositoriesDataSeeder"/>.</param>
         public BiorepositoriesDbSeeder(IBiorepositoriesDataSeeder seeder)
         {
-            if (seeder == null)
-            {
-                throw new ArgumentNullException(nameof(seeder));
-            }
-
-            this.seeder = seeder;
+            this.seeder = seeder ?? throw new ArgumentNullException(nameof(seeder));
         }
 
-        public async Task Seed()
+        /// <inheritdoc/>
+        public async Task SeedAsync()
         {
             await this.seeder.SeedAsync().ConfigureAwait(false);
         }

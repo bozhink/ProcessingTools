@@ -11,6 +11,9 @@ namespace ProcessingTools.DbSeeder.Providers
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.DbSeeder.Contracts.Providers;
 
+    /// <summary>
+    /// Command names provider.
+    /// </summary>
     internal class CommandNamesProvider : ICommandNamesProvider
     {
         private const string CommandInterfacePattern = @"I(?<commandName>\w+)DbSeeder";
