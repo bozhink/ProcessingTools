@@ -6,6 +6,9 @@ namespace ProcessingTools.Data.Entity.Bio.Environments
 {
     using ProcessingTools.Data.Entity.Abstractions;
 
+    /// <summary>
+    /// Bio environments database initializer.
+    /// </summary>
     public interface IBioEnvironmentsDataInitializer : IDbContextInitializer<BioEnvironmentsDbContext>
     {
     }
