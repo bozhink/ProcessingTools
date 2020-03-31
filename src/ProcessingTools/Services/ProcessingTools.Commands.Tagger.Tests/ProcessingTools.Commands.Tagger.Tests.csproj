@@ -62,7 +62,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ProcessingTools.Extensions.Dynamic" Version="0.2.3" />
+    <PackageReference Include="ProcessingTools.Extensions.Dynamic" Version="1.0.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.2.0.14119">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
