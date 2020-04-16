@@ -15,6 +15,10 @@ namespace ProcessingTools.Web.Api.Tagger.Controllers
     [ApiController]
     public class EchoController : ControllerBase
     {
+        /// <summary>
+        /// Respond on GET verb.
+        /// </summary>
+        /// <returns>Null as string.</returns>
         [HttpGet]
         public Task<string> GetAsync()
         {
@@ -22,6 +26,10 @@ namespace ProcessingTools.Web.Api.Tagger.Controllers
             return Task.FromResult<string>(null);
         }
 
+        /// <summary>
+        /// Respond on POST verb.
+        /// </summary>
+        /// <returns>Request content as string response.</returns>
         [HttpPost]
         public async Task<string> PostAsync()
         {
@@ -37,6 +45,10 @@ namespace ProcessingTools.Web.Api.Tagger.Controllers
             return content;
         }
 
+        /// <summary>
+        /// Respond on PATCH verb.
+        /// </summary>
+        /// <returns>Request content as string response.</returns>
         [HttpPatch]
         public async Task<string> PatchAsync()
         {
@@ -52,6 +64,10 @@ namespace ProcessingTools.Web.Api.Tagger.Controllers
             return content;
         }
 
+        /// <summary>
+        /// Respond on HEAD verb.
+        /// </summary>
+        /// <returns>Request content as string response.</returns>
         [HttpHead]
         public async Task<string> HeadAsync()
         {
@@ -67,6 +83,10 @@ namespace ProcessingTools.Web.Api.Tagger.Controllers
             return content;
         }
 
+        /// <summary>
+        /// Respond on DELETE verb.
+        /// </summary>
+        /// <returns>Null as string.</returns>
         [HttpDelete]
         public Task<string> DeleteAsync()
         {
