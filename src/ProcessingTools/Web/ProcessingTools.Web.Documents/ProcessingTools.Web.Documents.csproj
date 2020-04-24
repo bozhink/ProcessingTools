@@ -17,6 +17,9 @@
     <AssemblyName>ProcessingTools.Web.Documents</AssemblyName>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <TypeScriptBuildMode>true</TypeScriptBuildMode>
+    <StartupObject>ProcessingTools.Web.Documents.Program</StartupObject>
   </PropertyGroup>
 
   <!-- https://stackoverflow.com/questions/50778521/how-to-disable-precompiled-views-in-net-core-2-1-for-debugging -->
