@@ -29,15 +29,34 @@ namespace ProcessingTools.Services.MQ
         }
 
         /// <inheritdoc/>
-        public void Start()
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Handled exception")]
+        public void Start(Action<Exception> exceptionHandler)
         {
-            this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceStarting);
-            this.queueListener.Start();
+            if (exceptionHandler is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionHandler));
+            }
+
+            try
+            {
+                this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceStarting);
+                this.queueListener.Start(exceptionHandler);
+            }
+            catch (Exception ex)
+            {
+                exceptionHandler.Invoke(ex);
+            }
         }
 
         /// <inheritdoc/>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Handled exception")]
         public void DoWork(Action<Exception> exceptionHandler)
         {
+            if (exceptionHandler is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionHandler));
+            }
+
             try
             {
                 this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceWorking);
@@ -50,10 +69,23 @@ namespace ProcessingTools.Services.MQ
         }
 
         /// <inheritdoc/>
-        public void Stop()
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Handled exception")]
+        public void Stop(Action<Exception> exceptionHandler)
         {
-            this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceStopping);
-            this.queueListener.Stop();
+            if (exceptionHandler is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionHandler));
+            }
+
+            try
+            {
+                this.logger.LogInformation(StringResources.QueueListenerScopedProcessingServiceStopping);
+                this.queueListener.Stop(exceptionHandler);
+            }
+            catch (Exception ex)
+            {
+                exceptionHandler.Invoke(ex);
+            }
         }
     }
 }

@@ -104,6 +104,7 @@ namespace ProcessingTools.CommandsServer.Services
             this.disposed = true;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Handled exception")]
         private void DoWork(object state)
         {
             this.timer?.Change(Timeout.Infinite, 0);
@@ -114,8 +115,11 @@ namespace ProcessingTools.CommandsServer.Services
             }
             catch (Exception ex)
             {
-                this.messageCacheService.Message = ex.Message;
-                this.messageCacheService.Exception = ex;
+                if (this.messageCacheService.Message == "OK")
+                {
+                    this.messageCacheService.Message = ex.Message;
+                    this.messageCacheService.Exception = ex;
+                }
 
                 this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStartError);
 
@@ -132,8 +136,9 @@ namespace ProcessingTools.CommandsServer.Services
             using (var scope = this.services.CreateScope())
             {
                 this.scopedProcessingService = scope.ServiceProvider.GetRequiredService<T>();
-                this.scopedProcessingService.Start();
+                this.scopedProcessingService.Start(this.ExceptionHandler);
                 this.scopedProcessingService.DoWork(this.ExceptionHandler);
+                this.messageCacheService.Message = "OK";
             }
         }
 
@@ -155,12 +160,15 @@ namespace ProcessingTools.CommandsServer.Services
             {
                 try
                 {
-                    this.scopedProcessingService.Stop();
+                    this.scopedProcessingService.Stop(this.ExceptionHandler);
                 }
                 catch (Exception ex)
                 {
-                    this.messageCacheService.Message = ex.Message;
-                    this.messageCacheService.Exception = ex;
+                    if (this.messageCacheService.Message == "OK")
+                    {
+                        this.messageCacheService.Message = ex.Message;
+                        this.messageCacheService.Exception = ex;
+                    }
 
                     this.logger.LogError(ex, StringResources.ConsumeScopedServiceHostedServiceStopError);
                 }

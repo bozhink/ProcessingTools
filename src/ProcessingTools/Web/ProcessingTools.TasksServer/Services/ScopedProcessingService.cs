@@ -31,13 +31,13 @@ namespace ProcessingTools.TasksServer.Services
         }
 
         /// <inheritdoc/>
-        public void Start()
+        public void Start(Action<Exception> exceptionHandler)
         {
             this.logger.LogTrace($"Starting {this.GetType().Name}...");
         }
 
         /// <inheritdoc/>
-        public void Stop()
+        public void Stop(Action<Exception> exceptionHandler)
         {
             this.logger.LogTrace($"Stopping {this.GetType().Name}...");
         }

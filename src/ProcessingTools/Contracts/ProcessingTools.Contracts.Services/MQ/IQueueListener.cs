@@ -12,19 +12,21 @@ namespace ProcessingTools.Contracts.Services.MQ
     public interface IQueueListener
     {
         /// <summary>
-        /// Start the queue listener.
+        /// Starts the queue listener.
         /// </summary>
-        void Start();
+        /// <param name="exceptionHandler">Exception handler.</param>
+        void Start(Action<Exception> exceptionHandler);
 
         /// <summary>
-        /// Run the queue listener.
+        /// Runs the queue listener.
         /// </summary>
-        /// <param name="exceptionHandler">Error handler.</param>
+        /// <param name="exceptionHandler">Exception handler.</param>
         void Run(Action<Exception> exceptionHandler);
 
         /// <summary>
-        /// Stop the queue listener.
+        /// Stops the queue listener.
         /// </summary>
-        void Stop();
+        /// <param name="exceptionHandler">Exception handler.</param>
+        void Stop(Action<Exception> exceptionHandler);
     }
 }

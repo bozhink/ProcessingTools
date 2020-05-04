@@ -12,19 +12,21 @@ namespace ProcessingTools.Contracts.Services
     public interface IScopedProcessingService
     {
         /// <summary>
-        /// Start the scoped service.
+        /// Starts the scoped processing service.
         /// </summary>
-        void Start();
+        /// <param name="exceptionHandler">Exception handler.</param>
+        void Start(Action<Exception> exceptionHandler);
 
         /// <summary>
-        /// Do work.
+        /// Runs the main work logic of the scoped processing service.
         /// </summary>
         /// <param name="exceptionHandler">Exception handler.</param>
         void DoWork(Action<Exception> exceptionHandler);
 
         /// <summary>
-        /// Stop the service.
+        /// Stops the scoped processing service.
         /// </summary>
-        void Stop();
+        /// <param name="exceptionHandler">Exception handler.</param>
+        void Stop(Action<Exception> exceptionHandler);
     }
 }

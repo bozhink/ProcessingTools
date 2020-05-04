@@ -5,14 +5,15 @@
 namespace ProcessingTools.CommandsServer.Services
 {
     using System;
+    using System.Linq;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.CommandsServer.Extensions;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Contracts.Services.MQ;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Events;
+    using RabbitMQ.Client.Exceptions;
 
     /// <summary>
     /// Queue listener.
@@ -41,15 +42,27 @@ namespace ProcessingTools.CommandsServer.Services
         }
 
         /// <inheritdoc/>
-        public void Start()
+        public void Start(Action<Exception> exceptionHandler)
         {
-            this.connection = this.connectionFactory.CreateConnection().ConfigureConnection(this.messageCacheService, this.logger);
+            if (exceptionHandler is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionHandler));
+            }
+
+            this.connection = this.connectionFactory.CreateConnection();
+            this.ConfigureConnection(this.connection, exceptionHandler);
         }
 
         /// <inheritdoc/>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Handled exception")]
         public void Run(Action<Exception> exceptionHandler)
         {
-            if (this.connection == null)
+            if (exceptionHandler is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionHandler));
+            }
+
+            if (this.connection is null)
             {
                 throw new InvalidOperationException("Queue Listener must be started first.");
             }
@@ -66,8 +79,13 @@ namespace ProcessingTools.CommandsServer.Services
         }
 
         /// <inheritdoc/>
-        public void Stop()
+        public void Stop(Action<Exception> exceptionHandler)
         {
+            if (exceptionHandler is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionHandler));
+            }
+
             if (this.connection != null)
             {
                 this.connection.Abort();
@@ -75,6 +93,55 @@ namespace ProcessingTools.CommandsServer.Services
             }
         }
 
+        private void ConfigureConnection(IConnection connection, Action<Exception> exceptionHandler)
+        {
+            if (connection is null)
+            {
+                throw new ArgumentNullException(nameof(connection));
+            }
+
+            if (exceptionHandler is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionHandler));
+            }
+
+            connection.CallbackException += (s, e) =>
+            {
+                var exception = e.Exception;
+
+                if (exception is AggregateException aggregateException && aggregateException.InnerExceptions.Any(ex => ex is ConnectFailureException))
+                {
+                    this.messageCacheService.Message = "No connection to the RabbitMQ server";
+                    this.messageCacheService.Exception = exception;
+                }
+                else
+                {
+                    this.messageCacheService.Message = "No connection to the RabbitMQ server";
+                }
+
+                this.logger.LogError(e.Exception, "IConnection.CallbackException");
+            };
+
+            connection.ConnectionShutdown += (s, e) =>
+            {
+                this.messageCacheService.Message = "Shutdown connection to the RabbitMQ";
+                exceptionHandler.Invoke(new Exception(this.messageCacheService.Message));
+                this.logger.LogInformation("IConnection.ConnectionShutdown {0}", e.ReplyText);
+            };
+
+            connection.ConnectionBlocked += (s, e) =>
+            {
+                this.logger.LogWarning("IConnection.ConnectionBlocked {0}", e.Reason);
+            };
+
+            connection.ConnectionUnblocked += (s, e) =>
+            {
+                this.messageCacheService.Message = "OK";
+                this.logger.LogWarning("IConnection.ConnectionUnblocked {0}", e.ToString());
+            };
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Handled exception")]
         private void ConfigureModel(IModel channel, Action<Exception> exceptionHandler)
         {
             channel.CallbackException += (s, e) =>
@@ -93,7 +160,7 @@ namespace ProcessingTools.CommandsServer.Services
             {
                 try
                 {
-                    byte[] body = ea.Body;
+                    byte[] body = ea.Body.ToArray();
                     string message = Defaults.Encoding.GetString(body);
 
                     // TODO: Add processing logic here.
