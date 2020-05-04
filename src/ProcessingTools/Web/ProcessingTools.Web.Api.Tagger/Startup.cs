@@ -9,7 +9,6 @@ namespace ProcessingTools.Web.Api.Tagger
     using Autofac;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +20,7 @@ namespace ProcessingTools.Web.Api.Tagger
     using ProcessingTools.Web.Api.Tagger.Formatters;
 
     /// <summary>
-    /// Start-up application.
+    /// Application startup.
     /// </summary>
     public class Startup
     {
@@ -46,7 +45,7 @@ namespace ProcessingTools.Web.Api.Tagger
         }
 
         /// <summary>
-        /// Gets the application configuration.
+        /// Gets the configuration.
         /// </summary>
         public IConfiguration Configuration { get; }
 
@@ -94,7 +93,7 @@ namespace ProcessingTools.Web.Api.Tagger
                 .AddXmlSerializerFormatters()
                 .AddJsonOptions(options =>
                 {
-                    options.JsonSerializerOptions.AllowTrailingCommas = false;
+                    options.JsonSerializerOptions.AllowTrailingCommas = true;
                     options.JsonSerializerOptions.PropertyNameCaseInsensitive = false;
                     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                     options.JsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
@@ -110,8 +109,7 @@ namespace ProcessingTools.Web.Api.Tagger
                 })
                 .AddFormatterMappings(options =>
                 {
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                });
 
             // Configure AutoMapper
             services.ConfigureAutoMapper();
@@ -138,12 +136,17 @@ namespace ProcessingTools.Web.Api.Tagger
         /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
+            }
+
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
             }
 
             app.UseHttpsRedirection();
@@ -158,9 +161,9 @@ namespace ProcessingTools.Web.Api.Tagger
             {
                 endpoints.MapControllers();
 
-                endpoints.MapHealthChecks("/health", HealthChecksExtensions.GetHealthCheckOptionsExcludingVersion(this.GetType().Assembly, environment.IsDevelopment()));
+                endpoints.MapHealthChecks("/health", HealthChecksExtensions.GetHealthCheckOptionsExcludingVersion(this.GetType().Assembly, env.IsDevelopment()));
 
-                endpoints.MapHealthChecks("/version", HealthChecksExtensions.GetHealthCheckOptionsForVersion(this.GetType().Assembly, environment.IsDevelopment()));
+                endpoints.MapHealthChecks("/version", HealthChecksExtensions.GetHealthCheckOptionsForVersion(this.GetType().Assembly, env.IsDevelopment()));
             });
         }
 
@@ -168,15 +171,20 @@ namespace ProcessingTools.Web.Api.Tagger
         /// Configure for the Development environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            this.Configure(app, environment);
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
+            }
+
+            this.Configure(app, env);
 
             app.UseCors("AllOriginsCorsPolicy");
         }
@@ -185,18 +193,23 @@ namespace ProcessingTools.Web.Api.Tagger
         /// Configure for the Staging environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
+            }
+
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app, environment);
+            this.Configure(app, env);
 
             app.UseCors("StrictCorsPolicy");
         }
@@ -205,15 +218,20 @@ namespace ProcessingTools.Web.Api.Tagger
         /// Configure for the Production environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            this.ConfigureStaging(app, environment);
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
+            }
+
+            this.ConfigureStaging(app, env);
         }
     }
 }

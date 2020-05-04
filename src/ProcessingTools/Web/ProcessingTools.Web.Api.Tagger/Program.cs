@@ -83,7 +83,11 @@ namespace ProcessingTools.Web.Api.Tagger
                     webHostBuilder
                         .UseStartup<Startup>()
                         .UseShutdownTimeout(TimeSpan.FromSeconds(10))
-                        .UseKestrel(options => options.ConfigureEndpoints().RequireCertificate())
+                        .UseKestrel(options =>
+                        {
+                            options.Limits.MaxRequestBodySize = null;
+                            options.ConfigureEndpoints();
+                        })
                         .ConfigureLogging((hostingContext, builder) =>
                         {
                             builder.ClearProviders();
