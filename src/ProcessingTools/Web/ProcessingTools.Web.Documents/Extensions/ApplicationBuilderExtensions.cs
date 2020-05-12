@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Documents.Extensions
 {
+    using System;
     using System.IO;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,16 @@ namespace ProcessingTools.Web.Documents.Extensions
         /// <returns>Configures application builder.</returns>
         public static IApplicationBuilder ServeStaticFiles(this IApplicationBuilder app, IWebHostEnvironment environment, string rootPath, string requestPath)
         {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
+            if (environment is null)
+            {
+                throw new ArgumentNullException(nameof(environment));
+            }
+
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(environment.ContentRootPath, rootPath)),

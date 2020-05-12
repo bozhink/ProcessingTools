@@ -4,6 +4,7 @@
 
 namespace Microsoft.AspNetCore.Mvc
 {
+    using System;
     using ProcessingTools.Web.Documents.Controllers;
 
     /// <summary>
@@ -21,6 +22,11 @@ namespace Microsoft.AspNetCore.Mvc
         /// <returns>Confirmation link as string.</returns>
         public static string EmailConfirmationLink(this IUrlHelper urlHelper, string userId, string code, string scheme)
         {
+            if (urlHelper is null)
+            {
+                throw new ArgumentNullException(nameof(urlHelper));
+            }
+
             return urlHelper.Action(
                 action: AccountController.ConfirmEmailActionName,
                 controller: AccountController.ControllerName,
@@ -38,6 +44,11 @@ namespace Microsoft.AspNetCore.Mvc
         /// <returns>Reset password response as string.</returns>
         public static string ResetPasswordCallbackLink(this IUrlHelper urlHelper, string userId, string code, string scheme)
         {
+            if (urlHelper is null)
+            {
+                throw new ArgumentNullException(nameof(urlHelper));
+            }
+
             return urlHelper.Action(
                 action: AccountController.ResetPasswordActionName,
                 controller: AccountController.ControllerName,

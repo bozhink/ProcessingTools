@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Documents.Services
 {
+    using System;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Web.Services;
@@ -22,6 +23,11 @@ namespace ProcessingTools.Web.Documents.Services
         /// <returns>Task.</returns>
         public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
+            if (emailSender is null)
+            {
+                throw new ArgumentNullException(nameof(emailSender));
+            }
+
             return emailSender.SendEmailAsync(
                 email,
                 "Confirm your email",

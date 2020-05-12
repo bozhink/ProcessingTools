@@ -53,13 +53,18 @@ namespace ProcessingTools.Web.Documents.Formatters
         /// </summary>
         /// <param name="context">Input formatter context.</param>
         /// <returns>Input formatter result.</returns>
-        public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
+        public override Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
         {
             if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return ReadRequestBodyInternalAsync(context);
+        }
+
+        private static async Task<InputFormatterResult> ReadRequestBodyInternalAsync(InputFormatterContext context)
+        {
             var request = context.HttpContext.Request;
             var contentType = context.HttpContext.Request.ContentType;
 
