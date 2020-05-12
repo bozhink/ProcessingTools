@@ -345,17 +345,14 @@ namespace ProcessingTools.Web.Documents
 
             builder.RegisterInstance(ProcessingTools.Common.Constants.Defaults.Encoding).As<System.Text.Encoding>().SingleInstance();
 
-            builder.RegisterModule(new XmlTransformersAutofacModule
-            {
-                Configuration = this.Configuration,
-            });
+            builder.RegisterModule(new XmlTransformersAutofacModule { Configuration = this.Configuration });
             builder.RegisterModule<TransformersFactoriesAutofacModule>();
             builder.RegisterModule<ProcessorsAutofacModule>();
             builder.RegisterModule<ProcessingTools.Configuration.Autofac.Geo.CoordinatesAutofacModule>();
             builder.RegisterModule(new DataAutofacModule { Configuration = this.Configuration });
             builder.RegisterModule(new DataAccessAutofacModule { Configuration = this.Configuration });
-            builder.RegisterModule<ServicesWebAutofacModule>();
             builder.RegisterModule(new ServicesAutofacModule { Configuration = this.Configuration });
+            builder.RegisterModule<ServicesWebAutofacModule>();
 
             // Rabbit MQ
             builder

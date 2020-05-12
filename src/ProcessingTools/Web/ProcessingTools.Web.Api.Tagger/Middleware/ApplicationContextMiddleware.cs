@@ -2,7 +2,7 @@
 // Copyright (c) 2020 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Documents.Middleware
+namespace ProcessingTools.Web.Api.Tagger.Middleware
 {
     using System;
     using System.Threading.Tasks;

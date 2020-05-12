@@ -15,9 +15,15 @@ namespace ProcessingTools.Web.Api.Tagger
     using Microsoft.Extensions.Hosting;
     using Newtonsoft.Json;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Configuration.Autofac;
     using ProcessingTools.Configuration.DependencyInjection;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.IO;
+    using ProcessingTools.Contracts.Services.Meta;
     using ProcessingTools.HealthChecks;
     using ProcessingTools.Web.Api.Tagger.Formatters;
+    using ProcessingTools.Web.Api.Tagger.Middleware;
+    using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
     /// Application startup.
@@ -82,12 +88,12 @@ namespace ProcessingTools.Web.Api.Tagger
                 })
                 .AddControllers(options =>
                 {
-                    options.RespectBrowserAcceptHeader = true;
-                    options.ReturnHttpNotAcceptable = true;
+                    options.RespectBrowserAcceptHeader = false;
+                    options.ReturnHttpNotAcceptable = false;
                     options.MaxModelValidationErrors = 50;
 
-                    options.InputFormatters.Add(new PlainTextInputFormatter());
-                    options.OutputFormatters.Add(new PlainTextOutputFormatter());
+                    ////options.InputFormatters.Add(new PlainTextInputFormatter());
+                    ////options.OutputFormatters.Add(new PlainTextOutputFormatter());
                 })
                 .AddXmlDataContractSerializerFormatters()
                 .AddXmlSerializerFormatters()
@@ -109,7 +115,8 @@ namespace ProcessingTools.Web.Api.Tagger
                 })
                 .AddFormatterMappings(options =>
                 {
-                });
+                })
+                ;
 
             // Configure AutoMapper
             services.ConfigureAutoMapper();
@@ -128,6 +135,24 @@ namespace ProcessingTools.Web.Api.Tagger
             {
                 throw new ArgumentNullException(nameof(builder));
             }
+
+            builder.RegisterType<ApplicationContextFactory>().AsSelf().InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
+            builder.Register(c => c.Resolve<IApplicationContext>().UserContext).As<IUserContext>().InstancePerDependency();
+
+            builder.RegisterType<ProcessingTools.Services.Meta.JatsArticleMetaHarvester>().As<IJatsArticleMetaHarvester>().InstancePerDependency();
+            builder.RegisterType<ProcessingTools.Services.IO.XmlReadService>().As<IXmlReadService>().InstancePerDependency();
+
+            builder.RegisterInstance(ProcessingTools.Common.Constants.Defaults.Encoding).As<System.Text.Encoding>().SingleInstance();
+
+            builder.RegisterModule(new XmlTransformersAutofacModule { Configuration = this.Configuration });
+            builder.RegisterModule<TransformersFactoriesAutofacModule>();
+            builder.RegisterModule<ProcessorsAutofacModule>();
+            builder.RegisterModule<ProcessingTools.Configuration.Autofac.Geo.CoordinatesAutofacModule>();
+            builder.RegisterModule(new DataAutofacModule { Configuration = this.Configuration });
+            builder.RegisterModule(new DataAccessAutofacModule { Configuration = this.Configuration });
+            builder.RegisterModule(new ServicesAutofacModule { Configuration = this.Configuration });
+            builder.RegisterModule<ServicesWebAutofacModule>();
         }
 
         /// <summary>
@@ -156,6 +181,8 @@ namespace ProcessingTools.Web.Api.Tagger
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ApplicationContextMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

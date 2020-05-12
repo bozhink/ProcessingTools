@@ -33,7 +33,7 @@ namespace ProcessingTools.Web.Api.Tagger.Controllers
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <returns>The content of the document as string.</returns>
-        public async Task<string> GetAsync(string id)
+        public async Task<object> GetAsync(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -44,7 +44,7 @@ namespace ProcessingTools.Web.Api.Tagger.Controllers
             string content = await this.service.GetDocumentContentAsync(id).ConfigureAwait(false);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return content;
+            return new { content };
         }
     }
 }

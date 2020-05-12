@@ -9,14 +9,6 @@
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "/api/v1/echo",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "ProcessingTools.Web.Api.Tagger": {
       "commandName": "Project",
       "launchBrowser": true,
