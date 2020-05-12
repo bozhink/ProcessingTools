@@ -64,7 +64,8 @@ namespace ProcessingTools.CommandsServer.Services
 
             consumer.Received += (ch, ea) =>
             {
-                var content = System.Text.Encoding.UTF8.GetString(ea.Body);
+                byte[] body = ea.Body.ToArray();
+                var content = System.Text.Encoding.UTF8.GetString(body);
                 this.HandleMessage(content);
                 this.channel.BasicAck(ea.DeliveryTag, false);
             };
