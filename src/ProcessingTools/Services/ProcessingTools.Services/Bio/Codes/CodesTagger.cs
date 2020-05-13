@@ -198,7 +198,7 @@ namespace ProcessingTools.Services.Bio.Codes
             var tagModel = this.GetTagModel(document);
 
             await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, plausibleSpecimenCodes, tagModel).ConfigureAwait(false);
-            await this.GuessSequentalSpecimenCodes(document, tagModel, XPathStrings.ContentNodes).ConfigureAwait(false);
+            await this.GuessSequentialSpecimenCodes(document, tagModel, XPathStrings.ContentNodes).ConfigureAwait(false);
         }
 
         private async Task<IEnumerable<string>> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)
@@ -345,7 +345,7 @@ namespace ProcessingTools.Services.Bio.Codes
                 {
                     foreach (XmlNode specimenCodeNode in node.SelectNodes(xpathToSelectSpecimenCodeTags, document.NamespaceManager))
                     {
-                        this.SetAttributesOfSequentalSpecimenCodes(specimenCodeNode, tagModel.Name);
+                        this.SetAttributesOfSequentialSpecimenCodes(specimenCodeNode, tagModel.Name);
                     }
                 }
             }
@@ -372,7 +372,7 @@ namespace ProcessingTools.Services.Bio.Codes
         /// <param name="tagModel">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
         /// <returns>Task.</returns>
-        private async Task GuessSequentalSpecimenCodes(IDocument document, XmlNode tagModel, string xpathTemplate)
+        private async Task GuessSequentialSpecimenCodes(IDocument document, XmlNode tagModel, string xpathTemplate)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
@@ -415,14 +415,14 @@ namespace ProcessingTools.Services.Bio.Codes
             }
         }
 
-        private void SetAttributesOfSequentalSpecimenCodes(XmlNode node, string tagName)
+        private void SetAttributesOfSequentialSpecimenCodes(XmlNode node, string tagName)
         {
             this.logger.LogDebug("\n{0}", node.OuterXml);
 
             if (node.NextSibling != null)
             {
                 string nodeFullString = node.Attributes["full-string"].InnerText;
-                int nodeFullStringLenght = nodeFullString.Length;
+                int nodeFullStringLength = nodeFullString.Length;
 
                 for (XmlNode next = node.NextSibling; next != null; next = next.NextSibling)
                 {
@@ -441,14 +441,14 @@ namespace ProcessingTools.Services.Bio.Codes
                             XmlAttribute attr = (XmlAttribute)attribute.CloneNode(true);
                             if (attr.Name == "full-string")
                             {
-                                if (nextInnerTextLength >= nodeFullStringLenght)
+                                if (nextInnerTextLength >= nodeFullStringLength)
                                 {
                                     // TODO
                                     attr.InnerText = nextInnerText;
                                 }
                                 else
                                 {
-                                    attr.InnerText = nodeFullString.Substring(0, nodeFullStringLenght - nextInnerTextLength) + nextInnerText;
+                                    attr.InnerText = nodeFullString.Substring(0, nodeFullStringLength - nextInnerTextLength) + nextInnerText;
                                 }
                             }
 

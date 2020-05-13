@@ -16,12 +16,18 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
     using ProcessingTools.Services.Net;
     using ProcessingTools.Services.Validation;
 
+    /// <summary>
+    /// <see cref="TaxaValidationService"/> tests.
+    /// </summary>
     [TestClass]
     public class TaxaValidationServiceTests
     {
         private IValidationCacheService cacheService;
         private IGlobalNamesResolverDataRequester requester;
 
+        /// <summary>
+        /// Test initialize.
+        /// </summary>
         [TestInitialize]
         public void Initialize()
         {
@@ -34,24 +40,33 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
             this.requester = new GlobalNamesResolverDataRequester(new HttpRequester());
         }
 
+        /// <summary>
+        /// <see cref="TaxaValidationService"/> with valid parameters in constructor should build valid object.
+        /// </summary>
         [TestMethod]
-        public void TaxaValidationServiceTests_WithValidParametersInConstructor_ShouldBuildValidObject()
+        public void TaxaValidationService_WithValidParametersInConstructor_ShouldBuildValidObject()
         {
             var service = new TaxaValidationService(this.cacheService, this.requester);
             Assert.IsNotNull(service, "Service should not be null.");
         }
 
+        /// <summary>
+        /// <see cref="TaxaValidationService"/> with null constructor should throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
+        public void TaxaValidationService_WithNullConstructor_ShouldThrow()
         {
             new TaxaValidationService(null, this.requester);
         }
 
+        /// <summary>
+        /// <see cref="TaxaValidationService"/> validate of three items should return three validated items.
+        /// </summary>
         [TestMethod]
         [Timeout(2000)]
         [Ignore] // Integration test
-        public void TaxaValidationServiceTests_ValidateOfThreeItems_SchouldReturnThreeValidatedItems()
+        public void TaxaValidationService_ValidateOfThreeItems_ShouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "Homo sapiens" };
 
@@ -75,10 +90,13 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
             }
         }
 
+        /// <summary>
+        /// <see cref="TaxaValidationService"/> validate of three items with one invalid should return three validated items.
+        /// </summary>
         [TestMethod]
         [Timeout(2000)]
         [Ignore] // Integration test
-        public void TaxaValidationServiceTests_ValidateOfThreeItemsWithOneInvalid_SchouldReturnThreeValidatedItems()
+        public void TaxaValidationService_ValidateOfThreeItemsWithOneInvalid_ShouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "John Smith" };
 

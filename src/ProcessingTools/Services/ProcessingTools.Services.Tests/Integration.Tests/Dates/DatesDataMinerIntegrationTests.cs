@@ -9,9 +9,17 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Dates
     using NUnit.Framework;
     using ProcessingTools.Services.Dates;
 
+    /// <summary>
+    /// <see cref="DatesDataMiner"/> integration tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(DatesDataMiner))]
     public class DatesDataMinerIntegrationTests
     {
+        /// <summary>
+        /// <see cref="DatesDataMiner"/> with text with single date should work.
+        /// </summary>
+        /// <param name="dateText">Date text.</param>
+        /// <returns>Task.</returns>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(DatesDataMiner), Description = "DatesDataMiner with text with single date should work.")]
         [TestCase(@"01. Oct. 1930")]
         [TestCase(@"11.vii.9.viii.1961")]

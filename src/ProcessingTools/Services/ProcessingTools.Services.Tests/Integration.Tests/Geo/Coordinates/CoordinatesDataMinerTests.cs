@@ -8,9 +8,15 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
     using NUnit.Framework;
     using ProcessingTools.Services.Geo;
 
+    /// <summary>
+    /// <see cref="CoordinatesDataMiner"/> tests.
+    /// </summary>
     [TestFixture]
     public class CoordinatesDataMinerTests
     {
+        /// <summary>
+        /// <see cref="CoordinatesDataMiner"/> with default constructor should return valid object.
+        /// </summary>
         [Test]
         public void CoordinatesDataMiner_WithDefaultConstructor_ShouldReturnValidObject()
         {
@@ -18,8 +24,11 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Geo.Coordinates
             Assert.IsNotNull(miner, "Miner should not be null.");
         }
 
+        /// <summary>
+        /// <see cref="CoordinatesDataMiner"/> with decimal deg direction coordinates should work.
+        /// </summary>
         [Test]
-        public void CoordinatesDataMiner_WithDecimalDegDirectionCoordiantes_ShouldWork()
+        public void CoordinatesDataMiner_WithDecimalDegDirectionCoordinates_ShouldWork()
         {
             string content = "24°03.008N, 105°43.147E";
             var miner = new CoordinatesDataMiner();
