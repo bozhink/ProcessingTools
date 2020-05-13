@@ -16,6 +16,9 @@ namespace ProcessingTools.Web.Api.Controllers
     using ProcessingTools.Contracts.Services.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.Environments;
 
+    /// <summary>
+    /// ENVO terms controller.
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class EnvoTermsController : ControllerBase
@@ -24,6 +27,12 @@ namespace ProcessingTools.Web.Api.Controllers
         private readonly ILogger logger;
         private readonly IMapper mapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnvoTermsController"/> class.
+        /// </summary>
+        /// <param name="service">Instance of <see cref="IEnvoTermsDataService"/>.</param>
+        /// <param name="logger">Logger.</param>
+        /// <param name="mapper">Instance of <see cref="IMapper"/>.</param>
         public EnvoTermsController(IEnvoTermsDataService service, ILogger<EnvoTermsController> logger, IMapper mapper)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
@@ -31,13 +40,19 @@ namespace ProcessingTools.Web.Api.Controllers
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+        /// <summary>
+        /// Get list of ENVO terms.
+        /// </summary>
+        /// <param name="skip">Number of items to skip.</param>
+        /// <param name="take">Number of items to take.</param>
+        /// <returns>List of  ENVO terms.</returns>
         [HttpGet]
         public async Task<IActionResult> Get(int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
         {
             try
             {
                 var result = await this.service.GetAsync(skip, take).ConfigureAwait(false);
-                if (result == null)
+                if (result is null)
                 {
                     return this.NotFound();
                 }

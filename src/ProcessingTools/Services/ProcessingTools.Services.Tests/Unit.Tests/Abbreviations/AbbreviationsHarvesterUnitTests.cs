@@ -14,6 +14,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
     using ProcessingTools.Extensions.Dynamic;
     using ProcessingTools.Services.Abbreviations;
 
+    /// <summary>
+    /// <see cref="AbbreviationsHarvester"/> unit tests.
+    /// </summary>
     [TestFixture(Category = "Unit Tests", TestOf = typeof(AbbreviationsHarvester))]
     public class AbbreviationsHarvesterUnitTests
     {
@@ -22,6 +25,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
         private const string TransformerFactoryFieldName = "transformerFactory";
         private static readonly Type HarvesterType = typeof(AbbreviationsHarvester);
 
+        /// <summary>
+        /// <see cref="AbbreviationsHarvester"/> with valid parameters in constructor should correctly initialize new instance.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(AbbreviationsHarvester), Description = "AbbreviationsHarvester with valid parameters in constructor should correctly initialize new instance.")]
         public void AbbreviationsHarvester_WithValidParametersInConstructor_ShouldCorrectlyInitializeNewInstance()
         {
@@ -54,6 +60,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
             Assert.AreSame(transformerFactoryMock.Object, transformerFactoryField);
         }
 
+        /// <summary>
+        /// <see cref="AbbreviationsHarvester"/> with null harvester core in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(AbbreviationsHarvester), Description = "AbbreviationsHarvester with null harvesterCore in constructor should throw ArgumentNullException with correct ParamName.")]
         public void AbbreviationsHarvester_WithNullHarvesterCoreInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
@@ -70,6 +79,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
             Assert.AreEqual(HarvesterCoreFieldName, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="AbbreviationsHarvester"/> with null transformer factory in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(AbbreviationsHarvester), Description = "AbbreviationsHarvester with null transformer factory in constructor should throw ArgumentNullException with correct ParamName.")]
         public void AbbreviationsHarvester_WithNullTransformerFactoryInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
@@ -86,6 +98,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.Abbreviations
             Assert.AreEqual(TransformerFactoryFieldName, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="AbbreviationsHarvester"/> with null serializer in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(AbbreviationsHarvester), Description = "AbbreviationsHarvester with null serializer in constructor should throw ArgumentNullException with correct ParamName.")]
         public void AbbreviationsHarvester_WithNullSerializerInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {

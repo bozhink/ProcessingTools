@@ -14,6 +14,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
     using ProcessingTools.Extensions.Dynamic;
     using ProcessingTools.Services.ExternalLinks;
 
+    /// <summary>
+    /// <see cref="ExternalLinksHarvester"/> unit tests.
+    /// </summary>
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]
     public class ExternalLinksHarvesterUnitTests
     {
@@ -22,6 +25,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
         private const string TransformerFactoryFieldName = "transformerFactory";
         private static readonly Type HarvesterType = typeof(ExternalLinksHarvester);
 
+        /// <summary>
+        /// <see cref="ExternalLinksHarvester"/> with valid parameters in constructor should correctly initialize new instance.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with valid parameters in constructor should correctly initialize new instance.")]
         public void ExternalLinksHarvester_WithValidParametersInConstructor_ShouldCorrectlyInitializeNewInstance()
         {
@@ -52,6 +58,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
             Assert.AreSame(transformerFactoryMock.Object, transformerFactoryField);
         }
 
+        /// <summary>
+        /// <see cref="ExternalLinksHarvester"/> with null harvester core in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null harvesterCore in constructor should throw ArgumentNullException with correct ParamName.")]
         public void ExternalLinksHarvester_WithNullHarvesterCoreInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
@@ -68,6 +77,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
             Assert.AreEqual(HarvesterCoreFieldName, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="ExternalLinksHarvester"/> with null transformer factory in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null transformer factory in constructor should throw ArgumentNullException with correct ParamName.")]
         public void ExternalLinksHarvester_WithNullTransformerFactoryInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
@@ -84,6 +96,9 @@ namespace ProcessingTools.Services.Tests.Unit.Tests.ExternalLinks
             Assert.AreEqual(TransformerFactoryFieldName, exception.ParamName);
         }
 
+        /// <summary>
+        /// <see cref="ExternalLinksHarvester"/> with null serializer in constructor should throw <see cref="ArgumentNullException"/> with correct ParamName.
+        /// </summary>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null serializer in constructor should throw ArgumentNullException with correct ParamName.")]
         public void ExternalLinksHarvester_WithNullSerializerInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {

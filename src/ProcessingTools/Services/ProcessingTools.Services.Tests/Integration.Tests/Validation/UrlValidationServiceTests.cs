@@ -15,11 +15,17 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Validation;
 
+    /// <summary>
+    /// URL validation service tests.
+    /// </summary>
     [TestClass]
     public class UrlValidationServiceTests
     {
         private IValidationCacheService cacheService;
 
+        /// <summary>
+        /// Test initialize.
+        /// </summary>
         [TestInitialize]
         public void Initialize()
         {
@@ -32,6 +38,9 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
             this.cacheService = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
         }
 
+        /// <summary>
+        /// URL validation service with default constructor should build valid object.
+        /// </summary>
         [TestMethod]
         public void UrlValidationService_WithDefaultConstructor_ShouldBuildValidObject()
         {
@@ -39,6 +48,9 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
             Assert.IsNotNull(service, "Service should not be null.");
         }
 
+        /// <summary>
+        /// URL validation service with null constructor should throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void UrlValidationService_WithNullConstructor_ShouldThrow()
@@ -46,10 +58,13 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Validation
             new UrlValidationService(null);
         }
 
+        /// <summary>
+        /// URL validation service validate of two items without base address should return two validated items.
+        /// </summary>
         [TestMethod]
         [Timeout(2000)]
         [Ignore] // Integration test
-        public void UrlValidationService_ValidateOfTwoItems_WithoutBaseAddress_SchouldReturnTwoValidatedItems()
+        public void UrlValidationService_ValidateOfTwoItems_WithoutBaseAddress_ShouldReturnTwoValidatedItems()
         {
             int i = 0;
             var items = (new int[2]).Select(item => $"https://www.google.com/search?q={++i}").ToArray();
