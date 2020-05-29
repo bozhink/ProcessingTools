@@ -23,7 +23,7 @@ namespace ProcessingTools.Services.Xml
         protected override XslCompiledTransform GetTransformObject(string key)
         {
             XslCompiledTransform transform = new XslCompiledTransform();
-            XsltSettings settings = new XsltSettings(true, true);
+            XsltSettings settings = new XsltSettings(false, false);
             XmlUrlResolver resolver = new XmlUrlResolver();
             transform.Load(key, settings, resolver);
             return transform;

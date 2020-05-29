@@ -21,24 +21,49 @@ namespace ProcessingTools.Services.ExternalLinks
     /// </summary>
     public class ExternalLinksDataMiner : IExternalLinksDataMiner
     {
-        private const string UriPatternSuffix = @"(?=(?:&gt;|>)?(?:[,;:\.\)\]]+)?(?:\s|$)|$)";
+        /// <summary>
+        /// URI pattern suffix.
+        /// </summary>
+        public const string UriPatternSuffix = @"(?=(?:&gt;|>)?(?:[,;:\.\)\]]+)?(?:\s|$)|$)";
 
-        private const string MatchUrlDoiPrefixPattern = @"\A(?<prefix>https?://(?:dx\.)?doi.org/)(?<value>10\.\d{4,5}/.+)\Z";
+        /// <summary>
+        /// Match URL DOI prefix pattern.
+        /// </summary>
+        public const string MatchUrlDoiPrefixPattern = @"\A(?<prefix>https?://(?:dx\.)?doi.org/)(?<value>10\.\d{4,5}/.+)\Z";
 
-        private const string DoiPattern = @"(?i)(?<=\bdoi\W{0,3})\d+\S+" + UriPatternSuffix + @"|" +
+        /// <summary>
+        /// DOI pattern.
+        /// </summary>
+        public const string DoiPattern = @"(?i)(?<=\bdoi\W{0,3})\d+\S+" + UriPatternSuffix + @"|" +
             @"10\.\d{4,5}/\S+" + UriPatternSuffix;
 
-        private const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternSuffix;
+        /// <summary>
+        /// FTP pattern.
+        /// </summary>
+        public const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternSuffix;
 
-        private const string IPAddressPattern = @"\b(?:(?:(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3,3}(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))\b(?:(?::\d+)?/)?";
+        /// <summary>
+        /// IP address pattern.
+        /// </summary>
+        public const string IPAddressPattern = @"\b(?:(?:(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3,3}(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))\b(?:(?::\d+)?/)?";
 
-        private const string HttpPattern = @"(?i)https?://(?:www)?\S+?" + UriPatternSuffix + @"|" +
+        /// <summary>
+        /// HTTP pattern.
+        /// </summary>
+        public const string HttpPattern = @"(?i)https?://(?:www)?\S+?" + UriPatternSuffix + @"|" +
             @"(?i)(?<!://)www\S+?" + UriPatternSuffix + @"|" +
             ////IPAddressPattern + @"(?:\D\S*)" + UriPatternSuffix + @"|" +
             @"[A-Za-z0-9][A-Za-z0-9@~&:\.\-_]*\.(?:com|org|net|edu)\b\S*?" + UriPatternSuffix;
 
-        private const string PmcidPattern = @"(?i)\bpmc\W*\d+|(?i)(?<=\bpmcid\W*)\d+";
-        private const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
+        /// <summary>
+        /// PMCID pattern.
+        /// </summary>
+        public const string PmcidPattern = @"(?i)\bpmc\W*\d+|(?i)(?<=\bpmcid\W*)\d+";
+
+        /// <summary>
+        /// PMID pattern.
+        /// </summary>
+        public const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
 
         /// <inheritdoc/>
         public Task<IList<IExternalLink>> MineAsync(string context)
@@ -57,15 +82,15 @@ namespace ProcessingTools.Services.ExternalLinks
                 { PmcidPattern, ExternalLinkType.Pmcid },
             };
 
-            var data = this.ExtractData(context, patterns).ToList();
+            var data = ExtractData(context, patterns).ToList();
 
-            this.DataCleansing(data);
+            DataCleansing(data);
 
             var result = new HashSet<IExternalLink>(data);
             return Task.FromResult<IList<IExternalLink>>(result.ToArray());
         }
 
-        private void DataCleansing(IEnumerable<ExternalLink> data)
+        private static void DataCleansing(IEnumerable<ExternalLink> data)
         {
             //// var matchDoiPrefixRegex = new Regex(MatchUrlDoiPrefixPattern);
             foreach (var item in data)
@@ -77,8 +102,8 @@ namespace ProcessingTools.Services.ExternalLinks
                     item.Type = ExternalLinkType.Doi;
                 }
 
-                bool hasProtocolPrefix = item.Href.IndexOf("://") >= 0;
-                bool hasPureUrnStructure = item.Href.IndexOf("urn:") == 0;
+                bool hasProtocolPrefix = item.Href.IndexOf("://", StringComparison.InvariantCulture) >= 0;
+                bool hasPureUrnStructure = item.Href.IndexOf("urn:", StringComparison.InvariantCulture) == 0;
                 if ((item.Type == ExternalLinkType.Uri) && !hasProtocolPrefix && !hasPureUrnStructure)
                 {
                     item.Href = "http://" + item.Href.Trim();
@@ -86,7 +111,7 @@ namespace ProcessingTools.Services.ExternalLinks
             }
         }
 
-        private IEnumerable<ExternalLink> ExtractData(string content, IDictionary<string, ExternalLinkType> patterns)
+        private static IEnumerable<ExternalLink> ExtractData(string content, IDictionary<string, ExternalLinkType> patterns)
         {
             var data = new ConcurrentBag<ExternalLink>();
 
@@ -100,8 +125,11 @@ namespace ProcessingTools.Services.ExternalLinks
                         .Select(item => new ExternalLink
                         {
                             Content = item,
-                            Href = item.Replace("<", "%3C").Replace(">", "%3E").Replace("&", "%26"),
                             Type = patterns[key],
+                            Href = item
+                                .Replace("<", "%3C", StringComparison.InvariantCulture)
+                                .Replace(">", "%3E", StringComparison.InvariantCulture)
+                                .Replace("&", "%26", StringComparison.InvariantCulture),
                         })
                         .ToList()
                         .ForEach(e =>

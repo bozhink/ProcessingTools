@@ -47,7 +47,7 @@ namespace ProcessingTools.Clients.Unit.Tests.Bio.MaterialsParser
         {
             try
             {
-                new MaterialCitationsParser(null);
+                _ = new MaterialCitationsParser(null);
             }
             catch (ArgumentNullException e)
             {
@@ -84,7 +84,7 @@ namespace ProcessingTools.Clients.Unit.Tests.Bio.MaterialsParser
         {
             try
             {
-                new MaterialCitationsParser(null, Encoding.UTF32);
+                _ = new MaterialCitationsParser(null, Encoding.UTF32);
             }
             catch (ArgumentNullException e)
             {
@@ -112,7 +112,7 @@ namespace ProcessingTools.Clients.Unit.Tests.Bio.MaterialsParser
             try
             {
                 var httpRequesterMock = new Mock<IHttpRequester>();
-                new MaterialCitationsParser(httpRequesterMock.Object, null);
+                _ = new MaterialCitationsParser(httpRequesterMock.Object, null);
             }
             catch (ArgumentNullException e)
             {

@@ -6,6 +6,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -25,9 +26,20 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// </summary>
     public class LowerTaxaParser : ILowerTaxaParser
     {
-        private const string SelectLowerTaxaWithInvalidChildNodesXPath = ".//tn[@type='lower'][count(*) != count(tn-part)]";
-        private const string SelectLowerTaxaWithoutChildNodesXPath = ".//tn[@type='lower'][not(*)]";
-        private const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
+        /// <summary>
+        /// Select lower taxa with invalid child nodes XPath.
+        /// </summary>
+        public const string SelectLowerTaxaWithInvalidChildNodesXPath = ".//tn[@type='lower'][count(*) != count(tn-part)]";
+
+        /// <summary>
+        /// Select lower taxa without child nodes XPath.
+        /// </summary>
+        public const string SelectLowerTaxaWithoutChildNodesXPath = ".//tn[@type='lower'][not(*)]";
+
+        /// <summary>
+        /// Taxon name part element format string.
+        /// </summary>
+        public const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
 
         private readonly IParseLowerTaxaStrategiesProvider strategiesProvider;
 
@@ -41,41 +53,17 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<object> ParseAsync(XmlNode context)
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var strategies = this.strategiesProvider.Strategies
-                .Where(s => s.ExecutionPriority > 0)
-                .OrderBy(s => s.ExecutionPriority);
-
-            foreach (var strategy in strategies)
-            {
-                try
-                {
-                    await strategy.ParseAsync(context).ConfigureAwait(false);
-                }
-                catch
-                {
-                    // Skip
-                }
-            }
-
-            this.AddFullNameAttribute(context);
-            this.RegularizeRankOfSingleWordTaxonName(context);
-            this.AddMissingEmptyTagsInTaxonName(context);
-            this.RemoveWrappingItalics(context);
-
-            this.EnsureFormatting(context);
-            this.EnsureUncertaintyRank(context);
-
-            return true;
+            return this.ParseInternalAsync(context);
         }
 
-        private void EnsureFormatting(XmlNode context)
+        private static void EnsureFormatting(XmlNode context)
         {
             if (context is null)
             {
@@ -105,7 +93,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             context.InnerXml = replace;
         }
 
-        private void EnsureUncertaintyRank(XmlNode context)
+        private static void EnsureUncertaintyRank(XmlNode context)
         {
             if (context is null)
             {
@@ -131,7 +119,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 });
         }
 
-        private void AddFullNameAttribute(XmlNode context)
+        private static void AddFullNameAttribute(XmlNode context)
         {
             var document = context.OwnerDocument();
 
@@ -143,7 +131,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                     XmlAttribute fullNameAttribute = document.CreateAttribute(AttributeNames.FullName);
 
                     string lowerTaxonNamePartText = lowerTaxonNamePart.InnerText.Trim();
-                    if (string.IsNullOrWhiteSpace(lowerTaxonNamePartText) || lowerTaxonNamePartText.Contains('.'))
+                    if (string.IsNullOrWhiteSpace(lowerTaxonNamePartText) || lowerTaxonNamePartText.Contains('.', StringComparison.InvariantCulture))
                     {
                         fullNameAttribute.InnerText = string.Empty;
                     }
@@ -156,7 +144,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 });
         }
 
-        private void AddMissingEmptyTagsInTaxonName(XmlNode context)
+        private static void AddMissingEmptyTagsInTaxonName(XmlNode context)
         {
             var document = context.OwnerDocument();
 
@@ -208,7 +196,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 });
         }
 
-        private void AddTaxonNamePartsToTaxonNameElements(XmlNode context)
+        private static void AddTaxonNamePartsToTaxonNameElements(XmlNode context)
         {
             if (context is null)
             {
@@ -238,7 +226,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 });
         }
 
-        private IDictionary<string, string> BuildDictionaryOfKnownRanks(XmlNode context)
+        private static IDictionary<string, string> BuildDictionaryOfKnownRanks(XmlNode context)
         {
             if (context is null)
             {
@@ -280,12 +268,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return dictionary;
         }
 
-        private void RegularizeRankOfSingleWordTaxonName(XmlNode context)
+        private static void RegularizeRankOfSingleWordTaxonName(XmlNode context)
         {
             const string SingleWordTaxonNameXPathFormat = ".//tn[@type='lower'][count(tn-part) = 1][{0}]/{0}";
 
             const string TaxonNamePartWithValidContentXPath = "tn-part[normalize-space(.)!=''][not(@full-name)][@type]";
-            string nonSingleWordTaxonNamePartsXPath = string.Format(".//tn[@type='lower'][count({0}) > 1]/{0}", TaxonNamePartWithValidContentXPath);
+            string nonSingleWordTaxonNamePartsXPath = string.Format(CultureInfo.InvariantCulture, ".//tn[@type='lower'][count({0}) > 1]/{0}", TaxonNamePartWithValidContentXPath);
 
             var listOfNonSingleWordTaxonNameParts = context.SelectNodes(nonSingleWordTaxonNamePartsXPath)
                 .Cast<XmlNode>()
@@ -294,13 +282,13 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 .ToList();
 
             // Process single-word-taxon-names tagged with type genus.
-            this.UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(SingleWordTaxonNameXPathFormat, XPathStrings.TaxonNamePartOfTypeGenus), listOfNonSingleWordTaxonNameParts);
+            UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(CultureInfo.InvariantCulture, SingleWordTaxonNameXPathFormat, XPathStrings.TaxonNamePartOfTypeGenus), listOfNonSingleWordTaxonNameParts);
 
             // Process single-word-taxon-names tagged with type species.
-            this.UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(SingleWordTaxonNameXPathFormat, XPathStrings.TaxonNamePartOfTypeSpecies), listOfNonSingleWordTaxonNameParts);
+            UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(CultureInfo.InvariantCulture, SingleWordTaxonNameXPathFormat, XPathStrings.TaxonNamePartOfTypeSpecies), listOfNonSingleWordTaxonNameParts);
         }
 
-        private void RemoveWrappingItalics(XmlNode context)
+        private static void RemoveWrappingItalics(XmlNode context)
         {
             // Remove wrapping i around tn[tn-part[@type='subgenus']]
             context.InnerXml = Regex.Replace(
@@ -309,7 +297,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 "$1");
         }
 
-        private void ResolveWithDictionaryOfKnownRanks(XmlNode context, IDictionary<string, string> dictionary)
+        private static void ResolveWithDictionaryOfKnownRanks(XmlNode context, IDictionary<string, string> dictionary)
         {
             if (context is null)
             {
@@ -335,7 +323,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                 });
         }
 
-        private void UpdateSingleWordTaxonNamePartOfTypeRanks(XmlNode context, string xpath, IEnumerable<ITaxonNamePart> listOfNonSingleWordTaxonNameParts)
+        private static void UpdateSingleWordTaxonNamePartOfTypeRanks(XmlNode context, string xpath, IEnumerable<ITaxonNamePart> listOfNonSingleWordTaxonNameParts)
         {
             var document = context.OwnerDocument();
 
@@ -362,6 +350,36 @@ namespace ProcessingTools.Services.Bio.Taxonomy
                         }
                     }
                 });
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Expected.")]
+        private async Task<object> ParseInternalAsync(XmlNode context)
+        {
+            var strategies = this.strategiesProvider.Strategies
+                .Where(s => s.ExecutionPriority > 0)
+                .OrderBy(s => s.ExecutionPriority);
+
+            foreach (var strategy in strategies)
+            {
+                try
+                {
+                    await strategy.ParseAsync(context).ConfigureAwait(false);
+                }
+                catch
+                {
+                    // Skip
+                }
+            }
+
+            AddFullNameAttribute(context);
+            RegularizeRankOfSingleWordTaxonName(context);
+            AddMissingEmptyTagsInTaxonName(context);
+            RemoveWrappingItalics(context);
+
+            EnsureFormatting(context);
+            EnsureUncertaintyRank(context);
+
+            return true;
         }
     }
 }

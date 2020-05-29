@@ -111,7 +111,7 @@ namespace ProcessingTools.Services.Abstractions
 
         private static int GetInteger(IEnumerable<XmlNode> nodes, string nodeName)
         {
-            int.TryParse(nodes.FirstOrDefault(n => n.Name == nodeName)?.InnerText?.Trim(), out int result);
+            _ = int.TryParse(nodes.FirstOrDefault(n => n.Name == nodeName)?.InnerText?.Trim(), out int result);
             return result;
         }
 
