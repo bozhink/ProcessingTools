@@ -5,6 +5,7 @@
 namespace ProcessingTools.Contracts.Services.History
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.History;
 
@@ -27,7 +28,7 @@ namespace ProcessingTools.Contracts.Services.History
         /// <param name="objectId">ID of the object in history.</param>
         /// <param name="objectType"><see cref="Type"/> of the object in history.</param>
         /// <returns>Deserialized objects from history.</returns>
-        Task<object[]> GetAsync(object objectId, Type objectType);
+        Task<IList<object>> GetAsync(object objectId, Type objectType);
 
         /// <summary>
         /// Gets deserialized object histories of object specifies by Id and <see cref="Type"/>.
@@ -37,14 +38,14 @@ namespace ProcessingTools.Contracts.Services.History
         /// <param name="skip">Number of items to skip.</param>
         /// <param name="take">Number of items to take.</param>
         /// <returns>Deserialized objects from history.</returns>
-        Task<object[]> GetAsync(object objectId, Type objectType, int skip, int take);
+        Task<IList<object>> GetAsync(object objectId, Type objectType, int skip, int take);
 
         /// <summary>
         /// Gets object histories of object specifies by Id.
         /// </summary>
         /// <param name="objectId">ID of the object in history.</param>
         /// <returns>Object histories.</returns>
-        Task<IObjectHistory[]> GetHistoriesAsync(object objectId);
+        Task<IList<IObjectHistory>> GetHistoriesAsync(object objectId);
 
         /// <summary>
         /// Gets object histories of object specifies by Id.
@@ -53,6 +54,6 @@ namespace ProcessingTools.Contracts.Services.History
         /// <param name="skip">Number of items to skip.</param>
         /// <param name="take">Number of items to take.</param>
         /// <returns>Object histories.</returns>
-        Task<IObjectHistory[]> GetHistoriesAsync(object objectId, int skip, int take);
+        Task<IList<IObjectHistory>> GetHistoriesAsync(object objectId, int skip, int take);
     }
 }
