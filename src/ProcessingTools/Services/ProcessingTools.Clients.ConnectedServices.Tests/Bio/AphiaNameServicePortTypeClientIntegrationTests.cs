@@ -23,8 +23,8 @@ namespace ProcessingTools.Clients.ConnectedServices.Integration.Tests.Bio
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Test]
-        //[Timeout(20000)]
-        //[Ignore(reason: "Net dependent integration test")] // Net dependent integration test
+        [Timeout(20000)]
+        [Ignore(reason: "Net dependent integration test")] // Net dependent integration test
         public async Task AphiaNameServicePortTypeClient_GetAphiaRecords_WithValidParameters_ShouldWork()
         {
             // Arrange
