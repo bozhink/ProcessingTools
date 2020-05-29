@@ -48,7 +48,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
 
         private async Task ResolveAsync(IEnumerable<string> scientificNames, ConcurrentQueue<ITaxonRankSearchResult> outputCollection)
         {
-            var names = scientificNames.CleanNamesToInvariant();
+            var names = scientificNames.NormalizeInvariant();
 
             var tasks = names.Select(name => this.FindRankForSingleTaxonAsync(name, outputCollection)).ToArray();
 
