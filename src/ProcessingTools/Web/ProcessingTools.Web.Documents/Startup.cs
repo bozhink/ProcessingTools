@@ -5,13 +5,11 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
-    using System.Linq;
     using System.Text.Json;
     using Autofac;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
@@ -19,10 +17,8 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Configuration.Autofac;
     using ProcessingTools.Configuration.DependencyInjection;
@@ -379,12 +375,17 @@ namespace ProcessingTools.Web.Documents
         /// here if you need to resolve things from the container.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
+            }
+
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
             }
 
             app.UseHttpsRedirection();
@@ -465,34 +466,9 @@ namespace ProcessingTools.Web.Documents
 
                 endpoints.MapHub<ChatHub>("/r/chat");
 
-                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions { AllowCachingResponses = false }).RequireAuthorization(new AuthorizeAttribute { Roles = "admin" });
-                endpoints.MapHealthChecks("/health", new HealthCheckOptions
-                {
-                    AllowCachingResponses = false,
-                    ResultStatusCodes =
-                    {
-                        [HealthStatus.Healthy] = StatusCodes.Status200OK,
-                        [HealthStatus.Degraded] = StatusCodes.Status200OK,
-                        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
-                    },
-                    ResponseWriter = (HttpContext httpContext, HealthReport result) =>
-                    {
-                        httpContext.Response.ContentType = "application/json";
+                endpoints.MapHealthChecks("/health", HealthChecksExtensions.GetHealthCheckOptionsExcludingVersion(this.GetType().Assembly, env.IsDevelopment()));
 
-                        var json = new JObject
-                        {
-                            new JProperty("version", this.GetType().Assembly.GetName().Version?.ToString()),
-                            new JProperty("status", result.Status.ToString()),
-                        };
-
-                        if (result.Entries.Any())
-                        {
-                            json.Add(result.GetResultsToJSON(environment.EnvironmentName == "Development"));
-                        }
-
-                        return httpContext.Response.WriteAsync(json.ToString(Formatting.None));
-                    },
-                });
+                endpoints.MapHealthChecks("/version", HealthChecksExtensions.GetHealthCheckOptionsForVersion(this.GetType().Assembly, env.IsDevelopment())).RequireAuthorization(new AuthorizeAttribute { Roles = "admin" });
             });
         }
 
@@ -500,23 +476,27 @@ namespace ProcessingTools.Web.Documents
         /// Configure for the Development environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
+            }
+
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
             app.UseBrowserLink();
-            app.UseDatabaseErrorPage();
 
-            this.Configure(app, environment);
+            this.Configure(app, env);
 
-            app.ServeStaticFiles(environment, "node_modules", "/node_modules");
-            app.ServeStaticFiles(environment, "node_modules", "/lib");
+            app.ServeStaticFiles(env, "node_modules", "/node_modules");
+            app.ServeStaticFiles(env, "node_modules", "/lib");
 
             app.UseCors("AllOriginsCorsPolicy");
         }
@@ -525,12 +505,17 @@ namespace ProcessingTools.Web.Documents
         /// Configure for the Staging environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
+            }
+
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
             }
 
             app.UseExceptionHandler("/Error");
@@ -539,10 +524,10 @@ namespace ProcessingTools.Web.Documents
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app, environment);
+            this.Configure(app, env);
 
-            app.ServeStaticFiles(environment, "node_modules", "/node_modules");
-            app.ServeStaticFiles(environment, "node_modules", "/lib");
+            app.ServeStaticFiles(env, "node_modules", "/node_modules");
+            app.ServeStaticFiles(env, "node_modules", "/lib");
 
             app.UseCors("StrictCorsPolicy");
         }
@@ -551,12 +536,17 @@ namespace ProcessingTools.Web.Documents
         /// Configure for the Production environment.
         /// </summary>
         /// <param name="app">Application builder.</param>
-        /// <param name="environment">Hosting environment.</param>
-        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment environment)
+        /// <param name="env">Hosting environment.</param>
+        public void ConfigureProduction(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
+            }
+
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
             }
 
             app.UseExceptionHandler("/Error");
@@ -565,7 +555,7 @@ namespace ProcessingTools.Web.Documents
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
 
-            this.Configure(app, environment);
+            this.Configure(app, env);
 
             app.UseCors("StrictCorsPolicy");
         }
