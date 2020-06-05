@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Documents.Models;
 
     /// <summary>
-    /// Error.
+    /// Error controller.
     /// </summary>
     public class ErrorController : Controller
     {

@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
-    /// Chat.
+    /// Chat controller.
     /// </summary>
     [Authorize]
     public class ChatController : Controller

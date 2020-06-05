@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
-    /// Home.
+    /// Home controller.
     /// </summary>
     public class HomeController : Controller
     {

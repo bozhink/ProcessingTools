@@ -22,7 +22,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using ProcessingTools.Web.Documents.Services;
 
     /// <summary>
-    /// Manage.
+    /// Manage controller.
     /// </summary>
     [Authorize]
     [Route("[controller]/[action]")]
