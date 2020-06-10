@@ -157,7 +157,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -190,7 +190,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -235,7 +235,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -258,7 +258,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> ChangePassword()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -289,7 +289,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -317,7 +317,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> SetPassword()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -349,7 +349,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -376,7 +376,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> ExternalLogins()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -419,13 +419,13 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> LinkLoginCallback()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var info = await this.signInManager.GetExternalLoginInfoAsync(user.Id).ConfigureAwait(false);
-            if (info == null)
+            if (info is null)
             {
                 throw new InformationNotFoundException($"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");
             }
@@ -454,7 +454,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel model)
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -479,7 +479,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> TwoFactorAuthentication()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -503,7 +503,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> Disable2faWarning()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -526,7 +526,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> Disable2fa()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -550,7 +550,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> EnableAuthenticator()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -587,7 +587,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -629,7 +629,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> ResetAuthenticator()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
@@ -650,7 +650,7 @@ namespace ProcessingTools.Web.Documents.Controllers
         public async Task<IActionResult> GenerateRecoveryCodes()
         {
             var user = await this.userManager.GetUserAsync(this.User).ConfigureAwait(false);
-            if (user == null)
+            if (user is null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
