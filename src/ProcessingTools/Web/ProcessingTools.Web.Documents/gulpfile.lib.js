@@ -1,6 +1,6 @@
 "use strict";
 
-const DIST_PATH = "wwwroot/build/dist";
+const DIST_PATH = "wwwroot/lib";
 
 var gulp = require("gulp");
 var debug = require("gulp-debug");
@@ -18,7 +18,7 @@ module.exports.deploy = function (done) {
                 title: "copy: library"
             }))
             .pipe(rename(p => {
-                p.dirname = p.dirname.replace(/node_modules/, "lib")
+                p.dirname = p.dirname.replace(/node_modules/, "")
             }))
             .pipe(gulp.dest(path.join(DIST_PATH)));
 

@@ -8,15 +8,13 @@ const CSS_DIST_PATH = "wwwroot/build/dist/css";
 var gulp = require("gulp");
 var debug = require("gulp-debug");
 var sourcemaps = require("gulp-sourcemaps");
+var sass = require("gulp-sass");
 var less = require("gulp-less");
 var cssmin = require("gulp-cssmin");
 var rename = require("gulp-rename");
 var del = require("del");
 var merge = require("merge-stream");
 var path = require("path");
-var Fiber = require("fibers");
-var sass = require("gulp-sass");
-sass.compiler = require("node-sass");
 
 var getCssStream = (sourcePath, destinationPath) => gulp.src(path.join(sourcePath, "**/*.css"))
     .pipe(debug({
@@ -40,7 +38,7 @@ var getSassStream = (sourcePath, destinationPath) => gulp.src(path.join(sourcePa
         title: "compile: SASS"
     }))
     .pipe(sourcemaps.init())
-    .pipe(sass({ fiber: Fiber }).on("error", sass.logError))
+    .pipe(sass().on("error", sass.logError))
     .pipe(sourcemaps.write())
     .pipe(rename(p => {
         p.dirname = path.relative(sourcePath, p.dirname);

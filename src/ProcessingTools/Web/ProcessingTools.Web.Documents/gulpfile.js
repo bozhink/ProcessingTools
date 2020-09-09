@@ -11,7 +11,7 @@ var lib = require("./gulpfile.lib");
 var tests = require("./gulpfile.tests");
 
 
-gulp.task("clean", gulp.series(() => del([ "wwwroot/build" ])));
+gulp.task("clean", gulp.series(() => del([ "wwwroot/build", "wwwroot/lib" ])));
 
 gulp.task("lib", gulp.series(lib.deploy));
 
