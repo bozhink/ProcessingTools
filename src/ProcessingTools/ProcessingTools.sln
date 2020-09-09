@@ -167,7 +167,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Geo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Layout", "Web\ProcessingTools.Web.Api.Layout\ProcessingTools.Web.Api.Layout.csproj", "{07155165-96DA-42AC-A541-912B602AE67D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Tagger", "Web\ProcessingTools.Web.Api.Tagger\ProcessingTools.Web.Api.Tagger.csproj", "{8E544C78-908E-48FC-BB8D-E7389D7044E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Tagger", "Web\ProcessingTools.Web.Api.Tagger\ProcessingTools.Web.Api.Tagger.csproj", "{8E544C78-908E-48FC-BB8D-E7389D7044E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
