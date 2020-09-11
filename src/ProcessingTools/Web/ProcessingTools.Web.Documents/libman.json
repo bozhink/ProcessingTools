@@ -1,0 +1,422 @@
+{
+    "version": "1.0",
+    "defaultProvider": "filesystem",
+    "libraries": [
+        {
+            "library": "node_modules/@fullcalendar/bootstrap/",
+            "destination": "wwwroot/lib/fullcalendar-bootstrap"
+        },
+        {
+            "library": "node_modules/@fullcalendar/core/",
+            "destination": "wwwroot/lib/fullcalendar"
+        },
+        {
+            "library": "node_modules/@fullcalendar/daygrid/",
+            "destination": "wwwroot/lib/fullcalendar-daygrid"
+        },
+        {
+            "library": "node_modules/@fullcalendar/interaction/",
+            "destination": "wwwroot/lib/fullcalendar-interaction"
+        },
+        {
+            "library": "node_modules/@fullcalendar/timegrid/",
+            "destination": "wwwroot/lib/fullcalendar-timegrid"
+        },
+        {
+            "library": "node_modules/@lgaitan/pace-progress/dist/",
+            "destination": "wwwroot/lib/pace-progress"
+        },
+        {
+            "library": "node_modules/@microsoft/signalr/dist/browser",
+            "destination": "wwwroot/lib/signalr"
+        },
+        {
+            "library": "node_modules/@sweetalert2/theme-bootstrap-4/",
+            "destination": "wwwroot/lib/sweetalert2-theme-bootstrap-4"
+        },
+        {
+            "library": "node_modules/@ttskch/select2-bootstrap4-theme/dist/",
+            "destination": "wwwroot/lib/select2-bootstrap4-theme"
+        },
+        {
+            "library": "node_modules/angular",
+            "destination": "wwwroot/lib/angular"
+        },
+        {
+            "library": "node_modules/angular-route",
+            "destination": "wwwroot/lib/angular-route"
+        },
+        {
+            "library": "node_modules/bootstrap/dist/css",
+            "destination": "wwwroot/lib/bootstrap/css"
+        },
+        {
+            "library": "node_modules/bootstrap/dist/js",
+            "destination": "wwwroot/lib/bootstrap/js"
+        },
+        {
+            "library": "node_modules/bootstrap-colorpicker/dist/js",
+            "destination": "wwwroot/lib/bootstrap-colorpicker/js"
+        },
+        {
+            "library": "node_modules/bootstrap-colorpicker/dist/css",
+            "destination": "wwwroot/lib/bootstrap-colorpicker/css"
+        },
+        {
+            "library": "node_modules/bootstrap-slider/dist/",
+            "destination": "wwwroot/lib/bootstrap-slider"
+        },
+        {
+            "library": "node_modules/bootstrap-slider/dist/css",
+            "destination": "wwwroot/lib/bootstrap-slider/css"
+        },
+        {
+            "library": "node_modules/bootstrap-switch/dist",
+            "destination": "wwwroot/lib/bootstrap-switch/"
+        },
+        {
+            "library": "node_modules/bootstrap4-duallistbox/dist",
+            "destination": "wwwroot/lib/bootstrap4-duallistbox/"
+        },
+        {
+            "library": "node_modules/bs-custom-file-input/dist/",
+            "destination": "wwwroot/lib/bs-custom-file-input"
+        },
+        {
+            "library": "node_modules/bs-stepper/dist/",
+            "destination": "wwwroot/lib/bs-stepper"
+        },
+        {
+            "library": "node_modules/chart.js/dist/",
+            "destination": "wwwroot/lib/chart.js"
+        },
+        {
+            "library": "node_modules/codemirror/lib/",
+            "destination": "wwwroot/lib/codemirror"
+        },
+        {
+            "library": "node_modules/codemirror/addon/",
+            "destination": "wwwroot/lib/codemirror/addon"
+        },
+        {
+            "library": "node_modules/codemirror/keymap/",
+            "destination": "wwwroot/lib/codemirror/keymap"
+        },
+        {
+            "library": "node_modules/codemirror/mode/",
+            "destination": "wwwroot/lib/codemirror/mode"
+        },
+        {
+            "library": "node_modules/codemirror/theme/",
+            "destination": "wwwroot/lib/codemirror/theme"
+        },
+        {
+            "library": "node_modules/crypto-js/",
+            "destination": "wwwroot/lib/crypto-js"
+        },
+        {
+            "library": "node_modules/datatables.net/js",
+            "destination": "wwwroot/lib/datatables"
+        },
+        {
+            "library": "node_modules/datatables.net-autofill-bs4/js",
+            "destination": "wwwroot/lib/datatables-autofill/js"
+        },
+        {
+            "library": "node_modules/datatables.net-autofill-bs4/css",
+            "destination": "wwwroot/lib/datatables-autofill/css"
+        },
+        {
+            "library": "node_modules/datatables.net-bs4/js",
+            "destination": "wwwroot/lib/datatables-bs4/js"
+        },
+        {
+            "library": "node_modules/datatables.net-bs4/css",
+            "destination": "wwwroot/lib/datatables-bs4/css"
+        },
+        {
+            "library": "node_modules/datatables.net-buttons-bs4/js",
+            "destination": "wwwroot/lib/datatables-buttons/js"
+        },
+        {
+            "library": "node_modules/datatables.net-buttons-bs4/css",
+            "destination": "wwwroot/lib/datatables-buttons/css"
+        },
+        {
+            "library": "node_modules/datatables.net-colreorder-bs4/js",
+            "destination": "wwwroot/lib/datatables-colreorder/js"
+        },
+        {
+            "library": "node_modules/datatables.net-colreorder-bs4/css",
+            "destination": "wwwroot/lib/datatables-colreorder/css"
+        },
+        {
+            "library": "node_modules/datatables.net-fixedcolumns-bs4/js",
+            "destination": "wwwroot/lib/datatables-fixedcolumns/js"
+        },
+        {
+            "library": "node_modules/datatables.net-fixedcolumns-bs4/css",
+            "destination": "wwwroot/lib/datatables-fixedcolumns/css"
+        },
+        {
+            "library": "node_modules/datatables.net-fixedheader-bs4/js",
+            "destination": "wwwroot/lib/datatables-fixedheader/js"
+        },
+        {
+            "library": "node_modules/datatables.net-fixedheader-bs4/css",
+            "destination": "wwwroot/lib/datatables-fixedheader/css"
+        },
+        {
+            "library": "node_modules/datatables.net-keytable-bs4/js",
+            "destination": "wwwroot/lib/datatables-keytable/js"
+        },
+        {
+            "library": "node_modules/datatables.net-keytable-bs4/css",
+            "destination": "wwwroot/lib/datatables-keytable/css"
+        },
+        {
+            "library": "node_modules/datatables.net-responsive-bs4/js",
+            "destination": "wwwroot/lib/datatables-responsive/js"
+        },
+        {
+            "library": "node_modules/datatables.net-responsive-bs4/css",
+            "destination": "wwwroot/lib/datatables-responsive/css"
+        },
+        {
+            "library": "node_modules/datatables.net-rowgroup-bs4/js",
+            "destination": "wwwroot/lib/datatables-rowgroup/js"
+        },
+        {
+            "library": "node_modules/datatables.net-rowgroup-bs4/css",
+            "destination": "wwwroot/lib/datatables-rowgroup/css"
+        },
+        {
+            "library": "node_modules/datatables.net-rowreorder-bs4/js",
+            "destination": "wwwroot/lib/datatables-rowreorder/js"
+        },
+        {
+            "library": "node_modules/datatables.net-rowreorder-bs4/css",
+            "destination": "wwwroot/lib/datatables-rowreorder/css"
+        },
+        {
+            "library": "node_modules/datatables.net-scroller-bs4/js",
+            "destination": "wwwroot/lib/datatables-scroller/js"
+        },
+        {
+            "library": "node_modules/datatables.net-scroller-bs4/css",
+            "destination": "wwwroot/lib/datatables-scroller/css"
+        },
+        {
+            "library": "node_modules/datatables.net-select-bs4/js",
+            "destination": "wwwroot/lib/datatables-select/js"
+        },
+        {
+            "library": "node_modules/datatables.net-select-bs4/css",
+            "destination": "wwwroot/lib/datatables-select/css"
+        },
+        {
+            "library": "node_modules/daterangepicker/",
+            "destination": "wwwroot/lib/daterangepicker"
+        },
+        {
+            "library": "node_modules/davidshimjs-qrcodejs/",
+            "files": [
+                "qrcode.js",
+                "qrcode.min.js"
+            ],
+            "destination": "wwwroot/lib/qrcodejs"
+        },
+        {
+            "library": "node_modules/dropzone/dist/",
+            "destination": "wwwroot/lib/dropzone"
+        },
+        {
+            "library": "node_modules/ekko-lightbox/dist",
+            "destination": "wwwroot/lib/ekko-lightbox/"
+        },
+        {
+            "library": "node_modules/fastclick/lib",
+            "destination": "wwwroot/lib/fastclick"
+        },
+        {
+            "library": "node_modules/filterizr/dist",
+            "destination": "wwwroot/lib/filterizr/"
+        },
+        {
+            "library": "node_modules/flag-icon-css/css",
+            "destination": "wwwroot/lib/flag-icon-css/css"
+        },
+        {
+            "library": "node_modules/flag-icon-css/flags",
+            "destination": "wwwroot/lib/flag-icon-css/flags"
+        },
+        {
+            "library": "node_modules/flot/dist/es5/",
+            "destination": "wwwroot/lib/flot"
+        },
+        {
+            "library": "node_modules/flot/source/",
+            "destination": "wwwroot/lib/flot/plugins"
+        },
+        {
+            "library": "node_modules/font-awesome/css/",
+            "destination": "wwwroot/lib/font-awesome/css"
+        },
+        {
+            "library": "node_modules/font-awesome/fonts/",
+            "destination": "wwwroot/lib/font-awesome/fonts"
+        },
+        {
+            "library": "node_modules/handlebars/dist/",
+            "files": [
+                "handlebars.js",
+                "handlebars.min.js"
+            ],
+            "destination": "wwwroot/lib/handlebars"
+        },
+        {
+            "library": "node_modules/icheck-bootstrap/",
+            "destination": "wwwroot/lib/icheck-bootstrap"
+        },
+        {
+            "library": "node_modules/inputmask/dist/",
+            "destination": "wwwroot/lib/inputmask"
+        },
+        {
+            "library": "node_modules/interactjs/dist/",
+            "destination": "wwwroot/lib/interactjs"
+        },
+        {
+            "library": "node_modules/ion-rangeslider/",
+            "destination": "wwwroot/lib/ion-rangeslider"
+        },
+        {
+            "library": "node_modules/jquery/dist",
+            "destination": "wwwroot/lib/jquery"
+        },
+        {
+            "library": "node_modules/jquery-knob-chif/dist/",
+            "destination": "wwwroot/lib/jquery-knob"
+        },
+        {
+            "library": "node_modules/jquery-mapael/js/",
+            "destination": "wwwroot/lib/jquery-mapael"
+        },
+        {
+            "library": "node_modules/jquery-mousewheel/",
+            "destination": "wwwroot/lib/jquery-mousewheel"
+        },
+        {
+            "library": "node_modules/jquery-ui-dist/images",
+            "destination": "wwwroot/lib/jquery-ui-dist/images"
+        },
+        {
+            "library": "node_modules/jquery-ui-dist",
+            "destination": "wwwroot/lib/jquery-ui-dist"
+        },
+        {
+            "library": "node_modules/jquery-validation/dist",
+            "destination": "wwwroot/lib/jquery-validation"
+        },
+        {
+            "library": "node_modules/jquery-validation-unobtrusive/dist",
+            "destination": "wwwroot/lib/jquery-validation-unobtrusive"
+        },
+        {
+            "library": "node_modules/jqvmap-novulnerability/dist/",
+            "destination": "wwwroot/lib/jqvmap"
+        },
+        {
+            "library": "node_modules/jsgrid/dist",
+            "destination": "wwwroot/lib/jsgrid"
+        },
+        {
+            "library": "node_modules/jsgrid/demos/db.js",
+            "destination": "wwwroot/lib/jsgrid/demos/db.js"
+        },
+        {
+            "library": "node_modules/jszip/dist",
+            "destination": "wwwroot/lib/jszip"
+        },
+        {
+            "library": "node_modules/knockout/build/output",
+            "destination": "wwwroot/lib/knockout"
+        },
+        {
+            "library": "node_modules/leaflet/dist",
+            "destination": "wwwroot/lib/leaflet"
+        },
+        {
+            "library": "node_modules/leaflet/dist/images",
+            "destination": "wwwroot/lib/leaflet/images"
+        },
+        {
+            "library": "node_modules/moment/min",
+            "destination": "wwwroot/lib/moment"
+        },
+        {
+            "library": "node_modules/moment/locale",
+            "destination": "wwwroot/lib/moment/locale"
+        },
+        {
+            "library": "node_modules/overlayscrollbars/js",
+            "destination": "wwwroot/lib/overlayScrollbars/js"
+        },
+        {
+            "library": "node_modules/overlayscrollbars/css",
+            "destination": "wwwroot/lib/overlayScrollbars/css"
+        },
+        {
+            "library": "node_modules/pdfmake/build",
+            "destination": "wwwroot/lib/pdfmake"
+        },
+        {
+            "library": "node_modules/popper.js/dist",
+            "destination": "wwwroot/lib/popper.js"
+        },
+        {
+            "library": "node_modules/raphael/",
+            "destination": "wwwroot/lib/raphael"
+        },
+        {
+            "library": "node_modules/requirejs/bin/",
+            "destination": "wwwroot/lib/requirejs"
+        },
+        {
+            "library": "node_modules/select2/dist/",
+            "destination": "wwwroot/lib/select2"
+        },
+        {
+            "library": "node_modules/sparklines/source/",
+            "destination": "wwwroot/lib/sparklines"
+        },
+        {
+            "library": "node_modules/summernote/dist/",
+            "destination": "wwwroot/lib/summernote"
+        },
+        {
+            "library": "node_modules/sweetalert2/dist/",
+            "destination": "wwwroot/lib/sweetalert2"
+        },
+        {
+            "library": "node_modules/tempusdominus-bootstrap-4/build/js",
+            "destination": "wwwroot/lib/tempusdominus-bootstrap-4/js"
+        },
+        {
+            "library": "node_modules/tempusdominus-bootstrap-4/build/css",
+            "destination": "wwwroot/lib/tempusdominus-bootstrap-4/css"
+        },
+        {
+            "library": "node_modules/tether/dist/css",
+            "destination": "wwwroot/lib/tether/css"
+        },
+        {
+            "library": "node_modules/tether/dist/js",
+            "destination": "wwwroot/lib/tether/js"
+        },
+        {
+            "library": "node_modules/toastr/build/",
+            "destination": "wwwroot/lib/toastr"
+        }
+    ]
+}
