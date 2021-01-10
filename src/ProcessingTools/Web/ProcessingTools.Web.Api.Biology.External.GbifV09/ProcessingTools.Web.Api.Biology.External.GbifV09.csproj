@@ -18,11 +18,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Web.Api.Biology.External.GbifV09.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Web.Api.Biology.External.GbifV09.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Web.Api.Biology.External.GbifV09.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Web.Api.Biology.External.GbifV09.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -62,6 +62,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Web\ProcessingTools.Configuration.Web.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Web.HealthChecks\ProcessingTools.Configuration.Web.HealthChecks.csproj" />
   </ItemGroup>
 
 </Project>
