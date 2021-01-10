@@ -44,7 +44,6 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
             this.CollectionSettings = new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             };
         }
@@ -55,7 +54,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IPublisherDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -77,7 +76,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -103,7 +102,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IPublisherDataTransferObject> InsertAsync(IPublisherInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -131,7 +130,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (publishers == null || !publishers.Any())
+            if (publishers is null || !publishers.Any())
             {
                 return Array.Empty<IPublisherDataTransferObject>();
             }
@@ -149,7 +148,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (publishers == null || !publishers.Any())
+            if (publishers is null || !publishers.Any())
             {
                 return Array.Empty<IPublisherDetailsDataTransferObject>();
             }
@@ -179,7 +178,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IPublisherDataTransferObject> UpdateAsync(IPublisherUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }

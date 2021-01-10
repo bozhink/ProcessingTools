@@ -44,7 +44,6 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
             this.CollectionSettings = new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             };
         }
@@ -52,7 +51,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -78,7 +77,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IJournalDataTransferObject> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -93,7 +92,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IJournalDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -125,7 +124,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IJournalDataTransferObject> InsertAsync(IJournalInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -153,7 +152,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (journals == null || !journals.Any())
+            if (journals is null || !journals.Any())
             {
                 return Array.Empty<IJournalDataTransferObject>();
             }
@@ -171,7 +170,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (journals == null || !journals.Any())
+            if (journals is null || !journals.Any())
             {
                 return Array.Empty<IJournalDetailsDataTransferObject>();
             }
@@ -211,7 +210,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IJournalDataTransferObject> UpdateAsync(IJournalUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }

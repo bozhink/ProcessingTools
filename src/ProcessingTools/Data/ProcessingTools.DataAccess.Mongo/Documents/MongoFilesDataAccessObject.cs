@@ -43,7 +43,6 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
             this.CollectionSettings = new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             };
         }
@@ -51,7 +50,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -74,7 +73,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IFileDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -89,7 +88,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IFileDataTransferObject> InsertAsync(IFileInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -117,7 +116,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (files == null || !files.Any())
+            if (files is null || !files.Any())
             {
                 return Array.Empty<IFileDataTransferObject>();
             }
@@ -135,7 +134,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (files == null || !files.Any())
+            if (files is null || !files.Any())
             {
                 return Array.Empty<IFileDetailsDataTransferObject>();
             }
@@ -152,7 +151,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IFileDataTransferObject> UpdateAsync(IFileUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }

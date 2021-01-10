@@ -7,7 +7,6 @@ namespace ProcessingTools.Data.Entity.Geo
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Models.Entity.Geo;
@@ -34,7 +33,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual Task<object> DeleteAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -45,7 +44,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -56,13 +55,13 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual Task<TModel> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
             var entity = this.Repository.Get(id);
-            if (entity == null)
+            if (entity is null)
             {
                 return Task.FromResult<TModel>(null);
             }
@@ -73,7 +72,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<object> InsertAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -115,7 +114,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<object> UpdateAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -140,7 +139,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         protected async Task<TEntity> UpdateEntityAsync(TEntity entity)
         {
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }

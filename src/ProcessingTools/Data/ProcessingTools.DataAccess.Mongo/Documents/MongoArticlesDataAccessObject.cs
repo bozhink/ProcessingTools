@@ -44,7 +44,6 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
             this.CollectionSettings = new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             };
         }
@@ -52,7 +51,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -78,7 +77,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IArticleDataTransferObject> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -93,7 +92,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IArticleDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -111,7 +110,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                     article.Journal = this.mapper.Map<Journal, IArticleJournalDataTransferObject>(article.DbJournal);
                 }
 
-                if (article.Journal == null)
+                if (article.Journal is null)
                 {
                     article.Journal = await this.GetArticleJournalsQuery(j => j.ObjectId == journalId).FirstOrDefaultAsync().ConfigureAwait(false);
                 }
@@ -131,7 +130,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IArticleDataTransferObject> InsertAsync(IArticleInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -161,7 +160,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (articles == null || !articles.Any())
+            if (articles is null || !articles.Any())
             {
                 return Array.Empty<IArticleDataTransferObject>();
             }
@@ -179,7 +178,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (articles == null || !articles.Any())
+            if (articles is null || !articles.Any())
             {
                 return Array.Empty<IArticleDetailsDataTransferObject>();
             }
@@ -195,7 +194,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                         article.Journal = this.mapper.Map<Journal, IArticleJournalDataTransferObject>(article.DbJournal);
                     }
 
-                    if (article.Journal == null)
+                    if (article.Journal is null)
                     {
                         article.Journal = journals.FirstOrDefault(j => j.Id == article.JournalId);
                     }
@@ -214,7 +213,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IArticleDataTransferObject> UpdateAsync(IArticleUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -265,7 +264,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> GetJournalStyleIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -294,7 +293,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public Task<IArticleDataTransferObject> FinalizeAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -323,7 +322,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
 
-            if (article == null || string.IsNullOrWhiteSpace(article.JournalId))
+            if (article is null || string.IsNullOrWhiteSpace(article.JournalId))
             {
                 throw new InvalidOperationException(StringResources.SpecifiedArticleDoesNotHaveValidJournalId);
             }
@@ -334,7 +333,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
 
-            if (journal == null)
+            if (journal is null)
             {
                 throw new InvalidOperationException(StringResources.SpecifiedJournalIsNull);
             }

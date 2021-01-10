@@ -36,7 +36,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .Register(c => new MongoCollectionSettings
                 {
                     AssignIdOnInsert = true,
-                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                     WriteConcern = new WriteConcern(WriteConcern.Acknowledged.W),
                     ReadPreference = new ReadPreference(ReadPreferenceMode.SecondaryPreferred),
                 })
@@ -48,7 +47,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .Register(c => new MongoCollectionSettings
                 {
                     AssignIdOnInsert = true,
-                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                     WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
                 })
                 .As<MongoCollectionSettings>()
@@ -59,7 +57,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .Register(c => new MongoCollectionSettings
                 {
                     AssignIdOnInsert = true,
-                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                     WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
                 })
                 .As<MongoCollectionSettings>()
@@ -70,7 +67,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .Register(c => new MongoCollectionSettings
                 {
                     AssignIdOnInsert = true,
-                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                     WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
                 })
                 .As<MongoCollectionSettings>()
@@ -81,7 +77,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .Register(c => new MongoCollectionSettings
                 {
                     AssignIdOnInsert = true,
-                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                     WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
                 })
                 .As<MongoCollectionSettings>()
@@ -92,7 +87,6 @@ namespace ProcessingTools.Configuration.Autofac
                 .Register(c => new MongoCollectionSettings
                 {
                     AssignIdOnInsert = true,
-                    GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                     WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
                 })
                 .As<MongoCollectionSettings>()

@@ -44,7 +44,6 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
             this.CollectionSettings = new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             };
         }

@@ -53,6 +53,16 @@ namespace ProcessingTools.Data.Mongo
         /// <inheritdoc/>
         public IMongoCollection<T> GetCollection<T>(IMongoDatabase db, MongoCollectionSettings settings)
         {
+            if (db is null)
+            {
+                throw new ArgumentNullException(nameof(db));
+            }
+
+            if (settings is null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             string collectionName = MongoCollectionNameFactory.Create<T>();
             return db.GetCollection<T>(collectionName, settings);
         }
@@ -63,7 +73,6 @@ namespace ProcessingTools.Data.Mongo
             return this.GetCollection<T>(db, new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W),
             });
         }
