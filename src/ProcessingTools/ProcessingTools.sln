@@ -169,13 +169,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Lay
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Tagger", "Web\ProcessingTools.Web.Api.Tagger\ProcessingTools.Web.Api.Tagger.csproj", "{8E544C78-908E-48FC-BB8D-E7389D7044E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Biology.External.GbifV09", "Web\ProcessingTools.Web.Api.Biology.External.GbifV09\ProcessingTools.Web.Api.Biology.External.GbifV09.csproj", "{D52F0EBE-88BD-4532-9BEF-6BA1909EB2C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Biology.External.GbifV09", "Web\ProcessingTools.Web.Api.Biology.External.GbifV09\ProcessingTools.Web.Api.Biology.External.GbifV09.csproj", "{D52F0EBE-88BD-4532-9BEF-6BA1909EB2C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Web", "Infrastructure\ProcessingTools.Configuration.Web\ProcessingTools.Configuration.Web.csproj", "{F4E76A1E-BF8D-417A-A935-F063FD644C11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Web", "Infrastructure\ProcessingTools.Configuration.Web\ProcessingTools.Configuration.Web.csproj", "{F4E76A1E-BF8D-417A-A935-F063FD644C11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Web.Resources", "Infrastructure\ProcessingTools.Configuration.Web.Resources\ProcessingTools.Configuration.Web.Resources.csproj", "{2A6B086A-29DB-4121-934C-8FE9F0E05184}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Web.Resources", "Infrastructure\ProcessingTools.Configuration.Web.Resources\ProcessingTools.Configuration.Web.Resources.csproj", "{2A6B086A-29DB-4121-934C-8FE9F0E05184}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configuration.Web.HealthChecks", "Infrastructure\ProcessingTools.Configuration.Web.HealthChecks\ProcessingTools.Configuration.Web.HealthChecks.csproj", "{0A32BEEF-DB8D-4EE7-9A38-CAB4DA6C2302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.Web.HealthChecks", "Infrastructure\ProcessingTools.Configuration.Web.HealthChecks\ProcessingTools.Configuration.Web.HealthChecks.csproj", "{0A32BEEF-DB8D-4EE7-9A38-CAB4DA6C2302}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
