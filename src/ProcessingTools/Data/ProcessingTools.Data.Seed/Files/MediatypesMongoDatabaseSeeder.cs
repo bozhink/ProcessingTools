@@ -32,7 +32,7 @@ namespace ProcessingTools.Data.Seed.Files
         /// <param name="provider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
         public MediatypesMongoDatabaseSeeder(IMongoDatabaseProvider provider)
         {
-            if (provider == null)
+            if (provider is null)
             {
                 throw new ArgumentNullException(nameof(provider));
             }

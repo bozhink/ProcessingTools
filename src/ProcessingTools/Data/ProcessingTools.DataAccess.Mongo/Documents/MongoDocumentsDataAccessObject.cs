@@ -51,7 +51,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -80,7 +80,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IDocumentDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -95,7 +95,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IDocumentDataTransferObject> InsertAsync(IDocumentInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -142,7 +142,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                .ToListAsync()
                .ConfigureAwait(false);
 
-            if (documents == null || !documents.Any())
+            if (documents is null || !documents.Any())
             {
                 return Array.Empty<IDocumentDataTransferObject>();
             }
@@ -160,7 +160,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
                .ToListAsync()
                .ConfigureAwait(false);
 
-            if (documents == null || !documents.Any())
+            if (documents is null || !documents.Any())
             {
                 return Array.Empty<IDocumentDetailsDataTransferObject>();
             }
@@ -177,7 +177,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IDocumentDataTransferObject> UpdateAsync(IDocumentUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -217,7 +217,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<string> GetDocumentContentAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -305,7 +305,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<long> SetDocumentContentAsync(object id, string content)
         {
-            if (id == null)
+            if (id is null)
             {
                 return 0L;
             }
@@ -340,7 +340,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> SetAsFinalAsync(object id, string articleId)
         {
-            if (id == null || string.IsNullOrWhiteSpace(articleId))
+            if (id is null || string.IsNullOrWhiteSpace(articleId))
             {
                 return null;
             }

@@ -31,7 +31,7 @@ namespace ProcessingTools.Common.Code.Data.Expressions
         /// <inheritdoc/>
         public void Invoke(T obj)
         {
-            if (obj == null)
+            if (obj is null)
             {
                 throw new ArgumentNullException(nameof(obj));
             }
@@ -42,13 +42,13 @@ namespace ProcessingTools.Common.Code.Data.Expressions
             foreach (var updateCommand in this.UpdateExpression.UpdateCommands)
             {
                 var property = type.GetProperty(updateCommand.FieldName);
-                if (property == null)
+                if (property is null)
                 {
                     throw new InvalidOperationException($"Property {updateCommand.FieldName} is not found in type {type.FullName}");
                 }
 
                 var method = property.GetSetMethod(true);
-                if (method == null)
+                if (method is null)
                 {
                     throw new InvalidOperationException($"Set method of property {updateCommand.FieldName} is not found in type {type.FullName}");
                 }

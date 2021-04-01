@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> UploadSingleFile(IFormFile file)
         {
-            if (file == null || file.Length < 1)
+            if (file is null || file.Length < 1)
             {
                 throw new NullOrEmptyFileException();
             }
@@ -91,7 +91,7 @@ namespace ProcessingTools.Web.Documents.Areas.Files.Controllers
 
         private Task<IFileMetadata> UploadFile(IFormFile file)
         {
-            if (file == null || file.Length < 1)
+            if (file is null || file.Length < 1)
             {
                 throw new NullOrEmptyFileException();
             }

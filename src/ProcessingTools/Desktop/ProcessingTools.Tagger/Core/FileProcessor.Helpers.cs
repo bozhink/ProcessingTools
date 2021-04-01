@@ -69,7 +69,7 @@ namespace ProcessingTools.Tagger.Core
 
         private Task InvokeCommand(ITaggerCommand command, IDocument document)
         {
-            if (command == null)
+            if (command is null)
             {
                 throw new ArgumentNullException(nameof(command), $"Command of type {command.GetType().FullName} is invalid.");
             }

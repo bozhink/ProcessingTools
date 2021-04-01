@@ -20,7 +20,7 @@ namespace ProcessingTools.DbSeeder.Core
 
         public async Task RunAsync(Action action)
         {
-            if (action == null)
+            if (action is null)
             {
                 throw new ArgumentNullException(nameof(action));
             }
@@ -48,7 +48,7 @@ namespace ProcessingTools.DbSeeder.Core
 
         public async Task RunAsync(Func<Task> function)
         {
-            if (function == null)
+            if (function is null)
             {
                 throw new ArgumentNullException(nameof(function));
             }
@@ -76,7 +76,7 @@ namespace ProcessingTools.DbSeeder.Core
 
         public async Task<T> RunAsync<T>(Func<Task<T>> function)
         {
-            if (function == null)
+            if (function is null)
             {
                 throw new ArgumentNullException(nameof(function));
             }

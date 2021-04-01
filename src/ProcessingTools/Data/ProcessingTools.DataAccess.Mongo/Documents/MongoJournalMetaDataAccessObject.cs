@@ -41,7 +41,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -60,7 +60,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IJournalMeta> GetAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -72,7 +72,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IJournalMeta> InsertAsync(IJournalMeta journalMeta)
         {
-            if (journalMeta == null)
+            if (journalMeta is null)
             {
                 return null;
             }
@@ -92,7 +92,7 @@ namespace ProcessingTools.DataAccess.Mongo.Documents
         /// <inheritdoc/>
         public async Task<IJournalMeta> UpdateAsync(IJournalMeta journalMeta)
         {
-            if (journalMeta == null)
+            if (journalMeta is null)
             {
                 return null;
             }

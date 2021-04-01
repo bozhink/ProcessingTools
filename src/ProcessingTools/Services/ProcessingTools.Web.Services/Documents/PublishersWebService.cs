@@ -32,7 +32,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <param name="userContext">User context.</param>
         public PublishersWebService(IPublishersDataService publishersDataService, IMapper mapper, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
@@ -49,7 +49,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> CreatePublisherAsync(PublisherCreateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }
@@ -73,7 +73,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> UpdatePublisherAsync(PublisherUpdateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }

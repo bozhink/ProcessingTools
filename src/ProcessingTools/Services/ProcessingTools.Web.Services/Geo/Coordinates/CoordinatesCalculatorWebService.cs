@@ -32,7 +32,7 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
         /// <param name="userContext">User context.</param>
         public CoordinatesCalculatorWebService(ICoordinatesParseService coordinatesParseService, IMapper mapper, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
@@ -58,7 +58,7 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
         {
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
-            if (model == null || string.IsNullOrWhiteSpace(model.Coordinates))
+            if (model is null || string.IsNullOrWhiteSpace(model.Coordinates))
             {
                 return new CoordinatesViewModel(userContext, Array.Empty<CoordinateViewModel>())
                 {
@@ -67,7 +67,7 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
             }
 
             var parsedCoordinates = await this.coordinatesParseService.ParseCoordinatesStringAsync(model.Coordinates).ConfigureAwait(false);
-            if (parsedCoordinates == null || !parsedCoordinates.Any())
+            if (parsedCoordinates is null || !parsedCoordinates.Any())
             {
                 return new CoordinatesViewModel(userContext, Array.Empty<CoordinateViewModel>())
                 {

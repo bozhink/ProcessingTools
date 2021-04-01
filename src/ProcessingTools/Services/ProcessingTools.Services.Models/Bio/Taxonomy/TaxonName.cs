@@ -25,7 +25,7 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
         /// <param name="node"><see cref="XmlNode"/> for initialization.</param>
         public TaxonName(XmlNode node)
         {
-            if (node == null)
+            if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }

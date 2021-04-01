@@ -50,12 +50,12 @@ namespace ProcessingTools.Data.Memory.Abstractions
             {
                 get
                 {
-                    if (instance == null)
+                    if (instance is null)
                     {
                         var syncLock = new object();
                         lock (syncLock)
                         {
-                            if (instance == null)
+                            if (instance is null)
                             {
                                 instance = new ConcurrentDictionary<TKey, TValue>();
                             }

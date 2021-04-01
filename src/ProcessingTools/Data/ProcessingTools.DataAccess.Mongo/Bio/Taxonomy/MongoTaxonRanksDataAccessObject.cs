@@ -34,7 +34,7 @@ namespace ProcessingTools.DataAccess.Mongo.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> UpsertAsync(ITaxonRankItem item)
         {
-            if (item == null)
+            if (item is null)
             {
                 return null;
             }

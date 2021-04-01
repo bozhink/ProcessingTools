@@ -43,7 +43,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public async Task<IMediatypeDataTransferObject> InsertAsync(IMediatypeInsertModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -64,7 +64,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public async Task<IMediatypeDataTransferObject> UpdateAsync(IMediatypeUpdateModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -102,7 +102,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -125,7 +125,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
         /// <inheritdoc/>
         public async Task<IMediatypeDetailsDataTransferObject> GetDetailsByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return null;
             }
@@ -203,7 +203,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (mediatypes == null || !mediatypes.Any())
+            if (mediatypes is null || !mediatypes.Any())
             {
                 return Array.Empty<IMediatypeDataTransferObject>();
             }
@@ -221,7 +221,7 @@ namespace ProcessingTools.DataAccess.Mongo.Files
                .ToListAsync()
                .ConfigureAwait(false);
 
-            if (mediatypes == null || !mediatypes.Any())
+            if (mediatypes is null || !mediatypes.Any())
             {
                 return Array.Empty<IMediatypeDetailsDataTransferObject>();
             }

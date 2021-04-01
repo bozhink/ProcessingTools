@@ -60,7 +60,7 @@ namespace ProcessingTools.DataAccess.Mongo.Cache
             }
 
             var dbmodel = await this.collection.Find(o => o.Id == key).FirstOrDefaultAsync().ConfigureAwait(false);
-            if (dbmodel == null)
+            if (dbmodel is null)
             {
                 return false;
             }

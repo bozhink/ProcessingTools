@@ -75,7 +75,7 @@ namespace ProcessingTools.NlmArchiveConsoleManager.Core
             IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMetaAsync().ConfigureAwait(false))
                 .FirstOrDefault(j => j.Permalink == journalId);
 
-            if (journalMeta == null)
+            if (journalMeta is null)
             {
                 this.logger.LogError("Journal not found");
                 return;

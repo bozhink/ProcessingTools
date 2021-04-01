@@ -80,7 +80,7 @@ namespace ProcessingTools.Services.Models
         public TaxPubDocument(XmlDocument xml, Encoding encoding)
             : this(encoding)
         {
-            if (xml == null)
+            if (xml is null)
             {
                 throw new ArgumentNullException(nameof(xml));
             }

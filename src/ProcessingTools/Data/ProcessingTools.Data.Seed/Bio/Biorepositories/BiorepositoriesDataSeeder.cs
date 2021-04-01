@@ -93,7 +93,7 @@ namespace ProcessingTools.Data.Seed.Bio.Biorepositories
                 var serializer = new CsvSerializer();
                 var items = serializer.Deserialize<TSeedModel>(csvText)?.Select(i => i.Map<TEntityModel>())
                     .ToArray();
-                if (items == null || items.Length < 1)
+                if (items is null || items.Length < 1)
                 {
                     throw new ProcessingTools.Common.Exceptions.InvalidDataException("De-serialized items are not valid.");
                 }

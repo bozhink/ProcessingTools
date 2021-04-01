@@ -57,7 +57,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         /// <inheritdoc/>
         public object Upsert(ITaxonRankItem entity)
         {
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
@@ -82,7 +82,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         /// <inheritdoc/>
         public object Delete(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -94,7 +94,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         /// <inheritdoc/>
         public ITaxonRankItem Get(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }

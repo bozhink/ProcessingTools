@@ -66,13 +66,13 @@ namespace ProcessingTools.Data.Entity.Geo
         /// <inheritdoc/>
         public override async Task<object> UpdateAsync(IGeoEpithet model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
             var entity = this.Repository.Get(model.Id);
-            if (entity == null)
+            if (entity is null)
             {
                 return null;
             }

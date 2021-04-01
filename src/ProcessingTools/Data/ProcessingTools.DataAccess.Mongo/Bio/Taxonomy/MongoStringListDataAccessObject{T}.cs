@@ -54,7 +54,7 @@ namespace ProcessingTools.DataAccess.Mongo.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> InsertManyAsync(IEnumerable<string> items)
         {
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 return null;
             }
@@ -103,7 +103,7 @@ namespace ProcessingTools.DataAccess.Mongo.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> DeleteManyAsync(IEnumerable<string> items)
         {
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 return null;
             }
@@ -143,7 +143,7 @@ namespace ProcessingTools.DataAccess.Mongo.Bio.Taxonomy
 
             var data = await query.ToListAsync().ConfigureAwait(false);
 
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<string>();
             }
@@ -159,7 +159,7 @@ namespace ProcessingTools.DataAccess.Mongo.Bio.Taxonomy
             var query = this.collection.Find(filter).Project(e => new { e.Content });
             var data = await query.ToListAsync().ConfigureAwait(false);
 
-            if (data == null || !data.Any())
+            if (data is null || !data.Any())
             {
                 return Array.Empty<string>();
             }

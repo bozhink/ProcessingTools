@@ -30,13 +30,13 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<object> InsertAsync(ItemsRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
             var items = model.Items?.Select(i => i.Content).ToArray();
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 return null;
             }
@@ -49,7 +49,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
         /// <inheritdoc/>
         public async Task<SearchResponseModel> SearchAsync(SearchRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }

@@ -24,12 +24,12 @@ namespace ProcessingTools.Extensions
         /// <returns>Byte array.</returns>
         public static byte[] Compress(this string source, Encoding encoding)
         {
-            if (encoding == null)
+            if (encoding is null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
 
-            if (source == null)
+            if (source is null)
             {
                 return Array.Empty<byte>();
             }
@@ -65,7 +65,7 @@ namespace ProcessingTools.Extensions
         /// <returns>Byte array.</returns>
         public static Task<byte[]> CompressAsync(this string source, Encoding encoding)
         {
-            if (encoding == null)
+            if (encoding is null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
@@ -88,14 +88,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Compressed string.</returns>
         public static string CompressString(this string source, Encoding encoding)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = source.Compress(encoding);
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -110,14 +110,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Compressed string.</returns>
         public static string CompressString(this string source)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = source.Compress();
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -133,14 +133,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Compressed string.</returns>
         public static async Task<string> CompressStringAsync(this string source, Encoding encoding)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = await source.CompressAsync(encoding).ConfigureAwait(false);
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -155,14 +155,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Compressed string.</returns>
         public static async Task<string> CompressStringAsync(this string source)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = await source.CompressAsync().ConfigureAwait(false);
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -178,12 +178,12 @@ namespace ProcessingTools.Extensions
         /// <returns>Decompressed string.</returns>
         public static string Decompress(this byte[] source, Encoding encoding)
         {
-            if (encoding == null)
+            if (encoding is null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
 
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
@@ -217,7 +217,7 @@ namespace ProcessingTools.Extensions
         /// <returns>Decompressed string.</returns>
         public static Task<string> DecompressAsync(this byte[] source, Encoding encoding)
         {
-            if (encoding == null)
+            if (encoding is null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
@@ -240,14 +240,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Decompressed string.</returns>
         public static string DecompressString(this string source, Encoding encoding)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = Convert.FromBase64String(source);
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -262,14 +262,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Decompressed string.</returns>
         public static string DecompressString(this string source)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = Convert.FromBase64String(source);
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -285,14 +285,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Decompressed string.</returns>
         public static async Task<string> DecompressStringAsync(this string source, Encoding encoding)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = Convert.FromBase64String(source);
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -307,14 +307,14 @@ namespace ProcessingTools.Extensions
         /// <returns>Decompressed string.</returns>
         public static async Task<string> DecompressStringAsync(this string source)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }
 
             byte[] buffer = Convert.FromBase64String(source);
 
-            if (buffer == null)
+            if (buffer is null)
             {
                 return null;
             }
@@ -324,7 +324,7 @@ namespace ProcessingTools.Extensions
 
         private static async Task<byte[]> CompressInternalAsync(string source, Encoding encoding)
         {
-            if (source == null)
+            if (source is null)
             {
                 return Array.Empty<byte>();
             }
@@ -347,7 +347,7 @@ namespace ProcessingTools.Extensions
 
         private static async Task<string> DecompressInternalAsync(byte[] source, Encoding encoding)
         {
-            if (source == null)
+            if (source is null)
             {
                 return null;
             }

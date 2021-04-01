@@ -21,7 +21,7 @@ namespace ProcessingTools.Common.Code.Extensions
         /// <returns>File name.</returns>
         public static string GenerateFileNameFromDocumentId(this IDocument document)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }

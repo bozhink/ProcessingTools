@@ -30,7 +30,7 @@ namespace ProcessingTools.Services.Models.Net
 
         private static byte[] GetContentByteArray(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)
         {
-            if (nameValueCollection == null)
+            if (nameValueCollection is null)
             {
                 throw new ArgumentNullException(nameof(nameValueCollection));
             }

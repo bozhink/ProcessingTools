@@ -31,7 +31,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <param name="userContext">User context.</param>
         public JournalsWebService(IJournalsService journalsService, IMapper mapper, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> CreateJournalAsync(JournalCreateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }
@@ -72,7 +72,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> UpdateJournalAsync(JournalUpdateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }
@@ -253,7 +253,7 @@ namespace ProcessingTools.Web.Services.Documents
         private async Task<JournalStyleViewModel> GetJournalStyleViewModelAsync(string id)
         {
             var style = await this.journalsService.GetJournalStyleByIdAsync(id).ConfigureAwait(false);
-            if (style == null)
+            if (style is null)
             {
                 return new JournalStyleViewModel();
             }

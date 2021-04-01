@@ -24,7 +24,7 @@ namespace ProcessingTools.Data.Mongo.Abstractions
         /// <param name="databaseProvider">Database provider.</param>
         public MongoRepository(IMongoDatabaseProvider databaseProvider)
         {
-            if (databaseProvider == null)
+            if (databaseProvider is null)
             {
                 throw new ArgumentNullException(nameof(databaseProvider));
             }
@@ -41,7 +41,7 @@ namespace ProcessingTools.Data.Mongo.Abstractions
         /// <inheritdoc/>
         public virtual Task<object> AddAsync(T entity)
         {
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }

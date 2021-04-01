@@ -36,7 +36,7 @@ namespace ProcessingTools.Data.Memory.Abstractions
                 throw new ArgumentNullException(nameof(key));
             }
 
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -90,7 +90,7 @@ namespace ProcessingTools.Data.Memory.Abstractions
                 throw new ArgumentNullException(nameof(key));
             }
 
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }

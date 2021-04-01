@@ -32,7 +32,7 @@ namespace ProcessingTools.Data.Seed.Geo
         /// <param name="contextFactory">DB context factory.</param>
         public GeoDataSeeder(Func<GeoDbContext> contextFactory)
         {
-            if (contextFactory == null)
+            if (contextFactory is null)
             {
                 throw new ArgumentNullException(nameof(contextFactory));
             }

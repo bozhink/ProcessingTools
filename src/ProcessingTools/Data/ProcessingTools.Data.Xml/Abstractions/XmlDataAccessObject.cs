@@ -34,7 +34,7 @@ namespace ProcessingTools.Data.Xml.Abstractions
                 throw new ArgumentNullException(nameof(dataFileName));
             }
 
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

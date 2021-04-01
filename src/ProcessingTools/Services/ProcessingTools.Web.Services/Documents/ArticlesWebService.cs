@@ -33,7 +33,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <param name="userContext">User context.</param>
         public ArticlesWebService(IArticlesService articlesService, IMapper mapper, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
@@ -50,7 +50,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> CreateArticleAsync(ArticleCreateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }
@@ -62,7 +62,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> CreateFromFileArticleAsync(Microsoft.AspNetCore.Http.IFormFile formFile, string journalId)
         {
-            if (formFile == null)
+            if (formFile is null)
             {
                 throw new ArgumentNullException(nameof(formFile));
             }
@@ -99,7 +99,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> UpdateArticleAsync(ArticleUpdateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }

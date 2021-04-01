@@ -166,9 +166,9 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
 
             try
             {
-                double degrees = degreesString == null ? 0.0 : double.Parse(degreesString);
-                double minutes = minutesString == null ? 0.0 : double.Parse(minutesString);
-                double seconds = secondsString == null ? 0.0 : double.Parse(secondsString);
+                double degrees = degreesString is null ? 0.0 : double.Parse(degreesString);
+                double minutes = minutesString is null ? 0.0 : double.Parse(minutesString);
+                double seconds = secondsString is null ? 0.0 : double.Parse(secondsString);
 
                 return degrees + ((minutes + (seconds / 60.0)) / 60.0);
             }

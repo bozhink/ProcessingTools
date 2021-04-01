@@ -27,7 +27,7 @@ namespace ProcessingTools.Web.Services.Tools
         /// <param name="userContext">User context.</param>
         public EncodeWebService(IEncodeService encodeService, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }

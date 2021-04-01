@@ -49,7 +49,7 @@ namespace ProcessingTools.Common.Code.Data.Expressions
         /// <inheritdoc/>
         public IUpdateExpression<T> Set<TField>(Expression<Func<T, TField>> field, TField value)
         {
-            if (field == null)
+            if (field is null)
             {
                 throw new ArgumentNullException(nameof(field));
             }

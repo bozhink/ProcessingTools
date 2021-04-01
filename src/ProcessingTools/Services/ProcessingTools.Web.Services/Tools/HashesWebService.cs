@@ -27,7 +27,7 @@ namespace ProcessingTools.Web.Services.Tools
         /// <param name="userContext">User context.</param>
         public HashesWebService(IHashService hashService, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
@@ -45,7 +45,7 @@ namespace ProcessingTools.Web.Services.Tools
         {
             var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
-            if (model == null)
+            if (model is null)
             {
                 return new HashesViewModel(userContext);
             }

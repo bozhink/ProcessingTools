@@ -35,7 +35,7 @@ namespace ProcessingTools.Web.Services.Images
         /// <returns>Validation result.</returns>
         private bool CheckIfImageFile(IFormFile file)
         {
-            if (file == null)
+            if (file is null)
             {
                 return false;
             }

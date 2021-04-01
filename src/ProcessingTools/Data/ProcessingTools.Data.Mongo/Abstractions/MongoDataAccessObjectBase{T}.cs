@@ -24,7 +24,7 @@ namespace ProcessingTools.Data.Mongo.Abstractions
         /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
         protected MongoDataAccessObjectBase(IMongoDatabaseProvider databaseProvider)
         {
-            if (databaseProvider == null)
+            if (databaseProvider is null)
             {
                 throw new ArgumentNullException(nameof(databaseProvider));
             }

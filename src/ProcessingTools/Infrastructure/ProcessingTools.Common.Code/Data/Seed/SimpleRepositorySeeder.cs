@@ -36,7 +36,7 @@ namespace ProcessingTools.Common.Code.Data.Seed
         /// <returns>Task.</returns>
         public async Task SeedAsync(params TEntity[] data)
         {
-            if (data == null || data.Length < 1)
+            if (data is null || data.Length < 1)
             {
                 throw new ArgumentNullException(nameof(data));
             }

@@ -39,12 +39,12 @@ namespace ProcessingTools.Commands.Tagger
         /// <inheritdoc/>
         public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (settings == null)
+            if (settings is null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }
@@ -88,7 +88,7 @@ namespace ProcessingTools.Commands.Tagger
 
             ZooBankRegistration zoobankRegistration = null;
 
-            if (zoobankRegistrationList == null || zoobankRegistrationList.Count < 1)
+            if (zoobankRegistrationList is null || zoobankRegistrationList.Count < 1)
             {
                 throw new ProcessingTools.Common.Exceptions.InvalidDataException("No valid ZooBank registration records in JSON file");
             }

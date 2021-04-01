@@ -31,7 +31,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <param name="userContext">User context.</param>
         public JournalStylesWebService(IJournalStylesService journalStylesService, IMapper mapper, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<bool> CreateJournalStyleAsync(JournalStyleCreateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }
@@ -72,7 +72,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<bool> UpdateJournalStyleAsync(JournalStyleUpdateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }

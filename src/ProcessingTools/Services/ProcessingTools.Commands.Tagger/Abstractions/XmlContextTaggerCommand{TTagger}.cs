@@ -32,12 +32,12 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
         /// <inheritdoc/>
         public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (settings == null)
+            if (settings is null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }

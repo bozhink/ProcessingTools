@@ -34,7 +34,7 @@ namespace ProcessingTools.Web.Services.Admin
             this.databasesService = databasesService ?? throw new ArgumentNullException(nameof(databasesService));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }

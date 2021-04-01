@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Mongo
         /// <returns>Name of the collection.</returns>
         public static string Create(Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }

@@ -21,7 +21,7 @@
         <h3>@(Model?.Article?.ArticleTitle) (@(Model?.Article?.JournalName))</h3>
     </header>
     <div asp-validation-summary="All" class="text-danger"></div>
-    @if (Model == null)
+    @if (Model is null)
     {
         <div class="alert alert-danger">Invalid view model.</div>
     }

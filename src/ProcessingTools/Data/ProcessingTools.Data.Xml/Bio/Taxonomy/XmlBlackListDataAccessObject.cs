@@ -32,7 +32,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         /// <inheritdoc/>
         public Task<object> InsertManyAsync(IEnumerable<string> items)
         {
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 throw new ArgumentNullException(nameof(items));
             }
@@ -73,7 +73,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
         /// <inheritdoc/>
         public Task<object> DeleteManyAsync(IEnumerable<string> items)
         {
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 throw new ArgumentNullException(nameof(items));
             }

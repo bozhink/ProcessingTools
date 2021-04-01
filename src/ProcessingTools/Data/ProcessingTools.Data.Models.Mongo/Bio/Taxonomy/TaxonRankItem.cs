@@ -32,7 +32,7 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
         /// <param name="item">Taxon rank item.</param>
         public TaxonRankItem(ITaxonRankItem item)
         {
-            if (item == null)
+            if (item is null)
             {
                 throw new ArgumentNullException(nameof(item));
             }

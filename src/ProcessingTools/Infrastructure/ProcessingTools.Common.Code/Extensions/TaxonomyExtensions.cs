@@ -77,7 +77,7 @@ namespace ProcessingTools.Common.Code.Extensions
         /// <returns>Taxon names.</returns>
         public static IEnumerable<string> ExtractUniqueNonParsedHigherTaxa(this XmlNode node)
         {
-            if (node == null)
+            if (node is null)
             {
                 return Array.Empty<string>();
             }

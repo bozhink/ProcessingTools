@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Mongo.Bio.Biorepositories
         /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
         public MongoBiorepositoriesDatabaseInitializer(IMongoDatabaseProvider databaseProvider)
         {
-            if (databaseProvider == null)
+            if (databaseProvider is null)
             {
                 throw new ArgumentNullException(nameof(databaseProvider));
             }

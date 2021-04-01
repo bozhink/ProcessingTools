@@ -33,7 +33,7 @@ namespace ProcessingTools.Web.Documents.Formatters
         /// <returns>Is formatter applicable.</returns>
         public override bool CanRead(InputFormatterContext context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

@@ -45,7 +45,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<object> AddSynonymsAsync(int modelId, params TSynonymModel[] synonyms)
         {
-            if (synonyms == null || synonyms.Length < 1)
+            if (synonyms is null || synonyms.Length < 1)
             {
                 throw new ArgumentNullException(nameof(synonyms));
             }
@@ -55,7 +55,7 @@ namespace ProcessingTools.Data.Entity.Geo
                 .FirstOrDefaultAsync(e => e.Id == modelId)
                 .ConfigureAwait(false);
 
-            if (entity == null)
+            if (entity is null)
             {
                 return null;
             }
@@ -82,7 +82,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual Task<object> DeleteAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -93,7 +93,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<object> DeleteAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -104,7 +104,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<TModel> GetByIdAsync(object id)
         {
-            if (id == null)
+            if (id is null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -114,7 +114,7 @@ namespace ProcessingTools.Data.Entity.Geo
                 .FirstOrDefaultAsync(e => (object)e.Id == id)
                 .ConfigureAwait(false);
 
-            if (entity == null)
+            if (entity is null)
             {
                 return null;
             }
@@ -132,7 +132,7 @@ namespace ProcessingTools.Data.Entity.Geo
                 .FirstOrDefaultAsync(s => s.Id == id)
                 .ConfigureAwait(false);
 
-            if (entity == null)
+            if (entity is null)
             {
                 return null;
             }
@@ -143,7 +143,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<object> InsertAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -155,7 +155,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<object> InsertAsync(TModel model, params TSynonymModel[] synonyms)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -176,7 +176,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public async Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds)
         {
-            if (synonymIds == null || synonymIds.Length < 1)
+            if (synonymIds is null || synonymIds.Length < 1)
             {
                 throw new ArgumentNullException(nameof(synonymIds));
             }
@@ -186,7 +186,7 @@ namespace ProcessingTools.Data.Entity.Geo
                 .FirstOrDefaultAsync(e => e.Id == modelId)
                 .ConfigureAwait(false);
 
-            if (entity == null)
+            if (entity is null)
             {
                 return null;
             }
@@ -254,7 +254,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public virtual async Task<object> UpdateAsync(TModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -265,7 +265,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         public async Task<object> UpdateSynonymsAsync(int modelId, params TSynonymModel[] synonyms)
         {
-            if (synonyms == null || synonyms.Length < 1)
+            if (synonyms is null || synonyms.Length < 1)
             {
                 throw new ArgumentNullException(nameof(synonyms));
             }
@@ -275,7 +275,7 @@ namespace ProcessingTools.Data.Entity.Geo
                 .FirstOrDefaultAsync(e => e.Id == modelId)
                 .ConfigureAwait(false);
 
-            if (entity == null || synonyms.Any(s => s.ParentId != modelId))
+            if (entity is null || synonyms.Any(s => s.ParentId != modelId))
             {
                 return null;
             }
@@ -349,7 +349,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         protected async Task<TEntity> UpdateEntityAsync(TEntity entity)
         {
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
@@ -361,7 +361,7 @@ namespace ProcessingTools.Data.Entity.Geo
             entity.ModifiedOn = now;
 
             var dbentity = this.repository.Get(entity.Id);
-            if (dbentity == null)
+            if (dbentity is null)
             {
                 return null;
             }

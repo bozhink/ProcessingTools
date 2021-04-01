@@ -34,7 +34,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <param name="userContext">User context.</param>
         public DocumentsWebService(IDocumentsService documentsService, IMapper mapper, IUserContext userContext)
         {
-            if (userContext == null)
+            if (userContext is null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
@@ -259,7 +259,7 @@ namespace ProcessingTools.Web.Services.Documents
             }
 
             var model = await this.documentsService.DownloadAsync(id, articleId).ConfigureAwait(false);
-            if (model == null)
+            if (model is null)
             {
                 return null;
             }
@@ -283,7 +283,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> UpdateDocumentAsync(DocumentUpdateRequestModel model)
         {
-            if (model == null)
+            if (model is null)
             {
                 return false;
             }
@@ -295,7 +295,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<bool> UploadDocumentAsync(IFormFile formFile, string articleId)
         {
-            if (formFile == null || string.IsNullOrWhiteSpace(articleId))
+            if (formFile is null || string.IsNullOrWhiteSpace(articleId))
             {
                 return false;
             }

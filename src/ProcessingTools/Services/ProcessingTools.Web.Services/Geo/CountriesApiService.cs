@@ -37,7 +37,7 @@ namespace ProcessingTools.Web.Services.Geo
         public async Task<IList<CountryResponseModel>> GetAllAsync()
         {
             var items = await this.service.SelectAsync(null).ConfigureAwait(false);
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 return Array.Empty<CountryResponseModel>();
             }

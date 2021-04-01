@@ -17,12 +17,12 @@ namespace ProcessingTools.DbSeeder.Providers
 
         public HelpProvider(IReporter reporter, ICommandNamesProvider commandNamesProvider)
         {
-            if (reporter == null)
+            if (reporter is null)
             {
                 throw new ArgumentNullException(nameof(reporter));
             }
 
-            if (commandNamesProvider == null)
+            if (commandNamesProvider is null)
             {
                 throw new ArgumentNullException(nameof(commandNamesProvider));
             }

@@ -112,7 +112,7 @@ namespace ProcessingTools.Web.Services.HelpPage
         /// <param name="factory">Factory for <see cref="IModelDocumentationProvider"/> object.</param>
         public ModelDescriptionGenerator(Func<IModelDocumentationProvider> factory)
         {
-            if (factory == null)
+            if (factory is null)
             {
                 throw new ArgumentNullException(nameof(factory));
             }
@@ -136,7 +136,7 @@ namespace ProcessingTools.Web.Services.HelpPage
         /// <returns>Model description.</returns>
         public ModelDescription GetOrCreateModelDescription(Type modelType)
         {
-            if (modelType == null)
+            if (modelType is null)
             {
                 throw new ArgumentNullException(nameof(modelType));
             }
@@ -270,11 +270,11 @@ namespace ProcessingTools.Web.Services.HelpPage
             // no NonSerializedAttribute
             // no ApiExplorerSettingsAttribute with IgnoreApi set to true
             // no DataContractAttribute without DataMemberAttribute or EnumMemberAttribute
-            return jsonIgnore == null &&
-                xmlIgnore == null &&
-                ignoreDataMember == null &&
-                nonSerialized == null &&
-                (apiExplorerSetting == null || !apiExplorerSetting.IgnoreApi) &&
+            return jsonIgnore is null &&
+                xmlIgnore is null &&
+                ignoreDataMember is null &&
+                nonSerialized is null &&
+                (apiExplorerSetting is null || !apiExplorerSetting.IgnoreApi) &&
                 (!hasDataContractAttribute || hasMemberAttribute);
         }
 

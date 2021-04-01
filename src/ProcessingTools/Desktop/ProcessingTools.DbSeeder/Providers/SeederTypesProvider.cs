@@ -20,11 +20,11 @@ namespace ProcessingTools.DbSeeder.Providers
 
         public IEnumerable<Type> GetTypes()
         {
-            if (this.types == null)
+            if (this.types is null)
             {
                 lock (this.lockKey)
                 {
-                    if (this.types == null)
+                    if (this.types is null)
                     {
                         var assembly = Assembly.GetExecutingAssembly();
                         var types = assembly.GetTypes()
@@ -35,7 +35,7 @@ namespace ProcessingTools.DbSeeder.Providers
                                     t.GetInterfaces().Any(i => i.FullName == this.baseName))
                             .ToArray();
 
-                        if (types == null || types.Length < 1)
+                        if (types is null || types.Length < 1)
                         {
                             this.types = Array.Empty<Type>();
                         }

@@ -28,7 +28,7 @@ namespace ProcessingTools.Data.Seed.Bio
         /// <param name="contextFactory">DbContext factory.</param>
         public BioDataSeeder(Func<BioDbContext> contextFactory)
         {
-            if (contextFactory == null)
+            if (contextFactory is null)
             {
                 throw new ArgumentNullException(nameof(contextFactory));
             }

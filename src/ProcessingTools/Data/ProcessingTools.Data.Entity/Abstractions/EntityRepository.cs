@@ -33,7 +33,7 @@ namespace ProcessingTools.Data.Entity.Abstractions
 
         public virtual async Task<object> AddAsync(TEntity entity)
         {
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
@@ -60,12 +60,12 @@ namespace ProcessingTools.Data.Entity.Abstractions
         private Task<T> AddAsync<T>(T entity, DbSet<T> set)
                     where T : class
         {
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            if (set == null)
+            if (set is null)
             {
                 throw new ArgumentNullException(nameof(set));
             }

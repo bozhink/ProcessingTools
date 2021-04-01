@@ -37,7 +37,7 @@ namespace ProcessingTools.Web.Services.Geo
         public async Task<IList<CityResponseModel>> GetAllAsync()
         {
             var items = await this.service.SelectAsync(null).ConfigureAwait(false);
-            if (items == null || !items.Any())
+            if (items is null || !items.Any())
             {
                 return Array.Empty<CityResponseModel>();
             }
@@ -49,7 +49,7 @@ namespace ProcessingTools.Web.Services.Geo
         public async Task<CityResponseModel> GetById(int id)
         {
             var item = await this.service.GetByIdAsync(id).ConfigureAwait(false);
-            if (item == null)
+            if (item is null)
             {
                 return null;
             }

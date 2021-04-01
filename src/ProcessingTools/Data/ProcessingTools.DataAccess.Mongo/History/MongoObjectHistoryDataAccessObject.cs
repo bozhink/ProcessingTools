@@ -40,7 +40,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
         /// <inheritdoc/>
         public async Task<IObjectHistory> AddAsync(IObjectHistory objectHistory)
         {
-            if (objectHistory == null)
+            if (objectHistory is null)
             {
                 return null;
             }
@@ -58,7 +58,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
         /// <inheritdoc/>
         public async Task<IList<IObjectHistory>> GetAsync(object objectId)
         {
-            if (objectId == null)
+            if (objectId is null)
             {
                 return Array.Empty<IObjectHistory>();
             }
@@ -69,7 +69,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (data == null)
+            if (data is null)
             {
                 return Array.Empty<IObjectHistory>();
             }
@@ -80,7 +80,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
         /// <inheritdoc/>
         public async Task<IList<IObjectHistory>> GetAsync(object objectId, int skip, int take)
         {
-            if (objectId == null)
+            if (objectId is null)
             {
                 return Array.Empty<IObjectHistory>();
             }
@@ -93,7 +93,7 @@ namespace ProcessingTools.DataAccess.Mongo.History
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            if (data == null)
+            if (data is null)
             {
                 return Array.Empty<IObjectHistory>();
             }

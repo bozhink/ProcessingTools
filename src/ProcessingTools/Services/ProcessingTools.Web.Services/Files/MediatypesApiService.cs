@@ -42,7 +42,7 @@ namespace ProcessingTools.Web.Services.Files
             }
 
             var result = await this.mediatypesResolver.ResolveMediatypeAsync(fileName).ConfigureAwait(false);
-            if (result == null)
+            if (result is null)
             {
                 return Array.Empty<MediatypeResponseModel>();
             }

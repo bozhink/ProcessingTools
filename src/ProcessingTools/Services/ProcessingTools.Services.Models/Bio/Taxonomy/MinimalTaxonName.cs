@@ -31,7 +31,7 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
+            if (obj is null)
             {
                 return false;
             }

@@ -179,7 +179,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 Func<Type, ITaggerCommand> commandFactory,
                 IFactory<ICommandSettings> commandSettingsFactory)
             {
-                if (commandInfoProvider == null)
+                if (commandInfoProvider is null)
                 {
                     throw new ArgumentNullException(nameof(commandInfoProvider));
                 }

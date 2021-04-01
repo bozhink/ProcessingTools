@@ -27,7 +27,7 @@ namespace ProcessingTools.Data.Models.Redis.Cache
         /// <param name="entity">Entity yo be used for initialization.</param>
         public ValidationCacheEntity(IValidationCacheModel entity)
         {
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }

@@ -76,7 +76,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
 
         private string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
         {
-            if (scientificNames == null || scientificNames.Length < 1)
+            if (scientificNames is null || scientificNames.Length < 1)
             {
                 throw new ArgumentNullException(nameof(scientificNames));
             }
