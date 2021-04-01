@@ -1,5 +1,5 @@
 ﻿// <copyright file="VcardOutputFormatter.cs" company="ProcessingTools">
-// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// Copyright (c) 2021 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://docs.microsoft.com/en-us/aspnet/core/web-api/advanced/custom-formatters?view=aspnetcore-3.0.

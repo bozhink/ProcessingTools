@@ -1,5 +1,5 @@
 ﻿// <copyright file="IReferenceTagStyleDataTransferObject.cs" company="ProcessingTools">
-// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// Copyright (c) 2021 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Contracts.DataAccess.Models.Layout.Styles.References

@@ -1,5 +1,5 @@
 ﻿// <copyright file="ExceptionLoggingInterceptor.cs" company="ProcessingTools">
-// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// Copyright (c) 2021 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://blog.kulman.sk/intercepting-methods-with-ninject-for-error-logging/

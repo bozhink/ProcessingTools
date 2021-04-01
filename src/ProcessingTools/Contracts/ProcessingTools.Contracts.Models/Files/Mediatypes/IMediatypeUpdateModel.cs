@@ -1,5 +1,5 @@
 // <copyright file="IMediatypeUpdateModel.cs" company="ProcessingTools">
-// Copyright (c) 2020 ProcessingTools. All rights reserved.
+// Copyright (c) 2021 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Contracts.Models.Files.Mediatypes
