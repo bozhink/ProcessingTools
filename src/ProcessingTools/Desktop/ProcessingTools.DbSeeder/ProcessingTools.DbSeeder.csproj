@@ -54,7 +54,7 @@
     <PackageReference Include="Ninject.Extensions.Factory" Version="3.3.3" />
     <PackageReference Include="Ninject.Extensions.Interception" Version="3.3.5" />
     <PackageReference Include="Ninject.Extensions.Interception.DynamicProxy" Version="3.3.5" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.12.0.21095">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
