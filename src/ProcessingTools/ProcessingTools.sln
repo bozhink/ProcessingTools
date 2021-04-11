@@ -197,13 +197,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.csproj", "{74639180-BA65-4A77-A543-9234A1195AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts.csproj", "{40AB3D5D-3A7A-41E6-A270-6E6CC463D00B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts.csproj", "{40AB3D5D-3A7A-41E6-A270-6E6CC463D00B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Contracts\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Contracts.csproj", "{8889EBA0-BBD1-4B78-B96D-0A42A064AC84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Contracts\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Contracts.csproj", "{8889EBA0-BBD1-4B78-B96D-0A42A064AC84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Unit.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Unit.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Unit.Tests.csproj", "{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Integration.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Integration.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Integration.Tests.csproj", "{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests.csproj", "{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -941,22 +939,14 @@ Global
 		{8889EBA0-BBD1-4B78-B96D-0A42A064AC84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8889EBA0-BBD1-4B78-B96D-0A42A064AC84}.Release|x64.ActiveCfg = Release|Any CPU
 		{8889EBA0-BBD1-4B78-B96D-0A42A064AC84}.Release|x64.Build.0 = Release|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Debug|x64.Build.0 = Debug|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Release|x64.ActiveCfg = Release|Any CPU
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60}.Release|x64.Build.0 = Release|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Debug|x64.Build.0 = Debug|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Release|x64.ActiveCfg = Release|Any CPU
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA}.Release|x64.Build.0 = Release|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Debug|x64.Build.0 = Debug|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Release|x64.ActiveCfg = Release|Any CPU
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1054,8 +1044,7 @@ Global
 		{74639180-BA65-4A77-A543-9234A1195AB3} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
 		{40AB3D5D-3A7A-41E6-A270-6E6CC463D00B} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
 		{8889EBA0-BBD1-4B78-B96D-0A42A064AC84} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
-		{C8CC2CF5-8CD2-4238-8156-D5EF5A413C60} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
-		{F3DFF0E8-FD35-403F-A3A1-6BD3F6CF6FDA} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
+		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0FF3F2D-E127-4A15-8520-7722C990E58F}

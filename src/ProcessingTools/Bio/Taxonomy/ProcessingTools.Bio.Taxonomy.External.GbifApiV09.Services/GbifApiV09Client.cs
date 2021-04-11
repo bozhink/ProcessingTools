@@ -53,7 +53,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services
                 return Task.FromResult(default(GbifApiV09ResponseModel?));
             }
 
-            return this.GetDataPerNameInternalAsync(name, traceId, CancellationToken.None);
+            return this.GetDataPerNameInternalAsync(name, traceId, cancellationToken);
         }
 
         private async Task<GbifApiV09ResponseModel?> GetDataPerNameInternalAsync(string name, string? traceId, CancellationToken cancellationToken)
