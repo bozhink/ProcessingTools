@@ -53,4 +53,7 @@
     <ProjectReference Include="..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Clients.ConnectedServices\ProcessingTools.Clients.ConnectedServices.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bio\Taxonomy\Gbif\" />
+  </ItemGroup>
 </Project>

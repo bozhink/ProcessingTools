@@ -45,6 +45,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -56,6 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.csproj" />
   </ItemGroup>
 </Project>
