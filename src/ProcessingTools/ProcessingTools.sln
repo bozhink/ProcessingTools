@@ -181,21 +181,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bio", "Bio", "{7934B1BF-85D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Taxonomy", "Taxonomy", "{50981DA6-E1C2-4D29-9898-86D5E460133E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.Api.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Api.Models\ProcessingTools.Bio.Taxonomy.Api.Models.csproj", "{AE900C91-09CA-4377-AF1F-996397D2044A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.Api.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Api.Models\ProcessingTools.Bio.Taxonomy.Api.Models.csproj", "{AE900C91-09CA-4377-AF1F-996397D2044A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.Common", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Common\ProcessingTools.Bio.Taxonomy.Common.csproj", "{A788628F-0B2C-44C5-A8B5-6A4025D54303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.Common", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Common\ProcessingTools.Bio.Taxonomy.Common.csproj", "{A788628F-0B2C-44C5-A8B5-6A4025D54303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Contracts\ProcessingTools.Bio.Taxonomy.Contracts.csproj", "{65AE3276-5CDE-4824-B50E-FFAF0386E5CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Contracts\ProcessingTools.Bio.Taxonomy.Contracts.csproj", "{65AE3276-5CDE-4824-B50E-FFAF0386E5CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.Contracts.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Contracts.Models\ProcessingTools.Bio.Taxonomy.Contracts.Models.csproj", "{40CFE304-F078-4B62-939F-72EE09C74572}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.Contracts.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Contracts.Models\ProcessingTools.Bio.Taxonomy.Contracts.Models.csproj", "{40CFE304-F078-4B62-939F-72EE09C74572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifV09.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifV09.Models\ProcessingTools.Bio.Taxonomy.External.GbifV09.Models.csproj", "{93BE0F4A-705B-49E4-B0A9-0ADE4760AD38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.csproj", "{93BE0F4A-705B-49E4-B0A9-0ADE4760AD38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifV09.Services", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifV09.Services\ProcessingTools.Bio.Taxonomy.External.GbifV09.Services.csproj", "{8FEACC78-29FF-461C-BF2A-127FAA8F181A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.csproj", "{8FEACC78-29FF-461C-BF2A-127FAA8F181A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifV10.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifV10.Models\ProcessingTools.Bio.Taxonomy.External.GbifV10.Models.csproj", "{FEE9F95C-BADA-4A79-ADEE-86F8D27A7602}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.csproj", "{FEE9F95C-BADA-4A79-ADEE-86F8D27A7602}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifV10.Services", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifV10.Services\ProcessingTools.Bio.Taxonomy.External.GbifV10.Services.csproj", "{74639180-BA65-4A77-A543-9234A1195AB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.csproj", "{74639180-BA65-4A77-A543-9234A1195AB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
