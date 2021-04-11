@@ -7,26 +7,23 @@ namespace ProcessingTools.Services.Integration.Tests.Bio.Taxonomy
     using System;
     using System.Linq;
     using System.Net.Http;
+    using Microsoft.Extensions.Logging;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
-    using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Services.Bio.Taxonomy;
-    using ProcessingTools.Services.Serialization;
 
     /// <summary>
     /// <see cref="GbifTaxonClassificationResolver"/> integration tests.
     /// </summary>
-    [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(GbifTaxonClassificationResolver))]
+    [TestFixture(Category = "Integration", TestOf = typeof(GbifTaxonClassificationResolver))]
     public class GbifTaxonClassificationResolverIntegrationTests
     {
         /// <summary>
         /// <see cref="GbifTaxonClassificationResolver"/> default constructor should work.
         /// </summary>
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(GbifTaxonClassificationResolver), Description = "GbifTaxonClassificationResolver default constructor should work.")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
+        [Test(TestOf = typeof(GbifTaxonClassificationResolver), Description = "GbifTaxonClassificationResolver default constructor should work.")]
         public void GbifTaxonClassificationResolver_DefaultConstructor_ShouldWork()
         {
             // Arrange
@@ -34,9 +31,9 @@ namespace ProcessingTools.Services.Integration.Tests.Bio.Taxonomy
             _ = factoryMock.Setup(f => f.CreateClient())
                 .Returns(new HttpClient { BaseAddress = new Uri("http://api.gbif.org") });
 
-            var deserializer = new NewtonsoftJsonDeserializer<GbifApiV09ResponseModel>();
+            var loggerMock = new Mock<ILogger<GbifApiV09Client>>();
 
-            var requester = new GbifApiV09Client(factoryMock.Object, deserializer);
+            var requester = new GbifApiV09Client(factoryMock.Object, loggerMock.Object);
             var service = new GbifTaxonClassificationResolver(requester);
 
             // Assert
@@ -46,11 +43,8 @@ namespace ProcessingTools.Services.Integration.Tests.Bio.Taxonomy
         /// <summary>
         /// <see cref="GbifTaxonClassificationResolver"/> resolve should work.
         /// </summary>
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(GbifTaxonClassificationResolver), Description = "GbifTaxonClassificationResolver resolve should work.")]
+        [Test(TestOf = typeof(GbifTaxonClassificationResolver), Description = "GbifTaxonClassificationResolver resolve should work.")]
         [MaxTime(100000)]
-        [Ignore(reason: "Integration test")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "HttpClient")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "HttpClient")]
         public void GbifTaxonClassificationResolver_Resolve_ShouldWork()
         {
             // Arrange
@@ -61,9 +55,9 @@ namespace ProcessingTools.Services.Integration.Tests.Bio.Taxonomy
             _ = factoryMock.Setup(f => f.CreateClient())
                 .Returns(new HttpClient { BaseAddress = new Uri("http://api.gbif.org") });
 
-            var deserializer = new NewtonsoftJsonDeserializer<GbifApiV09ResponseModel>();
+            var loggerMock = new Mock<ILogger<GbifApiV09Client>>();
 
-            var requester = new GbifApiV09Client(factoryMock.Object, deserializer);
+            var requester = new GbifApiV09Client(factoryMock.Object, loggerMock.Object);
             var service = new GbifTaxonClassificationResolver(requester);
 
             // Act

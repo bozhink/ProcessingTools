@@ -103,6 +103,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Web.Services\ProcessingTools.Contracts.Web.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Resources\ProcessingTools.Common.Resources.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Configuration.Autofac\ProcessingTools.Configuration.Autofac.csproj" />

@@ -76,6 +76,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />

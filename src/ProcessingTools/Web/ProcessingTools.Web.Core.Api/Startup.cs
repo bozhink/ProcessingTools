@@ -29,8 +29,9 @@ namespace ProcessingTools.Web.Core.Api
     using Newtonsoft.Json;
     using Polly;
     using Polly.Extensions.Http;
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
-    using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Resources;
     using ProcessingTools.Configuration.DependencyInjection;
