@@ -8,7 +8,7 @@
     <Company>ProcessingTools</Company>
     <Description>Configuration extensions.</Description>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2021 ProcessingTools.</Copyright>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

@@ -3,7 +3,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
-    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2021 ProcessingTools.</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
