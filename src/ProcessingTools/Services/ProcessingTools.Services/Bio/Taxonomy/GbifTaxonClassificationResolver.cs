@@ -8,7 +8,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models;
     using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
@@ -36,7 +37,8 @@ namespace ProcessingTools.Services.Bio.Taxonomy
         {
             var result = new HashSet<ITaxonClassificationSearchResult>();
 
-            var response = await this.client.GetDataPerNameAsync(name).ConfigureAwait(false);
+            // TODO
+            GbifApiV09ResponseModel response = await this.client.GetDataPerNameAsync(name, "TODO").ConfigureAwait(false);
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) || !string.IsNullOrWhiteSpace(response.ScientificName)) &&
@@ -57,7 +59,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             return result.ToArray();
         }
 
-        private ITaxonClassificationSearchResult MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)
+        private ITaxonClassificationSearchResult MapGbifTaxonToTaxonClassification(GbifApiV09TaxonModel taxon)
         {
             var result = new TaxonClassificationSearchResult
             {

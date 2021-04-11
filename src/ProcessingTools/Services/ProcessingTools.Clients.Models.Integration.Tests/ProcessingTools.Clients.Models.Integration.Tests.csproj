@@ -122,18 +122,16 @@
     <None Update="data-files\col-coleoptera-response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="data-files\gbif-v09-coleoptera-response.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="data-files\gbif-v1-response.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="data-files\mendeley-10.1016--j.molcel.2009.09.013.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="data-files\mendeley-10.1371--journal.pone.0092567.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Bio\Taxonomy\Gbif\" />
   </ItemGroup>
 
 </Project>
