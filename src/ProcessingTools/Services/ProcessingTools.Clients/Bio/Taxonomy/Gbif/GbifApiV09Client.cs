@@ -41,7 +41,9 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
                 { "verbose", "true" },
             };
 
-            string queryString = await queryParameters.GetQueryStringAsync().ConfigureAwait(false);
+            using var content = new FormUrlEncodedContent(queryParameters);
+
+            string queryString = await content.ReadAsStringAsync().ConfigureAwait(false);
 
             string relativeUri = $"v0.9/species/match?{queryString}";
 
