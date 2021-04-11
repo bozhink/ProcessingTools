@@ -203,6 +203,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests.csproj", "{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests.csproj", "{6FC52889-D847-4C42-A8F5-57B0B78CB16D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -947,6 +949,14 @@ Global
 		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Release|x64.ActiveCfg = Release|Any CPU
 		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}.Release|x64.Build.0 = Release|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Debug|x64.Build.0 = Debug|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Release|x64.ActiveCfg = Release|Any CPU
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1045,6 +1055,7 @@ Global
 		{40AB3D5D-3A7A-41E6-A270-6E6CC463D00B} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
 		{8889EBA0-BBD1-4B78-B96D-0A42A064AC84} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
 		{00006ACE-267E-4299-AD5B-0E6ED45F5BC3} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
+		{6FC52889-D847-4C42-A8F5-57B0B78CB16D} = {50981DA6-E1C2-4D29-9898-86D5E460133E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0FF3F2D-E127-4A15-8520-7722C990E58F}

@@ -77,7 +77,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services
 
                 string queryString = await queryParametersContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
-                string relativeUri = $"/v1/species/match?{queryString}";
+                string relativeUri = $"/v1/species/?{queryString}";
 
                 Uri requestUri = new Uri(client.BaseAddress, relativeUri);
 

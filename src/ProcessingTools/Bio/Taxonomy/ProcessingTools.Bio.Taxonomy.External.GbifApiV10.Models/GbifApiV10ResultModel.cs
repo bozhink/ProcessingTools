@@ -4,7 +4,6 @@
 
 namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
 
@@ -119,13 +118,13 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models
         /// Gets the date of last crawled.
         /// </summary>
         [JsonPropertyName("lastCrawled")]
-        public DateTime? LastCrawled { get; init; }
+        public string? LastCrawled { get; init; }
 
         /// <summary>
         /// Gets the date of last interpreted.
         /// </summary>
         [JsonPropertyName("lastInterpreted")]
-        public DateTime? LastInterpreted { get; init; }
+        public string LastInterpreted { get; init; }
 
         /// <summary>
         /// Gets the name type.
@@ -146,7 +145,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models
         public int? NubKey { get; init; }
 
         /// <summary>
-        /// Gets the num descendants.
+        /// Gets the number of descendants.
         /// </summary>
         [JsonPropertyName("numDescendants")]
         public int? NumDescendants { get; init; }
