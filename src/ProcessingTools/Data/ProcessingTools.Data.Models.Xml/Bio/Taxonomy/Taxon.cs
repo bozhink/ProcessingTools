@@ -5,8 +5,8 @@
 namespace ProcessingTools.Data.Models.Xml.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Common;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
 
     /// <summary>
     /// Taxon model.

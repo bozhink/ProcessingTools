@@ -42,7 +42,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         /// <returns>Task of result.</returns>
         [HttpPost]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
-        public async Task<IActionResult> Insert([FromBody] ItemsRequestModel model)
+        public async Task<IActionResult> Insert([FromBody] BlackListItemsRequestModel model)
         {
             if (model is null)
             {
@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         /// <returns>Task of result.</returns>
         [HttpPost]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
-        public async Task<IActionResult> Search([FromBody] SearchRequestModel model)
+        public async Task<IActionResult> Search([FromBody] BlackListSearchRequestModel model)
         {
             if (string.IsNullOrWhiteSpace(model?.SearchString))
             {

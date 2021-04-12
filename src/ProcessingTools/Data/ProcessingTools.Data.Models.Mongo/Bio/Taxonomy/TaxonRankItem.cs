@@ -8,9 +8,9 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
     using System.Collections.Generic;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
+    using ProcessingTools.Bio.Taxonomy.Common;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// MongoDB implementation of <see cref="ITaxonRankItem"/>.

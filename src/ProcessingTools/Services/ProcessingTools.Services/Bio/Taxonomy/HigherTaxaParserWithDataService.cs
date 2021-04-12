@@ -10,10 +10,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Threading.Tasks;
     using System.Xml;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Bio.Taxonomy.Common;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants.Schema;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions.Text;
     using ProcessingTools.Services.Models.Bio.Taxonomy;

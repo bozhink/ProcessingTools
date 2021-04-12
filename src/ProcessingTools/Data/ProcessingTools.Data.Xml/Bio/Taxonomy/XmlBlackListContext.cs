@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Data.Models.Xml.Bio.Taxonomy;
 
     /// <summary>

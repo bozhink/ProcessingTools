@@ -10,9 +10,8 @@ namespace ProcessingTools.Services.Integration.Tests.Bio.Taxonomy
     using Microsoft.Extensions.Logging;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Services.Bio.Taxonomy;
 
     /// <summary>
     /// <see cref="GbifTaxonClassificationResolver"/> integration tests.

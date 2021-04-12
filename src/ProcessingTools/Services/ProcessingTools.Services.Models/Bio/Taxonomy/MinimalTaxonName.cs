@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
 
     /// <summary>
     /// Minimal taxon name.

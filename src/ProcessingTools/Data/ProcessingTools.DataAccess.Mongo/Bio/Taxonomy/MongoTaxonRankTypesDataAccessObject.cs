@@ -8,6 +8,7 @@ namespace ProcessingTools.DataAccess.Mongo.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using MongoDB.Driver;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
     using ProcessingTools.Data.Models.Mongo.Bio.Taxonomy;

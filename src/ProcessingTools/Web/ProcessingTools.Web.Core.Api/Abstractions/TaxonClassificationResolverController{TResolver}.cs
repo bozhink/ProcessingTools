@@ -10,9 +10,9 @@ namespace ProcessingTools.Web.Core.Api.Abstractions
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
-    using ProcessingTools.Web.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Api.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Api.Models;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
 
     /// <summary>
     /// Generic taxon classification resolver API controller.

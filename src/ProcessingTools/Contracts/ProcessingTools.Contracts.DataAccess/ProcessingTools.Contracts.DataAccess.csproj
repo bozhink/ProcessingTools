@@ -51,6 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Contracts.Models\ProcessingTools.Bio.Taxonomy.Contracts.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj" />
   </ItemGroup>
 </Project>

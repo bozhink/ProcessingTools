@@ -7,9 +7,9 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Api.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Api.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
-    using ProcessingTools.Web.Models.Bio.Taxonomy.BlackList;
 
     /// <summary>
     /// Blacklist web service.
@@ -28,7 +28,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<object> InsertAsync(ItemsRequestModel model)
+        public async Task<object> InsertAsync(BlackListItemsRequestModel model)
         {
             if (model is null)
             {
@@ -47,7 +47,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public async Task<SearchResponseModel> SearchAsync(SearchRequestModel model)
+        public async Task<BlackListSearchResponseModel> SearchAsync(BlackListSearchRequestModel model)
         {
             if (model is null)
             {
@@ -59,13 +59,13 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
             if (foundItems != null && foundItems.Any())
             {
                 var items = foundItems
-                    .Select(i => new ItemResponseModel
+                    .Select(i => new BlackListItemResponseModel
                     {
                         Content = i,
                     })
                     .ToArray();
 
-                return new SearchResponseModel(items);
+                return new BlackListSearchResponseModel(items);
             }
 
             return null;

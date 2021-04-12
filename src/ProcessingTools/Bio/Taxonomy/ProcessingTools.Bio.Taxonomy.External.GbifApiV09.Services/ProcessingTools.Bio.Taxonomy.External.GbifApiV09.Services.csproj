@@ -59,5 +59,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.Models\ProcessingTools.Bio.Taxonomy.Models.csproj" />
   </ItemGroup>
 </Project>

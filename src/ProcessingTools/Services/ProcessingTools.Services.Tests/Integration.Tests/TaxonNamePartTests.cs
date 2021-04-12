@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Tests.Integration.Tests
 {
     using System.Xml;
     using NUnit.Framework;
-    using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Services.Models.Bio.Taxonomy;
 
     /// <summary>

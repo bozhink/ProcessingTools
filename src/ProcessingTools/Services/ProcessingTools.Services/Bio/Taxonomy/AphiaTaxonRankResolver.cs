@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Services.Bio.Taxonomy
 {
+    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
     /// <summary>

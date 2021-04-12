@@ -5,8 +5,8 @@
 namespace ProcessingTools.Configuration.Autofac
 {
     using global::Autofac;
+    using ProcessingTools.Bio.Taxonomy.Api.Contracts;
     using ProcessingTools.Contracts.Web.Services.Admin;
-    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Documents;
     using ProcessingTools.Contracts.Web.Services.Files;
     using ProcessingTools.Contracts.Web.Services.Geo.Coordinates;

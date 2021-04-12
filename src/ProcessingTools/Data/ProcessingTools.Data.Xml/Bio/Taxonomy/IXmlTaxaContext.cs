@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Data.Xml.Bio.Taxonomy
 {
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Data.Xml.Abstractions;
 
     /// <summary>

@@ -95,6 +95,9 @@ namespace ProcessingTools.Web.Api.Biology
                     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                     options.JsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
                     options.JsonSerializerOptions.WriteIndented = false;
+
+                    // See https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-ignore-properties?pivots=dotnet-5-0#ignore-all-null-value-properties
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
                 })
                 .AddNewtonsoftJson(options =>
                 {

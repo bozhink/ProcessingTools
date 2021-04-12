@@ -29,6 +29,7 @@ namespace ProcessingTools.Web.Core.Api
     using Newtonsoft.Json;
     using Polly;
     using Polly.Extensions.Http;
+    using ProcessingTools.Bio.Taxonomy.Api.Contracts;
     using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
     using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
@@ -38,7 +39,6 @@ namespace ProcessingTools.Web.Core.Api
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Security;
     using ProcessingTools.Contracts.Services.Serialization;
-    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
     using ProcessingTools.Contracts.Web.Services.Images;
     using ProcessingTools.HealthChecks;
     using ProcessingTools.Services.Bio.Taxonomy;

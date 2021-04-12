@@ -8,6 +8,7 @@ namespace ProcessingTools.Commands.Tagger.Tests.Unit.Tests
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
     using ProcessingTools.Common.Constants.Configuration;
     using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Models;

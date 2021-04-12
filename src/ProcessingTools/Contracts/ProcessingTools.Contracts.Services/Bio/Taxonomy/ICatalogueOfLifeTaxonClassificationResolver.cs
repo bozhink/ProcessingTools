@@ -4,6 +4,8 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+
     /// <summary>
     /// Taxon classification resolver with Catalogue of Life web service.
     /// </summary>

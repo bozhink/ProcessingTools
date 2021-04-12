@@ -44,6 +44,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Contracts.Models\ProcessingTools.Bio.Taxonomy.Contracts.Models.csproj" />
+    <ProjectReference Include="..\..\Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Contracts\ProcessingTools.Bio.Taxonomy.Contracts.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />

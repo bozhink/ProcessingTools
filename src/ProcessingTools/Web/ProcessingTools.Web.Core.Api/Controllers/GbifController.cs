@@ -6,8 +6,8 @@ namespace ProcessingTools.Web.Api.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Api.Contracts;
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
     using ProcessingTools.Web.Core.Api.Abstractions;
 
     /// <summary>

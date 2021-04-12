@@ -9,11 +9,10 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Common;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Clients.ConnectedServices.Bio.AphiaServiceReference;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia;
-    using ProcessingTools.Common.Code.Extensions;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 
     /// <summary>

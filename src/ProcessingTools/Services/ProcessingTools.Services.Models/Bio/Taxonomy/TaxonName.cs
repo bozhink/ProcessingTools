@@ -7,10 +7,9 @@ namespace ProcessingTools.Services.Models.Bio.Taxonomy
     using System;
     using System.Linq;
     using System.Xml;
-    using ProcessingTools.Common.Code.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Common;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon name.

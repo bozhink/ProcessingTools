@@ -4,9 +4,9 @@
 
 namespace ProcessingTools.Commands.Tagger
 {
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Commands.Tagger.Abstractions;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 

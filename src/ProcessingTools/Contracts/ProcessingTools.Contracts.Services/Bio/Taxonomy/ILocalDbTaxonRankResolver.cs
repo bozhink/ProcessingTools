@@ -4,6 +4,8 @@
 
 namespace ProcessingTools.Contracts.Services.Bio.Taxonomy
 {
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+
     /// <summary>
     /// Taxon rank resolver with local database.
     /// </summary>

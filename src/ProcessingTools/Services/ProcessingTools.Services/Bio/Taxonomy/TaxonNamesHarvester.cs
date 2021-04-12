@@ -11,9 +11,9 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Common.Constants.Schema;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Text;

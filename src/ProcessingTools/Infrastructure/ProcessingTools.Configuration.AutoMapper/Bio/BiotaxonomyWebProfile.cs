@@ -5,9 +5,9 @@
 namespace ProcessingTools.Configuration.AutoMapper.Bio
 {
     using global::AutoMapper;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
-    using ProcessingTools.Web.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Api.Models;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
+    using ProcessingTools.Bio.Taxonomy.Models;
 
     /// <summary>
     /// Bio taxonomy web profile.

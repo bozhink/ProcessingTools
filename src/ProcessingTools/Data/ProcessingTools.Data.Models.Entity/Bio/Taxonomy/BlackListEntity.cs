@@ -5,8 +5,8 @@
 namespace ProcessingTools.Data.Models.Entity.Bio.Taxonomy
 {
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Common.Constants.Data.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Black list entity.

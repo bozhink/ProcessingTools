@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Commands.Tagger
 {
+    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
     using ProcessingTools.Commands.Tagger.Abstractions;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;

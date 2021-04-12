@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy.Strategies
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Code.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Contracts.Services.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions.Text;
 

@@ -6,9 +6,8 @@ namespace ProcessingTools.Data.Models.Mongo.Bio.Taxonomy
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Common.Code.Extensions;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
 
     /// <summary>

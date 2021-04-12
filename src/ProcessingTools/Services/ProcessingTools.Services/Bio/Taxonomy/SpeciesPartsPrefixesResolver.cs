@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
-    using ProcessingTools.Common.Enumerations;
+    using ProcessingTools.Bio.Taxonomy.Common;
 
     /// <summary>
     /// Species parts prefixes resolver.

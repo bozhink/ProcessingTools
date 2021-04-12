@@ -6,7 +6,7 @@ namespace ProcessingTools.Contracts.DataAccess.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
 
     /// <summary>
     /// Taxon ranks data access object.

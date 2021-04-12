@@ -9,9 +9,9 @@ namespace ProcessingTools.Services.Integration.Tests.Bio.Taxonomy
     using System.Net.Http;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
-    using ProcessingTools.Common.Enumerations;
     using ProcessingTools.Services.Bio.Taxonomy;
     using ProcessingTools.Services.Serialization;
 

@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
         /// <returns>Task of result.</returns>
         [HttpPost]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Endpoint")]
-        public async Task<IActionResult> Search(SearchRequestModel model)
+        public async Task<IActionResult> Search(TaxonRankSearchRequestModel model)
         {
             if (string.IsNullOrWhiteSpace(model?.SearchString))
             {

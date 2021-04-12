@@ -54,4 +54,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.Common\ProcessingTools.Bio.Taxonomy.Common.csproj" />
+  </ItemGroup>
 </Project>

@@ -53,4 +53,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Bio\Taxonomy\" />
+  </ItemGroup>
 </Project>

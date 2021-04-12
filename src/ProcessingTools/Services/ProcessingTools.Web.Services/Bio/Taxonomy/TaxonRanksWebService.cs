@@ -7,10 +7,10 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Code.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Api.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Api.Models;
+    using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
-    using ProcessingTools.Web.Models.Bio.Taxonomy.TaxonRanks;
 
     /// <summary>
     /// Taxon ranks web service.
@@ -40,7 +40,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
         }
 
         /// <inheritdoc/>
-        public Task<SearchResponseModel> SearchAsync(SearchRequestModel model)
+        public Task<TaxonRankSearchResponseModel> SearchAsync(TaxonRankSearchRequestModel model)
         {
             if (model is null)
             {
@@ -70,7 +70,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
             return null;
         }
 
-        private async Task<SearchResponseModel> SearchInternalAsync(SearchRequestModel model)
+        private async Task<TaxonRankSearchResponseModel> SearchInternalAsync(TaxonRankSearchRequestModel model)
         {
             var foundItems = await this.service.SearchAsync(model.SearchString).ConfigureAwait(false);
 
@@ -84,7 +84,7 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
                     })
                     .ToArray();
 
-                return new SearchResponseModel(items);
+                return new TaxonRankSearchResponseModel(items);
             }
 
             return null;

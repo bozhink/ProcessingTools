@@ -8,11 +8,12 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Common.Code.Extensions;
     using ProcessingTools.Contracts.Commands.Models;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
 

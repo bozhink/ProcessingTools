@@ -9,10 +9,10 @@ namespace ProcessingTools.Web.Services.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Web.Services.Bio.Taxonomy;
-    using ProcessingTools.Web.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Api.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Api.Models;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
 
     /// <summary>
     /// Generic taxon classification resolver API service.

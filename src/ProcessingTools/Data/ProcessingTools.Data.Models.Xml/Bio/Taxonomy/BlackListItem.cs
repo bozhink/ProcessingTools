@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Data.Models.Xml.Bio.Taxonomy
 {
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
 
     /// <summary>
     /// Black list item.

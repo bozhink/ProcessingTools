@@ -8,10 +8,10 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Common;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
+    using ProcessingTools.Bio.Taxonomy.Models;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon rank resolver with above-genus rank.

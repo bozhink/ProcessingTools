@@ -9,11 +9,11 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
+    using ProcessingTools.Bio.Taxonomy.Models;
     using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
     using ProcessingTools.Extensions.Text;
-    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon rank resolver with local DB.

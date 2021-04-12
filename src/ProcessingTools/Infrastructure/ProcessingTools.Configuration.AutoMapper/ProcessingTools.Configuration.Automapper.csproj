@@ -52,6 +52,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Api.Models\ProcessingTools.Bio.Taxonomy.Api.Models.csproj" />
+    <ProjectReference Include="..\..\Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Models\ProcessingTools.Bio.Taxonomy.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data.Models\ProcessingTools.Contracts.Data.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.DataAccess.Models\ProcessingTools.Contracts.DataAccess.Models.csproj" />
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />

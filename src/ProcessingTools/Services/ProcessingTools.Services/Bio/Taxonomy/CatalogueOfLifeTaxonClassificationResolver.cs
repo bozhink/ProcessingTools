@@ -9,12 +9,12 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Common;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
+    using ProcessingTools.Bio.Taxonomy.Models;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife;
-    using ProcessingTools.Common.Code.Extensions;
-    using ProcessingTools.Common.Enumerations;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Bio.Taxonomy;
-    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon classification resolver with Catalogue of Life.

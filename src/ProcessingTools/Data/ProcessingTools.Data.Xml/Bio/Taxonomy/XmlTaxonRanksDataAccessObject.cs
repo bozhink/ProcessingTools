@@ -8,8 +8,8 @@ namespace ProcessingTools.Data.Xml.Bio.Taxonomy
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Contracts.DataAccess.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Data.Xml.Abstractions;
 
     /// <summary>
