@@ -40,16 +40,25 @@ namespace ProcessingTools.Services.Imaging
         /// <param name="content">Content to be encoded.</param>
         /// <param name="pixelPerModule">Size of the image square.</param>
         /// <returns>QR-code image as Base64 string.</returns>
-        public Task<string> EncodeBase64Async(string content, int pixelPerModule)
+        public async Task<string> EncodeBase64Async(string content, int pixelPerModule)
         {
-            return Task.Run(() =>
+#if NETFRAMEWORK || NETSTANDARD2_0 || NET5_0 || NET6_0_WINDOWS
+
+            return await Task.Run(() =>
             {
                 pixelPerModule = Math.Max(pixelPerModule, ImagingConstants.MinimalQRCodePixelsPerModule);
 
                 var qrcodeData = this.GetQRCodeData(content);
                 var qrcode = new Base64QRCode(qrcodeData);
                 return qrcode.GetGraphic(pixelPerModule);
-            });
+            }).ConfigureAwait(false);
+
+#else
+
+            byte[] result = await this.EncodeAsync(content: content, pixelPerModule: pixelPerModule).ConfigureAwait(false);
+            return Convert.ToBase64String(result);
+
+#endif
         }
 
         /// <summary>
@@ -58,16 +67,25 @@ namespace ProcessingTools.Services.Imaging
         /// <param name="content">Content to be encoded.</param>
         /// <param name="pixelPerModule">Size of the image square.</param>
         /// <returns>QR-code image as <see cref="Image"/> object.</returns>
-        public Task<Image> EncodeImageAsync(string content, int pixelPerModule)
+        public async Task<Image> EncodeImageAsync(string content, int pixelPerModule)
         {
-            return Task.Run(() =>
+#if NETFRAMEWORK || NETSTANDARD2_0 || NET5_0 || NET6_0_WINDOWS
+
+            return await Task.Run(() =>
             {
                 pixelPerModule = Math.Max(pixelPerModule, ImagingConstants.MinimalQRCodePixelsPerModule);
 
                 var qrcodeData = this.GetQRCodeData(content);
                 var qrcode = new QRCode(qrcodeData);
                 return qrcode.GetGraphic(pixelPerModule) as Image;
-            });
+            }).ConfigureAwait(false);
+            
+#else
+
+            byte[] result = await this.EncodeAsync(content: content, pixelPerModule: pixelPerModule).ConfigureAwait(false);
+            return Image.FromStream(new MemoryStream(result));
+
+#endif
         }
 
         /// <summary>
@@ -78,6 +96,8 @@ namespace ProcessingTools.Services.Imaging
         /// <returns>QR-code image as SVG.</returns>
         public Task<string> EncodeSvgAsync(string content, int pixelPerModule)
         {
+#if NETFRAMEWORK || NETSTANDARD2_0 || NET5_0 || NET6_0_WINDOWS
+
             return Task.Run(() =>
             {
                 pixelPerModule = Math.Max(pixelPerModule, ImagingConstants.MinimalQRCodePixelsPerModule);
@@ -86,6 +106,12 @@ namespace ProcessingTools.Services.Imaging
                 var qrcode = new SvgQRCode(qrcodeData);
                 return qrcode.GetGraphic(pixelPerModule);
             });
+
+#else
+
+            throw new NotSupportedException("QR code as SVG is supported by the library only for Windows");
+
+#endif
         }
 
         private QRCodeData GetQRCodeData(string content)

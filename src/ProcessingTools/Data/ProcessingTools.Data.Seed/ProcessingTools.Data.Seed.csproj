@@ -1,18 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
 
-    <Version>0.1.1</Version>
-    <Authors>Bozhin Karaivanov</Authors>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>1.0.0.1</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>Latest</LangVersion>
     <Company>ProcessingTools</Company>
-    <Description>Seeders of databases</Description>
+    <Authors>Bozhin Karaivanov</Authors>
     <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <AnalysisLevel>latest</AnalysisLevel>
+
+    <Description>Seeders of databases</Description>
     <PackageTags>data, seed</PackageTags>
+
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -34,15 +40,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
-    <PackageReference Include="MongoDB.Bson" Version="2.12.2" />
-    <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.12.2" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="MongoDB.Bson" Version="2.14.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.14.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -63,4 +65,5 @@
     <ProjectReference Include="..\ProcessingTools.Data.Mongo\ProcessingTools.Data.Mongo.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Xml\ProcessingTools.Data.Xml.csproj" />
   </ItemGroup>
+
 </Project>

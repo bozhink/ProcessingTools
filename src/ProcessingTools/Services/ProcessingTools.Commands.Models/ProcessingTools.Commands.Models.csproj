@@ -1,35 +1,46 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
+
     <TargetFramework>net6.0</TargetFramework>
+    <Version>1.0.0.1</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>Latest</LangVersion>
     <Company>ProcessingTools</Company>
-    <Version>0.1.1</Version>
+    <Authors>Bozhin Karaivanov</Authors>
     <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <AnalysisLevel>latest</AnalysisLevel>
+
     <Description>Models for commands.</Description>
-    <Authors>Bozhin Karaivanov</Authors>
     <PackageTags>commands, models</PackageTags>
+
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\release</OutputPath>
     <DocumentationFile>bin\release\ProcessingTools.Commands.Models.xml</DocumentationFile>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\debug</OutputPath>
     <DocumentationFile>bin\debug\ProcessingTools.Commands.Models.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -38,7 +49,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Commands.Models\ProcessingTools.Contracts.Commands.Models.csproj" />
   </ItemGroup>
+
 </Project>

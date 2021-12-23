@@ -1,18 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+
     <TargetFramework>net6.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
+    <Version>1.0.0.1</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>Latest</LangVersion>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>
-    <Description>Extensions for dynamic building of objects in dotnet core</Description>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/ProcessingTools/ProcessingTools.Extensions.Dynamic</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/ProcessingTools/ProcessingTools.Extensions.Dynamic.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>dynamic, extensions</PackageTags>
     <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <AnalysisLevel>latest</AnalysisLevel>
+
+    <Description>Extensions for dynamic building of objects in dotnet core</Description>
+    <PackageTags>dynamic, extensions</PackageTags>
+
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,10 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.5.0.15942">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

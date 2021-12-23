@@ -1,15 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>1.0.0.1</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>Latest</LangVersion>
+    <Company>ProcessingTools</Company>
+    <Authors>Bozhin Karaivanov</Authors>
+    <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <AnalysisLevel>latest</AnalysisLevel>
+
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj" />
