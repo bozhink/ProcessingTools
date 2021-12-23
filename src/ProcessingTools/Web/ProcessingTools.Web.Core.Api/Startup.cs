@@ -1,5 +1,5 @@
 ﻿// <copyright file="Startup.cs" company="ProcessingTools">
-// Copyright (c) 2021 ProcessingTools. All rights reserved.
+// Copyright (c) 2022 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://autofaccn.readthedocs.io/en/latest/integration/aspnetcore.html

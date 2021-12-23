@@ -1,5 +1,5 @@
 ﻿// <copyright file="LoggingHealthCheckPublisher.cs" company="ProcessingTools">
-// Copyright (c) 2021 ProcessingTools. All rights reserved.
+// Copyright (c) 2022 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-3.0.

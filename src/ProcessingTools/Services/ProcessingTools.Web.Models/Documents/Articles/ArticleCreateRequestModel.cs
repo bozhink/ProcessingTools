@@ -1,5 +1,5 @@
 // <copyright file="ArticleCreateRequestModel.cs" company="ProcessingTools">
-// Copyright (c) 2021 ProcessingTools. All rights reserved.
+// Copyright (c) 2022 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Web.Models.Documents.Articles

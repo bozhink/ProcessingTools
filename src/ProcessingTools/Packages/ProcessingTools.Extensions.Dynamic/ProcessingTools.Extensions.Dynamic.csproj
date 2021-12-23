@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/ProcessingTools/ProcessingTools.Extensions.Dynamic.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic, extensions</PackageTags>
-    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

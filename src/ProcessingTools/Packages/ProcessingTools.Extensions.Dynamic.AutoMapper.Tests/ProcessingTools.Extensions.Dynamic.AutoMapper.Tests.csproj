@@ -23,7 +23,7 @@
 
     <Version>1.0.0</Version>
 
-    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

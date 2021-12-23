@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>resources</PackageTags>
-    <Copyright>Copyright © 2021 ProcessingTools.</Copyright>
+    <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

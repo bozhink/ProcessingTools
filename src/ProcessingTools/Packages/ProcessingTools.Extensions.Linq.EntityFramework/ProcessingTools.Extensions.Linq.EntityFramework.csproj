@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/ProcessingTools/ProcessingTools.Extensions.Linq.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>linq, extensions, ef, entity framework</PackageTags>
-    <Copyright>Copyright © 2020 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

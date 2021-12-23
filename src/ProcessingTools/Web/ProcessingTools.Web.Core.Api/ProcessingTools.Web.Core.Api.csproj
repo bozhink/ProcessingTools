@@ -7,7 +7,7 @@
     <Company>ProcessingTools</Company>
     <Description>Web API</Description>
     <PackageTags>web, api</PackageTags>
-    <Copyright>Copyright © 2021 ProcessingTools.</Copyright>
+    <Copyright>Copyright © 2022 ProcessingTools.</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bozhink/ProcessingTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools.git</RepositoryUrl>
