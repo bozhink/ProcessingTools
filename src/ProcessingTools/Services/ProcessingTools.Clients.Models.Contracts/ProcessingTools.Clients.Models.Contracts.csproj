@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.1</Version>
     <Copyright>Copyright © 2019 ProcessingTools</Copyright>
