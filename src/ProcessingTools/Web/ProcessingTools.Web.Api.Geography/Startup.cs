@@ -107,8 +107,7 @@ namespace ProcessingTools.Web.Api.Geography
                 })
                 .AddFormatterMappings(options =>
                 {
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                });
 
             // Configure AutoMapper
             services.ConfigureAutoMapper();

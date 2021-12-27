@@ -62,7 +62,7 @@ namespace ProcessingTools.TasksServer
                 .AddHealthChecks()
                 .AddCheck<VersionHealthCheck>(name: VersionHealthCheck.HealthCheckName);
 
-            services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddControllers();
 
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
             services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();

@@ -242,7 +242,6 @@ namespace ProcessingTools.Web.Documents
                     options.InputFormatters.Insert(1, new RawRequestBodyFormatter());
                     options.OutputFormatters.Insert(0, new VcardOutputFormatter());
                 })
-                .AddRazorRuntimeCompilation()
                 .AddXmlDataContractSerializerFormatters()
                 .AddXmlSerializerFormatters()
                 .AddJsonOptions(options =>
@@ -260,8 +259,7 @@ namespace ProcessingTools.Web.Documents
                     options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Include;
                     options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.None;
                     options.UseCamelCasing(false);
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                });
 
             services.AddRazorPages();
 

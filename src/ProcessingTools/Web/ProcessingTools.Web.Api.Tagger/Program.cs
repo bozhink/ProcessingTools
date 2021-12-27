@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Api.Tagger
                 {
                     var pathToExe = Assembly.GetExecutingAssembly().Location;
                     var pathToContentRoot = Path.GetDirectoryName(pathToExe);
-                    Directory.SetCurrentDirectory(pathToContentRoot);
+                    Directory.SetCurrentDirectory(pathToContentRoot ?? "/");
                 }
 
                 // See https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-3.0&tabs=visual-studio

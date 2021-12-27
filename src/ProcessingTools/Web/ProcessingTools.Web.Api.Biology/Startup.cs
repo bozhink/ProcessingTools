@@ -109,8 +109,7 @@ namespace ProcessingTools.Web.Api.Biology
                 })
                 .AddFormatterMappings(options =>
                 {
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                });
 
             // Configure AutoMapper
             services.ConfigureAutoMapper();

@@ -75,7 +75,7 @@ namespace ProcessingTools.CommandsServer
                 options.Predicate = (check) => !check.Tags.Contains("version");
             });
 
-            services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddControllers();
 
             services.AddScoped<IQueueListener, QueueListener>();
             services.AddScoped<IQueueListenerScopedProcessingService, QueueListenerScopedProcessingService>();

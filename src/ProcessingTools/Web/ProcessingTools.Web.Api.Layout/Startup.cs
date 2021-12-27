@@ -106,8 +106,7 @@ namespace ProcessingTools.Web.Api.Layout
                 })
                 .AddFormatterMappings(options =>
                 {
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                });
 
             // Configure AutoMapper
             services.ConfigureAutoMapper();

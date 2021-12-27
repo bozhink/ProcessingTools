@@ -101,7 +101,7 @@ namespace ProcessingTools.Web.Core.Api
             services.AddHealthChecks()
                 .AddCheck<VersionHealthCheck>(name: VersionHealthCheck.HealthCheckName);
 
-            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
+            _ = services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
                 .AddCertificate(options =>
                 {
                     options.ValidateCertificateUse = true;
@@ -113,7 +113,7 @@ namespace ProcessingTools.Web.Core.Api
                         {
                             var validationService = context.HttpContext.RequestServices.GetService<ICertificateValidationService>();
 
-                            if (validationService.ValidateCertificate(context.ClientCertificate))
+                            if (validationService?.ValidateCertificate(context.ClientCertificate) == true)
                             {
                                 var claims = new[]
                                 {
@@ -137,7 +137,7 @@ namespace ProcessingTools.Web.Core.Api
                         {
                             var logger = context.HttpContext.RequestServices.GetService<ILogger<CertificateAuthenticationEvents>>();
 
-                            logger.LogError(context.Exception, string.Empty);
+                            logger?.LogError(context.Exception, string.Empty);
 
                             return Task.CompletedTask;
                         },
@@ -189,8 +189,7 @@ namespace ProcessingTools.Web.Core.Api
                 })
                 .AddFormatterMappings(options =>
                 {
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                });
 
             // See https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.0&tabs=visual-studio
             services.AddSwaggerGen(c =>

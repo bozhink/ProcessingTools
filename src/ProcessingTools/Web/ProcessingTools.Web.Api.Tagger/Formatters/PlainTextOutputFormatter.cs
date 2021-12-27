@@ -45,7 +45,7 @@ namespace ProcessingTools.Web.Api.Tagger.Formatters
         }
 
         /// <inheritdoc/>
-        protected override bool CanWriteType(Type type)
+        protected override bool CanWriteType(Type? type)
         {
             return true;
         }
