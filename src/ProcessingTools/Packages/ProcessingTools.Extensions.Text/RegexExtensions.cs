@@ -19,7 +19,7 @@ namespace ProcessingTools.Extensions.Text
         /// </summary>
         /// <param name="match"><see cref="Match"/> to be evaluated.</param>
         /// <returns>Enumerable matches.</returns>
-        public static IEnumerable<string> AsEnumerable(this Match match)
+        public static IEnumerable<string> AsEnumerable(this Match? match)
         {
             for (var m = match; m?.Success == true; m = m.NextMatch())
             {
@@ -34,14 +34,14 @@ namespace ProcessingTools.Extensions.Text
         /// <param name="pattern">The regular expression pattern to match.</param>
         /// <param name="replacement">The replacement string.</param>
         /// <returns>A new string that is identical to the input string, except that the replacement string takes the place of each matched string. If pattern is not matched in the current instance, the method returns the current instance unchanged.</returns>
-        public static string RegexReplace(this string input, string pattern, string replacement)
+        public static string? RegexReplace(this string? input, string? pattern, string? replacement)
         {
             if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
             {
                 return input;
             }
 
-            return Regex.Replace(input: input, pattern: pattern, replacement: replacement);
+            return Regex.Replace(input: input, pattern: pattern, replacement: replacement ?? string.Empty);
         }
 
         /// <summary>
@@ -51,14 +51,14 @@ namespace ProcessingTools.Extensions.Text
         /// <param name="regex"><see cref="Regex"/> to match.</param>
         /// <param name="replacement">The replacement string.</param>
         /// <returns>A new string that is identical to the input string, except that the replacement string takes the place of each matched string. If pattern is not matched in the current instance, the method returns the current instance unchanged.</returns>
-        public static string RegexReplace(this string input, Regex regex, string replacement)
+        public static string? RegexReplace(this string? input, Regex? regex, string? replacement)
         {
             if (string.IsNullOrEmpty(input) || regex is null)
             {
                 return input;
             }
 
-            return regex.Replace(input: input, replacement: replacement);
+            return regex.Replace(input: input, replacement: replacement ?? string.Empty);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace ProcessingTools.Extensions.Text
         /// <param name="input">The string to search for a match.</param>
         /// <param name="regex"><see cref="Regex"/> to match.</param>
         /// <returns>Evaluated regex.</returns>
-        public static IReadOnlyCollection<string> GetMatches(this string input, Regex regex)
+        public static IReadOnlyCollection<string> GetMatches(this string? input, Regex? regex)
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -88,7 +88,7 @@ namespace ProcessingTools.Extensions.Text
         /// <param name="input">The string to search for a match.</param>
         /// <param name="regex"><see cref="Regex"/> to match.</param>
         /// <returns>Task of evaluated regex.</returns>
-        public static Task<IReadOnlyCollection<string>> GetMatchesAsync(this string input, Regex regex)
+        public static Task<IReadOnlyCollection<string>> GetMatchesAsync(this string? input, Regex? regex)
         {
             if (string.IsNullOrEmpty(input))
             {
