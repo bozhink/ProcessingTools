@@ -11,7 +11,7 @@ namespace ProcessingTools.Extensions
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Schema;
-    using ProcessingTools.Extensions.Text;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// XML Extensions.

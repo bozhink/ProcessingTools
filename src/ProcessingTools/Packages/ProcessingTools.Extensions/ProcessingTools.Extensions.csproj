@@ -42,8 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ProcessingTools.Extensions.Dynamic" Version="1.0.0" />
-    <PackageReference Include="ProcessingTools.Extensions.Text" Version="1.0.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -54,6 +52,11 @@
     </PackageReference>
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common\ProcessingTools.Common.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Extensions.Dynamic\ProcessingTools.Extensions.Dynamic.csproj" />
   </ItemGroup>
 
 </Project>

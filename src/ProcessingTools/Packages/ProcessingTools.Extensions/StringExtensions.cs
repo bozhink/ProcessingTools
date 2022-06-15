@@ -48,7 +48,7 @@ namespace ProcessingTools.Extensions
                 throw new ArgumentNullException(nameof(type));
             }
 
-            string message = type.GetCustomAttribute<DescriptionAttribute>(false)?.Description;
+            string? message = type.GetCustomAttribute<DescriptionAttribute>(false)?.Description;
 
             if (string.IsNullOrWhiteSpace(message))
             {
