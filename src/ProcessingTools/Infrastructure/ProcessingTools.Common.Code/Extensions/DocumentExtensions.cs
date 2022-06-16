@@ -29,7 +29,7 @@ namespace ProcessingTools.Common.Code.Extensions
             string articleId = document.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText ?? string.Empty;
 
             Regex matchSlash = new Regex(@"\A.*/", RegexOptions.Compiled);
-            Regex matchNonCharacter = new Regex(@"\W+", RegexOptions.Compiled); // TODO: ProcessingTools.Extensions.Text
+            Regex matchNonCharacter = new Regex(@"\W+", RegexOptions.Compiled);
 
             string referencesFileName = matchNonCharacter.Replace(matchSlash.Replace(articleId.ToLowerInvariant(), string.Empty), "-")
                 .Trim(new[] { ' ', '-' });

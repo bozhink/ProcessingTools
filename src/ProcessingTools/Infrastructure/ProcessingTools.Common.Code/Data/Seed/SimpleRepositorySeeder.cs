@@ -5,12 +5,13 @@
 namespace ProcessingTools.Common.Code.Data.Seed
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Extensions;
 
     /// <summary>
-    /// Simple Repository Seeder.
+    /// Simple repository seeder.
     /// </summary>
     /// <typeparam name="TEntity">Type of the entity.</typeparam>
     public class SimpleRepositorySeeder<TEntity>
@@ -34,13 +35,18 @@ namespace ProcessingTools.Common.Code.Data.Seed
         /// </summary>
         /// <param name="data">Data to be used for seeding.</param>
         /// <returns>Task.</returns>
-        public async Task SeedAsync(params TEntity[] data)
+        public Task SeedAsync(params TEntity[] data)
         {
             if (data is null || data.Length < 1)
             {
                 throw new ArgumentNullException(nameof(data));
             }
 
+            return this.SeedInternalAsync(data);
+        }
+
+        private async Task SeedInternalAsync(IEnumerable<TEntity> data)
+        {
             var repository = this.repositoryFactory.Invoke();
 
             int numberOfInsertedItems = 0;

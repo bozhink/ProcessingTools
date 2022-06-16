@@ -34,9 +34,43 @@ namespace ProcessingTools.Extensions.Text
         public static readonly Regex MatchNonCharacter = new Regex(@"\W+", RegexOptions.Compiled);
 
         /// <summary>
+        /// Match single digit regular expression.
+        /// </summary>
+        public static readonly Regex MatchDigit = new Regex(@"[0-9]", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Match digits regular expression.
+        /// </summary>
+        public static readonly Regex MatchDigits = new Regex(@"[0-9]+", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Match number regular expression.
+        /// Groups defined are:
+        ///     "sign" - the sign of the number if any;
+        ///     "int" - the integer part of the number;
+        ///     "frac" - the fractional part of the number.
+        /// </summary>
+        public static readonly Regex MatchNumber = new Regex(@"(?<sign>[-]?)\s*(?<int>(?:[0-9]+[,'\s]*)+[0-9]*)[,\.\s]*(?<frac>[0-9]*)(?!\d)", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Match roman number regular expression.
+        /// </summary>
+        public static readonly Regex MatchRomanNumber = new Regex(@"(?i)(?<!\w)(I|V|X|L|C|D|M)+(?!\w)", RegexOptions.Compiled);
+
+        /// <summary>
         /// Match new line symbols.
         /// </summary>
         public static readonly Regex MatchNewLine = new Regex(@"(\\r\\n|\r\n|\\r|\r|\\n|\n)", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Match new line symbols regular expression.
+        /// </summary>
+        public static readonly Regex MatchNewLines = new Regex(@"(\\r\\n|\r\n|\\r|\r|\\n|\n)+", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Match word regular expression.
+        /// </summary>
+        public static readonly Regex MatchWord = new Regex(@"[^\W\d]+", RegexOptions.Compiled);
 
         /// <summary>
         /// Gets list of first words of a given list of strings.
@@ -61,21 +95,35 @@ namespace ProcessingTools.Extensions.Text
         }
 
         /// <summary>
+        /// Converts text source to sequence of words.
+        /// </summary>
+        /// <param name="text">Text to be harvested.</param>
+        /// <returns>Sequence of the words in the source text.</returns>
+        public static IEnumerable<string> ToWords(this string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return Array.Empty<string>();
+            }
+
+            return MatchWord.Match(text).AsEnumerable();
+        }
+
+        /// <summary>
         /// Extracts words from text.
         /// </summary>
         /// <param name="text">Text to be harvested.</param>
         /// <returns>Set of all words in text.</returns>
         public static IEnumerable<string> ExtractWordsFromText(this string text)
         {
-            var matchWord = new Regex(@"[^\W\d]+");
-
-            var result = new HashSet<string>();
             if (string.IsNullOrWhiteSpace(text))
             {
-                return result;
+                return Array.Empty<string>();
             }
 
-            for (Match word = matchWord.Match(text); word.Success; word = word.NextMatch())
+            var result = new HashSet<string>();
+
+            for (Match word = MatchWord.Match(text); word.Success; word = word.NextMatch())
             {
                 result.Add(word.Value);
             }
@@ -330,7 +378,10 @@ namespace ProcessingTools.Extensions.Text
         /// <param name="source">Source string to be truncated.</param>
         /// <param name="length">Length of the resultant string.</param>
         /// <returns>Truncated string.</returns>
-        public static string TruncateWithEllipsisOn(this string source, int length) => TruncateWithEllipsisOn(source, length, " ...");
+        public static string TruncateWithEllipsisOn(this string source, int length)
+        {
+            return TruncateWithEllipsisOn(source, length, " ...");
+        }
 
         /// <summary>
         /// Truncates source string on a specified length with adding ellipsis on the end.
@@ -415,22 +466,22 @@ namespace ProcessingTools.Extensions.Text
                 return source;
             }
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             foreach (char c in source)
             {
                 if (c > 127)
                 {
                     // This character is too big for ASCII
                     string encodedValue = "\\u" + ((int)c).ToString("x4", CultureInfo.InvariantCulture);
-                    sb.Append(encodedValue);
+                    stringBuilder.Append(encodedValue);
                 }
                 else
                 {
-                    sb.Append(c);
+                    stringBuilder.Append(c);
                 }
             }
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
 
         /// <summary>
@@ -455,6 +506,90 @@ namespace ProcessingTools.Extensions.Text
                 {
                     return ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
                 });
+        }
+
+        /// <summary>
+        /// Convert source string to normal invariant form.
+        /// Normal invariant form means that all excessive white-spaces
+        /// are reduced to single whitespace
+        /// and the string is set to invariant uppercase.
+        /// </summary>
+        /// <param name="source">Source string to be normalized.</param>
+        /// <returns>Normal invariant form of the source string.</returns>
+        public static string NormalizeInvariant(this string source)
+        {
+            return source.TrimMultiWhitespaces().ToUpperInvariant();
+        }
+
+        /// <summary>
+        /// Set source sequence of strings to normal invariant form.
+        /// </summary>
+        /// <param name="source">Source sequence of strings to be processed.</param>
+        /// <returns>Sequence of normalized strings.</returns>
+        public static IEnumerable<string> NormalizeInvariant(this IEnumerable<string> source)
+        {
+            if (source is null)
+            {
+                yield break;
+            }
+
+            foreach (string item in source)
+            {
+                yield return item.NormalizeInvariant();
+            }
+        }
+
+        /// <summary>
+        /// Get normalization of source sequence of string
+        /// and the index table of the original items mapped to the normalized values.
+        /// </summary>
+        /// <param name="source">Source sequence of strings to be evaluated.</param>
+        /// <returns>Normalized items with the index table mapping.</returns>
+        public static (IReadOnlyList<string>, IReadOnlyDictionary<string, int>) GetNormalizationIndex(this IEnumerable<string> source)
+        {
+            if (source is null)
+            {
+                return default((IReadOnlyList<string>, IReadOnlyDictionary<string, int>));
+            }
+
+            List<string> list = new List<string>();
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            foreach (string item2 in source)
+            {
+                string item = item2.NormalizeInvariant();
+                int num = list.IndexOf(item);
+                if (num < 0)
+                {
+                    list.Add(item);
+                    num = list.IndexOf(item);
+                }
+
+                if (!dictionary.ContainsKey(item2))
+                {
+                    dictionary.Add(item2, num);
+                }
+            }
+
+            list.TrimExcess();
+            return (list, dictionary);
+        }
+
+        /// <summary>
+        /// Set source sequence of strings to normal invariant form
+        /// and get only the non-trivial unique ones.
+        /// </summary>
+        /// <param name="source">Source sequence of strings to be processed.</param>
+        /// <returns>Sequence of normalized non-trivial unique strings from the source sequence.</returns>
+        public static IEnumerable<string> NormalizeInvariantUnique(this IEnumerable<string> source)
+        {
+            if (source is null)
+            {
+                return Array.Empty<string>();
+            }
+
+            return new HashSet<string>(from s in source.NormalizeInvariant()
+                                       where !string.IsNullOrEmpty(s)
+                                       select s);
         }
 
         /// <summary>

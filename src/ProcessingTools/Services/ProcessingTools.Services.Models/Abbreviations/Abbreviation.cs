@@ -17,8 +17,8 @@ namespace ProcessingTools.Services.Models.Abbreviations
     /// </summary>
     public class Abbreviation : IAbbreviation
     {
-        private string content;
-        private string definition;
+        private string? content;
+        private string? definition;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Abbreviation"/> class.
@@ -126,27 +126,27 @@ namespace ProcessingTools.Services.Models.Abbreviations
 
         private void SetContent(XmlNode abbrev)
         {
-            var abbrevContent = abbrev.CloneNode(true);
+            XmlNode? abbrevContent = abbrev.CloneNode(true);
             abbrevContent.SelectNodes(ElementNames.Def).RemoveXmlNodes();
             abbrevContent.SelectNodes("*[name()!='sup'][name()!='sub']").ReplaceXmlNodeByItsInnerXml();
 
             this.Content = abbrevContent.InnerXml
                 .RegexReplace(@"\s+", " ")
-                .RegexReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
+                .RegexReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty) ?? string.Empty;
         }
 
-        private void SetContentType(XmlNode abbrev)
+        private void SetContentType(XmlNode? abbrev)
         {
-            this.ContentType = abbrev.Attributes[AttributeNames.ContentType]?.InnerText;
+            this.ContentType = abbrev?.Attributes?[AttributeNames.ContentType]?.InnerText ?? string.Empty;
         }
 
-        private void SetDefinition(XmlNode abbrev)
+        private void SetDefinition(XmlNode? abbrev)
         {
-            this.Definition = abbrev[ElementNames.Def]?.InnerText
+            this.Definition = abbrev?[ElementNames.Def]?.InnerText
                 .RegexReplace(@"\s+", " ")
                 .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty)
                 .RegexReplace(@"\((.+)\)", "$1")
-                .RegexReplace(@"\[(.+)\]", "$1");
+                .RegexReplace(@"\[(.+)\]", "$1") ?? string.Empty;
         }
     }
 }
