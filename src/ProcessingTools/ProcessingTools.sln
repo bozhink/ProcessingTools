@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F44B7FBC-A422-4966-837D-D52DF317F82E}"
 EndProject
@@ -159,13 +159,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configurati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Configuration.DependencyInjection", "Infrastructure\ProcessingTools.Configuration.DependencyInjection\ProcessingTools.Configuration.DependencyInjection.csproj", "{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Biology", "Web\ProcessingTools.Web.Api.Biology\ProcessingTools.Web.Api.Biology.csproj", "{867E462D-D92C-4068-B917-E59266184757}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Documents", "Web\ProcessingTools.Web.Api.Documents\ProcessingTools.Web.Api.Documents.csproj", "{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Geography", "Web\ProcessingTools.Web.Api.Geography\ProcessingTools.Web.Api.Geography.csproj", "{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Layout", "Web\ProcessingTools.Web.Api.Layout\ProcessingTools.Web.Api.Layout.csproj", "{07155165-96DA-42AC-A541-912B602AE67D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Api.Tagger", "Web\ProcessingTools.Web.Api.Tagger\ProcessingTools.Web.Api.Tagger.csproj", "{8E544C78-908E-48FC-BB8D-E7389D7044E5}"
 EndProject
@@ -203,37 +197,41 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests.csproj", "{00006ACE-267E-4299-AD5B-0E6ED45F5BC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests.csproj", "{6FC52889-D847-4C42-A8F5-57B0B78CB16D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services.Tests.csproj", "{6FC52889-D847-4C42-A8F5-57B0B78CB16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests.csproj", "{FFE85E24-A640-41DF-98B9-477EA4D57129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests.csproj", "{FFE85E24-A640-41DF-98B9-477EA4D57129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests.csproj", "{1F081A31-F993-418A-9469-F7FE5B6CE2BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests.csproj", "{1F081A31-F993-418A-9469-F7FE5B6CE2BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Models\ProcessingTools.Bio.Taxonomy.Models.csproj", "{D0BBBADD-4BB1-49A0-9417-7387C8ED4A3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.Models", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Models\ProcessingTools.Bio.Taxonomy.Models.csproj", "{D0BBBADD-4BB1-49A0-9417-7387C8ED4A3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.Api.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Api.Contracts\ProcessingTools.Bio.Taxonomy.Api.Contracts.csproj", "{C3502A32-6C1E-40B3-B6D8-A3646F1136F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.Api.Contracts", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Api.Contracts\ProcessingTools.Bio.Taxonomy.Api.Contracts.csproj", "{C3502A32-6C1E-40B3-B6D8-A3646F1136F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.Api.Services", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Api.Services\ProcessingTools.Bio.Taxonomy.Api.Services.csproj", "{A0776D3D-9F8A-4886-B9EB-4603E3E89859}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Bio.Taxonomy.Api.Services", "Bio\Taxonomy\ProcessingTools.Bio.Taxonomy.Api.Services\ProcessingTools.Bio.Taxonomy.Api.Services.csproj", "{A0776D3D-9F8A-4886-B9EB-4603E3E89859}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{90E5EC4A-1DE3-42DF-B9B3-A16BB843C2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions", "Packages\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj", "{F1410092-2099-41A9-957F-F0265E49CF44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions", "Packages\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj", "{F1410092-2099-41A9-957F-F0265E49CF44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Dynamic", "Packages\ProcessingTools.Extensions.Dynamic\ProcessingTools.Extensions.Dynamic.csproj", "{44BA7F4F-82F6-4B14-A82D-06552DEE2418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Dynamic", "Packages\ProcessingTools.Extensions.Dynamic\ProcessingTools.Extensions.Dynamic.csproj", "{44BA7F4F-82F6-4B14-A82D-06552DEE2418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Dynamic.AutoMapper", "Packages\ProcessingTools.Extensions.Dynamic.AutoMapper\ProcessingTools.Extensions.Dynamic.AutoMapper.csproj", "{437AD83C-D338-402C-BD99-3735610893BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Dynamic.AutoMapper", "Packages\ProcessingTools.Extensions.Dynamic.AutoMapper\ProcessingTools.Extensions.Dynamic.AutoMapper.csproj", "{437AD83C-D338-402C-BD99-3735610893BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Dynamic.AutoMapper.Tests", "Packages\ProcessingTools.Extensions.Dynamic.AutoMapper.Tests\ProcessingTools.Extensions.Dynamic.AutoMapper.Tests.csproj", "{1D478BD0-B703-4617-9BEC-AFEB639AE153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Dynamic.AutoMapper.Tests", "Packages\ProcessingTools.Extensions.Dynamic.AutoMapper.Tests\ProcessingTools.Extensions.Dynamic.AutoMapper.Tests.csproj", "{1D478BD0-B703-4617-9BEC-AFEB639AE153}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Dynamic.Tests", "Packages\ProcessingTools.Extensions.Dynamic.Tests\ProcessingTools.Extensions.Dynamic.Tests.csproj", "{DE5598A7-90D5-4708-950A-2B3E3ADD3A22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Dynamic.Tests", "Packages\ProcessingTools.Extensions.Dynamic.Tests\ProcessingTools.Extensions.Dynamic.Tests.csproj", "{DE5598A7-90D5-4708-950A-2B3E3ADD3A22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Linq", "Packages\ProcessingTools.Extensions.Linq\ProcessingTools.Extensions.Linq.csproj", "{C0D43BE4-6EBC-40E6-8E5F-EB9B884F8E1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Linq", "Packages\ProcessingTools.Extensions.Linq\ProcessingTools.Extensions.Linq.csproj", "{C0D43BE4-6EBC-40E6-8E5F-EB9B884F8E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Linq.EntityFramework", "Packages\ProcessingTools.Extensions.Linq.EntityFramework\ProcessingTools.Extensions.Linq.EntityFramework.csproj", "{E94AE936-386F-4612-B928-A84D3D4B8A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Linq.EntityFramework", "Packages\ProcessingTools.Extensions.Linq.EntityFramework\ProcessingTools.Extensions.Linq.EntityFramework.csproj", "{E94AE936-386F-4612-B928-A84D3D4B8A28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Linq.Tests", "Packages\ProcessingTools.Extensions.Linq.Tests\ProcessingTools.Extensions.Linq.Tests.csproj", "{11C45233-809F-4877-8EB6-12112FE1866E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Linq.Tests", "Packages\ProcessingTools.Extensions.Linq.Tests\ProcessingTools.Extensions.Linq.Tests.csproj", "{11C45233-809F-4877-8EB6-12112FE1866E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Tests", "Packages\ProcessingTools.Extensions.Tests\ProcessingTools.Extensions.Tests.csproj", "{1F9ED866-7870-4676-AD19-8D9034A78079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Tests", "Packages\ProcessingTools.Extensions.Tests\ProcessingTools.Extensions.Tests.csproj", "{1F9ED866-7870-4676-AD19-8D9034A78079}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Text", "Packages\ProcessingTools.Extensions.Text\ProcessingTools.Extensions.Text.csproj", "{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Text.Tests", "Packages\ProcessingTools.Extensions.Text.Tests\ProcessingTools.Extensions.Text.Tests.csproj", "{1377E946-B0C7-44C9-A978-0790ACB7917F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -819,22 +817,6 @@ Global
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}.Release|x64.ActiveCfg = Release|Any CPU
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D}.Release|x64.Build.0 = Release|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Debug|x64.Build.0 = Debug|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Release|Any CPU.Build.0 = Release|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Release|x64.ActiveCfg = Release|Any CPU
-		{867E462D-D92C-4068-B917-E59266184757}.Release|x64.Build.0 = Release|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Debug|x64.Build.0 = Debug|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|x64.ActiveCfg = Release|Any CPU
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE}.Release|x64.Build.0 = Release|Any CPU
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -843,14 +825,6 @@ Global
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Release|x64.ActiveCfg = Release|Any CPU
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED}.Release|x64.Build.0 = Release|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Debug|x64.Build.0 = Debug|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Release|x64.ActiveCfg = Release|Any CPU
-		{07155165-96DA-42AC-A541-912B602AE67D}.Release|x64.Build.0 = Release|Any CPU
 		{8E544C78-908E-48FC-BB8D-E7389D7044E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E544C78-908E-48FC-BB8D-E7389D7044E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E544C78-908E-48FC-BB8D-E7389D7044E5}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1099,6 +1073,22 @@ Global
 		{1F9ED866-7870-4676-AD19-8D9034A78079}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F9ED866-7870-4676-AD19-8D9034A78079}.Release|x64.ActiveCfg = Release|Any CPU
 		{1F9ED866-7870-4676-AD19-8D9034A78079}.Release|x64.Build.0 = Release|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Debug|x64.Build.0 = Debug|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Release|x64.ActiveCfg = Release|Any CPU
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F}.Release|x64.Build.0 = Release|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Debug|x64.Build.0 = Debug|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Release|x64.ActiveCfg = Release|Any CPU
+		{1377E946-B0C7-44C9-A978-0790ACB7917F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1176,10 +1166,7 @@ Global
 		{DC21358F-4050-4994-BE1F-9ADA3D7C51BB} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{BAB4356F-9BE8-44B3-8CFC-158652792CAA} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{89B0B5C6-9318-40F4-80F2-E1B46C13FD2D} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
-		{867E462D-D92C-4068-B917-E59266184757} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
-		{D8EBAA79-67C0-44D5-A733-C26DF09F6EAE} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{89BB963C-8BC6-4E8F-8EBF-BEAA5A2B43ED} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
-		{07155165-96DA-42AC-A541-912B602AE67D} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{8E544C78-908E-48FC-BB8D-E7389D7044E5} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{D52F0EBE-88BD-4532-9BEF-6BA1909EB2C6} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 		{F4E76A1E-BF8D-417A-A935-F063FD644C11} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
@@ -1212,6 +1199,8 @@ Global
 		{E94AE936-386F-4612-B928-A84D3D4B8A28} = {90E5EC4A-1DE3-42DF-B9B3-A16BB843C2D1}
 		{11C45233-809F-4877-8EB6-12112FE1866E} = {90E5EC4A-1DE3-42DF-B9B3-A16BB843C2D1}
 		{1F9ED866-7870-4676-AD19-8D9034A78079} = {90E5EC4A-1DE3-42DF-B9B3-A16BB843C2D1}
+		{E3407671-4E09-4CB3-9E77-1C1227F5FB3F} = {90E5EC4A-1DE3-42DF-B9B3-A16BB843C2D1}
+		{1377E946-B0C7-44C9-A978-0790ACB7917F} = {90E5EC4A-1DE3-42DF-B9B3-A16BB843C2D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0FF3F2D-E127-4A15-8520-7722C990E58F}

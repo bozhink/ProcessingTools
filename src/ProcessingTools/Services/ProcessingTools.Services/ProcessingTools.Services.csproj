@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Version>1.0.0.1</Version>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <LangVersion>Latest</LangVersion>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>
@@ -48,9 +48,6 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="ProcessingTools.Extensions" Version="0.1.3" />
-    <PackageReference Include="ProcessingTools.Extensions.Linq" Version="0.1.5" />
-    <PackageReference Include="ProcessingTools.Extensions.Text" Version="1.0.0" />
     <PackageReference Include="ProjNET4GeoAPI" Version="1.4.1" />
     <PackageReference Include="QRCoder" Version="1.4.3" />
     <PackageReference Include="SkiaSharp" Version="2.80.3" />
@@ -93,6 +90,8 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Resources\ProcessingTools.Common.Resources.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
+    <ProjectReference Include="..\..\Packages\ProcessingTools.Extensions.Linq\ProcessingTools.Extensions.Linq.csproj" />
+    <ProjectReference Include="..\..\Packages\ProcessingTools.Extensions.Text\ProcessingTools.Extensions.Text.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
   </ItemGroup>
 

@@ -6,6 +6,7 @@ namespace ProcessingTools.Services.Imaging
 {
     using System;
     using System.Drawing;
+    using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts.Services.Imaging;

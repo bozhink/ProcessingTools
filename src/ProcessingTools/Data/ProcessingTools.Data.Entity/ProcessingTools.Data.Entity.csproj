@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Version>1.0.0.1</Version>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <LangVersion>Latest</LangVersion>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>
@@ -46,7 +46,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ProcessingTools.Extensions.Linq" Version="0.1.5" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -60,6 +59,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Contracts\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Common.Code\ProcessingTools.Common.Code.csproj" />
+    <ProjectReference Include="..\..\Packages\ProcessingTools.Extensions.Linq\ProcessingTools.Extensions.Linq.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Entity\ProcessingTools.Data.Models.Entity.csproj" />
   </ItemGroup>

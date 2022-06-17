@@ -102,7 +102,11 @@ namespace ProcessingTools.Extensions.Linq
 
             string[] sortKeys;
 
-            if (se?.IndexOf(",", StringComparison.InvariantCultureIgnoreCase) >= 0)
+            if (string.IsNullOrEmpty(se))
+            {
+                sortKeys = Array.Empty<string>();
+            }
+            else if (se.IndexOf(",", StringComparison.InvariantCultureIgnoreCase) >= 0)
             {
                 sortKeys = se.Split(',');
             }
@@ -111,7 +115,7 @@ namespace ProcessingTools.Extensions.Linq
                 sortKeys = new[] { se };
             }
 
-            object result = source;
+            object? result = source;
 
             for (int i = 0; i < sortKeys.Length; i++)
             {
@@ -136,9 +140,12 @@ namespace ProcessingTools.Extensions.Linq
 
                 foreach (string property in properties)
                 {
-                    PropertyInfo propertyInfo = type.GetProperties().FirstOrDefault(t => t.Name.ToUpperInvariant() == property);
-                    expr = Expression.Property(expr, propertyInfo);
-                    type = propertyInfo.PropertyType;
+                    PropertyInfo? propertyInfo = type.GetProperties().FirstOrDefault(t => t.Name.ToUpperInvariant() == property);
+                    if (propertyInfo is not null)
+                    {
+                        expr = Expression.Property(expr, propertyInfo);
+                        type = propertyInfo.PropertyType;
+                    }
                 }
 
                 // Construct lambda
@@ -154,7 +161,12 @@ namespace ProcessingTools.Extensions.Linq
                             m.GetParameters().Length == 2)
                     .MakeGenericMethod(typeof(T), type);
 
-                result = method.Invoke(null, new object[] { result, lambda });
+                result = method?.Invoke(null, new object?[] { result, lambda });
+            }
+
+            if (result is null)
+            {
+                throw new InvalidOperationException("Order expression cannot be constructed");
             }
 
             return (IOrderedQueryable<T>)result;
@@ -180,8 +192,8 @@ namespace ProcessingTools.Extensions.Linq
                 string columnName = filterExpressionValues[0].ToUpperInvariant();
                 string value = filterExpressionValues[1];
 
-                PropertyInfo property = typeof(T).GetProperties().FirstOrDefault(w => w.Name.ToUpperInvariant() == columnName);
-                if (property != null)
+                PropertyInfo? property = typeof(T).GetProperties().FirstOrDefault(w => w.Name.ToUpperInvariant() == columnName);
+                if (property is not null)
                 {
                     ParameterExpression parameter = Expression.Parameter(typeof(T), "x");
                     Expression leftExpression = Expression.Property(parameter, property);
@@ -193,9 +205,12 @@ namespace ProcessingTools.Extensions.Linq
                         .Single(m => m.Name == nameof(Queryable.Where) && m.IsGenericMethodDefinition)
                         .MakeGenericMethod(typeof(T));
 
-                    var result = method.Invoke(null, new object[] { source, lambda });
+                    object? result = method.Invoke(null, new object[] { source, lambda });
 
-                    return (IQueryable<T>)result;
+                    if (result is not null)
+                    {
+                        return (IQueryable<T>)result;
+                    }
                 }
             }
 

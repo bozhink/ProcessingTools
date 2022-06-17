@@ -11,7 +11,7 @@
       "documentPrivateElements": false,
       "documentPrivateFields": false,
       "fileNamingConvention": "stylecop",
-      "variables": { "year": "2022" }
+      "variables": { "year": "2020" }
     },
     "indentation": {
       "indentationSize": 4,

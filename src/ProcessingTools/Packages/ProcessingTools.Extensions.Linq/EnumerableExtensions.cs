@@ -151,7 +151,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">Source collection.</param>
         /// <param name="action">The <see cref="Func{Object,Task}"/> delegate to perform on each element of the <see cref="IEnumerable{T}"/>.</param>
         /// <returns>Task.</returns>
-        public static Task ForEachAsync<T>(this IEnumerable<T> source, Func<object, Task> action)
+        public static Task ForEachAsync<T>(this IEnumerable<T> source, Func<object?, Task> action)
         {
             if (source is null)
             {
@@ -209,7 +209,7 @@ namespace ProcessingTools.Extensions.Linq
 
             foreach (var item in source)
             {
-                if (!item())
+                if (item is null || !item())
                 {
                     return false;
                 }
@@ -251,14 +251,19 @@ namespace ProcessingTools.Extensions.Linq
         /// </remarks>
         public static bool LogicalOr(this IEnumerable<Func<bool>> source)
         {
-            if (source is null || !source.Any())
+            if (source is null)
+            {
+                return false;
+            }
+
+            if (!source.Any())
             {
                 return false;
             }
 
             foreach (var item in source)
             {
-                if (item())
+                if (item is not null && item())
                 {
                     return true;
                 }

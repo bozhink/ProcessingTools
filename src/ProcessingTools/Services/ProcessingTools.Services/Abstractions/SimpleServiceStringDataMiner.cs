@@ -24,7 +24,7 @@ namespace ProcessingTools.Services.Abstractions
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
         where TServiceModel : class, INamedIntegerIdentified
         where TService : class, ISelectableDataServiceAsync<TServiceModel, TFilter>
-        where TFilter : class, IFilter
+        where TFilter : class, ProcessingTools.Contracts.Models.IFilter
     {
         private const int NumberOfItemsToTake = PaginationConstants.MaximalItemsPerPageAllowed;
 

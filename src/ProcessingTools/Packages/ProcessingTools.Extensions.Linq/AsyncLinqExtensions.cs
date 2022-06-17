@@ -173,7 +173,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">The <see cref="IEnumerable{T}"/> to return the first element of.</param>
         /// <returns>default(TSource) if source is empty; otherwise, the first element in source.</returns>
-        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IEnumerable<TSource> source)
+        public static Task<TSource?> FirstOrDefaultAsync<TSource>(this IEnumerable<TSource> source)
         {
             if (source is null)
             {
@@ -190,7 +190,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">The <see cref="IEnumerable{T}"/> to return the first element of.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>default(TSource) if source is empty or if no element passes the test specified by predicate; otherwise, the first element in source that passes the test specified by predicate.</returns>
-        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+        public static Task<TSource?> FirstOrDefaultAsync<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             if (source is null)
             {
@@ -211,7 +211,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">The <see cref="IQueryable{T}"/> to return the first element of.</param>
         /// <returns>default(TSource) if source is empty; otherwise, the first element in source.</returns>
-        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source)
+        public static Task<TSource?> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source)
         {
             if (source is null)
             {
@@ -228,7 +228,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">The <see cref="IQueryable{T}"/> to return the first element of.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>default(TSource) if source is empty or if no element passes the test specified by predicate; otherwise, the first element in source that passes the test specified by predicate.</returns>
-        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate)
+        public static Task<TSource?> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate)
         {
             if (source is null)
             {
@@ -325,7 +325,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">An <see cref="IEnumerable{T}"/> to return the last element of.</param>
         /// <returns>default(TSource) if source is empty; otherwise, the last element in source.</returns>
-        public static Task<TSource> LastOrDefaultAsync<TSource>(this IEnumerable<TSource> source)
+        public static Task<TSource?> LastOrDefaultAsync<TSource>(this IEnumerable<TSource> source)
         {
             if (source is null)
             {
@@ -342,7 +342,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">An <see cref="IEnumerable{T}"/> to return the last element of.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>default(TSource) if the sequence is empty or if no elements pass the test in the predicate function; otherwise, the last element that passes the test in the predicate function.</returns>
-        public static Task<TSource> LastOrDefaultAsync<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+        public static Task<TSource?> LastOrDefaultAsync<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             if (source is null)
             {
@@ -363,7 +363,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">An <see cref="IQueryable{T}"/> to return the last element of.</param>
         /// <returns>default(TSource) if source is empty; otherwise, the last element in source.</returns>
-        public static Task<TSource> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source)
+        public static Task<TSource?> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source)
         {
             if (source is null)
             {
@@ -380,7 +380,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">An <see cref="IQueryable{T}"/> to return the last element of.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>default(TSource) if source is empty or if no elements pass the test in the predicate function; otherwise, the last element of source that passes the test in the predicate function.</returns>
-        public static Task<TSource> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate)
+        public static Task<TSource?> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate)
         {
             if (source is null)
             {
@@ -553,7 +553,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">An <see cref="IEnumerable{T}"/> to return the single element of.</param>
         /// <returns>The single element of the input sequence, or default(TSource) if the sequence contains no elements.</returns>
-        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IEnumerable<TSource> source)
+        public static Task<TSource?> SingleOrDefaultAsync<TSource>(this IEnumerable<TSource> source)
         {
             if (source is null)
             {
@@ -570,7 +570,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">An <see cref="IEnumerable{T}"/> to return the single element of.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies the condition, or default(TSource) if no such element is found.</returns>
-        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+        public static Task<TSource?> SingleOrDefaultAsync<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             if (source is null)
             {
@@ -591,7 +591,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">An <see cref="IQueryable{T}"/> to return the single element of.</param>
         /// <returns>The single element of the input sequence, or default(TSource) if the sequence contains no elements.</returns>
-        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source)
+        public static Task<TSource?> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source)
         {
             if (source is null)
             {
@@ -608,7 +608,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">An <see cref="IQueryable{T}"/> to return the single element of.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies the condition in predicate, or default(TSource) if no such element is found.</returns>
-        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate)
+        public static Task<TSource?> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate)
         {
             if (source is null)
             {

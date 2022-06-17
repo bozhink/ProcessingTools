@@ -31,6 +31,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         protected abstract Func<TModel, TEntity> MapModelToEntity { get; }
 
+        /// <inheritdoc/>
         public virtual Task<object> DeleteAsync(TModel model)
         {
             if (model is null)
@@ -42,6 +43,7 @@ namespace ProcessingTools.Data.Entity.Geo
             return this.DeleteAsync(id: id);
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> DeleteAsync(object id)
         {
             if (id is null)
@@ -53,6 +55,7 @@ namespace ProcessingTools.Data.Entity.Geo
             return Task.FromResult(id);
         }
 
+        /// <inheritdoc/>
         public virtual Task<TModel> GetByIdAsync(object id)
         {
             if (id is null)
@@ -70,6 +73,7 @@ namespace ProcessingTools.Data.Entity.Geo
             return Task.FromResult(model);
         }
 
+        /// <inheritdoc/>
         public virtual async Task<object> InsertAsync(TModel model)
         {
             if (model is null)
@@ -81,8 +85,10 @@ namespace ProcessingTools.Data.Entity.Geo
             return await this.InsertEntityAsync(entity).ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> SaveChangesAsync() => this.Repository.SaveChangesAsync();
 
+        /// <inheritdoc/>
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
@@ -92,6 +98,7 @@ namespace ProcessingTools.Data.Entity.Geo
             return result;
         }
 
+        /// <inheritdoc/>
         public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, ProcessingTools.Common.Enumerations.SortOrder sortOrder)
         {
             var query = this.GetQuery(filter)
@@ -105,6 +112,7 @@ namespace ProcessingTools.Data.Entity.Geo
             return result;
         }
 
+        /// <inheritdoc/>
         public virtual async Task<long> SelectCountAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
@@ -112,6 +120,7 @@ namespace ProcessingTools.Data.Entity.Geo
             return count;
         }
 
+        /// <inheritdoc/>
         public virtual async Task<object> UpdateAsync(TModel model)
         {
             if (model is null)
@@ -125,7 +134,7 @@ namespace ProcessingTools.Data.Entity.Geo
 
         protected async Task<TEntity> InsertEntityAsync(TEntity entity)
         {
-            string user = this.ApplicationContext.UserContext?.UserId;
+            string? user = this.ApplicationContext.UserContext?.UserId;
             var now = this.ApplicationContext.DateTimeProvider.Invoke();
 
             entity.CreatedBy = user;

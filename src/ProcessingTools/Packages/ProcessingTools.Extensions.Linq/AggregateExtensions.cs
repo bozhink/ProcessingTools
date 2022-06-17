@@ -26,7 +26,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="selector">Filter selector.</param>
         /// <param name="defaultValue">Default value.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TResult? Min<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult?> selector, TResult? defaultValue)
+        public static TResult? Min<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult?> selector, TResult defaultValue)
             where TResult : struct
         {
             if (source is null)
@@ -72,7 +72,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">Type of source collection.</typeparam>
         /// <param name="source">Source collection.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TSource MinOrDefault<TSource>(this IQueryable<TSource> source)
+        public static TSource? MinOrDefault<TSource>(this IQueryable<TSource> source)
         {
             if (source is null)
             {
@@ -89,7 +89,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">Source collection.</param>
         /// <param name="defaultValue">Default value.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TSource MinOrDefault<TSource>(this IQueryable<TSource> source, TSource defaultValue)
+        public static TSource? MinOrDefault<TSource>(this IQueryable<TSource> source, TSource defaultValue)
         {
             if (source is null)
             {
@@ -107,7 +107,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">Source collection.</param>
         /// <param name="selector">Filter selector.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TResult MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector)
+        public static TResult? MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector)
         {
             if (source is null)
             {
@@ -131,7 +131,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="selector">Filter selector.</param>
         /// <param name="defaultValue">Default value.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TResult MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, TSource defaultValue)
+        public static TResult? MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, TSource defaultValue)
         {
             if (source is null)
             {
@@ -153,7 +153,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">Source collection.</param>
         /// <param name="defaultValue">Default value.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TSource? MinOrDefault<TSource>(this IEnumerable<TSource?> source, TSource? defaultValue)
+        public static TSource? MinOrDefault<TSource>(this IEnumerable<TSource?> source, TSource defaultValue)
             where TSource : struct
         {
             if (source is null)
@@ -188,7 +188,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">Source collection.</param>
         /// <param name="defaultValue">Default value.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source, TSource defaultValue)
+        public static TSource? MinOrDefault<TSource>(this IEnumerable<TSource> source, TSource defaultValue)
         {
             if (source is null)
             {
@@ -198,7 +198,7 @@ namespace ProcessingTools.Extensions.Linq
             if (default(TSource) == null)
             {
                 var result = source.Min();
-                return result == null ? defaultValue : result;
+                return result is null ? defaultValue : result;
             }
             else
             {
@@ -231,7 +231,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <typeparam name="TSource">Type of source collection.</typeparam>
         /// <param name="source">Source collection.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source)
+        public static TSource? MinOrDefault<TSource>(this IEnumerable<TSource> source)
         {
             if (source is null)
             {
@@ -251,7 +251,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="selector">Filter selector.</param>
         /// <param name="defaultValue">Default value.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector, TResult defaultValue)
+        public static TResult? MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector, TResult defaultValue)
         {
             if (source is null)
             {
@@ -274,7 +274,7 @@ namespace ProcessingTools.Extensions.Linq
         /// <param name="source">Source collection.</param>
         /// <param name="selector">Filter selector.</param>
         /// <returns>Minimal or default value.</returns>
-        public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        public static TResult? MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
             if (source is null)
             {

@@ -11,7 +11,7 @@ namespace ProcessingTools.Extensions
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Schema;
-    using ProcessingTools.Extensions.Text;
+    using ProcessingTools.Common.Constants;
 
     /// <summary>
     /// XML Extensions.
@@ -26,10 +26,22 @@ namespace ProcessingTools.Extensions
         /// <param name="xml">XML as string.</param>
         /// <param name="message">Validation message.</param>
         /// <returns>Validation status.</returns>
-        public static bool ValidateWithXsd(string xsdFileName, string namespaceName, string xml, out string message)
+        public static bool ValidateWithXsd(string? xsdFileName, string? namespaceName, string? xml, out string? message)
         {
+            message = null;
+
+            if (xsdFileName is null || string.IsNullOrWhiteSpace(xsdFileName))
+            {
+                return false;
+            }
+
+            if (xml is null || string.IsNullOrWhiteSpace(xml))
+            {
+                return false;
+            }
+
             message = string.Empty;
-            var settings = new XmlReaderSettings
+            XmlReaderSettings settings = new XmlReaderSettings
             {
                 DtdProcessing = DtdProcessing.Ignore,
             };
@@ -38,13 +50,13 @@ namespace ProcessingTools.Extensions
             {
                 using (XmlReader xmlReader = XmlReader.Create(new StringReader(xml), settings))
                 {
-                    var document = XDocument.Load(xmlReader);
-                    var schemas = new XmlSchemaSet();
+                    XDocument document = XDocument.Load(xmlReader);
+                    XmlSchemaSet schemas = new XmlSchemaSet();
                     schemas.Add(namespaceName, xsdFileName);
 
-                    using (var stream = File.OpenRead(xsdFileName))
+                    using (Stream stream = File.OpenRead(xsdFileName))
                     {
-                        using (var reader = XmlReader.Create(stream, settings))
+                        using (XmlReader reader = XmlReader.Create(stream, settings))
                         {
                             schemas.Add(@"http://www.w3.org/2000/09/xmldsig#", reader);
                         }
@@ -72,7 +84,7 @@ namespace ProcessingTools.Extensions
         /// </summary>
         /// <param name="node">XmlNode object to check.</param>
         /// <returns>Returns true if the XmlNode is a named XmlNode (*) or a text node. Returns false if the node is a comment, proceeding instruction, DOCTYPE or CDATA element.</returns>
-        public static bool CheckIfIsPossibleToPerformReplaceInXmlNode(this XmlNode node)
+        public static bool CheckIfIsPossibleToPerformReplaceInXmlNode(this XmlNode? node)
         {
             if (node is null)
             {
@@ -96,14 +108,14 @@ namespace ProcessingTools.Extensions
         /// </summary>
         /// <param name="node"><see cref="XmlNode"/> instance, which owner document is wanted.</param>
         /// <returns>Owner Document of the specified node.</returns>
-        public static XmlDocument OwnerDocument(this XmlNode node)
+        public static XmlDocument? OwnerDocument(this XmlNode? node)
         {
             if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            var document = (node is XmlDocument ? node : node.OwnerDocument) as XmlDocument;
+            XmlDocument? document = node is XmlDocument ? node as XmlDocument : node.OwnerDocument;
 
             return document;
         }
@@ -112,16 +124,14 @@ namespace ProcessingTools.Extensions
         /// Removes <see cref="XmlNode"/> objects from the DOM object.
         /// </summary>
         /// <param name="nodeList">List of <see cref="XmlNode"/> objects to be removed.</param>
-        public static void RemoveXmlNodes(this XmlNodeList nodeList)
+        public static void RemoveXmlNodes(this XmlNodeList? nodeList)
         {
-            if (nodeList is null)
+            if (nodeList is not null)
             {
-                throw new ArgumentNullException(nameof(nodeList));
-            }
-
-            foreach (XmlNode node in nodeList)
-            {
-                node.ParentNode.RemoveChild(node);
+                foreach (XmlNode node in nodeList)
+                {
+                    node.ParentNode?.RemoveChild(node);
+                }
             }
         }
 
@@ -131,7 +141,7 @@ namespace ProcessingTools.Extensions
         /// <param name="node"><see cref="XmlNode"/> object in which will be selected by XPath <see cref="XmlNode"/> objects to be removed.</param>
         /// <param name="xpath">XPath string to select XmlNode objects winch will be removed.</param>
         /// <returns>The input <see cref="XmlNode"/> objects with removed XmlNode objects. This return is needed to enable chaining.</returns>
-        public static XmlNode RemoveXmlNodes(this XmlNode node, string xpath)
+        public static XmlNode? RemoveXmlNodes(this XmlNode? node, string? xpath)
         {
             if (node is null)
             {
@@ -153,7 +163,7 @@ namespace ProcessingTools.Extensions
         /// <param name="node"><see cref="XmlNode"/> object to be replaced.</param>
         /// <param name="regexPattern">Regex pattern string to be executed.</param>
         /// <param name="regexReplacement">Regex replacement string to build the <see cref="XmlDocumentFragment"/> object.</param>
-        public static void ReplaceWholeXmlNodeByRegexPattern(this XmlNode node, string regexPattern, string regexReplacement)
+        public static void ReplaceWholeXmlNodeByRegexPattern(this XmlNode? node, string? regexPattern, string? regexReplacement)
         {
             if (node is null)
             {
@@ -165,32 +175,38 @@ namespace ProcessingTools.Extensions
                 return;
             }
 
-            XmlDocumentFragment nodeFragment = node.OwnerDocument.CreateDocumentFragment();
-            nodeFragment.InnerXml = Regex.Replace(node.OuterXml, regexPattern, regexReplacement);
-            node.ParentNode.ReplaceChild(nodeFragment, node);
+            XmlDocumentFragment? nodeFragment = node.OwnerDocument?.CreateDocumentFragment();
+            if (nodeFragment is not null)
+            {
+                nodeFragment.InnerXml = Regex.Replace(node.OuterXml, regexPattern, regexReplacement ?? string.Empty);
+                node.ParentNode?.ReplaceChild(nodeFragment, node);
+            }
         }
 
         /// <summary>
         /// Strip outer XML tags of an <see cref="XmlNode"/> object.
         /// </summary>
         /// <param name="node"><see cref="XmlNode"/> object to be stripped.</param>
-        public static void ReplaceXmlNodeByItsInnerXml(this XmlNode node)
+        public static void ReplaceXmlNodeByItsInnerXml(this XmlNode? node)
         {
             if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            XmlDocumentFragment fragment = node.OwnerDocument.CreateDocumentFragment();
-            fragment.InnerXml = node.InnerXml;
-            node.ParentNode.ReplaceChild(fragment, node);
+            XmlDocumentFragment? fragment = node.OwnerDocument?.CreateDocumentFragment();
+            if (fragment is not null)
+            {
+                fragment.InnerXml = node.InnerXml;
+                node.ParentNode?.ReplaceChild(fragment, node);
+            }
         }
 
         /// <summary>
         /// Strip outer XML tags of an <see cref="XmlNode"/> object.
         /// </summary>
         /// <param name="nodeList">List of <see cref="XmlNode"/> objects to be stripped.</param>
-        public static void ReplaceXmlNodeByItsInnerXml(this XmlNodeList nodeList)
+        public static void ReplaceXmlNodeByItsInnerXml(this XmlNodeList? nodeList)
         {
             if (nodeList is null)
             {
@@ -211,8 +227,7 @@ namespace ProcessingTools.Extensions
         /// <param name="regex">Regex object to match content to be wrapped in <see cref="XmlElement"/>.</param>
         /// <param name="patterns">Replacement patterns in the following order: 1 - Replacement pattern to be applied in regex before the <see cref="XmlElement"/>; 2 - Replacement pattern to be applied in regex in the <see cref="XmlElement"/>; 3 - Replacement pattern to be applied in regex after the <see cref="XmlElement"/>.</param>
         /// <param name="replacementElementName">The name of the <see cref="XmlElement"/> which will be inserted in the node.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Non-critical catch of general exception")]
-        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex regex, Tuple<string, string, string> patterns, string replacementElementName)
+        public static void ReplaceXmlNodeContentByRegex(this XmlNode? node, Regex? regex, Tuple<string, string, string>? patterns, string? replacementElementName)
         {
             if (node is null)
             {
@@ -237,16 +252,19 @@ namespace ProcessingTools.Extensions
             var content = node.InnerXml;
             if (regex.IsMatch(content))
             {
-                var replacementElement = node.OwnerDocument.CreateElement(replacementElementName);
-                replacementElement.InnerText = patterns.Item2 ?? string.Empty;
+                XmlElement? replacementElement = node.OwnerDocument?.CreateElement(replacementElementName);
+                if (replacementElement is not null)
+                {
+                    replacementElement.InnerText = patterns.Item2 ?? string.Empty;
 
-                try
-                {
-                    node.InnerXml = regex.Replace(content, patterns.Item1 ?? string.Empty + replacementElement.OuterXml + patterns.Item3 ?? string.Empty);
-                }
-                catch
-                {
-                    node.InnerXml = content;
+                    try
+                    {
+                        node.InnerXml = regex.Replace(content, patterns.Item1 ?? string.Empty + replacementElement.OuterXml + patterns.Item3 ?? string.Empty);
+                    }
+                    catch
+                    {
+                        node.InnerXml = content;
+                    }
                 }
             }
         }
@@ -261,9 +279,7 @@ namespace ProcessingTools.Extensions
         /// <param name="replacementElementName">The name of the <see cref="XmlElement"/> which will be inserted in the node.</param>
         /// <param name="repmacementElementNamePrefix">Prefix for the replacement <see cref="XmlElement"/>.</param>
         /// <param name="namespaceUri">Namespace URI for the replacement <see cref="XmlElement"/>.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Non-critical catch of general exception")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1054:Uri parameters should not be strings", Justification = "XML namespace URI")]
-        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex regex, Tuple<string, string, string> patterns, string replacementElementName, string repmacementElementNamePrefix, string namespaceUri)
+        public static void ReplaceXmlNodeContentByRegex(this XmlNode? node, Regex? regex, Tuple<string, string, string>? patterns, string? replacementElementName, string? repmacementElementNamePrefix, string? namespaceUri)
         {
             if (node is null)
             {
@@ -285,19 +301,23 @@ namespace ProcessingTools.Extensions
                 throw new ArgumentNullException(nameof(replacementElementName));
             }
 
-            var content = node.InnerXml;
+            string content = node.InnerXml;
             if (regex.IsMatch(content))
             {
-                var replacementElement = node.OwnerDocument.CreateElement(repmacementElementNamePrefix, replacementElementName, namespaceUri);
-                replacementElement.InnerText = patterns.Item2 ?? string.Empty;
+                XmlElement? replacementElement = node.OwnerDocument?.CreateElement(repmacementElementNamePrefix, replacementElementName, namespaceUri);
 
-                try
+                if (replacementElement is not null)
                 {
-                    node.InnerXml = regex.Replace(content, patterns.Item1 ?? string.Empty + replacementElement.OuterXml + patterns.Item3 ?? string.Empty);
-                }
-                catch
-                {
-                    node.InnerXml = content;
+                    replacementElement.InnerText = patterns.Item2 ?? string.Empty;
+
+                    try
+                    {
+                        node.InnerXml = regex.Replace(content, patterns.Item1 ?? string.Empty + replacementElement.OuterXml + patterns.Item3 ?? string.Empty);
+                    }
+                    catch
+                    {
+                        node.InnerXml = content;
+                    }
                 }
             }
         }
@@ -308,8 +328,7 @@ namespace ProcessingTools.Extensions
         /// <param name="node"><see cref="XmlNode"/> which content would be replaced.</param>
         /// <param name="replace">Replacement string.</param>
         /// <returns>Status value: is the replacement performed or not.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Non-critical catch of general exception")]
-        public static bool SafeReplaceInnerXml(this XmlNode node, string replace)
+        public static bool SafeReplaceInnerXml(this XmlNode? node, string? replace)
         {
             if (node is null)
             {
@@ -319,7 +338,7 @@ namespace ProcessingTools.Extensions
             string nodeInnerXml = node.InnerXml;
             try
             {
-                node.InnerXml = replace;
+                node.InnerXml = replace ?? string.Empty;
                 return true;
             }
             catch
@@ -337,30 +356,34 @@ namespace ProcessingTools.Extensions
         /// <param name="attributeName">The name of the attribute which InnerText will be set.</param>
         /// <param name="attributeInnerText">The value of the InnerText of the attribute.</param>
         /// <returns>Updated node.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Non-critical catch of general exception")]
-        public static XmlNode SafeSetAttributeValue(this XmlNode node, string attributeName, string attributeInnerText)
+        public static XmlNode SafeSetAttributeValue(this XmlNode? node, string? attributeName, string? attributeInnerText)
         {
             if (node is null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            if (string.IsNullOrEmpty(attributeName))
+            if (attributeName is null || string.IsNullOrEmpty(attributeName))
             {
                 return node;
             }
 
             try
             {
-                if (node.Attributes[attributeName] is null)
+                XmlAttribute? attribute = node.Attributes?[attributeName];
+
+                if (attribute is null)
                 {
-                    XmlAttribute atribute = node.OwnerDocument.CreateAttribute(attributeName);
-                    node.Attributes.Append(atribute);
+                    attribute = node.OwnerDocument?.CreateAttribute(attributeName);
+                    if (attribute is not null)
+                    {
+                        node.Attributes?.Append(attribute);
+                    }
                 }
 
-                if (node.Attributes[attributeName].InnerText.Length < 1)
+                if (attribute is not null && attribute.InnerText.Length < 1)
                 {
-                    node.Attributes[attributeName].InnerText = attributeInnerText;
+                    attribute.InnerText = attributeInnerText ?? string.Empty;
                 }
             }
             catch
@@ -378,7 +401,7 @@ namespace ProcessingTools.Extensions
         /// <param name="attributeName">Name of the attribute to be created of updated.</param>
         /// <param name="attributeValue">Value of the attribute.</param>
         /// <returns>The same <see cref="XmlNode"/> object. Used for chaining.</returns>
-        public static XmlNode SetOrUpdateAttribute(this XmlNode node, string attributeName, string attributeValue)
+        public static XmlNode SetOrUpdateAttribute(this XmlNode? node, string? attributeName, string? attributeValue)
         {
             if (node is null)
             {
@@ -390,15 +413,20 @@ namespace ProcessingTools.Extensions
                 return node;
             }
 
-            var attribute = node.Attributes[attributeName];
+            XmlAttribute? attribute = node.Attributes?[attributeName];
             if (attribute is null)
             {
-                var a = node.OwnerDocument.CreateAttribute(attributeName);
-                node.Attributes.Append(a);
-                attribute = a;
+                attribute = node.OwnerDocument?.CreateAttribute(attributeName);
+                if (attribute is not null)
+                {
+                    node.Attributes?.Append(attribute);
+                }
             }
 
-            attribute.InnerText = attributeValue;
+            if (attribute is not null)
+            {
+                attribute.InnerText = attributeValue ?? String.Empty;
+            }
 
             return node;
         }

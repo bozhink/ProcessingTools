@@ -309,7 +309,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
                 var parameter = expression.Parameters[i];
                 if (parameter != null)
                 {
-                    if (typeMap.TryGetValue(parameter.Type, out Type newType))
+                    if (typeMap.TryGetValue(parameter.Type, out Type? newType) && newType is not null)
                     {
                         newParameters[i] = Expression.Parameter(newType, parameter.Name);
                         parameterMap[parameter] = newParameters[i];

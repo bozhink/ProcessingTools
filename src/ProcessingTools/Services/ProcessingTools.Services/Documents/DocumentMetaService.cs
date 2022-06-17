@@ -75,9 +75,9 @@ namespace ProcessingTools.Services.Documents
 
             foreach (var document in metaData.Documents)
             {
-                async Task taskFactory() => results.Enqueue(await this.UpdateDocumentAsync(document.Id, metaData).ConfigureAwait(false));
+                async Task TaskFactory() => results.Enqueue(await this.UpdateDocumentAsync(document.Id, metaData).ConfigureAwait(false));
 
-                tasks.Add(taskFactory());
+                tasks.Add(TaskFactory());
             }
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
