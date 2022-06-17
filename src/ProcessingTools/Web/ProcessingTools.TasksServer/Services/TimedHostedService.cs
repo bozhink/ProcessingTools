@@ -17,7 +17,7 @@ namespace ProcessingTools.TasksServer.Services
     internal class TimedHostedService : IHostedService, IDisposable
     {
         private readonly ILogger logger;
-        private Timer timer;
+        private Timer? timer;
         private bool disposed = false;
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace ProcessingTools.TasksServer.Services
             this.disposed = true;
         }
 
-        private void DoWork(object state)
+        private void DoWork(object? state)
         {
             this.logger.LogInformation("Timed Background Service is working.");
         }
