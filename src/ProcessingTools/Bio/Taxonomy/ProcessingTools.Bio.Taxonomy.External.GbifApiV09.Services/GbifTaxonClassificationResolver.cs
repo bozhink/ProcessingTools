@@ -7,6 +7,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -37,7 +38,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services
             var result = new HashSet<ITaxonClassificationSearchResult>();
 
             // TODO
-            GbifApiV09ResponseModel response = await this.client.GetDataPerNameAsync(name, "TODO").ConfigureAwait(false);
+            GbifApiV09ResponseModel response = await this.client.GetDataPerNameAsync(name, "TODO", CancellationToken.None).ConfigureAwait(false);
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) || !string.IsNullOrWhiteSpace(response.ScientificName)) &&

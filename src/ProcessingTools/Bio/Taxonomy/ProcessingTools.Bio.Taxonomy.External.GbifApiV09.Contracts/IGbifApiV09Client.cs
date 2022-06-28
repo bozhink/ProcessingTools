@@ -18,14 +18,6 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts
         /// </summary>
         /// <param name="name">Scientific name of the taxon which rank is searched.</param>
         /// <param name="traceId">Trace ID of the request.</param>
-        /// <returns><see cref="GbifApiV09ResponseModel"/> of the GBIF API v0.9 response.</returns>
-        Task<GbifApiV09ResponseModel?> GetDataPerNameAsync(string name, string? traceId);
-
-        /// <summary>
-        /// Search scientific name with GBIF API v0.9.
-        /// </summary>
-        /// <param name="name">Scientific name of the taxon which rank is searched.</param>
-        /// <param name="traceId">Trace ID of the request.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns><see cref="GbifApiV09ResponseModel"/> of the GBIF API v0.9 response.</returns>
         Task<GbifApiV09ResponseModel?> GetDataPerNameAsync(string name, string? traceId, CancellationToken cancellationToken);

@@ -19,31 +19,6 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests
     public class GbifApiV09ClientIntegrationTests
     {
         /// <summary>
-        /// <see cref="GbifApiV09Client"/>.GetDataPerNameAsync with valid name and valid BaseAddress should return valid result.
-        /// </summary>
-        /// <returns>Task.</returns>
-        [Test(TestOf = typeof(GbifApiV09Client), Description = "GbifApiV09Client.GetDataPerNameAsync with valid name and valid BaseAddress should valid result.")]
-        public async Task GbifApiV09Client_GetDataPerNameAsync_WithValidNameAndValidBaseAddress_ShouldReturnValidResult()
-        {
-            // Arrange
-            string name = "Coleoptera";
-            var traceId = $"test-=={name}==";
-            Uri baseAddress = new Uri("https://api.gbif.org/");
-            var httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            httpClientFactoryMock.Setup(f => f.CreateClient(nameof(GbifApiV09Client))).Returns(new HttpClient() { BaseAddress = baseAddress });
-            var loggerMock = new Mock<ILogger<GbifApiV09Client>>();
-            var sut = new GbifApiV09Client(httpClientFactory: httpClientFactoryMock.Object, logger: loggerMock.Object);
-
-            // Act
-            var result = await sut.GetDataPerNameAsync(name, traceId).ConfigureAwait(false);
-
-            // Assert
-            Assert.IsNotNull(result);
-            httpClientFactoryMock.Verify(m => m.CreateClient(nameof(GbifApiV09Client)), Times.Once);
-            loggerMock.Verify();
-        }
-
-        /// <summary>
         /// <see cref="GbifApiV09Client"/>.GetDataPerNameAsync with valid name and valid BaseAddress and cancellation token false should return valid result.
         /// </summary>
         /// <returns>Task.</returns>
