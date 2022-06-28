@@ -5,6 +5,7 @@
 namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models
 {
     using System.Collections.Generic;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
 
     /// <summary>
@@ -35,5 +36,9 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models
         /// </summary>
         [JsonPropertyName("results")]
         public List<GbifApiV10ResultModel>? Results { get; init; }
+
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement>? ExtensionData { get; set; }
+
     }
 }
