@@ -13,7 +13,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
-    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models;
+    using ProcessingTools.Integrations.Gbif.IntegrationModels.V09;
 
     /// <summary>
     /// GBIF API v0.9 data requester.

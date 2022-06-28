@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-
     <TargetFramework>net6.0</TargetFramework>
-    <Version>1.0.0.1</Version>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <Version>1.0.0.1</Version>
+
     <LangVersion>Latest</LangVersion>
     <Company>ProcessingTools</Company>
     <Authors>Bozhin Karaivanov</Authors>
@@ -16,20 +17,21 @@
     <RepositoryType>git</RepositoryType>
     <AnalysisLevel>latest</AnalysisLevel>
 
-    <Description>Tests for models for external service of GBIF API v0.9.</Description>
-    <PackageTags>tests, unit tests, integration tests, model, models, gbif, bio, biology, taxonomy</PackageTags>
+    <Description>Tests for models for external service of GBIF API.</Description>
+    <PackageTags>model, models, gbif, bio, biology, taxonomy</PackageTags>
 
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\release</OutputPath>
-    <DocumentationFile>bin\release\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ProcessingTools.Integrations.Gbif.IntegrationModels.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1040</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\debug</OutputPath>
-    <DocumentationFile>bin\debug\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\ProcessingTools.Integrations.Gbif.IntegrationModels.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;CA1040</NoWarn>
   </PropertyGroup>
 
@@ -42,12 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="Moq" Version="4.16.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
-    <PackageReference Include="NUnit" Version="3.13.2" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -59,12 +60,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models\ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Integrations.Gbif.IntegrationModels\ProcessingTools.Integrations.Gbif.IntegrationModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="data-files\gbif-v09-coleoptera-response.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="data-files\gbif-v1-response.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+
 </Project>

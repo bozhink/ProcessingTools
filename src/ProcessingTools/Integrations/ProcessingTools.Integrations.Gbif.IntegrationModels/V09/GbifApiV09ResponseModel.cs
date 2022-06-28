@@ -2,7 +2,7 @@
 // Copyright (c) 2022 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models
+namespace ProcessingTools.Integrations.Gbif.IntegrationModels.V09
 {
     using System.Collections.Generic;
     using System.Text.Json.Serialization;

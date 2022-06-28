@@ -12,8 +12,8 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
-    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models;
     using ProcessingTools.Bio.Taxonomy.Models;
+    using ProcessingTools.Integrations.Gbif.IntegrationModels.V09;
 
     /// <summary>
     /// Taxon rank resolver with GBIF.

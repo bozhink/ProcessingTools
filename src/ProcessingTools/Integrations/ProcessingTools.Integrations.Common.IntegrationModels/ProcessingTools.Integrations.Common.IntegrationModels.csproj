@@ -17,8 +17,8 @@
     <RepositoryType>git</RepositoryType>
     <AnalysisLevel>latest</AnalysisLevel>
 
-    <Description>Models for external service of GBIF API v1.0.</Description>
-    <PackageTags>model, models, gbif, bio, biology, taxonomy</PackageTags>
+    <Description>Base integration models.</Description>
+    <PackageTags>model, models, integrations</PackageTags>
 
   </PropertyGroup>
 

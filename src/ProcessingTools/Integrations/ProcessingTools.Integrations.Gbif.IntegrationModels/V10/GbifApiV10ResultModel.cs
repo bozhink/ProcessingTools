@@ -2,15 +2,16 @@
 // Copyright (c) 2022 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models
+namespace ProcessingTools.Integrations.Gbif.IntegrationModels.V10
 {
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
+    using ProcessingTools.Integrations.Common.IntegrationModels;
 
     /// <summary>
-    /// GBIF API v1 result model.
+    /// GBIF API v1.0 result model.
     /// </summary>
-    public class GbifApiV10ResultModel
+    public class GbifApiV10ResultModel : BaseJsonResponseModel
     {
         /// <summary>
         /// Gets according to.

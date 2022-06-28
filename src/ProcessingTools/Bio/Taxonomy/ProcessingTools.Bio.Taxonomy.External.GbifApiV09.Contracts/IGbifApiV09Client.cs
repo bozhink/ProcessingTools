@@ -6,7 +6,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models;
+    using ProcessingTools.Integrations.Gbif.IntegrationModels.V09;
 
     /// <summary>
     /// GBIF API v0.9 client.

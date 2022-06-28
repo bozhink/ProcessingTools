@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models\ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.csproj" />
+    <ProjectReference Include="..\..\..\Integrations\ProcessingTools.Integrations.Gbif.IntegrationModels\ProcessingTools.Integrations.Gbif.IntegrationModels.csproj" />
   </ItemGroup>
 
 </Project>

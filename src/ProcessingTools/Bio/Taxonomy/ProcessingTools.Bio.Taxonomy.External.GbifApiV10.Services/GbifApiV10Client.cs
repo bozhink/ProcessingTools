@@ -13,7 +13,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Contracts;
-    using ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models;
+    using ProcessingTools.Integrations.Gbif.IntegrationModels.V10;
 
     /// <summary>
     /// GBIF API v1.0 data requester.
@@ -108,4 +108,4 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Services
             }
         }
     }
-    }
+}
