@@ -7,13 +7,14 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Common;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Contracts;
-    using ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models;
     using ProcessingTools.Bio.Taxonomy.Models;
+    using ProcessingTools.Integrations.Gbif.IntegrationModels.V09;
 
     /// <summary>
     /// Taxon rank resolver with GBIF.
@@ -37,7 +38,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services
             var result = new HashSet<ITaxonClassificationSearchResult>();
 
             // TODO
-            GbifApiV09ResponseModel response = await this.client.GetDataPerNameAsync(name, "TODO").ConfigureAwait(false);
+            GbifApiV09ResponseModel response = await this.client.GetDataPerNameAsync(name, "TODO", CancellationToken.None).ConfigureAwait(false);
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) || !string.IsNullOrWhiteSpace(response.ScientificName)) &&

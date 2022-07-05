@@ -2,11 +2,12 @@
 // Copyright (c) 2022 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests
+namespace ProcessingTools.Integrations.Gbif.IntegrationModels.Tests
 {
     using System.IO;
     using System.Text.Json;
     using NUnit.Framework;
+    using ProcessingTools.Integrations.Gbif.IntegrationModels.V09;
 
     /// <summary>
     /// <see cref="GbifApiV09ResponseModel"/> integration tests.
@@ -25,7 +26,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests
             string fileContent = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), fileName));
 
             // Act
-            var model = JsonSerializer.Deserialize<GbifApiV09ResponseModel>(fileContent);
+            GbifApiV09ResponseModel? model = JsonSerializer.Deserialize<GbifApiV09ResponseModel>(fileContent);
 
             // Assert
             Assert.IsNotNull(model);
@@ -42,11 +43,11 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Models.Tests
             string fileContent = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), fileName));
 
             // Act
-            var model = JsonSerializer.Deserialize<GbifApiV09ResponseModel>(fileContent);
+            GbifApiV09ResponseModel? model = JsonSerializer.Deserialize<GbifApiV09ResponseModel>(fileContent);
 
             // Assert
-            Assert.AreEqual("Coleoptera", model.CanonicalName);
-            Assert.AreEqual("ORDER", model.Rank.ToUpperInvariant());
+            StringAssert.AreEqualIgnoringCase("Coleoptera", model?.CanonicalName);
+            StringAssert.AreEqualIgnoringCase("order", model?.Rank);
         }
     }
 }

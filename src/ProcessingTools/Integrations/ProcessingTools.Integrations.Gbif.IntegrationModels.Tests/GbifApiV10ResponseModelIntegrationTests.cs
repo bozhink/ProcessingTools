@@ -2,11 +2,12 @@
 // Copyright (c) 2022 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests
+namespace ProcessingTools.Integrations.Gbif.IntegrationModels.Tests
 {
     using System.IO;
     using System.Text.Json;
     using NUnit.Framework;
+    using ProcessingTools.Integrations.Gbif.IntegrationModels.V10;
 
     /// <summary>
     /// <see cref="GbifApiV10ResponseModel"/> integration tests.
@@ -25,7 +26,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests
             string fileContent = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), fileName));
 
             // Act
-            var model = JsonSerializer.Deserialize<GbifApiV10ResponseModel>(fileContent);
+            GbifApiV10ResponseModel? model = JsonSerializer.Deserialize<GbifApiV10ResponseModel>(fileContent);
 
             // Assert
             Assert.IsNotNull(model);
@@ -42,11 +43,11 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV10.Models.Tests
             string fileContent = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), fileName));
 
             // Act
-            var model = JsonSerializer.Deserialize<GbifApiV10ResponseModel>(fileContent);
+            GbifApiV10ResponseModel? model = JsonSerializer.Deserialize<GbifApiV10ResponseModel>(fileContent);
 
             // Assert
-            Assert.AreEqual(0, model.Offset);
-            Assert.AreEqual(20, model.Limit);
+            Assert.That(model?.Offset, Is.EqualTo(0));
+            Assert.That(model?.Limit, Is.EqualTo(20));
         }
     }
 }

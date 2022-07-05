@@ -102,7 +102,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests
             var sut = new GbifApiV09Client(httpClientFactory: httpClientFactoryMock.Object, logger: loggerMock.Object);
 
             // Act
-            var result = await sut.GetDataPerNameAsync(name, traceId).ConfigureAwait(false);
+            var result = await sut.GetDataPerNameAsync(name, traceId, CancellationToken.None).ConfigureAwait(false);
 
             // Assert
             Assert.IsNull(result);
@@ -154,7 +154,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests
             // Here we don't have configured HttpClient, so NullReferenceException is expected behavior.
             Assert.ThrowsAsync<NullReferenceException>(async () =>
             {
-                _ = await sut.GetDataPerNameAsync(name, traceId).ConfigureAwait(false);
+                _ = await sut.GetDataPerNameAsync(name, traceId, CancellationToken.None).ConfigureAwait(false);
             });
 
             // Assert
@@ -177,7 +177,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests
             var sut = new GbifApiV09Client(httpClientFactory: httpClientFactoryMock.Object, logger: loggerMock.Object);
 
             // Act
-            var result = await sut.GetDataPerNameAsync(name, traceId).ConfigureAwait(false);
+            var result = await sut.GetDataPerNameAsync(name, traceId, CancellationToken.None).ConfigureAwait(false);
 
             // Assert
             Assert.IsNull(result);
@@ -200,7 +200,7 @@ namespace ProcessingTools.Bio.Taxonomy.External.GbifApiV09.Services.Tests
             var sut = new GbifApiV09Client(httpClientFactory: httpClientFactoryMock.Object, logger: loggerMock.Object);
 
             // Act
-            var result = await sut.GetDataPerNameAsync(name, traceId).ConfigureAwait(false);
+            var result = await sut.GetDataPerNameAsync(name, traceId, CancellationToken.None).ConfigureAwait(false);
 
             // Assert
             Assert.IsNull(result);
